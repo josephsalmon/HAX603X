@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - Notations</title>
+<title>HAX603X: Modélisation stochastique - Notations et rappels</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -60,6 +60,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -70,7 +86,7 @@ ul.task-list li input[type="checkbox"] {
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Notations</h1>
+      <h1 class="quarto-secondary-nav-title">Notations et rappels</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -100,7 +116,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Courses</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Cours</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -108,7 +124,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link active">Notations</a>
+  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link active">Notations et rappels</a>
   </div>
 </li>
       </ul>
@@ -125,7 +141,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Notations</h1>
+<h1 class="title d-none d-lg-block">Notations et rappels</h1>
 </div>
 
 
@@ -140,7 +156,18 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Test</p>
+<div id="def-line" class="theorem definition" data-icon="false" data-appearance="simple">
+<p><span class="theorem-title"><strong>Definition 1 (Variable aléatoire) </strong></span>Soit <span class="math inline">(E, \mathcal{E})</span> un espace mesurable. Une <em>s</em> (ou v.a.) est une application mesurable <span class="math display">
+    \begin{array}{ccccc}
+        X &amp; : &amp; \Omega &amp; \to     &amp; E            \\
+            &amp;   &amp; \omega &amp; \mapsto &amp; X(\omega)\,.
+    \end{array}
+</span> C’est-à-dire que pour tout <span class="math inline">B \in \mathcal{E}, \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.</span> Cet ensemble se réécrit souvent sous la forme <span class="math display">
+    \{\omega \in \Omega : X(\omega) \in B\} = X^{-1}(B) = \{X \in B\}\,.
+</span></p>
+</div>
+<p>Cette définition permet de transposer l’aléa qui provient de <span class="math inline">\Omega</span> dans l’espace <span class="math inline">E</span>. L’hypothèse <span class="math inline">\{X \in B\} \in \mathcal{F}</span> assure que cet ensemble est bien un évènement et donc que l’on peut calculer sa probabilité. Si <span class="math inline">E = \mathbb{R}</span>, on prendra alors la tribu borélienne <span class="math inline">\mathcal{F} = \mathcal{B}(\mathbb{R})</span> et on parlera alors de . Si <span class="math inline">E = \mathbb{R}^d</span>, on parlera de <em>vecteurs aléatoires</em>.</p>
+<p>Une fois que l’aléa a été transposé de <span class="math inline">\Omega</span> vers <span class="math inline">E</span>, on souhaite également transposer la probabilité <span class="math inline">\mathbb{P}</span> sur <span class="math inline">E</span>. Ceci motive la notion de loi.</p>
 
 
 
