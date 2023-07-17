@@ -7,9 +7,9 @@ format:
 ---
 
 ::: {#def-line}
-
 ## Variable aléatoire
 
+<br>
 
 Soit $(E, \mathcal{E})$ un espace mesurable. Une *s* (ou v.a.) est une application mesurable
 $$
@@ -31,3 +31,4 @@ L'hypothèse $\{X \in B\} \in \mathcal{F}$ assure que cet ensemble est bien un �
 Si $E = \mathbb{R}$, on prendra alors la tribu borélienne $\mathcal{F} = \mathcal{B}(\mathbb{R})$ et on parlera alors de \emph{\va réelle}. Si $E = \mathbb{R}^d$, on parlera de *vecteurs aléatoires*.
 
 Une fois que l'aléa a été transposé de $\Omega$ vers $E$, on souhaite également transposer la probabilité $\mathbb{P}$ sur $E$. Ceci motive la notion de loi.
+
