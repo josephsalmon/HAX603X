@@ -6,7 +6,7 @@ format:
 
 ---
 
-::: {#thm-line }
+::: {#def-va }
 ## Variable aléatoire
 
 <br>
@@ -28,7 +28,55 @@ $$
 
 Cette définition permet de transposer l'aléa qui provient de $\Omega$ dans l'espace $E$.
 L'hypothèse $\{X \in B\} \in \mathcal{F}$ assure que cet ensemble est bien un évènement et donc que l'on peut calculer sa probabilité.
-Si $E = \mathbb{R}$, on prendra alors la tribu borélienne $\mathcal{F} = \mathcal{B}(\mathbb{R})$ et on parlera alors de \emph{\va réelle}. Si $E = \mathbb{R}^d$, on parlera de *vecteurs aléatoires*.
 
-Une fois que l'aléa a été transposé de $\Omega$ vers $E$, on souhaite également transposer la probabilité $\mathbb{P}$ sur $E$. Ceci motive la notion de loi.
+- Si $E = \mathbb{R}$, on prendra alors la tribu borélienne $\mathcal{F} = \mathcal{B}(\mathbb{R})$ et on parlera alors de v.a. réelle.
+- Si $E = \mathbb{R}^d$, on parlera de *vecteurs aléatoires*.
 
+Une fois que l'aléa a été transposé de $\Omega$ vers $E$, on souhaite également transposer la probabilité $\mathbb{P}$ sur $E$. Ceci motive l'introduction de la notion de loi.
+
+
+::: {#def-loi}
+## Loi d'une variable aléatoire
+
+<br>
+
+Soit $X : (\Omega, \mathcal{F}, \mathbb{P}) \to (E, \mathcal{E})$ une variable aléatoire. On appelle *loi de $X$* la mesure de probabilité
+$$
+		\begin{array}{ccccc}
+			\mathbb{P}_X & : & \mathcal{E} & \to     & [0,1]          \\
+			     &   & B           & \mapsto & \mathbb{P}(X \in B) \enspace.
+		\end{array}
+$$
+
+:::
+
+
+
+Les propriétés de $\mathbb{P}$ assurent que $\mathbb{P}_X$ est bien une loi de probabilité sur l'espace mesurable $(E, \mathcal{E})$.
+Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$ discret, le plus souvent $\mathbb{N}$, muni de la tribu pleine $\mathcal{F} = \mathcal{P}(E)$.
+
+::: {#exm-bernoulli}
+## Loi de Bernoulli
+
+La loi la plus simple est la *loi de Bernoulli* de paramètre $p \in [0,1]$, définie sur $\{0,1\}$ par $\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p$ qui modélise une expérience aléatoire à deux issues (succès = $1$ et échec = $0$).
+:::
+
+
+::: {#exm-binomiale}
+## Loi binomiale
+
+En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale : $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in \{0,\ldots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
+:::
+
+
+::: {#exm-géométrique}
+## Loi géométrique
+
+En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$.
+:::
+
+::: {#exm-Poisson}
+## Loi de Poisson
+
+La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
+:::

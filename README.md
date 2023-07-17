@@ -9,7 +9,7 @@ Attention: site en construction...
 - [Joseph Salmon](https://josephsalmon.eu/): joseph.salmon@umontpellier.fr,
 - [Benjamin Charlier](https://imag.umontpellier.fr/~charlier/index.php?page=index): benjamin.charlier@umontpellier.fr
 
-Ce cours est issue du travail antérieurs de:
+Ce cours est issu du travail antérieur de la part de:
 
 - [Nicolas Meyer](https://sites.google.com/view/nicolasmeyer/accueil)
 - [Benoîte de Saporta](https://imag.umontpellier.fr/~saporta/index-en.html)
