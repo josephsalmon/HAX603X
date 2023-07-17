@@ -26,10 +26,11 @@ website:
 format:
   html:
     theme:
-      cosmo
+      - cosmo
+      - custom.scss
       # light: spacelab
-    css: custom.css
-      custom.scss
+    css:
+      - custom.css
     # mainfont: Atkinson Hyperlegible
     html-math-method: katex
     toc-location: right
