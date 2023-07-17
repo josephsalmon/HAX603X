@@ -6,7 +6,7 @@ format:
 
 ---
 
-::: {#def-line icon=false appearance="simple"}
+::: {#def-line appearance="default"}
 
 ## Variable aléatoire
 
