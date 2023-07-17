@@ -1,0 +1,9 @@
+---
+title: "Notations"
+format:
+  html:
+      out.width: 50%
+
+---
+
+Test
