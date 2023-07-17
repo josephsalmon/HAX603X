@@ -1,0 +1,45 @@
+project:
+  type: website
+  render:
+    - index.qmd
+    - Courses/notations.qmd
+
+website:
+  title: "HAX603X: Modélisation stochastique"
+  site-url: https://josephsalmon.github.io/HAX603X/
+  repo-url: https://github.com/josephsalmon/HAX603X
+  page-navigation: true
+  repo-actions: [source, issue]
+  sidebar:
+    search: true
+    contents:
+      - text: "Présentation"
+        href: index.qmd
+      - section: "Courses"
+        contents:
+          - Courses/notations.qmd
+          # - Courses/theoreme_limite.qmd
+
+      # - section: "Projects"
+      #   contents:
+
+format:
+  html:
+    theme:
+      cosmo
+      # light: spacelab
+    css: custom.scss
+    # mainfont: Atkinson Hyperlegible
+    html-math-method: katex
+    toc-location: right
+    toc: true
+    toc-depth: 3
+    code-fold: false
+    code-tools:
+      toggle: false
+      source: false
+    code-overflow: wrap
+    fig-responsive: true
+    fig.align: center
+    # self-contained: true
+    # fig-format: svg
