@@ -15,7 +15,7 @@ website:
     contents:
       - text: "Présentation"
         href: index.qmd
-      - section: "Courses"
+      - section: "Cours"
         contents:
           - Courses/notations.qmd
           # - Courses/theoreme_limite.qmd
