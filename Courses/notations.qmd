@@ -10,7 +10,6 @@ format:
 
 ## Variable aléatoire
 
-<br>
 
 Soit $(E, \mathcal{E})$ un espace mesurable. Une *s* (ou v.a.) est une application mesurable
 $$
