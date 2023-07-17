@@ -6,7 +6,7 @@ format:
 
 ---
 
-::: {#def-line}
+::: {#def-line }
 ## Variable aléatoire
 
 <br>
