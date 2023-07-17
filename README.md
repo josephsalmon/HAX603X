@@ -2,6 +2,8 @@
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
 
+Attention: site en construction...
+
 ## Professeurs
 
 - [Joseph Salmon](https://josephsalmon.eu/): joseph.salmon@umontpellier.fr,
@@ -18,7 +20,7 @@ Ce cours est issue du travail antérieurs de:
 Cours de mesure et intégration, analyse numérique...
 
 
-## Course description
+##  Description du cours
 
 
 
@@ -41,10 +43,7 @@ CCI
 ### Devoir sur table
 
 
-
-
 ## Livres et ressources
-
 
 
 ### Moodle
