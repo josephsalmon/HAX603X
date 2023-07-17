@@ -9,7 +9,7 @@
     -webkit-hyphens: auto;
     hyphens: auto;
   }
-
+  
   a {
     overflow-wrap: break-word;
     word-wrap: break-word;
@@ -24,11 +24,14 @@
   .callout.callout-style-default {
     border-left: 6px solid
   }
-
+  
   .callout.callout-style-default .callout-header {
+    // border-bottom: none;
+    // font-weight: 600;
+    // opacity: 100%;
     color: black;
   }
-
+  
 
 .theorem {
     padding: .2em 1em .2em 1em;
