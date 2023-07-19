@@ -126,7 +126,7 @@ Si une variable aléatoire $X$ suit cette loi on note $X \sim \mathcal{Exp}(\gam
 On obtient la loi normale de paramètre $\mu \in \mathbb{R}$ et $\sigma^2 > 0$ correspond à loi dont la densité est donnée par la fonction réelle:filters:
   - shinylive
 $$
-f(x) = \frac{e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}}{\sqrt{2 \pi} \sigma} \enspace.
+f(x) = \frac{1}{\sqrt{2 \pi} \sigma}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
 $$
 Si une variable aléatoire $X$ suit une telle loi on note $X \sim \mathcal{N}(\mu,\sigma^2)$, $\mu$ correspondant à l'espérance de la loi, et $\sigma^2$ à sa variance.
 On nomme loi *normale centrée réduite* le cas correspondant à $\mu = 0$ et $\sigma = 1$.
@@ -139,7 +139,7 @@ On peut étendre les lois normales au cas multi-dimensionnel.
 Fixons $d\in\mathbb{N}^*$ un entier non nul.
 Pour un vecteur $\mu \in \mathbb{R}^d$ et une matrice symétrique-définie positive $\Sigma\in \mathbb{R^{d\times d}}$, la densité normale mutlivariée associée est donnée par la fonction:
 $$
-f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-(x-\mu)^\top \frac{\Sigma ^{-1}}{2}(x-\mu)}
+f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-\frac{1}{2}(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
 $$
 Notons que $\mu$ est l'espérance de la loi et $\Sigma$ la matrice de variance-covariance.
 :::
@@ -194,7 +194,7 @@ $$
 Le graphe des fonctions de répartition des loi de Bernoulli, uniforme et normale sont représentées en Figure XXX.
 Notons que la fonction de répartition de la loi normale $\mathcal{N}(0,1)$, souvent notée $\Phi$, n'admet pas d'expression explicite autre que
 $$
-\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-x^2/2}\, \mathrm d x\,,
+\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{x^2}{2}}\, \mathrm d x\,,
 					\quad x \in \mathbb{R}\,.
 $$
 Les valeurs numériques de $\Phi(x)$ étaient autrefois reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].Par transformation affine, si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- ce que l'on peut aussi écrire : $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors sa fonction de répartition est donnée par $F_X(x)=\Phi((x-\mu)/\sigma)$.
