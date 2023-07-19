@@ -242,12 +242,12 @@ f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
 </div>
 <div id="exm-gaussienne" class="theorem example">
 <p><span class="theorem-title"><strong>Example 7 (Loi normale/gaussienne univariée) </strong></span>On obtient la loi normale de paramètre <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\sigma^2 &gt; 0</span> correspond à loi dont la densité est donnée par la fonction réelle:filters: - shinylive <span class="math display">
-f(x) = \frac{e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}}{\sqrt{2 \pi} \sigma} \enspace.
+f(x) = \frac{1}{\sqrt{2 \pi} \sigma}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
 </span> Si une variable aléatoire <span class="math inline">X</span> suit une telle loi on note <span class="math inline">X \sim \mathcal{N}(\mu,\sigma^2)</span>, <span class="math inline">\mu</span> correspondant à l’espérance de la loi, et <span class="math inline">\sigma^2</span> à sa variance. On nomme loi <em>normale centrée réduite</em> le cas correspondant à <span class="math inline">\mu = 0</span> et <span class="math inline">\sigma = 1</span>.</p>
 </div>
 <div id="exm-gaussienne-multi" class="theorem example">
 <p><span class="theorem-title"><strong>Example 8 (Loi normale multivariée) </strong></span>On peut étendre les lois normales au cas multi-dimensionnel. Fixons <span class="math inline">d\in\mathbb{N}^*</span> un entier non nul. Pour un vecteur <span class="math inline">\mu \in \mathbb{R}^d</span> et une matrice symétrique-définie positive <span class="math inline">\Sigma\in \mathbb{R^{d\times d}}</span>, la densité normale mutlivariée associée est donnée par la fonction: <span class="math display">
-f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-(x-\mu)^\top \frac{\Sigma ^{-1}}{2}(x-\mu)}
+f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-\frac{1}{2}(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
 </span> Notons que <span class="math inline">\mu</span> est l’espérance de la loi et <span class="math inline">\Sigma</span> la matrice de variance-covariance.</p>
 </div>
 </section>
@@ -272,7 +272,7 @@ F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 </span></p>
 </div>
 <div class="page-columns page-full"><p>Le graphe des fonctions de répartition des loi de Bernoulli, uniforme et normale sont représentées en Figure XXX. Notons que la fonction de répartition de la loi normale <span class="math inline">\mathcal{N}(0,1)</span>, souvent notée <span class="math inline">\Phi</span>, n’admet pas d’expression explicite autre que <span class="math display">
-\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-x^2/2}\, \mathrm d x\,,
+\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{x^2}{2}}\, \mathrm d x\,,
                     \quad x \in \mathbb{R}\,.
 </span> Les valeurs numériques de <span class="math inline">\Phi(x)</span> étaient autrefois reportées dans des tables<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.Par transformation affine, si <span class="math inline">X \sim \mathcal{N}(\mu, \sigma^2)</span> — ce que l’on peut aussi écrire : <span class="math inline">X=\mu + \sigma Y</span>, avec <span class="math inline">Y\sim \mathcal{N}(0,1)</span> — alors sa fonction de répartition est donnée par <span class="math inline">F_X(x)=\Phi((x-\mu)/\sigma)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs">Wikipedia: loi normale</a></p></li></div></div>
 <div id="prp-toto" class="theorem proposition">
