@@ -4,6 +4,11 @@ project:
     - index.qmd
     - Courses/notations.qmd
 
+reference-location: margin
+citation-location: margin
+fig-cap-location: margin
+filters:
+  - shinylive
 website:
   title: "HAX603X: Modélisation stochastique"
   site-url: https://josephsalmon.github.io/HAX603X/

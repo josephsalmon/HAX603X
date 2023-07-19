@@ -3,13 +3,17 @@ title: "Notations et rappels"
 format:
   html:
       out.width: 50%
-
+filters:
+  - shinylive
 ---
+
+
 
 ::: {#def-va }
 ## Variable aléatoire
 
 <br>
+
 
 Soit $(E, \mathcal{E})$ un espace mesurable. Une *s* (ou v.a.) est une application mesurable
 $$
@@ -50,9 +54,10 @@ $$
 
 :::
 
-
-
 Les propriétés de $\mathbb{P}$ assurent que $\mathbb{P}_X$ est bien une loi de probabilité sur l'espace mesurable $(E, \mathcal{E})$.
+
+
+## Loi discrètes
 Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$ discret, le plus souvent $\mathbb{N}$, muni de la tribu pleine $\mathcal{F} = \mathcal{P}(E)$.
 
 ::: {#exm-bernoulli}
@@ -80,3 +85,330 @@ En observant le nombre d'expériences nécessaires avant d'obtenir un succès, o
 
 La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
 :::
+
+## Lois continues
+
+Parmi les variables aléatoires réelles non discrètes, beaucoup peuvent se représenter avec une densité, c'est-à-dire qu'il existe une fonction mesurable $f : \mathbb{R} \to [0, \infty[$ d'intégrale $1$.
+La loi d'une telle variable aléatoire $X$ est alors donnée par
+$$
+    \mathbb{P}(X \in A) = \int_A f(x) \, \mathrm d x\,, \quad A \in \mathcal{B}(\mathbb{R}) \enspace.
+$$
+Les propriétés de l'intégrale de Lebesgue assure que cette formule définit bien une loi de probabilité.
+
+
+::: {#exm-uniforme}
+## Loi uniforme
+La loi uniforme sur un ensemble $B \in \mathcal{B}(\mathbb{R})$, s'obtient avec la densité définie par
+$$
+f(x) = {1\hspace{-3.8pt} 1}_B(x) / \lambda (B) \enspace,
+$$
+où $\lambda (B)$ représente la mesure de Lebesgue de l'ensemble $B$.
+En particulier pour la loi uniforme sur le segment $[0,1]$ on obtient la fonction suivante:
+$$
+f(x) = {1\hspace{-3.8pt} 1}_{[0,1]}(x)\enspace.
+$$
+Si une variable aléatoire $U$ suit une telle loi on note $U \sim \mathcal{U}([0,1]$.
+:::
+
+::: {#exm-exponentielle}
+## Loi exponentielle
+La loi exponentielle de paramètre $\gamma > 0$ est obtenue avec la densité
+donnée par
+$$
+f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+$$
+Si une variable aléatoire $X$ suit cette loi on note $X \sim \mathcal{Exp}(\gamma)$.
+:::
+
+
+::: {#exm-gaussienne}
+## Loi normale/gaussienne univariée
+On obtient la loi normale de paramètre $\mu \in \mathbb{R}$ et $\sigma^2 > 0$ correspond à loi dont la densité est donnée par la fonction réelle:filters:
+  - shinylive
+$$
+f(x) = \frac{e^{-\frac{1}{2}(x-\mu)^2/\sigma^2}}{\sqrt{2 \pi} \sigma} \enspace.
+$$
+Si une variable aléatoire $X$ suit une telle loi on note $X \sim \mathcal{N}(\mu,\sigma^2)$, $\mu$ correspondant à l'espérance de la loi, et $\sigma^2$ à sa variance.
+On nomme loi *normale centrée réduite* le cas correspondant à $\mu = 0$ et $\sigma = 1$.
+:::
+
+::: {#exm-gaussienne-multi}
+
+## Loi normale multivariée
+On peut étendre les lois normales au cas multi-dimensionnel.
+Fixons $d\in\mathbb{N}^*$ un entier non nul.
+Pour un vecteur $\mu \in \mathbb{R}^d$ et une matrice symétrique-définie positive $\Sigma\in \mathbb{R^{d\times d}}$, la densité normale mutlivariée associée est donnée par la fonction:
+$$
+f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
+$$
+Notons que $\mu$ est l'espérance de la loi et $\Sigma$ la matrice de variance-covariance.
+:::
+
+
+
+## Fonction de répartition
+
+La notion de variable aléatoire n'est pas facile à manipuler puisqu'elle part d'un espace $\Omega$ dont on ne sait rien.
+On souhaite donc caractériser la loi d'une variable aléatoire en ne considérant que l'espace d'arrivée $(E, \mathcal{E})$ .
+
+Plusieurs outils existent : la fonction de répartition (pour des variables aléatoires réelles), la fonction caractéristique (pour des variables aléatoires dans $\mathbb{R}^d$), la fonction génératrice des moments (pour des variables aléatoires discrètes), etc.
+On se contente ici de la fonction de répartition qui nous sera utile pour simuler des variables aléatoires, ainsi que son inverse au sens de Levy.
+
+
+
+::: {#def-cdf}
+##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
+Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+La fonction de répartition de $X$ est la fonction $F_X$ définie sur $\mathbb{R}$ par
+$$
+    F_X(x) = \mathbb{P}(X \leq x) = \mathbb{P}(X \in ]-\infty, x]) \enspace.
+$$
+:::
+
+
+
+On appelle quantile d'ordre $p\in (0,1)$, la quantité $F_X^\leftarrow(p).$
+La **médiane** est égale à $F_X^\leftarrow(1/2)$, les premiers et troisièmes **quartiles** sont égaux à $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
+Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
+
+
+::: {#exm-cdf-discret}
+## Cas discret
+
+Soit $(x_i)_{i \in I}$ une suite ordonnée de réels, avec $I \subset \mathbb{N}$.
+Si $X$ est une variable aléatoire discrète prenant les valeurs $(x_i)_{i \in I}$ et de loi $(p_i = \mathbb{P}(X=x_i))_{i \in I}$, alors
+$$
+F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
+$$
+
+:::
+
+::: {#exm-cdf-discret}
+## Cas continu
+Si $X$ est une variable aléatoire de densité $f$, alors
+$$
+    F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
+$$
+:::
+
+Le graphe des fonctions de répartition des loi de Bernoulli, uniforme et normale sont représentées en Figure XXX.
+Notons que la fonction de répartition de la loi normale $\mathcal{N}(0,1)$, souvent notée $\Phi$, n'admet pas d'expression explicite autre que
+$$
+\Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-x^2/2}\, \mathrm d x\,,
+					\quad x \in \mathbb{R}\,.
+$$
+Les valeurs numériques de $\Phi(x)$ étaient autrefois reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].Par transformation affine, si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- ce que l'on peut aussi écrire : $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors sa fonction de répartition est donnée par $F_X(x)=\Phi((x-\mu)/\sigma)$.
+
+
+::: {#prp-toto}
+Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
+
+1. $F_X$ est une fonction croissante, de limite $0$ en $-\infty$ et de limite $1$ en $+\infty$.
+2. $F_X$ est continue à droite en tout point.
+3. Pour tout $x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - F_X(x-)$, où $F_X(x-) = \lim_{\epsilon \to 0+} F_X(x- \epsilon)$.
+4. Si $X$ a pour densité $f$, alors $F_X$ est dérivable $\lambda$-presque partout de dérivée $f$.
+:::
+
+La propriété 3. est utile dans le cas discret : les valeurs prises par $X$ correspondent aux points de discontinuité de $F_X$ et les probabilités associées correspondent à la hauteur du saut.
+
+La propriété 4. donne le lien entre la fonction de répartition d'une variable aléatoire à densité et sa densité.
+On peut donc retrouver la loi de $X$ à partir de sa fonction de répartition.
+Le théorème suivant généralise ce résultat à toute variable aléatoire réelle (pas nécessairement discrète ou à densité).
+
+
+::: {#thm-fdr_carac}
+La fonction de répartition d'une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.
+:::
+XXX source + proof???
+ 
+
+On rappelle que la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$. Le théorème précédent assure que si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensemble alors on la connaît partout.
+
+
+
+
+
+
+
+XXX TODO: move this in correct part.
+
+::: {#exm-genereexponentielle}
+# Loi exponentielle depuis une loi uniforme
+
+On considère une variable aléatoire $U$ de loi uniforme sur $[0,1]$ et on pose $X = -\ln(1-U)$. Déterminons la loi de $X$ en calculant sa fonction de répartition. Pour tout $x \in \mathbb{R}$,
+$$
+\begin{align*}
+F_X(x) = & \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
+       = & \mathbb{P}(U \leq 1-e^{-x}) \\
+       = &
+    \begin{cases}
+        0           & \text{ si }x < 0\,,    \\
+        1 - e^{-x} & \text{ si }x \geq 0\,,
+    \end{cases}
+\end{align*}
+$$
+
+où on a utilisé l'égalité $\mathbb{P}(U \leq t) = t$ pour tout $t \in [0,1]$. Ainsi la variable aléatoire $X$ a la même fonction de répartition qu'une loi exponentielle de paramètre $1$.
+On en conclut que $X \sim \mathcal{Exp}(1)$.
+Notons que l'on peut aussi montrer que $-\ln(X)\sim\mathcal{E}(1)$, sachant que $U$ et $1-U$ ont la même loi.
+:::
+
+
+## Fonction quantile, inverse généralisée à gauche
+
+La fonction de répartition étant une fonction croissante on peut donner un sens à son inverse généralisée de la manière suivante.
+
+
+::: {#def-quantile}
+##  Fonction quantile/inverse de Levy &#127468;&#127463;: *quantile distribution function*
+Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+et $F_X$ sa fonction de répartion.
+La fonction quantile associée
+$F_X^\leftarrow:  ]0,1[\rightarrow \mathbb{R}$ est définie par
+$$
+  F_n^\leftarrow(p)=  \inf\{ x\colon F(x)\geq p\} \enspace.
+$$
+:::
+
+Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse de la fonction de répartition coincide avec la fonction quantile.
+
+
+
+```{python}
+# | eval: false
+# | echo: false
+
+import plotly.graph_objects as go
+from scipy import stats 
+
+
+def keep_no_param_distribution():
+    distributions = stats._continuous_distns._distn_names
+    distributions_0 = []
+    for i, name in enumerate(distributions):
+        dist = getattr(stats, name)
+        if not dist.shapes or len(dist.shapes)==0:
+            distributions_0.append(name)
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0 ]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+
+distributions_0_dict = keep_no_param_distribution()
+
+for name in ['norm']:
+# for name in ['norm', 'expon', 'uniform']:
+    distribution = distributions_0_dict[name]
+    print(distribution)
+
+```
+
+```{python}
+# | eval: false
+# | echo: false
+
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+import numpy as np
+
+mu=0
+sigma=1
+
+xranges = (-6, 6)  # Bornes d'observation
+yranges = (0, 0.5)  # Bornes d'observation
+x = np.linspace(xranges[0], xranges[1], num=400)
+y = distribution.cdf(x, loc=mu, scale=sigma)
+
+
+
+fig = make_subplots(rows=3, cols=2, subplot_titles=("Fonction quantile", "", "", "Fonction de répartition", "", "Densité et quantile"), column_widths=[3, 7], row_heights=[7/13, 4/13, 2/13])
+
+fig.update_layout(autosize=False, height=650, width=500)
+
+# Quantile plot
+fig.add_trace(go.Scatter(x=y, y=x, mode='lines', marker={'color' : 'black'}), row=1, col=1)
+# Diagonal
+fig.add_trace(go.Scatter(x=y,y=y, mode='lines', marker={'color' : 'black'}), row=2, col=1)
+# Cdf part
+fig.add_trace(go.Scatter(x=x, y=y, mode='lines', marker={'color' : 'black'}), row=2, col=2)
+# pdf part
+fig.add_trace(go.Scatter(x=x,y=distribution.pdf(x, loc=mu, scale=sigma), mode='lines', marker={'color' : 'black'}), row=3, col=2)
+
+# Axes ranges
+fig.update_xaxes(range=[0, 1], row=1, col=1)
+fig.update_yaxes(range=[0, 1], row=2, col=1)
+fig.update_xaxes(matches='x1', row=2, col=1)
+fig.update_yaxes(rangemode = 'tozero', row=3, col=2)
+fig.update_yaxes(matches='y3', row=2, col=2)
+
+alphas = np.linspace(0.01, 0.99, num=99)
+
+# fig.add_trace(go.Scatter(x=alphas, y=alphas, mode='lines', marker={'color' : 'black'}), row=2, col=1, )
+current_alpha = alphas[50]
+
+fig.add_trace(go.Scatter(x=[current_alpha], y=[current_alpha], mode = 'markers',marker={'color' : 'rgba(255, 0, 0, 0.5)'},
+                         marker_symbol = 'circle',
+                         marker_size = 15), row=2, col=1)
+
+fig.add_trace(go.Scatter(x=[current_alpha], y=[distribution.ppf(current_alpha, loc=mu, scale=sigma)], mode = 'markers',marker={'color' : 'rgba(255, 0, 0, 0.5)'},
+                         marker_symbol = 'circle',
+                         marker_size = 15), row=1, col=1)
+
+# fig.add_trace(go.Scatter(x=[distribution.ppf(current_alpha, loc=mu, scale=sigma)], y=[current_alpha], mode = 'markers',marker={'color' : 'rgba(255, 0, 0, 0.5)'},
+#                          marker_symbol = 'circle',
+#                          marker_size = 15), row=2, col=2)
+
+# Add dropdown
+fig.update_layout(
+    showlegend=False,
+    template='simple_white',
+    updatemenus=[
+        dict(
+            buttons=list([
+                dict(
+                    args=[{"x": [distributions_0_dict['norm'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['norm'].cdf(x, loc=mu, scale=sigma), x, x, None, None],
+                           "y": [x, distributions_0_dict['norm'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['norm'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['norm'].pdf(x, loc=mu, scale=sigma), None, None]}],
+                    label="Gaussienne",
+                    method="restyle"
+                ),
+                dict(
+                    args=[{"x": [distributions_0_dict['expon'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['expon'].cdf(x, loc=mu, scale=sigma), x, x, None, None],
+                           "y": [x, distributions_0_dict['expon'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['expon'].cdf(x, loc=mu, scale=sigma), distributions_0_dict['expon'].pdf(x, loc=mu, scale=sigma), None, None]}],
+                    label="Exponentiel",
+                    method="restyle"
+                )
+            ]),
+            direction="down",
+            pad={"r": 10, "t": 10},
+            x=0.45,
+            xanchor="left",
+            y=1,
+            yanchor="top"
+        ),
+    ]
+)
+
+fig.show()
+```
+
+
+
+```{shinylive-python}
+#| standalone: true
+
+from shiny import *
+
+app_ui = ui.page_fluid(
+    ui.input_slider("n", "N", 0, 100, 40),
+    ui.output_text_verbatim("txt"),
+)
+
+def server(input, output, session):
+    @output
+    @render.text
+    def txt():
+        return f"The value of n*2 is {input.n() * 2}"
+
+app = App(app_ui, server)
+
+```
