@@ -317,19 +317,105 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
 </div>
 <p>Dans le cas où la fonction de répartition <span class="math inline">F</span> est bijective, alors l’inverse de la fonction de répartition coincide avec la fonction quantile.</p>
 <pre class="shinylive-python"><code>#| standalone: true
+#| viewerHeight: 800
 
-from shiny import *
+import numpy as np
+from shiny import ui, render, App
+import pandas
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shinywidgets import output_widget, render_widget
+import plotly.express as px
+import plotly.graph_objs as go
+
+import plotly.graph_objects as go
+from scipy import stats 
+
+
+def keep_no_param_distribution():
+    distributions = stats._continuous_distns._distn_names
+    distributions_0 = []
+    for _, name in enumerate(distributions):
+        dist = getattr(stats, name)
+        if not dist.shapes or len(dist.shapes)==0:
+            distributions_0.append(name)
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0 ]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+
+distributions_0_dict = keep_no_param_distribution()
+
+mu=0
+sigma=1
+
+
+df = px.data.tips()
 
 app_ui = ui.page_fluid(
-    ui.input_slider("n", "N", 0, 100, 40),
-    ui.output_text_verbatim("txt"),
+    ui.div(
+        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
+        ui.input_slider("xrange", "x-range", -10, 10, value=(-5, 5), step=0.2),
+
+        ui.input_select(
+            "distrib", "Distribution",
+            {"norm" : "Gaussienne", "expon" : "Expontentielle", "uniform" : "Uniforme", "cauchy" : "Cauchy", "laplace" : "Laplace"}
+        ),
+        class_="d-flex gap-3"
+    ),
+    output_widget("my_widget")
 )
 
 def server(input, output, session):
     @output
-    @render.text
-    def txt():
-        return f"The value of n*2 is {input.n() * 2}"
+    @render_widget
+    def my_widget():
+        fig = make_subplots(rows=3, cols=2, subplot_titles=("Fonction quantile", "", "", "Fonction de répartition", "", "Densité et quantile"), column_widths=[3, 7], row_heights=[7/13, 4/13, 2/13])
+
+        alpha=input.alpha()
+        distribution = distributions_0_dict[input.distrib()]
+        x = np.linspace(input.xrange()[0], input.xrange()[1], num=400)
+        cdf_data = distribution.cdf(x, loc=mu, scale=sigma)
+        pdf_data = distribution.pdf(x, loc=mu, scale=sigma)
+        q_alpha = distribution.ppf(alpha, loc=mu, scale=sigma)
+
+        fig.update_layout(autosize=False, height=650, width=500)
+
+        # Quantile plot
+        fig.add_trace(go.Scatter(x=cdf_data, y=x, mode='lines', marker={'color' : 'black'}), row=1, col=1)
+        # Diagonal
+        fig.add_trace(go.Scatter(x=cdf_data, y=cdf_data, mode='lines', marker={'color' : 'black'}), row=2, col=1)
+        # Cdf part
+        fig.add_trace(go.Scatter(x=x, y=cdf_data, mode='lines', marker={'color' : 'black'}), row=2, col=2)
+        # pdf part
+        fig.add_scatter(x=x[x&lt;alpha], y=pdf_data[x&lt;q_alpha], fill='tozeroy', mode='none' , fillcolor='rgba(255, 0, 0, 0.5)', row=3, col=2)
+
+        fig.add_trace(go.Scatter(x=x,y=pdf_data, mode='lines', marker={'color' : 'black'}), row=3, col=2)
+
+        # Dots
+        fig.add_trace(go.Scatter(x=[alpha], y=[q_alpha], mode = 'markers', marker={'color' : 'rgba(255, 0, 0, 0.5)'}, marker_symbol = 'circle', marker_size = 15), row=1, col=1)
+
+        fig.add_trace(go.Scatter(x=[alpha], y=[alpha], mode = 'markers',marker={'color' : 'rgba(255, 0, 0, 0.5)'},
+                                marker_symbol = 'circle',
+                                marker_size = 15), row=2, col=1)
+
+        fig.add_trace(go.Scatter(x=[q_alpha], y=[alpha], mode = 'markers',marker={'color' : 'rgba(255, 0, 0, 0.5)'},
+                                 marker_symbol = 'circle',
+                                 marker_size = 15), row=2, col=2)
+
+        # Axes ranges
+        fig.update_xaxes(range=[0, 1], row=1, col=1)
+        fig.update_yaxes(range=[0, 1], row=2, col=1)
+        fig.update_xaxes(matches='x1', row=2, col=1)
+        fig.update_yaxes(rangemode = 'tozero', row=3, col=2)
+        fig.update_yaxes(matches='y3', row=2, col=2)
+
+        # Add dropdown
+        fig.update_layout(
+            showlegend=False,
+            template='simple_white',
+        )
+        return fig
 
 app = App(app_ui, server)
 </code></pre>
