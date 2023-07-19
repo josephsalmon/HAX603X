@@ -317,7 +317,7 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
 </div>
 <p>Dans le cas où la fonction de répartition <span class="math inline">F</span> est bijective, alors l’inverse de la fonction de répartition coincide avec la fonction quantile.</p>
 <pre class="shinylive-python"><code>#| standalone: true
-#| viewerHeight: 850
+#| viewerHeight: 830
 
 import numpy as np
 from scipy import stats
@@ -354,14 +354,8 @@ app_ui = ui.page_fluid(
         ui.input_select(
             "distrib",
             "Distribution",
-            list(distributions_0_dict.keys())
-            # {
-            #     "norm": "Gaussienne",
-            #     "expon": "Exponentielle",
-            #     "uniform": "Uniforme",
-            #     "cauchy": "Cauchy",
-            #     "laplace": "Laplace",
-            # },
+            list(distributions_0_dict.keys()),
+            selected='norm'
         ),
         class_="d-flex gap-3",
     ),
@@ -376,6 +370,8 @@ def server(input, output, session):
         fig = make_subplots(
             rows=3,
             cols=2,
+            vertical_spacing=0.1,
+            horizontal_spacing=0.1,
             subplot_titles=(
                 "Fonction quantile",
                 "",
@@ -384,7 +380,7 @@ def server(input, output, session):
                 "",
                 "Densité et quantile",
             ),
-            column_widths=[3, 7],
+            column_widths=[3.5, 6.5],
             row_heights=[7 / 13, 4 / 13, 2 / 13],
         )
 
@@ -423,11 +419,11 @@ def server(input, output, session):
         )
         # pdf part
         fig.add_scatter(
-            x=x[x &lt; alpha],
+            x=x[x &lt; q_alpha],
             y=pdf_data[x &lt; q_alpha],
             fill="tozeroy",
             mode="none",
-            fillcolor="rgba(255, 0, 0, 0.5)",
+            fillcolor="rgb(66, 139, 202)",
             row=3,
             col=2,
         )
@@ -446,7 +442,7 @@ def server(input, output, session):
                 x=[alpha],
                 y=[q_alpha],
                 mode="markers",
-                marker={"color": "rgba(255, 0, 0, 0.5)"},
+                marker={"color": "rgb(66, 139, 202)"},
                 marker_symbol="circle",
                 marker_size=15,
             ),
@@ -459,7 +455,7 @@ def server(input, output, session):
                 x=[alpha],
                 y=[alpha],
                 mode="markers",
-                marker={"color": "rgba(255, 0, 0, 0.5)"},
+                marker={"color": "rgb(66, 139, 202)"},
                 marker_symbol="circle",
                 marker_size=15,
             ),
@@ -472,7 +468,7 @@ def server(input, output, session):
                 x=[q_alpha],
                 y=[alpha],
                 mode="markers",
-                marker={"color": "rgba(255, 0, 0, 0.5)"},
+                marker={"color": "rgb(66, 139, 202)"},
                 marker_symbol="circle",
                 marker_size=15,
             ),
@@ -486,7 +482,7 @@ def server(input, output, session):
                 x=[alpha, alpha],
                 y=[x[0], q_alpha],
                 mode="lines",
-                line=dict(dash="dash", color="rgba(255, 0, 0, 0.5)")
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
             ),
             row=1,
             col=1
@@ -497,7 +493,7 @@ def server(input, output, session):
                 x=[alpha, alpha],
                 y=[alpha, 1.],
                 mode="lines",
-                line=dict(dash="dash", color="rgba(255, 0, 0, 0.5)")
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
             ),
             row=2,
             col=1
@@ -507,7 +503,7 @@ def server(input, output, session):
                 x=[alpha, 1],
                 y=[alpha, alpha],
                 mode="lines",
-                line=dict(dash="dash", color="rgba(255, 0, 0, 0.5)")
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
             ),
             row=2,
             col=1
@@ -517,20 +513,32 @@ def server(input, output, session):
                 x=[x[0], q_alpha],
                 y=[alpha, alpha],
                 mode="lines",
-                line=dict(dash="dash", color="rgba(255, 0, 0, 0.5)")
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[x[0], 0],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
             ),
             row=2,
             col=2
         )
         # Axes ranges
         fig.update_xaxes(range=[0, 1.], row=1, col=1)
-        # fig.update_yaxes(matches="x6]", row=1, col=1)
+        fig.update_yaxes(matches="x6", row=1, col=1)
 
         fig.update_yaxes(range=[0, 1.], row=2, col=1)
         fig.update_xaxes(matches="x1", row=2, col=1)
-        fig.update_yaxes(rangemode="tozero", row=3, col=2)
-        fig.update_yaxes(rangemode="tozero", row=3, col=2)
 
+        fig.update_yaxes(rangemode="tozero", row=3, col=2)
+        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
+
+        fig.update_xaxes(matches="x6", row=2, col=2)
         fig.update_yaxes(matches="y3", row=2, col=2)
 
         # Add dropdown
