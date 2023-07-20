@@ -592,7 +592,7 @@ def server(input, output, session):
                 "",
                 "Fonction de répartition",
                 "",
-                "Densité () et quantile",
+                "Fonction de masse et quantile",
             ),
             column_widths=[0.2, 0.5],
             row_heights=[0.35, 0.17, 0.17],
@@ -692,7 +692,7 @@ def server(input, output, session):
             row=3,
             col=2
         )
-        _,_, devil_x = cdf_tool(x[x<q_alpha])
+        _,_, devil_x = cdf_tool(x[x<=q_alpha])
         _,_, devil_y = cdf_tool(pmf_data[x<q_alpha], dtype='float64')
 
         x_bar_blue = insert_nones(list(devil_x))
