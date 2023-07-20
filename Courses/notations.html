@@ -188,7 +188,11 @@ ul.task-list li input[type="checkbox"] {
             &amp;   &amp; \omega &amp; \mapsto &amp; X(\omega)\,.
     \end{array}
 </span> C’est-à-dire que pour tout <span class="math inline">B \in \mathcal{E}, \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.</span> Cet ensemble se réécrit souvent sous la forme <span class="math display">
-    \{\omega \in \Omega : X(\omega) \in B\} = X^{-1}(B) = \{X \in B\}\,.
+\begin{align*}
+    \{\omega \in \Omega : X(\omega) \in B\}
+    &amp; =  X^{-1}(B) \\
+    &amp; = \{X \in B\} \, .
+\end{align*}
 </span></p>
 </div>
 <p>Cette définition permet de transposer l’aléa qui provient de <span class="math inline">\Omega</span> dans l’espace <span class="math inline">E</span>. L’hypothèse <span class="math inline">\{X \in B\} \in \mathcal{F}</span> assure que cet ensemble est bien un évènement et donc que l’on peut calculer sa probabilité.</p>
@@ -241,7 +245,7 @@ f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
 </span> Si une variable aléatoire <span class="math inline">X</span> suit cette loi on note <span class="math inline">X \sim \mathcal{Exp}(\gamma)</span>.</p>
 </div>
 <div id="exm-gaussienne" class="theorem example">
-<p><span class="theorem-title"><strong>Example 7 (Loi normale/gaussienne univariée) </strong></span>On obtient la loi normale de paramètre <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\sigma^2 &gt; 0</span> correspond à loi dont la densité est donnée par la fonction réelle:filters: - shinylive <span class="math display">
+<p><span class="theorem-title"><strong>Example 7 (Loi normale/gaussienne univariée) </strong></span>On obtient la loi normale de paramètre <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\sigma^2 &gt; 0</span> correspond à loi dont la densité est donnée par la fonction réelle: <span class="math display">
 f(x) = \frac{1}{\sqrt{2 \pi} \sigma}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
 </span> Si une variable aléatoire <span class="math inline">X</span> suit une telle loi on note <span class="math inline">X \sim \mathcal{N}(\mu,\sigma^2)</span>, <span class="math inline">\mu</span> correspondant à l’espérance de la loi, et <span class="math inline">\sigma^2</span> à sa variance. On nomme loi <em>normale centrée réduite</em> le cas correspondant à <span class="math inline">\mu = 0</span> et <span class="math inline">\sigma^2 = 1</span>.</p>
 </div>
@@ -294,7 +298,8 @@ F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 <div id="exm-genereexponentielle" class="theorem example">
 <p><span class="theorem-title"><strong>Example 11 (Loi exponentielle depuis une loi uniforme) </strong></span>On considère une variable aléatoire <span class="math inline">U</span> de loi uniforme sur <span class="math inline">[0,1]</span> et on pose <span class="math inline">X = -\ln(1-U)</span>. Déterminons la loi de <span class="math inline">X</span> en calculant sa fonction de répartition. Pour tout <span class="math inline">x \in \mathbb{R}</span>, <span class="math display">
 \begin{align*}
-F_X(x) = &amp; \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
+F_X(x) = &amp; \mathbb{P}(X \leq x) \\
+       = &amp; \mathbb{P}(-\ln(1-U) \leq x) \\
        = &amp; \mathbb{P}(U \leq 1-e^{-x}) \\
        = &amp;
     \begin{cases}
@@ -317,7 +322,6 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
 <p>Dans le cas où la fonction de répartition <span class="math inline">F</span> est bijective, alors l’inverse de la fonction de répartition coincide avec la fonction quantile.</p>
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 830
-
 import numpy as np
 from scipy import stats
 import pandas
@@ -370,7 +374,7 @@ def server(input, output, session):
             rows=3,
             cols=2,
             vertical_spacing=0.1,
-            horizontal_spacing=0.1,
+            horizontal_spacing=0.15,
             subplot_titles=(
                 "Fonction quantile",
                 "",
@@ -379,8 +383,8 @@ def server(input, output, session):
                 "",
                 "Densité et quantile",
             ),
-            column_widths=[3.5, 6.5],
-            row_heights=[7 / 13, 4 / 13, 2 / 13],
+            column_widths=[0.2, 0.5],
+            row_heights=[0.35, 0.17, 0.17],
         )
 
         alpha = input.alpha()
@@ -390,7 +394,7 @@ def server(input, output, session):
         pdf_data = distribution.pdf(x, loc=mu, scale=sigma)
         q_alpha = distribution.ppf(alpha, loc=mu, scale=sigma)
 
-        fig.update_layout(autosize=False, height=715, width=550)
+        fig.update_layout(autosize=True, height=700)
 
         # Quantile plot
         fig.add_trace(
