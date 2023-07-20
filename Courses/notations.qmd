@@ -25,7 +25,11 @@ $$
 C'est-à-dire que pour tout $B \in \mathcal{E}, \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.$
 Cet ensemble se réécrit souvent sous la forme
 $$
-    \{\omega \in \Omega : X(\omega) \in B\} = X^{-1}(B) = \{X \in B\}\,.
+\begin{align*}
+    \{\omega \in \Omega : X(\omega) \in B\}
+    & =  X^{-1}(B) \\
+    & = \{X \in B\} \, .
+\end{align*}
 $$
 :::
 
@@ -123,8 +127,7 @@ Si une variable aléatoire $X$ suit cette loi on note $X \sim \mathcal{Exp}(\gam
 
 ::: {#exm-gaussienne}
 ## Loi normale/gaussienne univariée
-On obtient la loi normale de paramètre $\mu \in \mathbb{R}$ et $\sigma^2 > 0$ correspond à loi dont la densité est donnée par la fonction réelle:filters:
-  - shinylive
+On obtient la loi normale de paramètre $\mu \in \mathbb{R}$ et $\sigma^2 > 0$ correspond à loi dont la densité est donnée par la fonction réelle:
 $$
 f(x) = \frac{1}{\sqrt{2 \pi} \sigma}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
 $$
@@ -237,7 +240,8 @@ XXX TODO: move this in correct part.
 On considère une variable aléatoire $U$ de loi uniforme sur $[0,1]$ et on pose $X = -\ln(1-U)$. Déterminons la loi de $X$ en calculant sa fonction de répartition. Pour tout $x \in \mathbb{R}$,
 $$
 \begin{align*}
-F_X(x) = & \mathbb{P}(X \leq x) = \mathbb{P}(-\ln(1-U) \leq x) \\
+F_X(x) = & \mathbb{P}(X \leq x) \\
+       = & \mathbb{P}(-\ln(1-U) \leq x) \\
        = & \mathbb{P}(U \leq 1-e^{-x}) \\
        = &
     \begin{cases}
@@ -275,7 +279,6 @@ Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse d
 ```{shinylive-python}
 #| standalone: true
 #| viewerHeight: 830
-
 import numpy as np
 from scipy import stats
 import pandas
@@ -328,7 +331,7 @@ def server(input, output, session):
             rows=3,
             cols=2,
             vertical_spacing=0.1,
-            horizontal_spacing=0.1,
+            horizontal_spacing=0.15,
             subplot_titles=(
                 "Fonction quantile",
                 "",
@@ -337,8 +340,8 @@ def server(input, output, session):
                 "",
                 "Densité et quantile",
             ),
-            column_widths=[3.5, 6.5],
-            row_heights=[7 / 13, 4 / 13, 2 / 13],
+            column_widths=[0.2, 0.5],
+            row_heights=[0.35, 0.17, 0.17],
         )
 
         alpha = input.alpha()
@@ -348,7 +351,7 @@ def server(input, output, session):
         pdf_data = distribution.pdf(x, loc=mu, scale=sigma)
         q_alpha = distribution.ppf(alpha, loc=mu, scale=sigma)
 
-        fig.update_layout(autosize=False, height=715, width=550)
+        fig.update_layout(autosize=True, height=700)
 
         # Quantile plot
         fig.add_trace(
