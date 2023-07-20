@@ -276,12 +276,294 @@ $$
 Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse de la fonction de répartition coincide avec la fonction quantile.
 
 
+
+
+
+## Visualisation: densité, fonction de répartition, quantiles, etc.
+
+
+### Cas des variables discrètes
+
 ```{shinylive-python}
 #| standalone: true
 #| viewerHeight: 830
 import numpy as np
 from scipy import stats
-import pandas
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shiny import ui, render, App
+from shinywidgets import output_widget, render_widget
+
+
+def keep_no_param_distribution_disc():
+    distributions = stats._discrete_distns._distn_names
+    distributions_0 = []
+    for i, name in enumerate(distributions):
+        dist = getattr(stats, name)
+        if not dist.shapes or len(dist.shapes)==2 or len(dist.shapes)==1:
+            distributions_0.append(name)
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0 ]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+def cdf_tool(x):
+    y = np.zeros(2*(len(x)), dtype='int64')
+    y[::2]=x
+    y[1::2]=x
+    return y[1::], y[:-1]
+
+
+def insert_nones(my_list):
+    for i, val in enumerate(my_list):
+        if i % 3 == 2:
+            my_list.insert(i, None)
+    return my_list
+
+distributions_0_dict = keep_no_param_distribution_disc()
+
+app_ui = ui.page_fluid(
+    ui.div(
+        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
+        ui.input_slider("xrange", "x-range", -10, 10, value=(-5.5, 5.5), step=0.2),
+        ui.input_select(
+            "distrib",
+            "Distribution",
+            list(distributions_0_dict.keys()),
+            selected='poisson'
+        ),
+        class_="d-flex gap-3",
+    ),
+    output_widget("my_widget"),
+)
+
+mu = 1
+
+def server(input, output, session):
+    @output
+    @render_widget
+    def my_widget():
+        fig = make_subplots(
+            rows=3,
+            cols=2,
+            vertical_spacing=0.1,
+            horizontal_spacing=0.15,
+            subplot_titles=(
+                "Fonction quantile",
+                "",
+                "",
+                "Fonction de répartition",
+                "",
+                "Densité () et quantile",
+            ),
+            column_widths=[0.2, 0.5],
+            row_heights=[0.35, 0.17, 0.17],
+        )
+
+
+        alpha = input.alpha()
+        # alpha=0.5
+        distribution = distributions_0_dict[input.distrib()]
+        # distribution=distributions_0_dict['poisson']
+        x = np.arange(np.floor(input.xrange()[0]), np.ceil(input.xrange()[1]))
+        # x = np.arange(np.floor(-5.5), np.ceil(5.5))
+
+        cdf_data = distribution.cdf(x, mu)
+        pmf_data = distribution.pmf(x, mu)
+        q_alpha = distribution.ppf(alpha, mu)
+        support = pmf_data.nonzero()[0]
+        fig.update_layout(autosize=True, height=700)
+
+        # Quantile plot
+        new_x, new_y = cdf_tool(support)
+
+        fig.add_trace(
+            go.Scatter(
+                x=insert_nones(list(cdf_data[new_x])),
+                y=insert_nones(list(x[new_y])),
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=1,
+            col=1,
+        )
+        fig.add_trace(
+             go.Scatter(
+                x=cdf_data[support], y=x[support],
+                mode="markers", marker={"color": "black"}
+            ),
+            row=1,
+            col=1,
+        )
+        # Diagonal
+        fig.add_trace(
+            go.Scatter(
+                x=cdf_data, y=cdf_data, mode="lines", marker={"color": "black"}
+            ),
+            row=2,
+            col=1,
+        )
+        # Cdf part
+        fig.add_trace(
+            go.Scatter(
+                x=x[support], y=cdf_data[support],
+                mode="markers", marker={"color": "black"}
+            ),
+            row=2,
+            col=2,
+        )
+        new_x, new_y = cdf_tool(support)
+        fig.add_trace(
+            go.Scatter(
+                x=insert_nones(list(x[new_x])),
+                y=insert_nones(list(cdf_data[new_y])),
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=2,
+            col=2
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=pmf_data, mode="markers", marker={"color": "black"}
+            ),
+            row=3,
+            col=2,
+        )
+        # pdf part
+        fig.add_scatter(
+            x=x[x <= q_alpha],
+            y=pmf_data[x <= q_alpha],
+            mode="markers",
+            marker={"color":"rgb(66, 139, 202)"},
+            row=3,
+            col=2,
+        )
+
+        # Dots
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[q_alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="circle",
+                marker_size=15,
+            ),
+            row=1,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="circle",
+                marker_size=15,
+            ),
+            row=2,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[q_alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="circle",
+                marker_size=15,
+            ),
+            row=2,
+            col=2,
+        )
+
+        # Lines
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[x[0], q_alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=1,
+            col=1
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[alpha, 1.],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, 1],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[x[0], 0],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        # Axes ranges
+        fig.update_xaxes(range=[0, 1.05], row=1, col=1)
+        fig.update_yaxes(matches="x6", row=1, col=1)
+
+        fig.update_yaxes(range=[0, 1.05], row=2, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+
+        fig.update_yaxes(rangemode="tozero", row=3, col=2)
+        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
+
+        fig.update_xaxes(matches="x6", row=2, col=2)
+        fig.update_yaxes(matches="y3", row=2, col=2)
+
+        # Add dropdown
+        fig.update_layout(
+            showlegend=False,
+            template="simple_white",
+        )
+        return fig
+
+
+app = App(app_ui, server)
+
+```
+
+
+### Cas des variables continues
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 830
+import numpy as np
+from scipy import stats
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 from shiny import ui, render, App
