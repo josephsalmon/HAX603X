@@ -13,7 +13,7 @@ filters:
 
 Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique:
 $$
-\bar X_n = \dfrac{X_1 + \cdots + X_n}{n}\,.
+\bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
 $$
 quand on obsever $n$ variables aléatoires i.i.d $X_1,\dots,X_n$, ayant une espérance finie.
 
@@ -162,8 +162,48 @@ app = App(app_ui, server)
 
 ```
 
-XXX TODO: illustration.
+XXX TODO: phénomène intéressant en bougeant le paramètre p avec  le reste fixé...les signaux générés sont très très proches, ce qui ne devrait pas être le cas a priori, saut structuration particulière de la génération.
+
 
 
 ## Théorème central limite
 
+Une fois la loi des grands nombres établie, on peut se demander quel est l'ordre suivant dans le développement asymptotique de $\bar X_n - \mu$, ou de manière équivalente de $S_n - n \mu$, où $S_n = X_1 + \cdots + X_n$.
+Le théorème suivant répond à cette question, en donnant une convergence en loi d'une transformation affine de la moyenne empirique:
+
+:::: {#thm-tcl}
+
+## Théorème central limite
+Soit $X_1, \ldots, X_n$ une suite de variables aléatoires i.i.d de variance $\sigma^2 = {\rm var}(X_1) \in ]0, \infty[$. On note $\mu = \mathbb{E}[X_1]$ leur espérance. Alors
+$$
+\sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
+$$
+où $N$ suit une loi normale centrée réduite : $N \sim\mathcal{N}(0,1)$.
+::::
+Preuve XXX TODO: donner une référence.
+
+En termes de somme cumulée empirique, la convergence se réécrit
+
+$$
+    \frac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
+$$
+
+Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l'on veut, elle se rapprochera toujours asymptotiquement d'une loi normale.
+
+On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout $a < b$,
+
+$$
+	\mathbb{P} \bigg( a \leq \sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg)
+	\underset{n \to \infty}{\longrightarrow}  \dfrac{1}{\sqrt{2\pi}} \int_a^b e^{-\frac{x^2}{2}} \, \mathrm dx\,.
+$$
+
+:::: {#exm-tcl}
+
+
+On considère des variables aléatoires $X_1, \ldots, X_n$ i.i.d. suivant une loi de Bernoulli de paramètre $p \in ]0,1[$, dont l'espérance et la variance sont respectivemenbt $p$ et $p(1-p)$.
+Le théorème central limite donne alors
+$$
+    \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
+$$
+avec $N \sim \mathcal{N}(0,1)$. Cette convergence est illustrée en Figure XXX TODO image.
+:::: 

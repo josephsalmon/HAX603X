@@ -1,4 +1,5 @@
-Pauthor: "Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta"
+author: "Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta"
+lang: fr
 project:
   type: website
   render:
