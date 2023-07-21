@@ -2,25 +2,176 @@
 title: "Théorèmes asymptotiques"
 format:
   html:
-      out.width: 50%
+    out.width: 50%
 filters:
   - shinylive
 ---
+
+
+## Loi des grands nombres
+
 
 Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique:
 $$
 \bar X_n = \dfrac{X_1 + \cdots + X_n}{n}\,.
 $$
+quand on obsever $n$ variables aléatoires i.i.d $X_1,\dots,X_n$, ayant une espérance finie.
 
-::: {#thn-lfgn}
+:::: {#thm-lfgn}
+
 ## Loi forte des grands nombres
 
 <br>
 
 
 
-Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires indépendantes et identiquement distribuées (iid) dans $L^1(\Omega, \mathcal{F}, \mathbb{P})$. Notons $\mu = \mathbb{E}[X_1]$. Alors $\bar X_n$ converge vers $\mu$ presque sûrement :
+Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans $L^1(\Omega, \mathcal{F}, \mathbb{P})$. Notons $\mu = \mathbb{E}[X_1]$. Alors $\bar X_n$ converge vers $\mu$ presque sûrement :
 $$
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 $$
-:::
+
+::::
+
+
+**Interprétation**:
+Intuitivement, la probabilité d'un événement $A$ correspond à la fréquence d'apparition de $A$ quand on répète une expérience qui fait intervenir cet événement. Par exemple, si on dispose une pièce truquée, on estimera la probabilité d'apparition du côté pile en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu. La loi des grands nombres justifie a posteriori cette intuition : si $X_1, \ldots, X_n$ sont i.i.d. de loi de Bernoulli de paramètre $p$, alors
+$$
+	\dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
+$$
+Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.
+
+
+**Remarque**: Bien qu'intuitivement assez intuitif, ce théorème est difficile à démontrer. XXX TODO referece : Williams (en anglais) ou bien Ouvrard.
+
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 700
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
+
+# n_samples = 50
+# step = 10
+app_ui = ui.page_fluid(
+    ui.panel_title("Loi des grands nombres: visualisation"),
+    ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
+    output_widget("my_widget"),
+    ui.row(
+        ui.column(6,
+            ui.input_slider("p", "Paramètre de Bernoulli", 0.01, 0.99, value=0.5, step=0.01)
+        ),
+        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
+        ui.column(6, ui.input_slider("n_samples", "Nombres de tirage total", 10, 1000, value=30, step=10)
+        )
+    )
+)
+
+
+def server(input, output, session):
+    seed = reactive.Value(42)
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+
+    @output
+    @render_widget
+    def my_widget():
+        # Create figure
+        rng = np.random.default_rng(seed())
+        p = input.p()
+        # step=input.step()
+        n_samples = input.n_samples()
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=n_samples)
+        means_samples = np.cumsum(samples)/np.arange(1, n_samples+1)
+
+        fig = make_subplots(
+                    rows=2,
+                    cols=1,
+                    vertical_spacing=0.3,
+                    horizontal_spacing=0.04,
+                    subplot_titles=(
+                        "Moyenne empirique en fonction du nombre de tirages <br>(loi de Bernoulli)",
+                        "Tirages aléatoires (rouge:1 , bleu:0)",
+                    ),
+                    row_heights=[8, 1],
+                )
+
+        fig.add_trace(
+                go.Scatter(
+                    line=dict(color="black", width=3),
+                    x=iterations,
+                    y=means_samples,
+                    name=r'Moyenne empirique'),
+                    # name=r'$\bar{X}_n$'),
+                    row=1, col=1,
+        )
+        fig.add_trace(
+                go.Scatter(
+                    line=dict(dash="dash", color="black", width=1),
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    # name=r'$p$'),
+                    name=r'p'),
+                    row=1, col=1,
+        )
+        # # Add traces, one for each slider step
+        # fig.add_trace(
+        #         go.Scatter(
+        #             line=dict(color="black"),
+        #             marker=dict(size=20),
+        #             x=[iterations[step-1]],
+        #             y=[means_samples[step-1]],
+        #             showlegend=False
+        #         ), row=1, col=1,
+        # )
+
+        fig.add_trace(
+                go.Heatmap( x=iterations+0.5,
+                            z=[samples],
+                        # text=[list(samples.astype('str'))],
+                        # texttemplate="%{text}",
+                        colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
+                        showscale=False,
+                        # textfont={"size":10}
+                        ),
+                row=2, col=1,
+        )
+        fig.update_xaxes(range=[0, n_samples + 1])
+        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+        fig.update_yaxes(visible=False, row=2, col=1)
+        fig.update_xaxes(visible=False, row=2, col=1)
+
+
+        fig.update_layout(
+            template="simple_white",
+            showlegend=True,
+        )
+        fig.update_layout(
+            legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.65
+            )
+        )
+        return fig
+
+
+app = App(app_ui, server)
+
+```
+
+XXX TODO: illustration.
+
+
+## Théorème central limite
+
