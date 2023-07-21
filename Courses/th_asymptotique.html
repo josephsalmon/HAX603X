@@ -40,6 +40,11 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -154,7 +159,8 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#loi-forte-des-grands-nombres" id="toc-loi-forte-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-forte-des-grands-nombres">Loi forte des grands nombres</a></li>
+  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres">Loi des grands nombres</a></li>
+  <li><a href="#théorème-central-limite" id="toc-théorème-central-limite" class="nav-link" data-scroll-target="#théorème-central-limite">Théorème central limite</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
@@ -178,20 +184,151 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="loi-des-grands-nombres" class="level2">
+<h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
 <p>Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique: <span class="math display">
 \bar X_n = \dfrac{X_1 + \cdots + X_n}{n}\,.
-</span></p>
-<div id="thn-lfgn">
-<section id="loi-forte-des-grands-nombres" class="level2">
-<h2 class="anchored" data-anchor-id="loi-forte-des-grands-nombres">Loi forte des grands nombres</h2>
-<p><br></p>
-<p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (iid) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
+</span> quand on obsever <span class="math inline">n</span> variables aléatoires i.i.d <span class="math inline">X_1,\dots,X_n</span>, ayant une espérance finie.</p>
+<div id="thm-lfgn" class="theorem">
+<p><span class="theorem-title"><strong>Theorem 1 (Loi forte des grands nombres) </strong></span><br></p>
+<p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 </span></p>
-</section>
 </div>
+<p><strong>Interprétation</strong>: Intuitivement, la probabilité d’un événement <span class="math inline">A</span> correspond à la fréquence d’apparition de <span class="math inline">A</span> quand on répète une expérience qui fait intervenir cet événement. Par exemple, si on dispose une pièce truquée, on estimera la probabilité d’apparition du côté pile en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu. La loi des grands nombres justifie a posteriori cette intuition : si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">p</span>, alors <span class="math display">
+    \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
+</span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
+<p><strong>Remarque</strong>: Bien qu’intuitivement assez intuitif, ce théorème est difficile à démontrer. XXX TODO referece : Williams (en anglais) ou bien Ouvrard.</p>
+<pre class="shinylive-python"><code>#| standalone: true
+#| viewerHeight: 700
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
+
+# n_samples = 50
+# step = 10
+app_ui = ui.page_fluid(
+    ui.panel_title("Loi des grands nombres: visualisation"),
+    ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
+    output_widget("my_widget"),
+    ui.row(
+        ui.column(6,
+            ui.input_slider("p", "Paramètre de Bernoulli", 0.01, 0.99, value=0.5, step=0.01)
+        ),
+        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
+        ui.column(6, ui.input_slider("n_samples", "Nombres de tirage total", 10, 1000, value=30, step=10)
+        )
+    )
+)
 
 
+def server(input, output, session):
+    seed = reactive.Value(42)
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+
+    @output
+    @render_widget
+    def my_widget():
+        # Create figure
+        rng = np.random.default_rng(seed())
+        p = input.p()
+        # step=input.step()
+        n_samples = input.n_samples()
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=n_samples)
+        means_samples = np.cumsum(samples)/np.arange(1, n_samples+1)
+
+        fig = make_subplots(
+                    rows=2,
+                    cols=1,
+                    vertical_spacing=0.3,
+                    horizontal_spacing=0.04,
+                    subplot_titles=(
+                        "Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
+                        "Tirages aléatoires (rouge:1 , bleu:0)",
+                    ),
+                    row_heights=[8, 1],
+                )
+
+        fig.add_trace(
+                go.Scatter(
+                    line=dict(color="black", width=3),
+                    x=iterations,
+                    y=means_samples,
+                    name=r'Moyenne empirique'),
+                    # name=r'$\bar{X}_n$'),
+                    row=1, col=1,
+        )
+        fig.add_trace(
+                go.Scatter(
+                    line=dict(dash="dash", color="black", width=1),
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    # name=r'$p$'),
+                    name=r'p'),
+                    row=1, col=1,
+        )
+        # # Add traces, one for each slider step
+        # fig.add_trace(
+        #         go.Scatter(
+        #             line=dict(color="black"),
+        #             marker=dict(size=20),
+        #             x=[iterations[step-1]],
+        #             y=[means_samples[step-1]],
+        #             showlegend=False
+        #         ), row=1, col=1,
+        # )
+
+        fig.add_trace(
+                go.Heatmap( x=iterations+0.5,
+                            z=[samples],
+                        # text=[list(samples.astype('str'))],
+                        # texttemplate="%{text}",
+                        colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
+                        showscale=False,
+                        # textfont={"size":10}
+                        ),
+                row=2, col=1,
+        )
+        fig.update_xaxes(range=[0, n_samples + 1])
+        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+        fig.update_yaxes(visible=False, row=2, col=1)
+        fig.update_xaxes(visible=False, row=2, col=1)
+
+
+        fig.update_layout(
+            template="simple_white",
+            showlegend=True,
+        )
+        fig.update_layout(
+            legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.65
+            )
+        )
+        return fig
+
+
+app = App(app_ui, server)
+</code></pre>
+<p>XXX TODO: illustration.</p>
+</section>
+<section id="théorème-central-limite" class="level2">
+<h2 class="anchored" data-anchor-id="théorème-central-limite">Théorème central limite</h2>
+
+
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
