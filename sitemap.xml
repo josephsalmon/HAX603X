@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/notations.html</loc>
-    <lastmod>2023-07-20T22:25:25.982Z</lastmod>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/th_asymptotique.html</loc>
+    <lastmod>2023-07-21T08:23:24.714Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
-    <lastmod>2023-07-20T22:25:24.038Z</lastmod>
+    <lastmod>2023-07-21T08:23:23.050Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/notations.html</loc>
+    <lastmod>2023-07-21T08:23:24.462Z</lastmod>
   </url>
 </urlset>
