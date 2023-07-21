@@ -65,7 +65,7 @@ app_ui = ui.page_fluid(
             ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
         ),
         # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
-        ui.column(6, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 10, 1000, value=30, step=10)
+        ui.column(6, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, 1000, value=15, step=1)
         )
     )
 )
@@ -90,7 +90,7 @@ def server(input, output, session):
         n_samples = input.n_samples()
         iterations = np.arange(1, n_samples + 1)
         samples = rng.binomial(1, p, size=n_samples)
-        means_samples = np.cumsum(samples)/np.arange(1, n_samples+1)
+        means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
 
         fig = make_subplots(
                     rows=2,
@@ -98,44 +98,35 @@ def server(input, output, session):
                     vertical_spacing=0.3,
                     horizontal_spacing=0.04,
                     subplot_titles=(
-                        "Moyenne empirique en fonction du nombre de tirages <br>(loi de Bernoulli)",
-                        "Tirages aléatoires (rouge:1 , bleu:0)",
+                        f"Moyenne empirique en fonction du nombre de tirages <br>(loi de Bernoulli)",
+                        "Tirages aléatoires <span style='color:rgb(66, 139, 202)'>bleu: 0</span>, <span style='color:rgb(255, 0, 0)'>rouge: 1</span> (seed="+ str(seed())+")",
                     ),
                     row_heights=[8, 1],
                 )
 
         fig.add_trace(
                 go.Scatter(
+                    mode='lines',
                     line=dict(color="black", width=3),
                     x=iterations,
                     y=means_samples,
-                    name=r'Moyenne empirique'),
+                    name=r'Moyenne <br> empirique'),
                     # name=r'$\bar{X}_n$'),
                     row=1, col=1,
         )
         fig.add_trace(
                 go.Scatter(
+                    mode='lines',
                     line=dict(dash="dash", color="black", width=1),
+                    marker={},
                     x=iterations,
                     y=np.full((n_samples), p),
                     # name=r'$p$'),
                     name=r'p'),
                     row=1, col=1,
         )
-        # # Add traces, one for each slider step
-        # fig.add_trace(
-        #         go.Scatter(
-        #             line=dict(color="black"),
-        #             marker=dict(size=20),
-        #             x=[iterations[step-1]],
-        #             y=[means_samples[step-1]],
-        #             showlegend=False
-        #         ), row=1, col=1,
-        # )
-
         fig.add_trace(
-                go.Heatmap( x=iterations+0.5,
-                            z=[samples],
+                go.Heatmap(x=iterations + 0.5, z=[samples],
                         # text=[list(samples.astype('str'))],
                         # texttemplate="%{text}",
                         colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
@@ -144,7 +135,7 @@ def server(input, output, session):
                         ),
                 row=2, col=1,
         )
-        fig.update_xaxes(range=[0, n_samples + 1])
+        fig.update_xaxes(range=[1, n_samples + 1])
         fig.update_yaxes(range=[0, 1.1], row=1, col=1)
         fig.update_xaxes(matches="x1", row=2, col=1)
         fig.update_yaxes(visible=False, row=2, col=1)
@@ -160,7 +151,8 @@ def server(input, output, session):
             yanchor="top",
             y=0.99,
             xanchor="left",
-            x=0.65
+            x=0.75,
+            bgcolor='rgba(0,0,0,0)',
             )
         )
         return fig
