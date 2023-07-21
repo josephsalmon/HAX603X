@@ -3,6 +3,7 @@ project:
   render:
     - index.qmd
     - Courses/notations.qmd
+    - Courses/th_asymptotique.qmd
 
 reference-location: margin
 citation-location: margin
@@ -23,7 +24,7 @@ website:
       - section: "Cours"
         contents:
           - Courses/notations.qmd
-          # - Courses/theoreme_limite.qmd
+          - Courses/th_asymptotique.qmd
 
       # - section: "Projects"
       #   contents:

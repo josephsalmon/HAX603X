@@ -7,6 +7,7 @@ filters:
   - shinylive
 ---
 
+On considère un espace probabilisé $(\Omega, {\mathcal{F}}, \mathbb{P})$, composé d’un ensemble $\Omega$, d’une tribu $\mathcal{F}$, et d’une mesure de probabilité $\mathbb{P}$.
 
 
 ::: {#def-va }

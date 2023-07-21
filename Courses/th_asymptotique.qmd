@@ -1,0 +1,26 @@
+---
+title: "Théorèmes asymptotiques"
+format:
+  html:
+      out.width: 50%
+filters:
+  - shinylive
+---
+
+Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique:
+$$
+\bar X_n = \dfrac{X_1 + \cdots + X_n}{n}\,.
+$$
+
+::: {#thn-lfgn}
+## Loi forte des grands nombres
+
+<br>
+
+
+
+Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires indépendantes et identiquement distribuées (iid) dans $L^1(\Omega, \mathcal{F}, \mathbb{P})$. Notons $\mu = \mathbb{E}[X_1]$. Alors $\bar X_n$ converge vers $\mu$ presque sûrement :
+$$
+\mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
+$$
+:::
