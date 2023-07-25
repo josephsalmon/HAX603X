@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/th_asymptotique.html</loc>
-    <lastmod>2023-07-25T13:25:08.895Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
-    <lastmod>2023-07-25T13:25:06.335Z</lastmod>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/simulation.html</loc>
+    <lastmod>2023-07-25T13:52:16.821Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/Courses/notations.html</loc>
-    <lastmod>2023-07-25T13:25:07.751Z</lastmod>
+    <lastmod>2023-07-25T13:52:12.309Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
+    <lastmod>2023-07-25T13:52:10.929Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/th_asymptotique.html</loc>
+    <lastmod>2023-07-25T13:52:13.493Z</lastmod>
   </url>
 </urlset>

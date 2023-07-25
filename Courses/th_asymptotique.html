@@ -31,6 +31,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Courses/simulation.html" rel="next">
 <link href="../Courses/notations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -148,6 +149,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Théorèmes asymptotiques</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation de variables aléatoires</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
@@ -205,7 +212,7 @@ ul.task-list li input[type="checkbox"] {
 <p><strong>Interprétation</strong>: Intuitivement, la probabilité d’un événement <span class="math inline">A</span> correspond à la fréquence d’apparition de <span class="math inline">A</span> quand on répète une expérience qui fait intervenir cet événement. Par exemple, si on dispose une pièce truquée, on estimera la probabilité d’apparition du côté pile en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu. La loi des grands nombres justifie a posteriori cette intuition : si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">p</span>, alors <span class="math display">
     \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
 </span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
-<p><strong>Remarque</strong>: Bien qu’intuitivement assez intuitif, ce théorème est difficile à démontrer. XXX TODO referece : Williams (en anglais) ou bien Ouvrard.</p>
+<p><strong>Remarque</strong>: Bien qu’assez intuitif, ce théorème est difficile à démontrer. XXX TODO reference : Williams (en anglais) ou bien Ouvrard.</p>
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
@@ -311,7 +318,7 @@ def server(input, output, session):
             yanchor="top",
             y=0.99,
             xanchor="left",
-            x=0.75,
+            x=0.95,
             bgcolor='rgba(0,0,0,0)',
             )
         )
@@ -331,6 +338,10 @@ app = App(app_ui, server)
 </span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
 </div>
 <p>Preuve XXX TODO: donner une référence.</p>
+<p>On peut interpréter ce théorème grossièrement de la façon suivante: la moyenne empirique de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2</span> se comporte asymptotiquement comme une loi normale <span class="math inline">\mathcal{N}(\mu, \tfrac{\sigma^2}{n})</span>, ce que l’on écrit avec un abus de notation:</p>
+<p><span class="math display">
+\bar X_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n}) \enspace.
+</span></p>
 <p>En termes de somme cumulée empirique, la convergence se réécrit</p>
 <p><span class="math display">
     \frac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
@@ -788,6 +799,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../Courses/simulation.html" class="pagination-link">
+        <span class="nav-page-text">Simulation de variables aléatoires</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
