@@ -46,7 +46,7 @@ Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droi
 
 ```{shinylive-python}
 #| standalone: true
-#| viewerHeight: 700
+#| viewerHeight: 550
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -54,8 +54,6 @@ from plotly.subplots import make_subplots
 from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, render_widget
 
-# n_samples = 50
-# step = 10
 app_ui = ui.page_fluid(
     ui.panel_title("Loi des grands nombres: visualisation"),
     ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
@@ -64,7 +62,6 @@ app_ui = ui.page_fluid(
         ui.column(6,
             ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
         ),
-        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
         ui.column(6, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, 1000, value=15, step=1)
         )
     )
@@ -146,6 +143,8 @@ def server(input, output, session):
             template="simple_white",
             showlegend=True,
         )
+        fig.update_layout(autosize=True)
+
         fig.update_layout(
             legend=dict(
             yanchor="top",
@@ -206,21 +205,20 @@ $$
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 $$
 avec $N \sim \mathcal{N}(0,1)$. Cette convergence est illustrée en Figure XXX TODO image.
-:::: 
+::::
 
 
 ```{shinylive-python}
 #| standalone: true
-#| viewerHeight: 700
+#| viewerHeight: 600
 import numpy as np
+from scipy.stats import norm
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
-from scipy.stats import norm
 from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, render_widget
 
-# n_samples = 50
-# step = 10
+
 app_ui = ui.page_fluid(
     ui.panel_title("Théorème centrale limite: visualisation"),
     ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
@@ -230,10 +228,10 @@ app_ui = ui.page_fluid(
             ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
         ),
         ui.column(4,
-            ui.input_slider("n_repetitions", "Nombre de répétitions", 2, 1000, value=200, step=1)
+            ui.input_slider("n_repetitions", "Nombre de répétitions", 1, 300, value=200, step=1)
         ),
         # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
-        ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, 500, value=100, step=1)
+        ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 1, 200, value=100, step=1)
         )
     )
 )
@@ -241,6 +239,7 @@ app_ui = ui.page_fluid(
 
 def server(input, output, session):
     seed = reactive.Value(42)
+
 
     @reactive.Effect
     @reactive.event(input.seed)
@@ -251,30 +250,26 @@ def server(input, output, session):
     @output
     @render_widget
     def my_widget():
-        # Create figure
 
-        # rng = np.random.default_rng(seed)
         rng = np.random.default_rng(seed())
-
         p = input.p()
-        # p = 0.5
-
-        # n_samples = 30
         n_repetitions = input.n_repetitions()
-        # step=input.step()
         n_samples = input.n_samples()
         iterations = np.arange(1, n_samples + 1)
         samples = rng.binomial(1, p, size=(n_repetitions, n_samples))
         means_samples = np.cumsum(samples, axis=1) / np.arange(1, n_samples + 1)
         x_hist = np.linspace(0, 1, num=300)
 
+        # Create figure
         fig = make_subplots(
                     rows=1,
-                    cols=2,
+                    cols=3,
                     vertical_spacing=0.2,
-                    horizontal_spacing=0.1,
-                    column_widths=[2, 1],
+                    horizontal_spacing=0.02,
+                    column_widths=[3, 0.1, 2],
+                    subplot_titles=("Moyenne empirique:<br> évolution après " + str(n_samples) + " tirages", " ", "Histogramme obtenu avec <br>" + str(n_repetitions) + " répétitions" + " (seed="+ str(seed()) + ")")
                 )
+
 
         for i in range(n_repetitions):
             fig.add_trace(
@@ -282,10 +277,8 @@ def server(input, output, session):
                         mode='lines',
                         line=dict(color="rgba(0,0,0,0.05)", width=1),
                         x=iterations,
-                        y=means_samples[i,:],
-                        # name=r'Moyenne <br> empirique'
+                        y=means_samples[i,:]
                         ),
-                        # name=r'$\bar{X}_n$'),
                         row=1, col=1,
             )
         fig.add_trace(
@@ -295,7 +288,6 @@ def server(input, output, session):
                     marker={},
                     x=iterations,
                     y=np.full((n_samples), p),
-                    # name=r'$p$'),
                     name='p'),
                     row=1, col=1,
         )
@@ -304,39 +296,45 @@ def server(input, output, session):
             showlegend=False,
         )
         fig.add_trace(
-            go.Histogram(y=means_samples[:,-1],
-                         opacity=0.75,
-                         marker_color = 'black',
-                         xbins = dict(start=0,
-                                 end=1,
-                                 size=1/int(np.sqrt(n_repetitions))),
-                         histnorm='probability density',
-                        # colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
-                        # textfont={"size":10}
-                        name="Tirages de moyennes empiriques",
-                        ),
+                go.Scatter(
+                    mode='markers',
+                    marker=dict(color="rgba(0,0,0,0.05)", size=4),
+                    x=np.zeros(n_samples),
+                    y=means_samples[:,-1],
+                ),
                 row=1, col=2,
+
+        )
+        y_hist, bins = np.histogram(means_samples[:,-1], bins=int(np.sqrt(n_repetitions)), density=True)
+        fig.add_trace(
+            go.Bar(x=y_hist, y=bins[:-1] + np.diff(bins)/2,
+                    opacity=0.75,
+                    marker_color = 'black',
+                    orientation='h',
+                    width=np.diff(bins),
+                    name="Tirages de moyennes empiriques",
+                    ),
+                row=1, col=3,
         )
         fig.add_trace(
-            go.Scatter(x=norm.pdf(x_hist, p, np.sqrt( p*(1-p) / n_samples)),
+            go.Scatter(x=norm.pdf(x_hist, p, np.sqrt(p*(1-p) / n_samples)),
                        y=x_hist,
                        mode='lines',
                        line=dict(color="red"),
-                        # colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
-                        # textfont={"size":10}
-                        legendgroup = '1',
-                        name="TCL"
-                        ),
-                row=1, col=2,
+                       legendgroup='1',
+                       name="TCL"
+                       ),
+                row=1, col=3,
         )
-        fig.update_xaxes(range=[1, n_samples + 1])
-        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
-        fig.update_yaxes(matches="y1", row=1, col=2)
-        fig.update_xaxes(range=[0, 1.1 / np.sqrt(2*np.pi* p*(1-p) / n_samples)], row=1, col=2)
 
-        # fig.update_xaxes(matches="x1", row=2, col=1)
-        # fig.update_yaxes(visible=False, row=2, col=1)
-        fig.update_xaxes(visible=False, row=1, col=2)
+        fig.update_xaxes(range=[1, n_samples + 1])
+        fig.update_yaxes(range=[-.05, 1.05], row=1, col=1)
+        fig.update_yaxes(matches="y1",visible = False,  row=1, col=2)
+        fig.update_xaxes(range=[-0.2, 0.2], visible = False, row=1, col=2)
+
+        fig.update_yaxes(matches="y1", row=1, col=3, visible=False)
+        fig.update_xaxes(range=[0, 1.1 / np.sqrt(2*np.pi* p*(1-p) / n_samples)], row=1, col=3)
+        fig.update_xaxes(visible=False, row=1, col=3)
 
 
 
@@ -344,22 +342,14 @@ def server(input, output, session):
             print(trace)
             if (trace['name'] != 'TCL') and (trace['name'] != 'p'):
                 trace['showlegend'] = False
-            # template="simple_white",
-            # showlegend=True,sur plusieurs répétitions et histogrammes après"+ str(n_samples)"+ tirages" + "(loi de Bernoulli, seed="+ str(seed())+")
-        # fig.update_layout(
-        #     legend=dict(
-        #     yanchor="top",
-        #     y=0.99,
-        #     xanchor="left",
-        #     x=0.75,
-        #     bgcolor='rgba(0,0,0,0)',
-        #     )
-        # )
+
         fig.update_layout(
-            title="Moyenne empirique:  évolution en fonction du nombre de tirages sur plusieurs répétitions et <br> histogrammes après "+ str(n_samples)+" tirages" + " (loi de Bernoulli, seed="+ str(seed())+")",
-            # legend_tracegroupgap = 400,
+            title=dict(text="Moyennes empiriques et TCL (loi de Bernoulli)<br>", yanchor="top", y=0.95),
+            title_x=0.5,
             showlegend=True
         )
+        fig.update_layout(autosize=True)
+
         return fig
 
 
