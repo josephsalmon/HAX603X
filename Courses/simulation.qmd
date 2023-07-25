@@ -1,0 +1,51 @@
+---
+title: "Simulation de variables aléatoires"
+format:
+  html:
+    out.width: 50%
+filters:
+  - shinylive
+---
+
+
+Dans ce chapitre on se demande comment simuler en pratique des variables aléatoires iid. L'idée est de commencer par le cas de variables aléatoires de loi uniforme et d'en déduire les autres lois.
+
+
+## Variables aléatoires uniformes
+
+On rappelle qu'une variable aléatoire $U$ suit une loi uniforme sur $[0,1]$, noté $\mathcal{U}([0,1])$ si sa fonction de répartition $F_U$ est donnée par
+$$
+F_U(x)
+=
+\begin{cases}
+    0, & \text{si }x < 0\,,            \\
+    x, & \text{si } 0 \leq x \leq 1\,, \\
+    1, & \text{si }x > 1\,.            \\
+\end{cases}
+$$
+
+```{python}
+#| echo: false
+import numpy as np
+import scipy
+import plotly.graph_objects as go
+
+x = np.linspace(-3, 4, num=300)
+
+fig = go.Figure()
+fig.update_layout(
+    template="simple_white",
+    showlegend=True,
+)
+
+fig.add_trace(
+              go.Scatter(
+                  mode='lines',
+                  line=dict(color="black", width=3),
+                  x=x,
+                  y=scipy.stats.uniform.cdf(x),
+                  name=r'$F_U$'
+         )
+)
+
+```

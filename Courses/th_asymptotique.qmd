@@ -41,7 +41,7 @@ $$
 Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.
 
 
-**Remarque**: Bien qu'intuitivement assez intuitif, ce théorème est difficile à démontrer. XXX TODO referece : Williams (en anglais) ou bien Ouvrard.
+**Remarque**: Bien qu'assez intuitif, ce théorème est difficile à démontrer. XXX TODO reference : Williams (en anglais) ou bien Ouvrard.
 
 
 ```{shinylive-python}
@@ -150,7 +150,7 @@ def server(input, output, session):
             yanchor="top",
             y=0.99,
             xanchor="left",
-            x=0.75,
+            x=0.95,
             bgcolor='rgba(0,0,0,0)',
             )
         )
@@ -180,6 +180,14 @@ $$
 où $N$ suit une loi normale centrée réduite : $N \sim\mathcal{N}(0,1)$.
 ::::
 Preuve XXX TODO: donner une référence.
+
+On peut interpréter ce théorème grossièrement de la façon suivante:
+la moyenne empirique de variables aléatoires i.i.d de variance $\sigma^2$
+se comporte asymptotiquement comme une loi normale $\mathcal{N}(\mu, \tfrac{\sigma^2}{n})$, ce que l'on écrit avec un abus de notation:
+
+$$
+\bar X_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n}) \enspace.
+$$
 
 En termes de somme cumulée empirique, la convergence se réécrit
 

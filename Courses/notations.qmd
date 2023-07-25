@@ -200,7 +200,8 @@ Notons que la fonction de répartition de la loi normale $\mathcal{N}(0,1)$, sou
 $$
 \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{x^2}{2}}\, \mathrm d x\enspace,
 $$
-Les valeurs numériques de $\Phi(x)$ étaient autrefois reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].Par transformation affine, si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- ce que l'on peut aussi écrire : $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors sa fonction de répartition est donnée par $F_X(x)=\Phi((x-\mu)/\sigma)$.
+Les valeurs numériques de $\Phi(x)$ étaient autrefois reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].
+Par transformation affine, si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- ce que l'on peut aussi écrire : $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors sa fonction de répartition est donnée par $F_X(x)=\Phi((x-\mu)/\sigma)$.
 
 
 ::: {#prp-toto}

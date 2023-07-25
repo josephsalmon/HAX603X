@@ -6,6 +6,7 @@ project:
     - index.qmd
     - Courses/notations.qmd
     - Courses/th_asymptotique.qmd
+    - Courses/simulation.qmd
 
 reference-location: margin
 citation-location: margin
@@ -27,6 +28,7 @@ website:
         contents:
           - Courses/notations.qmd
           - Courses/th_asymptotique.qmd
+          - Courses/simulation.qmd
 
       # - section: "Projects"
       #   contents:
