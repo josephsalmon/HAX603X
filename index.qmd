@@ -1,4 +1,4 @@
-# HAX603X: Modélisation stochastique
+# Introduction {.unnumbered}
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
 

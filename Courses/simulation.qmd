@@ -41,7 +41,7 @@ fig.update_layout(
 fig.add_trace(
               go.Scatter(
                   mode='lines',
-                  line=dict(color="black", width=3),
+                  line=dict(color="rgb(66, 139, 202)", width=3),
                   x=x,
                   y=scipy.stats.uniform.cdf(x),
                   name=r'$F_U$'
@@ -148,31 +148,70 @@ On peut démontrer facilement la même relation pour $x<0$ et $x>1$, d'où le r�
 
 L'idée de la méthode d'inversion repose sur le résultat suivant : si $F$ est une fonction de répartition bijective et $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F^{-1}(U)$ a pour fonction de répartition $F$. C'est une conséquence de la suite d'égalités :
 $$
-\begin{align}\label{eq:methode_inversion}
-  \mathbb{P}( F^{-1}(U) \leq x ) = \mathbb{P}( U \leq F(x) ) = F(x)\,,
+\begin{align}
+  \mathbb{P}( F^{-1}(U) \leq x ) & = \mathbb{P}( U \leq F(x) ) \\ 
+                                 & = F(x)\,,
 \end{align}
-$$
-où la deuxième égalité résulte de la croissance de $F$.
+$${#eq-methode_inversion}
+
+où la deuxième égalité résulte de la bijectivité de $F$.
 Ainsi, si $F$ est facilement inversible, on peut simuler une variable aléatoire $X$ de loi $F$ en simulant une variable aléatoire uniforme $U$ et en posant $X = F^{-1}(U)$.
 
 
-Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes). Il faut donc généraliser la notion d'inverse.
+Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes) c'est donc pourquoi on utilise l'inverse l'inverse généralisée ou fonction quantile introduite en @def-quantile:
 
-### L'inverse généralisée
+$$
+  F^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F(x)\geq p\} \enspace.
+$$
 
-<!-- Duplicate from @def-quantile -->
-::: {#def-PRNG}
-## Inverse généralisée
+
+**Interprétation:** Définir l'inverse d'une fonction de répartition $F$ revient à résoudre l'équation $F(x) = u$ d'inconnue $x$ pour un $u$ fixé.
+Si $F$ n'est pas bijective, deux problèmes apparaissent :
+
+- l'équation n'a aucune solution ce qui revient à dire que $F$ n'est pas surjectif (graphiquement, $F$ présente des sauts) ;
+- l'équation a plusieurs solutions ce qui revient à dire que $F$ n'est pas injective (graphiquement cela se matérialise par un plateau à la hauteur $u$). Un exemple classique est celui où $F$ est la fonction de répartition d'une variable aléatoire discrète.
+
+Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq u\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier". Ces considérations sont illustrées en Figure XXX TODO.
+
+
+
+**Remarques additionnelles**:
+
+- La fonction $F$ étant croissante, la quantité $F^\leftarrow(u)$ correspond au premier instant où $F$ dépasse $u$.
+  Si $F$ est bijective (ce qui équivaut dans ce cas à strictement croissante et injective), alors $F^\leftarrow = F^{-1}$.
+- La fonction $F^\leftarrow$ n'est rien d'autre que la fonction quantile : si $0 < \alpha < 1$, $q_{1-\alpha} = F^\leftarrow(1-\alpha)$ est le quantile d'ordre $(1-\alpha)$ de $F$. Par exemple, $F^\leftarrow(1/2)$ correspond à la médiane.
+- Notons que si $u=0$, on peut alors naturellement poser $F^{\leftarrow}(0) = -\infty$. De même, avec la convention la convention $\inf \emptyset = +\infty$, on peut alors étendre la définition de $F^\leftarrow$ à $u=1$ (mais $F^\leftarrow(1)$ n'est pas toujours égal à $\infty$, voir les exemples ci-dessous).
+
+
+
+::: {#def-inversion_discrete}
+##  Loi à support fini
 
 <br>
 
-Soit $F$ une fonction de répartition. On appelle \emph{inverse généralisée de $F$}, notée $F^\leftarrow$, la fonction définie par
+Soit $X$ une variable aléatoire discrète prenant uniquement les valeurs $x_1 < \dots < x_r$ avec probabilité $p_1, \dots, p_r$, et tel que $p_1 + \dots + p_r=1$.
+On vérifie que pour tout $u \in ]0,1[$,
 $$
-F^\leftarrow(u) = \inf\{x \in \mathbb{R} : F(x) \geq u\}\,, \quad u \in ]0,1[\,.
+		F^\leftarrow(u) =
+		\begin{cases}
+			x_1 & \text{si } 0 < u \leq p_1\,,                  \\
+			x_2 & \text{si } p_1 < u \leq p_1+p_2\,,            \\
+			    & \vdots                                        \\
+			x_r & \text{si }  p_1 + \dots + p_{r-1} < u < 1\,.
+		\end{cases}
 $$
-:::
 
-XXX TODO: show inverse usage using widget from first course and sampling randomly uniformly points in [0,1] to get the one from the distributions at hand.
+Sur cet exemple, on peut prolonger la définition de $F^\leftarrow$ à $u=1$ en posant $F^\leftarrow(1) = x_r$.
+L'inverse généralisée se réécrit alors sous la forme
+$$
+		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{p_1 + \dots + p_{k-1} < u \leq p_1 + \dots + p_k}\enspace,
+$$
+où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ prend un nombre infini dénombrable de valeurs (la somme devient alors une série).
+:::
+XXX TODO: donner un example discret et montrer $F^\leftarrow$
+
+
+XXX TODO: show inverse usage using widget from first course and sampling randomly uniformly points in $[0,1]$ to get the one from the distributions at hand.
 
 ### Bibliographie et pour aller plus loin
 

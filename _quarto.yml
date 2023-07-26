@@ -1,34 +1,32 @@
 author: "Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta"
 lang: fr
 project:
-  type: website
-  render:
-    - index.qmd
-    - Courses/notations.qmd
-    - Courses/th_asymptotique.qmd
-    - Courses/simulation.qmd
+  type: book
 
 reference-location: margin
 citation-location: margin
 fig-cap-location: margin
 filters:
   - shinylive
-website:
+book:
+  author: "Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta"
   title: "HAX603X: Modélisation stochastique"
   site-url: https://josephsalmon.github.io/HAX603X/
   repo-url: https://github.com/josephsalmon/HAX603X
   page-navigation: true
   repo-actions: [source, issue]
+  chapters:
+    - index.qmd
+    - part: "Cours"
+      chapters:
+        - Courses/notations.qmd
+        - Courses/th_asymptotique.qmd
+        - Courses/simulation.qmd
+    - part: "TP"
+    - part: "TD"
   sidebar:
-    search: true
-    contents:
-      - text: "Présentation"
-        href: index.qmd
-      - section: "Cours"
-        contents:
-          - Courses/notations.qmd
-          - Courses/th_asymptotique.qmd
-          - Courses/simulation.qmd
+    search:
+      true
 
       # - section: "Projects"
       #   contents:
@@ -55,3 +53,60 @@ format:
     fig.align: center
     # self-contained: true
     # fig-format: svg
+# author: "Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta"
+# lang: fr
+# project:
+#   type: website
+#   render:
+#     - index.qmd
+#     - Courses/notations.qmd
+#     - Courses/th_asymptotique.qmd
+#     - Courses/simulation.qmd
+
+# reference-location: margin
+# citation-location: margin
+# fig-cap-location: margin
+# filters:
+#   - shinylive
+# website:
+#   title: "HAX603X: Modélisation stochastique"
+#   site-url: https://josephsalmon.github.io/HAX603X/
+#   repo-url: https://github.com/josephsalmon/HAX603X
+#   page-navigation: true
+#   repo-actions: [source, issue]
+#   sidebar:
+#     search: true
+#     contents:
+#       - text: "Présentation"
+#         href: index.qmd
+#       - section: "Cours"
+#         contents:
+#           - Courses/notations.qmd
+#           - Courses/th_asymptotique.qmd
+#           - Courses/simulation.qmd
+
+#       # - section: "Projects"
+#       #   contents:
+
+# format:
+#   html:
+#     theme:
+#       - cosmo
+#       - custom.scss
+#       # light: spacelab
+#     css:
+#       - custom.css
+#     # mainfont: Atkinson Hyperlegible
+#     html-math-method: katex
+#     toc-location: right
+#     toc: true
+#     toc-depth: 3
+#     code-fold: false
+#     code-tools:
+#       toggle: false
+#       source: false
+#     code-overflow: wrap
+#     fig-responsive: true
+#     fig.align: center
+#     # self-contained: true
+#     # fig-format: svg
