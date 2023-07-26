@@ -8,7 +8,7 @@
 
 <meta name="author" content="Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta">
 
-<title>HAX603X: Modélisation stochastique - Théorèmes asymptotiques</title>
+<title>HAX603X: Modélisation stochastique - 2&nbsp; Théorèmes asymptotiques</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -97,7 +97,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html">Théorèmes asymptotiques</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -113,6 +113,9 @@ ul.task-list li input[type="checkbox"] {
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="../">HAX603X: Modélisation stochastique</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
     </div>
       </div>
         <div class="mt-2 flex-shrink-0 align-items-center">
@@ -125,7 +128,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Présentation</span></a>
+ <span class="menu-text">Introduction</span></a>
   </div>
 </li>
         <li class="sidebar-item sidebar-item-section">
@@ -140,22 +143,30 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notations et rappels</span></a>
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Théorèmes asymptotiques</span></a>
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simulation</span></a>
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
       </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">TP</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">TD</span></span>
   </li>
     </ul>
     </div>
@@ -164,11 +175,11 @@ ul.task-list li input[type="checkbox"] {
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Sur cette page</h2>
+    <h2 id="toc-title">Table des matières</h2>
    
   <ul>
-  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres">Loi des grands nombres</a></li>
-  <li><a href="#théorème-central-limite" id="toc-théorème-central-limite" class="nav-link" data-scroll-target="#théorème-central-limite">Théorème central limite</a></li>
+  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres"><span class="header-section-number">2.1</span> Loi des grands nombres</a></li>
+  <li><a href="#théorème-central-limite" id="toc-théorème-central-limite" class="nav-link" data-scroll-target="#théorème-central-limite"><span class="header-section-number">2.2</span> Théorème central limite</a></li>
   </ul>
 <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
     </div>
@@ -177,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Théorèmes asymptotiques</h1>
+<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></h1>
 </div>
 
 
@@ -198,13 +209,13 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="loi-des-grands-nombres" class="level2">
-<h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
+<section id="loi-des-grands-nombres" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="loi-des-grands-nombres"><span class="header-section-number">2.1</span> Loi des grands nombres</h2>
 <p>Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique: <span class="math display">
 \bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
 </span> quand on obsever <span class="math inline">n</span> variables aléatoires i.i.d <span class="math inline">X_1,\dots,X_n</span>, ayant une espérance finie.</p>
 <div id="thm-lfgn" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Théorème 2.1 (Loi forte des grands nombres) </strong></span><br></p>
 <p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 </span></p>
@@ -329,11 +340,11 @@ app = App(app_ui, server)
 </code></pre>
 <p>XXX TODO: phénomène intéressant en bougeant le paramètre p avec le reste fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas a priori, saut structuration particulière de la génération.</p>
 </section>
-<section id="théorème-central-limite" class="level2">
-<h2 class="anchored" data-anchor-id="théorème-central-limite">Théorème central limite</h2>
+<section id="théorème-central-limite" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="théorème-central-limite"><span class="header-section-number">2.2</span> Théorème central limite</h2>
 <p>Une fois la loi des grands nombres établie, on peut se demander quel est l’ordre suivant dans le développement asymptotique de <span class="math inline">\bar X_n - \mu</span>, ou de manière équivalente de <span class="math inline">S_n - n \mu</span>, où <span class="math inline">S_n = X_1 + \cdots + X_n</span>. Le théorème suivant répond à cette question, en donnant une convergence en loi d’une transformation affine de la moyenne empirique:</p>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 2.2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
 \sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 </span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
 </div>
@@ -353,7 +364,7 @@ app = App(app_ui, server)
     \underset{n \to \infty}{\longrightarrow}  \dfrac{1}{\sqrt{2\pi}} \int_a^b e^{-\frac{x^2}{2}} \, \mathrm dx\,.
 </span></p>
 <div id="exm-tcl" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
+<p><span class="theorem-title"><strong>Exemple 2.1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 </span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée en Figure XXX TODO image.</p>
 </div>
@@ -795,12 +806,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
       <a href="../Courses/notations.html" class="pagination-link">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notations et rappels</span>
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
       <a href="../Courses/simulation.html" class="pagination-link">
-        <span class="nav-page-text">Simulation</span> <i class="bi bi-arrow-right-short"></i>
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
