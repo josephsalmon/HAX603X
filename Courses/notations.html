@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simulation de variables aléatoires</span></a>
+ <span class="menu-text">Simulation</span></a>
   </div>
 </li>
       </ul>
@@ -286,7 +286,8 @@ f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-\frac{1}{2}(x-\mu
 <p>La notion de variable aléatoire n’est pas facile à manipuler puisqu’elle part d’un espace <span class="math inline">\Omega</span> dont on ne sait rien. On souhaite donc caractériser la loi d’une variable aléatoire en ne considérant que l’espace d’arrivée <span class="math inline">(E, \mathcal{E})</span> .</p>
 <p>Plusieurs outils existent : la fonction de répartition (pour des variables aléatoires réelles), la fonction caractéristique (pour des variables aléatoires dans <span class="math inline">\mathbb{R}^d</span>), la fonction génératrice des moments (pour des variables aléatoires discrètes), etc. On se contente ici de la fonction de répartition qui nous sera utile pour simuler des variables aléatoires, ainsi que son inverse au sens de Levy.</p>
 <div id="def-cdf" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition 🇬🇧: <em>cumulative distribution function</em>) </strong></span>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. La fonction de répartition de <span class="math inline">X</span> est la fonction <span class="math inline">F_X</span> définie sur <span class="math inline">\mathbb{R}</span> par <span class="math display">
+<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition 🇬🇧: <em>cumulative distribution function</em>) </strong></span><br></p>
+<p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. La fonction de répartition de <span class="math inline">X</span> est la fonction <span class="math inline">F_X</span> définie sur <span class="math inline">\mathbb{R}</span> par <span class="math display">
     F_X(x) = \mathbb{P}(X \leq x) = \mathbb{P}(X \in ]-\infty, x]) \enspace.
 </span></p>
 </div>
@@ -341,10 +342,12 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 <h2 class="anchored" data-anchor-id="fonction-quantile-inverse-généralisée-à-gauche">Fonction quantile, inverse généralisée à gauche</h2>
 <p>La fonction de répartition étant une fonction croissante on peut donner un sens à son inverse généralisée de la manière suivante.</p>
 <div id="def-quantile" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/inverse de Levy 🇬🇧: <em>quantile distribution function</em>) </strong></span>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. et <span class="math inline">F_X</span> sa fonction de répartion. La fonction quantile associée <span class="math inline">F_X^\leftarrow: ]0,1[\rightarrow \mathbb{R}</span> est définie par <span class="math display">
-  F_n^\leftarrow(p)=  \inf\{ x\colon F(x)\geq p\} \enspace.
+<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée 🇬🇧: <em>quantile distribution function</em>) </strong></span><br></p>
+<p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. et <span class="math inline">F_X</span> sa fonction de répartion. La fonction quantile associée <span class="math inline">F_X^\leftarrow: ]0,1[\rightarrow \mathbb{R}</span> est définie par <span class="math display">
+  F_X^\leftarrow(p)=  \inf\{ x\colon F(x)\geq p\} \enspace.
 </span></p>
 </div>
+<p>On parle parfois aussi d’inverse au sens de Levy pour cette inverse généralisée.</p>
 <p>Dans le cas où la fonction de répartition <span class="math inline">F</span> est bijective, alors l’inverse de la fonction de répartition coincide avec la fonction quantile.</p>
 </section>
 <section id="visualisation-densité-fonction-de-répartition-quantiles-etc." class="level2">
