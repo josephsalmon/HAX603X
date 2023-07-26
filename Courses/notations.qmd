@@ -162,6 +162,9 @@ On se contente ici de la fonction de répartition qui nous sera utile pour simul
 
 ::: {#def-cdf}
 ##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
+
+<br>
+
 Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
 La fonction de répartition de $X$ est la fonction $F_X$ définie sur $\mathbb{R}$ par
 $$
@@ -265,15 +268,20 @@ La fonction de répartition étant une fonction croissante on peut donner un sen
 
 
 ::: {#def-quantile}
-##  Fonction quantile/inverse de Levy &#127468;&#127463;: *quantile distribution function*
+##  Fonction quantile/ inverse généralisée &#127468;&#127463;: *quantile distribution function*
+
+<br>
+
 Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
 et $F_X$ sa fonction de répartion.
 La fonction quantile associée
 $F_X^\leftarrow:  ]0,1[\rightarrow \mathbb{R}$ est définie par
 $$
-  F_n^\leftarrow(p)=  \inf\{ x\colon F(x)\geq p\} \enspace.
+  F_X^\leftarrow(p)=  \inf\{ x\colon F(x)\geq p\} \enspace.
 $$
 :::
+
+On parle parfois aussi d'inverse au sens de Levy pour cette inverse généralisée.
 
 Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse de la fonction de répartition coincide avec la fonction quantile.
 

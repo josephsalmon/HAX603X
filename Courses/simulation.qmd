@@ -1,5 +1,5 @@
 ---
-title: "Simulation de variables aléatoires"
+title: "Simulation"
 format:
   html:
     out.width: 50%
@@ -8,7 +8,7 @@ filters:
 ---
 
 
-Dans ce chapitre on se demande comment simuler en pratique des variables aléatoires iid. L'idée est de commencer par le cas de variables aléatoires de loi uniforme et d'en déduire les autres lois.
+Dans ce chapitre on se demande comment simuler en pratique des variables aléatoires i.i.d. L'idée est de commencer par le cas de variables aléatoires de loi uniforme et d'en déduire les autres lois.
 
 
 ## Variables aléatoires uniformes
@@ -18,9 +18,9 @@ $$
 F_U(x)
 =
 \begin{cases}
-    0, & \text{si }x < 0\,,            \\
-    x, & \text{si } 0 \leq x \leq 1\,, \\
-    1, & \text{si }x > 1\,.            \\
+    0, & \text{si }x < 0\,,        \\
+    x, & \text{si }x \in [0,1]\,,  \\
+    1, & \text{si }x > 1\,.        \\
 \end{cases}
 $$
 
@@ -49,3 +49,132 @@ fig.add_trace(
 )
 
 ```
+
+L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables aléatoires i.i.d. de loi $\mathcal{U}([0,1])$. Plusieurs problèmes apparaissent alors :
+
+- Une machine est déterministe.
+- Les nombres entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\}$. On ne pourra donc jamais générer des nombres qui ne sont pas de cette forme.
+- Vérifier qu'une suite est bien i.i.d. est un problème difficile.
+
+::: {#def-PRNG}
+## Générateur de nombres pseudo-aléatoires
+
+<br>
+
+Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second une transformation simple permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+:::
+
+
+::: {.callout-note appearance="simple"}
+## Pour aller plus loin
+Parfois il est utile d'aller chercher dans le code source certaines information pour savoir comment les fonctions sont codées dans les packages que l'on utiliser. Par exemple, pour `numpy` que l'on utilise fréquement, on peut voir l'opération choisie ici: [Random: int -> float en `numpy`](https://github.com/numpy/numpy/blob/d50fc570a9e15ea4d8ec35add245d5d791fa4596/numpy/random/src/mt19937/randomkit.c#L479).
+:::
+
+
+
+Un tel algorithme se construit de la manière suivante :
+
+1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
+2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots·, U_n$.
+
+
+- La fonction $f$ est déterministe et prend ses valeurs dans un ensemble fini, donc l'algorithme est périodique. Le but est donc d'avoir la plus grande période possible.
+
+- Notons qu'une fois que la graine est fixée, alors l'algorithme donne toujours les mêmes valeurs. Fixer la graine peut donc être très utile pour répéter des simulations dans des conditions identiques et ainsi repérer des erreurs.
+
+
+::: {.callout-important appearance='default' icon="false"}
+##  Exercice: bug ou feature?
+Reprendre les widgets du chapitre [Théorèmes asymptotiques](th_asymptotique.qmd) et faites varier doucement le paramètre $p$ (de Bernoulli). Que constatez-vous? Proposer une explication potentielle.
+:::
+
+### Générateur congruentiel linéaire
+
+La plupart des PRNG s'appuient sur des résultats arithmétiques. Un des plus connus est celui appelé Générateur congruentiel linéaire (&#127468;&#127463; Linear congruential generator, LCG).
+Il est défini comme suit: on construit récursivement une suite d'entiers $X_i$ via la congruence
+$$
+  X_{n+1} = a X_n + b \quad \text{mod } m \enspace,
+$$
+où $a,b,m$ sont des entiers bien choisis pour que la suite obtenue ait de bonnes propriétés.
+Il suffit alors de considérer $X_n/m$. Par exemple, la fonction ```rand``` sur ```scilab``` utilise cette congruence avec $m=2^{31}$, $a=843\; 314\; 861$, et $b=453\; 816\; 693$.
+
+### Générateurs alternatifs
+Les langages ```Python``` et ```R``` utilisent par défaut le générateur Mersenne-Twister qui s'appuie sur la multiplication vectorielle, mais d'autres générateurs sont aussi disponibles.
+Ce générateur a pour période $m =2^{19937}-1$, nombre qu'on peut raisonnablement considérer comme grand.
+
+Pour ```numpy``` la méthode par défaut est PCG64 (cf. [documentation de `numpy`](https://numpy.org/doc/stable/reference/random/bit_generators/pcg64.html)),
+qui dispose de meilleures garanties statistiques (Voir le site [https://www.pcg-random.org](https://www.pcg-random.org/statistical-tests.html#id4) pour cela).
+
+
+### Usage en `numpy`
+
+On suppose désormais disposer d'un générateur pseudo-aléatoire sur $[0,1]$.
+En `numpy` depuis la version 1.17, une bonne manière d'utiliser des éléments aléatoires est d'utiliser un générateur que l'on définit soi-même:
+
+```{python}
+import numpy as np
+seed = 12345  # Toujours être conscient qu'une graine existe
+rng = np.random.default_rng(seed)  #
+print(rng.random())  ##  un tirage uniforme sur [0,1]
+print(rng.random(size=5))  ## cinq tirages uniformes sur [0,1]
+print(rng.random(size=(3, 2)))  ## matrice 3x2, à entrées unif. sur [0,1]
+```
+
+Dans la suite on va voir comment générer d'autres lois à partir de la loi uniforme, mais il est clair que les logiciels modernes propose un large éventail de distribution classique (gaussienne, exponentielle, etc.).
+Une liste exhaustive est donnée [ici](https://numpy.org/doc/stable/reference/random/generator.html#distributions) pour `numpy`.
+
+::: {.callout-note appearance="simple"}
+## Pour aller plus loin
+Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://albertcthomas.github.io/good-practices-random-number-generators/).
+:::
+
+
+
+### Propriété de la loi uniforme
+On verra souvent apparaître la variable aléatoire $1-U$ où $U \sim \mathcal{U}([0,1])$. Il se trouve que $1-U$ suit aussi une loi uniforme sur $[0,1]$ comme le montre le calcul de sa fonction de répartition. Ainsi pour tout $x \in [0,1]$ on obtien
+$$
+\begin{align*}
+\mathbb{P}(1-U \leq x) & = \mathbb{P}(U \geq 1-x),\\
+                       & = 1-(1-x), \\
+                       & = x\,.
+\end{align*}
+$$
+On peut démontrer facilement la même relation pour $x<0$ et $x>1$, d'où le résultat.
+
+
+## Méthode d'inversion
+
+
+L'idée de la méthode d'inversion repose sur le résultat suivant : si $F$ est une fonction de répartition bijective et $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F^{-1}(U)$ a pour fonction de répartition $F$. C'est une conséquence de la suite d'égalités :
+$$
+\begin{align}\label{eq:methode_inversion}
+  \mathbb{P}( F^{-1}(U) \leq x ) = \mathbb{P}( U \leq F(x) ) = F(x)\,,
+\end{align}
+$$
+où la deuxième égalité résulte de la croissance de $F$.
+Ainsi, si $F$ est facilement inversible, on peut simuler une variable aléatoire $X$ de loi $F$ en simulant une variable aléatoire uniforme $U$ et en posant $X = F^{-1}(U)$.
+
+
+Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes). Il faut donc généraliser la notion d'inverse.
+
+### L'inverse généralisée
+
+<!-- Duplicate from @def-quantile -->
+::: {#def-PRNG}
+## Inverse généralisée
+
+<br>
+
+Soit $F$ une fonction de répartition. On appelle \emph{inverse généralisée de $F$}, notée $F^\leftarrow$, la fonction définie par
+$$
+F^\leftarrow(u) = \inf\{x \in \mathbb{R} : F(x) \geq u\}\,, \quad u \in ]0,1[\,.
+$$
+:::
+
+XXX TODO: show inverse usage using widget from first course and sampling randomly uniformly points in [0,1] to get the one from the distributions at hand.
+
+### Bibliographie et pour aller plus loin
+
+- [Generating Random Floating-Point Numbers by Dividing Integers: a Case Study](https://hal.science/hal-02427338/document) par Frédéric Goualard
+- [Generating Pseudo-random Floating-Point Values](https://allendowney.com/research/rand/downey07randfloat.pdf) par Allen Downey.
