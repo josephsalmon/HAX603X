@@ -543,12 +543,8 @@ from shinywidgets import output_widget, render_widget
 
 def keep_no_param_distribution_disc():
     distributions = stats._discrete_distns._distn_names
-    distributions_0 = []
-    for i, name in enumerate(distributions):
-        dist = getattr(stats, name)
-        if not dist.shapes or len(dist.shapes)==2 or len(dist.shapes)==1:
-            distributions_0.append(name)
-    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0 ]
+    distributions_0 = [name for name in distributions if not getattr(stats, name).shapes or len(getattr(stats, name).shapes) in [1, 2]]
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0]
     distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
     return distributions_0_dict
 

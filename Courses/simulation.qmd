@@ -41,7 +41,7 @@ fig.update_layout(
 fig.add_trace(
               go.Scatter(
                   mode='lines',
-                  line=dict(color="rgb(66, 139, 202)", width=3),
+                  line=dict(color='black', width=3),
                   x=x,
                   y=scipy.stats.uniform.cdf(x),
                   name=r'$F_U$'
@@ -113,7 +113,6 @@ On suppose désormais disposer d'un générateur pseudo-aléatoire sur $[0,1]$.
 En `numpy` depuis la version 1.17, une bonne manière d'utiliser des éléments aléatoires est d'utiliser un générateur que l'on définit soi-même:
 
 ```{python}
-import numpy as np
 seed = 12345  # Toujours être conscient qu'une graine existe
 rng = np.random.default_rng(seed)  #
 print(rng.random())  ##  un tirage uniforme sur [0,1]
@@ -165,19 +164,240 @@ $$
 $$
 
 
-**Interprétation:** Définir l'inverse d'une fonction de répartition $F$ revient à résoudre l'équation $F(x) = u$ d'inconnue $x$ pour un $u$ fixé.
+**Interprétation:** Définir l'inverse d'une fonction de répartition $F$ revient à résoudre l'équation $F(x) = \alpha$ d'inconnue $x$ pour un $\alpha$ fixé.
 Si $F$ n'est pas bijective, deux problèmes apparaissent :
 
 - l'équation n'a aucune solution ce qui revient à dire que $F$ n'est pas surjectif (graphiquement, $F$ présente des sauts) ;
-- l'équation a plusieurs solutions ce qui revient à dire que $F$ n'est pas injective (graphiquement cela se matérialise par un plateau à la hauteur $u$). Un exemple classique est celui où $F$ est la fonction de répartition d'une variable aléatoire discrète.
+- l'équation a plusieurs solutions ce qui revient à dire que $F$ n'est pas injective (graphiquement cela se matérialise par un plateau à la hauteur $\alpha$). Un exemple classique est celui où $F$ est la fonction de répartition d'une variable aléatoire discrète.
 
-Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq u\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier". Ces considérations sont illustrées en Figure XXX TODO.
+Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq \alpha\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier". Ces considérations sont illustrées en Figure XXX TODO.
 
 
+
+```{python}
+#| echo: false
+#| label: fig-3-quantiles
+from scipy import stats
+import plotly.graph_objects as go
+# import matplotlib.pyplot as plt
+# plt.rcParams['text.usetex'] = True
+from plotly.subplots import make_subplots
+
+def keep_no_param_distribution():
+    distributions = stats._continuous_distns._distn_names
+    distributions_0 = [name for name in distributions if not getattr(stats, name).shapes]
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+def keep_no_param_distribution_disc():
+    distributions = stats._discrete_distns._distn_names
+    distributions_0 = [name for name in distributions if not getattr(stats, name).shapes or len(getattr(stats, name).shapes) in [1, 2]]
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+def cdf_tool(x, dtype='int64'):
+    y = np.zeros(2*(len(x)), dtype=dtype)
+    y[::2]=x
+    y[1::2]=x
+    return y[1::], y[:-1], y
+
+
+def pmf_tool(x, dtype='int64'):
+    y = np.zeros(2*(len(x)), dtype=dtype)
+    y[::2]=x
+    return y[1::], y[:-1], y
+
+
+x = np.linspace(-3, 3, num=300)
+alpha = 0.75
+mu = 0.5
+fig = make_subplots(
+            rows=1,
+            cols=3,
+            horizontal_spacing=0.15,
+            subplot_titles=(
+                "Fonction quantile",
+                "",
+                "",
+            ),
+        )
+
+# Quantile plot
+color_blue = "rgb(66, 139, 202)"
+fig.update_layout(autosize=True, height=400,
+             showlegend=False,
+            template="simple_white",
+        )
+
+for i, name_distrib in enumerate(['norm', 'poisson', 'geom']):
+    if name_distrib == 'norm':
+        distributions_0_dict = keep_no_param_distribution()
+        distribution = distributions_0_dict[name_distrib]
+
+        cdf_data = distribution.cdf(x)
+        q_alpha = distribution.ppf(alpha)
+    else:
+        distributions_0_dict = keep_no_param_distribution_disc()
+        distribution = distributions_0_dict[name_distrib]
+        q_alpha = distribution.ppf(alpha, mu)
+        cdf_data = distribution.cdf(x, mu)
+        pmf_data = distribution.pmf(x, mu)
+                # Quantile plot
+        support = pmf_data.nonzero()[0]
+
+        new_x, new_y, new_z = cdf_tool(support)
+        _, _, new_pmf = pmf_tool(support)
+
+    fig.add_trace(go.Scatter(x=x, y=cdf_data, mode="lines", line=dict(color="black"), name="CDF", showlegend=False), row=1,col=i+1)
+
+    fig.add_trace(go.Scatter(x=[q_alpha, q_alpha], y=[0, alpha], mode="lines", line=dict(color=color_blue, dash="dash"), showlegend=False), row=1,col=i+1)
+    
+    fig.add_trace(go.Scatter(x=[x[0], q_alpha], y=[alpha, alpha], mode="lines", line=dict(color=color_blue, dash="dash"), showlegend=False), row=1,col=i+1)
+    
+    fig.add_trace(go.Scatter(x=[q_alpha], y=[alpha], mode="markers", marker=dict(color=color_blue, symbol="circle", size=15), name="Quantile", showlegend=False), row=1,col=i+1)
+
+    fig.add_trace(go.Scatter(x=[x[0] + x.ptp() / 10], y=[alpha + 0.03], text=r"u", mode="text", showlegend=False), row=1,col=i+1)
+    
+    fig.add_trace(go.Scatter(x=[q_alpha + 0.1], y=[0.03], text=r"$c", mode="text", showlegend=False), row=1,col=i+1)
+        # Axes ranges
+    # fig.update_yaxes(range=[0, 1.], row=1, col=i+1)
+    # fig.update_xaxes(matches="x1", row=2, col=1)
+
+
+fig.show()
+
+# alpha = 0.75
+# mu = 0.5
+# # Create the subplots
+# fig, axs = plt.subplots(1, 3)
+
+# # Quantile plot
+# color_blue = (66 / 256, 139 / 256, 202 / 256)
+# for i, name_distrib in enumerate(['norm', 'poisson', 'geom']):
+#     if name_distrib=='norm':
+#         distributions_0_dict = keep_no_param_distribution()
+#         distribution = distributions_0_dict[name_distrib]
+
+#         cdf_data = distribution.cdf(x)
+#         q_alpha = distribution.ppf(alpha)
+#     else:
+#         distributions_0_dict = keep_no_param_distribution_disc()
+#         distribution = distributions_0_dict[name_distrib]
+#         q_alpha = distribution.ppf(alpha, mu)
+#         cdf_data = distribution.cdf(x, mu)
+#         pmf_data = distribution.pmf(x, mu)
+#     distribution = distributions_0_dict[name_distrib]
+
+
+
+#     axs[i].plot(x, cdf_data, color="black", lw=3, zorder=1)
+#     axs[i].plot([q_alpha,q_alpha], [0,alpha], color=color_blue, linestyle="--", zorder=2)
+#     axs[i].plot([x[0], q_alpha], [alpha, alpha], color=color_blue, linestyle="--", zorder=2)
+#     axs[i].scatter(q_alpha, alpha, color=color_blue, marker="o", s=100, zorder=2)
+#     axs[i].set_ylim(0, 1)
+#     axs[i].set_xlim(x[0], x[-1])
+#     axs[i].text(x[0]+x.ptp()/100, alpha+0.03, r'$u$', fontsize=18, color=color_blue)
+#     axs[i].text(q_alpha+0.1, 0.03, r'$F^\leftarrow(u)$', fontsize=18, color=color_blue)
+
+# # Set subplot titles
+# axs[0].set_title(r"Cas $F(x)=u$ : solution unique (cas Gaussien)")
+# axs[1].set_title(r"Cas $F(x)=u$ : n'ayant pas de solution (cas )")
+# axs[2].set_title(r"Cas $F(x)=u$ : solution unique (cas Gaussien)")
+
+# Remove ticks from the second and third subplots
+
+
+# Adjust spacing between subplots
+# plt.subplots_adjust(wspace=0.5)
+
+# Show the plot
+# plt.show()
+
+# alpha=0.3
+# distribution = distributions_0_dict['norm']
+# cdf_data = distribution.cdf(x, loc=0, scale=1)
+# q_alpha = distribution.ppf(alpha, loc=0, scale=1)
+
+# fig = make_subplots(
+#             rows=1,
+#             cols=3,
+#             vertical_spacing=0.1,
+#             horizontal_spacing=0.15,
+#             subplot_titles=(
+#                 "Cas $F(x)=u$ ayant une solution unique (cas Gaussien)",
+#                 "Cas $F(x)=u$ n'ayant pas de solution (cas )",
+#                 "Cas $F(x)=u$ ayant une infinité de solution (cas )",
+#             ),
+#             column_widths=[0.3, 0.3, 0.3],
+# )
+
+# fig.update_layout(
+#     template="simple_white",
+#     showlegend=False,
+# )
+
+# fig.update_layout(autosize=True, height=700)
+# # Quantile plot
+# fig.add_trace(
+#       go.Scatter(
+#           x=x, y=cdf_data, mode="lines", marker={"color": "black"}
+#       ),
+#       row=1,
+#       col=1,
+#   )
+
+# # fig.add_trace(
+# #     go.Scatter(
+# #         mode='lines',
+# #         line=dict(color="rgb(66, 139, 202)", width=3),
+# #         x=x,
+# #         y=scipy.stats.uniform.cdf(x),
+# #         name=r'$F_U$'
+# #     )
+# # )
+
+# fig.add_trace(
+#     go.Scatter(
+#         x=[x[0], q_alpha],
+#         y=[alpha, alpha],
+#         mode="lines",
+#         line=dict(dash="dash", color="rgb(66, 139, 202)")
+#     ),
+#     row=1,
+#     col=1
+# )
+# fig.add_trace(
+#     go.Scatter(
+#         x=[q_alpha, q_alpha],
+#         y=[0, alpha],
+#         mode="lines",
+#         line=dict(dash="dash", color="rgb(66, 139, 202)")
+#     ),
+#     row=1,
+#     col=1
+# )
+# fig.add_trace(
+#     go.Scatter(
+#         x=[q_alpha],
+#         y=[alpha],
+#         mode="markers",
+#         marker={"color": "rgb(66, 139, 202)"},
+#         marker_symbol="circle",
+#         marker_size=15,
+#     ),
+#     row=1,
+#     col=1,
+# )
+# fig.update_yaxes(range=[0, 1.], row=1, col=1)
+
+
+```
 
 **Remarques additionnelles**:
 
-- La fonction $F$ étant croissante, la quantité $F^\leftarrow(u)$ correspond au premier instant où $F$ dépasse $u$.
+- La fonction $F$ étant croissante, la quantité $F^\leftarrow(u)$ correspond au premier instant où $F$ dépasse $\alpha$.
   Si $F$ est bijective (ce qui équivaut dans ce cas à strictement croissante et injective), alors $F^\leftarrow = F^{-1}$.
 - La fonction $F^\leftarrow$ n'est rien d'autre que la fonction quantile : si $0 < \alpha < 1$, $q_{1-\alpha} = F^\leftarrow(1-\alpha)$ est le quantile d'ordre $(1-\alpha)$ de $F$. Par exemple, $F^\leftarrow(1/2)$ correspond à la médiane.
 - Notons que si $u=0$, on peut alors naturellement poser $F^{\leftarrow}(0) = -\infty$. De même, avec la convention la convention $\inf \emptyset = +\infty$, on peut alors étendre la définition de $F^\leftarrow$ à $u=1$ (mais $F^\leftarrow(1)$ n'est pas toujours égal à $\infty$, voir les exemples ci-dessous).
@@ -208,7 +428,7 @@ $$
 $$
 où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ prend un nombre infini dénombrable de valeurs (la somme devient alors une série).
 :::
-XXX TODO: donner un example discret et montrer $F^\leftarrow$
+XXX TODO: donner un example discret et montrer $F^\leftarrow$.
 
 
 XXX TODO: show inverse usage using widget from first course and sampling randomly uniformly points in $[0,1]$ to get the one from the distributions at hand.
