@@ -210,7 +210,13 @@ def pmf_tool(x, dtype='int64'):
     return y[1::], y[:-1], y
 
 
-x = np.linspace(-3, 3, num=300)
+def insert_nones(my_list):
+    for i, val in enumerate(my_list):
+        if i % 3 == 2:
+            my_list.insert(i, None)
+    return my_list
+
+x = np.linspace(-5, 5, num=300)
 alpha = 0.75
 mu = 0.5
 fig = make_subplots(
@@ -218,15 +224,20 @@ fig = make_subplots(
             cols=3,
             horizontal_spacing=0.15,
             subplot_titles=(
-                "Fonction quantile",
-                "",
-                "",
+            "solution unique",
+            "pas de solution",
+            "infinité de solutions",
             ),
         )
 
+fig.update_layout(
+    title=go.layout.Title(
+        text="Cas F(x)=u : ",
+        x=0)
+    )
 # Quantile plot
 color_blue = "rgb(66, 139, 202)"
-fig.update_layout(autosize=True, height=400,
+fig.update_layout(autosize=True, height=340,
              showlegend=False,
             template="simple_white",
         )
@@ -238,33 +249,82 @@ for i, name_distrib in enumerate(['norm', 'poisson', 'geom']):
 
         cdf_data = distribution.cdf(x)
         q_alpha = distribution.ppf(alpha)
+        # Cdf part
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=cdf_data, mode="lines", marker={"color": "black"}, name="F", showlegend=True
+            ),
+            row=1,
+            col=i+1,
+        )
+
     else:
         distributions_0_dict = keep_no_param_distribution_disc()
         distribution = distributions_0_dict[name_distrib]
         q_alpha = distribution.ppf(alpha, mu)
-        cdf_data = distribution.cdf(x, mu)
-        pmf_data = distribution.pmf(x, mu)
-                # Quantile plot
+        x_int = np.arange(np.floor(x.min()), np.ceil(x.max()))
+
+        cdf_data = distribution.cdf(x_int, mu)
+        pmf_data = distribution.pmf(x_int, mu)
+        # Quantile plot
         support = pmf_data.nonzero()[0]
 
         new_x, new_y, new_z = cdf_tool(support)
         _, _, new_pmf = pmf_tool(support)
 
-    fig.add_trace(go.Scatter(x=x, y=cdf_data, mode="lines", line=dict(color="black"), name="CDF", showlegend=False), row=1,col=i+1)
+                # Cdf part
+        fig.add_trace(
+            go.Scatter(
+                x=x_int[support], y=cdf_data[support],
+                mode="markers", marker={"color": "black"}
+            ),
+            row=1,
+            col=i+1,
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=insert_nones(list(np.append(np.insert(x_int[new_x], 0, [x_int[0], x_int[new_x[0]]]),x_int[-1]))),
+                y=insert_nones(list(np.append(np.insert(cdf_data[new_y], 0, [0,0]), cdf_data[-1]))),
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=1,
+            col=i+1
+        )
+
+
+    # fig.add_trace(go.Scatter(x=x, y=cdf_data, mode="lines", line=dict(color="black"), name="CDF", showlegend=False), row=1,col=i+1)
+
 
     fig.add_trace(go.Scatter(x=[q_alpha, q_alpha], y=[0, alpha], mode="lines", line=dict(color=color_blue, dash="dash"), showlegend=False), row=1,col=i+1)
     
     fig.add_trace(go.Scatter(x=[x[0], q_alpha], y=[alpha, alpha], mode="lines", line=dict(color=color_blue, dash="dash"), showlegend=False), row=1,col=i+1)
     
-    fig.add_trace(go.Scatter(x=[q_alpha], y=[alpha], mode="markers", marker=dict(color=color_blue, symbol="circle", size=15), name="Quantile", showlegend=False), row=1,col=i+1)
+    fig.add_trace(go.Scatter(x=[q_alpha], y=[alpha], mode="markers", marker=dict(color=color_blue, symbol="x", size=8), name="Quantile", showlegend=False), row=1,col=i+1)
 
-    fig.add_trace(go.Scatter(x=[x[0] + x.ptp() / 10], y=[alpha + 0.03], text=r"u", mode="text", showlegend=False), row=1,col=i+1)
+    fig.add_trace(go.Scatter(x=[x[0] + x.ptp() / 12], y=[alpha + 0.05], text="u", mode="text", showlegend=False, textfont_color=color_blue), row=1,col=i+1)
     
-    fig.add_trace(go.Scatter(x=[q_alpha + 0.1], y=[0.03], text=r"$c", mode="text", showlegend=False), row=1,col=i+1)
+    # fig.add_trace(go.Scatter(x=[q_alpha + 0.1], y=[0.03], text="F <sup>&#x2190; </sup>(u)", mode="text", showlegend=False), row=1,col=i+1)
         # Axes ranges
     # fig.update_yaxes(range=[0, 1.], row=1, col=i+1)
     # fig.update_xaxes(matches="x1", row=2, col=1)
+    # Axes ranges
+    fig.update_yaxes(range=[0, 1.], row=1, col=i+1)
+    fig.update_xaxes(range=[x.min(), x.max()], row=1, col=i+1)
 
+    # fig.update_yaxes(matches="x6", row=1, col=1)
+
+    # fig.update_yaxes(range=[0, 1.], row=2, col=1)
+    # fig.update_xaxes(matches="x1", row=2, col=1)
+
+    # fig.update_yaxes(rangemode="tozero", row=3, col=2)
+    # fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
+
+fig.update_yaxes(matches="y1", row=1, col=2)
+fig.update_yaxes(matches="y1", row=1, col=3)
+
+fig.update_xaxes(matches="x1", row=1, col=2)
+fig.update_xaxes(matches="x1", row=1, col=3)
 
 fig.show()
 
