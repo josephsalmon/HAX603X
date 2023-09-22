@@ -22,8 +22,6 @@ book:
         - Courses/notations.qmd
         - Courses/th_asymptotique.qmd
         - Courses/simulation.qmd
-        - Courses/toto.qmd
-
     - part: "TP"
     - part: "TD"
   sidebar:
