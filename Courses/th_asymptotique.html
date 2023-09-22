@@ -227,12 +227,9 @@ ul.task-list li input[type="checkbox"] {
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
-
-
 from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, register_widget
 from plotly.subplots import make_subplots
-
 import plotly.graph_objs as go
 
 
@@ -268,7 +265,7 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    seed = reactive.Value(41)
+    seed = reactive.Value(42)
 
     @reactive.Effect
     @reactive.event(input.seed)
@@ -549,6 +546,138 @@ def server(input, output, session):
         fig.update_layout(autosize=True)
 
         return fig
+
+
+app = App(app_ui, server)
+</code></pre>
+<pre class="shinylive-python"><code>#| standalone: true
+#| viewerHeight: 550
+import numpy as np
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+import plotly.graph_objs as go
+from scipy import signal
+
+
+app_ui = ui.page_fluid(
+    ui.panel_title("Théorème central limite et convolutions"),
+    output_widget("my_widget"),
+    ui.row(
+        ui.column(
+            4,
+            ui.input_slider(
+                "n_iter",
+                "Nombres variables uniformes moyennées",
+                1,
+                20,
+                value=1,
+                step=1,
+            ),
+        ),
+        ui.column(
+            4,
+            ui.input_select(
+                "loi",
+                "Loi de probabilité de f",
+                {'uniforme': 'Uniforme', 'sinusoidale' : 'Sinusoidale'},
+            ),
+        ),
+    ),
+)
+
+nnzeros = 10001
+x_min = -5
+x_max = 5
+
+x = np.linspace(x_min, x_max, nnzeros)
+y = np.zeros(nnzeros)
+mask = np.where(np.abs(x) &lt;= 0.5, 1, 0)
+y[mask == 1] = 1
+var = np.sum(y * x**2 *((x_max - x_min) / nnzeros))
+
+def convolve(signal_in, n_convolutions, delta):
+    output = np.zeros(len(signal_in))
+    if n_convolutions == 0:
+        return output
+    elif n_convolutions == 1:
+        return signal_in
+    else:
+        output = signal_in.copy()
+        for i in range(n_convolutions - 1):
+            output = signal.fftconvolve(
+                output * delta, signal_in, mode="same"
+            )
+        return output
+
+# y_display = convolve(y, 1, (x_max - x_min) / nnzeros)
+
+def server(input, output, session):
+
+    fig = go.FigureWidget()
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"Moyenne empirique",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi),
+            mode="lines",
+            line=dict(dash="dash", color="red", width=2),
+            name=f"Loi normale (variance adéquate)",
+        )
+    )
+    fig.update_xaxes(range=[-2, 2], position=0.)
+    fig.update_yaxes(range=[0, 1 / np.sqrt(2 * var * np.pi)*1.5], position=0.5, showticklabels=False)
+
+
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+        autosize=True,
+        title=dict(text="Densité de la moyenne de n variables uniformes sur [-1/2, 1/2]", yanchor="top", y=0.95),
+        title_x=0.5,
+    )
+    fig.update_layout(legend=dict(
+        yanchor="top",
+        y=0.99,
+        xanchor="left",
+        x=0.01
+    ))
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        if str(input.loi()) == 'uniforme':
+            y = np.zeros(nnzeros)
+            mask = np.where(np.abs(x) &lt;= 0.5, 1, 0)
+            y[mask == 1] = 1
+
+        else:
+            # else str(input.loi()) == 'sinusoidale':
+            y = np.zeros(nnzeros)
+            mask = np.where(np.abs(x) &gt;= 0.5, 1, 0)
+            y[mask == 1] = 0
+            y = np.sin(np.pi*x)+1
+            y = y / (np.sum(y) * ((x_max - x_min) / nnzeros))
+
+        var = np.sum(y * x**2 *((x_max - x_min) / nnzeros)) - (np.sum(y * x *((x_max - x_min) / nnzeros)))**2
+
+
+        y_display = convolve(y, input.n_iter(), (x_max - x_min) / nnzeros)
+        # Update data in fig:
+        fig.data[0].x = x / np.sqrt(input.n_iter())
+        fig.data[0].y = y_display * np.sqrt(input.n_iter())
+        fig.data[1].y = np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi)
+        fig.update_yaxes(range=[0, 1.5 / np.sqrt(2 * var * np.pi)], position=0.5, showticklabels=False)
 
 
 app = App(app_ui, server)
