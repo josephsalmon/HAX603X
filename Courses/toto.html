@@ -8,7 +8,7 @@
 
 <meta name="author" content="Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta">
 
-<title>HAX603X: Modélisation stochastique</title>
+<title>HAX603X: Modélisation stochastique - 4&nbsp; Théorèmes asymptotiques</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,23 +24,28 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./Courses/notations.html" rel="next">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../Courses/simulation.html" rel="prev">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -63,7 +68,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="custom.css">
+<link rel="stylesheet" href="../custom.css">
 </head>
 
 <body class="nav-sidebar floating">
@@ -75,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/toto.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -90,7 +95,7 @@ ul.task-list li input[type="checkbox"] {
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
-      <a href="./">HAX603X: Modélisation stochastique</a> 
+      <a href="../">HAX603X: Modélisation stochastique</a> 
         <div class="sidebar-tools-main">
     <a href="https://github.com/josephsalmon/HAX603X" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
@@ -105,7 +110,7 @@ ul.task-list li input[type="checkbox"] {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -120,25 +125,25 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Courses/notations.html" class="sidebar-item-text sidebar-link">
+  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link">
+  <a href="../Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Courses/simulation.html" class="sidebar-item-text sidebar-link">
+  <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./Courses/toto.html" class="sidebar-item-text sidebar-link">
+  <a href="../Courses/toto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span></a>
   </div>
 </li>
@@ -158,35 +163,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table des matières</h2>
-   
-  <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#professeurs" id="toc-professeurs" class="nav-link" data-scroll-target="#professeurs">Professeurs</a></li>
-  <li><a href="#prérequis" id="toc-prérequis" class="nav-link" data-scroll-target="#prérequis">Prérequis</a></li>
-  <li><a href="#description-du-cours" id="toc-description-du-cours" class="nav-link" data-scroll-target="#description-du-cours">Description du cours</a></li>
-  <li><a href="#modalité-de-contrôle-des-connaissances" id="toc-modalité-de-contrôle-des-connaissances" class="nav-link" data-scroll-target="#modalité-de-contrôle-des-connaissances">Modalité de contrôle des connaissances</a>
-  <ul class="collapse">
-  <li><a href="#devoirs-maison" id="toc-devoirs-maison" class="nav-link" data-scroll-target="#devoirs-maison">Devoirs maison</a></li>
-  <li><a href="#devoir-sur-table" id="toc-devoir-sur-table" class="nav-link" data-scroll-target="#devoir-sur-table">Devoir sur table</a></li>
-  </ul></li>
-  <li><a href="#livres-et-ressources" id="toc-livres-et-ressources" class="nav-link" data-scroll-target="#livres-et-ressources">Livres et ressources</a>
-  <ul class="collapse">
-  <li><a href="#moodle" id="toc-moodle" class="nav-link" data-scroll-target="#moodle">Moodle</a></li>
-  <li><a href="#ressources-supplémentaires" id="toc-ressources-supplémentaires" class="nav-link" data-scroll-target="#ressources-supplémentaires">Ressources supplémentaires</a></li>
-  </ul></li>
-  </ul></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/index.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">HAX603X: Modélisation stochastique</h1>
+<h1 class="title"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></h1>
 </div>
 
 
@@ -207,59 +191,164 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<section id="introduction" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction</h1>
-<p>Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).</p>
-<p>Attention: site en construction…</p>
-<section id="professeurs" class="level2">
-<h2 class="anchored" data-anchor-id="professeurs">Professeurs</h2>
-<ul>
-<li><a href="https://josephsalmon.eu/">Joseph Salmon</a>: joseph.salmon@umontpellier.fr,</li>
-<li><a href="https://imag.umontpellier.fr/~charlier/index.php?page=index">Benjamin Charlier</a>: benjamin.charlier@umontpellier.fr</li>
-</ul>
-<p>Ce cours est issu du travail antérieur de la part de:</p>
-<ul>
-<li><a href="https://sites.google.com/view/nicolasmeyer/accueil">Nicolas Meyer</a></li>
-<li><a href="https://imag.umontpellier.fr/~saporta/index-en.html">Benoîte de Saporta</a></li>
-</ul>
-</section>
-<section id="prérequis" class="level2">
-<h2 class="anchored" data-anchor-id="prérequis">Prérequis</h2>
-<p>Cours de mesure et intégration, analyse numérique…</p>
-</section>
-<section id="description-du-cours" class="level2">
-<h2 class="anchored" data-anchor-id="description-du-cours">Description du cours</h2>
-<ol type="1">
-<li></li>
-<li></li>
-<li></li>
-</ol>
-</section>
-<section id="modalité-de-contrôle-des-connaissances" class="level2">
-<h2 class="anchored" data-anchor-id="modalité-de-contrôle-des-connaissances">Modalité de contrôle des connaissances</h2>
-<p>CCI</p>
-<section id="devoirs-maison" class="level3">
-<h3 class="anchored" data-anchor-id="devoirs-maison">Devoirs maison</h3>
-</section>
-<section id="devoir-sur-table" class="level3">
-<h3 class="anchored" data-anchor-id="devoir-sur-table">Devoir sur table</h3>
-</section>
-</section>
-<section id="livres-et-ressources" class="level2">
-<h2 class="anchored" data-anchor-id="livres-et-ressources">Livres et ressources</h2>
-<section id="moodle" class="level3">
-<h3 class="anchored" data-anchor-id="moodle">Moodle</h3>
-</section>
-<section id="ressources-supplémentaires" class="level3">
-<h3 class="anchored" data-anchor-id="ressources-supplémentaires">Ressources supplémentaires</h3>
-<ul>
-<li>(Data Science): <a href="https://jakevdp.github.io/PythonDataScienceHandbook/">Python Data Science Handbook, With Application to Understanding Data</a> by J. Van DerPlas, 2016;<br> <strong>videos</strong>: <a href="http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/">Reproducible Data Analysis in Jupyter</a></li>
-</ul>
+<pre class="shinylive-python"><code>#| standalone: true
+#| viewerHeight: 550
+import numpy as np
 
 
-</section>
-</section>
-</section>
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+
+import plotly.graph_objs as go
+
+
+app_ui = ui.page_fluid(
+    ui.panel_title("Loi des grands nombres: visualisation"),
+    ui.input_action_button("seed", "Ré-échantillonner", class_="btn-primary"),
+    output_widget("my_widget"),
+    ui.row(
+        ui.column(
+            6,
+            ui.input_slider(
+                "p",
+                "Paramètre de Bernoulli: p",
+                0.01,
+                0.99,
+                value=0.5,
+                step=0.01,
+            ),
+        ),
+        ui.column(
+            6,
+            ui.input_slider(
+                "n_samples",
+                "Nombre de tirages aléatoires ",
+                2,
+                1000,
+                value=15,
+                step=1,
+            ),
+        ),
+    ),
+)
+
+
+def server(input, output, session):
+    seed = reactive.Value(41)
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+    subplots = make_subplots(
+        rows=2,
+        cols=1,
+        vertical_spacing=0.3,
+        horizontal_spacing=0.04,
+        row_heights=[8, 1],
+        subplot_titles=(
+            f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
+            "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
+            + str(42)
+            + ")",
+        ),
+    )
+    fig = go.FigureWidget(subplots)
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"Moyenne &lt;br&gt; empirique",
+        ),
+        # name=r'$\bar{X}_n$'),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(dash="dash", color="black", width=1),
+            marker={},
+            x=[],  # iterations,
+            y=[],  # np.full((n_samples), p),
+            # name=r'$p$'),
+            name=r"p",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Heatmap(
+            x=[],  # iterations + 0.5,
+            z=[],  # [samples],
+            colorscale=[[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
+            showscale=False,
+            # textfont={"size":10}
+        ),
+        row=2,
+        col=1,
+    )
+
+    fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+    fig.update_xaxes(matches="x1", row=2, col=1)
+    fig.update_yaxes(visible=False, row=2, col=1)
+    fig.update_xaxes(visible=False, row=2, col=1)
+
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+    )
+    fig.update_layout(autosize=True)
+
+    fig.update_layout(
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.95,
+            bgcolor="rgba(0,0,0,0)",
+        )
+    )
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        p = input.p()
+        n_samples = input.n_samples()
+
+        rng = np.random.default_rng(seed())
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=n_samples)
+        means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
+
+        # Update data in fig:
+        fig.data[0].x = iterations
+        fig.data[0].y = means_samples
+
+        fig.data[1].x = iterations
+        fig.data[1].y = np.full((n_samples), p)
+
+        fig.data[2].x = iterations
+        fig.data[2].z = [samples]
+
+        fig.update_xaxes(range=[1, n_samples + 1])
+        # Update the subplot titles:
+        fig.layout.annotations[1].update(
+            text=f"Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
+            + f"{seed(): 3}"
+            + ")"
+        )
+
+
+app = App(app_ui, server)
+</code></pre>
+
+
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -548,15 +637,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="../Courses/simulation.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./Courses/notations.html" class="pagination-link">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/toto.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></div></div></footer></body></html>

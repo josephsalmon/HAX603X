@@ -158,6 +158,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/toto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -227,113 +233,152 @@ ul.task-list li input[type="checkbox"] {
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
+
 
 from shiny import ui, render, App, reactive
-from shinywidgets import output_widget, render_widget
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+
+import plotly.graph_objs as go
+
 
 app_ui = ui.page_fluid(
     ui.panel_title("Loi des grands nombres: visualisation"),
-    ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
+    ui.input_action_button("seed", "Ré-échantillonner", class_="btn-primary"),
     output_widget("my_widget"),
     ui.row(
-        ui.column(6,
-            ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
+        ui.column(
+            6,
+            ui.input_slider(
+                "p",
+                "Paramètre de Bernoulli: p",
+                0.01,
+                0.99,
+                value=0.5,
+                step=0.01,
+            ),
         ),
-        ui.column(6, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, 1000, value=15, step=1)
-        )
-    )
+        ui.column(
+            6,
+            ui.input_slider(
+                "n_samples",
+                "Nombre de tirages aléatoires ",
+                2,
+                1000,
+                value=15,
+                step=1,
+            ),
+        ),
+    ),
 )
 
 
 def server(input, output, session):
-    seed = reactive.Value(42)
+    seed = reactive.Value(41)
 
     @reactive.Effect
     @reactive.event(input.seed)
     def _():
         seed.set(np.random.randint(0, 1000))
 
+    subplots = make_subplots(
+        rows=2,
+        cols=1,
+        vertical_spacing=0.3,
+        horizontal_spacing=0.04,
+        row_heights=[8, 1],
+        subplot_titles=(
+            f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
+            "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
+            + str(42)
+            + ")",
+        ),
+    )
+    fig = go.FigureWidget(subplots)
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"Moyenne &lt;br&gt; empirique",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(dash="dash", color="black", width=1),
+            marker={},
+            x=[],
+            y=[],
+            name=r"p",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Heatmap(
+            x=[],
+            z=[],
+            colorscale=[[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
+            showscale=False,
+        ),
+        row=2,
+        col=1,
+    )
 
-    @output
-    @render_widget
-    def my_widget():
-        # Create figure
-        rng = np.random.default_rng(seed())
-        p = input.p()
-        # step=input.step()
-        n_samples = input.n_samples()
-        iterations = np.arange(1, n_samples + 1)
-        samples = rng.binomial(1, p, size=n_samples)
-        means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
+    fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+    fig.update_xaxes(matches="x1", row=2, col=1)
+    fig.update_yaxes(visible=False, row=2, col=1)
+    fig.update_xaxes(visible=False, row=2, col=1)
 
-        fig = make_subplots(
-                    rows=2,
-                    cols=1,
-                    vertical_spacing=0.3,
-                    horizontal_spacing=0.04,
-                    subplot_titles=(
-                        f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
-                        "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="+ str(seed())+")",
-                    ),
-                    row_heights=[8, 1],
-                )
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+    )
+    fig.update_layout(autosize=True)
 
-        fig.add_trace(
-                go.Scatter(
-                    mode='lines',
-                    line=dict(color="black", width=3),
-                    x=iterations,
-                    y=means_samples,
-                    name=r'Moyenne &lt;br&gt; empirique'),
-                    # name=r'$\bar{X}_n$'),
-                    row=1, col=1,
-        )
-        fig.add_trace(
-                go.Scatter(
-                    mode='lines',
-                    line=dict(dash="dash", color="black", width=1),
-                    marker={},
-                    x=iterations,
-                    y=np.full((n_samples), p),
-                    # name=r'$p$'),
-                    name=r'p'),
-                    row=1, col=1,
-        )
-        fig.add_trace(
-                go.Heatmap(x=iterations + 0.5, z=[samples],
-                        # text=[list(samples.astype('str'))],
-                        # texttemplate="%{text}",
-                        colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
-                        showscale=False,
-                        # textfont={"size":10}
-                        ),
-                row=2, col=1,
-        )
-        fig.update_xaxes(range=[1, n_samples + 1])
-        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
-        fig.update_xaxes(matches="x1", row=2, col=1)
-        fig.update_yaxes(visible=False, row=2, col=1)
-        fig.update_xaxes(visible=False, row=2, col=1)
-
-
-        fig.update_layout(
-            template="simple_white",
-            showlegend=True,
-        )
-        fig.update_layout(autosize=True)
-
-        fig.update_layout(
-            legend=dict(
+    fig.update_layout(
+        legend=dict(
             yanchor="top",
             y=0.99,
             xanchor="left",
             x=0.95,
-            bgcolor='rgba(0,0,0,0)',
-            )
+            bgcolor="rgba(0,0,0,0)",
         )
-        return fig
+    )
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        p = input.p()
+        n_samples = input.n_samples()
+
+        rng = np.random.default_rng(seed())
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=n_samples)
+        means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
+
+        # Update data in fig:
+        fig.data[0].x = iterations
+        fig.data[0].y = means_samples
+
+        fig.data[1].x = iterations
+        fig.data[1].y = np.full((n_samples), p)
+
+        fig.data[2].x = iterations
+        fig.data[2].z = [samples]
+
+        fig.update_xaxes(range=[1, n_samples + 1])
+        # Update the subplot titles:
+        fig.layout.annotations[1].update(
+            text=f"Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
+            + f"{seed(): 3}"
+            + ")"
+        )
 
 
 app = App(app_ui, server)
