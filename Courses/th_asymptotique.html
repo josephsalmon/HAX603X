@@ -570,7 +570,7 @@ app_ui = ui.page_fluid(
                 "n_iter",
                 "Nombres variables uniformes moyennées",
                 1,
-                20,
+                10,
                 value=1,
                 step=1,
             ),
@@ -580,21 +580,22 @@ app_ui = ui.page_fluid(
             ui.input_select(
                 "loi",
                 "Loi de probabilité de f",
-                {'uniforme': 'Uniforme', 'sinusoidale' : 'Sinusoidale'},
+                {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
             ),
         ),
     ),
 )
 
 nnzeros = 10001
-x_min = -5
-x_max = 5
+x_min = -20
+x_max = 20
 
 x = np.linspace(x_min, x_max, nnzeros)
 y = np.zeros(nnzeros)
 mask = np.where(np.abs(x) &lt;= 0.5, 1, 0)
 y[mask == 1] = 1
-var = np.sum(y * x**2 *((x_max - x_min) / nnzeros))
+delta = (x_max - x_min) / nnzeros
+var = np.sum(y * x**2 *(delta)) - (np.sum(y * x * delta))**2
 
 def convolve(signal_in, n_convolutions, delta):
     output = np.zeros(len(signal_in))
@@ -610,7 +611,6 @@ def convolve(signal_in, n_convolutions, delta):
             )
         return output
 
-# y_display = convolve(y, 1, (x_max - x_min) / nnzeros)
 
 def server(input, output, session):
 
@@ -634,8 +634,8 @@ def server(input, output, session):
             name=f"Loi normale (variance adéquate)",
         )
     )
-    fig.update_xaxes(range=[-2, 2], position=0.)
-    fig.update_yaxes(range=[0, 1 / np.sqrt(2 * var * np.pi)*1.5], position=0.5, showticklabels=False)
+    fig.update_xaxes(range=[-3, 3], position=0.)
+    fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
 
 
     fig.update_layout(
@@ -662,22 +662,22 @@ def server(input, output, session):
             y[mask == 1] = 1
 
         else:
-            # else str(input.loi()) == 'sinusoidale':
-            y = np.zeros(nnzeros)
-            mask = np.where(np.abs(x) &gt;= 0.5, 1, 0)
-            y[mask == 1] = 0
-            y = np.sin(np.pi*x)+1
-            y = y / (np.sum(y) * ((x_max - x_min) / nnzeros))
+            # else str(input.loi()) == 'laplace':
+            y=np.exp(-np.abs(x))/2
+            # y = np.zeros(nnzeros)
+            # mask = np.where(np.abs(x) &gt;= 0.5, 1, 0)
+            # y[mask == 1] = 0
+            # y = np.cos(np.pi * x) + 1
+            y = y / (np.sum(y) * delta)
 
-        var = np.sum(y * x**2 *((x_max - x_min) / nnzeros)) - (np.sum(y * x *((x_max - x_min) / nnzeros)))**2
+        var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2
 
-
-        y_display = convolve(y, input.n_iter(), (x_max - x_min) / nnzeros)
+        y_display = convolve(y, input.n_iter(), delta)
         # Update data in fig:
         fig.data[0].x = x / np.sqrt(input.n_iter())
         fig.data[0].y = y_display * np.sqrt(input.n_iter())
         fig.data[1].y = np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi)
-        fig.update_yaxes(range=[0, 1.5 / np.sqrt(2 * var * np.pi)], position=0.5, showticklabels=False)
+        fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
 
 
 app = App(app_ui, server)
