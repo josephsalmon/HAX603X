@@ -566,21 +566,21 @@ app_ui = ui.page_fluid(
     ui.row(
         ui.column(
             4,
-            ui.input_slider(
-                "n_iter",
-                "Nombres variables uniformes moyennées",
-                1,
-                10,
-                value=1,
-                step=1,
-            ),
-        ),
-        ui.column(
-            4,
             ui.input_select(
                 "loi",
                 "Loi de probabilité de f",
                 {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
+            ),
+        ),
+        ui.column(
+            6,
+            ui.input_slider(
+                "n_iter",
+                "Nombres variables moyennées",
+                1,
+                10,
+                value=1,
+                step=1,
             ),
         ),
     ),
@@ -642,7 +642,7 @@ def server(input, output, session):
         template="simple_white",
         showlegend=True,
         autosize=True,
-        title=dict(text="Densité de la moyenne de n variables uniformes sur [-1/2, 1/2]", yanchor="top", y=0.95),
+        title=dict(text="Densité de la moyenne de n variables aléatoires", yanchor="top", y=0.95),
         title_x=0.5,
     )
     fig.update_layout(legend=dict(
