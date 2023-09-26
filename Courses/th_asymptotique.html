@@ -233,9 +233,10 @@ from plotly.subplots import make_subplots
 import plotly.graph_objs as go
 
 
+n_init = 42
+
 app_ui = ui.page_fluid(
     ui.panel_title("Loi des grands nombres: visualisation"),
-    ui.input_action_button("seed", "Ré-échantillonner", class_="btn-primary"),
     output_widget("my_widget"),
     ui.row(
         ui.column(
@@ -252,8 +253,7 @@ app_ui = ui.page_fluid(
         ui.column(
             6,
             ui.input_slider(
-                "n_samples",
-                "Nombre de tirages aléatoires ",
+                "n_samples", "Échantillons: n",
                 2,
                 1000,
                 value=15,
@@ -262,6 +262,24 @@ app_ui = ui.page_fluid(
         ),
     ),
 )
+
+
+
+app_ui = ui.page_fluid(
+    ui.panel_title("Loi des grands nombres"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
+            ui.input_slider( "p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01,
+            ),
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1),
+          width=3
+        ),
+    ui.panel_main(output_widget("my_widget"), width = 12)
+    )
+)
+
+
 
 
 def server(input, output, session):
@@ -275,13 +293,13 @@ def server(input, output, session):
     subplots = make_subplots(
         rows=2,
         cols=1,
-        vertical_spacing=0.3,
+        vertical_spacing=0.5,
         horizontal_spacing=0.04,
-        row_heights=[8, 1],
+        row_heights=[8, 2],
         subplot_titles=(
-            f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
+            f"Moyenne empirique &lt;br&gt;(loi de Bernoulli)",
             "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
-            + str(42)
+            + f"{n_init:03}"
             + ")",
         ),
     )
@@ -328,6 +346,7 @@ def server(input, output, session):
     fig.update_layout(
         template="simple_white",
         showlegend=True,
+        xaxis_title="Échantillons: n",
     )
     fig.update_layout(autosize=True)
 
@@ -339,6 +358,9 @@ def server(input, output, session):
             x=0.95,
             bgcolor="rgba(0,0,0,0)",
         )
+    )
+    fig.update_layout(
+        margin=dict(l=0, r=0, b=10, t=70),
     )
 
     register_widget("my_widget", fig)
@@ -364,10 +386,11 @@ def server(input, output, session):
         fig.data[2].z = [samples]
 
         fig.update_xaxes(range=[1, n_samples + 1])
+
         # Update the subplot titles:
         fig.layout.annotations[1].update(
             text=f"Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
-            + f"{seed(): 3}"
+            + f"{seed():03}"
             + ")"
         )
 
@@ -381,7 +404,7 @@ app = App(app_ui, server)
 <p>Une fois la loi des grands nombres établie, on peut se demander quel est l’ordre suivant dans le développement asymptotique de <span class="math inline">\bar X_n - \mu</span>, ou de manière équivalente de <span class="math inline">S_n - n \mu</span>, où <span class="math inline">S_n = X_1 + \cdots + X_n</span>. Le théorème suivant répond à cette question, en donnant une convergence en loi d’une transformation affine de la moyenne empirique:</p>
 <div id="thm-tcl" class="theorem">
 <p><span class="theorem-title"><strong>Théorème 2.2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
-\sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
+\sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 </span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
 </div>
 <p>Preuve XXX TODO: donner une référence.</p>
@@ -391,14 +414,14 @@ app = App(app_ui, server)
 </span></p>
 <p>En termes de somme cumulée empirique, la convergence se réécrit</p>
 <p><span class="math display">
-    \frac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
+    \tfrac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
 </span></p>
 <p>Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l’on veut, elle se rapprochera toujours asymptotiquement d’une loi normale.</p>
 <p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>,</p>
 <p><span class="math display">
-    \mathbb{P} \bigg( a \leq \sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg)
-    \underset{n \to \infty}{\longrightarrow}  \dfrac{1}{\sqrt{2\pi}} \int_a^b e^{-\frac{x^2}{2}} \, \mathrm dx\,.
-</span></p>
+    \mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg)
+    \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \, \mathrm dx\,.
+</span> où l’on note <span class="math inline">\varphi</span> la densité d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span>.</p>
 <div id="exm-tcl" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 2.1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
@@ -414,22 +437,36 @@ from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, render_widget
 
 
+# app_ui = ui.page_fluid(
+#     ui.panel_title("Théorème centrale limite: visualisation"),
+#     ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
+#     output_widget("my_widget"),
+#     ui.row(
+#         ui.column(4,
+#             ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
+#         ),
+#         ui.column(4,
+#             ui.input_slider("n_repetitions", "Nombre de répétitions", 1, 300, value=200, step=1)
+#         ),
+#         ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 1, 200, value=100, step=1)
+#         )
+#     )
+# )
+
+
 app_ui = ui.page_fluid(
-    ui.panel_title("Théorème centrale limite: visualisation"),
-    ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
-    output_widget("my_widget"),
-    ui.row(
-        ui.column(4,
-            ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
+    ui.panel_title("Théorème centrale limite"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
+            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01),
+            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1),
+            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1), width=3
         ),
-        ui.column(4,
-            ui.input_slider("n_repetitions", "Nombre de répétitions", 1, 300, value=200, step=1)
-        ),
-        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
-        ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 1, 200, value=100, step=1)
-        )
+    ui.panel_main(output_widget("my_widget"), width = 12)
     )
 )
+
 
 
 def server(input, output, session):
@@ -459,10 +496,10 @@ def server(input, output, session):
         fig = make_subplots(
                     rows=1,
                     cols=3,
-                    vertical_spacing=0.2,
+                    # vertical_spacing=0.5,
                     horizontal_spacing=0.02,
-                    column_widths=[3, 0.1, 2],
-                    subplot_titles=("Moyenne empirique:&lt;br&gt; évolution après " + str(n_samples) + " tirages", " ", "Histogramme obtenu avec &lt;br&gt;" + str(n_repetitions) + " répétitions" + " (seed="+ str(seed()) + ")")
+                    column_widths=[9, 1, 3],
+                    subplot_titles=("Moyenne empirique:&lt;br&gt; n = " + str(n_samples) + " tirages", "        ", "Histogramme: &lt;br&gt;" + str(n_repetitions) + " répétitions")
                 )
 
 
@@ -472,7 +509,7 @@ def server(input, output, session):
                         mode='lines',
                         line=dict(color="rgba(0,0,0,0.05)", width=1),
                         x=iterations,
-                        y=means_samples[i,:]
+                        y=means_samples[i,:],
                         ),
                         row=1, col=1,
             )
@@ -537,12 +574,17 @@ def server(input, output, session):
             print(trace)
             if (trace['name'] != 'TCL') and (trace['name'] != 'p'):
                 trace['showlegend'] = False
-
+        fig.update_layout(
+        margin=dict(l=0, r=0, b=10, t=100),
+        )
         fig.update_layout(
             title=dict(text="Moyennes empiriques et TCL (loi de Bernoulli)&lt;br&gt;", yanchor="top", y=0.95),
             title_x=0.5,
-            showlegend=True
+            showlegend=True,
+
         )
+        fig['layout']['xaxis']['title']='Échantillons: n'
+
         fig.update_layout(autosize=True)
 
         return fig
@@ -566,20 +608,20 @@ app_ui = ui.page_fluid(
         ui.panel_sidebar(
             ui.input_select(
                 "loi",
-                "Loi de probabilité de f",
+                "Loi sous-jacente",
                 {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
             ),
             ui.input_slider(
                 "n_iter",
-                "n: (variables moyennées)",
+                "Échantillons: n",
                 1,
                 10,
                 value=1,
                 step=1,
-            ),
+            ), width = 3
     ),
     ui.panel_main(
-        output_widget("my_widget"),
+        output_widget("my_widget"), width = 9
     )
 )
 )
@@ -650,6 +692,9 @@ def server(input, output, session):
         xanchor="left",
         x=0.01
     ))
+    fig.update_layout(
+    margin=dict(l=0, r=0, b=10, t=100),
+    )
 
     register_widget("my_widget", fig)
 
@@ -681,6 +726,7 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 </code></pre>
+<p>Pour aller plus loins sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: <a href="https://m.youtube.com/watch?v=IaSGqQa5O-M">Convolutions | Why X+Y in probability is a beautiful mess</a></p>
 
 
 </section>
