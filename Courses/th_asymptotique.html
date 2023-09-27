@@ -235,46 +235,32 @@ import plotly.graph_objs as go
 
 n_init = 42
 
+
 app_ui = ui.page_fluid(
-    ui.panel_title("Loi des grands nombres: visualisation"),
-    output_widget("my_widget"),
-    ui.row(
-        ui.column(
-            6,
-            ui.input_slider(
-                "p",
-                "Paramètre de Bernoulli: p",
-                0.01,
-                0.99,
-                value=0.5,
-                step=0.01,
-            ),
-        ),
-        ui.column(
-            6,
-            ui.input_slider(
-                "n_samples", "Échantillons: n",
-                2,
-                1000,
-                value=15,
-                step=1,
-            ),
-        ),
+    ui.tags.head(
+        ui.tags.style("""
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-bar {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
     ),
-)
-
-
-
-app_ui = ui.page_fluid(
     ui.panel_title("Loi des grands nombres"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
-            ui.input_slider( "p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01,
+            ui.input_slider( "p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False,
             ),
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1),
-          width=3
-        ),
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
+        width=3,),
     ui.panel_main(output_widget("my_widget"), width = 12)
     )
 )
@@ -437,31 +423,30 @@ from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, render_widget
 
 
-# app_ui = ui.page_fluid(
-#     ui.panel_title("Théorème centrale limite: visualisation"),
-#     ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
-#     output_widget("my_widget"),
-#     ui.row(
-#         ui.column(4,
-#             ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
-#         ),
-#         ui.column(4,
-#             ui.input_slider("n_repetitions", "Nombre de répétitions", 1, 300, value=200, step=1)
-#         ),
-#         ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 1, 200, value=100, step=1)
-#         )
-#     )
-# )
-
-
 app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-bar {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
     ui.panel_title("Théorème centrale limite"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
-            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01),
-            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1),
-            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1), width=3
+            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
+            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
+            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False), width=3
         ),
     ui.panel_main(output_widget("my_widget"), width = 12)
     )
@@ -603,6 +588,22 @@ from scipy import signal
 
 
 app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 2px;
+            }
+            .irs--shiny .irs-bar {
+            top: 27px;
+            height: 2px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
     ui.panel_title("Théorème central limite et convolutions"),
     ui.layout_sidebar(
         ui.panel_sidebar(
@@ -618,6 +619,7 @@ app_ui = ui.page_fluid(
                 10,
                 value=1,
                 step=1,
+                ticks=False,
             ), width = 3
     ),
     ui.panel_main(
