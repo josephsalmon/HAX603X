@@ -82,7 +82,7 @@ app_ui = ui.page_fluid(
             ),
             ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
         width=3,),
-    ui.panel_main(output_widget("my_widget"), width = 12)
+    ui.panel_main(output_widget("my_widget"), width = 9)
     )
 )
 
@@ -245,15 +245,34 @@ $$
 Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l'on veut, elle se rapprochera toujours asymptotiquement d'une loi normale.
 
 On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout $a < b$,
+notons $\alpha=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}},
+                              \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$. Ainsi
+<!-- 
+$$
+\mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma}\in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}] \right)\\
+$$ -->
 
-$$
-	\mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg)
-	\underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \, \mathrm dx\,.
-$$
-où l'on note $\varphi$ la densité d'une loi normale centrée réduite, définie pour tout $x\in\mathbb{R}$ par $\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$.
+\begin{align}
+    1-\alpha& = \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\nonumber\\
+    & =
+    \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma} \in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}]\right) \nonumber\\
+    & =
+	\mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
+    & \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
+\end{align}
+
+où l'on note $\varphi$ (resp. $\Phi$) la densité (resp. la fonction de répartition) d'une loi normale centrée réduite, définie pour tout $x\in\mathbb{R}$ par $\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$ (resp. $\Phi(x)= \int_{-\infty}^{x}\varphi(u) du$).
+
+Dans le cas classique d'un intervalle de confiance à 95\%, c'est-à-dire quand $\alpha=0.05$, et en prenant un intervalle de confiance symétrique (alors $a=-t$ et $b=q$) on obtient $1-\alpha= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha}{2})}$ et $q$ est donc le quantile de niveau $1-\tfrac{\alpha}{2}$ de la loi normale centrée réduite. Numériquement on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`:
+
+```{python}
+#| echo: true
+from scipy.stats import norm
+q = norm.ppf(1-0.05/2)
+print(f"Gaussienne centrée réduite,\nQuantile de niveau (1-α/2):\nq = {q:.2f}")
+```
 
 :::: {#exm-tcl}
-
 
 On considère des variables aléatoires $X_1, \ldots, X_n$ i.i.d. suivant une loi de Bernoulli de paramètre $p \in ]0,1[$, dont l'espérance et la variance sont respectivemenbt $p$ et $p(1-p)$.
 Le théorème central limite donne alors
@@ -292,7 +311,7 @@ app_ui = ui.page_fluid(
             height: 10px;
         """)
     ),
-    ui.panel_title("Théorème centrale limite"),
+    ui.panel_title("TCL"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
@@ -300,7 +319,7 @@ app_ui = ui.page_fluid(
             ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
             ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False), width=3
         ),
-    ui.panel_main(output_widget("my_widget"), width = 12)
+    ui.panel_main(output_widget("my_widget"), width = 9)
     )
 )
 
@@ -336,7 +355,7 @@ def server(input, output, session):
                     # vertical_spacing=0.5,
                     horizontal_spacing=0.02,
                     column_widths=[9, 1, 3],
-                    subplot_titles=("Moyenne empirique:<br> n = " + str(n_samples) + " tirages", "        ", "Histogramme: <br>" + str(n_repetitions) + " répétitions")
+                    subplot_titles=("Moyenne empirique:<br> n = " + str(n_samples), "        ", "Histogramme: <br> t = " + str(n_repetitions) + " répétitions")
                 )
 
 
@@ -415,7 +434,7 @@ def server(input, output, session):
         margin=dict(l=0, r=0, b=10, t=100),
         )
         fig.update_layout(
-            title=dict(text="Moyennes empiriques et TCL (loi de Bernoulli)<br>", yanchor="top", y=0.95),
+            title=dict(text="Moyennes empiriques et TCL <br> (loi de Bernoulli)<br>", yanchor="top", y=0.95),
             title_x=0.5,
             showlegend=True,
 
@@ -462,7 +481,7 @@ app_ui = ui.page_fluid(
             height: 10px;
         """)
     ),
-    ui.panel_title("Théorème central limite et convolutions"),
+    ui.panel_title("TCL et convolutions"),
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_select(
