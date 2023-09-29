@@ -217,7 +217,7 @@ XXX TODO: phénomène intéressant en bougeant le paramètre p avec  le reste fi
 
 
 
-## Théorème central limite Z
+## Théorème central limite (TCL)
 
 Une fois la loi des grands nombres établie, on peut se demander quel est l'ordre suivant dans le développement asymptotique de $\bar X_n - \mu$, ou de manière équivalente de $S_n - n \mu$, où $S_n = X_1 + \cdots + X_n$.
 Le théorème suivant répond à cette question, en donnant une convergence en loi d'une transformation affine de la moyenne empirique:
