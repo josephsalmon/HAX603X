@@ -217,7 +217,7 @@ XXX TODO: phénomène intéressant en bougeant le paramètre p avec  le reste fi
 
 
 
-## Théorème central limite
+## Théorème central limite Z
 
 Une fois la loi des grands nombres établie, on peut se demander quel est l'ordre suivant dans le développement asymptotique de $\bar X_n - \mu$, ou de manière équivalente de $S_n - n \mu$, où $S_n = X_1 + \cdots + X_n$.
 Le théorème suivant répond à cette question, en donnant une convergence en loi d'une transformation affine de la moyenne empirique:
@@ -284,7 +284,9 @@ Le théorème central limite donne alors
 $$
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 $$
-avec $N \sim \mathcal{N}(0,1)$. Cette convergence est illustrée en Figure XXX TODO image.
+avec $N \sim \mathcal{N}(0,1)$.
+Cette convergence est illustrée dans le widget ci-dessous.
+Le contexte est le suivant. On répète $t$ fois le processus, qui consiste à afficher $(\bar{X}_k)_{k \in [n]}$, où les $n$ variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre $p$.
 ::::
 
 
@@ -445,7 +447,7 @@ def server(input, output, session):
         margin=dict(l=0, r=0, b=10, t=100),
         )
         fig.update_layout(
-            title=dict(text="TCL: distribution de la moyenne empirique <br> (cas loi de Bernoulli)", yanchor="top", y=0.95),
+            title=dict(text="Distribution de la moyenne empirique<br> (cas loi de Bernoulli)", yanchor="top", y=0.95),
             title_x=0.5,
             showlegend=True,
 
@@ -471,6 +473,30 @@ app = App(app_ui, server)
 ```
 
 
+Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l'analyse.
+Pour cela supposons que l'on ait une suite de variables aléatoires réelles $X_1, \dots, X_n$, i.i.d. dont la fonction de densité commune est notée par $f$.
+
+On rappel quelques éléments de probabilités concernant les densités.
+Pour cela on rappelle la définition de la convolution deux fonctions.
+Pour cela prenons deux fonctions $f$ et $g$ définies sur $\mathbb{R}$ et qui sont intégrables au sens de Lebesgue.
+La **convolution** de $f$ par $g$ est alors la fonction $f*g$ suivante:
+
+$$
+\begin{align}
+\mathbb{R} &\mapsto \mathbb{R} \nonumber\\
+x &\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
+\end{align}
+$$
+
+::: {.callout-note appearance="simple"}
+## Note
+On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hspace{-3.8pt} 1}_{u+v=x} du dv$.
+:::
+
+:::: {#thm-tcl}
+## Loi de la somme et convolutions
+
+::::
 
 
 ```{shinylive-python}
