@@ -83,7 +83,7 @@ app_ui = ui.page_fluid(
     ui.layout_sidebar(
         ui.panel_sidebar(
             ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
-            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False,
+            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
             ),
             ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
         width=3,),
@@ -105,11 +105,11 @@ def server(input, output, session):
     subplots = make_subplots(
         rows=2,
         cols=1,
-        vertical_spacing=0.5,
+        vertical_spacing=0.45,
         horizontal_spacing=0.04,
-        row_heights=[8, 2],
+        row_heights=[5, 1],
         subplot_titles=(
-            f"Moyenne empirique <br>(loi de Bernoulli)",
+            f"Moyenne empirique: loi de Bernoulli",
             "Tirages aléatoires <span style='color:rgb(66, 139, 202)'>bleu: 0</span>, <span style='color:rgb(255, 0, 0)'>rouge: 1</span> (seed="
             + f"{n_init:03}"
             + ")",
@@ -167,7 +167,7 @@ def server(input, output, session):
             yanchor="top",
             y=0.99,
             xanchor="left",
-            x=0.95,
+            x=0.65,
             bgcolor="rgba(0,0,0,0)",
         )
     )
@@ -201,9 +201,9 @@ def server(input, output, session):
 
         # Update the subplot titles:
         fig.layout.annotations[1].update(
-            text=f"Tirages aléatoires <span style='color:rgb(66, 139, 202)'>bleu: 0</span>, <span style='color:rgb(255, 0, 0)'>rouge: 1</span> (seed="
+            text=f"Tirages aléatoires (seed="
             + f"{seed():03}"
-            + ")"
+            + ") <br> <span style='color:rgb(66, 139, 202)'>bleu: 0</span>, <span style='color:rgb(255, 0, 0)'>rouge: 1</span> "
         )
 
 
@@ -326,8 +326,9 @@ app_ui = ui.page_fluid(
         ui.panel_sidebar(
             ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
             ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
+            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
             ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
-            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False), width=3
+            width=3
         ),
     ui.panel_main(output_widget("my_widget"), width = 9)
     )
@@ -364,8 +365,8 @@ def server(input, output, session):
                     cols=3,
                     # vertical_spacing=0.5,
                     horizontal_spacing=0.02,
-                    column_widths=[9, 1, 3],
-                    subplot_titles=("Moyenne empirique:<br> n = " + str(n_samples), "        ", "Histogramme: <br> t = " + str(n_repetitions) + " répétitions")
+                    column_widths=[20, 2, 3],
+                    subplot_titles=("t = " + str(n_repetitions) + " répétitions","","")
                 )
 
 
@@ -382,7 +383,7 @@ def server(input, output, session):
         fig.add_trace(
                 go.Scatter(
                     mode='lines',
-                    line=dict(dash="dash", color="black", width=1),
+                    line=dict(dash="dash", color="blue", width=1),
                     marker={},
                     x=iterations,
                     y=np.full((n_samples), p),
@@ -444,10 +445,19 @@ def server(input, output, session):
         margin=dict(l=0, r=0, b=10, t=100),
         )
         fig.update_layout(
-            title=dict(text="Moyennes empiriques et TCL <br> (loi de Bernoulli)<br>", yanchor="top", y=0.95),
+            title=dict(text="TCL: distribution de la moyenne empirique <br> (cas loi de Bernoulli)", yanchor="top", y=0.95),
             title_x=0.5,
             showlegend=True,
 
+        )
+        fig.update_layout(
+            legend=dict(
+                yanchor="top",
+                y=0.99,
+                xanchor="left",
+                x=0.89,
+                bgcolor="rgba(0,0,0,0)",
+            )
         )
         fig['layout']['xaxis']['title']='Échantillons: n'
 
@@ -556,7 +566,7 @@ def server(input, output, session):
             line=dict(color="black", width=3),
             x=[],
             y=[],
-            name=r"Moyenne empirique",
+            name=r"f*...*f",
         )
     )
 
@@ -566,7 +576,7 @@ def server(input, output, session):
             y=np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi),
             mode="lines",
             line=dict(dash="dash", color="red", width=2),
-            name=f"Loi normale (variance adéquate)",
+            name=f"Loi normale<br>(variance adéquate)",
         )
     )
     fig.update_xaxes(range=[-3, 3], position=0.)
@@ -582,11 +592,13 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=0.99,
+        y=0.90,
         xanchor="left",
-        x=0.01
+        x=-0.1,
+        font=dict(size= 10)
     ))
     fig.update_layout(
+    height=250,
     margin=dict(l=0, r=0, b=10, t=100),
     )
 
