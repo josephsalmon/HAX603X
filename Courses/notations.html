@@ -1,14 +1,13 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.3.433">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta">
 
-<title>HAX603X: Modélisation stochastique - Notations et rappels</title>
+<title>HAX603X: Modélisation stochastique - 1&nbsp; Notations et rappels</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -31,6 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Courses/th_asymptotique.html" rel="next">
+<link href="../index.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -53,16 +54,16 @@ ul.task-list li input[type="checkbox"] {
   "type": "overlay",
   "limit": 20,
   "language": {
-    "search-no-results-text": "Pas de résultats",
-    "search-matching-documents-text": "documents trouvés",
-    "search-copy-link-title": "Copier le lien vers la recherche",
-    "search-hide-matches-text": "Cacher les correspondances additionnelles",
-    "search-more-match-text": "correspondance de plus dans ce document",
-    "search-more-matches-text": "correspondances de plus dans ce document",
-    "search-clear-button-title": "Effacer",
-    "search-detached-cancel-button-title": "Annuler",
-    "search-submit-button-title": "Envoyer",
-    "search-label": "Recherche"
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
@@ -86,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
-<body class="floating nav-fixed slimcontent">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -97,14 +98,14 @@ ul.task-list li input[type="checkbox"] {
     <span class="navbar-title">HAX603X</span>
     </a>
   </div>
-            <div id="quarto-search" class="" title="Recherche"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
+    <a class="nav-link active" href="../index.html" rel="" target="" aria-current="page">
  <span class="menu-text">Overview</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -132,32 +133,96 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Bonus</span></li>
 </ul>
             <div class="quarto-navbar-tools ms-auto">
-    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
-    <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" rel="" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
+    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/notations.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Simulation</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">TP</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">TD</span></span>
+  </li>
+    </ul>
+    </div>
     <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Sur cette page</h2>
+    <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#loi-discrètes" id="toc-loi-discrètes" class="nav-link active" data-scroll-target="#loi-discrètes">Loi discrètes</a></li>
-  <li><a href="#lois-continues" id="toc-lois-continues" class="nav-link" data-scroll-target="#lois-continues">Lois continues</a></li>
-  <li><a href="#fonction-de-répartition" id="toc-fonction-de-répartition" class="nav-link" data-scroll-target="#fonction-de-répartition">Fonction de répartition</a></li>
-  <li><a href="#fonction-quantile-inverse-généralisée-à-gauche" id="toc-fonction-quantile-inverse-généralisée-à-gauche" class="nav-link" data-scroll-target="#fonction-quantile-inverse-généralisée-à-gauche">Fonction quantile, inverse généralisée à gauche</a></li>
-  <li><a href="#visualisation-densité-fonction-de-répartition-quantiles-etc." id="toc-visualisation-densité-fonction-de-répartition-quantiles-etc." class="nav-link" data-scroll-target="#visualisation-densité-fonction-de-répartition-quantiles-etc.">Visualisation: densité, fonction de répartition, quantiles, etc.</a>
+  <li><a href="#loi-discrètes" id="toc-loi-discrètes" class="nav-link active" data-scroll-target="#loi-discrètes"><span class="header-section-number">1.1</span> Loi discrètes</a></li>
+  <li><a href="#lois-continues" id="toc-lois-continues" class="nav-link" data-scroll-target="#lois-continues"><span class="header-section-number">1.2</span> Lois continues</a></li>
+  <li><a href="#fonction-de-répartition" id="toc-fonction-de-répartition" class="nav-link" data-scroll-target="#fonction-de-répartition"><span class="header-section-number">1.3</span> Fonction de répartition</a></li>
+  <li><a href="#fonction-quantile-inverse-généralisée-à-gauche" id="toc-fonction-quantile-inverse-généralisée-à-gauche" class="nav-link" data-scroll-target="#fonction-quantile-inverse-généralisée-à-gauche"><span class="header-section-number">1.4</span> Fonction quantile, inverse généralisée à gauche</a></li>
+  <li><a href="#visualisation-densité-fonction-de-répartition-quantiles-etc." id="toc-visualisation-densité-fonction-de-répartition-quantiles-etc." class="nav-link" data-scroll-target="#visualisation-densité-fonction-de-répartition-quantiles-etc."><span class="header-section-number">1.5</span> Visualisation: densité, fonction de répartition, quantiles, etc.</a>
   <ul class="collapse">
-  <li><a href="#cas-des-variables-continues" id="toc-cas-des-variables-continues" class="nav-link" data-scroll-target="#cas-des-variables-continues">Cas des variables continues</a></li>
-  <li><a href="#cas-des-variables-discrètes" id="toc-cas-des-variables-discrètes" class="nav-link" data-scroll-target="#cas-des-variables-discrètes">Cas des variables discrètes</a></li>
+  <li><a href="#cas-des-variables-continues" id="toc-cas-des-variables-continues" class="nav-link" data-scroll-target="#cas-des-variables-continues"><span class="header-section-number">1.5.1</span> Cas des variables continues</a></li>
+  <li><a href="#cas-des-variables-discrètes" id="toc-cas-des-variables-discrètes" class="nav-link" data-scroll-target="#cas-des-variables-discrètes"><span class="header-section-number">1.5.2</span> Cas des variables discrètes</a></li>
   </ul></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/notations.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/notations.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
@@ -168,19 +233,13 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Notations et rappels</h1>
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Notations et rappels</span></h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Auteur·rice</div>
-    <div class="quarto-title-meta-contents">
-             <p>Joseph Salmon, Benjamin Charlier, Nicolas Meyer, Benoîte de Saporta </p>
-          </div>
-  </div>
     
   
     
@@ -191,7 +250,7 @@ ul.task-list li input[type="checkbox"] {
 
 <p>On considère un espace probabilisé <span class="math inline">(\Omega, {\mathcal{F}}, \mathbb{P})</span>, composé d’un ensemble <span class="math inline">\Omega</span>, d’une tribu <span class="math inline">\mathcal{F}</span>, et d’une mesure de probabilité <span class="math inline">\mathbb{P}</span>.</p>
 <div id="def-va" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Variable aléatoire) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Definition 1.1 (Variable aléatoire) </strong></span><br></p>
 <p>Soit <span class="math inline">(E, \mathcal{E})</span> un espace mesurable. Une <em>variable aléatoire</em> (ou v.a.) est une application mesurable <span class="math display">
     \begin{array}{ccccc}
         X &amp; : &amp; \Omega &amp; \to     &amp; E            \\
@@ -212,7 +271,7 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Une fois que l’aléa a été transposé de <span class="math inline">\Omega</span> vers <span class="math inline">E</span>, on souhaite également transposer la probabilité <span class="math inline">\mathbb{P}</span> sur <span class="math inline">E</span>. Ceci motive l’introduction de la notion de loi.</p>
 <div id="def-loi" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 2 (Loi d’une variable aléatoire) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Definition 1.2 (Loi d’une variable aléatoire) </strong></span><br></p>
 <p>Soit <span class="math inline">X : (\Omega, \mathcal{F}, \mathbb{P}) \to (E, \mathcal{E})</span> une variable aléatoire. On appelle <em>loi de <span class="math inline">X</span></em> la mesure de probabilité <span class="math display">
         \begin{array}{ccccc}
             \mathbb{P}_X &amp; : &amp; \mathcal{E} &amp; \to     &amp; [0,1]          \\
@@ -221,68 +280,68 @@ ul.task-list li input[type="checkbox"] {
 </span></p>
 </div>
 <p>Les propriétés de <span class="math inline">\mathbb{P}</span> assurent que <span class="math inline">\mathbb{P}_X</span> est bien une loi de probabilité sur l’espace mesurable <span class="math inline">(E, \mathcal{E})</span>.</p>
-<section id="loi-discrètes" class="level2">
-<h2 class="anchored" data-anchor-id="loi-discrètes">Loi discrètes</h2>
+<section id="loi-discrètes" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="loi-discrètes"><span class="header-section-number">1.1</span> Loi discrètes</h2>
 <p>Les variables aléatoires discrètes sont celles à valeurs dans un ensemble <span class="math inline">E</span> discret, le plus souvent <span class="math inline">\mathbb{N}</span>, muni de la tribu pleine <span class="math inline">\mathcal{F} = \mathcal{P}(E)</span>.</p>
 <div id="exm-bernoulli" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Loi de Bernoulli) </strong></span>La loi la plus simple est la <em>loi de Bernoulli</em> de paramètre <span class="math inline">p \in [0,1]</span>, définie sur <span class="math inline">\{0,1\}</span> par <span class="math inline">\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p</span> qui modélise une expérience aléatoire à deux issues (succès = <span class="math inline">1</span> et échec = <span class="math inline">0</span>).</p>
+<p><span class="theorem-title"><strong>Example 1.1 (Loi de Bernoulli) </strong></span>La loi la plus simple est la <em>loi de Bernoulli</em> de paramètre <span class="math inline">p \in [0,1]</span>, définie sur <span class="math inline">\{0,1\}</span> par <span class="math inline">\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p</span> qui modélise une expérience aléatoire à deux issues (succès = <span class="math inline">1</span> et échec = <span class="math inline">0</span>).</p>
 </div>
 <div id="exm-binomiale" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 2 (Loi binomiale) </strong></span>En sommant des variables aléatoires indépendantes de <em>loi de Bernoulli</em> on obtient une loi binomiale : <span class="math inline">\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}</span>, pour <span class="math inline">k \in \{0,\ldots,n\}</span>, qui modélise le nombre de succès parmi <span class="math inline">n</span> lancers.</p>
+<p><span class="theorem-title"><strong>Example 1.2 (Loi binomiale) </strong></span>En sommant des variables aléatoires indépendantes de <em>loi de Bernoulli</em> on obtient une loi binomiale : <span class="math inline">\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}</span>, pour <span class="math inline">k \in \{0,\ldots,n\}</span>, qui modélise le nombre de succès parmi <span class="math inline">n</span> lancers.</p>
 </div>
 <div id="exm-géométrique" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 3 (Loi géométrique) </strong></span>En observant le nombre d’expériences nécessaires avant d’obtenir un succès, on obtient une <em>loi géométrique</em> : <span class="math inline">\mathbb{P}(X=k) = p (1-p)^{k-1}</span>, pour <span class="math inline">k \geq 1</span>.</p>
+<p><span class="theorem-title"><strong>Example 1.3 (Loi géométrique) </strong></span>En observant le nombre d’expériences nécessaires avant d’obtenir un succès, on obtient une <em>loi géométrique</em> : <span class="math inline">\mathbb{P}(X=k) = p (1-p)^{k-1}</span>, pour <span class="math inline">k \geq 1</span>.</p>
 </div>
 <div id="exm-Poisson" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 4 (Loi de Poisson) </strong></span>La loi de Poisson de paramètre <span class="math inline">\lambda &gt; 0</span> est définie par <span class="math inline">\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!</span>, pour <span class="math inline">k \in \mathbb{N}</span>, et modélise les événements rares.</p>
+<p><span class="theorem-title"><strong>Example 1.4 (Loi de Poisson) </strong></span>La loi de Poisson de paramètre <span class="math inline">\lambda &gt; 0</span> est définie par <span class="math inline">\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!</span>, pour <span class="math inline">k \in \mathbb{N}</span>, et modélise les événements rares.</p>
 </div>
 </section>
-<section id="lois-continues" class="level2">
-<h2 class="anchored" data-anchor-id="lois-continues">Lois continues</h2>
+<section id="lois-continues" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="lois-continues"><span class="header-section-number">1.2</span> Lois continues</h2>
 <p>Parmi les variables aléatoires réelles non discrètes, beaucoup peuvent se représenter avec une densité, c’est-à-dire qu’il existe une fonction mesurable <span class="math inline">f : \mathbb{R} \to [0, \infty[</span> d’intégrale <span class="math inline">1</span>. La loi d’une telle variable aléatoire <span class="math inline">X</span> est alors donnée pour tout <span class="math inline">A \in \mathcal{B}(\mathbb{R})</span> par <span class="math display">
     \mathbb{P}(X \in A) = \int_A f(x) \, \mathrm d x \enspace.
 </span> Les propriétés de l’intégrale de Lebesgue assure que cette formule définit bien une loi de probabilité.</p>
 <div id="exm-uniforme" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 5 (Loi uniforme) </strong></span>La loi uniforme sur un ensemble <span class="math inline">B \in \mathcal{B}(\mathbb{R})</span>, s’obtient avec la densité définie par <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.5 (Loi uniforme) </strong></span>La loi uniforme sur un ensemble <span class="math inline">B \in \mathcal{B}(\mathbb{R})</span>, s’obtient avec la densité définie par <span class="math display">
 f(x) = {1\hspace{-3.8pt} 1}_B(x) / \lambda (B) \enspace,
 </span> où <span class="math inline">\lambda (B)</span> représente la mesure de Lebesgue de l’ensemble <span class="math inline">B</span>. En particulier pour la loi uniforme sur le segment <span class="math inline">[0,1]</span> on obtient la fonction suivante: <span class="math display">
 f(x) = {1\hspace{-3.8pt} 1}_{[0,1]}(x)\enspace.
 </span> Si une variable aléatoire <span class="math inline">U</span> suit une telle loi on note <span class="math inline">U \sim \mathcal{U}([0,1])</span>.</p>
 </div>
 <div id="exm-exponentielle" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 6 (Loi exponentielle) </strong></span>La loi exponentielle de paramètre <span class="math inline">\gamma &gt; 0</span> est obtenue avec la densité donnée par <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.6 (Loi exponentielle) </strong></span>La loi exponentielle de paramètre <span class="math inline">\gamma &gt; 0</span> est obtenue avec la densité donnée par <span class="math display">
 f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
 </span> Si une variable aléatoire <span class="math inline">X</span> suit cette loi on note <span class="math inline">X \sim \mathcal{Exp}(\gamma)</span>.</p>
 </div>
 <div id="exm-gaussienne" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 7 (Loi normale/gaussienne univariée) </strong></span>On obtient la loi normale de paramètre <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\sigma^2 &gt; 0</span> correspond à loi dont la densité est donnée par la fonction réelle: <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.7 (Loi normale/gaussienne univariée) </strong></span>On obtient la loi normale de paramètre <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\sigma^2 &gt; 0</span> correspond à loi dont la densité est donnée par la fonction réelle: <span class="math display">
 f(x) = \frac{1}{\sqrt{2 \pi} \sigma}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
 </span> Si une variable aléatoire <span class="math inline">X</span> suit une telle loi on note <span class="math inline">X \sim \mathcal{N}(\mu,\sigma^2)</span>, <span class="math inline">\mu</span> correspondant à l’espérance de la loi, et <span class="math inline">\sigma^2</span> à sa variance. On nomme loi <em>normale centrée réduite</em> le cas correspondant à <span class="math inline">\mu = 0</span> et <span class="math inline">\sigma^2 = 1</span>.</p>
 </div>
 <div id="exm-gaussienne-multi" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 8 (Loi normale multivariée) </strong></span>On peut étendre les lois normales au cas multi-dimensionnel. Fixons <span class="math inline">d\in\mathbb{N}^*</span> un entier non nul. Pour un vecteur <span class="math inline">\mu \in \mathbb{R}^d</span> et une matrice symétrique-définie positive <span class="math inline">\Sigma\in \mathbb{R^{d\times d}}</span>, la densité normale mutlivariée associée est donnée par la fonction: <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.8 (Loi normale multivariée) </strong></span>On peut étendre les lois normales au cas multi-dimensionnel. Fixons <span class="math inline">d\in\mathbb{N}^*</span> un entier non nul. Pour un vecteur <span class="math inline">\mu \in \mathbb{R}^d</span> et une matrice symétrique-définie positive <span class="math inline">\Sigma\in \mathbb{R^{d\times d}}</span>, la densité normale mutlivariée associée est donnée par la fonction: <span class="math display">
 f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\rm det}(\Sigma)} e^{-\frac{1}{2}(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
 </span> Notons que <span class="math inline">\mu</span> est l’espérance de la loi et <span class="math inline">\Sigma</span> la matrice de variance-covariance.</p>
 </div>
 </section>
-<section id="fonction-de-répartition" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="fonction-de-répartition">Fonction de répartition</h2>
+<section id="fonction-de-répartition" class="level2 page-columns page-full" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="fonction-de-répartition"><span class="header-section-number">1.3</span> Fonction de répartition</h2>
 <p>La notion de variable aléatoire n’est pas facile à manipuler puisqu’elle part d’un espace <span class="math inline">\Omega</span> dont on ne sait rien. On souhaite donc caractériser la loi d’une variable aléatoire en ne considérant que l’espace d’arrivée <span class="math inline">(E, \mathcal{E})</span> .</p>
 <p>Plusieurs outils existent : la fonction de répartition (pour des variables aléatoires réelles), la fonction caractéristique (pour des variables aléatoires dans <span class="math inline">\mathbb{R}^d</span>), la fonction génératrice des moments (pour des variables aléatoires discrètes), etc. On se contente ici de la fonction de répartition qui nous sera utile pour simuler des variables aléatoires, ainsi que son inverse au sens de Levy.</p>
 <div id="def-cdf" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition 🇬🇧: <em>cumulative distribution function</em>) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Definition 1.3 (Fonction de répartition 🇬🇧: <em>cumulative distribution function</em>) </strong></span><br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. La fonction de répartition de <span class="math inline">X</span> est la fonction <span class="math inline">F_X</span> définie sur <span class="math inline">\mathbb{R}</span> par <span class="math display">
     F_X(x) = \mathbb{P}(X \leq x) = \mathbb{P}(X \in ]-\infty, x]) \enspace.
 </span></p>
 </div>
 <p>On appelle quantile d’ordre <span class="math inline">p\in (0,1)</span>, la quantité <span class="math inline">F_X^\leftarrow(p).</span> La <strong>médiane</strong> est égale à <span class="math inline">F_X^\leftarrow(1/2)</span>, les premiers et troisièmes <strong>quartiles</strong> sont égaux à <span class="math inline">F_X^\leftarrow(1/4)</span> et <span class="math inline">F_X^\leftarrow(3/4)</span>. Enfin, les déciles sont les quantiles <span class="math inline">F_X^\leftarrow(k/10)</span> pour <span class="math inline">k=1,\dots, 9</span>.</p>
 <div id="exm-cdf-discret" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 9 (Cas discret) </strong></span>Soit <span class="math inline">(x_i)_{i \in I}</span> une suite ordonnée de réels, avec <span class="math inline">I \subset \mathbb{N}</span>. Si <span class="math inline">X</span> est une variable aléatoire discrète prenant les valeurs <span class="math inline">(x_i)_{i \in I}</span> et de loi <span class="math inline">(p_i = \mathbb{P}(X=x_i))_{i \in I}</span>, alors <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.9 (Cas discret) </strong></span>Soit <span class="math inline">(x_i)_{i \in I}</span> une suite ordonnée de réels, avec <span class="math inline">I \subset \mathbb{N}</span>. Si <span class="math inline">X</span> est une variable aléatoire discrète prenant les valeurs <span class="math inline">(x_i)_{i \in I}</span> et de loi <span class="math inline">(p_i = \mathbb{P}(X=x_i))_{i \in I}</span>, alors <span class="math display">
 F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 </span></p>
 </div>
 <div id="exm-cdf-discret" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 10 (Cas continu) </strong></span>Si <span class="math inline">X</span> est une variable aléatoire de densité <span class="math inline">f</span>, alors <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.10 (Cas continu) </strong></span>Si <span class="math inline">X</span> est une variable aléatoire de densité <span class="math inline">f</span>, alors <span class="math display">
     F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
 </span></p>
 </div>
@@ -290,7 +349,7 @@ F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{x^2}{2}}\, \mathrm d x\enspace,
 </span> Les valeurs numériques de <span class="math inline">\Phi(x)</span> étaient autrefois reportées dans des tables<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>. Par transformation affine, si <span class="math inline">X \sim \mathcal{N}(\mu, \sigma^2)</span> — ce que l’on peut aussi écrire : <span class="math inline">X=\mu + \sigma Y</span>, avec <span class="math inline">Y\sim \mathcal{N}(0,1)</span> — alors sa fonction de répartition est donnée par <span class="math inline">F_X(x)=\Phi((x-\mu)/\sigma)</span>.</p><div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs">Wikipedia: loi normale</a></p></li></div></div>
 <div id="prp-toto" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 </strong></span>Soit <span class="math inline">X</span> une variable aléatoire de fonction de répartition <span class="math inline">F_X</span>.</p>
+<p><span class="theorem-title"><strong>Proposition 1.1 </strong></span>Soit <span class="math inline">X</span> une variable aléatoire de fonction de répartition <span class="math inline">F_X</span>.</p>
 <ol type="1">
 <li><span class="math inline">F_X</span> est une fonction croissante, de limite <span class="math inline">0</span> en <span class="math inline">-\infty</span> et de limite <span class="math inline">1</span> en <span class="math inline">+\infty</span>.</li>
 <li><span class="math inline">F_X</span> est continue à droite en tout point.</li>
@@ -301,13 +360,13 @@ F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 <p>La propriété 3. est utile dans le cas discret : les valeurs prises par <span class="math inline">X</span> correspondent aux points de discontinuité de <span class="math inline">F_X</span> et les probabilités associées correspondent à la hauteur du saut.</p>
 <p>La propriété 4. donne le lien entre la fonction de répartition d’une variable aléatoire à densité et sa densité. On peut donc retrouver la loi de <span class="math inline">X</span> à partir de sa fonction de répartition. Le théorème suivant généralise ce résultat à toute variable aléatoire réelle (pas nécessairement discrète ou à densité).</p>
 <div id="thm-fdr_carac" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 </strong></span>La fonction de répartition d’une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.</p>
+<p><span class="theorem-title"><strong>Theorem 1.1 </strong></span>La fonction de répartition d’une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.</p>
 </div>
 <p>XXX source + proof???</p>
 <p>On rappelle que la tribu des boréliens est engendrée par la famille d’ensembles <span class="math inline">\{]-\infty,x], x \in \mathbb{R}\}</span>. Le théorème précédent assure que si on connaît la mesure <span class="math inline">\mathbb{P}_X</span> sur cette famille d’ensemble alors on la connaît partout.</p>
 <p>XXX TODO: move this in correct part.</p>
 <div id="exm-genereexponentielle" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 11 (Loi exponentielle depuis une loi uniforme) </strong></span>On considère une variable aléatoire <span class="math inline">U</span> de loi uniforme sur <span class="math inline">[0,1]</span> et on pose <span class="math inline">X = -\ln(1-U)</span>. Déterminons la loi de <span class="math inline">X</span> en calculant sa fonction de répartition. Pour tout <span class="math inline">x \in \mathbb{R}</span>, <span class="math display">
+<p><span class="theorem-title"><strong>Example 1.11 (Loi exponentielle depuis une loi uniforme) </strong></span>On considère une variable aléatoire <span class="math inline">U</span> de loi uniforme sur <span class="math inline">[0,1]</span> et on pose <span class="math inline">X = -\ln(1-U)</span>. Déterminons la loi de <span class="math inline">X</span> en calculant sa fonction de répartition. Pour tout <span class="math inline">x \in \mathbb{R}</span>, <span class="math display">
 \begin{align*}
 F_X(x) = &amp; \mathbb{P}(X \leq x) \\
        = &amp; \mathbb{P}(-\ln(1-U) \leq x) \\
@@ -322,11 +381,11 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 <p>où on a utilisé l’égalité <span class="math inline">\mathbb{P}(U \leq t) = t</span> pour tout <span class="math inline">t \in [0,1]</span>. Ainsi la variable aléatoire <span class="math inline">X</span> a la même fonction de répartition qu’une loi exponentielle de paramètre <span class="math inline">1</span>. On en conclut que <span class="math inline">X \sim \mathcal{Exp}(1)</span>. Notons que l’on peut aussi montrer que <span class="math inline">-\ln(X)\sim\mathcal{E}(1)</span>, sachant que <span class="math inline">U</span> et <span class="math inline">1-U</span> ont la même loi.</p>
 </div>
 </section>
-<section id="fonction-quantile-inverse-généralisée-à-gauche" class="level2">
-<h2 class="anchored" data-anchor-id="fonction-quantile-inverse-généralisée-à-gauche">Fonction quantile, inverse généralisée à gauche</h2>
+<section id="fonction-quantile-inverse-généralisée-à-gauche" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="fonction-quantile-inverse-généralisée-à-gauche"><span class="header-section-number">1.4</span> Fonction quantile, inverse généralisée à gauche</h2>
 <p>La fonction de répartition étant une fonction croissante on peut donner un sens à son inverse généralisée de la manière suivante.</p>
 <div id="def-quantile" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée 🇬🇧: <em>quantile distribution function</em>) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Definition 1.4 (Fonction quantile/ inverse généralisée 🇬🇧: <em>quantile distribution function</em>) </strong></span><br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span> et <span class="math inline">F_X</span> sa fonction de répartion. La fonction quantile associée <span class="math inline">F_X^\leftarrow: ]0,1[\rightarrow \mathbb{R}</span> est définie par <span class="math display">
   F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
 </span></p>
@@ -334,10 +393,10 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 <p>On parle parfois aussi d’inverse au sens de Levy pour cette inverse généralisée.</p>
 <p>Dans le cas où la fonction de répartition <span class="math inline">F</span> est bijective, alors l’inverse de la fonction de répartition coincide avec la fonction quantile.</p>
 </section>
-<section id="visualisation-densité-fonction-de-répartition-quantiles-etc." class="level2">
-<h2 class="anchored" data-anchor-id="visualisation-densité-fonction-de-répartition-quantiles-etc.">Visualisation: densité, fonction de répartition, quantiles, etc.</h2>
-<section id="cas-des-variables-continues" class="level3">
-<h3 class="anchored" data-anchor-id="cas-des-variables-continues">Cas des variables continues</h3>
+<section id="visualisation-densité-fonction-de-répartition-quantiles-etc." class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="visualisation-densité-fonction-de-répartition-quantiles-etc."><span class="header-section-number">1.5</span> Visualisation: densité, fonction de répartition, quantiles, etc.</h2>
+<section id="cas-des-variables-continues" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="cas-des-variables-continues"><span class="header-section-number">1.5.1</span> Cas des variables continues</h3>
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 830
 import numpy as np
@@ -572,8 +631,8 @@ def server(input, output, session):
 app = App(app_ui, server)
 </code></pre>
 </section>
-<section id="cas-des-variables-discrètes" class="level3">
-<h3 class="anchored" data-anchor-id="cas-des-variables-discrètes">Cas des variables discrètes</h3>
+<section id="cas-des-variables-discrètes" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="cas-des-variables-discrètes"><span class="header-section-number">1.5.2</span> Cas des variables discrètes</h3>
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 830
 import numpy as np
@@ -944,12 +1003,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // flash "checked"
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copié");
+    button.setAttribute("title", "Copied!");
     let tooltip;
     if (window.bootstrap) {
       button.setAttribute("data-bs-toggle", "tooltip");
       button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copié");
+      button.setAttribute("data-bs-title", "Copied!");
       tooltip = new bootstrap.Tooltip(button, 
         { trigger: "manual", 
           customClass: "code-copy-button-tooltip",
@@ -1174,6 +1233,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../index.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Courses/th_asymptotique.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 
