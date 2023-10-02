@@ -1,8 +1,15 @@
-# Introduction {.unnumbered}
+---
+sidebar: false
+toc: false
+website:
+    page-layout: full
+    page-footer: false
+---
+# Présentation {.unnumbered}
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
 
-Attention: site en construction...
+**Attention**: site en construction...
 
 ## Professeurs
 

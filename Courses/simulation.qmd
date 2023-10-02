@@ -157,7 +157,8 @@ où la deuxième égalité résulte de la bijectivité de $F$.
 Ainsi, si $F$ est facilement inversible, on peut simuler une variable aléatoire $X$ de loi $F$ en simulant une variable aléatoire uniforme $U$ et en posant $X = F^{-1}(U)$.
 
 
-Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes) c'est donc pourquoi on utilise l'inverse l'inverse généralisée ou fonction quantile introduite en @def-quantile:
+Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes) c'est donc pourquoi on utilise l'inverse l'inverse généralisée ou fonction quantile introduite dans la section [Notations](notations.qmd):
+<!-- @def-quantile: -->
 
 $$
   F^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F(x)\geq p\} \enspace.
