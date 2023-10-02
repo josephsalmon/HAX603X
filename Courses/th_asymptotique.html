@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - 2&nbsp; Théorèmes asymptotiques</title>
+<title>HAX603X: Modélisation stochastique - Théorèmes asymptotiques</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../Courses/simulation.html" rel="next">
+<link href="../Courses/notations.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -138,41 +140,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Introduction</span></a>
+ <span class="menu-text">Présentation</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Cours</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
-        <li>
-    <a class="dropdown-item" href="../Courses/notations.html" rel="" target="">
- <span class="dropdown-text">Notations et rappels</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Courses/th_asymptotique.html" rel="" target="">
- <span class="dropdown-text">Théorèmes asymptotiques</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../Courses/simulation.html" rel="" target="">
- <span class="dropdown-text">Simulation</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="dropdown-header">
- <span class="menu-text">TD</span></li>
-  <li class="dropdown-header">
- <span class="menu-text">Bonus</span></li>
-</ul>
-            <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="https://moodle.umontpellier.fr/course/view.php?id=25763" rel="" target=""><i class="bi bi-bicycle" role="img">
-</i> 
- <span class="menu-text">Moodle</span></a>
+    <a class="nav-link active" href="../Courses/notations.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Cours</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../TD/TD1.html" rel="" target="">
+ <span class="menu-text">TD</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../TP/TP1.html" rel="" target="">
+ <span class="menu-text">TP</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
-    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+            <div class="quarto-navbar-tools ms-auto">
+    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" rel="" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
 </div>
           </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
@@ -182,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></li></ol></nav>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html">Théorèmes asymptotiques</a></li></ol></nav>
       <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
       </a>
     </div>
@@ -192,25 +177,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table des matières</h2>
-   
-  <ul>
-  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres"><span class="header-section-number">2.1</span> Loi des grands nombres</a></li>
-  <li><a href="#théorème-central-limite-tcl" id="toc-théorème-central-limite-tcl" class="nav-link" data-scroll-target="#théorème-central-limite-tcl"><span class="header-section-number">2.2</span> Théorème central limite (TCL)</a></li>
-  </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Cours</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Basculer la section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Notations et rappels</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Théorèmes asymptotiques</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Simulation</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
 </nav>
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres">Loi des grands nombres</a></li>
+  <li><a href="#théorème-central-limite-tcl" id="toc-théorème-central-limite-tcl" class="nav-link" data-scroll-target="#théorème-central-limite-tcl">Théorème central limite (TCL)</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Théorèmes asymptotiques</span></h1>
+<h1 class="title">Théorèmes asymptotiques</h1>
 </div>
 
 
@@ -225,13 +243,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 </header>
 
-<section id="loi-des-grands-nombres" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="loi-des-grands-nombres"><span class="header-section-number">2.1</span> Loi des grands nombres</h2>
+<section id="loi-des-grands-nombres" class="level2">
+<h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
 <p>Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique: <span class="math display">
 \bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
 </span> quand on obsever <span class="math inline">n</span> variables aléatoires i.i.d <span class="math inline">X_1,\dots,X_n</span>, ayant une espérance finie.</p>
 <div id="thm-lfgn" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2.1 (Loi forte des grands nombres) </strong></span><br></p>
+<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres) </strong></span><br></p>
 <p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 </span></p>
@@ -406,11 +424,11 @@ app = App(app_ui, server)
 </code></pre>
 <p>XXX TODO: phénomène intéressant en bougeant le paramètre p avec le reste fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas a priori, saut structuration particulière de la génération.</p>
 </section>
-<section id="théorème-central-limite-tcl" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="théorème-central-limite-tcl"><span class="header-section-number">2.2</span> Théorème central limite (TCL)</h2>
+<section id="théorème-central-limite-tcl" class="level2">
+<h2 class="anchored" data-anchor-id="théorème-central-limite-tcl">Théorème central limite (TCL)</h2>
 <p>Une fois la loi des grands nombres établie, on peut se demander quel est l’ordre suivant dans le développement asymptotique de <span class="math inline">\bar X_n - \mu</span>, ou de manière équivalente de <span class="math inline">S_n - n \mu</span>, où <span class="math inline">S_n = X_1 + \cdots + X_n</span>. Le théorème suivant répond à cette question, en donnant une convergence en loi d’une transformation affine de la moyenne empirique:</p>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2.2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
 \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 </span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
 </div>
@@ -449,7 +467,7 @@ q = 1.96</code></pre>
 </div>
 </div>
 <div id="exm-tcl" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 2.1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
+<p><span class="theorem-title"><strong>Exemple 1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 </span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée dans le widget ci-dessous. Le contexte est le suivant. On répète <span class="math inline">t</span> fois le processus, qui consiste à afficher <span class="math inline">(\bar{X}_k)_{k \in [n]}</span>, où les <span class="math inline">n</span> variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre <span class="math inline">p</span>.</p>
 </div>
@@ -654,7 +672,7 @@ Note
 </div>
 </div>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2.3 (Loi de la somme et convolutions) </strong></span>&nbsp;</p>
+<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>&nbsp;</p>
 </div>
 <pre class="shinylive-python"><code>#| standalone: true
 #| viewerHeight: 550
@@ -819,7 +837,7 @@ app = App(app_ui, server)
 
 </section>
 
-</main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -1104,6 +1122,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../Courses/notations.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notations et rappels</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../Courses/simulation.html" class="pagination-link">
+        <span class="nav-page-text">Simulation</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
 </div> <!-- /content -->
 
 

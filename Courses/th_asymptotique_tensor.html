@@ -65,6 +65,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -162,7 +178,14 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres">Loi des grands nombres</a></li>
+  <li><a href="#théorème-central-limite" id="toc-théorème-central-limite" class="nav-link" data-scroll-target="#théorème-central-limite">Théorème central limite</a></li>
+  </ul>
+<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique_tensor.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -184,164 +207,332 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
+<section id="loi-des-grands-nombres" class="level2">
+<h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
+<p>Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique: <span class="math display">
+\bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
+</span> quand on obsever <span class="math inline">n</span> variables aléatoires i.i.d <span class="math inline">X_1,\dots,X_n</span>, ayant une espérance finie.</p>
+<div id="thm-lfgn" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres) </strong></span><br></p>
+<p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
+\mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
+</span></p>
+</div>
+<p><strong>Interprétation</strong>: Intuitivement, la probabilité d’un événement <span class="math inline">A</span> correspond à la fréquence d’apparition de <span class="math inline">A</span> quand on répète une expérience qui fait intervenir cet événement. Par exemple, si on dispose une pièce truquée, on estimera la probabilité d’apparition du côté pile en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu. La loi des grands nombres justifie a posteriori cette intuition : si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">p</span>, alors <span class="math display">
+    \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
+</span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
+<p><strong>Remarque</strong>: Bien qu’intuitivement assez intuitif, ce théorème est difficile à démontrer. XXX TODO referece : Williams (en anglais) ou bien Ouvrard.</p>
 <pre class="shinylive-python"><code>#| standalone: true
-#| viewerHeight: 550
+#| viewerHeight: 700
 import numpy as np
-
-
-from shiny import ui, render, App, reactive
-from shinywidgets import output_widget, register_widget
+import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-import plotly.graph_objs as go
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
 
-
+# n_samples = 50
+# step = 10
 app_ui = ui.page_fluid(
     ui.panel_title("Loi des grands nombres: visualisation"),
-    ui.input_action_button("seed", "Ré-échantillonner", class_="btn-primary"),
+    ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
     output_widget("my_widget"),
     ui.row(
-        ui.column(
-            6,
-            ui.input_slider(
-                "p",
-                "Paramètre de Bernoulli: p",
-                0.01,
-                0.99,
-                value=0.5,
-                step=0.01,
-            ),
+        ui.column(6,
+            ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
         ),
-        ui.column(
-            6,
-            ui.input_slider(
-                "n_samples",
-                "Nombre de tirages aléatoires ",
-                2,
-                1000,
-                value=15,
-                step=1,
-            ),
-        ),
-    ),
+        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
+        ui.column(6, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, 1000, value=15, step=1)
+        )
+    )
 )
 
 
 def server(input, output, session):
-    seed = reactive.Value(41)
+    seed = reactive.Value(42)
 
     @reactive.Effect
     @reactive.event(input.seed)
     def _():
         seed.set(np.random.randint(0, 1000))
 
-    subplots = make_subplots(
-        rows=2,
-        cols=1,
-        vertical_spacing=0.3,
-        horizontal_spacing=0.04,
-        row_heights=[8, 1],
-        subplot_titles=(
-            f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
-            "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
-            + str(42)
-            + ")",
-        ),
-    )
-    fig = go.FigureWidget(subplots)
-    fig.add_trace(
-        go.Scatter(
-            mode="lines",
-            line=dict(color="black", width=3),
-            x=[],
-            y=[],
-            name=r"Moyenne &lt;br&gt; empirique",
-        ),
-        # name=r'$\bar{X}_n$'),
-        row=1,
-        col=1,
-    )
-    fig.add_trace(
-        go.Scatter(
-            mode="lines",
-            line=dict(dash="dash", color="black", width=1),
-            marker={},
-            x=[],  # iterations,
-            y=[],  # np.full((n_samples), p),
-            # name=r'$p$'),
-            name=r"p",
-        ),
-        row=1,
-        col=1,
-    )
-    fig.add_trace(
-        go.Heatmap(
-            x=[],  # iterations + 0.5,
-            z=[],  # [samples],
-            colorscale=[[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
-            showscale=False,
-            # textfont={"size":10}
-        ),
-        row=2,
-        col=1,
-    )
 
-    fig.update_yaxes(range=[0, 1.1], row=1, col=1)
-    fig.update_xaxes(matches="x1", row=2, col=1)
-    fig.update_yaxes(visible=False, row=2, col=1)
-    fig.update_xaxes(visible=False, row=2, col=1)
-
-    fig.update_layout(
-        template="simple_white",
-        showlegend=True,
-    )
-    fig.update_layout(autosize=True)
-
-    fig.update_layout(
-        legend=dict(
-            yanchor="top",
-            y=0.99,
-            xanchor="left",
-            x=0.95,
-            bgcolor="rgba(0,0,0,0)",
-        )
-    )
-
-    register_widget("my_widget", fig)
-
-    @reactive.Effect
-    def _():
-        p = input.p()
-        n_samples = input.n_samples()
-
+    @output
+    @render_widget
+    def my_widget():
+        # Create figure
         rng = np.random.default_rng(seed())
+        p = input.p()
+        # step=input.step()
+        n_samples = input.n_samples()
         iterations = np.arange(1, n_samples + 1)
         samples = rng.binomial(1, p, size=n_samples)
         means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
 
-        # Update data in fig:
-        fig.data[0].x = iterations
-        fig.data[0].y = means_samples
+        fig = make_subplots(
+                    rows=2,
+                    cols=1,
+                    vertical_spacing=0.3,
+                    horizontal_spacing=0.04,
+                    subplot_titles=(
+                        f"Moyenne empirique en fonction du nombre de tirages &lt;br&gt;(loi de Bernoulli)",
+                        "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="+ str(seed())+")",
+                    ),
+                    row_heights=[8, 1],
+                )
 
-        fig.data[1].x = iterations
-        fig.data[1].y = np.full((n_samples), p)
-
-        fig.data[2].x = iterations
-        fig.data[2].z = [samples]
-
-        fig.update_xaxes(range=[1, n_samples + 1])
-        # Update the subplot titles:
-        fig.layout.annotations[1].update(
-            text=f"Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
-            + f"{seed(): 3}"
-            + ")"
+        fig.add_trace(
+                go.Scatter(
+                    mode='lines',
+                    line=dict(color="black", width=3),
+                    x=iterations,
+                    y=means_samples,
+                    name=r'Moyenne &lt;br&gt; empirique'),
+                    # name=r'$\bar{X}_n$'),
+                    row=1, col=1,
         )
+        fig.add_trace(
+                go.Scatter(
+                    mode='lines',
+                    line=dict(dash="dash", color="black", width=1),
+                    marker={},
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    # name=r'$p$'),
+                    name=r'p'),
+                    row=1, col=1,
+        )
+        fig.add_trace(
+                go.Heatmap(x=iterations + 0.5, z=[samples],
+                        # text=[list(samples.astype('str'))],
+                        # texttemplate="%{text}",
+                        colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
+                        showscale=False,
+                        # textfont={"size":10}
+                        ),
+                row=2, col=1,
+        )
+        fig.update_xaxes(range=[1, n_samples + 1])
+        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+        fig.update_yaxes(visible=False, row=2, col=1)
+        fig.update_xaxes(visible=False, row=2, col=1)
+
+
+        fig.update_layout(
+            template="simple_white",
+            showlegend=True,
+        )
+        fig.update_layout(
+            legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.75,
+            bgcolor='rgba(0,0,0,0)',
+            )
+        )
+        return fig
+
+
+app = App(app_ui, server)
+</code></pre>
+<p>XXX TODO: phénomène intéressant en bougeant le paramètre p avec le reste fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas a priori, saut structuration particulière de la génération.</p>
+</section>
+<section id="théorème-central-limite" class="level2">
+<h2 class="anchored" data-anchor-id="théorème-central-limite">Théorème central limite</h2>
+<p>Une fois la loi des grands nombres établie, on peut se demander quel est l’ordre suivant dans le développement asymptotique de <span class="math inline">\bar X_n - \mu</span>, ou de manière équivalente de <span class="math inline">S_n - n \mu</span>, où <span class="math inline">S_n = X_1 + \cdots + X_n</span>. Le théorème suivant répond à cette question, en donnant une convergence en loi d’une transformation affine de la moyenne empirique:</p>
+<div id="thm-tcl" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite) </strong></span>Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
+\sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
+</span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
+</div>
+<p>Preuve XXX TODO: donner une référence.</p>
+<p>En termes de somme cumulée empirique, la convergence se réécrit</p>
+<p><span class="math display">
+    \frac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
+</span></p>
+<p>Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l’on veut, elle se rapprochera toujours asymptotiquement d’une loi normale.</p>
+<p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>,</p>
+<p><span class="math display">
+    \mathbb{P} \bigg( a \leq \sqrt n \left(\frac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg)
+    \underset{n \to \infty}{\longrightarrow}  \dfrac{1}{\sqrt{2\pi}} \int_a^b e^{-\frac{x^2}{2}} \, \mathrm dx\,.
+</span></p>
+<div id="exm-tcl" class="theorem example">
+<p><span class="theorem-title"><strong>Exemple 1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
+    \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
+</span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée en Figure XXX TODO image.</p>
+</div>
+<pre class="shinylive-python"><code>#| standalone: true
+#| viewerHeight: 700
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from scipy.stats import norm
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
+
+
+seed = 42
+rng = np.random.default_rng(seed)
+
+p=0.5
+n_samples_max = 500
+n_repetitions_max = 300
+
+iterations_full = np.arange(1, n_samples_max + 1)
+my_ones = np.ones((n_repetitions_max, n_samples_max))
+my_ones = my_ones[:,:,np.newaxis]
+p_tensor = my_ones * np.linspace(0.01, 0.99, num=99)
+
+samples_full = rng.binomial(1, p_tensor, size=(n_repetitions_max, n_samples_max, 99))
+x_hist = np.linspace(0, 1, num=300)
+
+# n_samples = 50
+# step = 10
+app_ui = ui.page_fluid(
+    ui.panel_title("Théorème centrale limite: visualisation"),
+    # ui.input_action_button("seed", "Ré-échantillonner",class_="btn-primary"),
+    output_widget("my_widget"),
+    ui.row(
+        ui.column(4,
+            ui.input_slider("p", "Paramètre de Bernoulli: p", 0.01, 0.99, value=0.5, step=0.01)
+        ),
+        ui.column(4,
+            ui.input_slider("n_repetitions", "Nombre de répétitions", 2, n_repetitions_max, value=200, step=1)
+        ),
+        # ui.column(4, ui.input_slider("step", "n", 1, n_samples, value=10)),
+        ui.column(4, ui.input_slider("n_samples", "Nombre de tirages aléatoires ", 2, n_samples_max, value=100, step=1)
+        )
+    )
+)
+
+
+def server(input, output, session):
+    # seed = reactive.Value(42)
+
+    # @reactive.Effect
+    # @reactive.event(input.seed)
+    # def _():
+    #     seed.set(np.random.randint(0, 1000))
+
+
+    @output
+    @render_widget
+    def my_widget():
+        # Create figure
+
+
+        p = input.p()
+        p_idx = int(p/0.01)
+        n_repetitions = input.n_repetitions()
+        n_samples = input.n_samples()
+
+        iterations = iterations_full[:n_samples]
+        samples = samples_full[:n_repetitions, :n_samples, p_idx].squeeze()
+        means_samples = np.cumsum(samples, axis=1) / np.arange(1, n_samples + 1)
+
+        fig = make_subplots(
+                    rows=1,
+                    cols=2,
+                    vertical_spacing=0.2,
+                    horizontal_spacing=0.1,
+                    column_widths=[2, 1],
+                )
+
+        for i in range(n_repetitions):
+            fig.add_trace(
+                    go.Scatter(
+                        mode='lines',
+                        line=dict(color="rgba(0,0,0,0.05)", width=1),
+                        x=iterations,
+                        y=means_samples[i,:],
+                        # name=r'Moyenne &lt;br&gt; empirique'
+                        ),
+                        # name=r'$\bar{X}_n$'),
+                        row=1, col=1,
+            )
+        fig.add_trace(
+                go.Scatter(
+                    mode='lines',
+                    line=dict(dash="dash", color="black", width=1),
+                    marker={},
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    # name=r'$p$'),
+                    name='p'),
+                    row=1, col=1,
+        )
+        fig.update_layout(
+            template="simple_white",
+            showlegend=False,
+        )
+        fig.add_trace(
+            go.Histogram(y=means_samples[:,-1],
+                         opacity=0.75,
+                         marker_color = 'black',
+                         xbins = dict(start=0,
+                                 end=1,
+                                 size=1/int(np.sqrt(n_repetitions))),
+                         histnorm='probability density',
+                        # colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
+                        # textfont={"size":10}
+                        name="Tirages de moyennes empiriques",
+                        ),
+                row=1, col=2,
+        )
+        fig.add_trace(
+            go.Scatter(x=norm.pdf(x_hist, p, np.sqrt( p*(1-p) / n_samples)),
+                       y=x_hist,
+                       mode='lines',
+                       line=dict(color="red"),
+                        # colorscale=[[0,'rgb(66, 139, 202)'], [1, 'rgb(255,0,0)']],
+                        # textfont={"size":10}
+                        legendgroup = '1',
+                        name="TCL"
+                        ),
+                row=1, col=2,
+        )
+        fig.update_xaxes(range=[1, n_samples + 1])
+        fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+        fig.update_yaxes(matches="y1", row=1, col=2)
+        fig.update_xaxes(range=[0, 1.1 / np.sqrt(2*np.pi* p*(1-p) / n_samples)], row=1, col=2)
+
+        # fig.update_xaxes(matches="x1", row=2, col=1)
+        # fig.update_yaxes(visible=False, row=2, col=1)
+        fig.update_xaxes(visible=False, row=1, col=2)
+
+
+
+        for trace in fig['data']:
+            print(trace)
+            if (trace['name'] != 'TCL') and (trace['name'] != 'p'):
+                trace['showlegend'] = False
+            # template="simple_white",
+            # showlegend=True,sur plusieurs répétitions et histogrammes après"+ str(n_samples)"+ tirages" + "(loi de Bernoulli, seed="+ str(seed())+")
+        # fig.update_layout(
+        #     legend=dict(
+        #     yanchor="top",
+        #     y=0.99,
+        #     xanchor="left",
+        #     x=0.75,
+        #     bgcolor='rgba(0,0,0,0)',
+        #     )
+        # )
+        fig.update_layout(
+            title="Moyenne empirique:  évolution en fonction du nombre de tirages sur plusieurs répétitions et &lt;br&gt; histogrammes après "+ str(n_samples)+" tirages" + " (loi de Bernoulli)",
+            # , seed="+ str(seed)+")",
+            # legend_tracegroupgap = 400,
+            showlegend=True
+        )
+        return fig
 
 
 app = App(app_ui, server)
 </code></pre>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -632,4 +823,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/toto.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></div></div></footer></body></html>
+</body></html>
