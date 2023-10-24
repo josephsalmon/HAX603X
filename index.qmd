@@ -2,7 +2,6 @@
 sidebar: false
 toc: false
 website:
-    page-layout: full
     page-footer: false
 ---
 # Présentation {.unnumbered}

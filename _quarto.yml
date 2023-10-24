@@ -72,7 +72,7 @@ format:
     theme:
       spacelab
       # light: spacelab
-    css: custom.scss
+    css: [custom.css, custom.scss]
     # mainfont: Atkinson Hyperlegible
     html-math-method: katex
     toc-location: right

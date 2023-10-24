@@ -11,6 +11,7 @@ On considère un espace probabilisé $(\Omega, {\mathcal{F}}, \mathbb{P})$, comp
 
 
 ::: {#def-va }
+
 ## Variable aléatoire
 
 <br>
@@ -45,6 +46,7 @@ Une fois que l'aléa a été transposé de $\Omega$ vers $E$, on souhaite égale
 
 
 ::: {#def-loi}
+
 ## Loi d'une variable aléatoire
 
 <br>
@@ -66,6 +68,7 @@ Les propriétés de $\mathbb{P}$ assurent que $\mathbb{P}_X$ est bien une loi de
 Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$ discret, le plus souvent $\mathbb{N}$, muni de la tribu pleine $\mathcal{F} = \mathcal{P}(E)$.
 
 ::: {#exm-bernoulli}
+
 ## Loi de Bernoulli
 
 La loi la plus simple est la *loi de Bernoulli* de paramètre $p \in [0,1]$, définie sur $\{0,1\}$ par $\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p$ qui modélise une expérience aléatoire à deux issues (succès = $1$ et échec = $0$).
@@ -73,6 +76,7 @@ La loi la plus simple est la *loi de Bernoulli* de paramètre $p \in [0,1]$, dé
 
 
 ::: {#exm-binomiale}
+
 ## Loi binomiale
 
 En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale : $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in \{0,\ldots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
@@ -80,12 +84,14 @@ En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obt
 
 
 ::: {#exm-géométrique}
+
 ## Loi géométrique
 
 En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$.
 :::
 
 ::: {#exm-Poisson}
+
 ## Loi de Poisson
 
 La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
@@ -102,6 +108,7 @@ Les propriétés de l'intégrale de Lebesgue assure que cette formule définit b
 
 
 ::: {#exm-uniforme}
+
 ## Loi uniforme
 La loi uniforme sur un ensemble $B \in \mathcal{B}(\mathbb{R})$, s'obtient avec la densité définie par
 $$
@@ -116,6 +123,7 @@ Si une variable aléatoire $U$ suit une telle loi on note $U \sim \mathcal{U}([0
 :::
 
 ::: {#exm-exponentielle}
+
 ## Loi exponentielle
 La loi exponentielle de paramètre $\gamma > 0$ est obtenue avec la densité
 donnée par
@@ -127,6 +135,7 @@ Si une variable aléatoire $X$ suit cette loi on note $X \sim \mathcal{Exp}(\gam
 
 
 ::: {#exm-gaussienne}
+
 ## Loi normale/gaussienne univariée
 On obtient la loi normale de paramètre $\mu \in \mathbb{R}$ et $\sigma^2 > 0$ correspond à loi dont la densité est donnée par la fonction réelle:
 $$
@@ -161,6 +170,7 @@ On se contente ici de la fonction de répartition qui nous sera utile pour simul
 
 
 ::: {#def-cdf}
+
 ##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
 
 <br>
@@ -180,6 +190,7 @@ Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9
 
 
 ::: {#exm-cdf-discret}
+
 ## Cas discret
 
 Soit $(x_i)_{i \in I}$ une suite ordonnée de réels, avec $I \subset \mathbb{N}$.
@@ -191,6 +202,7 @@ $$
 :::
 
 ::: {#exm-cdf-discret}
+
 ## Cas continu
 Si $X$ est une variable aléatoire de densité $f$, alors
 $$
@@ -208,6 +220,8 @@ Par transformation affine, si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- ce que l'o
 
 
 ::: {#prp-toto}
+
+## Propriétés de la fonction de répartition
 Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
 
 1. $F_X$ est une fonction croissante, de limite $0$ en $-\infty$ et de limite $1$ en $+\infty$.
@@ -224,10 +238,13 @@ Le théorème suivant généralise ce résultat à toute variable aléatoire ré
 
 
 ::: {#thm-fdr_carac}
+
+## Caractérisation de la loi d'une variable aléatoire réelle
+
 La fonction de répartition d'une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.
 :::
 XXX source + proof???
- 
+
 
 On rappelle que la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$. Le théorème précédent assure que si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensemble alors on la connaît partout.
 
@@ -240,7 +257,8 @@ On rappelle que la tribu des boréliens est engendrée par la famille d'ensemble
 XXX TODO: move this in correct part.
 
 ::: {#exm-genereexponentielle}
-# Loi exponentielle depuis une loi uniforme
+
+## Loi exponentielle depuis une loi uniforme
 
 On considère une variable aléatoire $U$ de loi uniforme sur $[0,1]$ et on pose $X = -\ln(1-U)$. Déterminons la loi de $X$ en calculant sa fonction de répartition. Pour tout $x \in \mathbb{R}$,
 $$
@@ -268,6 +286,7 @@ La fonction de répartition étant une fonction croissante on peut donner un sen
 
 
 ::: {#def-quantile}
+
 ##  Fonction quantile/ inverse généralisée &#127468;&#127463;: *quantile distribution function*
 
 <br>
@@ -841,5 +860,3 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 ```
-
-
