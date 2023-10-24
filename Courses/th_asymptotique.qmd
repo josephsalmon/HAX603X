@@ -488,7 +488,7 @@ x &\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 \end{align}
 $$
 
-::: {.callout-note appearance="simple"}
+::: {.callout-note}
 
 ## Note
 On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hspace{-3.8pt} 1}_{u+v=x} du dv$.
