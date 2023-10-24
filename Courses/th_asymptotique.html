@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.433">
+<meta name="generator" content="quarto-1.4.429">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -76,9 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.1.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -86,7 +86,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "Pas de résultats",
     "search-matching-documents-text": "documents trouvés",
@@ -118,6 +124,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
@@ -127,7 +134,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">HAX603X</span>
     </a>
@@ -139,27 +146,27 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../index.html" rel="" target="">
- <span class="menu-text">Présentation</span></a>
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Présentation</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="../Courses/notations.html" rel="" target="" aria-current="page">
- <span class="menu-text">Cours</span></a>
+    <a class="nav-link active" href="../Courses/notations.html" aria-current="page"> 
+<span class="menu-text">Cours</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../TD/TD1.html" rel="" target="">
- <span class="menu-text">TD</span></a>
+    <a class="nav-link" href="../TD/TD1.html"> 
+<span class="menu-text">TD</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../TP/TP1.html" rel="" target="">
- <span class="menu-text">TP</span></a>
+    <a class="nav-link" href="../TP/TP1.html"> 
+<span class="menu-text">TP</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
-    <a href="https://github.com/josephsalmon/HAX603X" rel="" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
-    <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" rel="" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
-</div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+    <a href="https://github.com/josephsalmon/HAX603X" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
+    <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
+</div>
       </div> <!-- /container-fluid -->
     </nav>
   <nav class="quarto-secondary-nav">
@@ -167,9 +174,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html">Théorèmes asymptotiques</a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html">Théorèmes asymptotiques</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
     </div>
   </nav>
 </header>
@@ -221,12 +228,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#loi-des-grands-nombres" id="toc-loi-des-grands-nombres" class="nav-link active" data-scroll-target="#loi-des-grands-nombres">Loi des grands nombres</a></li>
   <li><a href="#théorème-central-limite-tcl" id="toc-théorème-central-limite-tcl" class="nav-link" data-scroll-target="#théorème-central-limite-tcl">Théorème central limite (TCL)</a></li>
   </ul>
-<div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action">Voir la source</a></p><p><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action">Faire part d'un problème</a></p></div></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/notations.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/th_asymptotique.html">Théorèmes asymptotiques</a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title">Théorèmes asymptotiques</h1>
 </div>
@@ -241,7 +248,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <section id="loi-des-grands-nombres" class="level2">
 <h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
@@ -258,7 +267,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
 </span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
 <p><strong>Remarque</strong>: Bien qu’assez intuitif, ce théorème est difficile à démontrer. XXX TODO reference : Williams (en anglais) ou bien Ouvrard.</p>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -442,21 +451,20 @@ app = App(app_ui, server)
     \tfrac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
 </span></p>
 <p>Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l’on veut, elle se rapprochera toujours asymptotiquement d’une loi normale.</p>
-<p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>, notons <span class="math inline">\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}},  \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)</span>. Ainsi <!-- 
-$$
+<p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>, notons <span class="math inline">\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}},  \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)</span>. Ainsi</p>
+<p><span class="math display">
 \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma}\in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}] \right)\\
-$$ --></p>
-<p><span class="math display">\begin{align}
+\begin{align}
     1-\alpha_n&amp; = \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\nonumber\\
     &amp; =
     \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma} \in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}]\right) \nonumber\\
     &amp; =
     \mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
     &amp; \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
-\end{align}</span></p>
-<p>où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
+\end{align}
+</span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
 <p>Dans le cas classique d’un intervalle de confiance à 95%, c’est-à-dire quand <span class="math inline">\alpha_n=0.05</span>, et en prenant un intervalle de confiance symétrique (alors <span class="math inline">a=-t</span> et <span class="math inline">b=q</span>) on obtient <span class="math inline">1-\alpha_n= \int_{-q}^q \varphi(x) \, dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}</span> et <span class="math inline">q</span> est donc le quantile de niveau <span class="math inline">1-\tfrac{\alpha_n}{2}</span> de la loi normale centrée réduite. Numériquement on peut facilement évaluer <span class="math inline">q</span> et vérifier que <span class="math inline">q\approx 1.96</span> avec <code>scipy</code>:</p>
-<div class="cell" data-execution_count="1">
+<div id="66b1b712" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf(<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussienne centrée réduite,</span><span class="ch">\n</span><span class="ss">Quantile de niveau (1-α/2):</span><span class="ch">\n</span><span class="ss">q = </span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -467,11 +475,11 @@ q = 1.96</code></pre>
 </div>
 </div>
 <div id="exm-tcl" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
+<p><span class="theorem-title"><strong>Exemple 1 (Loi de Bernoulli) </strong></span>On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 </span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée dans le widget ci-dessous. Le contexte est le suivant. On répète <span class="math inline">t</span> fois le processus, qui consiste à afficher <span class="math inline">(\bar{X}_k)_{k \in [n]}</span>, où les <span class="math inline">n</span> variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre <span class="math inline">p</span>.</p>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 600
 import numpy as np
 from scipy.stats import norm
@@ -658,7 +666,7 @@ app = App(app_ui, server)
 x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 \end{align}
 </span></p>
-<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
@@ -674,7 +682,7 @@ Note
 <div id="thm-tcl" class="theorem">
 <p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>&nbsp;</p>
 </div>
-<pre class="shinylive-python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -968,10 +976,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -981,8 +988,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -995,6 +1011,128 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        typesetMath(container);
+        return container.innerHTML
+      } else {
+        typesetMath(note);
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      typesetMath(note);
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1038,6 +1176,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1063,6 +1202,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1124,17 +1289,18 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Courses/notations.html" class="pagination-link">
+      <a href="../Courses/notations.html" class="pagination-link  aria-label=" notations="" et="" rappels"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notations et rappels</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../Courses/simulation.html" class="pagination-link">
+      <a href="../Courses/simulation.html" class="pagination-link" aria-label="Simulation">
         <span class="nav-page-text">Simulation</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 
