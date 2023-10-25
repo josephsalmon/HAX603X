@@ -1,0 +1,76 @@
+Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+jstat = require('jstat');
+
+jstatPDFs = () => {
+  const distributions = Object.keys(jstat);
+  const continuousDistributions = distributions.filter(name => jstat[name].pdf && jstat[name].cdf);
+  const pdfs = {};
+  const cdfs = {};
+  const invs = {};
+
+  for (const name of continuousDistributions) {
+    pdfs[name] = jstat[name].pdf;
+    cdfs[name] = jstat[name].cdf;
+    invs[name] = jstat[name].inv;
+  }
+  return {pdf:pdfs, cdf:cdfs, inv:invs};
+};
+
+output = jstatPDFs();
+
+
+excludedPDFs = ['binomial', 'negbin', 'poisson'];
+pdfNames = Object.keys(output.pdf).filter(name => !excludedPDFs.includes(name));
+// sort pdfNames
+pdfNames.sort((a, b) => a.localeCompare(b));
+viewof inputs = Inputs.form([
+      Inputs.range([-10, 10], {value: 0, step: 0.001, label: tex`\mu`}),
+      Inputs.range([0.01, 5], {value: 1, step: 0.001, label: tex`\sigma`}),
+      Inputs.range([0.001, 0.999], {value: 0.5, step: 0.001, label:tex`\alpha`}),
+    ]);
+
+viewof distrib_name = Inputs.select(pdfNames, {label: "Distribution"});
+
+
+{
+
+  const x = d3.range(-10, 10, 0.01);
+  const pdf = x.map(x => jstat[distrib_name].pdf(x, mu, sigma));
+  const quantile = jstat[distrib_name].inv(alpha, mu, sigma);
+  const filteredX = x.filter(coord => coord <= quantile);
+  const filteredPdf = pdf.filter((_, i) => x[i] <= quantile);
+
+  print(quantile)
+    var trace1 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'PDF',
+      x: x,
+      y: pdf,
+      line: {color: 'black'}
+    }
+    var trace2 = {
+      type: "scatter",
+      name: 'Quantile',
+      fill: 'tozeroy',
+      x : filteredX,
+      y : filteredPdf,
+      opacity: 0.2,
+      line: {color: 'black'},
+    }
+    var data = [trace1, trace2];
+
+    var layout = {
+      title: 'Probability Density Function',
+    };
+
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout);
+    return div;
+  }
+
+
+
+mu = inputs[0];
+sigma = inputs[1];
+alpha = inputs[2]

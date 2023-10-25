@@ -1,0 +1,52 @@
+jstat=require('jstat');
+
+jstatPDFs = () => {
+  const distributions = Object.keys(jstat);
+  const continuousDistributions = distributions.filter(name => jstat[name].pdf && jstat[name].cdf);
+  const continuousDistributionsDict = {};
+  for (const name of continuousDistributions) {
+    continuousDistributionsDict[name] = jstat[name].pdf;
+  }
+  return continuousDistributionsDict;
+};
+pdfs = jstatPDFs();
+
+viewof inputs = Inputs.form([
+      Inputs.range([-5, 5], {value: 0.5, step: 0.1, label: tex`\mu`}),
+      Inputs.range([0.01, 5], {value: 1, step: 0.01, label: tex`\sigma`}),
+    ])
+
+plt = Plot.plot({
+      color: {
+      legend: true
+    },
+    x: {
+      label: "x",
+    //   axis: true
+    },
+    y: {
+    //   axis: true,
+      domain: [0, 2]
+    },
+    marks: [
+      Plot.ruleY([0]),
+      Plot.ruleX([0]),
+      Plot.axisX({ y: 0 }),
+      Plot.axisY({ x: 0 }),
+      Plot.line(data, {x: "x", y: "y", stroke : "type", strokeWidth: 2})
+    ]
+  })
+
+
+data = {
+  const x = d3.range(-10, 10, 0.01);
+  const pdf = x.map(x => ({x: x, y: jstat[distrib_name].pdf(x, mu, sigma), type: "pdf"}));
+  return pdf
+};
+
+excludedPDFs = ['binomial', 'nebin', 'poisson'];
+pdfNames = Object.keys(pdfs).filter(name => !excludedPDFs.includes(name));
+viewof distrib_name = Inputs.select(pdfNames, {label: "Distribution"});
+
+mu = inputs[0];
+sigma = inputs[1];
