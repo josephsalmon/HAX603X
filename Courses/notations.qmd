@@ -866,52 +866,37 @@ app = App(app_ui, server)
 //| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
-jstat = require('jstat');
-
-function laplacecdf(x, mu, b){
-  if (x <= mu){
-      var cdf = 0.5*Math.exp((x-mu)/b)
-  }else{
-      var cdf = 1 - 0.5*Math.exp(-(x-mu)/b)
-  }
-  return cdf
-}
-
-function laplacepdf(x,mu,b){
-  return (1/(2*b))*Math.exp(- Math.abs((x-mu)/b) )
-}
-
-function laplaceinv(p,mu,b){
-  return mu - b*Math.sign(p-0.5)*Math.log(1- Math.abs(p-0.5))
-}
-
-
+stdlib = require( "https://unpkg.com/@stdlib/stdlib@0.0.32/dist/stdlib-flat.min.js" )
+// dists = x.map(e=>stdlib.base.dists.cauchy.pdf( e, 2, 1))
+// continuous case 
 jstatPDFs = () => {
-  const distributions = Object.keys(jstat);
-  const continuousDistributions = distributions.filter(name => jstat[name].pdf && jstat[name].cdf && jstat[name].inv);
-  const pdfs = {};
-  const cdfs = {};
-  const invs = {};
+  const distributions = Object.keys(stdlib.base.dists);
+  print(distributions)
+  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
+    const continuousDistributions = distributions.filter(name => stdlib.base.dists[name].pdf && stdlib.base.dists[name].cdf && stdlib.base.dists[name].quantile);
+//   const continuousDistributions = distributions.filter(name => distributions[name].pdf && distributions[name].cdf && distributions[name].quantile);
+//   const pdfs = {};
+//   const cdfs = {};
+//   const invs = {};
 
-  for (const name of continuousDistributions) {
-    // if (name == 'laplace') {
-        // cdfs[name] = (p, mu, b) => laplacecdf(p, mu, b);
-        // pdfs[name] = (p, mu, b) => laplacepdf(p, mu, b);
-        // invs[name] = (p, mu, b) => laplaceinv(p, mu, b);
-        // }
-    // else{
-    pdfs[name] = jstat[name].pdf;
-    cdfs[name] = jstat[name].cdf;
-    invs[name] = jstat[name].inv;
-    // }
-  }
-  return {pdf:pdfs, cdf:cdfs, inv:invs};
+//   for (const name of continuousDistributions) {
+//     // if (name == 'laplace') {
+//         // cdfs[name] = (p, mu, b) => laplacecdf(p, mu, b);
+//         // pdfs[name] = (p, mu, b) => laplacepdf(p, mu, b);
+//         // invs[name] = (p, mu, b) => laplaceinv(p, mu, b);
+//         // }
+//     // else{
+//     pdfs[name] = distributions[name].pdf;
+//     cdfs[name] = distributions[name].cdf;
+//     invs[name] = distributions[name].quantile;
+//     // }
+//   }
+  return continuousDistributions
 };
 output = jstatPDFs();
 
-
 excludedPDFs = ['binomial', 'negbin', 'poisson'];
-pdfNames_unsorted = Object.keys(output.pdf).filter(name => !excludedPDFs.includes(name));
+pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
 pdfNames=pdfNames_unsorted.toSorted();
 viewof inputs = Inputs.form([
       Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu`}),
@@ -924,10 +909,10 @@ viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Distribu
 
 {
   const x = d3.range(-5, 5, 0.01);
-  const pdf = x.map(x => jstat[distrib_name].pdf(x, mu, sigma));
-  const cdf = x.map(x => jstat[distrib_name].cdf(x, mu, sigma));
-  const inv = x.map(x => jstat[distrib_name].inv(x, mu, sigma));
-  const quantile = jstat[distrib_name].inv(alpha, mu, sigma);
+  const pdf = x.map(x => stdlib.base.dists[distrib_name].pdf(x, mu, sigma));
+  const cdf = x.map(x => stdlib.base.dists[distrib_name].cdf(x, mu, sigma));
+  const inv = x.map(x => stdlib.base.dists[distrib_name].quantile(x, mu, sigma));
+  const quantile = stdlib.base.dists[distrib_name].quantile(alpha, mu, sigma);
   const filteredX = x.filter(coord => coord <= quantile);
   const filteredPdf = pdf.filter((_, i) => x[i] <= quantile);
   const filteredCdf = cdf.filter(coord => coord <= quantile);
