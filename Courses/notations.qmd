@@ -310,564 +310,22 @@ Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse d
 
 
 ### Cas des variables continues
-```{shinylive-python}
-#| standalone: true
-#| viewerHeight: 830
-import numpy as np
-from scipy import stats
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from shiny import ui, render, App
-from shinywidgets import output_widget, render_widget
 
 
-def keep_no_param_distribution():
-    distributions = stats._continuous_distns._distn_names
-    distributions_0 = []
-    for _, name in enumerate(distributions):
-        dist = getattr(stats, name)
-        if not dist.shapes or len(dist.shapes) == 0:
-            distributions_0.append(name)
-    distributions_0_val = [
-        getattr(stats.distributions, string) for string in distributions_0
-    ]
-    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
-    return distributions_0_dict
 
 
-distributions_0_dict = keep_no_param_distribution()
 
-mu = 0
-sigma = 1
+::: {.panel-tabset}
 
-app_ui = ui.page_fluid(
-    ui.div(
-        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
-        ui.input_slider("xrange", "x-range", -10, 10, value=(-5, 5), step=0.2),
-        ui.input_select(
-            "distrib",
-            "Distribution",
-            list(distributions_0_dict.keys()),
-            selected='norm'
-        ),
-        class_="d-flex gap-3",
-    ),
-    output_widget("my_widget"),
-)
-
-
-def server(input, output, session):
-    @output
-    @render_widget
-    def my_widget():
-        fig = make_subplots(
-            rows=3,
-            cols=2,
-            vertical_spacing=0.1,
-            horizontal_spacing=0.15,
-            subplot_titles=(
-                "Fonction quantile",
-                "",
-                "",
-                "Fonction de répartition",
-                "",
-                "Densité et quantile",
-            ),
-            column_widths=[0.2, 0.5],
-            row_heights=[0.35, 0.17, 0.17],
-        )
-
-        alpha = input.alpha()
-        distribution = distributions_0_dict[input.distrib()]
-        x = np.linspace(input.xrange()[0], input.xrange()[1], num=400)
-        cdf_data = distribution.cdf(x, loc=mu, scale=sigma)
-        pdf_data = distribution.pdf(x, loc=mu, scale=sigma)
-        q_alpha = distribution.ppf(alpha, loc=mu, scale=sigma)
-
-        fig.update_layout(autosize=True, height=700)
-
-        # Quantile plot
-        fig.add_trace(
-            go.Scatter(
-                x=cdf_data, y=x, mode="lines", marker={"color": "black"}
-            ),
-            row=1,
-            col=1,
-        )
-        # Diagonal
-        fig.add_trace(
-            go.Scatter(
-                x=cdf_data, y=cdf_data, mode="lines", marker={"color": "black"}
-            ),
-            row=2,
-            col=1,
-        )
-        # Cdf part
-        fig.add_trace(
-            go.Scatter(
-                x=x, y=cdf_data, mode="lines", marker={"color": "black"}
-            ),
-            row=2,
-            col=2,
-        )
-        # pdf part
-        fig.add_scatter(
-            x=x[x < q_alpha],
-            y=pdf_data[x < q_alpha],
-            fill="tozeroy",
-            mode="none",
-            fillcolor="rgb(66, 139, 202)",
-            row=3,
-            col=2,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=x, y=pdf_data, mode="lines", marker={"color": "black"}
-            ),
-            row=3,
-            col=2,
-        )
-
-        # Dots
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha],
-                y=[q_alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=1,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha],
-                y=[alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=2,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[q_alpha],
-                y=[alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=2,
-            col=2,
-        )
-
-        # Lines
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, alpha],
-                y=[x[0], q_alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=1,
-            col=1
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, alpha],
-                y=[alpha, 1.],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=1
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, 1],
-                y=[alpha, alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=1
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[x[0], q_alpha],
-                y=[alpha, alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=2
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[x[0], q_alpha],
-                y=[x[0], 0],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=2
-        )
-        # Axes ranges
-        fig.update_xaxes(range=[0, 1.], row=1, col=1)
-        fig.update_yaxes(matches="x6", row=1, col=1)
-
-        fig.update_yaxes(range=[0, 1.], row=2, col=1)
-        fig.update_xaxes(matches="x1", row=2, col=1)
-
-        fig.update_yaxes(rangemode="tozero", row=3, col=2)
-        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
-
-        fig.update_xaxes(matches="x6", row=2, col=2)
-        fig.update_yaxes(matches="y3", row=2, col=2)
-
-        # Add dropdown
-        fig.update_layout(
-            showlegend=False,
-            template="simple_white",
-        )
-        return fig
-
-
-app = App(app_ui, server)
-
-```
-
-
-### Cas des variables discrètes
-
-```{shinylive-python}
-#| standalone: true
-#| viewerHeight: 830
-import numpy as np
-from scipy import stats
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-from shiny import ui, render, App
-from shinywidgets import output_widget, render_widget
-
-
-def keep_no_param_distribution_disc():
-    distributions = stats._discrete_distns._distn_names
-    distributions_0 = [name for name in distributions if not getattr(stats, name).shapes or len(getattr(stats, name).shapes) in [1, 2]]
-    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0]
-    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
-    return distributions_0_dict
-
-def cdf_tool(x, dtype='int64'):
-    y = np.zeros(2*(len(x)), dtype=dtype)
-    y[::2]=x
-    y[1::2]=x
-    return y[1::], y[:-1], y
-
-def pmf_tool(x, dtype='int64'):
-    y = np.zeros(2*(len(x)), dtype=dtype)
-    y[::2]=x
-    return y[1::], y[:-1], y
-
-def insert_nones(my_list):
-    for i, val in enumerate(my_list):
-        if i % 3 == 2:
-            my_list.insert(i, None)
-    return my_list
-
-distributions_0_dict = keep_no_param_distribution_disc()
-
-app_ui = ui.page_fluid(
-    ui.div(
-        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
-        ui.input_slider("xrange", "x-range", -10, 10, value=(-5.5, 5.5), step=0.2),
-        ui.input_select(
-            "distrib",
-            "Distribution",
-            list(distributions_0_dict.keys()),
-            selected='poisson'
-        ),
-        class_="d-flex gap-3",
-    ),
-    output_widget("my_widget"),
-)
-
-
-def server(input, output, session):
-    @output
-    @render_widget
-    def my_widget():
-        fig = make_subplots(
-            rows=3,
-            cols=2,
-            vertical_spacing=0.1,
-            horizontal_spacing=0.15,
-            subplot_titles=(
-                "Fonction quantile",
-                "",
-                "",
-                "Fonction de répartition",
-                "",
-                "Fonction de masse et quantile",
-            ),
-            column_widths=[0.2, 0.5],
-            row_heights=[0.35, 0.17, 0.17],
-        )
-
-
-        alpha = input.alpha()
-        # alpha=0.5
-
-        mu = 0.5  # Param needed for some distribution
-        if input.distrib()=='zipf':
-            mu = 2
-        distribution = distributions_0_dict[input.distrib()]
-        # distribution=distributions_0_dict['poisson']
-        x = np.arange(np.floor(input.xrange()[0]), np.ceil(input.xrange()[1]))
-        # x = np.arange(np.floor(-5.5), np.ceil(5.5))
-
-        cdf_data = distribution.cdf(x, mu)
-        pmf_data = distribution.pmf(x, mu)
-        q_alpha = distribution.ppf(alpha, mu)
-        support = pmf_data.nonzero()[0]
-        fig.update_layout(autosize=True, height=700)
-
-        # Quantile plot
-        new_x, new_y, new_z = cdf_tool(support)
-        _, _, new_pmf = pmf_tool(support)
-
-        fig.add_trace(
-            go.Scatter(
-                x=insert_nones(list(np.append(cdf_data[new_y[::-1]], distribution.cdf(x[0], mu)))),
-                y=insert_nones(list(np.append(x[new_x[::-1]], x[new_x[0]]))),
-                mode="lines",
-                line=dict(color="black")
-            ),
-            row=1,
-            col=1,
-        )
-        fig.add_trace(
-             go.Scatter(
-                x=cdf_data[support], y=x[support],
-                mode="markers", marker={"color": "black"}
-            ),
-            row=1,
-            col=1,
-        )
-        # Diagonal
-        fig.add_trace(
-            go.Scatter(
-                x=cdf_data, y=cdf_data, mode="lines", marker={"color": "black"}
-            ),
-            row=2,
-            col=1,
-        )
-        # Cdf part
-        fig.add_trace(
-            go.Scatter(
-                x=x[support], y=cdf_data[support],
-                mode="markers", marker={"color": "black"}
-            ),
-            row=2,
-            col=2,
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=insert_nones(list(np.append(np.insert(x[new_x], 0, [x[0], x[new_x[0]]]),x[-1]))),
-                y=insert_nones(list(np.append(np.insert(cdf_data[new_y], 0, [0,0]), cdf_data[-1]))),
-                mode="lines",
-                line=dict(color="black")
-            ),
-            row=2,
-            col=2
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=x, y=pmf_data, mode="markers", marker={"color": "black"}
-            ),
-            row=3,
-            col=2,
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=x, y=pmf_data, mode="markers", marker={"color": "black"}
-            ),
-            row=3,
-            col=2,
-        )
-        x_bar = insert_nones(list(x[new_z]))
-        y_bar = insert_nones(list(pmf_data[new_pmf]))
-        fig.add_trace(
-            go.Scatter(
-                x=x_bar,
-                y=y_bar,
-                mode="lines",
-                line=dict(color="black")
-            ),
-            row=3,
-            col=2
-        )
-        _,_, devil_x = cdf_tool(x[x<=q_alpha])
-        _,_, devil_y = cdf_tool(pmf_data[x<q_alpha], dtype='float64')
-
-        x_bar_blue = insert_nones(list(devil_x))
-        y_bar_blue = np.array(insert_nones(list(devil_y)))
-        y_bar_blue[::-3]=0.
-        y_bar_blue = list(y_bar_blue)
-        fig.add_trace(
-            go.Scatter(
-                x=x_bar_blue,
-                y=y_bar_blue,
-                mode="lines",
-                line=dict(color="rgb(66, 139, 202)")
-            ),
-            row=3,
-            col=2
-        )
-        # pdf part
-        fig.add_scatter(
-            x=x[x <= q_alpha],
-            y=pmf_data[x <= q_alpha],
-            mode="markers",
-            marker={"color":"rgb(66, 139, 202)"},
-            row=3,
-            col=2,
-        )
-
-        # Dots
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha],
-                y=[q_alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=1,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha],
-                y=[alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=2,
-            col=1,
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[q_alpha],
-                y=[alpha],
-                mode="markers",
-                marker={"color": "rgb(66, 139, 202)"},
-                marker_symbol="x",
-                marker_size=8,
-            ),
-            row=2,
-            col=2,
-        )
-
-        # Lines
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, alpha],
-                y=[x[0], q_alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=1,
-            col=1
-        )
-
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, alpha],
-                y=[alpha, 1.],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=1
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[alpha, 1],
-                y=[alpha, alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=1
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[x[0], q_alpha],
-                y=[alpha, alpha],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=2
-        )
-        fig.add_trace(
-            go.Scatter(
-                x=[x[0], q_alpha],
-                y=[x[0], 0],
-                mode="lines",
-                line=dict(dash="dash", color="rgb(66, 139, 202)")
-            ),
-            row=2,
-            col=2
-        )
-        # Axes ranges
-        fig.update_xaxes(range=[0, 1.05], row=1, col=1)
-        fig.update_yaxes(matches="x6", row=1, col=1)
-
-        fig.update_yaxes(range=[0, 1.05], row=2, col=1)
-        fig.update_xaxes(matches="x1", row=2, col=1)
-
-        fig.update_yaxes(rangemode="tozero", row=3, col=2)
-        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
-
-        fig.update_xaxes(matches="x6", row=2, col=2)
-        fig.update_yaxes(matches="y3", row=2, col=2)
-
-        # Add dropdown
-        fig.update_layout(
-            showlegend=False,
-            template="simple_white",
-        )
-        return fig
-
-
-app = App(app_ui, server)
-
-```
-
+## Observable
 
 ```{ojs}
 //| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' )
-// continuous case 
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
 jstatPDFs = () => {
   const distributions = Object.keys(dists);
   print(distributions)
@@ -877,7 +335,7 @@ jstatPDFs = () => {
 };
 output = jstatPDFs();
 
-excludedPDFs = ['binomial', 'negbin', 'poisson'];
+excludedPDFs = [];
 pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
 pdfNames=pdfNames_unsorted.toSorted();
 viewof inputs = Inputs.form([
@@ -1226,6 +684,927 @@ var layout = {
 mu = inputs[0];
 sigma = inputs[1];
 alpha = inputs[2]
+```
 
+## Python / Shiny
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 830
+import numpy as np
+from scipy import stats
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shiny import ui, render, App
+from shinywidgets import output_widget, render_widget
+
+
+def keep_no_param_distribution():
+    distributions = stats._continuous_distns._distn_names
+    distributions_0 = []
+    for _, name in enumerate(distributions):
+        dist = getattr(stats, name)
+        if not dist.shapes or len(dist.shapes) == 0:
+            distributions_0.append(name)
+    distributions_0_val = [
+        getattr(stats.distributions, string) for string in distributions_0
+    ]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+
+distributions_0_dict = keep_no_param_distribution()
+
+mu = 0
+sigma = 1
+
+app_ui = ui.page_fluid(
+    ui.div(
+        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
+        ui.input_slider("xrange", "x-range", -10, 10, value=(-5, 5), step=0.2),
+        ui.input_select(
+            "distrib",
+            "Distribution",
+            list(distributions_0_dict.keys()),
+            selected='norm'
+        ),
+        class_="d-flex gap-3",
+    ),
+    output_widget("my_widget"),
+)
+
+
+def server(input, output, session):
+    @output
+    @render_widget
+    def my_widget():
+        fig = make_subplots(
+            rows=3,
+            cols=2,
+            vertical_spacing=0.1,
+            horizontal_spacing=0.15,
+            subplot_titles=(
+                "Fonction quantile",
+                "",
+                "",
+                "Fonction de répartition",
+                "",
+                "Densité et quantile",
+            ),
+            column_widths=[0.2, 0.5],
+            row_heights=[0.35, 0.17, 0.17],
+        )
+
+        alpha = input.alpha()
+        distribution = distributions_0_dict[input.distrib()]
+        x = np.linspace(input.xrange()[0], input.xrange()[1], num=400)
+        cdf_data = distribution.cdf(x, loc=mu, scale=sigma)
+        pdf_data = distribution.pdf(x, loc=mu, scale=sigma)
+        q_alpha = distribution.ppf(alpha, loc=mu, scale=sigma)
+
+        fig.update_layout(autosize=True, height=700)
+
+        # Quantile plot
+        fig.add_trace(
+            go.Scatter(
+                x=cdf_data, y=x, mode="lines", marker={"color": "black"}
+            ),
+            row=1,
+            col=1,
+        )
+        # Diagonal
+        fig.add_trace(
+            go.Scatter(
+                x=cdf_data, y=cdf_data, mode="lines", marker={"color": "black"}
+            ),
+            row=2,
+            col=1,
+        )
+        # Cdf part
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=cdf_data, mode="lines", marker={"color": "black"}
+            ),
+            row=2,
+            col=2,
+        )
+        # pdf part
+        fig.add_scatter(
+            x=x[x < q_alpha],
+            y=pdf_data[x < q_alpha],
+            fill="tozeroy",
+            mode="none",
+            fillcolor="rgb(66, 139, 202)",
+            row=3,
+            col=2,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=pdf_data, mode="lines", marker={"color": "black"}
+            ),
+            row=3,
+            col=2,
+        )
+
+        # Dots
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[q_alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=1,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=2,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[q_alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=2,
+            col=2,
+        )
+
+        # Lines
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[x[0], q_alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=1,
+            col=1
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[alpha, 1.],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, 1],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[x[0], 0],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        # Axes ranges
+        fig.update_xaxes(range=[0, 1.], row=1, col=1)
+        fig.update_yaxes(matches="x6", row=1, col=1)
+
+        fig.update_yaxes(range=[0, 1.], row=2, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+
+        fig.update_yaxes(rangemode="tozero", row=3, col=2)
+        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
+
+        fig.update_xaxes(matches="x6", row=2, col=2)
+        fig.update_yaxes(matches="y3", row=2, col=2)
+
+        # Add dropdown
+        fig.update_layout(
+            showlegend=False,
+            template="simple_white",
+        )
+        return fig
+
+
+app = App(app_ui, server)
 
 ```
+:::
+
+### Cas des variables discrètes
+
+::: {.panel-tabset}
+
+## Observable
+
+```{ojs}
+//| echo: false
+discretePDFs = () => {
+  const distributions = Object.keys(dists);
+  print(distributions)
+  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
+    const continuousDistributions = distributions.filter(name => dists[name].pmf && dists[name].cdf && dists[name].quantile);
+  return continuousDistributions
+};
+output_discr = discretePDFs();
+
+pmfNames_unsorted = output_discr.filter(name => !excludedPDFs.includes(name));
+pmfNames=pmfNames_unsorted.toSorted();
+viewof inputs_disc = Inputs.form([
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu `}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma `}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`}),
+    ]);
+
+viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Distribution"});
+
+
+{
+  const x = d3.range(-5, 5, 0.01);
+  const pmf = x.map(x => dists[distrib_name_discr].pmf(x, mu_disc, sigma_disc));
+  const cdf = x.map(x => dists[distrib_name_discr].cdf(x, mu_disc, sigma_disc));
+  const inv = x.map(x => dists[distrib_name_discr].quantile(x, mu_disc, sigma_disc));
+  const quantile = dists[distrib_name_discr].quantile(alpha_disc, mu_disc, sigma_disc);
+  const filteredX = x.filter(coord => coord <= quantile);
+  const filteredPmf = pmf.filter((_, i) => x[i] <= quantile);
+  const filteredCdf = cdf.filter(coord => coord <= quantile);
+
+
+{
+var trace1 = {
+      type: "scatter",
+      name: 'Quantile',
+      x : cdf,
+      y : x,
+      line: {color: 'black'},
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+var trace12 = {
+        x : [alpha_disc, alpha_disc],
+        y : [x[0], quantile],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+
+
+var trace13 = {
+    x: [0, alpha_disc],
+    y: [quantile, quantile],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y3'
+}
+
+
+var trace2 = {
+x: cdf,
+y: cdf,
+type: 'scatter',
+name: 'identity',
+line: {color: 'black'},
+xaxis: 'x1',
+yaxis: 'y2'
+
+};
+
+
+var trace21 = {
+        x : [alpha_disc, 1],
+        y : [alpha_disc, alpha_disc],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+var trace22 = {
+        x : [alpha_disc, alpha_disc],
+        y : [alpha_disc, 1],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+var trace23 = {
+    x: [alpha_disc],
+    y: [alpha_disc],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y2'
+}
+
+
+var trace31 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'PDF2',
+      x: x,
+      y: cdf,
+      line: {color: 'black'},
+      xaxis: 'x2',
+      yaxis: 'y2',
+};
+
+var trace32 = {
+        x : filteredX,
+        y : filteredX.map(x => alpha_disc),
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace33 = {
+        x : [quantile, quantile],
+        y : [0, alpha_disc],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace34 = {
+    x: [quantile],
+    y: [alpha],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x2',
+    yaxis: 'y2'
+}
+
+
+var trace41 = {
+
+  type: "scatter",
+  name: 'Quantile2',
+  fill: 'tozeroy',
+  x : filteredX,
+  y : filteredPmf,
+  opacity: 0.9,
+  line: {color: ' #428BCA'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+
+var trace42 = {
+
+  type: "scatter",
+  mode: "lines",
+  name: 'PDF2',
+  x: x,
+  y: pmf,
+  line: {color: 'black'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+var data = [
+  trace1,
+  trace12, trace13,
+  trace2, trace21, trace22, trace23,
+  trace31, trace32, trace33, trace34,
+  trace41, trace42];
+
+
+var layout = {
+
+  title: 'Distribution et quantile',
+  xaxis: {
+    domain: [0, 0.32],
+    anchor: 'y1'
+  },
+  yaxis: {
+    domain: [0, 0.24],
+    anchor: 'x1'
+
+  },
+  xaxis2: {
+    domain: [0.35, 1],
+    anchor: 'y'
+  },
+
+  yaxis2: {
+    domain: [0.26, 0.49],
+    anchor: 'x1'
+  },
+
+
+
+  yaxis3: {
+
+    domain: [0.5, 1],
+
+    anchor: 'x1'
+
+  },
+  height: 640,
+   width: 480,
+// legend off
+  showlegend: false,
+
+
+  annotations: [
+
+    {
+      x: 1/4,
+      y: quantile - (x[0]-x.slice(-1))/20,
+      xref: 'x1',
+      yref: 'y3',
+      text: 'q= ' + quantile.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+        text: "Fonction quantile",
+      font: {
+      size: 15,
+      color: 'black',
+    },
+    showarrow: false,
+    align: 'center',
+    x: -0.01,
+    y: 1.05,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de répartition",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.52,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de densité",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.225,
+    xref: 'paper',
+    yref: 'paper',
+    },
+  ]
+
+};
+// XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
+
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout);
+    return div;
+  }
+
+}
+
+mu_disc = inputs_disc[0];
+sigma_disc = inputs_disc[1];
+alpha_disc = inputs_disc[2];
+```
+
+## Python / Shiny
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 830
+import numpy as np
+from scipy import stats
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shiny import ui, render, App
+from shinywidgets import output_widget, render_widget
+
+
+def keep_no_param_distribution_disc():
+    distributions = stats._discrete_distns._distn_names
+    distributions_0 = [name for name in distributions if not getattr(stats, name).shapes or len(getattr(stats, name).shapes) in [1, 2]]
+    distributions_0_val = [getattr(stats.distributions, string) for string in distributions_0]
+    distributions_0_dict = dict(zip(distributions_0, distributions_0_val))
+    return distributions_0_dict
+
+def cdf_tool(x, dtype='int64'):
+    y = np.zeros(2*(len(x)), dtype=dtype)
+    y[::2]=x
+    y[1::2]=x
+    return y[1::], y[:-1], y
+
+def pmf_tool(x, dtype='int64'):
+    y = np.zeros(2*(len(x)), dtype=dtype)
+    y[::2]=x
+    return y[1::], y[:-1], y
+
+def insert_nones(my_list):
+    for i, val in enumerate(my_list):
+        if i % 3 == 2:
+            my_list.insert(i, None)
+    return my_list
+
+distributions_0_dict = keep_no_param_distribution_disc()
+
+app_ui = ui.page_fluid(
+    ui.div(
+        ui.input_slider("alpha", "Quantile", 0.01, 0.99, value=0.5, step=0.01),
+        ui.input_slider("xrange", "x-range", -10, 10, value=(-5.5, 5.5), step=0.2),
+        ui.input_select(
+            "distrib",
+            "Distribution",
+            list(distributions_0_dict.keys()),
+            selected='poisson'
+        ),
+        class_="d-flex gap-3",
+    ),
+    output_widget("my_widget"),
+)
+
+
+def server(input, output, session):
+    @output
+    @render_widget
+    def my_widget():
+        fig = make_subplots(
+            rows=3,
+            cols=2,
+            vertical_spacing=0.1,
+            horizontal_spacing=0.15,
+            subplot_titles=(
+                "Fonction quantile",
+                "",
+                "",
+                "Fonction de répartition",
+                "",
+                "Fonction de masse et quantile",
+            ),
+            column_widths=[0.2, 0.5],
+            row_heights=[0.35, 0.17, 0.17],
+        )
+
+
+        alpha = input.alpha()
+        # alpha=0.5
+
+        mu = 0.5  # Param needed for some distribution
+        if input.distrib()=='zipf':
+            mu = 2
+        distribution = distributions_0_dict[input.distrib()]
+        # distribution=distributions_0_dict['poisson']
+        x = np.arange(np.floor(input.xrange()[0]), np.ceil(input.xrange()[1]))
+        # x = np.arange(np.floor(-5.5), np.ceil(5.5))
+
+        cdf_data = distribution.cdf(x, mu)
+        pmf_data = distribution.pmf(x, mu)
+        q_alpha = distribution.ppf(alpha, mu)
+        support = pmf_data.nonzero()[0]
+        fig.update_layout(autosize=True, height=700)
+
+        # Quantile plot
+        new_x, new_y, new_z = cdf_tool(support)
+        _, _, new_pmf = pmf_tool(support)
+
+        fig.add_trace(
+            go.Scatter(
+                x=insert_nones(list(np.append(cdf_data[new_y[::-1]], distribution.cdf(x[0], mu)))),
+                y=insert_nones(list(np.append(x[new_x[::-1]], x[new_x[0]]))),
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=1,
+            col=1,
+        )
+        fig.add_trace(
+             go.Scatter(
+                x=cdf_data[support], y=x[support],
+                mode="markers", marker={"color": "black"}
+            ),
+            row=1,
+            col=1,
+        )
+        # Diagonal
+        fig.add_trace(
+            go.Scatter(
+                x=cdf_data, y=cdf_data, mode="lines", marker={"color": "black"}
+            ),
+            row=2,
+            col=1,
+        )
+        # Cdf part
+        fig.add_trace(
+            go.Scatter(
+                x=x[support], y=cdf_data[support],
+                mode="markers", marker={"color": "black"}
+            ),
+            row=2,
+            col=2,
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=insert_nones(list(np.append(np.insert(x[new_x], 0, [x[0], x[new_x[0]]]),x[-1]))),
+                y=insert_nones(list(np.append(np.insert(cdf_data[new_y], 0, [0,0]), cdf_data[-1]))),
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=2,
+            col=2
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=pmf_data, mode="markers", marker={"color": "black"}
+            ),
+            row=3,
+            col=2,
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=x, y=pmf_data, mode="markers", marker={"color": "black"}
+            ),
+            row=3,
+            col=2,
+        )
+        x_bar = insert_nones(list(x[new_z]))
+        y_bar = insert_nones(list(pmf_data[new_pmf]))
+        fig.add_trace(
+            go.Scatter(
+                x=x_bar,
+                y=y_bar,
+                mode="lines",
+                line=dict(color="black")
+            ),
+            row=3,
+            col=2
+        )
+        _,_, devil_x = cdf_tool(x[x<=q_alpha])
+        _,_, devil_y = cdf_tool(pmf_data[x<q_alpha], dtype='float64')
+
+        x_bar_blue = insert_nones(list(devil_x))
+        y_bar_blue = np.array(insert_nones(list(devil_y)))
+        y_bar_blue[::-3]=0.
+        y_bar_blue = list(y_bar_blue)
+        fig.add_trace(
+            go.Scatter(
+                x=x_bar_blue,
+                y=y_bar_blue,
+                mode="lines",
+                line=dict(color="rgb(66, 139, 202)")
+            ),
+            row=3,
+            col=2
+        )
+        # pdf part
+        fig.add_scatter(
+            x=x[x <= q_alpha],
+            y=pmf_data[x <= q_alpha],
+            mode="markers",
+            marker={"color":"rgb(66, 139, 202)"},
+            row=3,
+            col=2,
+        )
+
+        # Dots
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[q_alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=1,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=2,
+            col=1,
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[q_alpha],
+                y=[alpha],
+                mode="markers",
+                marker={"color": "rgb(66, 139, 202)"},
+                marker_symbol="x",
+                marker_size=8,
+            ),
+            row=2,
+            col=2,
+        )
+
+        # Lines
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[x[0], q_alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=1,
+            col=1
+        )
+
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, alpha],
+                y=[alpha, 1.],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[alpha, 1],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=1
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[alpha, alpha],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        fig.add_trace(
+            go.Scatter(
+                x=[x[0], q_alpha],
+                y=[x[0], 0],
+                mode="lines",
+                line=dict(dash="dash", color="rgb(66, 139, 202)")
+            ),
+            row=2,
+            col=2
+        )
+        # Axes ranges
+        fig.update_xaxes(range=[0, 1.05], row=1, col=1)
+        fig.update_yaxes(matches="x6", row=1, col=1)
+
+        fig.update_yaxes(range=[0, 1.05], row=2, col=1)
+        fig.update_xaxes(matches="x1", row=2, col=1)
+
+        fig.update_yaxes(rangemode="tozero", row=3, col=2)
+        fig.update_xaxes(range=[x[0], x[-1]], row=3, col=2)
+
+        fig.update_xaxes(matches="x6", row=2, col=2)
+        fig.update_yaxes(matches="y3", row=2, col=2)
+
+        # Add dropdown
+        fig.update_layout(
+            showlegend=False,
+            template="simple_white",
+        )
+        return fig
+
+
+app = App(app_ui, server)
+
+```
+
+
+:::
