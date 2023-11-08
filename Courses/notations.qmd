@@ -867,30 +867,11 @@ app = App(app_ui, server)
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 stdlib = require( "https://unpkg.com/@stdlib/stdlib@0.0.32/dist/stdlib-flat.min.js" )
-// dists = x.map(e=>stdlib.base.dists.cauchy.pdf( e, 2, 1))
-// continuous case 
 jstatPDFs = () => {
   const distributions = Object.keys(stdlib.base.dists);
   print(distributions)
-  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
-    const continuousDistributions = distributions.filter(name => stdlib.base.dists[name].pdf && stdlib.base.dists[name].cdf && stdlib.base.dists[name].quantile);
-//   const continuousDistributions = distributions.filter(name => distributions[name].pdf && distributions[name].cdf && distributions[name].quantile);
-//   const pdfs = {};
-//   const cdfs = {};
-//   const invs = {};
 
-//   for (const name of continuousDistributions) {
-//     // if (name == 'laplace') {
-//         // cdfs[name] = (p, mu, b) => laplacecdf(p, mu, b);
-//         // pdfs[name] = (p, mu, b) => laplacepdf(p, mu, b);
-//         // invs[name] = (p, mu, b) => laplaceinv(p, mu, b);
-//         // }
-//     // else{
-//     pdfs[name] = distributions[name].pdf;
-//     cdfs[name] = distributions[name].cdf;
-//     invs[name] = distributions[name].quantile;
-//     // }
-//   }
+    const continuousDistributions = distributions.filter(name => stdlib.base.dists[name].pdf && stdlib.base.dists[name].cdf && stdlib.base.dists[name].quantile);
   return continuousDistributions
 };
 output = jstatPDFs();
