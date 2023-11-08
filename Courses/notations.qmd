@@ -866,12 +866,13 @@ app = App(app_ui, server)
 //| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
-stdlib = require( "https://unpkg.com/@stdlib/stdlib@0.0.32/dist/stdlib-flat.min.js" )
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' )
+// continuous case 
 jstatPDFs = () => {
-  const distributions = Object.keys(stdlib.base.dists);
+  const distributions = Object.keys(dists);
   print(distributions)
-
-    const continuousDistributions = distributions.filter(name => stdlib.base.dists[name].pdf && stdlib.base.dists[name].cdf && stdlib.base.dists[name].quantile);
+  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
+    const continuousDistributions = distributions.filter(name => dists[name].pdf && dists[name].cdf && dists[name].quantile);
   return continuousDistributions
 };
 output = jstatPDFs();
@@ -890,10 +891,10 @@ viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Distribu
 
 {
   const x = d3.range(-5, 5, 0.01);
-  const pdf = x.map(x => stdlib.base.dists[distrib_name].pdf(x, mu, sigma));
-  const cdf = x.map(x => stdlib.base.dists[distrib_name].cdf(x, mu, sigma));
-  const inv = x.map(x => stdlib.base.dists[distrib_name].quantile(x, mu, sigma));
-  const quantile = stdlib.base.dists[distrib_name].quantile(alpha, mu, sigma);
+  const pdf = x.map(x => dists[distrib_name].pdf(x, mu, sigma));
+  const cdf = x.map(x => dists[distrib_name].cdf(x, mu, sigma));
+  const inv = x.map(x => dists[distrib_name].quantile(x, mu, sigma));
+  const quantile = dists[distrib_name].quantile(alpha, mu, sigma);
   const filteredX = x.filter(coord => coord <= quantile);
   const filteredPdf = pdf.filter((_, i) => x[i] <= quantile);
   const filteredCdf = cdf.filter(coord => coord <= quantile);
