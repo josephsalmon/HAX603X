@@ -1,22 +1,25 @@
 ---
 title: "inverse-vizu"
 format:
-  html: 
-    echo: false  
+  html:
+    echo: false
 ---
 
-## Quarto
-
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
 
 <!-- https://observablehq.com/@triptych/getting-started-with-matter-js -->
 
 ```{ojs}
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+
+
 Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() => window["Matter"])
-
 {
-    var Example = Example || {};
+    const x = d3.range(-5, 5, 0.01);
+    const sigma = 1;
+    const mu = 0;
+    // const cdf = x.map(x => dists['normal'].cdf(x, mu, sigma));
 
+    var Example = Example || {};
     Example.galton = function() {
         var Engine = Matter.Engine,
             Render = Matter.Render,
@@ -28,13 +31,11 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
             Mouse = Matter.Mouse,
             World = Matter.World,
             Bodies = Matter.Bodies;
-
         // create engine
         var engine = Engine.create({
             enableSleeping: true
             }),
             world = engine.world;
-
         const width = 500;
         const height = 500;
         // create renderer
@@ -47,27 +48,24 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
             wireframes: false
             }
         });
-
-
-
         Render.run(render);
-
         // create runner
         var runner = Runner.create({
             delta: 1000 / (60 * 10), // 600Hz delta = 1.666ms = 10upf @ 60fps (10x default precision)
             maxFrameTime: 1000 / 20 // performance budget
         });
         Runner.run(runner, engine);
-
-        const size = 4;
+        const size = 2;
         const discretize = (x) => Math.round(x / size) * size;
-
         // add bodies
-        let total = 3000;
+        let total = 20000;
         setInterval(() => {
             if (total-- > 0) {
-            const square = Bodies.rectangle(width/2 + discretize((-0.5 + Math.random())*400), -20, size,size, {
-                sleepThreshold: 25,
+            const unifm1p1 = Math.random();
+            const quantile = dists['laplace'].quantile(unifm1p1, mu, sigma);
+            const square = Bodies.rectangle(discretize((-quantile*40+width/2) ), height/2 + ((unifm1p1-0.5)*200)
+            , size,size, {
+                sleepThreshold: 10,
                 friction: 1,
                 restitution: 0.0,
                 slop: 0,
@@ -76,28 +74,23 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
                 visible: true
                 }
             });
-
             Matter.Events.on(square, "sleepStart", () => {
                 Matter.Body.setStatic(square, true);
             });
             World.add(world, square);
             }
         }, 1);
-
         World.add(
             world,
-            Bodies.rectangle(width/2, height-20, width, 10, {
+            Bodies.rectangle(width/2, height-2, width, 4, {
             isStatic: true,
             render: {
                 fillStyle: "#ffffff",
                 visible: true
             }
             })
-
         );
-
         // World.add(world, pegs);
-
         return {
             engine: engine,
             runner: runner,
@@ -109,9 +102,7 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
             }
         };
     };
-
     Example.galton();
-
     // const delta = 1000 / 60;
     // const subSteps = 50;
     // const subDelta = delta / subSteps;
