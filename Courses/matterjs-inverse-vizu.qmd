@@ -16,7 +16,7 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
 {
     const x = d3.range(-5, 5, 0.01);
     const sigma = 1;
-    const mu = 0;
+    const mu = 0.5;
     // const cdf = x.map(x => dists['normal'].cdf(x, mu, sigma));
 
     var Example = Example || {};
@@ -55,18 +55,21 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
             maxFrameTime: 1000 / 20 // performance budget
         });
         Runner.run(runner, engine);
-        const size = 2;
+        const size = 4;
         const discretize = (x) => Math.round(x / size) * size;
         // add bodies
-        let total = 20000;
+        const distribution = 'exponential';
+        let total = 500;
         setInterval(() => {
             if (total-- > 0) {
             const unifm1p1 = Math.random();
-            const quantile = dists['laplace'].quantile(unifm1p1, mu, sigma);
-            const square = Bodies.rectangle(discretize((-quantile*40+width/2) ), height/2 + ((unifm1p1-0.5)*200)
+            const quantile = dists[distribution].quantile(unifm1p1, mu, sigma);
+            const cdf = dists[distribution].cdf(unifm1p1, mu, sigma);
+            const square = Bodies.rectangle(discretize((quantile*40+width/2) ), 1*height/3 + (-(unifm1p1-0.5)*height/3)
             , size,size, {
                 sleepThreshold: 10,
                 friction: 1,
+                density: 1,
                 restitution: 0.0,
                 slop: 0,
                 render: {
@@ -78,11 +81,23 @@ Matter = require(await FileAttachment("./matter.alpha.min.js").url()).catch(() =
                 Matter.Body.setStatic(square, true);
             });
             World.add(world, square);
+
+            World.add(
+            world,
+            Bodies.rectangle(discretize((quantile*40+width/2) ), 1*height/3 + (-(unifm1p1-0.5)*height/3)
+            -10, size,size, {
+            isStatic: true,
+            render: {
+                fillStyle: "#ffffff",
+                visible: true
+            }
+            })
+        );
             }
         }, 1);
         World.add(
             world,
-            Bodies.rectangle(width/2, height-2, width, 4, {
+            Bodies.rectangle(width/2, height-10, width, 4, {
             isStatic: true,
             render: {
                 fillStyle: "#ffffff",
