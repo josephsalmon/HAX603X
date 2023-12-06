@@ -460,6 +460,8 @@ var trace22 = {
       yaxis: 'y2'
 }
 
+
+
 var trace23 = {
     x: [alpha],
     y: [alpha],
@@ -614,6 +616,23 @@ var layout = {
       xref: 'x1',
       yref: 'y3',
       text: 'q= ' + quantile.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+      x: 1/4,
+      y: alpha,
+      xref: 'x1',
+      yref: 'y2',
+      text: 'alpha= ' + alpha.toFixed(2),
       font: {
         size: 12,
         color: '#428BCA',
@@ -948,13 +967,13 @@ viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Di
 
 
 {
-  const x = d3.range(-5, 5, 0.01);
-  const pmf = x.map(x => dists[distrib_name_discr].pmf(x, mu_disc, sigma_disc));
-  const cdf = x.map(x => dists[distrib_name_discr].cdf(x, mu_disc, sigma_disc));
-  const inv = x.map(x => dists[distrib_name_discr].quantile(x, mu_disc, sigma_disc));
+  const z = d3.range(-5, 5, 0.01);
+  const pmf = z.map(z => dists[distrib_name_discr].pmf(z, mu_disc, sigma_disc));
+  const cdf = z.map(z => dists[distrib_name_discr].cdf(z, mu_disc, sigma_disc));
+  const inv = z.map(z => dists[distrib_name_discr].quantile(z, mu_disc, sigma_disc));
   const quantile = dists[distrib_name_discr].quantile(alpha_disc, mu_disc, sigma_disc);
-  const filteredX = x.filter(coord => coord <= quantile);
-  const filteredPmf = pmf.filter((_, i) => x[i] <= quantile);
+  const filteredX = z.filter(coord => coord <= quantile);
+  const filteredPmf = pmf.filter((_, i) => z[i] <= quantile);
   const filteredCdf = cdf.filter(coord => coord <= quantile);
 
 
@@ -963,7 +982,7 @@ var trace1 = {
       type: "scatter",
       name: 'Quantile',
       x : cdf,
-      y : x,
+      y : z,
       line: {color: 'black'},
       xaxis: 'x1',
       yaxis: 'y3',
@@ -973,7 +992,7 @@ var trace1 = {
 
 var trace12 = {
         x : [alpha_disc, alpha_disc],
-        y : [x[0], quantile],
+        y : [z[0], quantile],
         mode: 'lines',
         line: {
             dash: 'dash',
@@ -1079,7 +1098,7 @@ var trace31 = {
       type: "scatter",
       mode: "lines",
       name: 'PDF2',
-      x: x,
+      x: z,
       y: cdf,
       line: {color: 'black'},
       xaxis: 'x2',
@@ -1088,7 +1107,7 @@ var trace31 = {
 
 var trace32 = {
         x : filteredX,
-        y : filteredX.map(x => alpha_disc),
+        y : filteredX.map(z => alpha_disc),
         mode: 'lines',
         line: {
             dash: 'dash',
@@ -1158,7 +1177,7 @@ var trace42 = {
   type: "scatter",
   mode: "lines",
   name: 'PDF2',
-  x: x,
+  x: z,
   y: pmf,
   line: {color: 'black'},
   xaxis: 'x2',
@@ -1212,10 +1231,27 @@ var layout = {
 
     {
       x: 1/4,
-      y: quantile - (x[0]-x.slice(-1))/20,
+      y: quantile - (z[0]-z.slice(-1))/20,
       xref: 'x1',
       yref: 'y3',
-      text: 'q= ' + quantile.toFixed(2),
+      text: 'q=' + quantile.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+      x: 1/4,
+      y: alpha_disc,
+      xref: 'x1',
+      yref: 'y2',
+      text: 'alpha=' + alpha_disc.toFixed(2),
       font: {
         size: 12,
         color: '#428BCA',
