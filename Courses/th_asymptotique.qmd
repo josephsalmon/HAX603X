@@ -264,7 +264,7 @@ $$
 	\mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
     & \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
 \end{align}
-$$
+$$  
 où l'on note $\varphi$ (resp. $\Phi$) la densité (resp. la fonction de répartition) d'une loi normale centrée réduite, définie pour tout $x\in\mathbb{R}$ par $\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$ (resp. $\Phi(x)= \int_{-\infty}^{x}\varphi(u) du$).
 
 Dans le cas classique d'un intervalle de confiance à 95\%, c'est-à-dire quand $\alpha_n=0.05$, et en prenant un intervalle de confiance symétrique (alors $a=-t$ et $b=q$) on obtient $1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}$ et $q$ est donc le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite. Numériquement on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`:

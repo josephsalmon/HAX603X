@@ -163,6 +163,26 @@ où la deuxième égalité résulte de la bijectivité de $F$.
 Ainsi, si $F$ est facilement inversible, on peut simuler une variable aléatoire $X$ de loi $F$ en simulant une variable aléatoire uniforme $U$ et en posant $X = F^{-1}(U)$.
 
 
+::: {#exm-inverse-exponentielle}
+
+## Simulation d'une loi exponentielle
+
+On rappelle que la loi exponentielle de paramètre $\lambda > 0$ a pour densité
+$$
+f_{\lambda}(x) = \lambda e^{-\lambda x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+$$
+et donc pour fonction de répartition
+$$
+F_{\lambda}(x) = 1 - e^{-\lambda x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+$$
+On vérifie que $F_{\lambda}$ est bijective de $\mathbb{R}_+$ dans $]0,1[$ et que son inverse est donnée pour tout $u \in ]0,1[$ par
+$$
+F_{\lambda}^{-1}(u) = -\frac{1}{\lambda} \log(1-u)\enspace.
+$$
+:::
+
+
+
 Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes) c'est donc pourquoi on utilise l'inverse l'inverse généralisée ou fonction quantile introduite dans la section [Notations](notations.qmd):
 <!-- @def-quantile: -->
 
@@ -677,7 +697,6 @@ On simule $U_1$ et $Y_1$. Si $U_1 \leq r(Y_1)$ c'est gagné, on pose $X=Y_1$. Si
 Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$. Comme $f$ est majorée par $4$, on peut choisir pour $g$ la densité de la loi uniforme sur $[0,1]$ et $m=4$. Alors, $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $U_1 \leq Y_1^3$, etc.
 
 Bien évidemment, on privilégiera ici une simulation via $F^\leftarrow$ qui permet de générer des variables aléatoires de loi $f$ plus rapidement.
-:::
 
 ```{python}
 #| echo: false
@@ -713,7 +732,7 @@ m = 4
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
 fig1.show()
 ```
-Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = x {1\hspace{-3.8pt} 1}_{[0, 1]}$
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = x {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$.
 
 ```{python}
 #| echo: false
@@ -739,45 +758,48 @@ ojs_define(ratio2=ratio2)
 md`Le taux d'acceptation est passé de **${ratio1}** à
 **${ratio2}** en utilisant une loi triangulaire au lieu d'une loi uniforme.`
 ```
+:::
 
 <br>
 
+
 ::: {#exm-rejet_andrews}
 
-## Rejet d'une loi de densité de type Andrews
-Considérons la densité $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$. Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
+## Rejet d'une loi de densité d'Andrews
+Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
+Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
 On peut l'adapter en adaptant le test de la manière suivante:
-si l'on prend $m=1/S$ on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{1}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{ g(x)}$.
-:::
+si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
+De plus on peut vérifier que $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
 
 ```{python}
-#| echo: false
-
 
 n = 10000
-
 g = lambda x: np.ones_like(x) / 2
 g_sampler = lambda: 2 * np.random.uniform() - 1
 m = 2
 
-# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x
 x_samples, u_samples, accepted = accept_reject(n, np.sinc, g, g_sampler, m)
 ratio = np.sum(accepted) / n
+# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x
+```
 
+```{python} 
+#| echo: false
 ojs_define(ratio=ratio)
 ```
 
-
-
 On peut approcher numériquement la valeur exacte de $S$ en utilisant une
 méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:
-
 
 ```{python}
 from scipy import integrate
 S = integrate.quad(np.sinc, -1, 1)[0]
 print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
 ```
+
+Enfin, on peut visualiser la qualité l'approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:
+
 ```{python}
 #| label: fig-rejet-Andrews
 #| fig-cap:
@@ -787,7 +809,7 @@ fig.add_trace(go.Histogram(x=x_samples[accepted==1], histnorm='probability densi
 
 # Plot the density
 x = np.linspace(-1, 1, 100)
-fig.add_trace(go.Scatter(x=x, y=np.sinc(x) / S , mode="lines", line=dict(color="black", dash="dash"), name="Density"))
+fig.add_trace(go.Scatter(x=x, y=np.sinc(x) / S , mode="lines", line=dict(color="black", dash="dash"), name="Densité"))
 
 fig.update_layout(template="simple_white", showlegend=True)
 ```
@@ -796,7 +818,135 @@ fig.update_layout(template="simple_white", showlegend=True)
 //| echo: false
 md`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`
 ```
+:::
 
+
+
+## Autres méthodes
+
+### Sommation de variables aléatoires
+
+Pour simuler une variable aléatoire de loi binomiale $\mathcal{B}(n,p)$, on peut utiliser la méthode d'inversion. Cependant, cela nécessite le calcul de l'inverse généralisée de $F$, donc de coefficients binomiaux et de puissances de $p$ et $1-p$. À la place, on utilisera plutôt la relation bien connue suivante : si $X_1, \ldots, X_n$ est une suite iid de variables aléatoires de loi de Bernoulli de paramètre $p$, alors
+$$
+	X = X_1 + \cdots + X_n \sim \mathcal{B}(n,p)\,.
+$$
+
+Pour simuler des variables aléatoires de Bernoulli, on utilise la méthode d'inversion (voir Exemple \ref{ex:bernoulli}). Ainsi, si $U_1, \ldots, U_n$ sont des variables aléatoires iid de loi uniforme sur $[0,1]$, alors
+$$
+	\sum_{i=1}^n {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)\,.
+$$
+
+### Loi de Poisson
+
+Rappelons qu'une variable aléatoire $X$ suit une loi de Poisson de paramètre $\lambda > 0$, notée $X \sim \mathcal{P}(\lambda)$ si
+$$
+	\mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad k \in \mathbb{N}^*\,.
+$$
+Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée par la proposition suivante.
+
+
+:::: {#prp-poisson_exponentielle}
+
+## Génération de v.a. de loi de Poisson
+
+<br>
+
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires iid de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors
+$$
+    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\,, \quad n \in \mathbb{N}^*\,.
+$$
+Ainsi, la variable aléatoire $T$ définie par
+$$
+    T := \sup \{n \in \mathbb{N}^* : E_1 + \cdots + E_n \leq 1\}
+$$
+suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+
+::::
+
+La preuve repose sur le lemme suivant.
+
+:::: {#lem-erlang}
+
+## Loi de Erlang
+
+<br>
+
+
+Soit $n$ variables aléatoires $E_1, \dots, E_n$ iid de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
+$$
+    F_{n,\lambda}(t) = 1 - \sum_{k=0}^{n-1} e^{-\lambda t} \frac{(\lambda t)^k}{k!}\,.
+$$
+::::
+
+*Démonstration*:
+
+On montre le résultat pour $n=2$. La généralisation à $k$ quelconque se fait par récurrence. 
+Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
+$$
+\begin{align*}
+    \mathbb{P}(E_1+E_2 \leq t)
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, \mathrm d x_1 \mathrm d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, \mathrm d x_1 \mathrm d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, \mathrm d x_1 \mathrm d x_2             \\
+        & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2\bigg)  \mathrm d x_1\,.
+\end{align*}
+$$
+La première intégrale se calcule alors facilement :
+$$
+    \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
+$$
+On obtient alors
+$$
+\begin{align*}
+    \mathbb{P}(E_1+E_2 \leq t)
+   & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} \mathrm d x_1\\
+   & = 1 - e^{-\lambda t} - \lambda t e^{-\lambda t}\,.
+\end{align*}
+$$
+Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve $\mathbb{P}(E_1 + E_2 \leq t) = 0$. Ceci prouve le résultat pour $n=2$.
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+On peut désormais prouver le résultat de la Proposition @{prp-poisson_exponentielle}.
+
+*Démonstration*:
+
+Pour $n \in \mathbb{N}^*$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
+$$
+\begin{align*}
+    \mathbb{P}(S_n \leq 1 < S_{n+1})
+    & = \mathbb{P}(\{S_n \leq 1\} \setminus \{S_{n+1} \leq 1\})\\
+    & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
+\end{align*}
+$$
+Le lemme précédent donne
+$$
+    \mathbb{P}(S_n \leq 1) = 1 - \sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}
+$$
+et
+$$
+    \mathbb{P}(S_{n+1} \leq 1) = 1 - \sum_{k=0}^{n} e^{-\lambda} \dfrac{\lambda^k}{k!}\,.
+$$
+On obtient alors le résultat souhaité :
+$$
+    \mathbb{P}(S_n \leq 1 < S_{n+1})
+    = e^{-\lambda} \dfrac{\lambda^n}{n!}\,.
+$$
+
+On conclut la preuve de la proposition en remarquant que
+$$
+    \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
+$$
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+La simulation d'une variable aléatoire de Poisson repose donc sur la simulation de lois exponentielles qui se fait via la méthode d'inversion, comme vu en . En pratique, on simule $E_1$ et on teste si $E_1 > 1$. Si oui, on pose alors $T=0$. Si non, on simule $E_2$ et on teste si $E_1 + E_2 > 1$. Si oui, on pose $T=1$. Sinon on continue la procédure.
 
 ### Bibliographie et pour aller plus loin
 
