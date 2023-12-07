@@ -3,8 +3,7 @@ title: "Simulation"
 format:
   html:
     out.width: 50%
-filters:
-  - shinylive
+jupyter: python3
 ---
 
 
@@ -32,14 +31,12 @@ $$
 import numpy as np
 import scipy
 import plotly.graph_objects as go
+import plotly.io as pio
+pio.renderers.default = "notebook"
 
 x = np.linspace(-3, 4, num=300)
 
 fig = go.Figure()
-fig.update_layout(
-    template="simple_white",
-    showlegend=True,
-)
 
 fig.add_trace(
               go.Scatter(
@@ -51,6 +48,12 @@ fig.add_trace(
          )
 )
 
+fig.update_layout(
+    template="simple_white",
+    showlegend=True,
+)
+
+# XXX known bug with plotly and latex labels.
 ```
 
 L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables aléatoires i.i.d. de loi $\mathcal{U}([0,1])$. Plusieurs problèmes apparaissent alors :
@@ -629,12 +632,170 @@ $$
     = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}
     = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
 $$
-<div class="container"> 
-<div class="div1">ce qui prouve l'indépendance de $X$ et $T$.</div> 
-<div class="div-remaining">□</div> 
-</div> 
+<div class="container">
+<div class="div1">ce qui prouve l'indépendance de $X$ et $T$.</div>
+<div class="div-remaining">□</div>
+</div>
 
 
+```{python}
+#| echo: true
+
+def accept_reject(n, f, g, g_sampler, m):
+    """
+    n: number of samples
+    f: target density
+    g: proposal density
+    m: constant such that f(x) <= m*g(x)
+    """
+    x_samples = np.zeros(n)
+    u_samples = np.zeros(n)
+    accepted = np.zeros(n)
+    n_accepted = 0
+    while n_accepted < n:
+        x = g_sampler()
+        u = np.random.uniform()
+        alpha = u * m * g(x)
+        # Check if the sample is accepted
+        u_samples [n_accepted] = alpha
+        x_samples[n_accepted] = x
+        if  alpha <= f(x):
+            accepted[n_accepted] = 1
+        n_accepted += 1
+    return x_samples, u_samples, accepted
+```
+
+
+::: {.callout-note appearance="simple"}
+## En pratique...
+On simule $U_1$ et $Y_1$. Si $U_1 \leq r(Y_1)$ c'est gagné, on pose $X=Y_1$. Sinon, on simule $U_2$ et $Y_2$ et on teste à nouveau l'inégalité $U_2 \leq r(Y_2)$. Et ainsi de suite. Comme $T$ suit une loi géométrique de paramètre $1/m$, son espérance vaut $m$ : il faut en moyenne $m$ tentatives pour obtenir une simulation de la loi de densité $f$. L'objectif est alors de choisir un couple $(g, m)$ de sorte que $m$ soit le plus proche possible de $1$.
+:::
+
+::: {#exm-rejet_polynome}
+
+## Rejet d'une loi polynomiale
+Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$. Comme $f$ est majorée par $4$, on peut choisir pour $g$ la densité de la loi uniforme sur $[0,1]$ et $m=4$. Alors, $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $U_1 \leq Y_1^3$, etc.
+
+Bien évidemment, on privilégiera ici une simulation via $F^\leftarrow$ qui permet de générer des variables aléatoires de loi $f$ plus rapidement.
+:::
+
+```{python}
+#| echo: false
+import numpy as np
+import plotly.graph_objects as go
+
+def plot_accept_reject(n, f, g, g_sampler, m):
+    x_samples, u_samples, accepted = accept_reject(n, f, g, g_sampler, m)
+    x = np.linspace(0, 1, 100)
+
+    fig = go.Figure()
+    fig.add_trace(go.Scatter(x=x_samples[accepted==1], y=u_samples[accepted==1], mode="markers", marker=dict(color="blue", symbol="circle", size=5), name="Accepté"))
+    fig.add_trace(go.Scatter(x=x_samples[accepted==0], y=u_samples[accepted==0], mode="markers", marker=dict(color="red", symbol="circle", size=5), name="Rejeté"))
+    fig.add_trace(go.Scatter(x=x, y=f(x), mode="lines", line=dict(color="black", dash="dash"), name="f"))
+    fig.add_trace(go.Scatter(x=x, y=m * g(x), mode="lines", line=dict(color="black"), name="m  · g"))
+    fig.update_layout(template="simple_white", showlegend=True)
+    ratio = np.sum(accepted) / n
+    return fig, ratio
+
+n = 1000
+f = lambda x: 4*x**3
+
+g = lambda x: np.ones_like(x)
+g_sampler = lambda: np.random.uniform()
+m = 4
+```
+
+```{python}
+#| echo: false
+#| label: fig-rejet-polynome-unif
+#| fig-cap:
+#|       - Visualisation des zones d'acceptations/rejet (g uniforme)
+fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
+fig1.show()
+```
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = x {1\hspace{-3.8pt} 1}_{[0, 1]}$
+
+```{python}
+#| echo: false
+#| label: fig-rejet-polynome-tri
+#| fig-cap:
+#|       - Visualisation des zones d'acceptations/rejet (g triangulaire)
+g = lambda x: x
+g_sampler = lambda: np.random.triangular(0, 1, 1)
+m = 4
+
+fig2, ratio2 = plot_accept_reject(n, f, g, g_sampler, m)
+fig2.show()
+```
+
+```{python}
+#| echo: false
+ojs_define(ratio1=ratio1)
+ojs_define(ratio2=ratio2)
+```
+
+```{ojs}
+//| echo: false
+md`Le taux d'acceptation est passé de **${ratio1}** à
+**${ratio2}** en utilisant une loi triangulaire au lieu d'une loi uniforme.`
+```
+
+<br>
+
+::: {#exm-rejet_andrews}
+
+## Rejet d'une loi de densité de type Andrews
+Considérons la densité $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$. Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
+On peut l'adapter en adaptant le test de la manière suivante:
+si l'on prend $m=1/S$ on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{1}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{ g(x)}$.
+:::
+
+```{python}
+#| echo: false
+
+
+n = 10000
+
+g = lambda x: np.ones_like(x) / 2
+g_sampler = lambda: 2 * np.random.uniform() - 1
+m = 2
+
+# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x
+x_samples, u_samples, accepted = accept_reject(n, np.sinc, g, g_sampler, m)
+ratio = np.sum(accepted) / n
+
+ojs_define(ratio=ratio)
+```
+
+
+
+On peut approcher numériquement la valeur exacte de $S$ en utilisant une
+méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:
+
+
+```{python}
+from scipy import integrate
+S = integrate.quad(np.sinc, -1, 1)[0]
+print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
+```
+```{python}
+#| label: fig-rejet-Andrews
+#| fig-cap:
+#|      - Méthode de rejet pour simuler une loi de densité de type Andrews, sans connaissance de la valeur exacte de la constante de normalisation.
+fig = go.Figure()
+fig.add_trace(go.Histogram(x=x_samples[accepted==1], histnorm='probability density', name="Échantillons"))
+
+# Plot the density
+x = np.linspace(-1, 1, 100)
+fig.add_trace(go.Scatter(x=x, y=np.sinc(x) / S , mode="lines", line=dict(color="black", dash="dash"), name="Density"))
+
+fig.update_layout(template="simple_white", showlegend=True)
+```
+
+```{ojs}
+//| echo: false
+md`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`
+```
 
 
 ### Bibliographie et pour aller plus loin
