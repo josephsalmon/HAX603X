@@ -820,6 +820,7 @@ def plot_curve(fig, plot_type="circle", n_discr=100):
 ```
 
 ```{python}
+#| echo: false
 def test_cardioide(x, y):
     if (x**2 + y**2 - x) ** 2 <= (x**2 + y**2):
         return 1
@@ -895,6 +896,13 @@ ratio = np.sum(test_samples_circle) / n_sample
 print(ratio * 3 * 2)
 ```
 
+
+::: {.callout-important appearance='default' icon="false"}
+
+##  EXERCISE loi uniforme sur un cylindre
+
+Proposer une méthode pour simuler une loi uniforme sur un cylindre de rayon $1$ et de hauteur $10$.
+:::
 
 
 
@@ -1023,7 +1031,7 @@ $$
 <div class="div-remaining">□</div>
 </div>
 
-La simulation d'une variable aléatoire de Poisson repose donc sur la simulation de lois exponentielles qui se fait via la méthode d'inversion, comme vu en . En pratique, on simule $E_1$ et on teste si $E_1 > 1$. Si oui, on pose alors $T=0$. Si non, on simule $E_2$ et on teste si $E_1 + E_2 > 1$. Si oui, on pose $T=1$. Sinon on continue la procédure.
+La simulation d'une variable aléatoire de Poisson repose donc sur la simulation de lois exponentielles qui se fait via la méthode d'inversion, comme vu dans @exm-inverse-exponentielle. En pratique, on simule $E_1$ et on teste si $E_1 > 1$. Si oui, on pose alors $T=0$. Si non, on simule $E_2$ et on teste si $E_1 + E_2 > 1$. Si oui, on pose $T=1$. Sinon on continue la procédure.
 
 ### Bibliographie et pour aller plus loin
 
