@@ -61,5 +61,5 @@ CCI
 
 - (Data Science): [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016;<br>
  **videos**: [Reproducible Data Analysis in Jupyter](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
-
 - [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists)
+- More advance : towards [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/)
