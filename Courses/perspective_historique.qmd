@@ -34,8 +34,11 @@ from plotly.subplots import make_subplots
 rng = np.random.default_rng(42)
 
 # Create points uniformly sample between 0.5 and 3.5
-n_samples = 16
-centers_x = rng.uniform(-2.5, 2.5, n_samples)
+n_samples = 100
+xmax = 12.499999
+xmin = - xmax
+
+centers_x = rng.uniform(xmin, xmax, n_samples)
 print(centers_x)
 angles = rng.uniform(0, 2 * np.pi, n_samples)
 r = 1
@@ -81,13 +84,13 @@ overlaps[2::3] = overlap
 
 
 print(f"Approximation de pi {2 / (np.sum(overlap) / n_samples)}")
+from plotly.subplots import make_subplots
 
-# Plot the segment delimited by borders_left and border_right, in red with extremities as red circle
-fig = go.Figure()
-
+# Create subplots with 2 rows and 1 column
+fig = make_subplots(rows=2, cols=1)
 
 # Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
-for i in range(-3, 4):
+for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
     fig.add_shape(
         type="line",
         y0=-3,
@@ -96,47 +99,89 @@ for i in range(-3, 4):
         x1=i,
         line=dict(
             color="black",
-            width=3,
-        )
+            width=2,
+        ),
+        row=1,
+        col=1
     )
 
 color = np.where(overlaps, 1., 0.)
 # Plot the segment delimited by borders_left and border_right, with the color defined above
 fig.add_trace(
-
-    go.Scatter(x=borders_red[:,0], y=borders_red[:,1], mode='lines', line=dict(width=1), marker=dict(color='lightblue'))
-    )
+    go.Scatter(x=borders_red[:,0], y=borders_red[:,1], mode='lines', line=dict(width=1), marker=dict(color='red'), name="Avec intersection"),
+    row=1,
+    col=1
+)
 fig.add_trace(
-    go.Scatter(x=borders_blue[:,0], y=borders_blue[:,1], mode='lines', line=dict(width=1), marker=dict(color='blue'))
+    go.Scatter(x=borders_blue[:,0], y=borders_blue[:,1], mode='lines', line=dict(width=1), marker=dict(color='lightblue'), name="Sans intersection"),
+    row=1,
+    col=1
 )
-    # color red if overlap == True, blue otherwise
-
-
-# fig.add_trace(
-#     go.Scatter(x=borders[:,0], y=borders[:,1], mode='lines', line=dict(color=color, width=1)))
-#     # color red if overlap == True, blue otherwise
-
-fig.update_layout(
-    yaxis_scaleanchor="x",
-)
-
 
 # Update to  change xaxis range to [-3.5,3.5]
 fig.update_layout(
     template="simple_white",
     xaxis=dict(
-        range=[-3.5, 3.5],
+        range=[xmin, xmax],
         constrain="domain",
         showgrid=False
-    )
+    ),
+    yaxis_scaleanchor="x",
+    xaxis_visible=False,
+    yaxis_visible=False
 )
 
-fig.update_layout(xaxis_visible=False, yaxis_visible=False)
+n_samples_array = np.arange(1, n_samples + 1)
 
+pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
+# change the inf values to 0
+
+# plot 2 / (np.cumsum(overlap / n_samples_array))
+fig.add_trace(go.Scatter(x=n_samples_array, y=pi_estimate, mode='lines', line=dict(width=1), marker=dict(color='red'), showlegend=False),
+    row=2,
+    col=1
+)
+
+fig.add_annotation(dict(x=1.2, y=0.18, xref="paper", yref="paper", 
+                            text="Estimation de pi", showarrow=False, font=dict(color="red")))
+
+fig.add_annotation(dict(x=-0.04, y=0.19, xref="paper", yref="paper", 
+                            text="pi", showarrow=False))
+
+# axis labels "nombre de tirages"
+fig.update_xaxes(title_text="Nombre de tirages", row=2, col=1)
+fig.update_layout(
+    template="none",
+    xaxis2=dict(
+    showgrid = True,
+    zeroline = True,
+    zerolinewidth=1,
+        range=[0, n_samples]
+    ),
+    yaxis2=dict(
+    showgrid = True,
+    zeroline = True,
+    zerolinewidth=1,
+        range=[0, 6]
+    ),
+)
+# plot a dash line at y=pi
+fig.add_shape(
+    type="line",
+    y0=np.pi,
+    x0=0,
+    y1=np.pi,
+    x1=n_samples,
+    line=dict(
+        color="black",
+        width=1,
+        dash="dashdot",
+    ),
+    row=2,
+    col=1
+)
 
 fig.show()
-
-
 
 ```
 
