@@ -52,7 +52,8 @@ website:
       - text: "Présentation"
         href: index.qmd
       - text: "Cours"
-        href: Courses/notations.qmd
+        href: Courses/perspective_historique.qmd
+
         # menu:
         #   - Courses/notations.qmd
         #   - Courses/th_asymptotique.qmd
