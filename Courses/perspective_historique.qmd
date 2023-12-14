@@ -2,11 +2,11 @@
 title: "Perspectives historiques"
 format:
   html:
-      code-fold: true
       out.width: 50%
 ---
 
 
+Nous allons présenter ici quelques éléments historiques sur les méthodes de Monte-Carlo, dont les prémisses remontent au XVIIIème siècle.
 
 ## L'aiguille de Buffon
 
@@ -15,7 +15,7 @@ format:
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>]
-proposa en 1733 une méthode qui s'avéra être utile pour estimer la valeur de $\pi$. On désigne de nos jours cette expérience sous le nom de "l'aiguille de Buffon". C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item) sur le site de la BNF ).
+proposa en 1733 une méthode qui s'avéra être utile pour estimer la valeur de $\pi$. On désigne de nos jours cette expérience sous le nom de **l'aiguille de Buffon**. C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item) sur le site de la BNF ).
 
 La question initiale (simplifiée ici) posée par Buffon était la suivante:
 Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
@@ -40,6 +40,7 @@ Cette méthode est donnée ci-dessous, avec un exemple interactif généré en P
 
 ```{python}
 #| layout-ncol: 1
+#| code-fold: true
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -288,7 +289,7 @@ P
 {1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x) d\theta dx \\
 & = \int_{0}^{\frac{\pi}{2}} \int_{0}^{\frac{1}{2}\sin(\theta)} \frac{4}{\pi} dx  d\theta \\
 & = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\  
-& = \frac{2}{\pi} \Big[ -cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
+& = \frac{2}{\pi} \Big[ -\cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
 & = \frac{2}{\pi} \enspace.
 \end{align*}
 $$
