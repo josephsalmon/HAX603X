@@ -58,8 +58,17 @@ CCI
 
 ### Ressources supplémentaires
 
+#### Niveau débutant
 
-- (Data Science): [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016;<br>
+
+- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
+- Data Science: [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016; &#127468;&#127463; <br>
  **videos**: [Reproducible Data Analysis in Jupyter](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
-- [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists)
-- More advance : towards [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/)
+- [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists) by  Naël Shiab &#127468;&#127463;
+
+
+#### Niveau avancé
+- [Software Dev. for datascience](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier, &#127468;&#127463;
+-   Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
+- [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi;  &#127468;&#127463;
+- [Maximum likelihood by numerical optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html)  &#127468;&#127463;

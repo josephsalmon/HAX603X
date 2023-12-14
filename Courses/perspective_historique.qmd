@@ -15,26 +15,27 @@ format:
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>]
-proposa une méthode pour estimer la valeur de $\pi$ en 1733. Il s'agit de l'expérience de l'aiguille de Buffon. C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible sur le site de la BNF [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item)).
+proposa en 1733 une méthode qui s'avéra être utile pour estimer la valeur de $\pi$. On désigne de nos jours cette expérience sous le nom de "l'aiguille de Buffon". C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item) sur le site de la BNF ).
 
-La question initiale (simplifiée ici) est la suivante:
-Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$. Quelle est la probabilité que l'aiguille croise une ligne de la trame du parquet ?
+La question initiale (simplifiée ici) posée par Buffon était la suivante:
+Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
 
-La motivation initiale étant de faire jouer deux joueurs: l'un parie sur le fait que l'aiguille croise une ligne de la trame du parquet, l'autre sur le fait que l'aiguille ne croise pas une ligne de la trame du parquet. L'enjeu est alors de calculer la probabilité de succès de chacun des joueurs.
+Le contexte original était dans celui d'un jeu à deux joueurs: un joueur parie sur le fait que l'aiguille croise une ligne de la trame du parquet, l'autre sur le fait que l'aiguille ne croise pas une ligne de la trame du parquet. L'enjeu est alors de calculer la probabilité de succès de chacun des joueurs, et de voir si le jeu est équilibré ou non.
 
-Voilà la question que s'est posée Buffon en 1733. La réponse est donnée par la formule suivante, qui montre que le jeu qu'il propose n'est pas équilibrer:
+Voilà brièvement la question que s'est posée Buffon en 1733. La réponse est donnée par la formule suivante, qui montre que le jeu qu'il propose n'est pas équilibré:
 
 $$
 P = \frac{2}{\pi} \approx 0.6366197723675814 \enspace.
 $$
 Une preuve de ce résultat sera donnée ci-dessous.
 
-L'idée sous-jacente de Buffon est que l'on peut approcher cette quantité numériquement en proposant un estimateur $\hat{P}_n$ de cette quantité, consistant à répéter $n$ fois l'expérience du lancer.
-Pour estimer $\pi$ il ne restera plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
+L'idée sous-jacente de Buffon est que si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
+Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
 
-On peut faire cette expérience dans le monde réelle (c'est un peu long pour $n$ grand), mais on peut aussi utiliser une méthode numérique pour cela. On procède alors comme suit: il s'agit de tirer la position du centre de l'aiguille, puis de manière aléatoire son angle de chute, enfin de tester si l'aiguille croise une ligne de la trame du parquet.
+On peut faire cette expérience dans le monde réelle (c'est un peu long pour $n$ grand!), mais on peut aussi utiliser une méthode numérique pour cela.
+Il s'agit alors de tirer aléatoire la position du centre de l'aiguille, puis de tirer aussi de manière aléatoire son angle de chute. On teste à la fin si l'aiguille croise une ligne de la trame du parquet ou non, et on recommence l'expérience un grand nombre de fois.
 
-Cette méthode est donnée ci-dessous, avec un exemple interactif.
+Cette méthode est donnée ci-dessous, avec un exemple interactif généré en Python.
 
 
 ```{python}
@@ -294,7 +295,7 @@ $$
 
 ::: {.callout-important appearance='default' icon="false"}
 ##  Exercice: rendre le jeu équilibré?
-En reprenant le même type de raisonnement que ci-dessus, trouver la distance entre les lattes du parquet qui rend le jeu équilibrer entre les deux joueurs introduit par Buffon (celui pariant sur un).
+En reprenant le même type de raisonnement que ci-dessus, trouver la distance entre les lattes du parquet qui rend le jeu équilibrer entre les deux joueurs introduit par Buffon (l'un pariant sur le fait que l'aiguille croise une ligne de la trame du parquet, l'autre pariant sur le fait que l'aiguille ne croise pas une ligne de la trame du parquet).
 :::
 
 
