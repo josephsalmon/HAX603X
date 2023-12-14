@@ -2,6 +2,7 @@
 title: "Perspectives historiques"
 format:
   html:
+      code-fold: true
       out.width: 50%
 ---
 
@@ -14,62 +15,74 @@ format:
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>]
+proposa une méthode pour estimer la valeur de $\pi$ en 1733. Il s'agit de l'expérience de l'aiguille de Buffon. C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible sur le site de la BNF [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item)).
 
-Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur 1. Quelle est la probabilité que l'aiguille croise une ligne de la trame du parquet ?
+La question initiale (simplifiée ici) est la suivante:
+Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$. Quelle est la probabilité que l'aiguille croise une ligne de la trame du parquet ?
 
-Voilà la question que s'est posée Buffon en 1733.
+La motivation initiale étant de faire jouer deux joueurs: l'un parie sur le fait que l'aiguille croise une ligne de la trame du parquet, l'autre sur le fait que l'aiguille ne croise pas une ligne de la trame du parquet. L'enjeu est alors de calculer la probabilité de succès de chacun des joueurs.
 
-On va simuler cette approche.
-Pour cela il s'agit de tirer la position du centre de l'aiguille, puis de manière aléatoire son angle de chute.
-Cela donne le code suivant:
+Voilà la question que s'est posée Buffon en 1733. La réponse est donnée par la formule suivante, qui montre que le jeu qu'il propose n'est pas équilibrer:
+
+$$
+P = \frac{2}{\pi} \approx 0.6366197723675814 \enspace.
+$$
+Une preuve de ce résultat sera donnée ci-dessous.
+
+L'idée sous-jacente de Buffon est que l'on peut approcher cette quantité numériquement en proposant un estimateur $\hat{P}_n$ de cette quantité, consistant à répéter $n$ fois l'expérience du lancer.
+Pour estimer $\pi$ il ne restera plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
+
+On peut faire cette expérience dans le monde réelle (c'est un peu long pour $n$ grand), mais on peut aussi utiliser une méthode numérique pour cela. On procède alors comme suit: il s'agit de tirer la position du centre de l'aiguille, puis de manière aléatoire son angle de chute, enfin de tester si l'aiguille croise une ligne de la trame du parquet.
+
+Cette méthode est donnée ci-dessous, avec un exemple interactif.
 
 
 ```{python}
-#| echo: false
 
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-# fix random generator seed
+rng = np.random.default_rng(43)
 
-rng = np.random.default_rng(42)
+n_samples = 200
+xmax = 15.499999
+xmin = -xmax
 
-# Create points uniformly sample between 0.5 and 3.5
-n_samples = 100
-xmax = 19.499999
-xmin = - xmax
 
+# Create the needles
 centers_x = rng.uniform(xmin, xmax, n_samples)
 angles = rng.uniform(0, 2 * np.pi, n_samples)
-r = 1
+centers_y = rng.uniform(-2, 2, n_samples)
 
-centers_y = rng.uniform(-2 * r, 2 * r, n_samples)
-
+# Compute the right borders of the needles
 borders_right = np.zeros((n_samples, 2))
-borders_right[:, 0] =  centers_x + r * np.cos(angles) / 2
-borders_right[:, 1] =  centers_y + r * np.sin(angles) / 2
+borders_right[:, 0] = centers_x + np.cos(angles) / 2
+borders_right[:, 1] = centers_y + np.sin(angles) / 2
 
+# Compute the left borders of the needles
 borders_left = np.zeros((n_samples, 2))
-borders_left[:, 0] = centers_x + r * np.cos(angles + np.pi)/2
-borders_left[:, 1] = centers_y + r * np.sin(angles + np.pi)/2
+borders_left[:, 0] = centers_x + np.cos(angles + np.pi) / 2
+borders_left[:, 1] = centers_y + np.sin(angles + np.pi) / 2
 
-centers_x_round =np.round(centers_x)
-overlap = (borders_right[:, 0] - centers_x_round) * (borders_left[ :, 0] - centers_x_round) < 0
+centers_x_round = np.round(centers_x)
+overlap = (borders_right[:, 0] - centers_x_round) * (
+    borders_left[:, 0] - centers_x_round
+) < 0
 overlap = np.where(overlap, 1, 0)
 n_overlap = int(np.sum(overlap))
 
-# create a numpy array of size 3*n_samples,2 full of None:
+
+# Check if the needles cross a line
 borders_red = np.empty((3 * n_overlap, 2), dtype=object)
 borders_red.fill(None)
-borders_red[::3,:] = borders_right[overlap == 1]
-borders_red[1::3,:] = borders_left[overlap == 1]
+borders_red[::3, :] = borders_right[overlap == 1]
+borders_red[1::3, :] = borders_left[overlap == 1]
 
-borders_blue = np.empty((3 * (n_samples-n_overlap), 2), dtype=object)
+borders_blue = np.empty((3 * (n_samples - n_overlap), 2), dtype=object)
 borders_blue.fill(None)
-borders_blue[::3,:] = borders_right[overlap == 0]
-borders_blue[1::3,:] = borders_left[overlap == 0]
-
+borders_blue[::3, :] = borders_right[overlap == 0]
+borders_blue[1::3, :] = borders_left[overlap == 0]
 
 overlaps = np.empty((3 * n_samples), dtype=object)
 overlaps.fill(None)
@@ -77,13 +90,12 @@ overlaps[::3] = overlap
 overlaps[1::3] = overlap
 overlaps[2::3] = overlap
 
-idx_red = np.cumsum(overlaps) 
-idx_blue = np.cumsum(1-overlaps) 
+idx_red = np.cumsum(overlaps)
+idx_blue = np.cumsum(1 - overlaps)
 
-from plotly.subplots import make_subplots
 
-# Create subplots with 2 rows and 1 column
-fig = make_subplots(rows=2, cols=1)
+# Create subplots with 2 rows and 1 column with ratio x /  y  of 10
+fig = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
 
 # Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
 for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
@@ -98,71 +110,90 @@ for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
             width=2,
         ),
         row=1,
-        col=1
+        col=1,
     )
 
-color = np.where(overlaps, 1., 0.)
+color = np.where(overlaps, 1.0, 0.0)
 # Plot the segment delimited by borders_left and border_right, with the color defined above
 
-t=10
-# create list of indexes that wrong...
-fig.add_trace(
-    go.Scatter(x=borders_red[:idx_red[3*t]+1,0], y=borders_red[:idx_red[3*t]+1,1], mode='lines', line=dict(width=1), marker=dict(color='red'), name="Avec intersection"),
-    row=1,
-    col=1
-)
-fig.add_trace(
-    go.Scatter(x=borders_blue[:idx_blue[3*t]+1,0], y=borders_blue[:idx_blue[3*t]+1,1], mode='lines', line=dict(width=1), marker=dict(color='darkblue'), name="Sans intersection"),
-    row=1,
-    col=1
-)
-
-# Update to  change xaxis range to [-3.5,3.5]
-fig.update_layout(
-    template="simple_white",
-    xaxis=dict(
-        range=[xmin, xmax],
-        constrain="domain",
-        showgrid=False
-    ),
-    yaxis_scaleanchor="x",
-    xaxis_visible=False,
-    yaxis_visible=False
-)
 
 n_samples_array = np.arange(1, n_samples + 1)
-
 pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
-# change the inf values to 0
+t = n_samples
 
-# plot 2 / (np.cumsum(overlap / n_samples_array))
-fig.add_trace(go.Scatter(x=n_samples_array[:t], y=pi_estimate[:t], mode='lines', line=dict(width=1), marker=dict(color='red'), showlegend=False),
-    row=2,
-    col=1
+fig.update_layout(
+    template="simple_white",
+    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
+    yaxis_scaleanchor="x",
+    xaxis_visible=False,
+    yaxis_visible=False,
 )
 
-fig.add_annotation(dict(x=1.2, y=0.14, xref="paper", yref="paper", 
-                            text="Estimation de pi", showarrow=False, font=dict(color="red")))
+for i in range(3, t):
+    fig.add_trace(
+        go.Scatter(
+            x=borders_red[: idx_red[3 * i] + 1, 0],
+            y=borders_red[: idx_red[3 * i] + 1, 1],
+            mode="lines",
+            line=dict(width=2),
+            marker=dict(color="red"),
+            name="Avec intersection",
+            visible=False,
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=borders_blue[: idx_blue[3 * i] + 1, 0],
+            y=borders_blue[: idx_blue[3 * i] + 1, 1],
+            mode="lines",
+            line=dict(width=2),
+            marker=dict(color="darkblue"),
+            name="Sans intersection",
+            visible=False,
+        ),
+        row=1,
+        col=1,
+    )
 
-fig.add_annotation(dict(x=-0.04, y=0.19, xref="paper", yref="paper", 
-                            text="pi", showarrow=False))
+    fig.add_trace(
+        go.Scatter(
+            x=n_samples_array[:i],
+            y=pi_estimate[:i],
+            mode="lines",
+            line=dict(width=1),
+            marker=dict(color="red"),
+            showlegend=False,
+            visible=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+fig.add_annotation(
+    dict(
+        x=1.4,
+        y=0.14,
+        xref="paper",
+        yref="paper",
+        text="Estimation de pi",
+        showarrow=False,
+        font=dict(color="red"),
+    )
+)
+
+fig.add_annotation(
+    dict(x=-0.04, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
+)
 
 # axis labels "nombre de tirages"
-fig.update_xaxes(title_text="Nombre de tirages", row=2, col=1)
+fig.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
+
 fig.update_layout(
     template="none",
-    xaxis2=dict(
-    showgrid = True,
-    zeroline = True,
-    zerolinewidth=1,
-        range=[0, n_samples]
-    ),
-    yaxis2=dict(
-    showgrid = True,
-    zeroline = True,
-    zerolinewidth=1,
-        range=[0, 6]
-    ),
+    xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, n_samples]),
+    yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, 6]),
 )
 # plot a dash line at y=pi
 fig.add_shape(
@@ -177,13 +208,94 @@ fig.add_shape(
         dash="dashdot",
     ),
     row=2,
-    col=1
+    col=1,
 )
 
+
+fig.data[10 * 3].visible = True
+fig.data[10 * 3 + 1].visible = True
+fig.data[10 * 3 + 2].visible = True
+
+# Create and add slider
+steps = []
+for i in range(len(fig.data) // 3):
+    step = dict(
+        label=str(i + 4),
+        method="update",
+        args=[
+            {"visible": [False] * len(fig.data)},
+            {
+                "title": "Estimation avec "
+                + str(i + 4)
+                + f" aiguilles: pi = {pi_estimate[i]:.4f}"
+            },
+        ],  # layout attribute
+    )
+    step["args"][0]["visible"][3 * i] = True  # Toggle i'th trace to "visible"
+    step["args"][0]["visible"][3 * i + 1] = True  # Toggle i'th trace to "visible"
+    step["args"][0]["visible"][3 * i + 2] = True  # Toggle i'th trace to "visible"
+
+    steps.append(step)
+
+slider = dict(
+    active=6,
+    currentvalue={"prefix": "Nombre d'aiguilles: "},
+    pad={"t": 50},
+    y=-0.32,
+    steps=steps,
+)
+
+fig.update_layout(sliders=[slider])
 fig.show()
-print(f"Approximation de pi avec {n_samples} aiguilles:\npi = {2 / (np.sum(overlap) / n_samples)}")
+
 ```
 
+On va fournir ici le calcul de la probabilité $P$. Pour cela on aura besoin de quelques éléments décrits dans le dessin ci-dessous.
+
+- $x$ : distance entre le centre de l'aiguille et la ligne de la trame du parquet la plus proche
+- $\theta$ : angle entre l'aiguille et la ligne de la trame du parquet la plus proche
+- $1$ : longueur de l'aiguille (et donc la demi longueur est $\frac{1}{2}$)
+- $\frac{1}{2}\sin(\theta)$ : distance entre l'extrémité de l'aiguille et la ligne de la trame du parquet la plus proche
+
+::: {#fig-elephants layout-ncol=2}
+
+![Sans croisement](../srcimages/buffon.svg){width=90%}
+
+![Avec croisement](../srcimages/buffon_bis.svg){width=90%}
+
+Configuration sans croisement (à gauche) et avec croisement (à droite) de l'aiguille avec une ligne de la trame du parquet.
+:::
+
+Avec les éléments ci-dessus, on voit qu'il y a chevauchement si et seulement si:
+$\frac{1}{2}\sin(\theta) \geq x$.
+
+Maintenant par des arguments de symétrie on voit qu'on peut se restreindre à $\theta \in [0, \frac{\pi}{2}]$, et à $x \in [0, \frac{1}{2}]$.
+Les lois de générations des variables aléatoires $X$ et $\Theta$ sont les suivantes:
+
+- $X \sim \mathcal{U}([0, \frac{1}{2}])$, de densité $f_X(x) = 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x)$
+- $\Theta \sim \mathcal{U}([0, \frac{\pi}{2}])$ de densité $f_\Theta(\theta) = \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta)$
+
+De plus on suppose que $X$ et $\Theta$ sont indépendantes.
+
+Maintenant pour calculer la probabilité $P$ on procède comme suit:
+$$
+\begin{align*}
+P
+& = \mathbb{P}\left(\frac{1}{2}\sin(\Theta) \geq X\right) \\
+& = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} f_{\Theta}(\theta) f_X(x) d\theta dx  \quad (\text{par indépendance})\\
+& = \int_{\mathbb{R}} \int_{\mathbb{R}}
+{1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x) d\theta dx \\
+& = \int_{0}^{\frac{\pi}{2}} \int_{0}^{\frac{1}{2}\sin(\theta)} \frac{4}{\pi} dx  d\theta \\
+& = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\  
+& = \frac{2}{\pi} \Big[ -cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
+& = \frac{2}{\pi} \enspace.
+\end{align*}
+$$
+
+::: {.callout-important appearance='default' icon="false"}
+##  Exercice: rendre le jeu équilibré?
+En reprenant le même type de raisonnement que ci-dessus, trouver la distance entre les lattes du parquet qui rend le jeu équilibrer entre les deux joueurs introduit par Buffon (celui pariant sur un).
+:::
 
 
 ## Méthode de Monte-Carlo
