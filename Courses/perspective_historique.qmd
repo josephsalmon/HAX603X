@@ -25,7 +25,7 @@ Le contexte original était dans celui d'un jeu à deux joueurs: un joueur parie
 Voilà brièvement la question que s'est posée Buffon en 1733. La réponse est donnée par la formule suivante, qui montre que le jeu qu'il propose n'est pas équilibré:
 
 $$
-P = \frac{2}{\pi} \approx 0.6366197723675814 \enspace.
+P = \frac{2}{\pi} \approx 0.6366 \enspace.
 $$
 Une preuve de ce résultat sera donnée ci-dessous.
 
@@ -39,15 +39,15 @@ Cette méthode est donnée ci-dessous, avec un exemple interactif généré en P
 
 
 ```{python}
-
+#| layout-ncol: 1
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
-rng = np.random.default_rng(43)
+rng = np.random.default_rng(44)
 
 n_samples = 200
-xmax = 15.499999
+xmax = 14.499999
 xmin = -xmax
 
 
@@ -174,7 +174,7 @@ for i in range(3, t):
 
 fig.add_annotation(
     dict(
-        x=1.4,
+        x=1.25,
         y=0.14,
         xref="paper",
         yref="paper",
