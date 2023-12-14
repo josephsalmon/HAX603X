@@ -1,0 +1,208 @@
+---
+title: "Perspectives historiques"
+format:
+  html:
+      out.width: 50%
+---
+
+
+
+## L'aiguille de Buffon
+
+[Georges-Louis Leclerc, Comte de Buffon](https://fr.wikipedia.org/wiki/Georges-Louis_Leclerc_de_Buffon)^[[Georges-Louis Leclerc, Comte de Buffon](https://fr.wikipedia.org/wiki/Georges-Louis_Leclerc_de_Buffon): (1707-1788)
+ naturaliste, mathématicien et industriel français du siècle des Lumières
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
+Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
+Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>]
+
+Une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur 1. Quelle est la probabilité que l'aiguille croise une ligne de la trame du parquet ?
+
+Voilà la question que s'est posée Buffon en 1733.
+
+On va simuler cette approche.
+Pour cela il s'agit de tirer la position du centre de l'aiguille, puis de manière aléatoire son angle de chute.
+Cela donne le code suivant:
+
+
+```{python}
+#| echo: false
+
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+# fix random generator seed
+
+rng = np.random.default_rng(42)
+
+# Create points uniformly sample between 0.5 and 3.5
+n_samples = 100
+xmax = 19.499999
+xmin = - xmax
+
+centers_x = rng.uniform(xmin, xmax, n_samples)
+angles = rng.uniform(0, 2 * np.pi, n_samples)
+r = 1
+
+centers_y = rng.uniform(-2 * r, 2 * r, n_samples)
+
+borders_right = np.zeros((n_samples, 2))
+borders_right[:, 0] =  centers_x + r * np.cos(angles) / 2
+borders_right[:, 1] =  centers_y + r * np.sin(angles) / 2
+
+borders_left = np.zeros((n_samples, 2))
+borders_left[:, 0] = centers_x + r * np.cos(angles + np.pi)/2
+borders_left[:, 1] = centers_y + r * np.sin(angles + np.pi)/2
+
+centers_x_round =np.round(centers_x)
+overlap = (borders_right[:, 0] - centers_x_round) * (borders_left[ :, 0] - centers_x_round) < 0
+overlap = np.where(overlap, 1, 0)
+n_overlap = int(np.sum(overlap))
+
+# create a numpy array of size 3*n_samples,2 full of None:
+borders_red = np.empty((3 * n_overlap, 2), dtype=object)
+borders_red.fill(None)
+borders_red[::3,:] = borders_right[overlap == 1]
+borders_red[1::3,:] = borders_left[overlap == 1]
+
+borders_blue = np.empty((3 * (n_samples-n_overlap), 2), dtype=object)
+borders_blue.fill(None)
+borders_blue[::3,:] = borders_right[overlap == 0]
+borders_blue[1::3,:] = borders_left[overlap == 0]
+
+
+overlaps = np.empty((3 * n_samples), dtype=object)
+overlaps.fill(None)
+overlaps[::3] = overlap
+overlaps[1::3] = overlap
+overlaps[2::3] = overlap
+
+idx_red = np.cumsum(overlaps) 
+idx_blue = np.cumsum(1-overlaps) 
+
+from plotly.subplots import make_subplots
+
+# Create subplots with 2 rows and 1 column
+fig = make_subplots(rows=2, cols=1)
+
+# Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
+for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
+    fig.add_shape(
+        type="line",
+        y0=-3,
+        x0=i,
+        y1=3,
+        x1=i,
+        line=dict(
+            color="black",
+            width=2,
+        ),
+        row=1,
+        col=1
+    )
+
+color = np.where(overlaps, 1., 0.)
+# Plot the segment delimited by borders_left and border_right, with the color defined above
+
+t=10
+# create list of indexes that wrong...
+fig.add_trace(
+    go.Scatter(x=borders_red[:idx_red[3*t]+1,0], y=borders_red[:idx_red[3*t]+1,1], mode='lines', line=dict(width=1), marker=dict(color='red'), name="Avec intersection"),
+    row=1,
+    col=1
+)
+fig.add_trace(
+    go.Scatter(x=borders_blue[:idx_blue[3*t]+1,0], y=borders_blue[:idx_blue[3*t]+1,1], mode='lines', line=dict(width=1), marker=dict(color='darkblue'), name="Sans intersection"),
+    row=1,
+    col=1
+)
+
+# Update to  change xaxis range to [-3.5,3.5]
+fig.update_layout(
+    template="simple_white",
+    xaxis=dict(
+        range=[xmin, xmax],
+        constrain="domain",
+        showgrid=False
+    ),
+    yaxis_scaleanchor="x",
+    xaxis_visible=False,
+    yaxis_visible=False
+)
+
+n_samples_array = np.arange(1, n_samples + 1)
+
+pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
+# change the inf values to 0
+
+# plot 2 / (np.cumsum(overlap / n_samples_array))
+fig.add_trace(go.Scatter(x=n_samples_array[:t], y=pi_estimate[:t], mode='lines', line=dict(width=1), marker=dict(color='red'), showlegend=False),
+    row=2,
+    col=1
+)
+
+fig.add_annotation(dict(x=1.2, y=0.14, xref="paper", yref="paper", 
+                            text="Estimation de pi", showarrow=False, font=dict(color="red")))
+
+fig.add_annotation(dict(x=-0.04, y=0.19, xref="paper", yref="paper", 
+                            text="pi", showarrow=False))
+
+# axis labels "nombre de tirages"
+fig.update_xaxes(title_text="Nombre de tirages", row=2, col=1)
+fig.update_layout(
+    template="none",
+    xaxis2=dict(
+    showgrid = True,
+    zeroline = True,
+    zerolinewidth=1,
+        range=[0, n_samples]
+    ),
+    yaxis2=dict(
+    showgrid = True,
+    zeroline = True,
+    zerolinewidth=1,
+        range=[0, 6]
+    ),
+)
+# plot a dash line at y=pi
+fig.add_shape(
+    type="line",
+    y0=np.pi,
+    x0=0,
+    y1=np.pi,
+    x1=n_samples,
+    line=dict(
+        color="black",
+        width=1,
+        dash="dashdot",
+    ),
+    row=2,
+    col=1
+)
+
+fig.show()
+print(f"Approximation de pi avec {n_samples} aiguilles:\npi = {2 / (np.sum(overlap) / n_samples)}")
+```
+
+
+
+## Méthode de Monte-Carlo
+
+[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann)^[[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann):  (1903-1957) mathématicien et physicien américano-hongrois, un des pères de l'informatique.
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>]
+
+
+
+[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis)^[[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis):  (1915-1999)
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Nicholas_Metropolis_cropped.PNG" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Nicholas Metropolis à Los Alamos National Laboratory" alt="Nicholas Metropolis à Los Alamos National Laboratory"></img>]
+
+
+
+[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam)^[[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam):  (1909-1984)
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>]
+
+
+
+## Hasting Metropolis
+
+## Culture populaire "Monty Hall game show"

@@ -23,9 +23,11 @@ website:
         - section: "Cours"
           # href: docs/guide/index.qmd
           contents:
+            - Courses/perspective_historique.qmd
             - Courses/notations.qmd
             - Courses/th_asymptotique.qmd
             - Courses/simulation.qmd
+            - Courses/loi_normale1D.qmd
     - id: tp
       collapse-level: 1
       contents:

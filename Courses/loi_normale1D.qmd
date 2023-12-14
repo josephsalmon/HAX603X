@@ -1,0 +1,115 @@
+---
+title: "Loi normale (1D)"
+format:
+  html:
+      out.width: 50%
+filters:
+  - shinylive
+---
+
+On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cdot, \cdot \rangle$ et de la norme euclidienne $\|\cdot\|$ associée.
+
+
+## La loi normale
+
+### Définitions et propriétés
+
+On rappelle que la loi normale de paramètres $\mu \in \mathbb{R}$ et $\nu > 0$ a une densité donnée pour tout $x \in \mathbb{R}$ par
+
+$$
+	\varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
+$$
+
+On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
+
+
+La loi normale vérifie la propriété de **stabilité par transformation affine** : si $X \sim \mathcal{N}(\mu, \nu)$ et si $(a,b) \in \mathbb{R}^* \times \mathbb{R}$, alors la variable aléatoire $a X + b$ suit une loi normale $\mathcal{N}(a\mu + b, a^2 \nu)$. On peut donc facilement passer d'une loi normale centrée réduite à une loi normale quelconque via une transformation affine :
+
+- si $X \sim \mathcal{N}(0,1)$, alors $\sqrt{\nu} X + \mu \sim \mathcal{N}(\mu, \nu)$,
+- si $X \sim \mathcal{N}(\mu, \nu)$, alors $(X-\mu)/\sqrt{\nu} \sim \mathcal{N}(0,1)$.
+
+Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n'importe quelle loi normale.
+
+Rappelons enfin que la fonction caractéristique d'une variable aléatoire $X \sim \mathcal{N}(\mu, \nu)$ est donnée pour tout $t \in \mathbb{R}$ par
+$$
+\begin{align*}
+\phi_{\mu, \nu}(t) & \triangleq \mathbb{E}(e^{i t X})  \\
+\phi_X(t) & = \exp\Big( i \mu t - \dfrac{\nu t^2}{2}\Big)\enspace.
+\end{align*}
+$$
+
+
+### Simulation d'une loi  normale
+
+::: {.callout-note appearance="simple"}
+## Une mauvaise piste pour simuler une loi normale
+
+
+On peut simuler une loi normale à partir de variables aléatoires uniformes $U_1, \ldots, U_n$  iid en appliquant le théorème central limite à
+$$
+	\dfrac{U_1 + \cdots + U_n - n/2}{\sqrt{n/12}}\,.
+$$
+Cependant, cette méthode ne donne qu'une approximation d'une loi normale. Par ailleurs, la vitesse de convergence étant relativement lente (de l'ordre de $\sqrt n$), il faudra simuler beaucoup de variables aléatoires uniformes pour avoir une approximation correcte, ce qui demande un temps de calcul assez élevé.
+
+:::
+
+
+#### Changement de variables
+
+Le théorème suivant permet de passer de la loi d'un couple $(X,Y)$ à celle de $(U,V) = \phi(X,Y)$, où $\phi$ est un $C^1$-difféomorphisme, c'est-à-dire une application bijective dont la réciproque est également de classe $C^1$.
+
+Pour cela rappelons que la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si $\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)$, alors
+$$
+{\rm{Jac}}~\phi^{-1} (u,v)
+=
+\begin{pmatrix}
+  \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}    \\
+  \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{pmatrix} \enspace.
+$$
+
+::: {#thm-changement-variables}
+
+
+## Caractérisation de la loi d'une variable aléatoire réelle
+
+XXX source
+
+Soit $(X,Y)$ un vecteur aléatoire de densité $f_{(X,Y)}$ définie sur l'ouvert $A \subset \mathbb{R}^2$ et $\phi : A \to B \subset \mathbb{R}^2$ un $C^1$-difféomorphisme. Le vecteur aléatoire $(U,V)=\phi(X,Y)$ admet alors pour densité $f_{(U,V)}$ définie sur $B$ pour tout $(u,v) \in \mathbb{R}^2$ par
+$$
+  f_{(U,V)} (u,v)
+  = f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+$$
+
+:::
+
+On a énoncé le résultat en dimension $2$ par simplicité. Il s'étend bien évidemment à une dimension $d$ quelconque. En particulier, pour $d=1$, on retrouve le changement de variable classique dans le cas de l'intégration d'une fonction à valeurs réelles.
+
+*Démonstration.*
+
+On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb{E}[h(U,V)]$ pour tout $h : \mathbb{R}^2 \to \mathbb{R}$ mesurable bornée. On considère donc une telle fonction $h$ et on applique la formule de transfert :
+$$
+  \mathbb{E}[h(U,V)]
+  =\mathbb{E}[h(\phi(X,Y))]
+  = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y
+  = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
+$$
+On applique alors la formule du changement de variables vu en théorie de l'intégration avec $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
+$$
+  \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y
+  = \int_{B} h(u,v)) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| \, d u d v\,.
+$$
+On conclut alors que
+$$
+\mathbb{E}[h(U,V)]
+= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
+$$
+ce qui donne le résultat voulu.
+
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+
