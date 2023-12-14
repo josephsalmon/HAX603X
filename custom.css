@@ -91,3 +91,8 @@ background-color: rgba(3,78,121,.04);
 .div-remaining { 
 	flex: 1; 
 } 
+
+
+.caption{
+  text-align: center;
+}
