@@ -1,5 +1,6 @@
 ---
 title: "Perspectives historiques"
+bibliography: references.bib
 format:
   html:
       out.width: 50%
@@ -116,8 +117,6 @@ for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
     )
 
 color = np.where(overlaps, 1.0, 0.0)
-# Plot the segment delimited by borders_left and border_right, with the color defined above
-
 
 n_samples_array = np.arange(1, n_samples + 1)
 pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
@@ -189,7 +188,6 @@ fig.add_annotation(
     dict(x=-0.04, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
 )
 
-# axis labels "nombre de tirages"
 fig.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
 
 fig.update_layout(
@@ -218,7 +216,7 @@ fig.data[10 * 3].visible = True
 fig.data[10 * 3 + 1].visible = True
 fig.data[10 * 3 + 2].visible = True
 
-# Create and add slider
+
 steps = []
 for i in range(len(fig.data) // 3):
     step = dict(
@@ -231,11 +229,11 @@ for i in range(len(fig.data) // 3):
                 + str(i + 4)
                 + f" aiguilles: pi = {pi_estimate[i]:.4f}"
             },
-        ],  # layout attribute
+        ],
     )
-    step["args"][0]["visible"][3 * i] = True  # Toggle i'th trace to "visible"
-    step["args"][0]["visible"][3 * i + 1] = True  # Toggle i'th trace to "visible"
-    step["args"][0]["visible"][3 * i + 2] = True  # Toggle i'th trace to "visible"
+    step["args"][0]["visible"][3 * i] = True
+    step["args"][0]["visible"][3 * i + 1] = True
+    step["args"][0]["visible"][3 * i + 2] = True
 
     steps.append(step)
 
@@ -249,7 +247,6 @@ slider = dict(
 
 fig.update_layout(sliders=[slider])
 fig.show()
-
 ```
 
 On va fournir ici le calcul de la probabilité $P$. Pour cela on aura besoin de quelques éléments décrits dans le dessin ci-dessous.
@@ -301,20 +298,20 @@ En reprenant le même type de raisonnement que ci-dessus, trouver la distance en
 
 
 ## Méthode de Monte-Carlo
-
+La méthode de Monte-Carlo, est une méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.
+Elle est utilisée dans de nombreux domaines, comme la physique, la chimie, la biologie, la finance, ou encore l'apprentissage automatique.
+Cette méthode basée sur la loi des grands nombres a été mis au point à Los Alamos, dans le cadre du projet Manhattan (dont l'objectif était le développement du nucléaire civil et militaire) par un groupe de scientifiques dont les plus connus sont:
 [John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann)^[[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann):  (1903-1957) mathématicien et physicien américano-hongrois, un des pères de l'informatique.
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>]
-
-
-
+<img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>], 
 [Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis)^[[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis):  (1915-1999)
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Nicholas_Metropolis_cropped.PNG" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Nicholas Metropolis à Los Alamos National Laboratory" alt="Nicholas Metropolis à Los Alamos National Laboratory"></img>]
-
-
-
-[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam)^[[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam):  (1909-1984)
+<img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Nicholas_Metropolis_cropped.PNG" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Nicholas Metropolis à Los Alamos National Laboratory" alt="Nicholas Metropolis à Los Alamos National Laboratory"></img>] ou encore [Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam)^[[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam):  (1909-1984)
 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>]
 
+Dans le cadre du projet Manhattan, il s'agissait de calculer des intégrales de manière numérique pour modéliser l'évolution de particules, en utilisant des nombres aléatoires.
+
+@roger1987stan donne un bref aperçu historique, et mentionne les premières description de la méthode du rejet et de la méthode de l'inversion dans des lettres entre Von Neumann et Ulam datant de 1947. Ulam aurait une l'idée d'utiliser de telles méthodes pour résoudre le jeu du solitaire lors d'un séjour à l'hôpital en 1946, et éviter ainsi de faire des calculs combinatoires fastidieux. Rapidement, la possibilité d'appliquer cette approche pour des calculs en physique mathématiques (diffusion des neutrons notamment) lui serait apparue prometteuse. Le développement de l'informatique naissante allait permettre une mise en oeuvre pratique de ces idées, et c'est ainsi que la méthode de Monte-Carlo est née. Le nom Monte-Carlo est lui venu du besoin de confidentialité du projet, et provient du nom de la ville de Monte-Carlo, connue pour ses jeux de hasard, où l'oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu. Ce serait N. Metropolis qui aurait proposé ce nom [cf. @metropolis1987beginning]:
+
+*It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he "just had to go to Monte Carlo".*
 
 
 ## Hasting Metropolis
