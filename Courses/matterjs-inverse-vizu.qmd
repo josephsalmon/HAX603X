@@ -15,15 +15,15 @@ viewof replay = html`<button>replay`
 ```{ojs}
 // Hack to make ojs load a github js file…
 // the repo is https://github.com/fradav/matter-playground
-invcdfboard = {
-  const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
-  const blob = await response.blob();
-  const url = URL.createObjectURL(blob);
-  return require(url).catch(() => window.invcdfboard);
-}
+// invcdfboard = {
+//   const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
+//   const blob = await response.blob();
+//   const url = URL.createObjectURL(blob);
+//   return require(url).catch(() => window.invcdfboard);
+// }
 
 // Or load from local file
-// invcdfboard = require(await FileAttachment("invcdfboard.umd.cjs").url())
+invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd.cjs").url())
 
 {
   replay

@@ -1,0 +1,3 @@
+[submodule "inverse-vizu"]
+	path = inverse-vizu
+	url = git@github.com:fradav/matter-playground.git
