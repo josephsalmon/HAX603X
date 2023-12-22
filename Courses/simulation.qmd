@@ -198,7 +198,8 @@ Si $F$ n'est pas bijective, deux problèmes apparaissent :
 - l'équation n'a aucune solution ce qui revient à dire que $F$ n'est pas surjectif (graphiquement, $F$ présente des sauts) ;
 - l'équation a plusieurs solutions ce qui revient à dire que $F$ n'est pas injective (graphiquement cela se matérialise par un plateau à la hauteur $\alpha$). Un exemple classique est celui où $F$ est la fonction de répartition d'une variable aléatoire discrète.
 
-Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq \alpha\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier". Ces considérations sont illustrées en Figure XXX TODO.
+Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq \alpha\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier".
+sCes considérations sont illustrées en Figure @fig-3-quantiles.
 
 
 
@@ -443,7 +444,40 @@ où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ pre
 XXX TODO: donner un example discret et montrer $F^\leftarrow$.
 
 
-XXX TODO: show inverse usage using widget from first course and sampling randomly uniformly points in $[0,1]$ to get the one from the distributions at hand.
+La méthode est illustré ci-dessous pour quelques lois intéressantes:
+
+```{ojs}
+//| echo: false
+viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: "bimodal", label: "Distribution type"})
+viewof replay = html`<button>replay`
+```
+
+
+
+```{ojs}
+//| layout-ncol: 1
+//| layout-align: center
+//| echo: false
+// Hack to make ojs load a github js file…
+// the repo is https://github.com/fradav/matter-playground
+// invcdfboard = {
+//   const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
+//   const blob = await response.blob();
+//   const url = URL.createObjectURL(blob);
+//   return require(url).catch(() => window.invcdfboard);
+// }
+
+// Or load from local file
+invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd.cjs").url())
+
+{
+  replay
+  const canvas = DOM.canvas(500, 500);
+  const galton = invcdfboard.galton(canvas,dist);
+  
+  return html`${galton.canvas}`
+}
+```
 
 
 
