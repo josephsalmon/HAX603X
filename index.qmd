@@ -19,7 +19,7 @@ Ce cours est issu du travail antérieur de la part de:
 
 - [Nicolas Meyer](https://sites.google.com/view/nicolasmeyer/accueil)
 - [Benoîte de Saporta](https://imag.umontpellier.fr/~saporta/index-en.html)
-
+et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Prérequis
 
