@@ -1,8 +1,8 @@
 ---
 title: "inverse-vizu"
 format:
-  html: 
-    echo: false  
+  html:
+    echo: false
 ---
 
 ```{ojs}

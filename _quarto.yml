@@ -1,8 +1,8 @@
 lang: fr
 project:
   type: website
-  # render:
-  #   - index.qmd
+  render:
+  - "*.qmd"
   #   - Courses/notations.qmd
   #   - Courses/th_asymptotique.qmd
   #   - Courses/simulation.qmd
@@ -15,7 +15,7 @@ website:
       style: "floating"
       collapse-level: 1
       align: left
-      contents:
+      contents: 
         - index.qmd
     - id: cours
       collapse-level: 1
@@ -28,6 +28,11 @@ website:
             - Courses/th_asymptotique.qmd
             - Courses/simulation.qmd
             - Courses/loi_normale1D.qmd
+
+        - section: "Slides"
+          contents:
+            - Courses/slides.qmd
+
     - id: tp
       collapse-level: 1
       contents:
@@ -53,6 +58,8 @@ website:
         href: index.qmd
       - text: "Cours"
         href: Courses/perspective_historique.qmd
+      - text: "Slides"
+        href: Courses/slides.qmd
 
         # menu:
         #   - Courses/notations.qmd

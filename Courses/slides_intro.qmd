@@ -1,0 +1,96 @@
+---
+title: "HAX603X: Modélisation stochastique"
+subtitle: "Introduction"
+
+
+project:
+  resources: images/*
+
+authors:
+  - name: Joseph Salmon
+    email: joseph.salmon@umontpellier.fr
+    affiliations:
+      - Université de Montpellier (Imag), IUF
+      - CNRS, Inria
+  - name: Benjamin Charlier
+    email: benjamin.charlier@umontpellier.fr
+    affiliations:
+      - Université de Montpellier (Imag)
+      - CNRS
+
+institutes: Université de Montpellier
+
+license: CC BY-SA
+
+bibliography: references.bib
+# csl: ieee.csl
+
+date: 2024-01-19
+
+history: false
+lang: fr-FR
+toc: true
+toc-depth: 1
+tbl-colwidths: [60, 50, 40, 30, 30]
+code-line-numbers: false
+format:
+    revealjs:
+      chalkboard: 
+        buttons: false
+      slide-number: true
+      html-math-method: katex
+      controls-tutorial: true
+      preview-links: auto
+      # logo: images/logo-um.svg  
+      # header-logo: images/logo-imag.png
+      footer: <span style="color:grey;float:left;margin-left:7%;"><em>{{< meta title >}}</em></span>
+      # <span style="color:grey;float:right;margin-right:12%;">Séminaire de Culture Générale</span>
+      transition: none
+      # fig-align: "center"
+      center: false
+      width: 1600
+      height: 900
+      margin: 0.1
+      controls: false
+      code-annotations: select
+
+editor:
+  render-on-save: true
+slide-level: 2
+execute:
+  cache: true
+---
+
+
+# ChatGPT, Myths and Realities
+
+# Generalities on Machine Learning and Artificial Intelligence
+
+<!-- ## Historical perspective on AI
+
+AI was all about symbolic reasoning until the 1980s: culmination in “Expert Systems”, which are abandoned:
+
+- based on a fixed and very hard to improve set of rules
+- fails miserably in “edge” case and with outliers data
+- relies on a bunch of expert domains and general reliability is very hard to assess
+
+$\Rightarrow$ an alternative neuro-computing branch of AI, but…
+
+. . .
+
+… in mid ’80s they seem to have both failed to deliver on their promises. -->
+
+## Historical perspective timeline
+
+::::{layout-ncol="2"}
+
+<!-- - 1950s: perceptron [@rosenblatt1958perceptron] -->
+<!-- - 1960s: perceptron convergence theorem [@minsky1969introduction] -->
+<!-- - 1970s-1980s: backpropagation [@rumelhart1986learning] -->
+<!-- - 1990s: SVM [@cortes1995support] -->
+<!-- - 2000s: Boosting [@freund1997decision], Random Forests [@breiman2001random] -->
+- 2010s: Deep Learning
+
+::::
+
+## AI domains
