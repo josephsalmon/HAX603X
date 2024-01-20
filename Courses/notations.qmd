@@ -1308,7 +1308,7 @@ var layout = {
 // XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
 
     var config = {responsive: true}
-    const div = DOM.element('div');
+    const div = DOM.element('divaf');
     Plotly.newPlot(div, data, layout, config);
     return div;
   }

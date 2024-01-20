@@ -1,38 +1,532 @@
 ---
 title: "HAX603X: Modélisation stochastique"
 subtitle: "Introduction"
+format:
+  revealjs:
+    toc: true
+    template-partials: 
+        - toc-slide.html
+    include-after-body: toc-add.html
 ---
 
 
-# ChatGPT, Myths and Realities
+# Présentation, informations générales
 
-# Generalities on Machine Learning and Artificial Intelligence
 
-<!-- ## Historical perspective on AI
+## 
+![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg)
 
-AI was all about symbolic reasoning until the 1980s: culmination in “Expert Systems”, which are abandoned:
+<br>
+<br>
+<br>
 
-- based on a fixed and very hard to improve set of rules
-- fails miserably in “edge” case and with outliers data
-- relies on a bunch of expert domains and general reliability is very hard to assess
+PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
-$\Rightarrow$ an alternative neuro-computing branch of AI, but…
 
-. . .
+## Enseignants: 
+::: {.fragment fragment-index=1}
+- **Joseph Salmon** : CM et TP
+    - Situation actuelle : Professeur à l'Université de Montpellier
+    - Précédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington
+    - Spécialités : statistiques, optimisation, traitement des images, sciences participatives
+    - Bureau : 415, Bat. 9
+:::
+<div style="line-height:4%;">
+<br>
+</div>
 
-… in mid ’80s they seem to have both failed to deliver on their promises. -->
+::: {.fragment fragment-index=2}
+- **Benjmain Charlier** : CM, TD et TP
+  - Situation actuelle : Maître de conférence l'Université de Montpellier
+  - Précédemment : Université Paul Sabatier, ENS Paris-Saclay
+  - Spécialités : traitement des images, statistiques, différentiation automatique
+  - Bureau : 423, Bat. 9
+:::
 
-## Historical perspective timeline
+## Ressources en ligne
 
-::::{layout-ncol="2"}
 
-<!-- - 1950s: perceptron [@rosenblatt1958perceptron] -->
-<!-- - 1960s: perceptron convergence theorem [@minsky1969introduction] -->
-<!-- - 1970s-1980s: backpropagation [@rumelhart1986learning] -->
-<!-- - 1990s: SVM [@cortes1995support] -->
-<!-- - 2000s: Boosting [@freund1997decision], Random Forests [@breiman2001random] -->
-- 2010s: Deep Learning
+[Informations principales]{.underline} : site du cours <http://josephsalmon.github.io/HAX603X>
+
+
+:::{.incremental}
+
+- Syllabus
+- Slides (au fil de l'eau)
+- Poly (au fil de l'eau)
+- Feuilles de TD
+- Feuilles de TP
+- Rendu TP : Moodle de l'université (https://moodle.umontpellier.fr/course/view.php?id=5558)
+
+:::
+
+## Validation
+
+- TP notés : Rendu = fichier Python **.py** unique
+
+   - TP noté 1 : rendre en fin de session (date TBD)
+   - TP noté 2 : rendre en fin de session (date TBD)
+
+- CC : devoir sur table d'une heure
+
+<br>
+
+- Coefficients:
+    - Note Session 1 : (40% CC + 30% TP 1 + 30% TP 2)
+    - Note Session 2 : (30% CC + 35% TP 1 + 35% TP 2)
+
+::: {.callout-warning}
+Le rendu est individuel pour le TP noté !!!
+:::
+
+## Notation pour les TPs
+
+[Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
+dans le dossier adéquat.
+
+Détails de la notation du TP :
+
+- Qualité des réponses aux questions
+- Qualité de rédaction et d’orthographe
+- Qualité des graphiques (légendes, couleurs)
+- Qualité d’écriture du code (noms de variables clair, commentaires utiles, code synthétique, etc.)
+- Notebook reproductible et absence de bug
+
+<br>
+
+[Pénalités]{.underline} :
+
+- Envoi par mail : zéro
+- Retard : zéro (uploader avant la fin, fermeture automatique de moodle)
+
+
+## Prérequis - à revoir seul
+
+- Bases de probabilités [@Foata_Fuchs96]: probabilité, densité, espérance, fonction de répartition
+
+- Programmation élémentaire : if then else, for, while, fonctions, etc.
+
+
+## Description du cours
+
+[Objectifs]{.underline} :
+
+- Méthode de génération aléatoire
+- Réduction de variance, enjeux computationnels
+- XXX
+- XXX
+- utilisation de Python pour la génération d'éléments aléatoires
+- visualisation (matplotlib, seaborn)
+- introduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)
+
+
+##
+```{=html}
+<div id='toc'></div>
+```
+
+
+
+
+
+## Test code
+
+::::{.columns}
+
+:::{.column width="38%"}
+
+```{ojs}
+//| echo: false
+// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+Plotly = require('plotly.js-dist');
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
+jstatPDFs = () => {
+  const distributions = Object.keys(dists);
+  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
+    const continuousDistributions = distributions.filter(name => dists[name].pdf && dists[name].cdf && dists[name].quantile);
+  return continuousDistributions
+};
+output = jstatPDFs();
+
+excludedPDFs = [];
+pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
+pdfNames=pdfNames_unsorted.toSorted();
+viewof inputs = Inputs.form([
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu`}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma`}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`}),
+    ]);
+
+
+viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Distribution"});
+
+```
+
+:::
+
+:::{.column width="60%"}
+
+
+```{ojs}
+
+{
+  const x = d3.range(-5, 5, 0.01);
+  const pdf = x.map(x => dists[distrib_name].pdf(x, mu, sigma));
+  const cdf = x.map(x => dists[distrib_name].cdf(x, mu, sigma));
+  const inv = x.map(x => dists[distrib_name].quantile(x, mu, sigma));
+  const quantile = dists[distrib_name].quantile(alpha, mu, sigma);
+  const filteredX = x.filter(coord => coord <= quantile);
+  const filteredPdf = pdf.filter((_, i) => x[i] <= quantile);
+  const filteredCdf = cdf.filter(coord => coord <= quantile);
+
+
+{
+var trace1 = {
+      type: "scatter",
+      name: 'Quantile',
+      x : cdf,
+      y : x,
+      line: {color: 'black'},
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+var trace12 = {
+        x : [alpha, alpha],
+        y : [x[0], quantile],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+
+
+var trace13 = {
+    x: [0, alpha],
+    y: [quantile, quantile],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y3'
+}
+
+
+var trace2 = {
+x: cdf,
+y: cdf,
+type: 'scatter',
+name: 'identity',
+line: {color: 'black'},
+xaxis: 'x1',
+yaxis: 'y2'
+
+};
+
+
+var trace21 = {
+        x : [alpha, 1],
+        y : [alpha, alpha],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+var trace22 = {
+        x : [alpha, alpha],
+        y : [alpha, 1],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+
+
+var trace23 = {
+    x: [alpha],
+    y: [alpha],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y2'
+}
+
+
+var trace31 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'PDF2',
+      x: x,
+      y: cdf,
+      line: {color: 'black'},
+      xaxis: 'x2',
+      yaxis: 'y2',
+};
+
+var trace32 = {
+        x : filteredX,
+        y : filteredX.map(x => alpha),
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace33 = {
+        x : [quantile, quantile],
+        y : [0, alpha],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace34 = {
+    x: [quantile],
+    y: [alpha],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x2',
+    yaxis: 'y2'
+}
+
+
+var trace41 = {
+
+  type: "scatter",
+  name: 'Quantile2',
+  fill: 'tozeroy',
+  x : filteredX,
+  y : filteredPdf,
+  opacity: 0.9,
+  line: {color: ' #428BCA'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+
+var trace42 = {
+
+  type: "scatter",
+  mode: "lines",
+  name: 'PDF2',
+  x: x,
+  y: pdf,
+  line: {color: 'black'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+var data = [
+  trace1,
+  trace12, trace13,
+  trace2, trace21, trace22, trace23,
+  trace31, trace32, trace33, trace34,
+  trace41, trace42];
+
+
+var layout = {
+
+  title: 'Distribution et quantile',
+  xaxis: {
+    domain: [0, 0.32],
+    anchor: 'y1'
+  },
+  yaxis: {
+    domain: [0, 0.24],
+    anchor: 'x1'
+
+  },
+  xaxis2: {
+    domain: [0.35, 1],
+    anchor: 'y'
+  },
+
+  yaxis2: {
+    domain: [0.26, 0.49],
+    anchor: 'x1'
+  },
+
+  yaxis3: {
+    domain: [0.5, 1],
+    anchor: 'x1'
+  },
+
+// legend offset
+  showlegend: false,
+  height: 680,
+  annotations: [
+
+    {
+      x: 1/4,
+      y: quantile - (x[0]-x.slice(-1))/20,
+      xref: 'x1',
+      yref: 'y3',
+      text: 'q= ' + quantile.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+      x: 1/4,
+      y: alpha,
+      xref: 'x1',
+      yref: 'y2',
+      text: 'alpha= ' + alpha.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+        text: "Fonction quantile",
+      font: {
+      size: 15,
+      color: 'black',
+    },
+    showarrow: false,
+    align: 'center',
+    x: -0.01,
+    y: 1.05,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de répartition",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.52,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de densité",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.225,
+    xref: 'paper',
+    yref: 'paper',
+    },
+  ]
+
+};
+// XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout, config);
+    return div;
+  }
+
+}
+
+mu = inputs[0];
+sigma = inputs[1];
+alpha = inputs[2]
+```
+:::
+
 
 ::::
 
-## AI domains
+## Bibliographie
+
+::: {#refs}
+:::
