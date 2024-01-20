@@ -3,13 +3,13 @@ title: "Slides"
 format:
   html:
       out.width: 50%
----
+--- 
 
 Vous trouverez ci-dessous la listes des slides associés:
 
-[Cours introduction: plein écran](slides_intro.qmd)
+[Cours introduction: plein écran](../Slides/slides_intro.qmd)
 
 ```{=html}
 <iframe class="slide-deck" src="
-slides_intro.html" height="180" width="320" style="border: 1px solid #2e3846;"></iframe>
+../Slides/slides_intro.html" height="180" width="320" style="border: 1px solid #2e3846;"></iframe>
 ```
