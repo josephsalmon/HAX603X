@@ -16,7 +16,7 @@ Nous allons présenter ici quelques éléments historiques sur les méthodes de 
 <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>]
-proposa en 1733 une méthode qui s'avéra être utile pour estimer la valeur de $\pi$. On désigne de nos jours cette expérience sous le nom de **l'aiguille de Buffon**. C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item) sur le site de la BNF ).
+proposa en 1733 une méthode qui s'avéra être utile pour estimer la valeur de $\pi$. On désigne de nos jours cette expérience sous le nom de **l'aiguille de Buffon**. C'est l'une des premières méthodes de Monte-Carlo référencée dans la littérature (la source du texte est disponible [ici](https://gallica.bnf.fr/ark:/12148/bpt6k10705425/f117.item) sur le site de la BNF).
 
 La question initiale (simplifiée ici) posée par Buffon était la suivante:
 une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?

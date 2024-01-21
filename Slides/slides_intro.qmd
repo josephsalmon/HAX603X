@@ -124,12 +124,398 @@ Détails de la notation du TP :
 ```{=html}
 <div id='toc'></div>
 ```
+# Perspectives historiques
+
+## L'aiguille de Buffon
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+- 1733:  **l'aiguille de Buffon**, méthode d'estimation de la valeur de $\pi$. 
+Première méthode de Monte-Carlo de la littérature .
+
+::: {.fragment}
+**Problème initial**: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
+:::
+
+::: {.fragment}
+```{python}
+#| layout-ncol: 1
+#| code-fold: true
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+rng = np.random.default_rng(44)
+
+n_samples = 200
+xmax = 14.499999
+xmin = -xmax
+
+
+# Create the needles
+centers_x = rng.uniform(xmin, xmax, n_samples)
+angles = rng.uniform(0, 2 * np.pi, n_samples)
+centers_y = rng.uniform(-2, 2, n_samples)
+
+# Compute the right borders of the needles
+borders_right = np.zeros((n_samples, 2))
+borders_right[:, 0] = centers_x + np.cos(angles) / 2
+borders_right[:, 1] = centers_y + np.sin(angles) / 2
+
+# Compute the left borders of the needles
+borders_left = np.zeros((n_samples, 2))
+borders_left[:, 0] = centers_x + np.cos(angles + np.pi) / 2
+borders_left[:, 1] = centers_y + np.sin(angles + np.pi) / 2
+
+centers_x_round = np.round(centers_x)
+overlap = (borders_right[:, 0] - centers_x_round) * (
+    borders_left[:, 0] - centers_x_round
+) < 0
+overlap = np.where(overlap, 1, 0)
+n_overlap = int(np.sum(overlap))
+
+
+# Check if the needles cross a line
+borders_red = np.empty((3 * n_overlap, 2), dtype=object)
+borders_red.fill(None)
+borders_red[::3, :] = borders_right[overlap == 1]
+borders_red[1::3, :] = borders_left[overlap == 1]
+
+borders_blue = np.empty((3 * (n_samples - n_overlap), 2), dtype=object)
+borders_blue.fill(None)
+borders_blue[::3, :] = borders_right[overlap == 0]
+borders_blue[1::3, :] = borders_left[overlap == 0]
+
+overlaps = np.empty((3 * n_samples), dtype=object)
+overlaps.fill(None)
+overlaps[::3] = overlap
+overlaps[1::3] = overlap
+overlaps[2::3] = overlap
+
+idx_red = np.cumsum(overlaps)
+idx_blue = np.cumsum(1 - overlaps)
+
+
+# Create subplots with 2 rows and 1 column with ratio x /  y  of 10
+fig = make_subplots(rows=1, cols=1)
+
+# Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
+for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
+    fig.add_shape(
+        type="line",
+        y0=-3,
+        x0=i,
+        y1=3,
+        x1=i,
+        line=dict(
+            color="black",
+            width=2,
+        ),
+    )
+
+color = np.where(overlaps, 1.0, 0.0)
+
+n_samples_array = np.arange(1, n_samples + 1)
+pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
+t = n_samples
+
+fig.update_layout(
+    template="simple_white",
+    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
+    yaxis_scaleanchor="x",
+    xaxis_visible=False,
+    yaxis_visible=False,
+)
+
+
+i = 20
+fig.add_trace(
+    go.Scatter(
+        x=borders_red[: idx_red[3 * i] + 1, 0],
+        y=borders_red[: idx_red[3 * i] + 1, 1],
+        mode="lines",
+        line=dict(width=2),
+        marker=dict(color="red"),
+        name="Avec intersection",
+        visible=True,
+    ),
+)
+fig.add_trace(
+    go.Scatter(
+        x=borders_blue[: idx_blue[3 * i] + 1, 0],
+        y=borders_blue[: idx_blue[3 * i] + 1, 1],
+        mode="lines",
+        line=dict(width=2),
+        marker=dict(color="darkblue"),
+        name="Sans intersection",
+        visible=True,
+    ),
+)
+
+fig.show()
+```
+
+:::
+
+:::
+
+:::{.column width="40%"}
+[Georges-Louis Leclerc, Comte de Buffon](https://fr.wikipedia.org/wiki/Georges-Louis_Leclerc_de_Buffon): (1707-1788)
+ naturaliste, mathématicien et industriel français du siècle des Lumières<img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
+Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
+Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
+
+:::
+
+::::
+
+
+## L'aiguille de Buffon (suite)
+
+::: {.fragment}
+
+**Problème initial**: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
+
+:::
+
+<br>
+
+::: {.fragment}
+**Réponse**:
+
+$$
+P = \frac{2}{\pi} \approx 0.6366 \enspace.
+$$
+Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX603X/perspective_historique.html).
+:::
+
+## Principe de Monte Carlo pour estimer $\pi$
+
+
+L'idée sous-jacente de Buffon : 
+
+si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
+
+
+Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
+
+## Principe de Monte Carlo pour estimer $\pi$ (suite)
+
+```{python}
+#| layout-ncol: 1
+#| code-fold: true
+import numpy as np
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+
+rng = np.random.default_rng(44)
+
+n_samples = 200
+xmax = 14.499999
+xmin = -xmax
+
+
+# Create the needles
+centers_x = rng.uniform(xmin, xmax, n_samples)
+angles = rng.uniform(0, 2 * np.pi, n_samples)
+centers_y = rng.uniform(-2, 2, n_samples)
+
+# Compute the right borders of the needles
+borders_right = np.zeros((n_samples, 2))
+borders_right[:, 0] = centers_x + np.cos(angles) / 2
+borders_right[:, 1] = centers_y + np.sin(angles) / 2
+
+# Compute the left borders of the needles
+borders_left = np.zeros((n_samples, 2))
+borders_left[:, 0] = centers_x + np.cos(angles + np.pi) / 2
+borders_left[:, 1] = centers_y + np.sin(angles + np.pi) / 2
+
+centers_x_round = np.round(centers_x)
+overlap = (borders_right[:, 0] - centers_x_round) * (
+    borders_left[:, 0] - centers_x_round
+) < 0
+overlap = np.where(overlap, 1, 0)
+n_overlap = int(np.sum(overlap))
+
+
+# Check if the needles cross a line
+borders_red = np.empty((3 * n_overlap, 2), dtype=object)
+borders_red.fill(None)
+borders_red[::3, :] = borders_right[overlap == 1]
+borders_red[1::3, :] = borders_left[overlap == 1]
+
+borders_blue = np.empty((3 * (n_samples - n_overlap), 2), dtype=object)
+borders_blue.fill(None)
+borders_blue[::3, :] = borders_right[overlap == 0]
+borders_blue[1::3, :] = borders_left[overlap == 0]
+
+overlaps = np.empty((3 * n_samples), dtype=object)
+overlaps.fill(None)
+overlaps[::3] = overlap
+overlaps[1::3] = overlap
+overlaps[2::3] = overlap
+
+idx_red = np.cumsum(overlaps)
+idx_blue = np.cumsum(1 - overlaps)
+
+
+# Create subplots with 2 rows and 1 column with ratio x /  y  of 10
+fig = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
+
+# Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
+for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
+    fig.add_shape(
+        type="line",
+        y0=-3,
+        x0=i,
+        y1=3,
+        x1=i,
+        line=dict(
+            color="black",
+            width=2,
+        ),
+        row=1,
+        col=1,
+    )
+
+color = np.where(overlaps, 1.0, 0.0)
+
+n_samples_array = np.arange(1, n_samples + 1)
+pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
+t = n_samples
+
+fig.update_layout(
+    template="simple_white",
+    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
+    yaxis_scaleanchor="x",
+    xaxis_visible=False,
+    yaxis_visible=False,
+)
+
+for i in range(3, t):
+    fig.add_trace(
+        go.Scatter(
+            x=borders_red[: idx_red[3 * i] + 1, 0],
+            y=borders_red[: idx_red[3 * i] + 1, 1],
+            mode="lines",
+            line=dict(width=2),
+            marker=dict(color="red"),
+            name="Avec intersection",
+            visible=False,
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=borders_blue[: idx_blue[3 * i] + 1, 0],
+            y=borders_blue[: idx_blue[3 * i] + 1, 1],
+            mode="lines",
+            line=dict(width=2),
+            marker=dict(color="darkblue"),
+            name="Sans intersection",
+            visible=False,
+        ),
+        row=1,
+        col=1,
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=n_samples_array[:i],
+            y=pi_estimate[:i],
+            mode="lines",
+            line=dict(width=1),
+            marker=dict(color="red"),
+            showlegend=False,
+            visible=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+fig.add_annotation(
+    dict(
+        x=1.25,
+        y=0.14,
+        xref="paper",
+        yref="paper",
+        text="Estimation de pi",
+        showarrow=False,
+        font=dict(color="red"),
+    )
+)
+
+fig.add_annotation(
+    dict(x=-0.04, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
+)
+
+fig.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
+
+fig.update_layout(
+    template="none",
+    xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, n_samples]),
+    yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, 6]),
+)
+# plot a dash line at y=pi
+fig.add_shape(
+    type="line",
+    y0=np.pi,
+    x0=0,
+    y1=np.pi,
+    x1=n_samples,
+    line=dict(
+        color="black",
+        width=1,
+        dash="dashdot",
+    ),
+    row=2,
+    col=1,
+)
+
+
+fig.data[10 * 3].visible = True
+fig.data[10 * 3 + 1].visible = True
+fig.data[10 * 3 + 2].visible = True
+
+
+steps = []
+for i in range(len(fig.data) // 3):
+    step = dict(
+        label=str(i + 4),
+        method="update",
+        args=[
+            {"visible": [False] * len(fig.data)},
+            {
+                "title": "Estimation avec "
+                + str(i + 4)
+                + f" aiguilles: pi = {pi_estimate[i]:.4f}"
+            },
+        ],
+    )
+    step["args"][0]["visible"][3 * i] = True
+    step["args"][0]["visible"][3 * i + 1] = True
+    step["args"][0]["visible"][3 * i + 2] = True
+
+    steps.append(step)
+
+slider = dict(
+    active=6,
+    currentvalue={"prefix": "Nombre d'aiguilles: "},
+    pad={"t": 50},
+    y=-0.32,
+    steps=steps,
+)
+
+fig.update_layout(sliders=[slider])
+fig.show()
+```
 
 
 
-
-
-## Test code
+## Quantiles: cas continu
 
 ::::{.columns}
 
@@ -154,13 +540,13 @@ excludedPDFs = [];
 pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
 pdfNames=pdfNames_unsorted.toSorted();
 viewof inputs = Inputs.form([
-      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu`}),
-      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma`}),
-      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`}),
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu`, width: 500}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma`, width: 500}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`, width: 500}),
     ]);
 
 
-viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Distribution"});
+viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Loi", width: 500});
 
 ```
 
@@ -523,10 +909,405 @@ alpha = inputs[2]
 ```
 :::
 
+
+::::
 <br>
 
-[Note]{.underline}: voir aussi [Notations et rappels](../Courses/notations.qmd) 
+[Note]{.underline}: voir aussi [Notations et rappels](https://josephsalmon.github.io/HAX603X/Courses/notations.html#) 
+
+
+
+## Quantiles: cas discret
+
+
+::::{.columns}
+
+:::{.column width="38%"}
+
+```{ojs}
+//| echo: false
+discretePDFs = () => {
+  const distributions = Object.keys(dists);
+  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
+    const continuousDistributions = distributions.filter(name => dists[name].pmf && dists[name].cdf && dists[name].quantile);
+  return continuousDistributions
+};
+output_discr = discretePDFs();
+
+pmfNames_unsorted = output_discr.filter(name => !excludedPDFs.includes(name));
+pmfNames=pmfNames_unsorted.toSorted();
+viewof inputs_disc = Inputs.form([
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu `, width: 500}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma `, width: 500}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label: tex`\alpha`, width: 500}),
+    ]);
+
+viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Loi", width: 500});
+```
+
+:::
+
+:::{.column width="60%"}
+
+```{ojs}
+
+{
+  const z = d3.range(-5, 5, 0.01);
+  const pmf = z.map(z => dists[distrib_name_discr].pmf(z, mu_disc, sigma_disc));
+  const cdf = z.map(z => dists[distrib_name_discr].cdf(z, mu_disc, sigma_disc));
+  const inv = z.map(z => dists[distrib_name_discr].quantile(z, mu_disc, sigma_disc));
+  const quantile = dists[distrib_name_discr].quantile(alpha_disc, mu_disc, sigma_disc);
+  const filteredX = z.filter(coord => coord <= quantile);
+  const filteredPmf = pmf.filter((_, i) => z[i] <= quantile);
+  const filteredCdf = cdf.filter(coord => coord <= quantile);
+
+
+{
+var trace1 = {
+      type: "scatter",
+      name: 'Quantile',
+      x : cdf,
+      y : z,
+      line: {color: 'black'},
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+var trace12 = {
+        x : [alpha_disc, alpha_disc],
+        y : [z[0], quantile],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y3',
+
+
+};
+
+
+
+var trace13 = {
+    x: [0, alpha_disc],
+    y: [quantile, quantile],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y3'
+}
+
+
+var trace2 = {
+x: cdf,
+y: cdf,
+type: 'scatter',
+name: 'identity',
+line: {color: 'black'},
+xaxis: 'x1',
+yaxis: 'y2'
+
+};
+
+
+var trace21 = {
+        x : [alpha_disc, 1],
+        y : [alpha_disc, alpha_disc],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+var trace22 = {
+        x : [alpha_disc, alpha_disc],
+        y : [alpha_disc, 1],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+
+          },
+      xaxis: 'x1',
+      yaxis: 'y2'
+}
+
+var trace23 = {
+    x: [alpha_disc],
+    y: [alpha_disc],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x1',
+    yaxis: 'y2'
+}
+
+
+var trace31 = {
+      type: "scatter",
+      mode: "lines",
+      name: 'PDF2',
+      x: z,
+      y: cdf,
+      line: {color: 'black'},
+      xaxis: 'x2',
+      yaxis: 'y2',
+};
+
+var trace32 = {
+        x : filteredX,
+        y : filteredX.map(z => alpha_disc),
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace33 = {
+        x : [quantile, quantile],
+        y : [0, alpha_disc],
+        mode: 'lines',
+        line: {
+            dash: 'dash',
+            width: 1,
+            color: ' #428BCA',
+            marks: {
+                size: 0,
+                color: ' #428BCA',
+            }
+          },
+
+      xaxis: 'x2',
+      yaxis: 'y2'
+}
+
+var trace34 = {
+    x: [quantile],
+    y: [alpha],
+    mode: 'scatter',
+    line: {
+        dash: 'dash',
+        width: 1,
+        color: ' #428BCA',
+        marks: {
+            size: 0,
+        }
+    },
+    xaxis: 'x2',
+    yaxis: 'y2'
+}
+
+
+var trace41 = {
+
+  type: "scatter",
+  name: 'Quantile2',
+  fill: 'tozeroy',
+  x : filteredX,
+  y : filteredPmf,
+  opacity: 0.9,
+  line: {color: ' #428BCA'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+
+var trace42 = {
+
+  type: "scatter",
+  mode: "lines",
+  name: 'PDF2',
+  x: z,
+  y: pmf,
+  line: {color: 'black'},
+  xaxis: 'x2',
+  yaxis: 'y1'
+
+};
+
+var data = [
+  trace1,
+  trace12, trace13,
+  trace2, trace21, trace22, trace23,
+  trace31, trace32, trace33, trace34,
+  trace41, trace42];
+
+
+var layout = {
+
+  title: 'Distribution et quantile',
+  xaxis: {
+    domain: [0, 0.32],
+    anchor: 'y1'
+  },
+  yaxis: {
+    domain: [0, 0.24],
+    anchor: 'x1'
+
+  },
+  xaxis2: {
+    domain: [0.35, 1],
+    anchor: 'y'
+  },
+
+  yaxis2: {
+    domain: [0.26, 0.49],
+    anchor: 'x1'
+  },
+
+
+
+  yaxis3: {
+    domain: [0.5, 1],
+    anchor: 'x1'
+
+  },
+
+  showlegend: false,
+  height: 680,
+
+
+  annotations: [
+
+    {
+      x: 1/4,
+      y: quantile - (z[0]-z.slice(-1))/20,
+      xref: 'x1',
+      yref: 'y3',
+      text: 'q=' + quantile.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+      x: 1/4,
+      y: alpha_disc,
+      xref: 'x1',
+      yref: 'y2',
+      text: 'alpha=' + alpha_disc.toFixed(2),
+      font: {
+        size: 12,
+        color: '#428BCA',
+
+      },
+      showarrow: false,
+      arrowhead: 0,
+      ax: 25,
+      ay: -10,
+
+    },
+    {
+        text: "Fonction quantile",
+      font: {
+      size: 15,
+      color: 'black',
+    },
+    showarrow: false,
+    align: 'center',
+    x: -0.01,
+    y: 1.05,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de répartition",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.52,
+    xref: 'paper',
+    yref: 'paper',
+    },
+    {
+      text: "Fonction de densité",
+      font: {
+      size: 15,
+      color: 'black',
+            },
+    showarrow: false,
+    align: 'center',
+    x: 0.65,
+    y: 0.225,
+    xref: 'paper',
+    yref: 'paper',
+    },
+  ]
+
+};
+// XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
+
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout, config);
+    return div;
+  }
+
+}
+
+mu_disc = inputs_disc[0];
+sigma_disc = inputs_disc[1];
+alpha_disc = inputs_disc[2];
+```
+:::
+
 ::::
+
 
 ## Bibliographie
 
