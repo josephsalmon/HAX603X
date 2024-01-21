@@ -254,6 +254,7 @@ fig.add_trace(
     ),
 )
 
+fig.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='top'))
 fig.show()
 ```
 
@@ -277,14 +278,12 @@ Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
 ::: {.fragment}
 
 **Problème initial**: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
-
 :::
 
 <br>
 
 ::: {.fragment}
 **Réponse**:
-
 $$
 P = \frac{2}{\pi} \approx 0.6366 \enspace.
 $$
@@ -306,59 +305,6 @@ Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$
 ```{python}
 #| layout-ncol: 1
 #| code-fold: true
-import numpy as np
-import plotly.graph_objects as go
-from plotly.subplots import make_subplots
-
-rng = np.random.default_rng(44)
-
-n_samples = 200
-xmax = 14.499999
-xmin = -xmax
-
-
-# Create the needles
-centers_x = rng.uniform(xmin, xmax, n_samples)
-angles = rng.uniform(0, 2 * np.pi, n_samples)
-centers_y = rng.uniform(-2, 2, n_samples)
-
-# Compute the right borders of the needles
-borders_right = np.zeros((n_samples, 2))
-borders_right[:, 0] = centers_x + np.cos(angles) / 2
-borders_right[:, 1] = centers_y + np.sin(angles) / 2
-
-# Compute the left borders of the needles
-borders_left = np.zeros((n_samples, 2))
-borders_left[:, 0] = centers_x + np.cos(angles + np.pi) / 2
-borders_left[:, 1] = centers_y + np.sin(angles + np.pi) / 2
-
-centers_x_round = np.round(centers_x)
-overlap = (borders_right[:, 0] - centers_x_round) * (
-    borders_left[:, 0] - centers_x_round
-) < 0
-overlap = np.where(overlap, 1, 0)
-n_overlap = int(np.sum(overlap))
-
-
-# Check if the needles cross a line
-borders_red = np.empty((3 * n_overlap, 2), dtype=object)
-borders_red.fill(None)
-borders_red[::3, :] = borders_right[overlap == 1]
-borders_red[1::3, :] = borders_left[overlap == 1]
-
-borders_blue = np.empty((3 * (n_samples - n_overlap), 2), dtype=object)
-borders_blue.fill(None)
-borders_blue[::3, :] = borders_right[overlap == 0]
-borders_blue[1::3, :] = borders_left[overlap == 0]
-
-overlaps = np.empty((3 * n_samples), dtype=object)
-overlaps.fill(None)
-overlaps[::3] = overlap
-overlaps[1::3] = overlap
-overlaps[2::3] = overlap
-
-idx_red = np.cumsum(overlaps)
-idx_blue = np.cumsum(1 - overlaps)
 
 
 # Create subplots with 2 rows and 1 column with ratio x /  y  of 10
@@ -510,10 +456,9 @@ slider = dict(
 )
 
 fig.update_layout(sliders=[slider])
+fig.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
 fig.show()
 ```
-
-
 
 ## Quantiles: cas continu
 
