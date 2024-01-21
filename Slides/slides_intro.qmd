@@ -4,7 +4,7 @@ subtitle: "Introduction"
 format:
   revealjs:
     toc: true
-    template-partials: 
+    template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
 ---
@@ -13,7 +13,7 @@ format:
 # Présentation, informations générales
 
 
-## 
+##
 ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg)
 
 <br>
@@ -23,7 +23,7 @@ format:
 PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 
-## Enseignants: 
+## Enseignants:
 ::: {.fragment fragment-index=1}
 - **Joseph Salmon** : CM et TP
     - Situation actuelle : Professeur à l'Université de Montpellier
@@ -523,7 +523,9 @@ alpha = inputs[2]
 ```
 :::
 
+<br>
 
+[Note]{.underline}: voir aussi [Notations et rappels](../Courses/notations.qmd) 
 ::::
 
 ## Bibliographie

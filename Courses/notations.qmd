@@ -312,7 +312,7 @@ Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse d
 ## Visualisation: densité, fonction de répartition, quantiles, etc.
 
 
-### Cas des variables continues
+### Cas des variables continues {#sliders-continues .unnumbered}
 
 
 
@@ -1308,7 +1308,7 @@ var layout = {
 // XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
 
     var config = {responsive: true}
-    const div = DOM.element('divaf');
+    const div = DOM.element('div');
     Plotly.newPlot(div, data, layout, config);
     return div;
   }
