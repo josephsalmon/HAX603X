@@ -54,5 +54,5 @@ format:
 editor:
   render-on-save: true
 slide-level: 2
-execute:
-  cache: true
+# execute:
+#   cache: true

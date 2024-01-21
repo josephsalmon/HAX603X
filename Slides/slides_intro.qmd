@@ -9,7 +9,6 @@ format:
     include-after-body: toc-add.html
 ---
 
-
 # Présentation, informations générales
 
 
@@ -142,7 +141,6 @@ Première méthode de Monte-Carlo de la littérature .
 ::: {.fragment}
 ```{python}
 #| layout-ncol: 1
-#| code-fold: true
 import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -304,15 +302,13 @@ Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$
 
 ```{python}
 #| layout-ncol: 1
-#| code-fold: true
-
 
 # Create subplots with 2 rows and 1 column with ratio x /  y  of 10
-fig = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
+fig1 = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
 
 # Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
 for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
-    fig.add_shape(
+    fig1.add_shape(
         type="line",
         y0=-3,
         x0=i,
@@ -332,7 +328,7 @@ n_samples_array = np.arange(1, n_samples + 1)
 pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
 t = n_samples
 
-fig.update_layout(
+fig1.update_layout(
     template="simple_white",
     xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
     yaxis_scaleanchor="x",
@@ -341,7 +337,7 @@ fig.update_layout(
 )
 
 for i in range(3, t):
-    fig.add_trace(
+    fig1.add_trace(
         go.Scatter(
             x=borders_red[: idx_red[3 * i] + 1, 0],
             y=borders_red[: idx_red[3 * i] + 1, 1],
@@ -354,7 +350,7 @@ for i in range(3, t):
         row=1,
         col=1,
     )
-    fig.add_trace(
+    fig1.add_trace(
         go.Scatter(
             x=borders_blue[: idx_blue[3 * i] + 1, 0],
             y=borders_blue[: idx_blue[3 * i] + 1, 1],
@@ -368,7 +364,7 @@ for i in range(3, t):
         col=1,
     )
 
-    fig.add_trace(
+    fig1.add_trace(
         go.Scatter(
             x=n_samples_array[:i],
             y=pi_estimate[:i],
@@ -382,7 +378,7 @@ for i in range(3, t):
         col=1,
     )
 
-fig.add_annotation(
+fig1.add_annotation(
     dict(
         x=1.25,
         y=0.14,
@@ -394,19 +390,19 @@ fig.add_annotation(
     )
 )
 
-fig.add_annotation(
+fig1.add_annotation(
     dict(x=-0.04, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
 )
 
-fig.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
+fig1.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
 
-fig.update_layout(
+fig1.update_layout(
     template="none",
     xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, n_samples]),
     yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, 6]),
 )
 # plot a dash line at y=pi
-fig.add_shape(
+fig1.add_shape(
     type="line",
     y0=np.pi,
     x0=0,
@@ -422,28 +418,28 @@ fig.add_shape(
 )
 
 
-fig.data[10 * 3].visible = True
-fig.data[10 * 3 + 1].visible = True
-fig.data[10 * 3 + 2].visible = True
+fig1.data[11 * 3].visible = True
+fig1.data[11 * 3 + 1].visible = True
+fig1.data[11 * 3 + 2].visible = True
 
 
 steps = []
-for i in range(len(fig.data) // 3):
+for ii in range(len(fig1.data) // 3):
     step = dict(
-        label=str(i + 4),
+        label=str(ii + 4),
         method="update",
         args=[
-            {"visible": [False] * len(fig.data)},
+            {"visible": [False] * len(fig1.data)},
             {
                 "title": "Estimation avec "
-                + str(i + 4)
-                + f" aiguilles: pi = {pi_estimate[i]:.4f}"
+                + str(ii + 4)
+                + f" aiguilles: pi = {pi_estimate[ii]:.4f}"
             },
         ],
     )
-    step["args"][0]["visible"][3 * i] = True
-    step["args"][0]["visible"][3 * i + 1] = True
-    step["args"][0]["visible"][3 * i + 2] = True
+    step["args"][0]["visible"][3 * ii] = True
+    step["args"][0]["visible"][3 * ii + 1] = True
+    step["args"][0]["visible"][3 * ii + 2] = True
 
     steps.append(step)
 
@@ -455,10 +451,11 @@ slider = dict(
     steps=steps,
 )
 
-fig.update_layout(sliders=[slider])
-fig.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
-fig.show()
+fig1.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
+fig1.update_layout(sliders=[slider])
+fig1.show()
 ```
+
 
 ## Quantiles: cas continu
 

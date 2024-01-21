@@ -238,13 +238,14 @@ for i in range(len(fig.data) // 3):
     steps.append(step)
 
 slider = dict(
-    active=6,
+    active=0,
     currentvalue={"prefix": "Nombre d'aiguilles: "},
     pad={"t": 50},
     y=-0.32,
     steps=steps,
 )
 
+fig.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
 fig.update_layout(sliders=[slider])
 fig.show()
 ```

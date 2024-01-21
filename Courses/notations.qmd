@@ -314,10 +314,6 @@ Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse d
 
 ### Cas des variables continues {#sliders-continues .unnumbered}
 
-
-
-
-
 ::: {.panel-tabset}
 
 ## Observable
