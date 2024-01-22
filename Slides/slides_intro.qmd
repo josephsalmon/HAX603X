@@ -380,8 +380,8 @@ for i in range(3, t):
 
 fig1.add_annotation(
     dict(
-        x=1.25,
-        y=0.14,
+        x=0.04,
+        y=0.19,
         xref="paper",
         yref="paper",
         text="Estimation de pi",
@@ -391,7 +391,7 @@ fig1.add_annotation(
 )
 
 fig1.add_annotation(
-    dict(x=-0.04, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
+    dict(x=1, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
 )
 
 fig1.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
@@ -447,12 +447,14 @@ slider = dict(
     active=6,
     currentvalue={"prefix": "Nombre d'aiguilles: "},
     pad={"t": 50},
-    y=-0.32,
+    y=-0.1,
     steps=steps,
 )
 
 fig1.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
 fig1.update_layout(sliders=[slider])
+fig1.update_layout(height=720, width=1280)
+
 fig1.show()
 ```
 
@@ -855,7 +857,7 @@ alpha = inputs[2]
 ::::
 <br>
 
-[Note]{.underline}: voir aussi [Notations et rappels](https://josephsalmon.github.io/HAX603X/Courses/notations.html#) 
+[Note]{.underline}: voir aussi [Notations et rappels](https://josephsalmon.github.io/HAX603X/Courses/notations.html#)
 
 
 
@@ -1250,6 +1252,10 @@ alpha_disc = inputs_disc[2];
 
 ::::
 
+<br>
+
+[Note]{.underline}: voir aussi [Notations et rappels](https://josephsalmon.github.io/HAX603X/Courses/notations.html#)
+
 
 
 ##  Méthode de Monte-Carlo
@@ -1263,7 +1269,7 @@ Domaines d'applications:
  - la chimie
  - la biologie
  - la finance
- - l’apprentissage automatique
+ - l'apprentissage automatique
 
 
 ## Contexte de la naissance de la méthode de Monte Carlo
@@ -1275,8 +1281,8 @@ Domaines d'applications:
 
 - Lieu: Los Alamos
 - Époque: seconde guerre mondial
-- Contexte: **Projet Manathan**, produire une bombe atomique (leader: Oppenheimer)
-- Besoins: modéliser les réactions nucléaires en chaîne
+- Contexte: **Projet Manathan**, produire une bombe atomique 
+- Besoins: modéliser les réactions nucléaires en chaîne (combinatoires)
 
 
 ::: {layout-ncol=3}
