@@ -315,6 +315,18 @@ Dans le cadre du projet Manhattan, il s'agissait de calculer des intégrales de 
 *It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he "just had to go to Monte Carlo".*
 
 
-## Hasting Metropolis
 
-## Culture populaire "Monty Hall game show"
+## Autres méthodes stochastiques populaires
+
+### Méthode d'Hasting-Metropolis
+
+L'algorithme de Hasting-Metropolis est une méthode MCMC (&#127468;&#127463;: *Monte Carlo Markov Chains*) dont le but est d'obtenir un échantillonnage aléatoire d'une distribution de probabilité quand l'échantillonnage direct en est difficile (en particulier en grande dimension)
+
+Un avantage est qu'il ne requiert la connaissance de loi de densité qu'à constante multiplicative près.
+
+
+### Recuit simulé
+
+Le recuit simulé est une méthode (empirique) d'optimisation, inspirée d'un processus, le recuit, utilisé en métallurgie.
+On alterne dans cette dernière des cycles de refroidissement lent et de réchauffage (recuit) qui ont pour effet de minimiser l'énergie du matériau. Cette méthode est transposée en optimisation pour trouver les extrema d'une fonction.
+

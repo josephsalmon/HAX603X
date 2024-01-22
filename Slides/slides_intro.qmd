@@ -391,7 +391,7 @@ fig1.add_annotation(
 )
 
 fig1.add_annotation(
-    dict(x=1, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
+    dict(x=1., y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
 )
 
 fig1.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
@@ -516,8 +516,8 @@ viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Loi", wi
 var trace1 = {
       type: "scatter",
       name: 'Quantile',
-      x : cdf,
-      y : x,
+      x: cdf,
+      y: x,
       line: {color: 'black'},
       xaxis: 'x1',
       yaxis: 'y3',
@@ -643,8 +643,8 @@ var trace31 = {
 };
 
 var trace32 = {
-        x : filteredX,
-        y : filteredX.map(x => alpha),
+        x: filteredX,
+        y: filteredX.map(x => alpha),
         mode: 'lines',
         line: {
             dash: 'dash',
@@ -699,8 +699,8 @@ var trace41 = {
   type: "scatter",
   name: 'Quantile2',
   fill: 'tozeroy',
-  x : filteredX,
-  y : filteredPdf,
+  x: filteredX,
+  y: filteredPdf,
   opacity: 0.9,
   line: {color: ' #428BCA'},
   xaxis: 'x2',
@@ -910,8 +910,8 @@ viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Lo
 var trace1 = {
       type: "scatter",
       name: 'Quantile',
-      x : cdf,
-      y : z,
+      x: cdf,
+      y: z,
       line: {color: 'black'},
       xaxis: 'x1',
       yaxis: 'y3',
@@ -1035,8 +1035,8 @@ var trace31 = {
 };
 
 var trace32 = {
-        x : filteredX,
-        y : filteredX.map(z => alpha_disc),
+        x: filteredX,
+        y: filteredX.map(z => alpha_disc),
         mode: 'lines',
         line: {
             dash: 'dash',
@@ -1306,14 +1306,40 @@ Domaines d'applications:
 
 
 
+## Le nom Monte-Carlo
 
-<!-- [John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann)^[[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann):  (1903-1957) mathématicien et physicien américano-hongrois, un des pères de l'informatique.
-<img src="https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg" width="10%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>], 
-[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis)^[[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis):  (1915-1999)
-<img src="https://upload.wikimedia.org/wikipedia/commons/5/56/Nicholas_Metropolis_cropped.PNG" width="10%" style="display: block; margin-right: auto; margin-left: auto;" title="Nicholas Metropolis à Los Alamos National Laboratory" alt="Nicholas Metropolis à Los Alamos National Laboratory"></img>] ou encore [Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam)^[[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam):  (1909-1984)
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg" width="10%" style="display: block; margin-right: auto; margin-left: auto;" title="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information." alt="Unless otherwise indicated, this information has been authored by an employee or employees of the Los Alamos National Security, LLC (LANS), operator of the Los Alamos National Laboratory under Contract No. DE-AC52-06NA25396 with the U.S. Department of Energy. The U.S. Government has rights to use, reproduce, and distribute this information. The public may copy and use this information without charge, provided that this Notice and any statement of authorship are reproduced on all copies. Neither the Government nor LANS makes any warranty, express or implied, or assumes any liability or responsibility for the use of this information."></img>] -->
+Le nom Monte-Carlo: venu du besoin de confidentialité du projet
+
+Monte-Carlo: connue pour ses jeux de hasard, où l’oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.
 
 
+Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginning]:
+
+
+*It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”.*
+
+
+## Essor de la méthode de Monte Carlo
+
+
+- Popularisation croissante:
+
+  - Essor de l'informatique (depuis les années 80)
+  - Essor des méthodes de calcul parallèle (GPU, cluster, etc.)
+
+<br>
+
+- Domaine principaux impactés:
+
+  - finance : évaluation des prix de produits dérivés
+  - apprentissage automatique: utilisation de l'aléatoire pour généré des scénarios (e.g., AlphaGo, AlphaGeometry)
+
+
+Exemple d'AlphaGo (et autres jeux):
+
+Recherche arborescente Monte-Carlo:analyse des mouvements les plus prometteurs, en élargissant l'arbre de recherche sur la base d'un échantillonnage aléatoire de l'espace de recherche
+
+## 
 
 ## Bibliographie
 
