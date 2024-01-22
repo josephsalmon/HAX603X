@@ -307,7 +307,6 @@ Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$
 fig1 = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
 
 # Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
-
 for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
     fig1.add_shape(
         type="line",
@@ -1334,7 +1333,6 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
   - finance : évaluation des prix de produits dérivés
   - apprentissage automatique: utilisation de l'aléatoire pour généré des scénarios (e.g., AlphaGo, AlphaGeometry)
-
 
 Exemple d'AlphaGo (et autres jeux):
 
