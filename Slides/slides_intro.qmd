@@ -565,7 +565,6 @@ Initialement: besoin de confidentialité du projet Manhattan
 
 Monte-Carlo: connue pour ses jeux de hasard, où l'oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.
 
-
 <br>
 Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginning]:
 
@@ -573,7 +572,9 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 *It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”.*
 
 
+
 ## Essor de la méthode de Monte Carlo
+
 
 ::::{.columns}
 
@@ -585,7 +586,6 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
   - Essor de l'informatique (depuis les années 80)
   - Essor des méthodes de calcul parallèle (GPU, cluster, etc.)
-
 
 :::
 
