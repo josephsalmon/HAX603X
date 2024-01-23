@@ -1,35 +1,64 @@
 [
   {
-    "objectID": "trash/Slides/cours_intro.html",
-    "href": "trash/Slides/cours_intro.html",
-    "title": "HAX603X: Modélisation stochastique",
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Présentation",
     "section": "",
-    "text": "Retour au sommet"
-  },
-  {
-    "objectID": "TP/TP1.html#test2",
-    "href": "TP/TP1.html#test2",
-    "title": "TP1:…",
-    "section": "test2",
-    "text": "test2",
+    "text": "Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).\nAttention: site en construction…\n\n\n\nJoseph Salmon: joseph.salmon@umontpellier.fr,\nBenjamin Charlier: benjamin.charlier@umontpellier.fr\n\nCe cours est issu du travail antérieur de la part de:\n\nNicolas Meyer\nBenoîte de Saporta et de l’aide de François-David Collin.\n\n\n\n\nCours de mesure et intégration, analyse numérique…\n\n\n\n\n\n\n\n\n\n\n\nCCI\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction à Python Cours de Python 🇫🇷\nData Science: Python Data Science Handbook, With Application to Understanding Data by J. Van DerPlas, 2016; 🇬🇧  videos: Reproducible Data Analysis in Jupyter\nMath for journalists by Naël Shiab 🇬🇧\n\n\n\n\n\nSoftware Dev. for datascience by J. Salmon and B. Charlier, 🇬🇧\nChaîne de Markov: Markov Chains by Ethan N. Epperly 🇬🇧\nAdvanced Data Analysis from an Elementary Point of View by Cosma Shalizi; 🇬🇧\nMaximum likelihood by numerical optimization 🇬🇧",
     "crumbs": [
-      "TP",
-      "TP1:..."
+      "Présentation"
     ]
   },
   {
-    "objectID": "Slides/slides_test_sliders.html#laiguille-de-buffon",
-    "href": "Slides/slides_test_sliders.html#laiguille-de-buffon",
-    "title": "HAX603X: Modélisation stochastique",
-    "section": "L’aiguille de Buffon",
-    "text": "L’aiguille de Buffon"
+    "objectID": "index.html#professeurs",
+    "href": "index.html#professeurs",
+    "title": "Présentation",
+    "section": "",
+    "text": "Joseph Salmon: joseph.salmon@umontpellier.fr,\nBenjamin Charlier: benjamin.charlier@umontpellier.fr\n\nCe cours est issu du travail antérieur de la part de:\n\nNicolas Meyer\nBenoîte de Saporta et de l’aide de François-David Collin.",
+    "crumbs": [
+      "Présentation"
+    ]
   },
   {
-    "objectID": "Slides/slides_test_sliders.html#number-two",
-    "href": "Slides/slides_test_sliders.html#number-two",
-    "title": "HAX603X: Modélisation stochastique",
-    "section": "number two",
-    "text": "number two\n\n\n                                                \n\n\n\n\nHAX603X: Modélisation stochastique"
+    "objectID": "index.html#prérequis",
+    "href": "index.html#prérequis",
+    "title": "Présentation",
+    "section": "",
+    "text": "Cours de mesure et intégration, analyse numérique…",
+    "crumbs": [
+      "Présentation"
+    ]
+  },
+  {
+    "objectID": "index.html#modalité-de-contrôle-des-connaissances",
+    "href": "index.html#modalité-de-contrôle-des-connaissances",
+    "title": "Présentation",
+    "section": "",
+    "text": "CCI",
+    "crumbs": [
+      "Présentation"
+    ]
+  },
+  {
+    "objectID": "index.html#livres-et-ressources",
+    "href": "index.html#livres-et-ressources",
+    "title": "Présentation",
+    "section": "",
+    "text": "Introduction à Python Cours de Python 🇫🇷\nData Science: Python Data Science Handbook, With Application to Understanding Data by J. Van DerPlas, 2016; 🇬🇧  videos: Reproducible Data Analysis in Jupyter\nMath for journalists by Naël Shiab 🇬🇧\n\n\n\n\n\nSoftware Dev. for datascience by J. Salmon and B. Charlier, 🇬🇧\nChaîne de Markov: Markov Chains by Ethan N. Epperly 🇬🇧\nAdvanced Data Analysis from an Elementary Point of View by Cosma Shalizi; 🇬🇧\nMaximum likelihood by numerical optimization 🇬🇧",
+    "crumbs": [
+      "Présentation"
+    ]
+  },
+  {
+    "objectID": "TD/TD1.html#test2",
+    "href": "TD/TD1.html#test2",
+    "title": "TD1:…",
+    "section": "test2",
+    "text": "test2",
+    "crumbs": [
+      "TD",
+      "TD1:..."
+    ]
   },
   {
     "objectID": "Slides/slides_intro.html#section",
@@ -42,50 +71,50 @@
     "objectID": "Slides/slides_intro.html#enseignants",
     "href": "Slides/slides_intro.html#enseignants",
     "title": "HAX603X: Modélisation stochastique",
-    "section": "Enseignants:",
-    "text": "Enseignants:\n\n\nJoseph Salmon : CM et TP\n\nSituation actuelle : Professeur à l’Université de Montpellier\nPrécédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington\nSpécialités : statistiques, optimisation, traitement des images, sciences participatives\nBureau : 415, Bat. 9\n\n\n\n\n\n\n\n\nBenjmain Charlier : CM, TD et TP\n\nSituation actuelle : Maître de conférence l’Université de Montpellier\nPrécédemment : Université Paul Sabatier, ENS Paris-Saclay\nSpécialités : traitement des images, statistiques, différentiation automatique\nBureau : 423, Bat. 9"
+    "section": "Enseignants",
+    "text": "Enseignants\n\n\nJoseph Salmon : CM et TP\n\nSituation actuelle : Professeur à l’Université de Montpellier\nPrécédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington\nSpécialités : statistiques, optimisation, traitement des images, sciences participatives\nBureau : 415, Bat. 9\n\n\n\n\n\n\n\n\nBenjmain Charlier : CM, TD et TP\n\nSituation actuelle : Maître de conférence l’Université de Montpellier\nPrécédemment : Université Paul Sabatier, ENS Paris-Saclay\nSpécialités : traitement des images, statistiques, différentiation automatique\nBureau : 423, Bat. 9"
   },
   {
     "objectID": "Slides/slides_intro.html#ressources-en-ligne",
     "href": "Slides/slides_intro.html#ressources-en-ligne",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Ressources en ligne",
-    "text": "Ressources en ligne\nInformations principales : site du cours http://josephsalmon.github.io/HAX603X\n\n\nSyllabus\nSlides (au fil de l’eau)\nPoly (au fil de l’eau)\nFeuilles de TD\nFeuilles de TP\nRendu TP : Moodle de l’université (https://moodle.umontpellier.fr/course/view.php?id=5558)"
+    "text": "Ressources en ligne\n\nInformations principales : site du cours http://josephsalmon.github.io/HAX603X\n\n\n\nSyllabus\nCours (détaillé: site web)\nSlides (résumé)\nFeuilles de TD\nFeuilles de TP\nRendu TP : Moodle de l’université (https://moodle.umontpellier.fr/course/view.php?id=5558)"
   },
   {
     "objectID": "Slides/slides_intro.html#validation",
     "href": "Slides/slides_intro.html#validation",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Validation",
-    "text": "Validation\n\nTP notés : Rendu = fichier Python .py unique\n\nTP noté 1 : rendre en fin de session (date TBD)\nTP noté 2 : rendre en fin de session (date TBD)\n\nCC : devoir sur table d’une heure\n\n\n\nCoefficients:\n\nNote Session 1 : (40% CC + 30% TP 1 + 30% TP 2)\nNote Session 2 : (30% CC + 35% TP 1 + 35% TP 2)\n\n\n\n\n\n\n\n\nAvertissement\n\n\nLe rendu est individuel pour le TP noté !!!"
+    "text": "Validation\n\nTP notés : Rendu = fichier Python .py unique\n\nTP noté 1 : rendre en fin de session (en S11)\nTP noté 2 : rendre en fin de session (en S17)\n\nCC : devoir sur table d’une heure (S18)\n\n\n\nCoefficients:\n\nNote Session 1 : (40% CC + 30% TP 1 + 30% TP 2)\nNote Session 2 : (30% CC + 35% TP 1 + 35% TP 2)\n\n\n\n\n\n\n\n\nImportant\n\n\nLe rendu est individuel pour le TP noté !!!"
   },
   {
     "objectID": "Slides/slides_intro.html#notation-pour-les-tps",
     "href": "Slides/slides_intro.html#notation-pour-les-tps",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Notation pour les TPs",
-    "text": "Notation pour les TPs\nRendu : sur Moodle, en déposant un fichier nom_prenom.py dans le dossier adéquat.\nDétails de la notation du TP :\n\nQualité des réponses aux questions\nQualité de rédaction et d’orthographe\nQualité des graphiques (légendes, couleurs)\nQualité d’écriture du code (noms de variables clair, commentaires utiles, code synthétique, etc.)\nNotebook reproductible et absence de bug\n\n\nPénalités :\n\nEnvoi par mail : zéro\nRetard : zéro (uploader avant la fin, fermeture automatique de moodle)"
+    "text": "Notation pour les TPs\nRendu : sur Moodle, en déposant un fichier nom_prenom.py dans le dossier adéquat.\nDétails de la notation du TP :\n\nQualité des réponses aux questions\nQualité de rédaction et d’orthographe\nQualité des graphiques (légendes, couleurs)\nQualité du code (noms de variables, clairs, commentaires utiles, code synthétique, etc.)\nNotebook reproductible et absence de bug\n\n\n\n\n\n\n\n\nPénalités\n\n\n\nEnvoi par mail : zéro\nRetard : zéro (uploader avant la fin, fermeture automatique de moodle)"
   },
   {
     "objectID": "Slides/slides_intro.html#prérequis---à-revoir-seul",
     "href": "Slides/slides_intro.html#prérequis---à-revoir-seul",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Prérequis - à revoir seul",
-    "text": "Prérequis - à revoir seul\n\nBases de probabilités (Foata et Fuchs 1996): probabilité, densité, espérance, fonction de répartition\nProgrammation élémentaire : if then else, for, while, fonctions, etc."
+    "text": "Prérequis - à revoir seul\n\nBases de probabilités (Foata et Fuchs 1996): probabilité, densité, espérance, fonction de répartition\nProgrammation élémentaire : if … then… else …, for, while, fonctions, etc."
   },
   {
     "objectID": "Slides/slides_intro.html#description-du-cours",
     "href": "Slides/slides_intro.html#description-du-cours",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Description du cours",
-    "text": "Description du cours\nObjectifs :\n\nMéthode de génération aléatoire\nRéduction de variance, enjeux computationnels\nXXX\nXXX\nutilisation de Python pour la génération d’éléments aléatoires\nvisualisation (matplotlib, seaborn)\nintroduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)"
+    "text": "Description du cours\nObjectifs :\n\nMéthodes de génération aléatoire (inverse, rejet, etc.)\nRéduction de variance, enjeux computationnels\nRappels sur les lois gaussiennes\nUtilisation de Python pour la génération d’éléments aléatoires\nVisualisation (matplotlib, seaborn)\nIntroduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)"
   },
   {
-    "objectID": "Slides/slides_intro.html#laiguille-de-buffon",
-    "href": "Slides/slides_intro.html#laiguille-de-buffon",
+    "objectID": "Slides/slides_intro.html#buffon-et-les-prémisses-de-la-méthode-de-monte-carlo",
+    "href": "Slides/slides_intro.html#buffon-et-les-prémisses-de-la-méthode-de-monte-carlo",
     "title": "HAX603X: Modélisation stochastique",
-    "section": "L’aiguille de Buffon",
-    "text": "L’aiguille de Buffon\n\n\n\n1733: l’aiguille de Buffon, méthode d’estimation de la valeur de \\pi. Première méthode de Monte-Carlo de la littérature .\nProblème initial: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur 1: quelle est alors la probabilité P que l’aiguille croise une ligne de la trame du parquet ?\n\n\n\n                                                \n\n\n\nGeorges-Louis Leclerc, Comte de Buffon: (1707-1788) naturaliste, mathématicien et industriel français du siècle des Lumières"
+    "section": "Buffon et les prémisses de la méthode de Monte-Carlo",
+    "text": "Buffon et les prémisses de la méthode de Monte-Carlo\n\n\n\n\n1733: l’aiguille de Buffon, méthode d’estimation de la valeur de \\pi.\n\n\n\n\nProblème initial: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur 1: quelle est alors la probabilité P que l’aiguille croise une ligne de la trame du parquet ?\n\n\n\n\n\n\n                                                \n\n\n\n\n\n\nGeorges-Louis Leclerc, Comte de Buffon(1707-1788) : naturaliste, mathématicien et industriel français du siècle des Lumières"
   },
   {
     "objectID": "Slides/slides_intro.html#laiguille-de-buffon-suite",
@@ -95,46 +124,46 @@
     "text": "L’aiguille de Buffon (suite)\n\nProblème initial: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur 1: quelle est alors la probabilité P que l’aiguille croise une ligne de la trame du parquet ?\n\n\n\nRéponse: \nP = \\frac{2}{\\pi} \\approx 0.6366 \\enspace.\n Une preuve de ce résultat est donnée ici."
   },
   {
-    "objectID": "Slides/slides_intro.html#principe-de-monte-carlo-pour-estimer-pi",
-    "href": "Slides/slides_intro.html#principe-de-monte-carlo-pour-estimer-pi",
+    "objectID": "Slides/slides_intro.html#principe-de-monte-carlo-et-estimation",
+    "href": "Slides/slides_intro.html#principe-de-monte-carlo-et-estimation",
     "title": "HAX603X: Modélisation stochastique",
-    "section": "Principe de Monte Carlo pour estimer \\pi",
-    "text": "Principe de Monte Carlo pour estimer \\pi\nL’idée sous-jacente de Buffon :\nsi l’on répète cette expérience un grand nombre de fois, on peut approché la quantité P numériquement, par exemple en proposant un estimateur \\hat{P}_n qui compte la proportion de chevauchement après avoir fait n répétition des lancers.\nPour estimer \\pi, il ne restera donc plus qu’à évaluer \\frac{2}{\\hat{P}_n}."
+    "section": "Principe de Monte Carlo et estimation",
+    "text": "Principe de Monte Carlo et estimation\nIdée sous-jacente de Buffon :\nsi l’on répète cette expérience un grand nombre de fois, on peut approché la quantité P numériquement, par exemple en proposant un estimateur \\hat{P}_n qui compte la proportion de chevauchement après avoir fait n répétition des lancers.\n Estimation de \\pi:\n\n\\pi \\approx \\frac{2}{\\hat{P}_n}"
   },
   {
-    "objectID": "Slides/slides_intro.html#principe-de-monte-carlo-pour-estimer-pi-suite",
-    "href": "Slides/slides_intro.html#principe-de-monte-carlo-pour-estimer-pi-suite",
+    "objectID": "Slides/slides_intro.html#principe-de-monte-carlo-pour-lestimation-suite",
+    "href": "Slides/slides_intro.html#principe-de-monte-carlo-pour-lestimation-suite",
     "title": "HAX603X: Modélisation stochastique",
-    "section": "Principe de Monte Carlo pour estimer \\pi (suite)",
-    "text": "Principe de Monte Carlo pour estimer \\pi (suite)"
+    "section": "Principe de Monte Carlo pour l’estimation (suite)",
+    "text": "Principe de Monte Carlo pour l’estimation (suite)"
   },
   {
     "objectID": "Slides/slides_intro.html#méthode-de-monte-carlo",
     "href": "Slides/slides_intro.html#méthode-de-monte-carlo",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Méthode de Monte-Carlo",
-    "text": "Méthode de Monte-Carlo\nMéthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.\nDomaines d’applications:\n\nla physique\nla chimie\nla biologie\nla finance\nl’apprentissage automatique"
+    "text": "Méthode de Monte-Carlo\nMéthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.\n\nDomaines d’applications:\n\nla physique\nla chimie\nla biologie\nla finance\nl’apprentissage automatique"
   },
   {
     "objectID": "Slides/slides_intro.html#contexte-de-la-naissance-de-la-méthode-de-monte-carlo",
     "href": "Slides/slides_intro.html#contexte-de-la-naissance-de-la-méthode-de-monte-carlo",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Contexte de la naissance de la méthode de Monte Carlo",
-    "text": "Contexte de la naissance de la méthode de Monte Carlo\n\n\n\nLieu: Los Alamos\nÉpoque: seconde guerre mondial\nContexte: Projet Manathan, produire une bombe atomique\nBesoins: modéliser les réactions nucléaires en chaîne (combinatoires)\n\n\n\n\n\n\nJohn von Neumann(1903-1957), mathématicien et physicien américano-hongrois, un des pères de l’informatique.\n\n\n\n\n\nNicholas Metropolis (1915-1999), physicien gréco-américain, un des initiateurs de la méthode de Monte Carlo et du recuit simulé\n\n\n\n\n\nStanisław Ulam (1909-1984), mathématicien polono-américainm, un des initiateurs de la méthode de Monte Carlo et de la propulsion nucléaire pulsée\n\n\n\n\n\n\n\n\nExplosion de Trinity (16 Juillet 1945)"
+    "text": "Contexte de la naissance de la méthode de Monte Carlo\n\n\n\n\nLieu: Los Alamos\nÉpoque: seconde guerre mondial\nContexte: Projet Manathan, produire une bombe atomique\nBesoins: modéliser les réactions nucléaires en chaîne (combinatoires)\n\n\n\n\n\n\n\n\nJohn von Neumann (1903-1957), mathématicien et physicien américano-hongrois, un des pères de l’informatique.\n\n\n\n\n\n\n\nNicholas Metropolis (1915-1999), physicien gréco-américain, un des initiateurs de la méthode de Monte Carlo et du recuit simulé\n\n\n\n\n\n\n\nStanisław Ulam (1909-1984), mathématicien polono-américainm, un des initiateurs de la méthode de Monte Carlo et de la propulsion nucléaire pulsée\n\n\n\n\n\n\n\n\n\n\nExplosion de Trinity (16 Juillet 1945)"
   },
   {
-    "objectID": "Slides/slides_intro.html#le-nom-monte-carlo",
-    "href": "Slides/slides_intro.html#le-nom-monte-carlo",
+    "objectID": "Slides/slides_intro.html#lorigine-du-nom-monte-carlo",
+    "href": "Slides/slides_intro.html#lorigine-du-nom-monte-carlo",
     "title": "HAX603X: Modélisation stochastique",
-    "section": "Le nom Monte-Carlo",
-    "text": "Le nom Monte-Carlo\nLe nom Monte-Carlo: venu du besoin de confidentialité du projet\nMonte-Carlo: connue pour ses jeux de hasard, où l’oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.\nCe serait N. Metropolis qui aurait proposé ce nom, cf. (Metropolis 1987):\nIt was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”."
+    "section": "L’origine du nom “Monte-Carlo”",
+    "text": "L’origine du nom “Monte-Carlo”\nInitialement: besoin de confidentialité du projet Manhattan\n\nMonte-Carlo: connue pour ses jeux de hasard, où l’oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.\n Ce serait N. Metropolis qui aurait proposé ce nom, cf. (Metropolis 1987):\nIt was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”."
   },
   {
     "objectID": "Slides/slides_intro.html#essor-de-la-méthode-de-monte-carlo",
     "href": "Slides/slides_intro.html#essor-de-la-méthode-de-monte-carlo",
     "title": "HAX603X: Modélisation stochastique",
     "section": "Essor de la méthode de Monte Carlo",
-    "text": "Essor de la méthode de Monte Carlo\n\nPopularisation croissante:\n\nEssor de l’informatique (depuis les années 80)\nEssor des méthodes de calcul parallèle (GPU, cluster, etc.)\n\n\n\n\nDomaine principaux impactés:\n\nfinance : évaluation des prix de produits dérivés\napprentissage automatique: utilisation de l’aléatoire pour généré des scénarios (e.g., AlphaGo, AlphaGeometry)\n\n\nExemple d’AlphaGo (et autres jeux):\nRecherche arborescente Monte-Carlo: analyse des mouvements les plus prometteurs, en élargissant l’arbre de recherche sur la base d’un échantillonnage aléatoire de l’espace de recherche"
+    "text": "Essor de la méthode de Monte Carlo\n\n\n\n\nPopularisation croissante:\n\nEssor de l’informatique (depuis les années 80)\nEssor des méthodes de calcul parallèle (GPU, cluster, etc.)\n\n\n\n\n\nDomaine principaux impactés:\n\nfinance : évaluation des prix de produits dérivés\napprentissage automatique: utilisation de l’aléatoire pour généré des scénarios\nExemples: Alphago (2016), AlphaGeometry (2024)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nRecherche arborescente Monte-Carlo (🇬🇧: Monte Carlo tree search): analyse des scénarios les plus prometteurs, en élargissant l’arbre de recherche sur la base d’un échantillonnage aléatoire de l’espace entier (ingrédient important d’AlphaGo)"
   },
   {
     "objectID": "Slides/slides_intro.html#bibliographie",
@@ -192,7 +221,7 @@
     "href": "Courses/perspective_historique.html#autres-méthodes-stochastiques-populaires",
     "title": "Perspectives historiques",
     "section": "Autres méthodes stochastiques populaires",
-    "text": "Autres méthodes stochastiques populaires\n\nMéthode d’Hasting-Metropolis\nL’algorithme de Hasting-Metropolis est une méthode MCMC (🇬🇧: Monte Carlo Markov Chains) dont le but est d’obtenir un échantillonnage aléatoire d’une distribution de probabilité quand l’échantillonnage direct en est difficile (en particulier en grande dimension)\nUn avantage est qu’il ne requiert la connaissance de loi de densité qu’à constante multiplicative près.\n\n\nRecuit simulé\nLe recuit simulé est une méthode (empirique) d’optimisation, inspirée d’un processus, le recuit, utilisé en métallurgie. On alterne dans cette dernière des cycles de refroidissement lent et de réchauffage (recuit) qui ont pour effet de minimiser l’énergie du matériau. Cette méthode est transposée en optimisation pour trouver les extrema d’une fonction.",
+    "text": "Autres méthodes stochastiques populaires\n\nMéthode d’Hasting-Metropolis\nL’algorithme de Hasting-Metropolis est une méthode MCMC (🇬🇧: Monte Carlo Markov Chains) dont le but est d’obtenir un échantillonnage aléatoire d’une distribution de probabilité quand l’échantillonnage direct en est difficile (en particulier en grande dimension)\nUn avantage est qu’il ne requiert la connaissance de loi de densité qu’à constante multiplicative près.\n\n\n🇬🇧: Recuit simulé\nLe recuit simulé est une méthode (empirique) d’optimisation, inspirée d’un processus, le recuit, utilisé en métallurgie. On alterne dans cette dernière des cycles de refroidissement lent et de réchauffage (recuit) qui ont pour effet de minimiser l’énergie du matériau. Cette méthode est transposée en optimisation pour trouver les extrema d’une fonction.",
     "crumbs": [
       "Cours",
       "Perspectives historiques"
@@ -226,13 +255,6 @@
       "Cours",
       "Loi normale (1D)"
     ]
-  },
-  {
-    "objectID": "Courses/matterjs-inverse-vizu (copy).html",
-    "href": "Courses/matterjs-inverse-vizu (copy).html",
-    "title": "inverse-vizu",
-    "section": "",
-    "text": "viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: \"bimodal\", label: \"Distribution type\"})\nviewof replay = html`&lt;button&gt;replay`\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\ninvcdfboard = {\n  // const response = await fetch(\"https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs\");\n  const response = await fetch(\"/home/jsalmon/Documents/OpenSource/matter-playground/dist/invcdfboard.umd.cjs\");\n\n\nconst blob = await response.blob();\n  const url = URL.createObjectURL(blob);\n  return require(url).catch(() =&gt; window.invcdfboard);\n}\n\n// Or load from local file\n// invcdfboard = require(await FileAttachment(\"invcdfboard.umd.cjs\").url())\n\n{\n  replay\n  const canvas = DOM.canvas(500, 500);\n  const galton = invcdfboard.galton(canvas,dist);\n  \n  return html`${galton.canvas}`\n}\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n Retour au sommet"
   },
   {
     "objectID": "Courses/notations.html",
@@ -338,7 +360,7 @@
     "href": "Courses/simulation.html#méthode-de-rejet",
     "title": "Simulation",
     "section": "Méthode de rejet",
-    "text": "Méthode de rejet\nL’idée de la méthode de rejet est la suivante. On souhaite simuler une variable aléatoire X de densité f, appelée loi cible, mais f est trop compliquée pour que la simulation puisse se faire directement. On dispose cependant d’une autre densité g possédant les propriétés suivantes :\n\non sait simuler Y de loi g,\nil existe m &gt; 0 tel que f(x) \\leq m \\cdot g(x),\non sait évaluer le rapport d’acceptation r(x) = \\frac{f(x)}{mg(x)}.\n\nRemarquons d’ores et déjà que la constante m est nécessairement plus grande que 1 car \n    1 = \\int_\\mathbb{R} f(x) \\, \\mathrm dx \\leq m \\int_\\mathbb{R} g(x)\\, \\mathrm dx = m\\,.\n\nL’idée est alors de considérer deux suites iid de variables aléatoires indépendantes entre elles :\n\n(Y_n)_{n \\geq 1} de loi g,\n(U_n)_{n \\geq 1} de loi uniforme sur [0,1].\n\nEn pratique, Y_n correspond à une proposition et U_n permettra de décider si on accepte la proposition ou non. Si oui, alors on conserve Y_n, sinon on simule Y_{n+1}. Le rapport d’acceptation, c’est-à-dire la proportion de Y_n acceptées, correspond à r(x).\nAutrement dit, pour simuler X de densité f, il suffit de simuler Y de densité g et U uniforme jusqu’à ce que U \\leq r(Y) (voir Figure ??? pour une illustration). La proposition suivante assure que cette méthode donne bien le résultat voulu.\n\nProposition 1 (Méthode de rejet) \nSoit T = \\inf \\{n \\geq 1 : U_n \\leq r(Y_n)\\} le premier instant où le tirage est accepté. Alors :\n\nT suit une loi géométrique de paramètre 1/m,\nla variable aléatoire X = Y_T a pour densité f et est indépendante de T.\n\n\nDémonstration:\nIl s’agit d’étudier la loi du couple (X,T). Pour x \\in \\mathbb{R} et n \\in \\mathbb{N}, on écrit \\mathbb{P}(X \\leq x, T=n)= \\mathbb{P}(U_1 &gt; r(Y_1), \\dots, U_{n-1} &gt; r(Y_{n-1}), U_n \\leq r(Y_n), Y_n \\leq x). Les n tirages étant iid, on obtient \n    \\mathbb{P}(X \\leq x, T=n) = \\mathbb{P}(U_1 &gt; r(Y_1))^{n-1} \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\\,.\n\nConcernant le premier terme, les variables aléatoires Y_1 et U_1 sont indépendantes donc leur loi jointe correspond au produit des densités : \\begin{align*}\n        \\mathbb{P}(U_1 &gt; r(Y_1)\n         & = \\mathbb{P}((U_1, Y_1) \\in \\{(u,y) \\in \\mathbb{R}^2 : u &gt; r(y)\\})                             \\\\\n         & = \\int_{\\mathbb{R}^2} {1\\hspace{-3.8pt} 1}_{\\{u &gt; r(y)\\}} ({1\\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \\, \\mathrm du \\mathrm dy  \\\\\n         & = \\int_\\mathbb{R} \\bigg( \\int_0^1 {1\\hspace{-3.8pt} 1}_{\\{u &gt; r(y)\\}} \\, \\mathrm du\\bigg) g(y)\\, \\mathrm d y \\\\\n         & =  \\int_\\mathbb{R} (1-r(y)) \\, g(y)\\, \\mathrm d y\\,,\n    \\end{align*}\n ce qui se réécrit, comme f et g sont des densités et que r(y) = f(y)/(m \\cdot g(y)): \\begin{align*}\n        \\mathbb{P}(U_1 &gt; r(Y_1))\n        & = \\int_\\mathbb{R} g(y)\\, \\mathrm d y - \\int_\\mathbb{R} \\dfrac{f(y)}{m}\\, \\mathrm dy \\\\\n        & = 1 - \\dfrac{1}{m}\\,.\n    \\end{align*}\n Le deuxième terme se calcule de manière analogue : \n\\begin{align*}\n    \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\n        & = \\int_{\\mathbb{R}^2} {1\\hspace{-3.8pt} 1}_{\\{u \\leq r(y)\\}} {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}} ({1\\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \\, \\mathrm du \\mathrm dy       \\\\\n        & = \\int_\\mathbb{R} \\bigg( \\int_0^1  {1\\hspace{-3.8pt} 1}_{\\{u \\leq r(y)\\}} \\, \\mathrm du\\bigg) {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}}  g(y)\\, \\mathrm d y\\,,\n\\end{align*}\n c’est-à-dire \n\\begin{align*}\n        \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\n        & = \\int_\\mathbb{R} r(y) {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}}  g(y)\\, \\mathrm d y \\\\\n        & = \\int_{-\\infty}^x \\dfrac{f(y)}{m}\\, \\mathrm d y \\\\\n        & = \\dfrac{F(x)}{m}\\,,\n\\end{align*}\n où F est la fonction de répartition de la loi de densité f. On peut ainsi conclure que \n    \\mathbb{P}(X \\leq x, T=n)\n    =\n    \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\\,.\n Il ne reste plus qu’à étudier les lois marginales. D’une part, par continuité monotone croissante, \n    \\mathbb{P}(T=n)\n    = \\lim_{q \\to \\infty} \\mathbb{P}(X \\in ]-\\infty, q], T=n)\\,,\n ce qui donne \n    \\mathbb{P}(T=n)\n    = \\lim_{q \\to \\infty} \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(q)}{m}\n    = \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{1}{m}\\,.\n On en déduit que T suit une loi géométrique de paramètre 1/m. D’autre part, par \\sigma-additivité, \n    \\mathbb{P}(X \\leq x)\n    = \\mathbb{P}(X \\leq x, T \\in \\mathbb{N}^*)\n    = \\sum_{n=1}^\\infty \\mathbb{P}(X \\leq x, T=n)\\,,\n ce qui donne \n\\begin{align*}\n    \\mathbb{P}(X \\leq x)\n    & = \\sum_{n=1}^\\infty \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\\\\\n    & = \\dfrac{1}{1-(1-1/m)} \\dfrac{F(x)}{m}\\\\\n    & = F(x)\\,,\n\\end{align*}\n ce qui prouve que X a pour loi F.\nEnfin, la loi du couple (X,T) est égale au produit des lois \n    \\mathbb{P}(X \\leq x, T=n)\n    = \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\n    = \\mathbb{P}(T=n) \\mathbb{P}(X \\leq x)\\,,\n\n\n\nce qui prouve l’indépendance de X et T.\n\n\n□\n\n\n\ndef accept_reject(n, f, g, g_sampler, m):\n    \"\"\"\n    n: number of samples\n    f: target density\n    g: proposal density\n    m: constant such that f(x) &lt;= m*g(x)\n    \"\"\"\n    x_samples = np.zeros(n)\n    u_samples = np.zeros(n)\n    accepted = np.zeros(n)\n    n_accepted = 0\n    while n_accepted &lt; n:\n        x = g_sampler()\n        u = np.random.uniform()\n        alpha = u * m * g(x)\n        u_samples [n_accepted] = alpha\n        x_samples[n_accepted] = x\n        if  alpha &lt;= f(x):\n            accepted[n_accepted] = 1\n        n_accepted += 1\n    return x_samples, u_samples, accepted\n\n\n\n\n\n\n\nEn pratique…\n\n\n\nOn simule U_1 et Y_1. Si U_1 \\leq r(Y_1) c’est gagné, on pose X=Y_1. Sinon, on simule U_2 et Y_2 et on teste à nouveau l’inégalité U_2 \\leq r(Y_2). Et ainsi de suite. Comme T suit une loi géométrique de paramètre 1/m, son espérance vaut m : il faut en moyenne m tentatives pour obtenir une simulation de la loi de densité f. L’objectif est alors de choisir un couple (g, m) de sorte que m soit le plus proche possible de 1.\n\n\n\nExemple 2 (Rejet d’une loi polynomiale) Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité f(x) = 4x^3 {1\\hspace{-3.8pt} 1}_{[0,1]}(x). Comme f est majorée par 4, on peut choisir pour g la densité de la loi uniforme sur [0,1] et m=4. Alors, r(x) =f(x) / (mg(x)) = x^3, pour x \\in [0,1]. On simule donc (Y_1, U_1) et on teste si U_1 \\leq Y_1^3, etc.\nBien évidemment, on privilégiera ici une simulation via F^\\leftarrow qui permet de générer des variables aléatoires de loi f plus rapidement.\n\n\n\n\n                                                \n\n\nFigure 3: Visualisation des zones d’acceptations/rejet (g uniforme)\n\n\n\n\nNous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple g définie par g(x) = x {1\\hspace{-3.8pt} 1}_{[0, 1]}(x).\n\n\n\n\n                                                \n\n\nFigure 4: Visualisation des zones d’acceptations/rejet (g triangulaire)\n\n\n\n\n\n\n\n\n\n\n\n\n\nmd`Le taux d'acceptation est passé de **${ratio1}** à\n**${ratio2}** en utilisant une loi triangulaire au lieu d'une loi uniforme.`\n\n\n\n\n\n\n\n\n\nExemple 3 (Rejet d’une loi de densité d’Andrews) Considérons la densité d’Andrews définie par f(x) = \\frac{1}{S} \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x), avec S = \\int_{-1}^{1}\\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x}dx. Dans ce contexte, on ne connait pas la valeur exacte de S, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi f sans cette information. On peut l’adapter en adaptant le test de la manière suivante: si l’on prend m=2/S et g(x) = \\frac{1}{2} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x), on observe que tester u\\leq \\frac{f(x)}{m \\cdot g(x)} est équivalent à tester u \\leq r(x)=\\frac{1}{S} \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} \\cdot \\frac{1}{\\frac{2}{S} g(x)} = \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} \\cdot \\frac{1}{2 \\cdot g(x)}, ce qui peut se faire sans connaissance de S. De plus on peut vérifier que g(x) = \\frac{1}{2} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x) définit une densité et que f(x) \\leq m \\cdot g(x) pour tout x\\in \\mathbb{R}.\n\nn = 10000\ng = lambda x: np.ones_like(x) / 2\ng_sampler = lambda: 2 * np.random.uniform() - 1\nm = 2\n\nx_samples, u_samples, accepted = accept_reject(n, np.sinc, g, g_sampler, m)\nratio = np.sum(accepted) / n\n# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x\n\n\n\n\n\n\nOn peut approcher numériquement la valeur exacte de S en utilisant une méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:\n\nfrom scipy import integrate\nS = integrate.quad(np.sinc, -1, 1)[0]\nprint(f\"En utilisant la méthode de rejet, on trouve que S = {S:.3f}\")\n\nEn utilisant la méthode de rejet, on trouve que S = 1.179\n\n\nEnfin, on peut visualiser la qualité l’approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:\n\nfig = go.Figure()\nfig.add_trace(\n    go.Histogram(\n        x=x_samples[accepted == 1], histnorm=\"probability density\", name=\"Échantillons\"\n    )\n)\n\n# Plot the density\nx = np.linspace(-1, 1, 100)\nfig.add_trace(\n    go.Scatter(\n        x=x,\n        y=np.sinc(x) / S,\n        mode=\"lines\",\n        line=dict(color=\"black\", dash=\"dash\"),\n        name=\"Densité\",\n    )\n)\n\nfig.update_layout(template=\"simple_white\", showlegend=True)\n\n\n\n                                                \n\n\nFigure 5: Méthode de rejet pour simuler une loi de densité de type Andrews, sans connaissance de la valeur exacte de la constante de normalisation.\n\n\n\n\n\nmd`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`\n\n\n\n\n\n\n\n\nCas mutlidimensionnel\nCommençons par un cas de dimension deux.\nPour cela on va utiliser la méthode de rejet pour simuler une loi de densité f sur \\mathbb{R}^2. En particulier, un exemple classique est de tirer des points dans le disque unité, c’est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec g la densité de la loi uniforme sur le carré [-1,1]^2, et m=1 fonctionne.\nMais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec g la densité de la loi uniforme sur le carré [-2,2]^2, et m=1 fonctionne.\n\n\n\n\n                                                \n\n\nFigure 6: Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.\n\n\n\n\n4.760000000000001\n\n\n\n\n\n\n                                                \n\n\nFigure 7: Méthode de rejet pour simuler une loi uniforme sur un disque unité.\n\n\n\n\n3.088\n\n\n\n\n\n\n\n\nEXERCISE loi uniforme sur un cylindre\n\n\n\nProposer une méthode pour simuler une loi uniforme sur un cylindre de rayon 1 et de hauteur 10.",
+    "text": "Méthode de rejet\nL’idée de la méthode de rejet est la suivante. On souhaite simuler une variable aléatoire X de densité f, appelée loi cible, mais f est trop compliquée pour que la simulation puisse se faire directement. On dispose cependant d’une autre densité g possédant les propriétés suivantes :\n\non sait simuler Y de loi g,\nil existe m &gt; 0 tel que f(x) \\leq m \\cdot g(x),\non sait évaluer le rapport d’acceptation r(x) = \\frac{f(x)}{mg(x)}.\n\nRemarquons d’ores et déjà que la constante m est nécessairement plus grande que 1 car \n    1 = \\int_\\mathbb{R} f(x) \\, \\mathrm dx \\leq m \\int_\\mathbb{R} g(x)\\, \\mathrm dx = m\\,.\n\nL’idée est alors de considérer deux suites iid de variables aléatoires indépendantes entre elles :\n\n(Y_n)_{n \\geq 1} de loi g,\n(U_n)_{n \\geq 1} de loi uniforme sur [0,1].\n\nEn pratique, Y_n correspond à une proposition et U_n permettra de décider si on accepte la proposition ou non. Si oui, alors on conserve Y_n, sinon on simule Y_{n+1}. Le rapport d’acceptation, c’est-à-dire la proportion de Y_n acceptées, correspond à r(x).\nAutrement dit, pour simuler X de densité f, il suffit de simuler Y de densité g et U uniforme jusqu’à ce que U \\leq r(Y) (voir Figure ??? pour une illustration). La proposition suivante assure que cette méthode donne bien le résultat voulu.\n\nProposition 1 (Méthode de rejet) \nSoit T = \\inf \\{n \\geq 1 : U_n \\leq r(Y_n)\\} le premier instant où le tirage est accepté. Alors :\n\nT suit une loi géométrique de paramètre 1/m,\nla variable aléatoire X = Y_T a pour densité f et est indépendante de T.\n\n\nDémonstration:\nIl s’agit d’étudier la loi du couple (X,T). Pour x \\in \\mathbb{R} et n \\in \\mathbb{N}, on écrit \\mathbb{P}(X \\leq x, T=n)= \\mathbb{P}(U_1 &gt; r(Y_1), \\dots, U_{n-1} &gt; r(Y_{n-1}), U_n \\leq r(Y_n), Y_n \\leq x). Les n tirages étant iid, on obtient \n    \\mathbb{P}(X \\leq x, T=n) = \\mathbb{P}(U_1 &gt; r(Y_1))^{n-1} \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\\,.\n\nConcernant le premier terme, les variables aléatoires Y_1 et U_1 sont indépendantes donc leur loi jointe correspond au produit des densités : \\begin{align*}\n        \\mathbb{P}(U_1 &gt; r(Y_1)\n         & = \\mathbb{P}((U_1, Y_1) \\in \\{(u,y) \\in \\mathbb{R}^2 : u &gt; r(y)\\})                             \\\\\n         & = \\int_{\\mathbb{R}^2} {1\\hspace{-3.8pt} 1}_{\\{u &gt; r(y)\\}} ({1\\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \\, \\mathrm du \\mathrm dy  \\\\\n         & = \\int_\\mathbb{R} \\bigg( \\int_0^1 {1\\hspace{-3.8pt} 1}_{\\{u &gt; r(y)\\}} \\, \\mathrm du\\bigg) g(y)\\, \\mathrm d y \\\\\n         & =  \\int_\\mathbb{R} (1-r(y)) \\, g(y)\\, \\mathrm d y\\,,\n    \\end{align*}\n ce qui se réécrit, comme f et g sont des densités et que r(y) = f(y)/(m \\cdot g(y)): \\begin{align*}\n        \\mathbb{P}(U_1 &gt; r(Y_1))\n        & = \\int_\\mathbb{R} g(y)\\, \\mathrm d y - \\int_\\mathbb{R} \\dfrac{f(y)}{m}\\, \\mathrm dy \\\\\n        & = 1 - \\dfrac{1}{m}\\,.\n    \\end{align*}\n Le deuxième terme se calcule de manière analogue : \n\\begin{align*}\n    \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\n        & = \\int_{\\mathbb{R}^2} {1\\hspace{-3.8pt} 1}_{\\{u \\leq r(y)\\}} {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}} ({1\\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \\, \\mathrm du \\mathrm dy       \\\\\n        & = \\int_\\mathbb{R} \\bigg( \\int_0^1  {1\\hspace{-3.8pt} 1}_{\\{u \\leq r(y)\\}} \\, \\mathrm du\\bigg) {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}}  g(y)\\, \\mathrm d y\\,,\n\\end{align*}\n c’est-à-dire \n\\begin{align*}\n        \\mathbb{P}(U_n \\leq r(Y_n), Y_n \\leq x)\n        & = \\int_\\mathbb{R} r(y) {1\\hspace{-3.8pt} 1}_{\\{y \\leq x\\}}  g(y)\\, \\mathrm d y \\\\\n        & = \\int_{-\\infty}^x \\dfrac{f(y)}{m}\\, \\mathrm d y \\\\\n        & = \\dfrac{F(x)}{m}\\,,\n\\end{align*}\n où F est la fonction de répartition de la loi de densité f. On peut ainsi conclure que \n    \\mathbb{P}(X \\leq x, T=n)\n    =\n    \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\\,.\n Il ne reste plus qu’à étudier les lois marginales. D’une part, par continuité monotone croissante, \n    \\mathbb{P}(T=n)\n    = \\lim_{q \\to \\infty} \\mathbb{P}(X \\in ]-\\infty, q], T=n)\\,,\n ce qui donne \n    \\mathbb{P}(T=n)\n    = \\lim_{q \\to \\infty} \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(q)}{m}\n    = \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{1}{m}\\,.\n On en déduit que T suit une loi géométrique de paramètre 1/m. D’autre part, par \\sigma-additivité, \n    \\mathbb{P}(X \\leq x)\n    = \\mathbb{P}(X \\leq x, T \\in \\mathbb{N}^*)\n    = \\sum_{n=1}^\\infty \\mathbb{P}(X \\leq x, T=n)\\,,\n ce qui donne \n\\begin{align*}\n    \\mathbb{P}(X \\leq x)\n    & = \\sum_{n=1}^\\infty \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\\\\\n    & = \\dfrac{1}{1-(1-1/m)} \\dfrac{F(x)}{m}\\\\\n    & = F(x)\\,,\n\\end{align*}\n ce qui prouve que X a pour loi F.\nEnfin, la loi du couple (X,T) est égale au produit des lois \n    \\mathbb{P}(X \\leq x, T=n)\n    = \\bigg(1 - \\dfrac{1}{m}\\bigg)^{n-1} \\dfrac{F(x)}{m}\n    = \\mathbb{P}(T=n) \\mathbb{P}(X \\leq x)\\,,\n\n\n\nce qui prouve l’indépendance de X et T.\n\n\n□\n\n\n\ndef accept_reject(n, f, g, g_sampler, m):\n    \"\"\"\n    n: number of samples\n    f: target density\n    g: proposal density\n    m: constant such that f(x) &lt;= m*g(x)\n    \"\"\"\n    x_samples = np.zeros(n)\n    u_samples = np.zeros(n)\n    accepted = np.zeros(n)\n    n_accepted = 0\n    while n_accepted &lt; n:\n        x = g_sampler()\n        u = np.random.uniform()\n        alpha = u * m * g(x)\n        u_samples [n_accepted] = alpha\n        x_samples[n_accepted] = x\n        if  alpha &lt;= f(x):\n            accepted[n_accepted] = 1\n        n_accepted += 1\n    return x_samples, u_samples, accepted\n\n\n\n\n\n\n\nEn pratique…\n\n\n\nOn simule U_1 et Y_1. Si U_1 \\leq r(Y_1) c’est gagné, on pose X=Y_1. Sinon, on simule U_2 et Y_2 et on teste à nouveau l’inégalité U_2 \\leq r(Y_2). Et ainsi de suite. Comme T suit une loi géométrique de paramètre 1/m, son espérance vaut m : il faut en moyenne m tentatives pour obtenir une simulation de la loi de densité f. L’objectif est alors de choisir un couple (g, m) de sorte que m soit le plus proche possible de 1.\n\n\n\nExemple 2 (Rejet d’une loi polynomiale) Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité f(x) = 4x^3 {1\\hspace{-3.8pt} 1}_{[0,1]}(x). Comme f est majorée par 4, on peut choisir pour g la densité de la loi uniforme sur [0,1] et m=4. Alors, r(x) =f(x) / (mg(x)) = x^3, pour x \\in [0,1]. On simule donc (Y_1, U_1) et on teste si U_1 \\leq Y_1^3, etc.\nBien évidemment, on privilégiera ici une simulation via F^\\leftarrow qui permet de générer des variables aléatoires de loi f plus rapidement.\n\n\n\n\n                                                \n\n\nFigure 3: Visualisation des zones d’acceptations/rejet (g uniforme)\n\n\n\n\nNous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple g définie par g(x) = x {1\\hspace{-3.8pt} 1}_{[0, 1]}(x).\n\n\n\n\n                                                \n\n\nFigure 4: Visualisation des zones d’acceptations/rejet (g triangulaire)\n\n\n\n\n\n\n\n\n\n\n\n\n\nmd`Le taux d'acceptation est passé de **${ratio1}** à\n**${ratio2}** en utilisant une loi triangulaire au lieu d'une loi uniforme.`\n\n\n\n\n\n\n\n\n\nExemple 3 (Rejet d’une loi de densité d’Andrews) Considérons la densité d’Andrews définie par f(x) = \\frac{1}{S} \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x), avec S = \\int_{-1}^{1}\\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x}dx. Dans ce contexte, on ne connait pas la valeur exacte de S, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi f sans cette information. On peut l’adapter en adaptant le test de la manière suivante: si l’on prend m=2/S et g(x) = \\frac{1}{2} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x), on observe que tester u\\leq \\frac{f(x)}{m \\cdot g(x)} est équivalent à tester u \\leq r(x)=\\frac{1}{S} \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} \\cdot \\frac{1}{\\frac{2}{S} g(x)} = \\frac{\\sin(\\pi\\cdot x)}{\\pi \\cdot x} \\cdot \\frac{1}{2 \\cdot g(x)}, ce qui peut se faire sans connaissance de S. De plus on peut vérifier que g(x) = \\frac{1}{2} {1\\hspace{-3.8pt} 1}_{[-1,1]}(x) définit une densité et que f(x) \\leq m \\cdot g(x) pour tout x\\in \\mathbb{R}.\n\nn = 10000\ng = lambda x: np.ones_like(x) / 2\ng_sampler = lambda: 2 * np.random.uniform() - 1\nm = 2\n\nx_samples, u_samples, accepted = accept_reject(n, np.sinc, g, g_sampler, m)\nratio = np.sum(accepted) / n\n# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x\n\n\n\n\n\n\nOn peut approcher numériquement la valeur exacte de S en utilisant une méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:\n\nfrom scipy import integrate\nS = integrate.quad(np.sinc, -1, 1)[0]\nprint(f\"En utilisant la méthode de rejet, on trouve que S = {S:.3f}\")\n\nEn utilisant la méthode de rejet, on trouve que S = 1.179\n\n\nEnfin, on peut visualiser la qualité l’approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:\n\nfig = go.Figure()\nfig.add_trace(\n    go.Histogram(\n        x=x_samples[accepted == 1], histnorm=\"probability density\", name=\"Échantillons\"\n    )\n)\n\n# Plot the density\nx = np.linspace(-1, 1, 100)\nfig.add_trace(\n    go.Scatter(\n        x=x,\n        y=np.sinc(x) / S,\n        mode=\"lines\",\n        line=dict(color=\"black\", dash=\"dash\"),\n        name=\"Densité\",\n    )\n)\n\nfig.update_layout(template=\"simple_white\", showlegend=True)\n\n\n\n                                                \n\n\nFigure 5: Méthode de rejet pour simuler une loi de densité de type Andrews, sans connaissance de la valeur exacte de la constante de normalisation.\n\n\n\n\n\nmd`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`\n\n\n\n\n\n\n\n\nCas mutlidimensionnel\nCommençons par un cas de dimension deux.\nPour cela on va utiliser la méthode de rejet pour simuler une loi de densité f sur \\mathbb{R}^2. En particulier, un exemple classique est de tirer des points dans le disque unité, c’est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec g la densité de la loi uniforme sur le carré [-1,1]^2, et m=1 fonctionne.\nMais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec g la densité de la loi uniforme sur le carré [-2,2]^2, et m=1 fonctionne.\n\n\n\n\n                                                \n\n\nFigure 6: Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.\n\n\n\n\n4.765\n\n\n\n\n\n\n                                                \n\n\nFigure 7: Méthode de rejet pour simuler une loi uniforme sur un disque unité.\n\n\n\n\n3.144\n\n\n\n\n\n\n\n\nEXERCISE loi uniforme sur un cylindre\n\n\n\nProposer une méthode pour simuler une loi uniforme sur un cylindre de rayon 1 et de hauteur 10.",
     "crumbs": [
       "Cours",
       "Simulation"
@@ -403,64 +425,14 @@
     "text": "Quantiles: cas discret\n\n\n\ndiscretePDFs = () =&gt; {\n  const distributions = Object.keys(dists);\n  // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined\n    const continuousDistributions = distributions.filter(name =&gt; dists[name].pmf && dists[name].cdf && dists[name].quantile);\n  return continuousDistributions\n};\noutput_discr = discretePDFs();\n\npmfNames_unsorted = output_discr.filter(name =&gt; !excludedPDFs.includes(name));\npmfNames=pmfNames_unsorted.toSorted();\nviewof inputs_disc = Inputs.form([\n      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\\mu `, width: 500}),\n      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\\sigma `, width: 500}),\n      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label: tex`\\alpha`, width: 500}),\n    ]);\n\nviewof distrib_name_discr = Inputs.select(pmfNames, {value: \"normal\", label: \"Loi\", width: 500});\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n{\n  const z = d3.range(-5, 5, 0.01);\n  const pmf = z.map(z =&gt; dists[distrib_name_discr].pmf(z, mu_disc, sigma_disc));\n  const cdf = z.map(z =&gt; dists[distrib_name_discr].cdf(z, mu_disc, sigma_disc));\n  const inv = z.map(z =&gt; dists[distrib_name_discr].quantile(z, mu_disc, sigma_disc));\n  const quantile = dists[distrib_name_discr].quantile(alpha_disc, mu_disc, sigma_disc);\n  const filteredX = z.filter(coord =&gt; coord &lt;= quantile);\n  const filteredPmf = pmf.filter((_, i) =&gt; z[i] &lt;= quantile);\n  const filteredCdf = cdf.filter(coord =&gt; coord &lt;= quantile);\n\n\n{\nvar trace1 = {\n      type: \"scatter\",\n      name: 'Quantile',\n      x: cdf,\n      y: z,\n      line: {color: 'black'},\n      xaxis: 'x1',\n      yaxis: 'y3',\n\n\n};\n\nvar trace12 = {\n        x : [alpha_disc, alpha_disc],\n        y : [z[0], quantile],\n        mode: 'lines',\n        line: {\n            dash: 'dash',\n            width: 1,\n            color: ' #428BCA',\n            marks: {\n                size: 0,\n                color: ' #428BCA',\n            }\n\n          },\n      xaxis: 'x1',\n      yaxis: 'y3',\n\n\n};\n\n\n\nvar trace13 = {\n    x: [0, alpha_disc],\n    y: [quantile, quantile],\n    mode: 'scatter',\n    line: {\n        dash: 'dash',\n        width: 1,\n        color: ' #428BCA',\n        marks: {\n            size: 0,\n        }\n    },\n    xaxis: 'x1',\n    yaxis: 'y3'\n}\n\n\nvar trace2 = {\nx: cdf,\ny: cdf,\ntype: 'scatter',\nname: 'identity',\nline: {color: 'black'},\nxaxis: 'x1',\nyaxis: 'y2'\n\n};\n\n\nvar trace21 = {\n        x : [alpha_disc, 1],\n        y : [alpha_disc, alpha_disc],\n        mode: 'lines',\n        line: {\n            dash: 'dash',\n            width: 1,\n            color: ' #428BCA',\n            marks: {\n                size: 0,\n                color: ' #428BCA',\n            }\n\n          },\n      xaxis: 'x1',\n      yaxis: 'y2'\n}\n\nvar trace22 = {\n        x : [alpha_disc, alpha_disc],\n        y : [alpha_disc, 1],\n        mode: 'lines',\n        line: {\n            dash: 'dash',\n            width: 1,\n            color: ' #428BCA',\n            marks: {\n                size: 0,\n                color: ' #428BCA',\n            }\n\n          },\n      xaxis: 'x1',\n      yaxis: 'y2'\n}\n\nvar trace23 = {\n    x: [alpha_disc],\n    y: [alpha_disc],\n    mode: 'scatter',\n    line: {\n        dash: 'dash',\n        width: 1,\n        color: ' #428BCA',\n        marks: {\n            size: 0,\n        }\n    },\n    xaxis: 'x1',\n    yaxis: 'y2'\n}\n\n\nvar trace31 = {\n      type: \"scatter\",\n      mode: \"lines\",\n      name: 'PDF2',\n      x: z,\n      y: cdf,\n      line: {color: 'black'},\n      xaxis: 'x2',\n      yaxis: 'y2',\n};\n\nvar trace32 = {\n        x: filteredX,\n        y: filteredX.map(z =&gt; alpha_disc),\n        mode: 'lines',\n        line: {\n            dash: 'dash',\n            width: 1,\n            color: ' #428BCA',\n            marks: {\n                size: 0,\n                color: ' #428BCA',\n            }\n          },\n      xaxis: 'x2',\n      yaxis: 'y2'\n}\n\nvar trace33 = {\n        x : [quantile, quantile],\n        y : [0, alpha_disc],\n        mode: 'lines',\n        line: {\n            dash: 'dash',\n            width: 1,\n            color: ' #428BCA',\n            marks: {\n                size: 0,\n                color: ' #428BCA',\n            }\n          },\n\n      xaxis: 'x2',\n      yaxis: 'y2'\n}\n\nvar trace34 = {\n    x: [quantile],\n    y: [alpha],\n    mode: 'scatter',\n    line: {\n        dash: 'dash',\n        width: 1,\n        color: ' #428BCA',\n        marks: {\n            size: 0,\n        }\n    },\n    xaxis: 'x2',\n    yaxis: 'y2'\n}\n\n\nvar trace41 = {\n\n  type: \"scatter\",\n  name: 'Quantile2',\n  fill: 'tozeroy',\n  x : filteredX,\n  y : filteredPmf,\n  opacity: 0.9,\n  line: {color: ' #428BCA'},\n  xaxis: 'x2',\n  yaxis: 'y1'\n\n};\n\n\nvar trace42 = {\n\n  type: \"scatter\",\n  mode: \"lines\",\n  name: 'PDF2',\n  x: z,\n  y: pmf,\n  line: {color: 'black'},\n  xaxis: 'x2',\n  yaxis: 'y1'\n\n};\n\nvar data = [\n  trace1,\n  trace12, trace13,\n  trace2, trace21, trace22, trace23,\n  trace31, trace32, trace33, trace34,\n  trace41, trace42];\n\n\nvar layout = {\n\n  title: 'Distribution et quantile',\n  xaxis: {\n    domain: [0, 0.32],\n    anchor: 'y1'\n  },\n  yaxis: {\n    domain: [0, 0.24],\n    anchor: 'x1'\n\n  },\n  xaxis2: {\n    domain: [0.35, 1],\n    anchor: 'y'\n  },\n\n  yaxis2: {\n    domain: [0.26, 0.49],\n    anchor: 'x1'\n  },\n\n\n\n  yaxis3: {\n    domain: [0.5, 1],\n    anchor: 'x1'\n\n  },\n\n  showlegend: false,\n  height: 680,\n\n\n  annotations: [\n\n    {\n      x: 1/4,\n      y: quantile - (z[0]-z.slice(-1))/20,\n      xref: 'x1',\n      yref: 'y3',\n      text: 'q=' + quantile.toFixed(2),\n      font: {\n        size: 12,\n        color: '#428BCA',\n\n      },\n      showarrow: false,\n      arrowhead: 0,\n      ax: 25,\n      ay: -10,\n\n    },\n    {\n      x: 1/4,\n      y: alpha_disc,\n      xref: 'x1',\n      yref: 'y2',\n      text: 'alpha=' + alpha_disc.toFixed(2),\n      font: {\n        size: 12,\n        color: '#428BCA',\n\n      },\n      showarrow: false,\n      arrowhead: 0,\n      ax: 25,\n      ay: -10,\n\n    },\n    {\n        text: \"Fonction quantile\",\n      font: {\n      size: 15,\n      color: 'black',\n    },\n    showarrow: false,\n    align: 'center',\n    x: -0.01,\n    y: 1.05,\n    xref: 'paper',\n    yref: 'paper',\n    },\n    {\n      text: \"Fonction de répartition\",\n      font: {\n      size: 15,\n      color: 'black',\n            },\n    showarrow: false,\n    align: 'center',\n    x: 0.65,\n    y: 0.52,\n    xref: 'paper',\n    yref: 'paper',\n    },\n    {\n      text: \"Fonction de densité\",\n      font: {\n      size: 15,\n      color: 'black',\n            },\n    showarrow: false,\n    align: 'center',\n    x: 0.65,\n    y: 0.225,\n    xref: 'paper',\n    yref: 'paper',\n    },\n  ]\n\n};\n// XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n  }\n\n}\n\n\n\n\n\n\n\nmu_disc = inputs_disc[0];\nsigma_disc = inputs_disc[1];\nalpha_disc = inputs_disc[2];\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote: voir aussi Notations et rappels\n\n\nHAX603X: Modélisation stochastique"
   },
   {
-    "objectID": "TD/TD1.html#test2",
-    "href": "TD/TD1.html#test2",
-    "title": "TD1:…",
+    "objectID": "TP/TP1.html#test2",
+    "href": "TP/TP1.html#test2",
+    "title": "TP1:…",
     "section": "test2",
     "text": "test2",
     "crumbs": [
-      "TD",
-      "TD1:..."
-    ]
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "Présentation",
-    "section": "",
-    "text": "Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).\nAttention: site en construction…\n\n\n\nJoseph Salmon: joseph.salmon@umontpellier.fr,\nBenjamin Charlier: benjamin.charlier@umontpellier.fr\n\nCe cours est issu du travail antérieur de la part de:\n\nNicolas Meyer\nBenoîte de Saporta et de l’aide de François-David Collin.\n\n\n\n\nCours de mesure et intégration, analyse numérique…\n\n\n\n\n\n\n\n\n\n\n\nCCI\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nIntroduction à Python Cours de Python 🇫🇷\nData Science: Python Data Science Handbook, With Application to Understanding Data by J. Van DerPlas, 2016; 🇬🇧  videos: Reproducible Data Analysis in Jupyter\nMath for journalists by Naël Shiab 🇬🇧\n\n\n\n\n\nSoftware Dev. for datascience by J. Salmon and B. Charlier, 🇬🇧\nChaîne de Markov: Markov Chains by Ethan N. Epperly 🇬🇧\nAdvanced Data Analysis from an Elementary Point of View by Cosma Shalizi; 🇬🇧\nMaximum likelihood by numerical optimization 🇬🇧",
-    "crumbs": [
-      "Présentation"
-    ]
-  },
-  {
-    "objectID": "index.html#professeurs",
-    "href": "index.html#professeurs",
-    "title": "Présentation",
-    "section": "",
-    "text": "Joseph Salmon: joseph.salmon@umontpellier.fr,\nBenjamin Charlier: benjamin.charlier@umontpellier.fr\n\nCe cours est issu du travail antérieur de la part de:\n\nNicolas Meyer\nBenoîte de Saporta et de l’aide de François-David Collin.",
-    "crumbs": [
-      "Présentation"
-    ]
-  },
-  {
-    "objectID": "index.html#prérequis",
-    "href": "index.html#prérequis",
-    "title": "Présentation",
-    "section": "",
-    "text": "Cours de mesure et intégration, analyse numérique…",
-    "crumbs": [
-      "Présentation"
-    ]
-  },
-  {
-    "objectID": "index.html#modalité-de-contrôle-des-connaissances",
-    "href": "index.html#modalité-de-contrôle-des-connaissances",
-    "title": "Présentation",
-    "section": "",
-    "text": "CCI",
-    "crumbs": [
-      "Présentation"
-    ]
-  },
-  {
-    "objectID": "index.html#livres-et-ressources",
-    "href": "index.html#livres-et-ressources",
-    "title": "Présentation",
-    "section": "",
-    "text": "Introduction à Python Cours de Python 🇫🇷\nData Science: Python Data Science Handbook, With Application to Understanding Data by J. Van DerPlas, 2016; 🇬🇧  videos: Reproducible Data Analysis in Jupyter\nMath for journalists by Naël Shiab 🇬🇧\n\n\n\n\n\nSoftware Dev. for datascience by J. Salmon and B. Charlier, 🇬🇧\nChaîne de Markov: Markov Chains by Ethan N. Epperly 🇬🇧\nAdvanced Data Analysis from an Elementary Point of View by Cosma Shalizi; 🇬🇧\nMaximum likelihood by numerical optimization 🇬🇧",
-    "crumbs": [
-      "Présentation"
+      "TP",
+      "TP1:..."
     ]
   }
 ]

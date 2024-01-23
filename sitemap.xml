@@ -1,63 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://josephsalmon.github.io/HAX603X/trash/Slides/cours_intro.html</loc>
-    <lastmod>2024-01-19T15:02:54.312Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/TP/TP1.html</loc>
-    <lastmod>2023-10-02T21:16:59.500Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_test_sliders.html</loc>
-    <lastmod>2024-01-23T07:33:41.093Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_intro.html</loc>
-    <lastmod>2024-01-23T08:16:29.850Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/slides.html</loc>
-    <lastmod>2024-01-23T08:17:54.321Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/perspective_historique.html</loc>
-    <lastmod>2024-01-22T21:24:40.339Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/matterjs-inverse-vizu.html</loc>
-    <lastmod>2023-12-21T14:36:30.000Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/loi_normale1D.html</loc>
-    <lastmod>2024-01-19T14:15:38.436Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/matterjs-inverse-vizu (copy).html</loc>
-    <lastmod>2023-12-18T11:27:16.784Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/notations.html</loc>
-    <lastmod>2024-01-21T19:53:04.523Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/simulation.html</loc>
-    <lastmod>2023-12-22T11:32:15.038Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Courses/th_asymptotique.html</loc>
-    <lastmod>2023-12-14T15:20:59.538Z</lastmod>
-  </url>
-  <url>
-    <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_notations_premiers_pas.html</loc>
-    <lastmod>2024-01-23T08:14:39.110Z</lastmod>
+    <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
+    <lastmod>2024-01-23T15:43:06.333Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/TD/TD1.html</loc>
-    <lastmod>2023-10-02T20:59:03.115Z</lastmod>
+    <lastmod>2024-01-23T15:43:06.333Z</lastmod>
   </url>
   <url>
-    <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
-    <lastmod>2024-01-11T07:17:58.573Z</lastmod>
+    <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_intro.html</loc>
+    <lastmod>2024-01-23T15:58:04.062Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/slides.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/perspective_historique.html</loc>
+    <lastmod>2024-01-23T15:50:08.545Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/matterjs-inverse-vizu.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/loi_normale1D.html</loc>
+    <lastmod>2024-01-23T15:55:18.490Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/notations.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/simulation.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Courses/th_asymptotique.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_notations_premiers_pas.html</loc>
+    <lastmod>2024-01-23T15:43:06.329Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/TP/TP1.html</loc>
+    <lastmod>2024-01-23T15:43:06.333Z</lastmod>
   </url>
 </urlset>
