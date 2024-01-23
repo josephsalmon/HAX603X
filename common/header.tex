@@ -1,0 +1,570 @@
+\makeatletter
+%--------------------------------------------------------------------------------
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+
+\usepackage{lmodern}
+\usepackage{dsfont}
+
+%\usepackage{qrcode}
+
+\usepackage{eurosym}
+\usepackage{diagbox}
+\usepackage{enumitem}
+%\def\labelitemi{\small \textbullet}
+\setlist[itemize,1]{label={\color{gray}\small \textbullet}}
+\usepackage{multicol}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{array}
+\newcolumntype{L}[1]{>{\raggedright\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+\newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
+%----------
+%  Version
+%-----------
+
+\usepackage{fancyhdr} 
+\usepackage{stmaryrd}
+
+%--------
+%  Tkz  
+%--------
+\usepackage{blkarray}
+\usepackage[babel=true,kerning=true]{microtype}
+\usepackage[caption=false]{subfig}
+\usepackage{xcolor,colortbl}
+\definecolor{dgreen}{RGB}{0,100,0}
+\definecolor{linkcol}{RGB}{0,118,155}
+\definecolor{astral}{RGB}{46,116,181}
+
+\usepackage{diagbox,calc,soul,graphicx}
+
+\usepackage{tikz}
+\usetikzlibrary{3d,calc,fadings,decorations.pathreplacing,matrix,arrows,decorations.text}
+\usetikzlibrary{patterns}
+\usetikzlibrary{positioning}
+\usetikzlibrary{babel}
+\usetikzlibrary{shapes}
+\usetikzlibrary{shadings}
+\usetikzlibrary{cd}
+\usepackage{tikz-3dplot}
+\usepackage{pgfplots}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{external} 
+\tikzexternalize[prefix=output_latex/]
+\usepgfplotslibrary{fillbetween}
+%\graphicspath{{./output-latex/}}
+
+
+%\usepackage{etex}
+%\reserveinserts{28}
+%\usepackage{pstricks}
+%\usepackage{pst-solides3d}
+
+\usepackage{gnuplot-lua-tikz}
+
+\newcommand\chideux[1]{#1<=0||(#1!=int(#1))?1/0:x<=0?0.0:exp((0.5*#1-1.0)*log(x)-0.5*x-lgamma(0.5*#1)-#1*0.5*log(2))}
+\newcommand\gauss[2]{1/(#2*sqrt(2*pi))*exp(-((x-#1)^2)/(2*#2^2))} 
+\newcommand\student[1]{gamma(.5*(#1+1))/(sqrt(#1*pi)*gamma(.5*#1))*((1+x^2/#1)^(-.5*(#1+1)))}
+
+% display dices
+\usepackage{xparse}\usetikzlibrary{shapes}
+\NewDocumentCommand{\drawdie}{O{}m}{%
+\begin{tikzpicture}[x=1em,y=1em,radius=0.1,#1,baseline=0.575ex]
+		\draw[rounded corners=0.5] (0,0) rectangle (1,1);
+	  \ifodd#2
+      \fill[] (0.5,0.5) circle;
+        \fi
+  \ifnum#2>1
+      \fill[] (0.2,0.2) circle;
+          \fill[] (0.8,0.8) circle;
+     \ifnum#2>3
+          \fill[] (0.2,0.8) circle;
+       \fill[] (0.8,0.2) circle;
+           \ifnum#2>5
+         \fill[] (0.8,0.5) circle;
+       \fill[] (0.2,0.5) circle;
+            \ifnum#2>7
+           \fill[] (0.5,0.8) circle;
+          \fill[] (0.5,0.2) circle;
+        \fi
+    \fi
+      \fi
+      \fi
+\end{tikzpicture}%
+} 
+\NewDocumentCommand{\tdrawdie}{O{}m}{%
+    \begin{tikzpicture}[x=.6em,y=.6em,radius=0.1,#1,baseline=0.575ex]
+		\draw[rounded corners=0.5] (0,0) rectangle (1,1);
+	  \ifodd#2
+      \fill[] (0.5,0.5) circle;
+        \fi
+  \ifnum#2>1
+      \fill[] (0.2,0.2) circle;
+          \fill[] (0.8,0.8) circle;
+     \ifnum#2>3
+          \fill[] (0.2,0.8) circle;
+       \fill[] (0.8,0.2) circle;
+           \ifnum#2>5
+         \fill[] (0.8,0.5) circle;
+       \fill[] (0.2,0.5) circle;
+            \ifnum#2>7
+           \fill[] (0.5,0.8) circle;
+          \fill[] (0.5,0.2) circle;
+        \fi
+    \fi
+      \fi
+      \fi
+\end{tikzpicture}%
+}
+
+\usetikzlibrary{lindenmayersystems}
+\pgfdeclarelindenmayersystem{cantor set}{
+  \rule{F -> FfF}
+  \rule{f -> fff}
+}
+
+%------------------
+% Math environment
+%------------------
+
+\usepackage{latexsym}
+\usepackage{amsmath}
+\usepackage{amsbsy}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{nicefrac}
+\usepackage{amscd}
+\usepackage{amsthm}
+\usepackage{mathtools}
+
+\newtheoremstyle{definitionSs}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\sffamily\bfseries}% Thm head font
+     {.}%        Punctuation after thm head
+     { }%     Space after thm head (\newline = linebreak)
+     {\thmname{#1}\thmnumber{~#2}\thmnote{~#3}}%         Thm head spec
+
+\newtheoremstyle{plainSs}{\topsep}{\topsep}%
+     {\itshape}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\sffamily\bfseries}% Thm head font
+     {.}%        Punctuation after thm head
+     { }%     Space after thm head (\newline = linebreak)
+     {\thmname{#1}\thmnumber{~#2}\thmnote{~#3}}%         Thm head spec
+
+\theoremstyle{definitionSs}
+\newtheorem{remark}{Remarque}[section]
+\newtheorem*{remark*}{Remarque}
+\newtheorem{example}{Exemple}[section]
+
+
+%\usepackage[framemethod=tikz]{mdframed}
+\usepackage[]{mdframed}
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!90,
+innerrightmargin=0pt,
+]{definition}{Définition}[section]
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!40,
+innerrightmargin=0pt,
+]{lemme}{Lemme}[section]
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!40,
+innerrightmargin=0pt,
+]{proposition}{Proposition}[section]
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!40,
+innerrightmargin=0pt,
+]{corollaire}{Corollaire}[section]
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!90,
+innerrightmargin=0pt,
+]{propdef}{Définition - Proposition}[section]
+
+\newmdtheoremenv[
+hidealllines=true,
+leftline=true,
+skipabove=0pt,
+innertopmargin=-5pt,
+innerbottommargin=2pt,
+linewidth=4pt,
+linecolor=gray!100,
+innerrightmargin=0pt,
+]{theorem}{Théorème}[section]
+
+%---------------
+% Mise en page
+%--------------
+
+\setlength{\parindent}{0pt}
+
+\renewcommand*{\descriptionlabel}[1]{\hspace\labelsep{\sffamily #1}}
+\providecommand{\defemph}[1]{{\sffamily\bfseries\color{astral}#1}}
+\renewcommand{\emph}[1]{{\sffamily #1}}
+
+%\usepackage{titlesec, blindtext, color}
+%\newcommand{\hsp}{\hspace{20pt}}
+%\titleformat{\chapter}[hang]{\sffamily\Huge\bfseries}{\thechapter\hsp\textcolor{gray75}{|}\hsp}{0pt}{\Huge\bfseries}
+\usepackage{sectsty}
+\allsectionsfont{\color{astral}\normalfont\sffamily\bfseries}
+
+\usepackage[subfigure]{tocloft}
+\renewcommand{\cfttoctitlefont}{\sffamily\bfseries\Huge\color{astral}}
+\renewcommand{\cftchapfont}{\sffamily\bfseries\color{astral}}
+\renewcommand{\cftsecfont}{\sffamily\bfseries}
+\renewcommand{\cftsubsecfont}{\sffamily}
+\usepackage{hyperref}
+\hypersetup{linktocpage, colorlinks=true, linkcolor=gray, urlcolor=linkcol, citecolor=gray}
+
+
+%----------------
+% Some commands
+%----------------
+
+\makeatletter
+\newcommand\RedeclareMathOperator{%
+  \@ifstar{\def\rmo@s{m}\rmo@redeclare}{\def\rmo@s{o}\rmo@redeclare}%
+}
+% this is taken from \renew@command
+\newcommand\rmo@redeclare[2]{%
+  \begingroup \escapechar\m@ne\xdef\@gtempa{{\string#1}}\endgroup
+  \expandafter\@ifundefined\@gtempa
+     {\@latex@error{\noexpand#1undefined}\@ehc}%
+     \relax
+  \expandafter\rmo@declmathop\rmo@s{#1}{#2}}
+% This is just \@declmathop without \@ifdefinable
+\newcommand\rmo@declmathop[3]{%
+  \DeclareRobustCommand{#2}{\qopname\newmcodes@#1{#3}}%
+}
+\@onlypreamble\RedeclareMathOperator
+\makeatother
+
+\newcommand{\skipline}{\vspace{\baselineskip}}
+\newcommand{\noi}{\noindent}
+
+
+%----- Raccourci proba ------------------
+\newcommand{\Om}{\Omega}
+\newcommand{\Tribu}{\cF}
+\newcommand{\Tribubis}{\cG}
+\newcommand{\Partie}{\cE}
+\newcommand{\Proba}{\bbP}
+\newcommand{\Espe}{\bbE}
+\newcommand{\OF}{(\Om,\Tribu)}
+\newcommand{\RBR}{\big(\bbR,\cB(\bbR)\big)}
+\newcommand{\OFP}{(\Om,\Tribu,\Proba)}
+\newcommand{\POm}{\cP(\Om)}
+\newcommand{\Leb}{\lambda}
+%----- Lettres -------------------------
+\newcommand{\bbC}{\mathbb{C}}
+\newcommand{\bbE}{\mathbb{E}}
+\newcommand{\bbF}{\mathbb{F}}
+\newcommand{\bbG}{\mathbb{G}}
+\newcommand{\bbK}{\mathbb{K}}
+\newcommand{\bbL}{\mathbb{L}}
+\newcommand{\bbN}{\mathbb{N}}
+\newcommand{\bbP}{\mathbb{P}}
+\newcommand{\bbQ}{\mathbb{Q}}
+\newcommand{\bbR}{\mathbb{R}}
+\newcommand{\bbS}{\mathbb{S}}
+\newcommand{\bbT}{\mathbb{T}}
+\newcommand{\bbU}{\mathbb{U}}
+\newcommand{\bbZ}{\mathbb{Z}}
+
+\newcommand{\bfC}{\mathbf{C}}
+\newcommand{\bfE}{\mathbf{E}}
+\newcommand{\bfL}{\mathbf{L}}
+\newcommand{\bfN}{\mathbf{N}}
+\newcommand{\bfP}{\mathbf{P}}
+\newcommand{\bfQ}{\mathbf{Q}}
+\newcommand{\bfR}{\mathbf{R}}
+\newcommand{\bfZ}{\mathbf{Z}}
+
+\newcommand{\calA}{\mathcal{A}}
+\newcommand{\calB}{\mathcal{B}}
+\newcommand{\calC}{\mathcal{C}}
+\newcommand{\calE}{\mathcal{E}}
+\newcommand{\calF}{\mathcal{F}}
+\newcommand{\calG}{\mathcal{G}}
+\newcommand{\calJ}{\mathcal{J}}
+\newcommand{\calL}{\mathcal{L}}
+\newcommand{\calM}{\mathcal{M}}
+\newcommand{\calN}{\mathcal{N}}
+\newcommand{\calO}{\mathcal{O}}
+\newcommand{\calP}{\mathcal{P}}
+\newcommand{\calS}{\mathcal{S}}
+\newcommand{\calT}{\mathcal{T}}
+\newcommand{\calV}{\mathcal{V}}
+\newcommand{\calX}{\mathcal{X}}
+
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\fB}{\mathfrak{B}}
+\newcommand{\fF}{\mathfrak{F}}
+
+% la droite réelle achevée
+\newcommand{\barR}{\overline{\mathbb{R}}}
+
+%
+%------------------------------- Majuscules calligraphiques
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\ge}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\le}{\leqslant}
+%
+\usepackage{mathrsfs}
+\newcommand{\scrL}{\mathscr{L}}
+\newcommand{\scrF}{\mathscr{F}}
+\newcommand{\scrM}{\mathscr{M}}
+\newcommand{\scrD}{\mathscr{D}}
+\newcommand{\scrE}{\mathscr{E}}
+\newcommand{\scrA}{\mathscr{A}}
+\newcommand{\scrB}{\mathscr{B}}
+\newcommand{\scrC}{\mathscr{C}}
+\newcommand{\scrI}{\mathscr{I}}
+\newcommand{\scrJ}{\mathscr{J}}
+\newcommand{\scrK}{\mathscr{K}}
+\newcommand{\scrS}{\mathscr{S}}
+\newcommand{\scrO}{\mathscr{O}}
+\newcommand{\scrP}{\mathscr{P}}
+\newcommand{\scrR}{\mathscr{R}}
+\newcommand{\scrT}{\mathscr{T}}
+\newcommand{\scrZ}{\mathscr{Z}}
+%
+\newcommand{\vois}{\mathscr{V}}
+\newcommand{\ouv}{\mathscr{O}}
+\newcommand{\ferm}{\mathscr{F}}
+
+%
+%------------------------------- Intervalles
+%
+\newcommand{\oo}[1]{\mathopen{]}#1\mathclose{[}}
+\newcommand{\fo}[1]{\mathopen{[}#1\mathclose{[}}
+\newcommand{\of}[1]{\mathopen{]}#1\mathclose{]}}
+\newcommand{\ff}[1]{\mathopen{[}#1\mathclose{]}}
+\newcommand{\lbb}{[\![}
+\newcommand{\rbb}{]\!]}
+
+%
+\newcommand{\ex}{e}
+\newcommand{\ind}{\mathrm{Ind}}
+\newcommand{\spt}{\mathrm{Spt}}
+\newcommand{\pd}{\frac{\pi}{2}}
+\newcommand{\E}{\mathrm{E}}
+\newcommand{\diff}{\mathrm{Diff}}
+\newcommand{\diam}{\mathrm{diam}}
+\newcommand{\comp}[1]{#1^\mathrm{c}}
+\newcommand{\vvv}{|\!|\!|}
+\newcommand{\dd}[2]{\frac{\partial #1}{\partial #2}}
+%
+%----- chapeaux, tildes -------------------------
+\newcommand{\wb}[1]{\overline{#1}}
+\newcommand{\wh}[1]{\widehat{#1}}
+\newcommand{\wt}[1]{\widetilde{#1}}
+
+%----- ccouleurs -------------------------
+\newcommand{\rose}[1]{\textcolor{magenta}{#1}}
+
+%----- Maths -----------------------
+\newcommand {\expl}[2]{\mathrm{e}^{-\Lambda(#1,#2)}}
+\newcommand {\expla}[2]{\mathrm{e}^{-\alpha #2-\Lambda(#1,#2)}}
+\newcommand {\Li}[1]{[ #1 ]}
+%\newcommand{\1}{\mathbbm{1}}
+\newcommand {\tstar}[1]{t^{*}(#1)}
+\DeclareMathOperator{\aire}{Aire}
+\providecommand{\gf}{g\circ f}
+\providecommand{\R}{\ensuremath \mathbb{R}}
+\providecommand{\C}{\ensuremath \mathbb{C}}
+\providecommand{\reg}[1]{\mathcal{C}^{#1}}
+\providecommand{\N}{\mathbb{N}}
+\providecommand{\M}{\mathcal{M}}
+\providecommand{\Q}{\mathbb{Q}}
+\renewcommand{\L}{\mathcal{L}}
+\providecommand{\D}{\mathcal{D}}
+\providecommand{\Cc}{\mathcal{C}}
+\providecommand{\F}{\mathcal{F}}
+\providecommand{\Ee}{\mathcal{E}}
+\providecommand{\G}{\mathcal{G}}
+\providecommand{\Z}{\mathbb{Z}}
+\providecommand{\x}{\ensuremath\boldsymbol{x}}
+\providecommand{\y}{\ensuremath\boldsymbol{y}}
+\providecommand{\1}{\mathds{1}}
+\providecommand{\p}{\partial}
+\providecommand{\Pp}{\mathcal{P}}
+\providecommand{\P}{\mathbb{P}}
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\U}{\mathcal{U}}
+\providecommand{\V}{\mathcal{V}}
+\providecommand{\ie}{\textit{i.e. }}
+\renewcommand{\P}{\mathbb{P}}
+\renewcommand{\S}{\mathcal{S}}
+\providecommand{\E}{\mathbb{E}}
+\providecommand{\one}{\mathds{1}}
+\DeclareMathOperator{\card}{Card}
+\DeclareMathOperator{\vol}{Vol}
+\DeclareMathOperator{\var}{Var}
+\DeclareMathOperator{\vect}{\mathsf{Vect}}
+\DeclareMathOperator{\med}{median}
+\DeclareMathOperator{\hess}{Hess}
+\DeclareMathOperator{\jac}{Jac}
+\DeclareMathOperator{\cov}{cov}
+\DeclareMathOperator{\diag}{\mathsf{Diag}}
+\DeclareMathOperator{\im}{\mathsf{Im}}
+\DeclareRobustCommand{\re}{\mathsf{Re}}
+\RedeclareMathOperator{\ker}{\mathsf{Ker}}
+\RedeclareMathOperator{\det}{\mathsf{det}}
+\DeclareMathOperator{\rank}{\mathsf{rank}}
+\DeclareMathOperator{\tr}{\mathsf{tr}}
+\DeclareMathOperator{\id}{\mathsf{Id}}
+\DeclareMathOperator{\can}{\mathsf{can}}
+\DeclareMathOperator{\com}{\mathsf{com}}
+\DeclareMathOperator*{\argmax}{Argmax}
+\providecommand{\B}{\mathsf{B}}
+
+\providecommand{\ncd}{\norm{\cdot}}
+\providecommand{\norm}[1]{\left\lVert#1\right\rVert}
+\providecommand{\bnorm}[1]{\bigg\lVert#1\bigg\rVert}
+\providecommand{\snorm}[1]{\lVert#1\rVert}
+
+\newcommand{\tnorm}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+
+\providecommand{\abs}[1]{\left\lvert#1\right\rvert}
+\providecommand{\sabs}[1]{\lvert#1\rvert}
+\providecommand{\Babs}[1]{\bigg\lvert#1\bigg\rvert}
+\providecommand{\babs}[1]{\bigg\lvert#1\bigg\rvert}
+
+\providecommand{\prscd}{\prs{\cdot,\cdot}}
+\providecommand{\prs}[1]{\left\langle #1\right\rangle}
+\providecommand{\sprs}[1]{\langle #1\rangle}
+\providecommand{\bprs}[1]{\bigg\langle #1\bigg\rangle}
+
+\providecommand{\rev}{$\R$ espace vectoriel}
+
+\providecommand{\dpar}[2]{\frac{\partial #1}{\partial #2}}
+
+\newcommand\rst[2]{{#1}_{\restriction_{#2}}}
+
+
+% Multiversioning 
+
+
+\usepackage{ifthen}
+
+\newcommand{\pl}[2]{%
+	\ifthenelse{\equal{\version}{poly}}{#1}{}%
+	\ifthenelse{\equal{\version}{print}}{#2}{}%
+}
+\newcommand{\plprof}[1]{\ifthenelse{\equal{\version}{print}}{#1}{}}
+\newcommand{\sld}[1]{\ifthenelse{\equal{\version}{slide}}{#1}{}}
+
+\newcommand{\eno}[1]{%
+	\ifthenelse{\equal{\version}{eno}}{#1}{}%
+}
+\newcommand{\cor}[1]{%
+        \ifthenelse{\equal{\version}{cor}}{
+\medskip 
+
+{\small \color{gray} #1}
+
+\medskip 
+}{}
+}
+
+\mdfdefinestyle{response}{
+	leftmargin=.01\textwidth,
+	rightmargin=.01\textwidth,
+	linewidth=1pt
+	hidealllines=false,
+	leftline=true,
+	rightline=true,topline=true,bottomline=true,
+        skipabove=\baselineskip,%0pt,
+	%innertopmargin=-5pt,
+	%innerbottommargin=2pt,
+	linecolor=gray,
+	innerrightmargin=0pt,
+	}
+\providecommand{\rep}[1]{$ $ \newline \begin{mdframed}[style=response] \vspace*{#1} \end{mdframed}}
+
+% generate breakable white space allowing students to write notes.
+\newcommand*{\DivideLengths}[2]{%
+  \strip@pt\dimexpr\number\numexpr\number\dimexpr#1\relax*65536/\number\dimexpr#2\relax\relax sp\relax
+}
+
+\usepackage{xparse}
+\ExplSyntaxOn
+\NewDocumentCommand\manyvspace { m }
+ {
+  \par
+  \int_step_inline:nn{#1}{\phantom{.}\vspace*{1em}\goodbreak}
+ }
+\ExplSyntaxOff 
+
+%\providecommand{\rep}[1]{$ $
+
+    %\begin{mdframed}[style=response]  
+	%\vspace*{\DivideLengths{#1}{3cm}cm}
+	%\pagebreak[1]	
+	%\vspace*{\DivideLengths{#1}{3cm}cm}
+	%\pagebreak[1]		
+	%\vspace*{\DivideLengths{#1}{3cm}cm}
+    %\end{mdframed}%
+%}
+\providecommand{\repcom}[1]{\begin{mdframed}[style=response] #1 \end{mdframed}}
+\providecommand{\comexo}[1]{\bigskip {\color{gray}#1}}
+\providecommand{\blanc}[1]{\vspace*{#1}}
+\providecommand{\myeq}[1]{\mathrel{\overset{\makebox[0pt]{\mbox{\normalfont\tiny #1}}}{=}}}
+\def\redspace{\sld{\setlength{\belowdisplayskip}{0pt} \setlength{\belowdisplayshortskip}{0pt}\setlength{\abovedisplayskip}{0pt}\setlength{\abovedisplayshortskip}{0pt}}}
+%------------------------------------------------------------------------------
+%\DeclareUnicodeCharacter{00A0}{~}
+
+\pdfstringdefDisableCommands{%
+    %\renewcommand*{\bm}[1]{#1}%
+    \renewcommand*{\R}{R}%
+    % any other necessary redefinitions 
+}
+\makeatother
+
+
