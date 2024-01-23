@@ -1,0 +1,319 @@
+\documentclass[11pt]{td_um}
+
+%------------------------------
+\def\version{cor}
+%\def\version{eno}
+%------------------------------
+
+\input{../../common/header.tex}
+
+\newcommand{\va}{variable aléatoire\xspace} 
+\newcommand{\vas}{variables aléatoires\xspace}
+\newcommand{\evs}{événements\xspace}
+\newcommand{\ev}{événement\xspace}
+\newcommand{\fdr}{fonction de répartition\xspace} 
+\usepackage{xspace} % gestion des espaces apres les macros
+
+\title{TD 4 - Marche Aléatoire}
+
+\begin{document}
+
+\maketitle
+
+
+\bigskip
+
+\bigskip
+
+
+\begin{exo}{} % loi de S_n
+Soit $(S_n)$ une marche al\'eatoire issue de $S_0=0$. 
+\begin{enumerate}
+    \item  Calculer la loi de $S_1$, $S_2$ et $S_3$.
+%--------------------------------------------
+        \cor{
+            \begin{itemize}
+                \item     $S_1=X_1$ prend les valeurs $-1$ et $1$ avec probabilité $1/2$.
+                \item    $S_2=X_1+X_2$ prend les valeurs $-2$ avec proba $1/4$, $0$ avec proba $1/2$, $2$ avec proba $1/4$.
+                \item  $S_3=X_1+X_2+X_3$ prend les valeurs $-3$ avec proba $1/8$, $-1$ avec proba $3/8$, $1$ avec proba $3/8$, $3$ avec proba $1/8$
+            \end{itemize}
+        }
+%--------------------------------------------
+    \item Calculer la loi de $(n+S_n)/2$  pour tout $n$.
+%--------------------------------------------
+        \cor{
+            Posons $Y_k = (X_k+1)/2$. Alors on a que les v.a. $Y_k$ sont iid de loi $B(1/2)$.
+            Ainsi $(S_n+n)/2=\sum_{k=1}^n(X_k+1)/2=\sum_{k=1}^nY_k$ suit la loi $B(n,1/2)$.
+        }
+%--------------------------------------------
+    \item En déduire la loi de $S_n$ pour tout $n$.
+%--------------------------------------------
+        \cor{
+            $S_n=2((S_n+n)/2)-n$ donc la loi de $S_n$ est une loi binomiale décalée : $S_n$ prend les valeurs $2k-n$ pour $0\leq k\leq n$ et $\bbP(S_n=2k-n)=\binom{n}{k} 2^{-n}$.
+        }
+%--------------------------------------------
+\end{enumerate}
+\end{exo}
+
+
+
+
+\begin{exo}{} % Scrutin
+Cent personnes font la queue \`a un guichet de cin\'ema. La place co\^ute $5$~\euro{} et 60 personnes ont un billet de $5$~\euro{} tandis que les 40 autres ont des billets de $10$~\euro{}. Combien faut-il pr\'evoir de billets de $5$~\euro{} en caisse pour que toutes les spectatrices et les spectateurs soient servis dans leur ordre d'arriv\'ee avec une probabilit\'e d'au moins $95\%$?
+%--------------------------------------------
+\cor{
+On modélise l'argent en caisse par une marche aléatoire. Soit $S_n$ le  nombre de billets de $5$\euro{} en caisse après le passage de la $n$-ème personne. On a $S_0=x$ inconnue et $S_{100}=60-40+x=20+x$ puisque $60$ personnes ont payé avec un billet de $5$\euro{} et qu'il a fallu rendre la monnaie au $40$ personnes payant avec un billet de $10$\euro{}. 
+
+Un tirage où toutes les spectatrices et les spectateurs sont servis correspond à un chemin de $(0,x)$ à $(100,20+x)$ qui ne touche pas $-1$. Dénombrons ces chemins. Le nombre de chemins de  $(0,x)$ à $(100,20+x)$ qui ne touchent pas $-1$ est égal
+\begin{itemize}
+\item au nombre de chemins de  $(0,x+1)$ à $(100,20+x+1)$ qui ne touchent pas $0$, par translation verticale;
+\item au nombre total de chemins de $(0,x+1)$ à $(100,20+x+1)$ moins le nombre de chemins de $(0,x+1)$ à $(100,20+x+1)$ qui passent par $0$;
+\item au nombre total de chemins de $(0,x+1)$ à $(100,20+x+1)$ moins le nombre total de chemins de $(0,x+1)$ à $(100,-(21+x))$ par le principe de réflexion.
+\end{itemize}
+La probabilité de satisfaire tout le monde est alors le nombre de chemins ci-dessus divisé par le nombre total de chemins de  $(0,x)$ à $(100,20+x)$puisqu'ils sont tous équiprobables. On obtient ainsi que cette probabilité vaut
+\begin{align*}
+p&=\frac{\binom{100}{60}-\binom{100}{50+11+x}}{\binom{100}{60}}\\
+&=1-\frac{60!40!100!}{100!(61+x)!(39-x)!}\\
+&=1-\frac{60!}{(61+x)!}\frac{40!}{(39-x)!}.
+\end{align*}
+
+Les valeurs de $p$ pour $x$ entre $0$ et $5$ sont
+\begin{center}
+\begin{tabular}{l|rrrrrr}
+\hline
+$x$&0&1&2&3&4&5\\
+\hline
+$p$&$0.3443$&$0.5875$&$0.7512$&$0.8562$&$0.9203$&$0.9578$\\
+\hline
+\end{tabular}
+\end{center}
+%
+On constate qu'à partir de $x=5$ cette probabilité dépasse $95\%$.
+}
+%--------------------------------------------
+\end{exo}
+
+
+\begin{exo}{} %variantes de la réflexion
+Si $a$ et $b$ sont deux entiers strictement positifs, montrer qu'il y a autant de chemins de $0$ \`a $a+b$ que de chemins de m\^eme longueur de $0$ \`a $a-b$ passant par $a$.
+%-----------------------
+\cor{
+Le nombre de chemins de $(0,0)$ \`a $(n,a+b)$  est égal
+\begin{itemize}
+\item au nombre de chemins de $(0,-a)$ \`a $(n,b)$ par translation verticale;
+\item au nombre de chemins de $(0,-a)$ \`a $(n,-b)$ passant par $0$ par le principe de réflexion, puisque $a$ et $b$ ont le même signe;
+\item au nombre de chemins de $(0,0)$ \`a $(n,a-b)$ passant par $a$ par translation verticale.
+\end{itemize}
+}
+%-----------------------
+\end{exo}
+
+
+\begin{exo}{} %Jeux
+ Une joueuse dispose de $10$~\euro{} pour jouer \`a une machine \`a sous. A chaque partie, elle met $1$~\euro{} dans la machine et celle-ci rend $2$~\euro{} ou rien avec \'equiprobabilit\'e.
+ \begin{enumerate}
+     \item  Mod\'eliser la fortune de la  joueuse par une marche al\'eatoire.
+%--------------------------------------------
+         \cor{
+             Mod\'elisons la fortune de la  joueuse par une marche al\'eatoire. Soit $S_n$ la fortune de la joueuse après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
+             \begin{align*}
+                 \bbP(X_1=-1+2)=\bbP(X_1=-1+0)=\frac{1}{2}.
+             \end{align*}
+             Donc $(S_n)_{n\geq 0}$ est bien une marche aléatoire simple symétrique.
+         }
+%--------------------------------------------
+         Soit $N$ le nombre de parties jou\'ees jusqu'\`a la ruine de la joueuse.
+     \item  Quelle est la parit\'e de $N$? Quelle valeur minimale peut-il prendre? 
+%--------------------------------------------
+         \cor{
+             Comme la richesse initiale est paire, la joueuse ne peut être ruinée qu'en un nombre pair de parties. De plus, comme elle perd au maximum $1$ à chaque partie, elle ne peut pas être ruinée avant la fin de la $10$-ème partie.
+         }
+%--------------------------------------------
+     \item  Calculer la loi de $N$.
+%--------------------------------------------
+         \cor{
+             Calculons la loi de $N$. Pour tout $n\geq 5$, on a
+             \begin{align*}
+                 \lefteqn{\bbP(N=2n)}\\
+                 &=\bbP(S_0=10,S_1>0,\ldots, S_{2n-3}>0, S_{2n-2}>0,  S_{2n-1}>0,S_{2n}=0)\\
+                 &=\bbP(S_0=10,S_1>0,\ldots, S_{2n-3}>0, S_{2n-2}=2,  S_{2n-1}=1,S_{2n}=0).
+             \end{align*}
+             La probabilité cherchée est donc égale au nombre de chemins de $(0,10)$ à $(2n,0)$ ne touchant pas $0$ avant $2n$, divisé par $2^{2n}$ qui correspond au nombre total de chemins de longueur $2n$. 
+
+             Le nombre de chemins de $(0,10)$ à $(2n,0)$ ne touchant pas $0$ avant $2n$ est égal 
+             \begin{itemize}
+                 \item au nombre de chemins de $(0,10)$ à $(2n-1,1)$ ne touchant pas $0$;
+                 \item au nombre total de chemins de $(0,10)$ à $(2n-1,1)$ moins le nombre de chemins de $(0,10)$ à $(2n-1,1)$ touchant $0$;
+                 \item au nombre total de chemins de $(0,10)$ à $(2n-1,1)$ moins le nombre total de chemins de $(0,10)$ à $(2n-1,-1)$ par le principe de réflexion.
+             \end{itemize}
+             On a donc
+             \begin{align*}
+                 \bbP(N=2n)
+                 &=\frac{1}{2^{2n}}\big(\binom{2n-1}{n-5}-\binom{2n-1}{n-6}\big)\\
+                 &=\frac{1}{2^{2n}}\frac{(2n-1)!}{(n-6)!(n+4)!}(\frac{1}{n-5}-\frac{1}{n+5})\\
+                 &=\frac{10}{2^{2n}}\frac{(2n-1)!}{(n-5)!(n+5)!}\\
+                 &=\frac{5}{n2^{2n}}C^{n+5}_{2n}.
+             \end{align*}
+         }
+%--------------------------------------------
+ \end{enumerate}
+\end{exo}
+
+
+\begin{exo}{} %variantes de la récurrence
+On considère deux marches aléatoires indépendantes issues de $0$ et de $2$ respectivement. Quelle est la probabilité que ces deux marches se retrouvent à un moment au même endroit?
+%-----------------------
+\cor{
+Supposons que les deux marches se retrouvent en $a$ à la date $m$. En faisant la symétrie par rapport à la verticale en $m$ pour le chemin issu de $2$, on voit qu'on a autant de chance que les deux marches se croisent en $(m,a)$ que de chances de partir de $(0,0)$ pour arriver en $(2m,2)$. \\
+Réciproquement, si on a un chemin de $(0,0)$ à $(n,2)$, alors $n=2m$ est nécessairement pair, et en faisant la symétrie par rapport à la verticale en $m$, on reconstitue deux chemins qui partent de $0$ et $2$ respectivement et sont au même point en $m$.\\
+Donc la probabilité que les marches se retrouvent au même endroit est exactement $\bbP(T_2<+\infty | S_0=0)$ la probabilité d'atteindre $2$ partant de $0$, qui vaut $1$ d'après le cours.
+}
+%-----------------------
+\end{exo}
+
+
+\begin{exo}{} % 
+Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une pi\`ece \'equilibr\'ee. Avant chanque lancer, les deux joueurs posent chacun $1$~\euro{} sur la table; si le tirage donne pile, Thomas empoche les $2$~\euro{}, si c'est face, c'est Julie qui gagne les mises. Au d\'ebut du jeu, Thomas a $10$ pi\`eces de $1$~\euro{}. Il ignore la fortune $x$ de Julie. Le jeu s'arr\^ete d\`es que l'un des deux participants est ruin\'e.
+\begin{enumerate}
+    \item  Mod\'eliser la richesse de Thomas et son \'evolution par une marche al\'eatoire $(S_n)$.
+%--------------------------------------------
+        \cor{
+            Mod\'elisons la richesse de Thomas et son \'evolution par une marche al\'eatoire. Soit $S_n$ la richesse de Thomas après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
+            \begin{align*}
+                \bbP(X_1=-1)=\bbP(X_1=1)=\frac{1}{2}.
+            \end{align*}
+            Donc $(S_n)_{n\geq 0}$ est une marche aléatoire simple symétrique.
+        }
+%--------------------------------------------
+    \item  Mod\'eliser la richesse de Julie et son \'evolution par une marche al\'eatoire $(R_n)$.
+%--------------------------------------------
+        \cor{
+            Mod\'elisons la richesse de Julie et son \'evolution par une marche al\'eatoire. Quand Thomas perd, Julie gagne, et vice-versa. Donc la richesse de Julie après le $n$-ème jeu vaut $R_n$ avec $R_0=x$ et $R_{n+1}=R_n-X_{n+1}$. Comme $-X_k$ a la même loi que $X_k$, c'est encore une marche aléatoire simple symétrique.
+        }
+%--------------------------------------------
+    \item  Calculer $R_0+S_0$. Quelle est la relation entre $R_n$ et $S_n$ apr\`es $n$ parties?
+%--------------------------------------------
+        \cor{
+            A l'instant initial, $S_0+R_0=10+x$. Quand Thomas perd, Julie gagne, et vice-versa, donc pour tout entier $n$, on a encore $R_n+S_n=10+x$, car il n'y a pas d'apport extérieur d'argent ni de perte extérieure d'argent.
+        }
+%--------------------------------------------
+        On suppose maintenant que la richesse de Julie est infinie, et que le jeu s'est arr\^et\'e par la ruine de Thomas apr\`es 26 lancers.
+    \item  D\'ecrire la partie par un chemin dont on pr\'ecisera les extr\'emit\'es et les sp\'ecificit\'es.
+%--------------------------------------------
+    \cor{
+        Une partie se terminant par la ruine de Thomas après $26$ lancers correspond à un chemin de $(0,10)$ à $(26,0)$ qui ne touche pas $0$ avant $26$.
+    }
+%--------------------------------------------
+\item  Combien y a-t-il de chemins quelconques ayant les m\^emes extr\'emit\'es?
+%--------------------------------------------
+    \cor{
+        Le nombre total de chemins de $(0,10)$ à $(26,0)$ est $\binom{26}{13-5}=\binom{26}{8}=1\ 562\ 275$.
+    }
+%--------------------------------------------
+\item  Combien y a-t-il de chemins possibles correspondant \`a cette partie?
+%--------------------------------------------
+    \cor{
+        Le nombre de chemins de $(0,10)$ à $(26,0)$ qui ne touchent pas $0$ avant $26$ est égal
+        \begin{itemize}
+            \item au nombre de chemins de $(0,10)$ à $(25,1)$ qui ne touchent pas $0$;
+            \item au nombre total de chemins de $(0,10)$ à $(25,1)$ moins le nombre de chemins  de $(0,10)$ à $(25,1)$ qui touchent $0$;
+            \item au nombre total de chemins de $(0,10)$ à $(25,1)$ moins le nombre total de chemins  de $(0,10)$ à $(25,-1)$ par le principe de réflexion.
+        \end{itemize}
+        Ce nombre vaut donc $\binom{25}{8}-\binom{25}{7}=600\ 875$.
+    }
+%--------------------------------------------
+    On suppose \`a nouveau que la dur\'ee de jeu $T$ est inconnue
+\item Calculer $\mathbb{P}(T=10)$ si la richesse initiale de Julie est $x=15$.
+%-----------------------
+    \cor{
+        Comme la richesse initiale de Julie est $15>10$, la seule possibilité est que Thomas a perdu les $10$ premières parties. Ceci arrive avec probabilité $2^{-10}=0.00098$
+    }
+%-----------------------
+\item Calculer $\mathbb{P}(T=10)$ si la richesse initiale de Julie est $x=10$.
+%-----------------------
+    \cor{
+        Il y a deux possibilités : Thomas a perdu les 10 parties ou Julie a perdu les $10$ parties. Ces deux événements étant incompatibles, la probabilité cherchées est $2\times 2^{-10}=2^{-9}=0.00195$
+    }
+%-----------------------
+\item Calculer $\mathbb{P}(T=10)$ si la richesse initiale de Julie est $x=6$.
+%-----------------------
+    \cor{
+        Il y a ici plus de possibilités. Soit Thomas a perdu les $10$ parties ce qui arrive avec probabilité $2^{-10}$, soit c'est Julie qui a perdu, et la partie correspond alors à un chemin de $(0,6)$ à $(10,0)$ qui ne touche pas $0$ avant $10$. Dénombrons ces chemins :
+        Le nombre de chemins de $(0,6)$ à $(10,0)$ qui ne touchent pas $0$ avant $10$ est égal
+        \begin{itemize}
+            \item au nombre de chemins de $(0,16)$ à $(9,1)$ qui ne touchent pas $0$;
+            \item au nombre total de chemins de $(0,6)$ à $(9,1)$ moins le nombre de chemins  de $(0,6)$ à $(9,1)$ qui touchent $0$;
+            \item au nombre total de chemins de $(0,6)$ à $(9,1)$ moins le nombre total de chemins  de $(0,6)$ à $(9,-1)$ par le principe de réflexion.
+        \end{itemize}
+        Ce nombre vaut donc $\binom{9}{7}-\binom{9}{8}=27$. 
+        Donc finalement $\mathbb{P}(T=10)=2^{-10}+\frac{27}{2^{10}}=28\cdot 2^{-10}=0.02734.$
+    }
+%-----------------------
+\item Si $x$ est impair que peut-on dire du perdant en fonction de la parit\'e de $T$ ?
+%-----------------------
+    \cor{
+        Comme la richesse initiale de Thomas est paire, Thomas ne peut perdre qu'en un nombre pair de coups. Si la richesse de Julie est impaire, elle ne peut perdre qu'en un nombre impair de coups. Donc si $T$ est pair, Thomas a perdu, si $T$ est imapair, Julie a perdu.
+    }
+%-----------------------
+\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{} % 
+Soit $(Z_n)_{n\geq 1}$ une suite de variables aléatoires iid de loi uniforme sur 
+$$\{(1,0),(-1,0),(0,1),(0,-1)\}.$$ 
+On pose $S_0=0$ et pour $n\geq 1$, $S_n=S_{n-1}+Z_n=\sum_{k=1}^nZ_k$. On dit que $(S_n)$ est une marche aléatoire simple symétrique sur $\bbZ^2$. Pour tout $n\geq 1$ on note $X_n$ la première coordonnée de $Z_n$ et $Y_n$ sa deuxième coordonnée, et on introduit $U_n=X_n+Y_n$ et $V_n=X_n-Y_n$.
+\begin{enumerate}
+    \item Identifier les lois marginales de $X_n$ et $Y_n$.
+%-----------------------
+        \cor{
+            $\bbP(X_n=-1)=1/4$, $\bbP(X_n=0)=1/2$ et $\bbP(X_n=1)=1/4$\\
+            $\bbP(Y_n=-1)=1/4$, $\bbP(Y_n=0)=1/2$ et $\bbP(Y_n=1)=1/4$
+        }
+%-----------------------
+    \item Les variables $X_n$ et $Y_n$ sont-elles indépendantes ?
+%-----------------------
+        \cor{
+            Non car $\bbP(X_n=0=Y_n)=0\neq \bbP(X_n=0)\bbP(Y_n=0)=1/4$.
+        }
+%-----------------------
+    \item Identifier les lois de $U_n$ et $V_n$.
+%-----------------------
+        \cor{
+            On a $\bbP(U_n=-1)=\bbP(U_n=1)=1/2$ et $\bbP(V_n=-1)=\bbP(V_n=1)=1/2$.
+            Il s'agit d'une transformation affine de $(X,Y)$ qui correspond à une rotation de $-3\pi/2$ et une dilatation de $\sqrt{2}$.\\
+
+            \centering
+            \includegraphics[height=5cm]{figures/marche_Z2.png}
+        }
+%-----------------------
+    \item Les variables $U_n$ et $V_n$ sont-elles indépendantes ?
+%-----------------------
+        \cor{
+            Oui car \\
+            $\bbP(U_n=V_n=1)=\bbP(X_n=1,Y_n=0)=1/4=\bbP(U_n=1)\bbP(V_n=1)$,\\
+            $\bbP(U_n=V_n=-1)=\bbP(X_n=-1,Y_n=0)=1/4=\bbP(U_n=-1)\bbP(V_n=-1)$,\\
+            $\bbP(U_n=1,V_n=-1)=\bbP(X_n=0,Y_n=1)=1/4=\bbP(U_n=1)\bbP(V_n=-1)$,\\
+            $\bbP(U_n=-1,V_n=1)=\bbP(X_n=0,Y_n=-1)=1/4=\bbP(U_n=-1)\bbP(V_n=1)$.
+        }
+%-----------------------
+    \item Calculer $\bbP(S_n=(0,0))$. 
+%-----------------------
+        \cor{
+            \begin{align*}
+                (S_n=(0,0))&= \Big(\sum_{k=1}^n X_k=0, \sum_{k=1}^n Y_k=0\Big)\\
+                &= \Big(\sum_{k=1}^n X_k+\sum_{k=1}^n Y_k=0, \sum_{k=1}^n X_k-\sum_{k=1}^n Y_k=0\Big)\\
+                &= \Big(\sum_{k=1}^n U_k=0, \sum_{k=1}^n V_k=0\Big)
+            \end{align*}
+            Or les suites $(U_n)$ et $(V_n)$ sont indépendantes, donc\\
+            $\bbP(S_n=(0,0))=\bbP(S_n^U=0)\bbP(S_n^V=0)$\\
+            où $(S_n^U)$ et $(S_n^V)$ sont des marches aléatoires simples symétriques  en dimension $1$, issues de $0$, avec incréments $(U_k)$ et $(V_k)$ respectivement. D'après le cours, cette probabilité est nulle si $n$ est impair et \\
+            $\bbP(S_{2n}=(0,0))=\bbP(S_{2n}^U=0)\bbP(S_{2n}^V=0)=\Big(\frac{1}{4^n}C_{2n}^n\Big)^2$.
+            En suivant un raisonnement analogue à celui du cours, on peut montrer que la marche aléatoire en dimension $2$ est encore récurrente (ce qui ne sera plus vrai à partir de la dimension $3$).
+        }
+%-----------------------
+\end{enumerate}
+\end{exo}
+%=========================
+\end{document}
+
