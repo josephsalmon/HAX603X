@@ -30,6 +30,7 @@ toc: true
 toc-depth: 1
 tbl-colwidths: [60, 50, 40, 30, 30]
 code-line-numbers: false
+jupyter: python3
 format:
     revealjs:
       chalkboard: 
