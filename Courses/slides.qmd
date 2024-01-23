@@ -7,9 +7,16 @@ format:
 
 Vous trouverez ci-dessous la listes des slides associés:
 
-[Cours introduction: plein écran](../Slides/slides_intro.qmd)
+[Cours introduction, plein écran](../Slides/slides_intro.qmd)
+
+```{=html}  
+<iframe class="slide-deck" src="
+../Slides/slides_intro.html" height="180" width="320" style="border: 1px solid #2e3846;"></iframe>
+```
+
+[Cours: notations premiers pas, plein écran](../Slides/slides_notations_premiers_pas.qmd)
 
 ```{=html}
 <iframe class="slide-deck" src="
-../Slides/slides_intro.html" height="180" width="320" style="border: 1px solid #2e3846;"></iframe>
+../Slides/slides_notations_premiers_pas.html" height="180" width="320" style="border: 1px solid #2e3846;"></iframe>
 ```
