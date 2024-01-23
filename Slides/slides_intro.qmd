@@ -7,6 +7,17 @@ format:
     template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
+    text: |
+        <style>
+        .center-xy {
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translateY(-50%), translateX(-50%);
+          transform: translateY(-50%), translateX(-50%);
+        }
+        </style>
 ---
 
 # Présentation, informations générales
@@ -22,7 +33,8 @@ format:
 PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 
-## Enseignants:
+## Enseignants
+
 ::: {.fragment fragment-index=1}
 - **Joseph Salmon** : CM et TP
     - Situation actuelle : Professeur à l'Université de Montpellier
@@ -44,15 +56,17 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 ## Ressources en ligne
 
+<br>
 
 [Informations principales]{.underline} : site du cours <http://josephsalmon.github.io/HAX603X>
 
+<br>
 
 :::{.incremental}
 
 - Syllabus
-- Slides (au fil de l'eau)
-- Poly (au fil de l'eau)
+- Cours (détaillé: site web)
+- Slides (résumé)
 - Feuilles de TD
 - Feuilles de TP
 - Rendu TP : Moodle de l'université (https://moodle.umontpellier.fr/course/view.php?id=5558)
@@ -63,10 +77,10 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 - TP notés : Rendu = fichier Python **.py** unique
 
-   - TP noté 1 : rendre en fin de session (date TBD)
-   - TP noté 2 : rendre en fin de session (date TBD)
+   - TP noté 1 : rendre en fin de session (en S11)
+   - TP noté 2 : rendre en fin de session (en S17)
 
-- CC : devoir sur table d'une heure
+- CC : devoir sur table d'une heure (S18)
 
 <br>
 
@@ -74,7 +88,9 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
     - Note Session 1 : (40% CC + 30% TP 1 + 30% TP 2)
     - Note Session 2 : (30% CC + 35% TP 1 + 35% TP 2)
 
-::: {.callout-warning}
+::: {.callout-important}
+
+
 Le rendu est individuel pour le TP noté !!!
 :::
 
@@ -86,37 +102,40 @@ dans le dossier adéquat.
 Détails de la notation du TP :
 
 - Qualité des réponses aux questions
-- Qualité de rédaction et d’orthographe
+- Qualité de rédaction et d'orthographe
 - Qualité des graphiques (légendes, couleurs)
-- Qualité d’écriture du code (noms de variables clair, commentaires utiles, code synthétique, etc.)
+- Qualité du code (noms de variables, clairs, commentaires utiles, code synthétique, etc.)
 - Notebook reproductible et absence de bug
 
 <br>
 
-[Pénalités]{.underline} :
+::: {.callout-important}
+
+## [Pénalités]{.underline}
+
 
 - Envoi par mail : zéro
 - Retard : zéro (uploader avant la fin, fermeture automatique de moodle)
 
+:::
 
 ## Prérequis - à revoir seul
 
 - Bases de probabilités [@Foata_Fuchs96]: probabilité, densité, espérance, fonction de répartition
 
-- Programmation élémentaire : if then else, for, while, fonctions, etc.
+- Programmation élémentaire : if ... then... else ..., for, while, fonctions, etc.
 
 
 ## Description du cours
 
 [Objectifs]{.underline} :
 
-- Méthode de génération aléatoire
+- Méthodes de génération aléatoire (inverse, rejet, etc.)
 - Réduction de variance, enjeux computationnels
-- XXX
-- XXX
-- utilisation de Python pour la génération d'éléments aléatoires
-- visualisation (matplotlib, seaborn)
-- introduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)
+- Rappels sur les lois gaussiennes
+- Utilisation de Python pour la génération d'éléments aléatoires
+- Visualisation (matplotlib, seaborn)
+- Introduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)
 
 
 ##
@@ -125,21 +144,23 @@ Détails de la notation du TP :
 ```
 # Perspectives historiques
 
-## L'aiguille de Buffon
+## Buffon et les prémisses de la méthode de Monte-Carlo
 
 ::::{.columns}
 
 :::{.column width="60%"}
 
-
+:::{.fragment fragment-index=1}
 - 1733:  **l'aiguille de Buffon**, méthode d'estimation de la valeur de $\pi$. 
-Première méthode de Monte-Carlo de la littérature .
-
-
+:::
+:::{.fragment fragment-index=2}
 - **Problème initial**: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
+:::
 
+:::{.fragment fragment-index=3}
 ```{python}
 #| echo: false
+#| layout-ncol: 1
 
 import numpy as np
 import plotly.graph_objects as go
@@ -258,11 +279,17 @@ fig.show()
 
 :::
 
+:::
+
 :::{.column width="40%"}
-[Georges-Louis Leclerc, Comte de Buffon](https://fr.wikipedia.org/wiki/Georges-Louis_Leclerc_de_Buffon): (1707-1788)
+
+:::{.fragment fragment-index=1}
+
+[Georges-Louis Leclerc, Comte de Buffon](https://fr.wikipedia.org/wiki/Georges-Louis_Leclerc_de_Buffon)(1707-1788) :
  naturaliste, mathématicien et industriel français du siècle des Lumières<img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/Georges-Louis_Leclerc_de_Buffon.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon." title="Portrait de Georges-Louis Leclerc, comte de Buffon.
 Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
+:::
 
 :::
 
@@ -286,19 +313,29 @@ $$
 Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX603X/perspective_historique.html).
 :::
 
-## Principe de Monte Carlo pour estimer $\pi$
 
+## Principe de Monte Carlo et estimation 
 
-L'idée sous-jacente de Buffon : 
+Idée sous-jacente de Buffon :
 
 si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
 
+<br>
+Estimation de $\pi$:
 
-Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
+$$
+\pi \approx \frac{2}{\hat{P}_n}
+$$
 
-## Principe de Monte Carlo pour estimer $\pi$ (suite)
+
+## Principe de Monte Carlo pour l'estimation (suite)
+
+<br>
 
 ```{python}
+
+#| echo: false
+#| layout-ncol: 1
 
 # Create subplots with 2 rows and 1 column with ratio x /  y  of 10
 fig1 = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
@@ -450,7 +487,7 @@ slider = dict(
 
 fig1.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
 fig1.update_layout(sliders=[slider])
-fig1.update_layout(height=720, width=1280)
+fig1.update_layout(height=800, width=1480)
 
 fig1.show()
 ```
@@ -460,6 +497,7 @@ fig1.show()
 
 Méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.
 
+<br>
 
 Domaines d'applications:
 
@@ -476,27 +514,42 @@ Domaines d'applications:
 
 :::{.column width="70%"}
 
+:::{.fragment fragment-index=1}
 
 - Lieu: Los Alamos
 - Époque: seconde guerre mondial
-- Contexte: **Projet Manathan**, produire une bombe atomique 
+- Contexte: **Projet Manathan**, produire une bombe atomique
 - Besoins: modéliser les réactions nucléaires en chaîne (combinatoires)
+
+:::
+
+
 
 
 ::: {layout-ncol=3}
+:::{.fragment fragment-index=3}
+![[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann) (1903-1957), mathématicien et physicien américano-hongrois, un des pères de l'informatique.](https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg){height=200}
+:::
 
-![[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann)(1903-1957), mathématicien et physicien américano-hongrois, un des pères de l'informatique.](https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg){height=200}
-
+:::{.fragment fragment-index=4}
 ![[Nicholas Metropolis](https://fr.wikipedia.org/wiki/Nicholas_Metropolis) (1915-1999), physicien gréco-américain, un des initiateurs de la méthode de Monte Carlo et du recuit simulé](https://upload.wikimedia.org/wikipedia/commons/5/56/Nicholas_Metropolis_cropped.PNG){height=200}
+:::
 
+:::{.fragment fragment-index=5}
 ![[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam) (1909-1984),  mathématicien polono-américainm, un des initiateurs de la méthode de Monte Carlo et de la propulsion nucléaire pulsée](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg){height=200}
+:::
+
 :::
 
 :::
 
 :::{.column width="30%"}
 
+:::{.fragment fragment-index=2}
+
 ![Explosion de Trinity (16 Juillet 1945)](https://upload.wikimedia.org/wikipedia/commons/f/fc/Trinity_Detonation_T%26B.jpg){width=100%}
+
+:::
 
 :::
 
@@ -504,13 +557,16 @@ Domaines d'applications:
 
 
 
-## Le nom Monte-Carlo
+## L'origine du nom "Monte-Carlo"
 
-Le nom Monte-Carlo: venu du besoin de confidentialité du projet
+Initialement: besoin de confidentialité du projet Manhattan
 
-Monte-Carlo: connue pour ses jeux de hasard, où l’oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.
+<br>
+
+Monte-Carlo: connue pour ses jeux de hasard, où l'oncle de Stanisław Ulam aimait se rendre pour assouvir sa soif de jeu.
 
 
+<br>
 Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginning]:
 
 
@@ -519,22 +575,55 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
 ## Essor de la méthode de Monte Carlo
 
+::::{.columns}
+
+:::{.column width="60%"}
+
+:::{.fragment fragment-index=1}
 
 - Popularisation croissante:
 
   - Essor de l'informatique (depuis les années 80)
   - Essor des méthodes de calcul parallèle (GPU, cluster, etc.)
 
-<br>
+
+:::
+
+:::{.fragment fragment-index=2}
 
 - Domaine principaux impactés:
 
   - finance : évaluation des prix de produits dérivés
-  - apprentissage automatique: utilisation de l'aléatoire pour généré des scénarios (e.g., AlphaGo, AlphaGeometry)
+  - apprentissage automatique: utilisation de l'aléatoire pour généré des scénarios
 
-Exemple d'AlphaGo (et autres jeux):
+    [Exemples: Alphago (2016)]{.fragment fragment-index=3}[, AlphaGeometry (2024)]{.fragment fragment-index=4}
+:::
 
-Recherche arborescente Monte-Carlo: analyse des mouvements les plus prometteurs, en élargissant l'arbre de recherche sur la base d'un échantillonnage aléatoire de l'espace de recherche
+:::
+
+:::{.column width="40%"}
+
+:::{.fragment fragment-index=3}
+  ![](../Slides/images/go-board-19x19-stones.svg){width=50%}
+:::
+
+:::{.fragment fragment-index=4}
+
+  ![](../Slides/images/alphageometry.png){width=50%}
+:::
+
+
+:::
+
+::::
+<br>
+
+
+:::{.fragment fragment-index=5}
+
+Recherche arborescente Monte-Carlo (&#127468;&#127463;: *Monte Carlo tree search*): analyse des scénarios les plus prometteurs, en élargissant l'arbre de recherche sur la base d'un échantillonnage aléatoire de l'espace entier (ingrédient important d'AlphaGo)
+
+:::
 
 ## Bibliographie
 
