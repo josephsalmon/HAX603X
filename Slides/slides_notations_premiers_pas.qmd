@@ -10,6 +10,37 @@ format:
 ---
 
 
+## Notation et rappels de probabilités
+
+- Espace probabilisé: $(\Omega, {\mathcal{F}}, \mathbb{P})$
+  - composé d'un ensemble: $\Omega$
+  - d'une tribu: $\mathcal{F}$
+  - d'une mesure de probabilité: $\mathbb{P}$
+
+::: {#def-va }
+
+## Variable aléatoire (v.a.)
+
+<br>
+
+Soit $(E, \mathcal{E})$ un espace mesurable. Une *variable aléatoire*  est une application mesurable
+$$
+    \begin{array}{ccccc}
+        X & : & \Omega & \to     & E            \\
+            &   & \omega & \mapsto & X(\omega)\,.
+    \end{array}
+$$
+Ainsi pour tout $B \in \mathcal{E}, \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.$
+Cet ensemble se réécrit  aussi
+$$
+\begin{align*}
+    \{\omega \in \Omega : X(\omega) \in B\}
+    & =  X^{-1}(B) \\
+    & = \{X \in B\} \, .
+\end{align*}
+$$
+:::
+
 ## Quantiles: cas continu
 
 ::::{.columns}
