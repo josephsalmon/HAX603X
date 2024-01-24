@@ -73,16 +73,21 @@ Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$
 
 ## Loi de Bernoulli
 
-La loi la plus simple est la *loi de Bernoulli* de paramètre $p \in [0,1]$, définie sur $\{0,1\}$ par $\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p$ qui modélise une expérience aléatoire à deux issues (succès = $1$ et échec = $0$).
+Soit un paramètre $p \in [0,1]$, et $E=\{0,1\}$, alors la loi de Bernouilli est donnée par $\mathbb{P}(X=1)=1-\mathbb{P}(X=0) = p$
 :::
 
+[Exemple physique]{.underline}: loi d'un tirage pile / face, $p$: biais de la pièce.
 
 ::: {#exm-binomiale}
 
 ## Loi binomiale
 
-En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale : $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in \{0,\ldots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
+ $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in E=\{0,\dots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
 :::
+
+[Exemple physique]{.underline}: nombre de tirages de faces avec un bias $p$ de la pièce.
+
+En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale :
 
 
 ::: {#exm-géométrique}
