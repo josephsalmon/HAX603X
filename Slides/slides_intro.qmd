@@ -37,7 +37,7 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 ::: {.fragment fragment-index=2}
 - **Benjmain Charlier** : CM, TD et TP
-  - Situation actuelle : Maître de conférence l'Université de Montpellier
+  - Situation actuelle : Maître de conférences à l'Université de Montpellier
   - Précédemment : Université Paul Sabatier, ENS Paris-Saclay
   - Spécialités : traitement des images, statistiques, différentiation automatique
   - Bureau : 423, Bat. 9
@@ -576,7 +576,7 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 - Popularisation croissante:
 
   - Essor de l'informatique (depuis les années 80)
-  - Essor des méthodes de calcul parallèle (GPU, cluster, etc.)
+  - Essor des méthodes de calcul parallèle (GPUs, clusters, etc.)
 
 :::
 

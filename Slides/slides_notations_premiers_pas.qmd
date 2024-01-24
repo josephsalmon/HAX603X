@@ -1,6 +1,6 @@
 ---
 title: "HAX603X: Modélisation stochastique"
-subtitle: "Notation et premiers pas"
+subtitle: "Notations et premiers pas"
 format:
   revealjs:
     html-math-method: mathjax
@@ -288,7 +288,7 @@ Soit $X$ une v.a. de fonction de répartition $F_X$.
 
 
 :::{.fragment .fragment-index-2}
-[Démonstration]{.underline}: voir par exemple [@Barbe_Ledoux06].
+[Démonstration]{.underline}: voir par exemple [@Barbe_Ledoux06]
 :::
 
 :::{.fragment .fragment-index-3}
@@ -337,7 +337,7 @@ Dans le cas d'une loi discrète, la fonction de répartition est une fonction en
 Soit $(x_i)_{i \in I}$ une suite ordonnée de réels, avec $I \subset \mathbb{N}$.
 Si $X$ est une variable aléatoire discrète prenant les valeurs $(x_i)_{i \in I}$ et de loi $(p_i = \mathbb{P}(X=x_i))_{i \in I}$, alors
 $$
-    F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
+\forall x \in \mathbb{R}, \quad F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
 $$
 
 :::
@@ -351,7 +351,7 @@ $$
 ## Cas continu
 Si $X$ est une variable aléatoire de densité $f$, alors
 $$
-    F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
+\forall x \in \mathbb{R}, \quad F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
 $$
 :::
 
@@ -361,7 +361,11 @@ $$
 F_X(x) \triangleq \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}}\, \mathrm d t\enspace,
 $$
 
+:::{.callout-note}
+L'intégrale ne peut être obtenue à partir d'une formule fermée^[[Wikipedia: Théorème de Liouville](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_(alg%C3%A8bre_diff%C3%A9rentielle))]
 Autrefois, les valeurs de $\Phi(x)$ étaient reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].
+:::
+
 
 :::{.fragment .fragment-index-2}
 - Transformation affine: si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- i.e., $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors
@@ -383,9 +387,9 @@ $$
 Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$
 et $F_X$ sa fonction de répartion.
 La *fonction quantile* associée
-$F_X^\leftarrow:  ]0,1[\rightarrow \mathbb{R}$ est définie par
+$F_X^\leftarrow: [0,1] \rightarrow \mathbb{R}$ est définie par
 $$
-  F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
+  F_X^\leftarrow(p) = \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
 $$
 :::
 
@@ -396,8 +400,10 @@ $$
 
 - la fonction quantile s'appelle aussi **inverse au sens de Levy** ou **inverse généralisée** (à gauche).
 
-- **médiane** : $F_X^\leftarrow(1/2)$, premiers et troisièmes **quartiles**  $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
-- déciles : $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
+- **médiane** : $F_X^\leftarrow(1/2)$
+- **premier quartile** : $F_X^\leftarrow(1/4)$
+- **troisième quartile** : $F_X^\leftarrow(3/4)$
+- déciles : $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$
 
 
 

@@ -1,0 +1,25 @@
+---
+title: "HAX603X: Modélisation stochastique"
+subtitle: "Théorèmes asymptotiques"
+format:
+  revealjs:
+    html-math-method: mathjax
+    include-before: [ '<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {enableAssistiveMml: false}});</script>']
+    toc: true
+    template-partials:
+        - toc-slide.html
+    include-after-body: toc-add.html
+---
+
+# Loi des grands nombres
+
+
+
+# Théorème central limite
+
+
+
+## Bibliographie
+
+::: {#refs}
+:::
