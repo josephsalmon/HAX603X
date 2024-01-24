@@ -12,10 +12,16 @@ format:
 
 ## Notation et rappels de probabilités
 
+::: {.fragment fragment-index=1}
+
 - Espace probabilisé: $(\Omega, {\mathcal{F}}, \mathbb{P})$
   - composé d'un ensemble: $\Omega$
   - d'une tribu: $\mathcal{F}$
   - d'une mesure de probabilité: $\mathbb{P}$
+:::
+
+::: {.fragment fragment-index=2}
+
 
 ::: {#def-va }
 
@@ -30,6 +36,70 @@ $$
 $$
 Ainsi $\{\omega \in \Omega : X(\omega) \in B\} =  X^{-1}(B) = \{X \in B\} \in \mathcal{F}, \forall B \in \mathcal{E}$
 :::
+
+:::
+
+
+
+## Loi d'une variable aléatoire
+::: {#def-loi}
+
+## Loi d'une variable aléatoire
+
+<br>
+
+Soit $X : (\Omega, \mathcal{F}, \mathbb{P}) \to (E, \mathcal{E})$ une v.a. On appelle *loi de $X$* la mesure de probabilité sur $(E, \mathcal{E})$ définie par
+$$
+		\begin{array}{ccccc}
+			\mathbb{P}_X & : & \mathcal{E} & \to     & [0,1]          \\
+			     &   & B           & \mapsto & \mathbb{P}(X \in B) \enspace.
+		\end{array}
+$$
+
+:::
+
+<br>
+
+:::{.callout-note}
+Les propriétés de $\mathbb{P}$ assurent que $\mathbb{P}_X$ est bien une mesure de probabilité sur l'espace mesurable $(E, \mathcal{E})$
+:::
+
+
+
+## Loi discrètes
+Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$ discret, le plus souvent $\mathbb{N}$, muni de la tribu pleine $\mathcal{F} = \mathcal{P}(E)$.
+
+::: {#exm-bernoulli}
+
+## Loi de Bernoulli
+
+La loi la plus simple est la *loi de Bernoulli* de paramètre $p \in [0,1]$, définie sur $\{0,1\}$ par $\mathbb{P}(X=1) = 1-\mathbb{P}(X=0) = p$ qui modélise une expérience aléatoire à deux issues (succès = $1$ et échec = $0$).
+:::
+
+
+::: {#exm-binomiale}
+
+## Loi binomiale
+
+En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale : $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in \{0,\ldots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
+:::
+
+
+::: {#exm-géométrique}
+
+## Loi géométrique
+
+En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$.
+:::
+
+::: {#exm-Poisson}
+
+## Loi de Poisson
+
+La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
+:::
+
+
 
 ## Quantiles: cas continu
 
