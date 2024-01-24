@@ -78,19 +78,19 @@ background-color: rgba(3,78,121,.04);
 
 
 /* FOR USING END OF PROOF □ */
-.container { 
+.container {
   width: 100%;
-	display: flex; 
-} 
- 
-.div1, .div2 { 
+	display: flex;
+}
+
+.div1, .div2 {
 	width: 100%;
   text-align: left;
-} 
- 
-.div-remaining { 
-	flex: 1; 
-} 
+}
+
+.div-remaining {
+	flex: 1;
+}
 
 
 .caption{
