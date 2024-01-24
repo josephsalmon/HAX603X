@@ -33,13 +33,13 @@ code-line-numbers: false
 jupyter: python3
 format:
     revealjs:
-      chalkboard: 
+      chalkboard:
         buttons: false
       slide-number: true
       html-math-method: katex
       controls-tutorial: true
       preview-links: auto
-      # logo: images/logo-um.svg  
+      # logo: images/logo-um.svg
       # header-logo: images/logo-imag.png
       footer: <span style="color:grey;float:left;margin-left:7%;"><em>{{< meta title >}}</em></span>
       # <span style="color:grey;float:right;margin-right:12%;">Séminaire de Culture Générale</span>

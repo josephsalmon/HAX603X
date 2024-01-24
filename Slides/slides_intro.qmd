@@ -43,6 +43,12 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
   - Bureau : 423, Bat. 9
 :::
 
+
+##
+```{=html}
+<div id='toc'></div>
+```
+
 ## Ressources en ligne
 
 <br>
@@ -110,7 +116,7 @@ Détails de la notation du TP :
 
 ## Prérequis - à revoir seul
 
-- Bases de probabilités [@Foata_Fuchs96]: probabilité, densité, espérance, fonction de répartition
+- Bases de probabilités [@Foata_Fuchs96,@Barbe_Ledoux06]: probabilité, densité, espérance, fonction de répartition, mesures
 
 - Programmation élémentaire : if ... then... else ..., for, while, fonctions, etc.
 
@@ -127,10 +133,6 @@ Détails de la notation du TP :
 - Introduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)
 
 
-##
-```{=html}
-<div id='toc'></div>
-```
 # Perspectives historiques
 
 ## Buffon et les prémisses de la méthode de Monte-Carlo

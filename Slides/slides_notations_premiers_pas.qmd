@@ -265,8 +265,8 @@ $$
 
 ::: {#prp-toto}
 
-## Propriétés de la fonction de répartition
-Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
+## Propriétés élémentaires
+Soit $X$ une v.a. de fonction de répartition $F_X$.
 
 :::{.incremental}
 1. $F_X$ est une fonction croissante, de limite $0$ en $-\infty$ et de limite $1$ en $+\infty$.
@@ -277,13 +277,43 @@ Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
 
 :::
 
+
 :::{.fragment .fragment-index-2}
+[Démonstration]{.underline}: voir par exemple [@Barbe_Ledoux06].
+:::
+
+:::{.fragment .fragment-index-3}
+
 :::{.callout-note}
-On dit parfois que $F_X$ est càdlàg (continue à droite, limite à gauche).
+- Prop. 1. et 2.: $F_X$ est càdlàg (continue à droite, limite à gauche).
+
+- Prop 3. (cas discret): les valeurs prises par $X$ correspondent aux points de discontinuité de $F_X$, les probabilités, à la hauteur du saut.
+
+- Prop. 4. (cas continu): le lien entre la fonction de répartition et densité.
+
 :::
 :::
 
-Démonstration: voir par exemple [@Barbe_Ledoux06].
+
+## Fonction de répartition et caractérisation de la loi
+::: {#thm-fdr_carac}
+
+## Caractérisation de la loi d'une variable aléatoire réelle
+<br>
+
+La fonction de répartition d'une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.
+:::
+
+[Démonstration]{.underline}: voir [Wikipedia](https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition) 
+
+<br>
+
+[Rappel]{.underline}: la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$
+
+<br>
+
+
+[Interprétation]{.underline}: si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensembles, on la connaît partout
 
 
 
@@ -304,6 +334,8 @@ $$
 :::
 
 
+## Fonction de répartition: cas continu
+
 
 ::: {#exm-cdf-discret}
 
@@ -313,6 +345,50 @@ $$
     F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
 $$
 :::
+
+## Loi normale
+Cas de la loi normale centrée réduite, $X \sim \mathcal{N}(0,1)$: $F_X=\Phi$, avec $\Phi$ définie par
+$$
+F_X(x) \triangleq \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^2}{2}}\, \mathrm d t\enspace,
+$$
+
+Autrefois, les valeurs de $\Phi(x)$ étaient reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].
+
+:::{.fragment .fragment-index-2}
+- Transformation affine: si $X \sim \mathcal{N}(\mu, \sigma^2)$ --- i.e., $X=\mu + \sigma Y$, avec $Y\sim \mathcal{N}(0,1)$ --- alors
+$$
+F_X(x)=\Phi\left(\frac{x-\mu}{\sigma}\right)
+$$
+:::
+
+
+
+## Fonction quantile, inverse généralisée à gauche
+
+::: {#def-quantile}
+
+##  Fonction quantile/ inverse généralisée &#127468;&#127463;: *quantile distribution function*
+
+<br>
+
+Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$
+et $F_X$ sa fonction de répartion.
+La *fonction quantile* associée
+$F_X^\leftarrow:  ]0,1[\rightarrow \mathbb{R}$ est définie par
+$$
+  F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
+$$
+:::
+
+
+- $F_X$ est bijective $\implies$ $F^{-1}=F_X^\leftarrow$.
+
+[Vocabulaire]{.underline}:
+
+- la fonction quantile s'appelle aussi **inverse au sens de Levy** ou **inverse généralisée** (à gauche).
+
+- **médiane** : $F_X^\leftarrow(1/2)$, premiers et troisièmes **quartiles**  $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
+- déciles : $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
 
 
 
@@ -365,7 +441,7 @@ viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Loi", wi
   const cdf = x.map(x => dists[distrib_name].cdf(x, mu, sigma));
   const inv = x.map(x => dists[distrib_name].quantile(x, mu, sigma));
   const quantile = dists[distrib_name].quantile(alpha, mu, sigma);
-  const filteredX = x.filter(coord => coord <= quantile);
+  const filteredX = x.filter(coord => coord < quantile);
   const filteredPdf = pdf.filter((_, i) => x[i] <= quantile);
   const filteredCdf = cdf.filter(coord => coord <= quantile);
 
@@ -929,7 +1005,7 @@ var trace33 = {
 
 var trace34 = {
     x: [quantile],
-    y: [alpha],
+    y: [alpha_disc],
     mode: 'scatter',
     line: {
         dash: 'dash',
