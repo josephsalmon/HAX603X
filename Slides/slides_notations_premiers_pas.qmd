@@ -3,12 +3,15 @@ title: "HAX603X: Modélisation stochastique"
 subtitle: "Notation et premiers pas"
 format:
   revealjs:
+    html-math-method: mathjax
+    include-before: [ '<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {enableAssistiveMml: false}});</script>']
     toc: true
     template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
 ---
 
+# Variables aléatoires et lois
 
 ## Notation et rappels de probabilités
 
@@ -23,7 +26,7 @@ format:
 ::: {.fragment fragment-index=2}
 
 
-::: {#def-va }
+::: {#def-va}
 
 ## Variable aléatoire, v.a.
 
@@ -41,7 +44,7 @@ Ainsi $\{\omega \in \Omega : X(\omega) \in B\} =  X^{-1}(B) = \{X \in B\} \in \m
 
 
 
-## Loi d'une variable aléatoire
+## Loi d'une variable aléatoire (unidimensionnelle)
 ::: {#def-loi}
 
 ## Loi d'une variable aléatoire
@@ -65,44 +68,252 @@ Les propriétés de $\mathbb{P}$ assurent que $\mathbb{P}_X$ est bien une mesure
 :::
 
 
+# Variables usuelles
 
-## Loi discrètes
+
+## Lois discrètes
 Les variables aléatoires discrètes sont celles à valeurs dans un ensemble $E$ discret, le plus souvent $\mathbb{N}$, muni de la tribu pleine $\mathcal{F} = \mathcal{P}(E)$.
 
 ::: {#exm-bernoulli}
 
 ## Loi de Bernoulli
 
-Soit un paramètre $p \in [0,1]$, et $E=\{0,1\}$, alors la loi de Bernouilli est donnée par $\mathbb{P}(X=1)=1-\mathbb{P}(X=0) = p$
+Soit un paramètre $p \in [0,1]$, et $E=\{0,1\}$, alors la loi de **Bernouilli** est donnée par $\mathbb{P}(X=1)=1-\mathbb{P}(X=0) = p$.
+
+[Notation:]{.underline} $\quad$  $X \sim \mathcal{B}(p)$
 :::
 
-[Exemple physique]{.underline}: loi d'un tirage pile / face, $p$: biais de la pièce.
+[Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com.svg){width=50} loi d'un tirage de pile ou face, de biais $p$
 
 ::: {#exm-binomiale}
 
 ## Loi binomiale
+Soient $p \in [0,1]$ (biais) et $n \in \mathcal{N}^*$ (nombre de tirages) alors la loi **Binomiale** est donnée par $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in E=\{0,\dots,n\}$.
 
- $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in E=\{0,\dots,n\}$, qui modélise le nombre de succès parmi $n$ lancers.
+[Notation:]{.underline} $\quad$ $X \sim \mathcal{B}(n,p)$
+
 :::
 
-[Exemple physique]{.underline}: nombre de tirages de faces avec un bias $p$ de la pièce.
+[Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50}
+loi du nombre de succès obtenus lors de $n$ répétition indépendante d'une expérience aléatoire de Bernoulli de paramètre $p$ 
 
-En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obtient une loi binomiale :
-
+## Lois discrètes (II)
 
 ::: {#exm-géométrique}
 
 ## Loi géométrique
+Soient $p \in [0,1]$ (biais), alors la loi **géométrique** est donnée par  $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \in E=\mathbb{N}^*$.
 
-En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$.
+[Notation:]{.underline} $\quad$ $X \sim \mathcal{G}(p)$
 :::
+
+[Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com-red.svg){width=50}![](images/coin-toss-4-svgrepo-com-red.svg){width=50}![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50}
+loi du nombre tirage nécessaire avant d'obtenir un succès obtenus en répétant indépendamment des expériences aléatoires de Bernoulli de paramètre $p$
+
+
 
 ::: {#exm-Poisson}
 
 ## Loi de Poisson
 
-La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
+Pour $\lambda>0$, la loi de **Poisson** de paramètre $\lambda$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour tout $k \in E=\mathbb{N}$.
+
+[Notation:]{.underline} $\quad$ $X \sim \mathcal{P}(\lambda)$
 :::
+
+[Exemple physique]{.underline}: comportement du nombre d'événements se produisant avec une fréquence connue, et indépendamment du temps écoulé depuis l'événement précédent (*e.g.,* nombre de clients dans une file d'attente, nombre de mutations dans un gène, etc.)
+
+## Lois continues
+Loi d'une v.a. admettant une fonction de densité, c'est-à-dire qu'il existe une fonction mesurable $f : \mathbb{R} \to [0, \infty[$ d'intégrale $1$, telle que pour tout $A \in \mathcal{B}(\mathbb{R})$ 
+$$
+    \mathbb{P}(X \in A) = \int_A f(x) dx \enspace.
+$$
+
+:::{.callout-note}
+Les propriétés de l'intégrale de Lebesgue assure que cette formule définit bien une loi de probabilité.
+:::
+
+
+- **Espérance**: $\mathbb{E}(X) = \displaystyle\int_{\mathbb{R}} x f(x) dx$
+- **Variance**: $\mathbb{V}(X) = \mathbb{E}((X-\mathbb{E}(X))^2) = \displaystyle\int_{\mathbb{R}} (x-\mathbb{E}(X))^2 f(x) dx$
+
+
+## Lois continues usuelles
+
+::: {#exm-uniforme}
+
+## Loi uniforme
+La loi **uniforme** sur un ensemble $B \in \mathcal{B}(\mathbb{R})$, s'obtient avec la densité définie par
+$$
+f(x) = {1\hspace{-3.8pt} 1}_B(x) / \lambda (B) \enspace,
+$$
+où $\lambda (B)$ représente la mesure de Lebesgue de l'ensemble $B$.
+:::
+
+Cas particulier: pour la loi uniforme sur $[0,1]$, on obtient la fonction suivante:
+$$
+f(x) = {1\hspace{-3.8pt} 1}_{[0,1]}(x)\enspace.
+$$
+[Notation:]{.underline} $\quad$ $X \sim \mathcal{U}([0,1])$
+
+:::{.callout-note}
+Une telle loi est caractérisée ainsi : tous les intervalles de même longueur inclus dans le support de la loi ont la même probabilité.
+:::
+
+
+## Lois continues usuelles (II)
+
+:::{.fragment .fragment-index-1}
+
+::: {#exm-exponentielle}
+
+## Loi exponentielle
+La loi **exponentielle** de paramètre $\gamma > 0$ est obtenue avec la densité
+donnée par
+$$
+f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+$$
+[Notation:]{.underline} $X \sim \mathcal{Exp}(\gamma)$.
+:::
+
+:::
+
+
+:::{.fragment .fragment-index-1}
+
+::: {#prp-tot}
+## Absence de mémoire
+
+La loi exponentielle modélise la durée de vie d'un phénomène sans mémoire (ou sans vieillissement), c'est-à-dire que pour tout $s,t>0$, on a
+$$
+\mathbb{P}(X>t+s | X>t)=\mathbb{P}(X>s) \enspace.
+$$
+:::
+
+<!-- Remarque: c'est en fait la seule loi continue à vérifier cette propriété, parmi les lois qui ont une fonction de répartitions continues. -->
+
+:::
+
+
+## Lois continues usuelles (III)
+
+
+::: {#exm-gaussienne}
+
+## Loi normale/gaussienne univariée
+Pour des paramètres $\mu \in \mathbb{R}$ (espérance) et $\sigma^2 > 0$ (variance), la loi *normale* associée correspond à la fonction de densité :
+$$
+f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
+$$
+[Notation:]{.underline} $X \sim \mathcal{N}(\mu,\sigma^2)$,
+:::
+
+On nomme loi *normale centrée réduite* le cas canonique: $\mu = 0, \sigma^2 = 1$.
+
+Si $X\sim \mathcal{N}(\mu,\sigma^2)$, alors l'espérance et la variance de $X$  valent $\mathbb{E}(X) = \mu$ et $\mathbb{V}(X) = \sigma^2$.
+
+<br>
+
+:::{.callout-note}
+Les lois normales sont omniprésente grâce au théorème central limite.
+:::
+
+# Fonction de répartition et quantiles
+
+## Enjeu de la fonction de répartition
+
+<br>
+
+[Enjeux]{.underline}: caractériser la loi d'une v.a. en ne considérant que l'espace d'arrivée $(E, \mathcal{E})$ .
+
+<br>
+
+:::{.fragment .fragment-index-2}
+[Outils]{.underline}:
+
+:::{.incremental}
+- la fonction de répartition (v.a. réelles),
+- la fonction caractéristique (v.a. dans $\mathbb{R}^d$), en gros la transformée de Fourier de la loi!
+- la fonction génératrice des moments (v.a. discrètes)
+- etc.
+:::
+
+:::
+
+
+## Fonction de répartition
+
+::: {#def-cdf}
+
+##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
+
+<br>
+
+Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$.
+La fonction de répartition de $X$ est la fonction $F_X$ définie sur $\mathbb{R}$ par
+$$
+\begin{align*}
+     F_X(x) & = \mathbb{P}(X \leq x)\\
+     & \class{fragment}{{} = \mathbb{P}(X \in ]-\infty, x]) \enspace.}
+\end{align*}
+$$
+:::
+
+
+## Propriété élémentaire de la fonction de répartition
+
+
+::: {#prp-toto}
+
+## Propriétés de la fonction de répartition
+Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
+
+:::{.incremental}
+1. $F_X$ est une fonction croissante, de limite $0$ en $-\infty$ et de limite $1$ en $+\infty$.
+2. $F_X$ est continue à droite en tout point.
+3. Pour tout $x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - F_X(x-)$, où $F_X(x-) = \lim_{\epsilon \to 0+} F_X(x- \epsilon)$.
+4. Si $X$ a pour densité $f$, alors $F_X$ est dérivable $\lambda$-presque partout de dérivée $f$.
+:::
+
+:::
+
+:::{.fragment .fragment-index-2}
+:::{.callout-note}
+On dit parfois que $F_X$ est càdlàg (continue à droite, limite à gauche).
+:::
+:::
+
+Démonstration: voir par exemple [@Barbe_Ledoux06].
+
+
+
+## Fonction de répartition: cas discret
+
+Dans le cas d'une loi discrète, la fonction de répartition est une fonction en escalier, constante par morceaux, et croissante.
+
+::: {#exm-cdf-discret}
+
+## Cas discret
+
+Soit $(x_i)_{i \in I}$ une suite ordonnée de réels, avec $I \subset \mathbb{N}$.
+Si $X$ est une variable aléatoire discrète prenant les valeurs $(x_i)_{i \in I}$ et de loi $(p_i = \mathbb{P}(X=x_i))_{i \in I}$, alors
+$$
+    F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
+$$
+
+:::
+
+
+
+::: {#exm-cdf-discret}
+
+## Cas continu
+Si $X$ est une variable aléatoire de densité $f$, alors
+$$
+    F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
+$$
+:::
+
 
 
 
@@ -902,3 +1113,9 @@ alpha_disc = inputs_disc[2];
 <br>
 
 [Note]{.underline}: voir aussi [Notations et rappels](https://josephsalmon.github.io/HAX603X/Courses/notations.html#)
+
+
+## Bibliographie
+
+::: {#refs}
+:::

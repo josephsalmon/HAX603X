@@ -441,15 +441,14 @@ $$
 $$
 où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ prend un nombre infini dénombrable de valeurs (la somme devient alors une série).
 :::
-XXX TODO: donner un example discret et montrer $F^\leftarrow$.
 
 
 La méthode est illustré ci-dessous pour quelques lois intéressantes:
 
 ```{ojs}
 //| echo: false
-viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: "bimodal", label: "Distribution type"})
-viewof replay = html`<button>replay`
+viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: "bimodal", label: "Loi"})
+viewof replay = html`<button>Relancer`
 ```
 
 

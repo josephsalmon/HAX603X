@@ -87,14 +87,14 @@ En sommant des variables aléatoires indépendantes de *loi de Bernoulli* on obt
 
 ## Loi géométrique
 
-En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$.
+En observant le nombre d'expériences nécessaires avant d'obtenir un succès, on obtient une *loi géométrique* : $\mathbb{P}(X=k) = p (1-p)^{k-1}$, pour $k \geq 1$. C'est une loi de probabilité discrète qui décrit le comportement du nombre d'événements se produisant dans un intervalle de temps fixé, si ces événements se produisent avec une fréquence moyenne ou espérance connue, et indépendamment du temps écoulé depuis l'événement précédent (*e.g.,* nombre de clients dans une file d'attente, nombre de mutations dans un gène, etc.).
 :::
 
 ::: {#exm-Poisson}
 
 ## Loi de Poisson
 
-La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$, et modélise les événements rares.
+La loi de Poisson de paramètre $\lambda > 0$ est définie par $\mathbb{P}(X=k) = e^{-\lambda} \lambda^k / k!$, pour $k \in \mathbb{N}$
 :::
 
 ## Lois continues
@@ -187,11 +187,6 @@ $$
 
 
 
-On appelle quantile d'ordre $p\in (0,1)$, la quantité $F_X^\leftarrow(p).$
-La **médiane** est égale à $F_X^\leftarrow(1/2)$, les premiers et troisièmes **quartiles** sont égaux à $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
-Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
-
-
 ::: {#exm-cdf-discret}
 
 ## Cas discret
@@ -213,7 +208,7 @@ $$
 $$
 :::
 
-Le graphe des fonctions de répartition des loi de Bernoulli, uniforme et normale sont représentées en Figure XXX.
+Le graphe des fonctions de répartition des loi de Bernoulli, uniforme et normale sont représentées dans le widget ci-dessous.
 Notons que la fonction de répartition de la loi normale $\mathcal{N}(0,1)$, souvent notée $\Phi$, n'admet pas d'expression explicite autre que
 $$
 \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{x^2}{2}}\, \mathrm d x\enspace,
@@ -232,6 +227,8 @@ Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
 3. Pour tout $x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - F_X(x-)$, où $F_X(x-) = \lim_{\epsilon \to 0+} F_X(x- \epsilon)$.
 4. Si $X$ a pour densité $f$, alors $F_X$ est dérivable $\lambda$-presque partout de dérivée $f$.
 :::
+Pour les démonstrations, voir par exemple [@Barbe_Ledoux06].
+
 
 La propriété 3. est utile dans le cas discret : les valeurs prises par $X$ correspondent aux points de discontinuité de $F_X$ et les probabilités associées correspondent à la hauteur du saut.
 
@@ -240,24 +237,21 @@ On peut donc retrouver la loi de $X$ à partir de sa fonction de répartition.
 Le théorème suivant généralise ce résultat à toute variable aléatoire réelle (pas nécessairement discrète ou à densité).
 
 
+
 ::: {#thm-fdr_carac}
 
 ## Caractérisation de la loi d'une variable aléatoire réelle
 
 La fonction de répartition d'une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.
 :::
-XXX source + proof???
 
+[Démonstration]{.underline}: voir [Wikipedia](https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition) 
 
 On rappelle que la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$. Le théorème précédent assure que si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensemble alors on la connaît partout.
 
 
 
 
-
-
-
-XXX TODO: move this in correct part.
 
 ::: {#exm-genereexponentielle}
 
@@ -306,6 +300,10 @@ $$
 On parle parfois aussi d'inverse au sens de Levy pour cette inverse généralisée.
 
 Dans le cas où la fonction de répartition $F$ est bijective, alors l'inverse de la fonction de répartition coincide avec la fonction quantile.
+
+
+La **médiane** est égale à $F_X^\leftarrow(1/2)$, les premiers et troisièmes **quartiles** sont égaux à $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
+Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
 
 
 
