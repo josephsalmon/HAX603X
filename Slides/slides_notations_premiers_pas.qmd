@@ -19,9 +19,7 @@ format:
 
 ::: {#def-va }
 
-## Variable aléatoire (v.a.)
-
-<br>
+## Variable aléatoire, v.a.
 
 Soit $(E, \mathcal{E})$ un espace mesurable. Une *variable aléatoire*  est une application mesurable
 $$
@@ -30,15 +28,7 @@ $$
             &   & \omega & \mapsto & X(\omega)\,.
     \end{array}
 $$
-Ainsi pour tout $B \in \mathcal{E}, \{\omega \in \Omega : X(\omega) \in B\} \in \mathcal{F}.$
-Cet ensemble se réécrit  aussi
-$$
-\begin{align*}
-    \{\omega \in \Omega : X(\omega) \in B\}
-    & =  X^{-1}(B) \\
-    & = \{X \in B\} \, .
-\end{align*}
-$$
+Ainsi $\{\omega \in \Omega : X(\omega) \in B\} =  X^{-1}(B) = \{X \in B\} \in \mathcal{F}, \forall B \in \mathcal{E}$
 :::
 
 ## Quantiles: cas continu
