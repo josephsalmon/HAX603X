@@ -107,10 +107,16 @@ Soient $p \in [0,1]$ (biais), alors la loi **géométrique** est donnée par  $\
 [Notation:]{.underline} $\quad$ $X \sim \mathcal{G}(p)$
 :::
 
-[Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com-red.svg){width=50}![](images/coin-toss-4-svgrepo-com-red.svg){width=50}![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50}
+:::{.fragment .fragment-index-2}
+[Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com-red.svg){.fragment width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){.fragment width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){.fragment width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){.fragment width=50} ![](images/coin-toss-4-svgrepo-com-blue.svg){.fragment width=50}
+
+:::{.fragment .fragment-index-3}
 loi du nombre tirage nécessaire avant d'obtenir un succès obtenus en répétant indépendamment des expériences aléatoires de Bernoulli de paramètre $p$
+:::
 
+:::
 
+:::{.fragment .fragment-index-4}
 
 ::: {#exm-Poisson}
 
@@ -122,6 +128,9 @@ Pour $\lambda>0$, la loi de **Poisson** de paramètre $\lambda$ est définie par
 :::
 
 [Exemple physique]{.underline}: comportement du nombre d'événements se produisant avec une fréquence connue, et indépendamment du temps écoulé depuis l'événement précédent (*e.g.,* nombre de clients dans une file d'attente, nombre de mutations dans un gène, etc.)
+
+:::
+
 
 ## Lois continues
 Loi d'une v.a. admettant une fonction de densité, c'est-à-dire qu'il existe une fonction mesurable $f : \mathbb{R} \to [0, \infty[$ d'intégrale $1$, telle que pour tout $A \in \mathcal{B}(\mathbb{R})$ 
