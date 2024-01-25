@@ -1,6 +1,6 @@
 ---
-title: "HAX603X: Modélisation stochastique"
-subtitle: "Introduction"
+title: "Introduction"
+subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
     toc: true

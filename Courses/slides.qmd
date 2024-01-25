@@ -1,5 +1,5 @@
 ---
-title: "Slides"
+title: "Slides: menu principal"
 format:
   html:
       out.width: 50%

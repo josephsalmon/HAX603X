@@ -1,6 +1,6 @@
 ---
-title: "HAX603X: Modélisation stochastique"
-subtitle: "Théorèmes asymptotiques"
+title: "Théorèmes asymptotiques"
+subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
     html-math-method: mathjax
