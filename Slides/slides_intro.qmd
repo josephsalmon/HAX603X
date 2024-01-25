@@ -94,13 +94,13 @@ Le rendu est individuel pour le TP noté !!!
 [Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
 dans le dossier adéquat.
 
-Détails de la notation du TP :
+Détails de la notation des TPs :
 
 - Qualité des réponses aux questions
 - Qualité de rédaction et d'orthographe
 - Qualité des graphiques (légendes, couleurs)
 - Qualité du code (noms de variables, clairs, commentaires utiles, code synthétique, etc.)
-- Notebook reproductible et absence de bug
+- Code reproductible et absence de bug
 
 <br>
 
@@ -116,22 +116,38 @@ Détails de la notation du TP :
 
 ## Prérequis - à revoir seul
 
-- Bases de probabilités [@Foata_Fuchs96,@Barbe_Ledoux06]: probabilité, densité, espérance, fonction de répartition, mesures
+:::{.incremental}
+<br>
+<br>
 
-- Programmation élémentaire : if ... then... else ..., for, while, fonctions, etc.
+- Bases de probabilités (en particulier "HAX506X- Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
 
+<br>
+
+- Programmation élémentaire (en Python): if ... then... else ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
+
+<br>
+
+- Pour aller plus loin: conditionnement, martingales [@Williams91]
+
+:::
 
 ## Description du cours
 
-[Objectifs]{.underline} :
+:::{.incremental}
 
-- Méthodes de génération aléatoire (inverse, rejet, etc.)
-- Réduction de variance, enjeux computationnels
-- Rappels sur les lois gaussiennes
-- Utilisation de Python pour la génération d'éléments aléatoires
-- Visualisation (matplotlib, seaborn)
-- Introduire des bonnes pratiques numériques valables pour tous les langages (lisibilité, documentation)
+1. Générer l’aléa
+   - générateurs pseudo-aléatoires, simulations de variables aléatoires (inverse, rejet, etc.)
+   - illustrations numériques et visualisation en Python (loi des grands nombres, TCL)
+2. Méthode de Monte-Carlos
+   - méthode de Monte-Carlo pour le calcul approché d’une intégrale
+   - réduction de la variance : variables antithétiques, variables de contrôle, etc.
+3. Compléments
+   - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2)
+   - construction d'intervalles de confiance.
+   - marche aléatoire simple, etc.
 
+:::
 
 # Perspectives historiques
 

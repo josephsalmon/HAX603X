@@ -1,14 +1,19 @@
 ---
 sidebar: false
 toc: false
+bibliography: ./Courses/references.bib
 website:
+
     page-footer: false
 ---
-# Présentation {.unnumbered}
+# HAX603X: Modélisation stochastique {.unnumbered}
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
+Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd).
 
-**Attention**: site en construction...
+:::{.callout-warning}
+Site en construction...(un peu de patience donc)
+:::
 
 ## Professeurs
 
@@ -23,52 +28,55 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Prérequis
 
-Cours de mesure et intégration, analyse numérique...
+
+- Bases de probabilités (en particulier "HAX506X- Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
+- Programmation élémentaire (en Python): if ... then... else ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
 
 
 ##  Description du cours
 
-
-
-1. 
-
-2. 
-
-3. 
-
-
+1. Générer l'aléa
+   - générateurs pseudo-aléatoires
+   - illustrations numériques et visualisation en Python (loi des grands nombres, théorème central limite)
+   - simulations de variables aléatoires (méthode de l'inverse, méthode du rejet, cas spécifiques, etc.)
+2. Méthode de Monte-Carlo 
+   - méthode de Monte-Carlo pour le calcul approché d'une intégrale
+   - réduction de la variance : variables antithétiques, variables de contrôle, échantillonnage préférentiel.
+3. Compléments
+   - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2)
+   - construction d'intervalles de confiance.
+   - marche aléatoire simple, etc.
 
 
 ## Modalité de contrôle des connaissances
 
-CCI
+- TP notés : Rendu = fichier Python **.py** unique
+  - TP noté 1 : rendre en fin de session
+  - TP noté 2 : rendre en fin de session
+- CC : devoir sur table d'une heure
+- Coefficients:
+  - Note Session 1 : (40% CC + 30% TP 1 + 30% TP 2)
+  - Note Session 2 : (30% CC + 35% TP 1 + 35% TP 2)
 
-### Devoirs maison
+## Moodle
 
+[Moodle: HAX603X Modélisation Stochastique](https://moodle.umontpellier.fr/course/view.php?id=25763)
 
-### Devoir sur table
+## Ressources supplémentaires
 
-
-## Livres et ressources
-
-
-### Moodle
-
-
-
-### Ressources supplémentaires
-
-#### Niveau débutant
-
+### Niveau débutant
 
 - Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
+- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) &#127467;&#127479;
+- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] &#127467;&#127479;
 - Data Science: [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016; &#127468;&#127463; <br>
  **videos**: [Reproducible Data Analysis in Jupyter](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
 - [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists) by  Naël Shiab &#127468;&#127463;
 
 
-#### Niveau avancé
+### Niveau avancé
 - [Software Dev. for datascience](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier, &#127468;&#127463;
--   Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
+- Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
 - [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi;  &#127468;&#127463;
 - [Maximum likelihood by numerical optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html)  &#127468;&#127463;
+- Conditionnement, martingales et autres preuves de la loi des grands nombres:  [@Williams91] &#127468;&#127463;
