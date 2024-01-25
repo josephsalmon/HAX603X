@@ -268,25 +268,446 @@ Hypothèses du théorème plutôt faibles: variance finie uniquement
 
 ## Formulation de la convergence
 
-Convergence en loi $\iff$ convergence des fonctions de répartition (aux pts de continuité de la cible)
+Convergence en loi $\iff$ convergence des fonctions de répartition (aux pts de continuité)
 
-Ré-écriture du TCL : pour tout $a < b$, notons $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$.
+
+[Notations]{.underline}:
+
+- $\varphi$ : la densité d'une loi normale centrée réduite $\varphi(x) = \tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$
+- $\Phi$ : la fonction de répartition d'une loi normale centrée réduite  $\Phi(x) = \displaystyle \int_{-\infty}^{x}\varphi(u) du$
+
+
+::: {.fragment fragment-index=2}
+Ré-écriture du TCL: pour tout $a < b$ on a alors
 
 $$
-\mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma}\in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}] \right)\\
 \begin{align}
-    1-\alpha_n& = \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\nonumber\\
+    \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)
     & =
     \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma} \in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}]\right) \nonumber\\
-    & =
-	\mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
-    & \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
+    & \class{fragment}{{} = \mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber}
+	\\
+    & \class{fragment}{{} \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx = \Phi(b) - \Phi(a) \nonumber}\\
 \end{align}
 $$
-où l'on note $\varphi$ (resp. $\Phi$) la densité (resp. la fonction de répartition) d'une loi normale centrée réduite, définie pour tout $x\in\mathbb{R}$ par $\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$ (resp. $\Phi(x)= \int_{-\infty}^{x}\varphi(u) du$).
+:::
 
-Dans le cas classique d'un intervalle de confiance à 95\%, c'est-à-dire quand $\alpha_n=0.05$, et en prenant un intervalle de confiance symétrique (alors $a=-t$ et $b=q$) on obtient $1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}$ et $q$ est donc le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite. Numériquement on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`:
+## Lien intervalle de confiance et TCL
 
+:::{.fragment fragment-index=1}
+:::{.incremental}
+- [Question]{.underline}: comment choisir $a$ et $b$ pour obtenir un intervalle de confiance à 95\% pour $\mu$.
+- [Notation]{.underline}: $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$, on cherche donc $a$ et $b$ tels que $\alpha_n \approx 0.05$.
+- [Simplification]{.underline}: choix d'un intervalle symétrique autour de $\mu \implies q=a=-b$
+$$
+\begin{align}
+& 1-\alpha_n \approx \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \\
+\implies & \boxed{q\approx\Phi^{-1}(1-\tfrac{\alpha_n}{2})}
+\end{align}
+$$ 
+- [Interpretation]{.underline}: $q$ est (approx.) le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite
+- [Numériquement]{.underline}: on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`
+:::
+:::
+. . .
+```{python}
+#| echo: true
+from scipy.stats import norm
+q = norm.ppf((1-0.05/2))     # Calcul du quantile de niveau 1-0.05/2
+print(f"{q:.2f}")            # Affichage à 2 décimales
+```
+
+## Visualization du TCL
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 600
+import numpy as np
+from scipy.stats import norm
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .bslib-sidebar-layout > .sidebar > .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 0.1rem;
+            }
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 4px;
+            }
+            .irs.irs.irs--shiny .irs-bar {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
+    ui.panel_title("TCL"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
+            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
+            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
+            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
+        width=3
+        ),
+    ui.panel_main(output_widget("my_widget"), width = 9)
+    )
+)
+
+
+
+def server(input, output, session):
+    seed = reactive.Value(42)
+
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+
+    @output
+    @render_widget
+    def my_widget():
+
+        rng = np.random.default_rng(seed())
+        p = input.p()
+        n_repetitions = input.n_repetitions()
+        n_samples = input.n_samples()
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=(n_repetitions, n_samples))
+        means_samples = np.cumsum(samples, axis=1) / np.arange(1, n_samples + 1)
+        x_hist = np.linspace(0, 1, num=300)
+
+        # Create figure
+        fig = make_subplots(
+                    rows=1,
+                    cols=3,
+                    # vertical_spacing=0.5,
+                    horizontal_spacing=0.02,
+                    column_widths=[20, 2, 3],
+                    subplot_titles=("t = " + str(n_repetitions) + " répétitions","","")
+                )
+
+
+        for i in range(n_repetitions):
+            fig.add_trace(
+                    go.Scatter(
+                        mode='lines',
+                        line=dict(color="rgba(0,0,0,0.05)", width=1),
+                        x=iterations,
+                        y=means_samples[i,:],
+                        ),
+                        row=1, col=1,
+            )
+        fig.add_trace(
+                go.Scatter(
+                    mode='lines',
+                    line=dict(dash="dash", color="blue", width=1),
+                    marker={},
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    name='p'),
+                    row=1, col=1,
+        )
+        fig.update_layout(
+            template="simple_white",
+            showlegend=False,
+        )
+        fig.add_trace(
+                go.Scatter(
+                    mode='markers',
+                    marker=dict(color="rgba(0,0,0,0.05)", size=4),
+                    x=np.zeros(n_samples),
+                    y=means_samples[:,-1],
+                ),
+                row=1, col=2,
+
+        )
+        y_hist, bins = np.histogram(means_samples[:,-1], bins=int(np.sqrt(n_repetitions)), density=True)
+        fig.add_trace(
+            go.Bar(x=y_hist, y=bins[:-1] + np.diff(bins)/2,
+                    opacity=0.75,
+                    marker_color = 'black',
+                    orientation='h',
+                    width=np.diff(bins),
+                    name="Tirages de moyennes empiriques",
+                    ),
+                row=1, col=3,
+        )
+        fig.add_trace(
+            go.Scatter(x=norm.pdf(x_hist, p, np.sqrt(p*(1-p) / n_samples)),
+                       y=x_hist,
+                       mode='lines',
+                       line=dict(color="red"),
+                       legendgroup='1',
+                       name="TCL"
+                       ),
+                row=1, col=3,
+        )
+
+        fig.update_xaxes(range=[1, n_samples + 1])
+        fig.update_yaxes(range=[-.05, 1.05], row=1, col=1)
+        fig.update_yaxes(matches="y1",visible = False,  row=1, col=2)
+        fig.update_xaxes(range=[-0.2, 0.2], visible = False, row=1, col=2)
+
+        fig.update_yaxes(matches="y1", row=1, col=3, visible=False)
+        fig.update_xaxes(range=[0, 1.1 / np.sqrt(2*np.pi* p*(1-p) / n_samples)], row=1, col=3)
+        fig.update_xaxes(visible=False, row=1, col=3)
+
+
+
+        for trace in fig['data']:
+            print(trace)
+            if (trace['name'] != 'TCL') and (trace['name'] != 'p'):
+                trace['showlegend'] = False
+        fig.update_layout(
+        margin=dict(l=0, r=0, b=10, t=100),
+        )
+        fig.update_layout(
+            title=dict(text="Distribution de la moyenne empirique<br> (cas loi de Bernoulli)", yanchor="top", y=0.95),
+            title_x=0.5,
+            showlegend=True,
+
+        )
+        fig.update_layout(
+            legend=dict(
+                yanchor="top",
+                y=0.99,
+                xanchor="left",
+                x=0.89,
+                bgcolor="rgba(0,0,0,0)",
+            )
+        )
+        fig['layout']['xaxis']['title']='Échantillons: n'
+
+        fig.update_layout(autosize=True)
+
+        return fig
+
+
+app = App(app_ui, server)
+
+```
+## Pour aller plus loin: vision des convolutions
+
+
+<!-- Notation: $X_1, \dots, X_n$, i.i.d., de fonction de densité $f$. -->
+
+<br>
+
+[Notation]{.underline}:
+Soient $f$ et $g$ définies sur $\mathbb{R}$  (intégrables au sens de Lebesgue).
+
+::: {#def-loi}
+
+## Convolution
+La **convolution** de $f$ par $g$ est la fonction $f*g$ suivante:
+$$
+\begin{align}
+f*g:
+\mathbb{R} &\mapsto \mathbb{R} \nonumber\\
+x &\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
+\end{align}
+$$
+:::
+
+<br>
+
+::: {.callout-note}
+
+## Note
+On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hspace{-3.8pt} 1}_{u+v=x} du dv$.
+:::
+
+## Somme et convolutions
+:::: {#thm-tcl}
+## Loi de la somme et convolutions
+Soient $X$ et $Y$ des v.a. de densités $f$ et $g$ respectivement,
+la densité de $X+Y$ est donnée par la convolution $f*g$.
+::::
+
+## Convolution et TCL
+Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la densité de $\bar{X}_n$.
+
+
+```{shinylive-python}
+#| standalone: true
+#| viewerHeight: 550
+import numpy as np
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+import plotly.graph_objs as go
+from scipy import signal
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .bslib-sidebar-layout > .sidebar > .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+            }
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 2px;
+            }
+            .irs.irs--shiny .irs-bar {
+            top: 27px;
+            height: 2px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
+    ui.panel_title("TCL et convolutions"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_select(
+                "loi",
+                "Loi sous-jacente",
+                {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
+            ),
+            ui.input_slider(
+                "n_iter",
+                "Échantillons: n",
+                1,
+                10,
+                value=1,
+                step=1,
+                ticks=False,
+            ), width = 3
+    ),
+    ui.panel_main(
+        output_widget("my_widget"), width = 9
+    )
+)
+)
+
+
+nnzeros = 10001
+x_min = -20
+x_max = 20
+
+x = np.linspace(x_min, x_max, nnzeros)
+y = np.zeros(nnzeros)
+mask = np.where(np.abs(x) <= 0.5, 1, 0)
+y[mask == 1] = 1
+delta = (x_max - x_min) / nnzeros
+var = np.sum(y * x**2 *(delta)) - (np.sum(y * x * delta))**2
+
+def convolve(signal_in, n_convolutions, delta):
+    output = np.zeros(len(signal_in))
+    if n_convolutions == 0:
+        return output
+    elif n_convolutions == 1:
+        return signal_in
+    else:
+        output = signal_in.copy()
+        for i in range(n_convolutions - 1):
+            output = signal.fftconvolve(
+                output * delta, signal_in, mode="same"
+            )
+        return output
+
+
+def server(input, output, session):
+
+    fig = go.FigureWidget()
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"f*...*f",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi),
+            mode="lines",
+            line=dict(dash="dash", color="red", width=2),
+            name=f"Loi normale<br>(variance adéquate)",
+        )
+    )
+    fig.update_xaxes(range=[-3, 3], position=0.)
+    fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
+
+
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+        autosize=True,
+        title=dict(text="Densité : <br> moyenne de n variables aléatoires", yanchor="top", y=0.95),
+        title_x=0.5,
+    )
+    fig.update_layout(legend=dict(
+        yanchor="top",
+        y=0.90,
+        xanchor="left",
+        x=-0.1,
+        font=dict(size= 10)
+    ))
+    fig.update_layout(
+    height=250,
+    margin=dict(l=0, r=0, b=10, t=100),
+    )
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        if str(input.loi()) == 'uniforme':
+            y = np.zeros(nnzeros)
+            mask = np.where(np.abs(x) <= 0.5, 1, 0)
+            y[mask == 1] = 1
+
+        else:
+            # else str(input.loi()) == 'laplace':
+            y=np.exp(-np.abs(x))/2
+            # y = np.zeros(nnzeros)
+            # mask = np.where(np.abs(x) >= 0.5, 1, 0)
+            # y[mask == 1] = 0
+            # y = np.cos(np.pi * x) + 1
+            y = y / (np.sum(y) * delta)
+
+        var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2
+
+        y_display = convolve(y, input.n_iter(), delta)
+        # Update data in fig:
+        fig.data[0].x = x / np.sqrt(input.n_iter())
+        fig.data[0].y = y_display * np.sqrt(input.n_iter())
+        fig.data[1].y = np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi)
+        fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
+
+
+app = App(app_ui, server)
+
+```
+
+:::{.callout-note}
+
+## Pour aller plus loin
+Pour plus d'info sur les convolutions, voir la vidéo de 3Blue1Brown : [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M), &#127468;&#127463;
+:::
 
 ## Bibliographie
 

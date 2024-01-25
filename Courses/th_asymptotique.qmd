@@ -498,9 +498,12 @@ On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hsp
 
 :::: {#thm-tcl}
 ## Loi de la somme et convolutions
-
+Soient $X$ et $Y$ des v.a. de densités $f$ et $g$ respectivement,
+la loi de $X+Y$ est donnée par la convolution $f*g$.
 ::::
 
+
+Dessous, pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la densité de la loi de $\bar{X}_n$.
 
 ```{shinylive-python}
 #| standalone: true
@@ -664,4 +667,4 @@ app = App(app_ui, server)
 ```
 
 
-Pour aller plus loins sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M)
+Pour aller plus loin sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M)
