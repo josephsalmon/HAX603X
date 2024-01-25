@@ -484,7 +484,7 @@ Benjamin Charlier
 <div id="exm-bernoulli" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 1 (Cas Bernouilli: pile ou face) </strong></span>La probabilité d’apparition du côté pile (noté <span class="math inline">\(p\)</span>) peut-être estimée en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu.</p>
 <p>La loi des grands nombres justifie cette intuition : si <span class="math inline">\(X_1, \ldots, X_n\)</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">\(p\)</span>, alors <span class="math display">\[
-    \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1) \enspace.
+    \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1)
 \]</span></p>
 <ul>
 <li>Membre de gauche : la fréquence empirique de piles</li>
@@ -660,7 +660,7 @@ def server(input, output, session):
 app = App(app_ui, server)
 </code></pre>
 <p><u>Pour aller plus loin</u>:</p>
-<p>Quant <span class="math inline">\(p\)</span> varie, à <span class="math inline">\(n\)</span> fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L’aléa est imparfait!</p>
+<p>Quand <span class="math inline">\(p\)</span> varie (<span class="math inline">\(n\)</span> fixé), les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L’aléa est imparfait (structure sous-jacente)!</p>
 </section></section>
 <section>
 <section id="théorème-central-limite" class="title-slide slide level1 center">
@@ -674,7 +674,7 @@ app = App(app_ui, server)
 <li>2ème ordre d’approximation: théorème central limite</li>
 </ul>
 <p><u>Enjeu</u>: quantifier les variations de <span class="math inline">\(\bar X_n - \mu\)</span></p>
-<p>[Réponse].underline: théorème central limite (TCL), avec la convergence en loi d’une transformation affine de la moyenne empirique</p>
+<p><u>Réponse</u>: théorème central limite (TCL), avec la convergence en loi d’une transformation affine de la moyenne empirique</p>
 </section>
 <section id="théorème-central-limite-1" class="slide level2">
 <h2>Théorème central limite</h2>
@@ -706,7 +706,7 @@ app = App(app_ui, server)
 <li><span class="math inline">\(\varphi\)</span> : la densité d’une loi normale centrée réduite <span class="math inline">\(\varphi(x) = \tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}\)</span></li>
 <li><span class="math inline">\(\Phi\)</span> : la fonction de répartition d’une loi normale centrée réduite <span class="math inline">\(\Phi(x) = \displaystyle \int_{-\infty}^{x}\varphi(u) du\)</span></li>
 </ul>
-<div class="fragment" data-fragment-index="2">
+<div class="fragment">
 <p>Ré-écriture du TCL: pour tout <span class="math inline">\(a &lt; b\)</span> on a alors</p>
 <p><span class="math display">\[
 \begin{align}
@@ -722,7 +722,6 @@ app = App(app_ui, server)
 </section>
 <section id="lien-intervalle-de-confiance-et-tcl" class="slide level2">
 <h2>Lien intervalle de confiance et TCL</h2>
-<div class="fragment" data-fragment-index="1">
 <div>
 <ul>
 <li class="fragment"><u>Question</u>: comment choisir <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> pour obtenir un intervalle de confiance à 95% pour <span class="math inline">\(\mu\)</span>.</li>
@@ -737,9 +736,8 @@ app = App(app_ui, server)
 <li class="fragment"><u>Numériquement</u>: on peut facilement évaluer <span class="math inline">\(q\)</span> et vérifier que <span class="math inline">\(q\approx 1.96\)</span> avec <code>scipy</code></li>
 </ul>
 </div>
-</div>
 <div class="fragment">
-<div id="7a19d965" class="cell" data-execution_count="1">
+<div id="21afdebf" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))     <span class="co"># Calcul du quantile de niveau 1-0.05/2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)            <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>

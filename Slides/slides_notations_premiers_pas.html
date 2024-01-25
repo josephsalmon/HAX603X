@@ -545,7 +545,7 @@ Benjamin Charlier
 </div>
 <p><u>Exemple physique</u>: <img data-src="images/coin-toss-4-svgrepo-com.svg" width="50"> loi d’un tirage de pile ou face, de biais <span class="math inline">\(p\)</span></p>
 <div id="exm-binomiale" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 2 (Loi binomiale) </strong></span>Soient <span class="math inline">\(p \in [0,1]\)</span> (biais) et <span class="math inline">\(n \in \mathcal{N}^*\)</span> (nombre de tirages) alors la loi <strong>Binomiale</strong> est donnée par <span class="math inline">\(\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}\)</span>, pour <span class="math inline">\(k \in E=\{0,\dots,n\}\)</span>.</p>
+<p><span class="theorem-title"><strong>Exemple 2 (Loi binomiale) </strong></span>Soient <span class="math inline">\(p \in [0,1]\)</span> (biais) et <span class="math inline">\(n \in \mathbb{N}^*\)</span> (nombre de tirages) alors la loi <strong>Binomiale</strong> est donnée par <span class="math inline">\(\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}\)</span>, pour <span class="math inline">\(k \in E=\{0,\dots,n\}\)</span>.</p>
 <p><u>Notation:</u> <span class="math inline">\(\quad\)</span> <span class="math inline">\(X \sim \mathcal{B}(n,p)\)</span></p>
 </div>
 <p><u>Exemple physique</u>: <img data-src="images/coin-toss-4-svgrepo-com-blue.svg" width="50"> <img data-src="images/coin-toss-4-svgrepo-com-red.svg" width="50"> <img data-src="images/coin-toss-4-svgrepo-com-red.svg" width="50"> <img data-src="images/coin-toss-4-svgrepo-com-blue.svg" width="50"> <img data-src="images/coin-toss-4-svgrepo-com-red.svg" width="50"> loi du nombre de succès obtenus lors de <span class="math inline">\(n\)</span> répétition indépendante d’une expérience aléatoire de Bernoulli de paramètre <span class="math inline">\(p\)</span></p>
@@ -623,7 +623,7 @@ f(x) = {1\hspace{-3.8pt} 1}_{[0,1]}(x)\enspace.
 <div id="exm-exponentielle" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 6 (Loi exponentielle) </strong></span>La loi <strong>exponentielle</strong> de paramètre <span class="math inline">\(\gamma &gt; 0\)</span> est obtenue avec la densité donnée par <span class="math display">\[
 f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
-\]</span> <u>Notation:</u> <span class="math inline">\(X \sim \mathcal{Exp}(\gamma)\)</span>.</p>
+\]</span> <u>Notation:</u> <span class="math inline">\(\quad X \sim \mathcal{Exp}(\gamma)\)</span></p>
 </div>
 </div>
 <div class="fragment fragment-index-1">
@@ -667,7 +667,7 @@ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspac
 <section id="enjeu-de-la-fonction-de-répartition" class="slide level2">
 <h2>Enjeu de la fonction de répartition</h2>
 <p><br></p>
-<p><u>Enjeux</u>: caractériser la loi d’une v.a. en ne considérant que l’espace d’arrivée <span class="math inline">\((E, \mathcal{E})\)</span> .</p>
+<p><u>Enjeux</u>: caractériser la loi d’une v.a. en ne considérant que l’espace d’arrivée <span class="math inline">\((E, \mathcal{E})\)</span></p>
 <p><br></p>
 <div class="fragment fragment-index-2">
 <p><u>Outils</u>:</p>
@@ -688,7 +688,7 @@ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspac
 <p>Soit <span class="math inline">\(X\)</span> une variable aléatoire sur <span class="math inline">\((\mathbb{R}, \mathcal{B}(\mathbb{R}))\)</span>. La fonction de répartition de <span class="math inline">\(X\)</span> est la fonction <span class="math inline">\(F_X\)</span> définie sur <span class="math inline">\(\mathbb{R}\)</span> par <span class="math display">\[
 \begin{align*}
      F_X(x) &amp; = \mathbb{P}(X \leq x)\\
-     &amp; \class{fragment}{{} = \mathbb{P}(X \in ]-\infty, x]) \enspace.}
+     &amp; \class{fragment}{{} = \mathbb{P}(X \in ]-\infty, x])}
 \end{align*}
 \]</span></p>
 </div>
@@ -720,7 +720,7 @@ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspac
 </div>
 <div class="callout-content">
 <ul>
-<li><p>Prop. 1. et 2.: <span class="math inline">\(F_X\)</span> est càdlàg (continue à droite, limite à gauche).</p></li>
+<li><p>Prop. 1. et 2. : <span class="math inline">\(F_X\)</span> est càdlàg (continue à droite, limite à gauche).</p></li>
 <li><p>Prop 3. (cas discret): les valeurs prises par <span class="math inline">\(X\)</span> correspondent aux discontinuités de <span class="math inline">\(F_X\)</span>, les probabilités, à la hauteur du saut.</p></li>
 <li><p>Prop. 4. (cas continu): le lien entre la fonction de répartition et densité.</p></li>
 </ul>
@@ -739,7 +739,7 @@ f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspac
 <ul>
 <li class="fragment"><u>Démonstration</u>: voir <a href="https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition">Wikipedia</a> <br><br></li>
 <li class="fragment"><u>Rappel</u>: la tribu des boréliens est engendrée par la famille d’ensembles <span class="math inline">\(\{]-\infty,x], x \in \mathbb{R}\}\)</span> <br><br></li>
-<li class="fragment"><u>Interprétation</u>: si on connaît la mesure <span class="math inline">\(\mathbb{P}_X\)</span> sur cette famille d’ensembles, on la connaît partout</li>
+<li class="fragment"><u>Interprétation</u>: connaître <span class="math inline">\(\mathbb{P}_X\)</span> sur cette famille d’ensembles <span class="math inline">\(\implies\)</span> la connaître partout</li>
 </ul>
 </div>
 </section>
@@ -798,13 +798,13 @@ F_X(x)=\Phi\left(\frac{x-\mu}{\sigma}\right)
 \]</span></p>
 </div>
 <ul>
-<li><span class="math inline">\(F_X\)</span> est bijective <span class="math inline">\(\implies\)</span> <span class="math inline">\(F^{-1}=F_X^\leftarrow\)</span>.</li>
+<li><span class="math inline">\(F_X\)</span> est bijective <span class="math inline">\(\implies\)</span> <span class="math inline">\(F^{-1}=F_X^\leftarrow\)</span></li>
 </ul>
 <p><u>Vocabulaire</u>:</p>
 <ul>
 <li>la fonction quantile s’appelle aussi <strong>inverse de Levy</strong> ou <strong>inverse généralisée</strong> (à gauche)</li>
 <li><strong>médiane</strong> : <span class="math inline">\(F_X^\leftarrow(1/2)\)</span></li>
-<li><strong>premier/troisième quartile</strong> <span class="math inline">\(F_X^\leftarrow(1/4), F_X^\leftarrow(3/4)\)</span></li>
+<li><strong>premier/troisième quartile</strong>: <span class="math inline">\(F_X^\leftarrow(1/4), F_X^\leftarrow(3/4)\)</span></li>
 <li>déciles : <span class="math inline">\(F_X^\leftarrow(k/10)\)</span> pour <span class="math inline">\(k=1,\dots, 9\)</span></li>
 </ul>
 </section>
