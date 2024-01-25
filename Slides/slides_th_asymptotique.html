@@ -7,7 +7,12 @@
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<meta name="shinylive:serviceworker_dir" content="..">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/shinylive.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.4.429">
 
   <meta name="dcterms.date" content="2024-01-19">
@@ -29,6 +34,71 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     /* CSS for citations */
     div.csl-bib-body { }
     div.csl-entry {
@@ -408,15 +478,687 @@ Benjamin Charlier
 </ul>
 </nav>
 </section>
+<section>
 <section id="loi-des-grands-nombres" class="title-slide slide level1 center">
 <h1>Loi des grands nombres</h1>
 
 </section>
+<section id="loi-forte-des-grands-nombres" class="slide level2">
+<h2>Loi forte des grands nombres</h2>
+<ul>
+<li>Résultat fondamental: concerne le comportement asymptotique de la moyenne empirique: <span class="math display">\[
+\bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
+\]</span> quand on observe <span class="math inline">\(n\)</span> variables aléatoires i.i.d <span class="math inline">\(X_1,\dots,X_n\)</span>, ayant une espérance finie.</li>
+</ul>
+<div id="thm-lfgn" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres) </strong></span><br></p>
+<p>Soit <span class="math inline">\((X_n)_{n \geq 1}\)</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">\(L^1(\Omega, \mathcal{F}, \mathbb{P})\)</span>. Notons <span class="math inline">\(\mu = \mathbb{E}[X_1]\)</span>. Alors <span class="math inline">\(\bar X_n\)</span> converge vers <span class="math inline">\(\mu\)</span> presque sûrement : <span class="math display">\[
+\mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
+\]</span></p>
+</div>
+</section>
+<section id="interprétation" class="slide level2">
+<h2>Interprétation</h2>
+<p>Intuitivement, la probabilité d’un événement <span class="math inline">\(A\)</span> correspond à la fréquence d’apparition de <span class="math inline">\(A\)</span> quand on répète une expérience qui fait intervenir cet événement.</p>
+<div id="exm-bernoulli" class="theorem example">
+<p><span class="theorem-title"><strong>Exemple 1 (Cas Bernouilli: pile ou face) </strong></span>La probabilité d’apparition du côté pile (noté <span class="math inline">\(p\)</span>) peut-être estimée en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu.</p>
+<p>La loi des grands nombres justifie cette intuition : si <span class="math inline">\(X_1, \ldots, X_n\)</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">\(p\)</span>, alors <span class="math display">\[
+    \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1) \enspace.
+\]</span></p>
+<ul>
+<li>Membre de gauche : la fréquence empirique de piles</li>
+<li>Membre de droite : la fréquence théorique de piles</li>
+</ul>
+</div>
+</section>
+<section id="visualisation-de-lexemple-du-pile-ou-face" class="slide level2">
+<h2>Visualisation de l’exemple du pile ou face</h2>
+<pre class="shinylive-python" data-engine="python"><code>#| echo: false
+#| standalone: true
+#| viewerHeight: 550
+import numpy as np
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+import plotly.graph_objs as go
 
+
+n_init = 42
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+            }
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 4px;
+            }
+            .irs.irs--shiny .irs-bar {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
+    ui.panel_title("Loi des grands nombres"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
+            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+            ),
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
+        width=3),
+    ui.panel_main(output_widget("my_widget"), width = 9)
+    )
+)
+
+
+
+
+def server(input, output, session):
+    seed = reactive.Value(42)
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+    subplots = make_subplots(
+        rows=2,
+        cols=1,
+        vertical_spacing=0.45,
+        horizontal_spacing=0.04,
+        row_heights=[5, 1],
+        subplot_titles=(
+            f"Moyenne empirique: loi de Bernoulli",
+            "Tirages aléatoires &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; (seed="
+            + f"{n_init:03}"
+            + ")",
+        ),
+    )
+    fig = go.FigureWidget(subplots)
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"Moyenne &lt;br&gt; empirique",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(dash="dash", color="black", width=1),
+            marker={},
+            x=[],
+            y=[],
+            name=r"p",
+        ),
+        row=1,
+        col=1,
+    )
+    fig.add_trace(
+        go.Heatmap(
+            x=[],
+            z=[],
+            colorscale=[[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
+            showscale=False,
+        ),
+        row=2,
+        col=1,
+    )
+
+    fig.update_yaxes(range=[0, 1.1], row=1, col=1)
+    fig.update_xaxes(matches="x1", row=2, col=1)
+    fig.update_yaxes(visible=False, row=2, col=1)
+    fig.update_xaxes(visible=False, row=2, col=1)
+
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+        xaxis_title="Échantillons: n",
+    )
+    fig.update_layout(autosize=True)
+
+    fig.update_layout(
+        legend=dict(
+            yanchor="top",
+            y=0.99,
+            xanchor="left",
+            x=0.65,
+            bgcolor="rgba(0,0,0,0)",
+        )
+    )
+    fig.update_layout(
+        margin=dict(l=0, r=0, b=10, t=70),
+    )
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        p = input.p()
+        n_samples = input.n_samples()
+
+        rng = np.random.default_rng(seed())
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=n_samples)
+        means_samples = np.cumsum(samples) / np.arange(1, n_samples + 1)
+
+        # Update data in fig:
+        fig.data[0].x = iterations
+        fig.data[0].y = means_samples
+
+        fig.data[1].x = iterations
+        fig.data[1].y = np.full((n_samples), p)
+
+        fig.data[2].x = iterations
+        fig.data[2].z = [samples]
+
+        fig.update_xaxes(range=[1, n_samples + 1])
+
+        # Update the subplot titles:
+        fig.layout.annotations[1].update(
+            text=f"Tirages aléatoires (seed="
+            + f"{seed():03}"
+            + ") &lt;br&gt; &lt;span style='color:rgb(66, 139, 202)'&gt;bleu: 0&lt;/span&gt;, &lt;span style='color:rgb(255, 0, 0)'&gt;rouge: 1&lt;/span&gt; "
+        )
+
+
+app = App(app_ui, server)
+</code></pre>
+<p><u>Pour aller plus loin</u>:</p>
+<p>Quant <span class="math inline">\(p\)</span> varie, à <span class="math inline">\(n\)</span> fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L’aléa est imparfait!</p>
+</section></section>
 <section>
 <section id="théorème-central-limite" class="title-slide slide level1 center">
 <h1>Théorème central limite</h1>
 
+</section>
+<section id="au-delà-de-la-loi-des-grands-nombres" class="slide level2">
+<h2>Au delà de la loi des grands nombres</h2>
+<ul>
+<li>1er ordre d’approximation de la convergence de <span class="math inline">\(\bar{X}_n\)</span>: loi des grands nombres</li>
+<li>2ème ordre d’approximation: théorème central limite</li>
+</ul>
+<p><u>Enjeu</u>: quantifier les variations de <span class="math inline">\(\bar X_n - \mu\)</span></p>
+<p>[Réponse].underline: théorème central limite (TCL), avec la convergence en loi d’une transformation affine de la moyenne empirique</p>
+</section>
+<section id="théorème-central-limite-1" class="slide level2">
+<h2>Théorème central limite</h2>
+<div id="thm-tcl" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite) </strong></span>Soit <span class="math inline">\(X_1, \ldots, X_n\)</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\(\sigma^2 = {\rm var}(X_1) \in ]0, \infty[\)</span>. On note <span class="math inline">\(\mu = \mathbb{E}[X_1]\)</span> leur espérance. Alors <span class="math display">\[
+\sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
+\]</span> où <span class="math inline">\(N\)</span> suit une loi normale centrée réduite : <span class="math inline">\(N \sim\mathcal{N}(0,1)\)</span>.</p>
+</div>
+<p><u>Interprétation</u>: la moyenne empirique de v.a. i.i.d de variance <span class="math inline">\(\sigma^2\)</span> se comporte asymptotiquement comme une loi normale <span class="math inline">\(\mathcal{N}(\mu, \tfrac{\sigma^2}{n})\)</span>: <span class="math inline">\(\quad \bar X_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n})\)</span>.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Hypothèses du théorème plutôt faibles: variance finie uniquement</p>
+</div>
+</div>
+</div>
+</section>
+<section id="formulation-de-la-convergence" class="slide level2">
+<h2>Formulation de la convergence</h2>
+<p>Convergence en loi <span class="math inline">\(\iff\)</span> convergence des fonctions de répartition (aux pts de continuité)</p>
+<p><u>Notations</u>:</p>
+<ul>
+<li><span class="math inline">\(\varphi\)</span> : la densité d’une loi normale centrée réduite <span class="math inline">\(\varphi(x) = \tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}\)</span></li>
+<li><span class="math inline">\(\Phi\)</span> : la fonction de répartition d’une loi normale centrée réduite <span class="math inline">\(\Phi(x) = \displaystyle \int_{-\infty}^{x}\varphi(u) du\)</span></li>
+</ul>
+<div class="fragment" data-fragment-index="2">
+<p>Ré-écriture du TCL: pour tout <span class="math inline">\(a &lt; b\)</span> on a alors</p>
+<p><span class="math display">\[
+\begin{align}
+    \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)
+    &amp; =
+    \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma} \in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}]\right) \nonumber\\
+    &amp; \class{fragment}{{} = \mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber}
+    \\
+    &amp; \class{fragment}{{} \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx = \Phi(b) - \Phi(a) \nonumber}\\
+\end{align}
+\]</span></p>
+</div>
+</section>
+<section id="lien-intervalle-de-confiance-et-tcl" class="slide level2">
+<h2>Lien intervalle de confiance et TCL</h2>
+<div class="fragment" data-fragment-index="1">
+<div>
+<ul>
+<li class="fragment"><u>Question</u>: comment choisir <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> pour obtenir un intervalle de confiance à 95% pour <span class="math inline">\(\mu\)</span>.</li>
+<li class="fragment"><u>Notation</u>: <span class="math inline">\(\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\)</span>, on cherche donc <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> tels que <span class="math inline">\(\alpha_n \approx 0.05\)</span>.</li>
+<li class="fragment"><u>Simplification</u>: choix d’un intervalle symétrique autour de <span class="math inline">\(\mu \implies q=a=-b\)</span> <span class="math display">\[
+\begin{align}
+&amp; 1-\alpha_n \approx \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \\
+\implies &amp; \boxed{q\approx\Phi^{-1}(1-\tfrac{\alpha_n}{2})}
+\end{align}
+\]</span></li>
+<li class="fragment"><u>Interpretation</u>: <span class="math inline">\(q\)</span> est (approx.) le quantile de niveau <span class="math inline">\(1-\tfrac{\alpha_n}{2}\)</span> de la loi normale centrée réduite</li>
+<li class="fragment"><u>Numériquement</u>: on peut facilement évaluer <span class="math inline">\(q\)</span> et vérifier que <span class="math inline">\(q\approx 1.96\)</span> avec <code>scipy</code></li>
+</ul>
+</div>
+</div>
+<div class="fragment">
+<div id="4efe9da8" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))     <span class="co"># Calcul du quantile de niveau 1-0.05/2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)            <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1.96</code></pre>
+</div>
+</div>
+</div>
+</section>
+<section id="visualization-du-tcl" class="slide level2">
+<h2>Visualization du TCL</h2>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| viewerHeight: 600
+import numpy as np
+from scipy.stats import norm
+import plotly.graph_objects as go
+from plotly.subplots import make_subplots
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, render_widget
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 0.1rem;
+            }
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 4px;
+            }
+            .irs.irs.irs--shiny .irs-bar {
+            top: 27px;
+            height: 4px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
+    ui.panel_title("TCL"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
+            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
+            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
+            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
+        width=3
+        ),
+    ui.panel_main(output_widget("my_widget"), width = 9)
+    )
+)
+
+
+
+def server(input, output, session):
+    seed = reactive.Value(42)
+
+
+    @reactive.Effect
+    @reactive.event(input.seed)
+    def _():
+        seed.set(np.random.randint(0, 1000))
+
+
+    @output
+    @render_widget
+    def my_widget():
+
+        rng = np.random.default_rng(seed())
+        p = input.p()
+        n_repetitions = input.n_repetitions()
+        n_samples = input.n_samples()
+        iterations = np.arange(1, n_samples + 1)
+        samples = rng.binomial(1, p, size=(n_repetitions, n_samples))
+        means_samples = np.cumsum(samples, axis=1) / np.arange(1, n_samples + 1)
+        x_hist = np.linspace(0, 1, num=300)
+
+        # Create figure
+        fig = make_subplots(
+                    rows=1,
+                    cols=3,
+                    # vertical_spacing=0.5,
+                    horizontal_spacing=0.02,
+                    column_widths=[20, 2, 3],
+                    subplot_titles=("t = " + str(n_repetitions) + " répétitions","","")
+                )
+
+
+        for i in range(n_repetitions):
+            fig.add_trace(
+                    go.Scatter(
+                        mode='lines',
+                        line=dict(color="rgba(0,0,0,0.05)", width=1),
+                        x=iterations,
+                        y=means_samples[i,:],
+                        ),
+                        row=1, col=1,
+            )
+        fig.add_trace(
+                go.Scatter(
+                    mode='lines',
+                    line=dict(dash="dash", color="blue", width=1),
+                    marker={},
+                    x=iterations,
+                    y=np.full((n_samples), p),
+                    name='p'),
+                    row=1, col=1,
+        )
+        fig.update_layout(
+            template="simple_white",
+            showlegend=False,
+        )
+        fig.add_trace(
+                go.Scatter(
+                    mode='markers',
+                    marker=dict(color="rgba(0,0,0,0.05)", size=4),
+                    x=np.zeros(n_samples),
+                    y=means_samples[:,-1],
+                ),
+                row=1, col=2,
+
+        )
+        y_hist, bins = np.histogram(means_samples[:,-1], bins=int(np.sqrt(n_repetitions)), density=True)
+        fig.add_trace(
+            go.Bar(x=y_hist, y=bins[:-1] + np.diff(bins)/2,
+                    opacity=0.75,
+                    marker_color = 'black',
+                    orientation='h',
+                    width=np.diff(bins),
+                    name="Tirages de moyennes empiriques",
+                    ),
+                row=1, col=3,
+        )
+        fig.add_trace(
+            go.Scatter(x=norm.pdf(x_hist, p, np.sqrt(p*(1-p) / n_samples)),
+                       y=x_hist,
+                       mode='lines',
+                       line=dict(color="red"),
+                       legendgroup='1',
+                       name="TCL"
+                       ),
+                row=1, col=3,
+        )
+
+        fig.update_xaxes(range=[1, n_samples + 1])
+        fig.update_yaxes(range=[-.05, 1.05], row=1, col=1)
+        fig.update_yaxes(matches="y1",visible = False,  row=1, col=2)
+        fig.update_xaxes(range=[-0.2, 0.2], visible = False, row=1, col=2)
+
+        fig.update_yaxes(matches="y1", row=1, col=3, visible=False)
+        fig.update_xaxes(range=[0, 1.1 / np.sqrt(2*np.pi* p*(1-p) / n_samples)], row=1, col=3)
+        fig.update_xaxes(visible=False, row=1, col=3)
+
+
+
+        for trace in fig['data']:
+            print(trace)
+            if (trace['name'] != 'TCL') and (trace['name'] != 'p'):
+                trace['showlegend'] = False
+        fig.update_layout(
+        margin=dict(l=0, r=0, b=10, t=100),
+        )
+        fig.update_layout(
+            title=dict(text="Distribution de la moyenne empirique&lt;br&gt; (cas loi de Bernoulli)", yanchor="top", y=0.95),
+            title_x=0.5,
+            showlegend=True,
+
+        )
+        fig.update_layout(
+            legend=dict(
+                yanchor="top",
+                y=0.99,
+                xanchor="left",
+                x=0.89,
+                bgcolor="rgba(0,0,0,0)",
+            )
+        )
+        fig['layout']['xaxis']['title']='Échantillons: n'
+
+        fig.update_layout(autosize=True)
+
+        return fig
+
+
+app = App(app_ui, server)
+</code></pre>
+</section>
+<section id="pour-aller-plus-loin-vision-des-convolutions" class="slide level2">
+<h2>Pour aller plus loin: vision des convolutions</h2>
+<!-- Notation: $X_1, \dots, X_n$, i.i.d., de fonction de densité $f$. -->
+<p><br></p>
+<p><u>Notation</u>: Soient <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> définies sur <span class="math inline">\(\mathbb{R}\)</span> (intégrables au sens de Lebesgue).</p>
+<div id="def-loi" class="theorem definition">
+<p><span class="theorem-title"><strong>Définition 1 (Convolution) </strong></span>La <strong>convolution</strong> de <span class="math inline">\(f\)</span> par <span class="math inline">\(g\)</span> est la fonction <span class="math inline">\(f*g\)</span> suivante: <span class="math display">\[
+\begin{align}
+f*g:
+\mathbb{R} &amp;\mapsto \mathbb{R} \nonumber\\
+x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
+\end{align}
+\]</span></p>
+</div>
+<p><br></p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>On peut aussi obtenir <span class="math inline">\(f*g(x)\)</span> en calculant <span class="math inline">\(\int_{\mathbb{R}^2} f(u)g(v) {1\hspace{-3.8pt} 1}_{u+v=x} du dv\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="somme-et-convolutions" class="slide level2">
+<h2>Somme et convolutions</h2>
+<div id="thm-tcl" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des v.a. de densités <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> respectivement, la densité de <span class="math inline">\(X+Y\)</span> est donnée par la convolution <span class="math inline">\(f*g\)</span>.</p>
+</div>
+</section>
+<section id="convolution-et-tcl" class="slide level2">
+<h2>Convolution et TCL</h2>
+<p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la densité de <span class="math inline">\(\bar{X}_n\)</span>.</p>
+<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| viewerHeight: 550
+import numpy as np
+from shiny import ui, render, App, reactive
+from shinywidgets import output_widget, register_widget
+from plotly.subplots import make_subplots
+import plotly.graph_objs as go
+from scipy import signal
+
+
+app_ui = ui.page_fluid(
+    ui.tags.head(
+        ui.tags.style("""
+            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
+            display: flex;
+            flex-direction: column;
+            padding: 0.5rem;
+            }
+            .irs--shiny .irs-line {
+            top: 27px;
+            height: 2px;
+            }
+            .irs.irs--shiny .irs-bar {
+            top: 27px;
+            height: 2px;
+            }
+            .irs--shiny .irs-handle {
+            top: 23px;
+            width: 22px;
+            height: 10px;
+        """)
+    ),
+    ui.panel_title("TCL et convolutions"),
+    ui.layout_sidebar(
+        ui.panel_sidebar(
+            ui.input_select(
+                "loi",
+                "Loi sous-jacente",
+                {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
+            ),
+            ui.input_slider(
+                "n_iter",
+                "Échantillons: n",
+                1,
+                10,
+                value=1,
+                step=1,
+                ticks=False,
+            ), width = 3
+    ),
+    ui.panel_main(
+        output_widget("my_widget"), width = 9
+    )
+)
+)
+
+
+nnzeros = 10001
+x_min = -20
+x_max = 20
+
+x = np.linspace(x_min, x_max, nnzeros)
+y = np.zeros(nnzeros)
+mask = np.where(np.abs(x) &lt;= 0.5, 1, 0)
+y[mask == 1] = 1
+delta = (x_max - x_min) / nnzeros
+var = np.sum(y * x**2 *(delta)) - (np.sum(y * x * delta))**2
+
+def convolve(signal_in, n_convolutions, delta):
+    output = np.zeros(len(signal_in))
+    if n_convolutions == 0:
+        return output
+    elif n_convolutions == 1:
+        return signal_in
+    else:
+        output = signal_in.copy()
+        for i in range(n_convolutions - 1):
+            output = signal.fftconvolve(
+                output * delta, signal_in, mode="same"
+            )
+        return output
+
+
+def server(input, output, session):
+
+    fig = go.FigureWidget()
+    fig.add_trace(
+        go.Scatter(
+            mode="lines",
+            line=dict(color="black", width=3),
+            x=[],
+            y=[],
+            name=r"f*...*f",
+        )
+    )
+
+    fig.add_trace(
+        go.Scatter(
+            x=x,
+            y=np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi),
+            mode="lines",
+            line=dict(dash="dash", color="red", width=2),
+            name=f"Loi normale&lt;br&gt;(variance adéquate)",
+        )
+    )
+    fig.update_xaxes(range=[-3, 3], position=0.)
+    fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
+
+
+    fig.update_layout(
+        template="simple_white",
+        showlegend=True,
+        autosize=True,
+        title=dict(text="Densité : &lt;br&gt; moyenne de n variables aléatoires", yanchor="top", y=0.95),
+        title_x=0.5,
+    )
+    fig.update_layout(legend=dict(
+        yanchor="top",
+        y=0.90,
+        xanchor="left",
+        x=-0.1,
+        font=dict(size= 10)
+    ))
+    fig.update_layout(
+    height=250,
+    margin=dict(l=0, r=0, b=10, t=100),
+    )
+
+    register_widget("my_widget", fig)
+
+    @reactive.Effect
+    def _():
+        if str(input.loi()) == 'uniforme':
+            y = np.zeros(nnzeros)
+            mask = np.where(np.abs(x) &lt;= 0.5, 1, 0)
+            y[mask == 1] = 1
+
+        else:
+            # else str(input.loi()) == 'laplace':
+            y=np.exp(-np.abs(x))/2
+            # y = np.zeros(nnzeros)
+            # mask = np.where(np.abs(x) &gt;= 0.5, 1, 0)
+            # y[mask == 1] = 0
+            # y = np.cos(np.pi * x) + 1
+            y = y / (np.sum(y) * delta)
+
+        var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2
+
+        y_display = convolve(y, input.n_iter(), delta)
+        # Update data in fig:
+        fig.data[0].x = x / np.sqrt(input.n_iter())
+        fig.data[0].y = y_display * np.sqrt(input.n_iter())
+        fig.data[1].y = np.exp(-(x**2) / (2 * var)) / np.sqrt(2 * var * np.pi)
+        fig.update_yaxes(range=[0, 2 * np.max(y)], position=0.5, showticklabels=False)
+
+
+app = App(app_ui, server)
+</code></pre>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Pour aller plus loin</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour plus d’info sur les convolutions, voir la vidéo de 3Blue1Brown : <a href="https://m.youtube.com/watch?v=IaSGqQa5O-M">Convolutions | Why X+Y in probability is a beautiful mess</a>, 🇬🇧</p>
+</div>
+</div>
+</div>
 </section>
 <section id="bibliographie" class="slide level2 smaller scrollable">
 <h2>Bibliographie</h2>
