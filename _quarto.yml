@@ -39,13 +39,13 @@ website:
             - Slides/slides_th_asymptotique.qmd
 
     - id: TP
-      collapse-level: 1
+      collapse-level: 2
       contents:
         - section: "TP"
           contents:
             - TP/TP1.qmd
-    - id: TP
-      collapse-level: 1
+    - id: TD
+      collapse-level: 2
       contents:
         - section: "TD"
           contents:

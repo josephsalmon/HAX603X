@@ -88,7 +88,7 @@ Soit un paramètre $p \in [0,1]$, et $E=\{0,1\}$, alors la loi de **Bernouilli**
 ::: {#exm-binomiale}
 
 ## Loi binomiale
-Soient $p \in [0,1]$ (biais) et $n \in \mathcal{N}^*$ (nombre de tirages) alors la loi **Binomiale** est donnée par $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in E=\{0,\dots,n\}$.
+Soient $p \in [0,1]$ (biais) et $n \in \mathbb{N}^*$ (nombre de tirages) alors la loi **Binomiale** est donnée par $\mathbb{P}(X=k) = \binom{n}{k} p^k (1-p)^{n-k}$, pour $k \in E=\{0,\dots,n\}$.
 
 [Notation:]{.underline} $\quad$ $X \sim \mathcal{B}(n,p)$
 
@@ -182,7 +182,7 @@ donnée par
 $$
 f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
 $$
-[Notation:]{.underline} $X \sim \mathcal{Exp}(\gamma)$.
+[Notation:]{.underline} $\quad X \sim \mathcal{Exp}(\gamma)$
 :::
 
 :::
@@ -233,7 +233,7 @@ Les lois normales sont omniprésente grâce au théorème central limite.
 
 <br>
 
-[Enjeux]{.underline}: caractériser la loi d'une v.a. en ne considérant que l'espace d'arrivée $(E, \mathcal{E})$ .
+[Enjeux]{.underline}: caractériser la loi d'une v.a. en ne considérant que l'espace d'arrivée $(E, \mathcal{E})$
 
 <br>
 
@@ -263,7 +263,7 @@ La fonction de répartition de $X$ est la fonction $F_X$ définie sur $\mathbb{R
 $$
 \begin{align*}
      F_X(x) & = \mathbb{P}(X \leq x)\\
-     & \class{fragment}{{} = \mathbb{P}(X \in ]-\infty, x]) \enspace.}
+     & \class{fragment}{{} = \mathbb{P}(X \in ]-\infty, x])}
 \end{align*}
 $$
 :::
@@ -294,7 +294,7 @@ Soit $X$ une v.a. de fonction de répartition $F_X$.
 :::{.fragment .fragment-index-3}
 
 :::{.callout-note}
-- Prop. 1. et 2.: $F_X$ est càdlàg (continue à droite, limite à gauche).
+- Prop. 1. et 2. : $F_X$ est càdlàg (continue à droite, limite à gauche).
 
 - Prop 3. (cas discret): les valeurs prises par $X$ correspondent aux discontinuités de $F_X$, les probabilités, à la hauteur du saut.
 
@@ -316,7 +316,7 @@ La fonction de répartition d'une variable aléatoire caractérise sa loi : deux
 :::{.incremental}
 - [Démonstration]{.underline}: voir [Wikipedia](https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition) <br><br>
 - [Rappel]{.underline}: la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$ <br><br>
-- [Interprétation]{.underline}: si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensembles, on la connaît partout
+- [Interprétation]{.underline}: connaître $\mathbb{P}_X$ sur cette famille d'ensembles $\implies$ la connaître partout
 :::
 
 
@@ -397,13 +397,13 @@ $$
 :::
 
 
-- $F_X$ est bijective $\implies$ $F^{-1}=F_X^\leftarrow$.
+- $F_X$ est bijective $\implies$ $F^{-1}=F_X^\leftarrow$
 
 [Vocabulaire]{.underline}:
 
 - la fonction quantile s'appelle aussi **inverse de Levy** ou **inverse généralisée** (à gauche)
 - **médiane** : $F_X^\leftarrow(1/2)$
-- **premier/troisième quartile** $F_X^\leftarrow(1/4), F_X^\leftarrow(3/4)$
+- **premier/troisième quartile**: $F_X^\leftarrow(1/4), F_X^\leftarrow(3/4)$
 - déciles : $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$
 
 

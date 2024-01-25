@@ -49,7 +49,7 @@ La probabilité d'apparition du côté pile (noté $p$) peut-être estimée en l
 
 La loi des grands nombres justifie cette intuition : si $X_1, \ldots, X_n$ sont i.i.d. de loi de Bernoulli de paramètre $p$, alors
 $$
-	\dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1) \enspace.
+	\dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1)
 $$
 
 - Membre de gauche :  la fréquence empirique de piles
@@ -228,7 +228,7 @@ app = App(app_ui, server)
 
 [Pour aller plus loin]{.underline}:
 
-Quant $p$ varie, à $n$ fixé...les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L'aléa est imparfait!
+Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L'aléa est imparfait (structure sous-jacente)!
 
 
 # Théorème central limite
@@ -241,7 +241,7 @@ Quant $p$ varie, à $n$ fixé...les signaux générés sont très très proches,
 
 [Enjeu]{.underline}: quantifier les variations de $\bar X_n - \mu$
 
-[Réponse].underline: théorème central limite (TCL), avec la convergence en loi d'une transformation affine de la moyenne empirique
+[Réponse]{.underline}: théorème central limite (TCL), avec la convergence en loi d'une transformation affine de la moyenne empirique
 
 ## Théorème central limite
 
@@ -276,8 +276,8 @@ Convergence en loi $\iff$ convergence des fonctions de répartition (aux pts de 
 - $\varphi$ : la densité d'une loi normale centrée réduite $\varphi(x) = \tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$
 - $\Phi$ : la fonction de répartition d'une loi normale centrée réduite  $\Phi(x) = \displaystyle \int_{-\infty}^{x}\varphi(u) du$
 
+. . .
 
-::: {.fragment fragment-index=2}
 Ré-écriture du TCL: pour tout $a < b$ on a alors
 
 $$
@@ -290,11 +290,11 @@ $$
     & \class{fragment}{{} \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx = \Phi(b) - \Phi(a) \nonumber}\\
 \end{align}
 $$
-:::
+
 
 ## Lien intervalle de confiance et TCL
 
-:::{.fragment fragment-index=1}
+
 :::{.incremental}
 - [Question]{.underline}: comment choisir $a$ et $b$ pour obtenir un intervalle de confiance à 95\% pour $\mu$.
 - [Notation]{.underline}: $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$, on cherche donc $a$ et $b$ tels que $\alpha_n \approx 0.05$.
@@ -308,8 +308,9 @@ $$
 - [Interpretation]{.underline}: $q$ est (approx.) le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite
 - [Numériquement]{.underline}: on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`
 :::
-:::
+
 . . .
+
 ```{python}
 #| echo: true
 from scipy.stats import norm
