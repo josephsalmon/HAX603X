@@ -107,7 +107,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-fixed">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -124,26 +124,72 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
-  <li class="nav-item">
-    <a class="nav-link" href="../index.html"> 
-<span class="menu-text">Présentation</span></a>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Cours</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
+        <li class="dropdown-header">Cours</li>
+        <li>
+    <a class="dropdown-item" href="../Courses/perspective_historique.html">
+ <span class="dropdown-text">Perspectives historiques</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link active" href="../Courses/perspective_historique.html" aria-current="page"> 
-<span class="menu-text">Cours</span></a>
+        <li>
+    <a class="dropdown-item" href="../Courses/notations.html">
+ <span class="dropdown-text">Notations et rappels</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../Courses/slides.html"> 
-<span class="menu-text">Slides</span></a>
+        <li>
+    <a class="dropdown-item" href="../Courses/th_asymptotique.html">
+ <span class="dropdown-text">Théorèmes asymptotiques</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../TD/TD1.html"> 
-<span class="menu-text">TD</span></a>
+        <li>
+    <a class="dropdown-item" href="../Courses/simulation.html">
+ <span class="dropdown-text">Simulation</span></a>
   </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../TP/TP1.html"> 
-<span class="menu-text">TP</span></a>
+        <li>
+    <a class="dropdown-item" href="../Courses/loi_normale1D.html">
+ <span class="dropdown-text">Loi normale (1D)</span></a>
   </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Slides</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-slides">    
+        <li class="dropdown-header">Slides</li>
+        <li>
+    <a class="dropdown-item" href="../Courses/slides.html">
+ <span class="dropdown-text">Slides: menu principal</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Slides/slides_intro.html">
+ <span class="dropdown-text">Introduction</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Slides/slides_notations_premiers_pas.html">
+ <span class="dropdown-text">Notations et premiers pas</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Slides/slides_th_asymptotique.html">
+ <span class="dropdown-text">Théorèmes asymptotiques</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="dropdown-header">
+ <span class="menu-text">sidebar:TD</span></li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">TP</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
+        <li class="dropdown-header">TP</li>
+        <li>
+    <a class="dropdown-item" href="../TP/TP1.html">
+ <span class="dropdown-text">TP1:…</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
           <div class="quarto-navbar-tools">
@@ -152,85 +198,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">inverse-vizu</li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-    </div>
-  </nav>
 </header>
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false">
- <span class="menu-text">Cours</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="false" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/perspective_historique.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Perspectives historiques</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/notations.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Notations et rappels</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/th_asymptotique.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Théorèmes asymptotiques</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/simulation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Simulation</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/loi_normale1D.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Loi normale (1D)</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false">
- <span class="menu-text">Slides</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="false" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../Courses/slides.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Slides</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         

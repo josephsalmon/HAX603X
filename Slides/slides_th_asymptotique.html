@@ -16,7 +16,7 @@
   <meta name="generator" content="quarto-1.4.429">
 
   <meta name="dcterms.date" content="2024-01-19">
-  <title>HAX603X: Modélisation stochastique</title>
+  <title>HAX603X: Modélisation stochastique - Théorèmes asymptotiques</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -99,26 +99,7 @@
     code span.va { color: #111111; } /* Variable */
     code span.vs { color: #20794d; } /* VerbatimString */
     code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-    /* CSS for citations */
-    div.csl-bib-body { }
-    div.csl-entry {
-      clear: both;
-    }
-    .hanging-indent div.csl-entry {
-      margin-left:2em;
-      text-indent:-2em;
-    }
-    div.csl-left-margin {
-      min-width:2em;
-      float:left;
-    }
-    div.csl-right-inline {
-      margin-left:2em;
-      padding-left:1em;
-    }
-    div.csl-indent {
-      margin-left: 2em;
-    }  </style>
+  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="slides.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -419,8 +400,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">HAX603X: Modélisation stochastique</h1>
-  <p class="subtitle">Théorèmes asymptotiques</p>
+  <h1 class="title">Théorèmes asymptotiques</h1>
+  <p class="subtitle">HAX603X: Modélisation stochastique</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -758,7 +739,7 @@ app = App(app_ui, server)
 </div>
 </div>
 <div class="fragment">
-<div id="4efe9da8" class="cell" data-execution_count="1">
+<div id="7a19d965" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))     <span class="co"># Calcul du quantile de niveau 1-0.05/2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)            <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -987,7 +968,7 @@ x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 </section>
 <section id="convolution-et-tcl" class="slide level2">
 <h2>Convolution et TCL</h2>
-<p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la densité de <span class="math inline">\(\bar{X}_n\)</span>.</p>
+<p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la loi de <span class="math inline">\(\bar{X}_n\)</span>.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
@@ -1159,15 +1140,9 @@ app = App(app_ui, server)
 </div>
 </div>
 </div>
-</section>
-<section id="bibliographie" class="slide level2 smaller scrollable">
-<h2>Bibliographie</h2>
-<div id="refs" role="list">
-
-</div>
 
 <div class="footer footer-default">
-<p><span style="color:grey;float:left;margin-left:7%;"><em>HAX603X: Modélisation stochastique</em></span></p>
+<p><span style="color:grey;float:left;margin-left:7%;"><em>Théorèmes asymptotiques</em></span></p>
 </div>
 </section></section>
     </div>
