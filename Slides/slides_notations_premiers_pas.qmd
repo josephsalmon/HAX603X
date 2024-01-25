@@ -139,7 +139,7 @@ $$
 $$
 
 :::{.callout-note}
-Les propriétés de l'intégrale de Lebesgue assure que cette formule définit bien une loi de probabilité.
+Les propriétés de l'intégrale de Lebesgue assurent que cette formule définit bien une loi de probabilité.
 :::
 
 
@@ -280,7 +280,7 @@ Soit $X$ une v.a. de fonction de répartition $F_X$.
 :::{.incremental}
 1. $F_X$ est une fonction croissante, de limite $0$ en $-\infty$ et de limite $1$ en $+\infty$.
 2. $F_X$ est continue à droite en tout point.
-3. Pour tout $x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - F_X(x-)$, où $F_X(x-) = \lim_{\epsilon \to 0+} F_X(x- \epsilon)$.
+3. $\forall x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - \lim_{\epsilon \to 0+}F_X(x- \epsilon)$.
 4. Si $X$ a pour densité $f$, alors $F_X$ est dérivable $\lambda$-presque partout de dérivée $f$.
 :::
 
@@ -296,7 +296,7 @@ Soit $X$ une v.a. de fonction de répartition $F_X$.
 :::{.callout-note}
 - Prop. 1. et 2.: $F_X$ est càdlàg (continue à droite, limite à gauche).
 
-- Prop 3. (cas discret): les valeurs prises par $X$ correspondent aux points de discontinuité de $F_X$, les probabilités, à la hauteur du saut.
+- Prop 3. (cas discret): les valeurs prises par $X$ correspondent aux discontinuités de $F_X$, les probabilités, à la hauteur du saut.
 
 - Prop. 4. (cas continu): le lien entre la fonction de répartition et densité.
 
@@ -313,22 +313,20 @@ Soit $X$ une v.a. de fonction de répartition $F_X$.
 La fonction de répartition d'une variable aléatoire caractérise sa loi : deux variables aléatoires ont même loi si et seulement si elles ont même fonction de répartition.
 :::
 
-[Démonstration]{.underline}: voir [Wikipedia](https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition) 
-
-<br>
-
-[Rappel]{.underline}: la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$
-
-<br>
-
-
-[Interprétation]{.underline}: si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensembles, on la connaît partout
-
+:::{.incremental}
+- [Démonstration]{.underline}: voir [Wikipedia](https://fr.wikipedia.org/wiki/Fonction_de_r%C3%A9partition#Caract%C3%A9risation_de_la_loi_par_la_fonction_de_r%C3%A9partition) <br><br>
+- [Rappel]{.underline}: la tribu des boréliens est engendrée par la famille d'ensembles $\{]-\infty,x], x \in \mathbb{R}\}$ <br><br>
+- [Interprétation]{.underline}: si on connaît la mesure $\mathbb{P}_X$ sur cette famille d'ensembles, on la connaît partout
+:::
 
 
 ## Fonction de répartition: cas discret
 
+<br>
 Dans le cas d'une loi discrète, la fonction de répartition est une fonction en escalier, constante par morceaux, et croissante.
+<br>
+<br>
+<br>
 
 ::: {#exm-cdf-discret}
 
@@ -346,6 +344,12 @@ $$
 ## Fonction de répartition: cas continu
 
 
+<br>
+
+<br>
+
+<br>
+
 ::: {#exm-cdf-discret}
 
 ## Cas continu
@@ -362,8 +366,7 @@ F_X(x) \triangleq \Phi(x) = \dfrac{1}{\sqrt{2\pi}} \int_{-\infty}^x e^{-\frac{t^
 $$
 
 :::{.callout-note}
-L'intégrale ne peut être obtenue à partir d'une formule fermée^[[Wikipedia: Théorème de Liouville](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_(alg%C3%A8bre_diff%C3%A9rentielle))]
-Autrefois, les valeurs de $\Phi(x)$ étaient reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].
+L'intégrale ne peut être obtenue à partir d'une formule fermée^[[Wikipedia: Théorème de Liouville](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Liouville_(alg%C3%A8bre_diff%C3%A9rentielle))]. Autrefois, les valeurs de $\Phi(x)$ étaient reportées dans des tables^[[Wikipedia: loi normale](https://fr.wikipedia.org/wiki/Loi_normale#Tables_num%C3%A9riques_et_calculs)].
 :::
 
 
@@ -386,7 +389,7 @@ $$
 
 Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$
 et $F_X$ sa fonction de répartion.
-La *fonction quantile* associée
+La **fonction quantile** associée
 $F_X^\leftarrow: [0,1] \rightarrow \mathbb{R}$ est définie par
 $$
   F_X^\leftarrow(p) = \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
@@ -398,11 +401,9 @@ $$
 
 [Vocabulaire]{.underline}:
 
-- la fonction quantile s'appelle aussi **inverse au sens de Levy** ou **inverse généralisée** (à gauche).
-
+- la fonction quantile s'appelle aussi **inverse de Levy** ou **inverse généralisée** (à gauche)
 - **médiane** : $F_X^\leftarrow(1/2)$
-- **premier quartile** : $F_X^\leftarrow(1/4)$
-- **troisième quartile** : $F_X^\leftarrow(3/4)$
+- **premier/troisième quartile** $F_X^\leftarrow(1/4), F_X^\leftarrow(3/4)$
 - déciles : $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$
 
 

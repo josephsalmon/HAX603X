@@ -539,7 +539,7 @@ la densité de $X+Y$ est donnée par la convolution $f*g$.
 ::::
 
 ## Convolution et TCL
-Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la densité de $\bar{X}_n$.
+Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la loi de $\bar{X}_n$.
 
 
 ```{shinylive-python}
@@ -707,9 +707,4 @@ app = App(app_ui, server)
 
 ## Pour aller plus loin
 Pour plus d'info sur les convolutions, voir la vidéo de 3Blue1Brown : [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M), &#127468;&#127463;
-:::
-
-## Bibliographie
-
-::: {#refs}
 :::
