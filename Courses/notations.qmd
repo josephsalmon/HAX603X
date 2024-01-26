@@ -289,9 +289,9 @@ La fonction de répartition étant une fonction croissante on peut donner un sen
 <br>
 
 Soit $X$ une variable aléatoire sur $(\mathbb{R}, \mathcal{B}(\mathbb{R}))$
-et $F_X$ sa fonction de répartion.
+et $F_X$ sa fonction de répartition.
 La fonction quantile associée
-$F_X^\leftarrow:  [0,1] \rightarrow \mathbb{R}$ est définie par
+$F_X^\leftarrow:  ]0,1[ \rightarrow \mathbb{R}$ est définie par
 $$
   F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
 $$
