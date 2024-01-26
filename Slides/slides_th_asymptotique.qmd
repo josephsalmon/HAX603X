@@ -180,9 +180,8 @@ def server(input, output, session):
     fig.update_layout(
         legend=dict(
             yanchor="top",
-            y=0.99,
-            xanchor="left",
-            x=0.65,
+            y=1.18,
+            x=0.95,
             bgcolor="rgba(0,0,0,0)",
         )
     )
@@ -296,15 +295,15 @@ $$
 
 
 :::{.incremental}
-- [Question]{.underline}: comment choisir $a$ et $b$ pour obtenir un intervalle de confiance à 95\% pour $\mu$.
-- [Notation]{.underline}: $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$, on cherche donc $a$ et $b$ tels que $\alpha_n \approx 0.05$.
+- [Question]{.underline}: comment choisir $a$ et $b$ pour obtenir un intervalle de confiance à 95\% pour $\mu$?
+- [Notation]{.underline}: $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$, on cherche $a, b$ tels que $\alpha_n \approx 0.05$.
 - [Simplification]{.underline}: choix d'un intervalle symétrique autour de $\mu \implies q=a=-b$
 $$
 \begin{align}
 & 1-\alpha_n \approx \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \\
 \implies & \boxed{q\approx\Phi^{-1}(1-\tfrac{\alpha_n}{2})}
 \end{align}
-$$ 
+$$
 - [Interpretation]{.underline}: $q$ est (approx.) le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite
 - [Numériquement]{.underline}: on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`
 :::
@@ -313,9 +312,9 @@ $$
 
 ```{python}
 #| echo: true
-from scipy.stats import norm
-q = norm.ppf((1-0.05/2))     # Calcul du quantile de niveau 1-0.05/2
-print(f"{q:.2f}")            # Affichage à 2 décimales
+from scipy.stats import norm  # import du module "norm" de scipy.stats
+q = norm.ppf((1-0.05/2))      # Calcul du quantile (en: Percent point function) de niveau 1-0.05/2
+print(f"{q:.2f}")             # Affichage à 2 décimales
 ```
 
 ## Visualization du TCL
@@ -485,9 +484,9 @@ def server(input, output, session):
         fig.update_layout(
             legend=dict(
                 yanchor="top",
-                y=0.99,
+                y=1.24,
                 xanchor="left",
-                x=0.89,
+                x=0.85,
                 bgcolor="rgba(0,0,0,0)",
             )
         )

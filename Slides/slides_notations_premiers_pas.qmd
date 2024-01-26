@@ -95,7 +95,7 @@ Soient $p \in [0,1]$ (biais) et $n \in \mathbb{N}^*$ (nombre de tirages) alors l
 :::
 
 [Exemple physique]{.underline}: ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50} ![](images/coin-toss-4-svgrepo-com-blue.svg){width=50} ![](images/coin-toss-4-svgrepo-com-red.svg){width=50}
-loi du nombre de succès obtenus lors de $n$ répétition indépendante d'une expérience aléatoire de Bernoulli de paramètre $p$ 
+loi du nombre de succès obtenus lors de $n$ répétitions indépendantes d'une expérience aléatoire de Bernoulli de paramètre $p$
 
 ## Lois discrètes (II)
 
@@ -358,6 +358,9 @@ $$
 \forall x \in \mathbb{R}, \quad F_X(x) = \int_{-\infty}^x f(t) \, \mathrm dt \enspace.
 $$
 :::
+
+[Vocabulaire]{.underline}: densité  (&#127468;&#127463;: probability density function)
+
 
 ## Loi normale
 Cas de la loi normale centrée réduite, $X \sim \mathcal{N}(0,1)$: $F_X=\Phi$, avec $\Phi$ définie par

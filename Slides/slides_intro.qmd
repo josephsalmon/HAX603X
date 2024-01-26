@@ -36,7 +36,7 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 </div>
 
 ::: {.fragment fragment-index=2}
-- **Benjmain Charlier** : CM, TD et TP
+- **Benjamin Charlier** : CM, TD et TP
   - Situation actuelle : Maître de conférences à l'Université de Montpellier
   - Précédemment : Université Paul Sabatier, ENS Paris-Saclay
   - Spécialités : traitement des images, statistiques, différentiation automatique
@@ -139,7 +139,7 @@ Détails de la notation des TPs :
 1. Générer l’aléa
    - générateurs pseudo-aléatoires, simulations de variables aléatoires (inverse, rejet, etc.)
    - illustrations numériques et visualisation en Python (loi des grands nombres, TCL)
-2. Méthode de Monte-Carlos
+2. Méthode de Monte-Carlo
    - méthode de Monte-Carlo pour le calcul approché d’une intégrale
    - réduction de la variance : variables antithétiques, variables de contrôle, etc.
 3. Compléments
