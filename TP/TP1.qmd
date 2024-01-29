@@ -171,10 +171,12 @@ vitesse = distance/temps  # en km/h
 On remarquera que lorsqu'on crée des objets, ils sont stockées dans l'environnement de travail (chercher l'onglet `variables` de la fenêtre interactive).
 
 
+## `numpy` et calcul scientifique en Python
+
+`numpy` est l'outils de base en Python pour faire du calcul vectoriel et matriciel.
 
 ### Vecteurs en `numpy`
 
-`numpy` est essentiellement basé sur du calcul vectoriel.
 Pour créer un vecteur, la commande de base est la fonction `np.array`.
 Ensuite, on peut concaténer des vecteurs, les multiplier par une constante, leur ajouter une constante, les élever à une certaine puissance, etc. Si on manipule deux vecteurs, on prendra garde à leur taille.
 
