@@ -1,5 +1,6 @@
 ---
-title: "TP1:..."
+title: "TP1: Prise en main de Python"
+bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
@@ -7,7 +8,178 @@ filters:
   - shinylive
 ---
 
+## Prise en main de Python
 
-## test1
 
-## test2
+Python est un langage ouvert qui permet de manipuler des données, faire des analyses statistiques, tracer des graphes, et bien d'autres choses encore.
+Il est distribué gratuitement et vous pouvez le télécharger et l'installer sur une machine personnelle.
+Dans ce premier TP, on présente les bases de Python.
+
+Pour plus de détails on pourra consulter les ouvrages:
+
+
+- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
+- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) &#127467;&#127479;
+- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] &#127467;&#127479;
+
+### Installation de Python
+
+**Tout est déjà installé sur les ordinateurs de l'université. Cette section n'est utile que si vous souhaitez utiliser votre propre machine.**
+
+Le conseil principal, est d'installer VSCode et d'utiliser l'extension Python associée. Pour Python, privilégier Conda (ou Mamba) pour installer les packages, voir par exemple:
+[installer-anaconda](https://datascientest.com/installer-anaconda-tout-savoir).
+
+
+### L'environnement de travail VSCode / VSCodium
+
+On travaillera sous VSCodium (une variante de VSCode) sur les machines de l'Université, un éditeur de texte qui permet de travailler avec Python, mais aussi avec LaTeX, Markdown, R, etc.
+
+
+- Lancer l'application VSCodium, par exemple en cliquant sur l'icône "Application Menu" en haut à gauche de votre écran, puis en tapant "VSCodium" dans la barre de recherche. La démarche à suivre est visible dans la vidéo ci-dessous:
+
+{{< video ./Videos/VSCode.mp4 >}}
+<!-- ffmpeg -i Python_VSCOde.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 13 -y -an Python_VSCode.mp4 -->
+
+ - Si besoin (à ne faire qu'une fois), il vous faut installer l'extension "Python extension for Visual Studio Code" (voir par exemple: [https://marketplace.visualstudio.com/items?itemName=ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)).
+ Pour cela, il y a plusieurs stratégies. La plus simple consiste à cliquer sur le menu d'installation et chercher l'application Python "Python, extension for Visual Studio Code", proposée par Microsoft, Intellisense, (attention il y a beaucoup, choisir la bonne, avec plusieurs millions d'étoiles et de téléchargements):
+ {{< video ./Videos/Python_VSCode.mp4 >}}
+ [Remarque]{.underline}: Une alternative est d'aller dans le menu "View/Command Palette" (accessible avec `ctrl + shift + p`), et taper "**Extensions : install extensions**" et installer l'extension "Python, extension for Visual Studio Code" (proposée par Microsoft). Si vous avez déjà installé l'extension Python sur votre machine personnelle, vous pouvez passer cette étape. Au besoin, il faudra recharger(*reload*) VSCodium.
+
+
+### Premiers pas
+
+- Créer un nouveau fichier dans VSCodium intitulé `HAX603X_tp1.py`, et sauvegarder le dans un dossier `HAX603X`.
+- Dans ce fichier, copier-coller le code de la boîte suivante. On pourra alors lancer des cellules de code en tapant sur `shift + enter` dans une cellule délimitée par les symboles `\# \%\%`. On peut aussi lancer la cellule en cliquant sur le bouton "run cell" dans VSCodium (ou clique droit puis une option de type "run cell" ou "run all cell").
+```{python}
+# %%
+# Début de cellule
+print(1 + 3)  # commentaire en ligne
+# %%
+# Une autre cellule
+print(2**3)  # commentaire en ligne
+```
+{{< video ./Videos/Cells.mp4 >}}
+<!-- ffmpeg -i Cells.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 15 -y -an Cells.mp4 -->
+- Cliquer dans VSCodium sur la version de "Python" en bas de votre écran et choisir sur les machines de l'école l'environnement 'datascience' (version: 3.10.6 au 20/01/2024). Si vous travaillez sur votre machine personnelle, choisissez un environnement de base, ou bien créer un environnement `conda` qui vous conviendra, par exemple avec `Miniconda`^[[Installer un environnement de développement Python avec Conda](https://zestedesavoir.com/tutoriels/1448/installer-un-environnement-de-developpement-python-avec-conda/)].
+
+- Vérifier que maintenant vous pouvez lancer une cellule, par exemple en tapant `crtl + enter`, ou bien en cliquant sur le bouton "run cell".
+
+
+
+
+
+### L'environnement de travail
+
+Vous voyez apparaître plusieurs fenêtres :
+
+- la console (à droite), avec les environnement et l'historique (en haut à droite)
+- la fenêtre de texte (à gauche)
+
+La console permet d’exécuter des instructions ou commandes. C'est ici que vous donnez vos instructions et que s'affichent les résultats demandés.
+La fenêtre d'environnement et d'historique recense l'historique des commandes et les variables qui ont été définies. Enfin, la fenêtre de texte permet d'écrire du texte, des commentaires, bref les fichiers que vous conserverez.
+
+Une manière simple de garder traces de vos calculs/instructions est de les écrire dans un fichier texte (ici `HAX603X_tp1.py`), et de les délimiter par des symboles `\# \%\%` (voir ci-dessus), et de les lancer en tapant `shift + enter` dans une cellule délimitée par les symboles `\# \%\%`. 
+
+
+
+Une première utilisation basique de Python concerne les calculs.
+Vous pouvez entrer toutes les opérations classiques : addition `+`, soustraction `-`, multiplication `*`, division `/`, puissance `**`, etc.
+Les fonctions usuelles sont également déjà programmées en Python, mais nécessite le chargement du package `numpy` : exponentielle, logarithme, fonctions trigonométriques, racine carrée, etc.
+
+Pour cela il suffit de taper `import numpy as np` dans une cellule de code, puis d'utiliser les fonctions de `numpy` comme suit par exemple:
+
+```{python}
+#| layout-ncol: 1
+
+import numpy as np
+
+print(np.exp(1))
+print(np.log(2))
+print(np.sin(np.pi))
+```
+
+
+#### Question : fonctions mathématiques
+Entrez quelques opérations de base pour vous familiariser avec les instructions sur Python.
+Faire de même avec les fonctions `np.exp`, `np.log`, `np.sin`, `np.cos`, `np.tan`, `np.sqrt`, `np.abs`,`np.round`.
+Entrer les instructions `1/0` et `np.sqrt(-2)`. Que constatez-vous ?\\
+
+On remarquera qu'on peut utiliser le symbole `np.inf` pour représenter l'infini. Par ailleurs, si un résultat n'est pas possible (par exemple en tapant `np.sqrt(-2)`), alors on obtient `nan`  qui signifie **Not a Number**.
+
+Il faut se souvenir que les calculs numériques ne sont pas toujours exacts du fait de la discrétisation des nombres sur machine. Taper par exemple `np.sin(0)`, `np.sin(2*np.pi)` et  `np.sin(np.pi*10**16)`. Voir aussi les différences entre:
+
+```{python}
+print(0.6, 0.3 + 0.2 + 0.1)
+print(0.6, 0.1 + 0.2 + 0.3) 
+```
+
+### Aide en Python
+
+On peut utiliser l'aide de base de `python` avec les commandes `help(la-fonction)` ou `?la-fonction`. L'aide en ligne est aussi conseillée, surtout pour la création de graphiques avec `matplotlib` pour avoir plus de détails et des galleries de visualisation.
+
+
+
+### Répertoire de travail
+Le répertoire de travail (&#127468;&#127463;: **working directory**) est le répertoire par défaut, c'est-à-dire le répertoire qui s'ouvre quand vous cliquez sur le bouton pour enregistrer un fichier.
+La commande pour connaître le répertoire de travail actuel est `getcwd` du package `os`:
+
+```{python}
+import os
+print(os.getcwd())
+```
+
+Pour changer le répertoire de travail, on pourra utiliser la commande `os.chdir`
+avec un nom de répertoire (valide) entre guillemets, par exemple sous linux:
+
+```{python}
+os.chdir('../')
+```
+Aussi si l'on ferme la fenêtre interactive (à droite), alors exécuter une cellule lancera une nouvelle fenêtre interactive, mais dans le répertoire de travail par défaut (celui où se trouve le fichier courant, ici `HAX603X_tp1.py`).
+
+
+
+### Création et affectation de variables
+
+Pour créer des objets, il suffit d'utiliser la commande `=`.
+
+#### Question : variables
+
+Créer une variable `x` qui contient la valeur $12$. Effectuer des calculs du type `x+3`, `x**4`, `4*x` pour vérifier que tout se passe comme prévu.
+
+En pratique on donnera des noms d'objets pertinents, par exemple
+```{python}
+distance = 105  # en km
+temps = 2  # en heures
+vitesse = distance/temps  # en km/h
+```
+
+On remarquera que lorsqu'on crée des objets, ils sont stockées dans l'environnement de travail (chercher l'onglet `variables` de la fenêtre interactive).
+
+
+### Vecteurs en `numpy`
+
+
+
+
+
+## Visualisation d'une figure
+Pour lancer une figure on peut utiliser la package `matplotlib`.
+Un exemple utilisant le package `numpy` pour créer une figure simple est donné ci-dessous, dans la @fig-cos.
+
+```{python}
+#| layout-ncol: 1
+# #| code-fold: true
+#| label: fig-cos
+#| fig-cap: "Une figure simple."
+
+import numpy as np
+import matplotlib.pyplot as plt
+
+r = np.arange(0, 2, 0.01)
+theta = np.cos(2 * np.pi * r)
+
+fig, ax = plt.subplots()
+ax.plot(r,theta)
+ax.grid(True)
+plt.show()
+```
