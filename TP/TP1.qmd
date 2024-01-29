@@ -8,6 +8,15 @@ filters:
   - shinylive
 ---
 
+
+::: {.callout-note}
+
+## Objectifs de ce TP
+- Utiliser les opérateurs classiques en Python `(+,-,*,/,**,@)`, etc., savoir créer une fonction, générer un graphique clair et lisible
+- Qu'est-ce que la précision de calcul ? Comment utiliser de une visualisation pour mieux comprendre un théorème ou une fonction ?
+- Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en `numpy`.
+:::
+
 ## Prise en main de Python
 
 
@@ -40,11 +49,17 @@ On travaillera sous VSCodium (une variante de VSCode) sur les machines de l'Univ
 {{< video ./Videos/VSCode.mp4 >}}
 <!-- ffmpeg -i Python_VSCOde.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 13 -y -an Python_VSCode.mp4 -->
 
- - Si besoin (à ne faire qu'une fois), il vous faut installer l'extension "Python extension for Visual Studio Code" (voir par exemple: [https://marketplace.visualstudio.com/items?itemName=ms-python.python](https://marketplace.visualstudio.com/items?itemName=ms-python.python)).
+ - Si besoin (à ne faire qu'une fois), il vous faut installer l'extension "[https://open-vsx.org/extension/ms-python/python](Python extension for Visual Studio Code)".
  Pour cela, il y a plusieurs stratégies. La plus simple consiste à cliquer sur le menu d'installation et chercher l'application Python "Python, extension for Visual Studio Code", proposée par Microsoft, Intellisense, (attention il y a beaucoup, choisir la bonne, avec plusieurs millions d'étoiles et de téléchargements):
  {{< video ./Videos/Python_VSCode.mp4 >}}
- [Remarque]{.underline}: Une alternative est d'aller dans le menu "View/Command Palette" (accessible avec `ctrl + shift + p`), et taper "**Extensions : install extensions**" et installer l'extension "Python, extension for Visual Studio Code" (proposée par Microsoft). Si vous avez déjà installé l'extension Python sur votre machine personnelle, vous pouvez passer cette étape. Au besoin, il faudra recharger(*reload*) VSCodium.
+ [Remarque]{.underline}: Une alternative est d'aller dans le menu "View/Command Palette" (accessible avec `ctrl + shift + p`), et taper "**Extensions : install extensions**" et installer l'extension "Python, extension for Visual Studio Code" (proposée par Microsoft).
+ Au besoin, il faudra recharger (*reload*) VSCodium.
+ Si vous avez déjà installé l'extension Python sur votre machine personnelle, vous pouvez passer cette étape.
 
+La même opération devra être faite pour installer l'extension "[https://open-vsx.org/extension/ms-toolsai/jupyter](Jupyter Extension for Visual Studio Code)" (proposée par Microsoft,) qui nous permettra de manipuler des fenêtres interactives:
+
+{{< video ./Videos/Jupyter.mp4 >}}
+<!-- ffmpeg -i Jupyter.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 15 -y -an Jupyter.mp4 -->
 
 ### Premiers pas
 
@@ -110,7 +125,7 @@ Il faut se souvenir que les calculs numériques ne sont pas toujours exacts du f
 
 ```{python}
 print(0.6, 0.3 + 0.2 + 0.1)
-print(0.6, 0.1 + 0.2 + 0.3) 
+print(0.6, 0.1 + 0.2 + 0.3)
 ```
 
 ### Aide en Python
@@ -156,11 +171,193 @@ vitesse = distance/temps  # en km/h
 On remarquera que lorsqu'on crée des objets, ils sont stockées dans l'environnement de travail (chercher l'onglet `variables` de la fenêtre interactive).
 
 
+
 ### Vecteurs en `numpy`
 
+`numpy` est essentiellement basé sur du calcul vectoriel.
+Pour créer un vecteur, la commande de base est la fonction `np.array`.
+Ensuite, on peut concaténer des vecteurs, les multiplier par une constante, leur ajouter une constante, les élever à une certaine puissance, etc. Si on manipule deux vecteurs, on prendra garde à leur taille.
+
+#### Question : Vecteurs
+
+Créez un vecteur `v1` composé des réels $7, 8, 3$, un vecteur `v2` composé des réels $-0.5,120,-12$, et un vecteur `v3` composé des réels $0,1,0,1$.
+Testez les commandes suivantes :
+`v1-7`, `v2**4`, `10*v3`,  `v1+v2`, `v1*v2`, `v1/v2`, `v1+v3`.
+
+Il existe un grand nombre de fonctions mathématiques qui s'appliquent directement sur un vecteur :
+`np.sum()`, `np.prod()`, `np.len()`, `np.min()`, `np.max()`, `np.nanmax()`, `np.argmax()`, `np.mean()`, `np.median()`, `np.var()`, `np.std()`.
 
 
 
+Enfin on peut aussi utiliser des fonctions de tri, partiel ou non:
+`np.sort()`, `np.argsort()`, `np.partition()`, `np.argpartition()` on pourra consulter l'aide en ligne pour plus de détails: [https://numpy.org/doc/stable/reference/routines.sort.html](https://numpy.org/doc/stable/reference/routines.sort.html)
+
+
+#### Question : Opérations sur les vecteurs
+
+Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie, utiliser l'aide avec `??` ou `?`.
+
+
+::: {.callout-note}
+
+## Pour aller plus loin: vectorisation
+
+Vous pourrez consulter les commandes décrites visuellement [ici](https://josephsalmon.github.io/HAX712X/Courses/Numpy/tp.html) pour créer des vecteurs et/ou des matrices classiques.
+
+:::
+
+
+### Suites régulières
+
+Une autre manière de créer des vecteurs consiste à créer des suites régulières :
+
+- La commande np.arange(n1,n2) crée un vecteur de réels partant de `n1` et croissant d'une unité pour arriver à `n2` (exclu). On peut changer le pas en ajoutant un argument optionnel `np.arange(n1, n2, step=pas)`.
+  Ainsi, on a :
+```{python}
+np.arange(0, 10, step=2)
+```
+- La commande np.tile() permet de répéter un vecteur un nombre de fois fixé.
+
+#### Exercice: Suite
+
+Exécutez les commandes suivantes et essayer de analysez les sorties :
+```{python}
+# create a vector starting from 3 finishing at -8 with step 1, but in a decreasing order
+np.arange(9, 13)
+np.arange(3, -8, step=-1)
+np.arange(9, 13, step=2)
+np.arange(9, 13, step=3)
+np.tile(np.arange(9, 13, step=3), (4, 1))
+
+```
+
+Enfin, pour extraire la valeur $i$ d'un vecteur `x`, on tapera `x[i]` (avec la convention que Python commence à énumérer à 0).
+Plus généralement, pour extraire les $3\ieme$, $4\ieme$ et $7\ieme$ composante on tapera `x[[3,4,7]]`. Le vérifier sur un vecteur de taille 10.
+
+
+### Matrices en `numpy`
+
+La fonction `np.shape` permet de connaître la taille d'un vecteur ou d'une matrice. On regardera son comportement sur les vecteurs notamment.
+
+
+#### Question : opérations élémentaires
+Manipulez les opérations classiques sur des matrices (*arrays*) de `numpy` (si vous êtes déjà habitués à `numpy` vous pouvez continuer)
+
+Opérations termes à termes:
+```{python}
+#| eval: false
+
+# Somme de deux vecteurs
+A = np.array([1.0, 2, 3])
+B = np.array([-1, -2, -3.0])
+
+# Attribuer à la variable C la somme de A et B
+sum_A_B = ...  # XXX TODO
+
+np.testing.assert_almost_equal(np.zeros((3,)), sum_A_B)
+print("it worked")
+
+# Le produit terme à terme avec *
+prod_A_B = ...  # XXX TODO
+
+np.testing.assert_almost_equal(np.array([-1.0, -4, -9]), prod_A_B)
+print("it worked")
+
+# Remarque: la même chose fonctionne terme à terme avec \, ** (puissance)
+np.testing.assert_almost_equal(np.array([1.0, 4, 9]), A ** 2)
+print("it worked: even for powers")
+```
+
+Le produit scalaire (ou matriciel) est l'opérateur `@`. Vérifiez que pour la matrice $J$ ci-dessous $J^3 = Id$ de deux façons. Pour cela on pourra aussi utiliser la puissance matricielle avec `np.linalg.matrix_power`:
+
+
+```{python}
+#| eval: false
+J = np.array([[0, 0, 1.0], [1.0, 0, 0], [0, 1.0, 0]])
+
+I3 = np.eye(3)
+
+np.testing.assert_almost_equal(I3, ...)  # XXX TODO
+print("it worked: method 1")
+np.testing.assert_almost_equal(I3, ...)  # XXX TODO
+print("it worked: method 2")
+```
+
+#### Question : résolution de systèmes linéaires
+
+Pour résoudre le système $Ax=b$ en mathématiques, la formule explicite est $x=A^{-1}b$ (dans le cas où $A$ est inversible).
+
+::: {.callout-important}
+En pratique vous n'utiliserez presque jamais l'inversion de matrice ! En effet, on n'inverse **JAMAIS JAMAIS (!)** une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !
+:::
+
+```{python}
+#| eval: false
+print(f"L'inverse de la matrice: \n {J} \n est \n {np.linalg.inv(J)}")
+
+n = 20  # XXX TODO: tester avec n=100
+Jbig = np.roll(np.eye(n), -1, axis=1)  # matrice de permutation de taille n
+print(Jbig)
+
+b = np.arange(n)
+print(b)
+
+# on peut transposer une matrice facilement de 2 manières:
+print(Jbig)
+print(Jbig.T)
+print(np.transpose(Jbig))
+```
+
+Comparons niveau temps d'execution l'inversion explicite vs. l'utilisation d'un solveur de système linéaire tel que `np.linalg.solve`:
+
+```{python}
+#| eval: false
+import time
+# Résolution de système par une méthode naive: inversion de matrice
+t0 = time.perf_counter()  # XXX TODO
+y1 = ... @ b
+timing_naive = ...
+print(
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive:.4f} s."
+)
+
+# Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``
+# XXX TODO
+y2 = ...
+timinig_optimized = ...
+print(
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_optimized:.4f} s.\nC'est donc {timing_naive / timing_optimized} fois plus rapide d'utiliser la seconde formulation"
+)
+
+np.testing.assert_almost_equal(y1, y2)
+print("Les deux méthodes trouvent le même résultat")
+```
+
+::: {.callout-tip}
+Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser le package `timeit`^[[lien vers la documentation de timeit](https://docs.python.org/3/library/timeit.html)]
+:::
+
+#### Question découpage (&#127468;&#127463;: *slicing*)
+
+Le découpage permet d'extraire des éléments selon un critère (position, condition, etc.).
+La notation `:` signifie "tout le monde", et l'indexation commence en $0$.
+Pour partir de la fin, il est possible de mettre le signe `-` devant le nombre: ainsi $-1$ renvoie donc au dernier élément.
+
+```{python}
+#| eval: false
+print(f"The first column is {A[:, 0]}")
+
+# Afficher la deuxième ligne de A
+print(f"The second row is {...}")  # XXX TODO
+```
+
+Mettre à zéro une ligne sur 2 de la matrice identité de taille $5\times 5$
+
+```{python}
+#| eval: false
+C = np.eye(5, 5)
+C[...,...] = 0  # mettre à zéro une ligne sur deux. # XXX TODO
+```
 
 ## Visualisation d'une figure
 Pour lancer une figure on peut utiliser la package `matplotlib`.
@@ -168,11 +365,10 @@ Un exemple utilisant le package `numpy` pour créer une figure simple est donné
 
 ```{python}
 #| layout-ncol: 1
-# #| code-fold: true
+#| code-fold: true
 #| label: fig-cos
 #| fig-cap: "Une figure simple."
 
-import numpy as np
 import matplotlib.pyplot as plt
 
 r = np.arange(0, 2, 0.01)
@@ -183,3 +379,85 @@ ax.plot(r,theta)
 ax.grid(True)
 plt.show()
 ```
+
+
+## Aspects aléatoires
+
+Le module `random` de `numpy` permet d'utiliser l'aléatoire et des lois usuelles en Python. On crée d'abord un générateur qui nous permettra ensuite d'appeler les lois voulues comme suite:
+
+```{python}
+import numpy as np  # package de calcul scientifique
+import matplotlib.pyplot as plt  # package graphique
+
+generateur = np.random.default_rng()
+generateur.normal()
+```
+
+#### Question : Matrices aléatoires
+
+Créer une matrice de taille $4\times 5$ dont les entrées sont $i.i.d$ de loi de Laplace d'espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s'aider [de l'aide en ligne](https://numpy.org/doc/stable/reference/random/generator.html) si besoin.
+
+```{python}
+#| eval: false
+
+generateur = np.random.default_rng()
+M = ...  # XXX TODO
+print(M)
+```
+
+#### Question : Reproduire des résultats
+
+Pour reproduire des résultats ou débugger un code, il est utile de "figer" l'aléatoire. On utilise pour cela une graine (&#127467;&#127479; *seed*) dans la création du générateur. Fixez la graine à 0 dans `default_rng()` et lancez une génération aléatoire. Commenter.
+
+```{python}
+#| eval: false
+
+rng = np.random.default_rng(0)
+rng.normal()
+rng2 = np.random.default_rng(...)
+rng.normal()
+```
+
+### Question : afficher un histogramme
+
+Avec `plt.subplot`, créer 3 histogrammes de $100$ tirages aléatoires de distributions suivantes:
+
+1. loi gaussienne (centrée-réduite)
+2. loi de Cauchy
+3. loi de Laplace.
+
+On utilisera les mêmes paramètres de centrage et d'échelle pour les trois lois.
+
+```{python}
+#| eval: false
+
+n_samples = 10000
+X = np.empty([n_samples, 3])
+X[:, 0] = ...
+X[:, 1] = ...
+X[:, 2] = ...
+
+lois = ["Loi de Gauss", "Loi de Laplace", "Loi de Cauchy"]
+
+fig_hist, ax = plt.subplots(3, 1, figsize=(3, 3))
+
+for i, name in enumerate(lois):
+    ax[i].hist(..., bins=100, density=True)
+    ax[i].set_title(name)
+
+plt.tight_layout()
+plt.show()
+```
+
+
+De manière complémentaire le module `scipy.stats` permet d'utiliser des lois usuelles, et de faire des tests statistiques. On pourra consulter la documentation en ligne pour plus de détails: [https://docs.scipy.org/doc/scipy/reference/stats.html](https://docs.scipy.org/doc/scipy/reference/stats.html).
+
+
+::: {.callout-note appearance="simple"}
+
+## Pour aller plus loin.
+La plupart des lois usuelles sont disponibles, cf. [la documentation](https://numpy.org/doc/stable/reference/random/generator.html); vous pourrez [en manipuler avec des widgets ici](https://github.com/josephsalmon/Random-Widgets).
+:::
+
+
+
