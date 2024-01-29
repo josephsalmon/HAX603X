@@ -365,7 +365,6 @@ Un exemple utilisant le package `numpy` pour créer une figure simple est donné
 
 ```{python}
 #| layout-ncol: 1
-#| code-fold: true
 #| label: fig-cos
 #| fig-cap: "Une figure simple."
 
@@ -418,7 +417,7 @@ rng2 = np.random.default_rng(...)
 rng.normal()
 ```
 
-### Question : afficher un histogramme
+#### Question : afficher un histogramme
 
 Avec `plt.subplot`, créer 3 histogrammes de $100$ tirages aléatoires de distributions suivantes:
 
