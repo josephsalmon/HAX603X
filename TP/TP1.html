@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - TP1:…</title>
+<title>HAX603X: Modélisation stochastique - TP1: Prise en main de Python</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,7 +20,61 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -39,6 +93,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -66,12 +122,28 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -160,7 +232,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="dropdown-header">TP</li>
         <li>
     <a class="dropdown-item" href="../TP/TP1.html">
- <span class="dropdown-text">TP1:…</span></a>
+ <span class="dropdown-text">TP1: Prise en main de Python</span></a>
   </li>  
     </ul>
   </li>
@@ -177,7 +249,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP1.html">TP1:…</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP1.html">TP1: Prise en main de Python</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -201,9 +273,12 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP1.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP1:…</span></a>
+ <span class="menu-text">TP1: Prise en main de Python</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+ <span class="menu-text">TP/TP2.qmd</span>
+  </li>
       </ul>
   </li>
     </ul>
@@ -216,17 +291,33 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#test1" id="toc-test1" class="nav-link active" data-scroll-target="#test1">test1</a></li>
-  <li><a href="#test2" id="toc-test2" class="nav-link" data-scroll-target="#test2">test2</a></li>
+  <li><a href="#prise-en-main-de-python" id="toc-prise-en-main-de-python" class="nav-link active" data-scroll-target="#prise-en-main-de-python">Prise en main de Python</a>
+  <ul class="collapse">
+  <li><a href="#installation-de-python" id="toc-installation-de-python" class="nav-link" data-scroll-target="#installation-de-python">Installation de Python</a></li>
+  <li><a href="#lenvironnement-de-travail-vscode-vscodium" id="toc-lenvironnement-de-travail-vscode-vscodium" class="nav-link" data-scroll-target="#lenvironnement-de-travail-vscode-vscodium">L’environnement de travail VSCode / VSCodium</a></li>
+  <li><a href="#premiers-pas" id="toc-premiers-pas" class="nav-link" data-scroll-target="#premiers-pas">Premiers pas</a></li>
+  <li><a href="#lenvironnement-de-travail" id="toc-lenvironnement-de-travail" class="nav-link" data-scroll-target="#lenvironnement-de-travail">L’environnement de travail</a></li>
+  <li><a href="#aide-en-python" id="toc-aide-en-python" class="nav-link" data-scroll-target="#aide-en-python">Aide en Python</a></li>
+  <li><a href="#répertoire-de-travail" id="toc-répertoire-de-travail" class="nav-link" data-scroll-target="#répertoire-de-travail">Répertoire de travail</a></li>
+  <li><a href="#création-et-affectation-de-variables" id="toc-création-et-affectation-de-variables" class="nav-link" data-scroll-target="#création-et-affectation-de-variables">Création et affectation de variables</a></li>
+  <li><a href="#vecteurs-en-numpy" id="toc-vecteurs-en-numpy" class="nav-link" data-scroll-target="#vecteurs-en-numpy">Vecteurs en <code>numpy</code></a></li>
+  <li><a href="#suites-régulières" id="toc-suites-régulières" class="nav-link" data-scroll-target="#suites-régulières">Suites régulières</a></li>
+  <li><a href="#matrices-en-numpy" id="toc-matrices-en-numpy" class="nav-link" data-scroll-target="#matrices-en-numpy">Matrices en <code>numpy</code></a></li>
+  </ul></li>
+  <li><a href="#visualisation-dune-figure" id="toc-visualisation-dune-figure" class="nav-link" data-scroll-target="#visualisation-dune-figure">Visualisation d’une figure</a></li>
+  <li><a href="#aspects-aléatoires" id="toc-aspects-aléatoires" class="nav-link" data-scroll-target="#aspects-aléatoires">Aspects aléatoires</a>
+  <ul class="collapse">
+  <li><a href="#question-afficher-un-histogramme" id="toc-question-afficher-un-histogramme" class="nav-link" data-scroll-target="#question-afficher-un-histogramme">Question : afficher un histogramme</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP1.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP1.html">TP1:…</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP1.html">TP1: Prise en main de Python</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TP1:…</h1>
+<h1 class="title">TP1: Prise en main de Python</h1>
 </div>
 
 
@@ -243,14 +334,453 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="test1" class="level2">
-<h2 class="anchored" data-anchor-id="test1">test1</h2>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectifs de ce TP
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Utiliser les opérateurs classiques en Python <code>(+,-,*,/,**,@)</code>, etc., savoir créer une fonction, générer un graphique clair et lisible</li>
+<li>Qu’est-ce que la précision de calcul ? Comment utiliser de une visualisation pour mieux comprendre un théorème ou une fonction ?</li>
+<li>Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en <code>numpy</code>.</li>
+</ul>
+</div>
+</div>
+<section id="prise-en-main-de-python" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="prise-en-main-de-python">Prise en main de Python</h2>
+<p>Python est un langage ouvert qui permet de manipuler des données, faire des analyses statistiques, tracer des graphes, et bien d’autres choses encore. Il est distribué gratuitement et vous pouvez le télécharger et l’installer sur une machine personnelle. Dans ce premier TP, on présente les bases de Python.</p>
+<p>Pour plus de détails on pourra consulter les ouvrages:</p>
+<ul>
+<li>Introduction à Python <a href="https://python.sdv.univ-paris-diderot.fr/">Cours de Python</a> 🇫🇷</li>
+<li><a href="https://josephsalmon.eu/HLMA310.html">HLMA310 - Logiciels scientifiques</a> 🇫🇷</li>
+<li>Manuel d’algorithmique en Python <span class="citation" data-cites="Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13">(<a href="#ref-Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13" role="doc-biblioref">Courant et al. 2013</a>)</span> 🇫🇷</li>
+</ul>
+<div class="no-row-height column-margin column-container"><div id="ref-Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13" class="csl-entry" role="listitem">
+Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et B. Wack. 2013. <em>Informatique pour tous en classes pr<span>é</span>paratoires aux grandes <span>é</span>coles: Manuel d’algorithmique et programmation structur<span>é</span>e avec Python</em>. Eyrolles.
+</div></div><section id="installation-de-python" class="level3">
+<h3 class="anchored" data-anchor-id="installation-de-python">Installation de Python</h3>
+<p><strong>Tout est déjà installé sur les ordinateurs de l’université. Cette section n’est utile que si vous souhaitez utiliser votre propre machine.</strong></p>
+<p>Le conseil principal, est d’installer VSCode et d’utiliser l’extension Python associée. Pour Python, privilégier Conda (ou Mamba) pour installer les packages, voir par exemple: <a href="https://datascientest.com/installer-anaconda-tout-savoir">installer-anaconda</a>.</p>
 </section>
-<section id="test2" class="level2">
-<h2 class="anchored" data-anchor-id="test2">test2</h2>
+<section id="lenvironnement-de-travail-vscode-vscodium" class="level3">
+<h3 class="anchored" data-anchor-id="lenvironnement-de-travail-vscode-vscodium">L’environnement de travail VSCode / VSCodium</h3>
+<p>On travaillera sous VSCodium (une variante de VSCode) sur les machines de l’Université, un éditeur de texte qui permet de travailler avec Python, mais aussi avec LaTeX, Markdown, R, etc.</p>
+<ul>
+<li>Lancer l’application VSCodium, par exemple en cliquant sur l’icône “Application Menu” en haut à gauche de votre écran, puis en tapant “VSCodium” dans la barre de recherche. La démarche à suivre est visible dans la vidéo ci-dessous:</li>
+</ul>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="./Videos/VSCode.mp4"></video></div>
+<!-- ffmpeg -i Python_VSCOde.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 13 -y -an Python_VSCode.mp4 -->
+<ul>
+<li>Si besoin (à ne faire qu’une fois), il vous faut installer l’extension “<a href="Python extension for Visual Studio Code">https://open-vsx.org/extension/ms-python/python</a>”. Pour cela, il y a plusieurs stratégies. La plus simple consiste à cliquer sur le menu d’installation et chercher l’application Python “Python, extension for Visual Studio Code”, proposée par Microsoft, Intellisense, (attention il y a beaucoup, choisir la bonne, avec plusieurs millions d’étoiles et de téléchargements):</li>
+</ul>
+<div class="quarto-video"><video id="video_shortcode_videojs_video2" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="./Videos/Python_VSCode.mp4"></video></div>
+<p><u>Remarque</u>: Une alternative est d’aller dans le menu “View/Command Palette” (accessible avec <code>ctrl + shift + p</code>), et taper “<strong>Extensions : install extensions</strong>” et installer l’extension “Python, extension for Visual Studio Code” (proposée par Microsoft). Au besoin, il faudra recharger (<em>reload</em>) VSCodium. Si vous avez déjà installé l’extension Python sur votre machine personnelle, vous pouvez passer cette étape.</p>
+<p>La même opération devra être faite pour installer l’extension “<a href="Jupyter Extension for Visual Studio Code">https://open-vsx.org/extension/ms-toolsai/jupyter</a>” (proposée par Microsoft,) qui nous permettra de manipuler des fenêtres interactives:</p>
+<div class="quarto-video"><video id="video_shortcode_videojs_video3" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="./Videos/Jupyter.mp4"></video></div>
+<!-- ffmpeg -i Jupyter.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 15 -y -an Jupyter.mp4 -->
+</section>
+<section id="premiers-pas" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="premiers-pas">Premiers pas</h3>
+<ul>
+<li>Créer un nouveau fichier dans VSCodium intitulé <code>HAX603X_tp1.py</code>, et sauvegarder le dans un dossier <code>HAX603X</code>.</li>
+<li>Dans ce fichier, copier-coller le code de la boîte suivante. On pourra alors lancer des cellules de code en tapant sur <code>shift + enter</code> dans une cellule délimitée par les symboles <code>\# \%\%</code>. On peut aussi lancer la cellule en cliquant sur le bouton “run cell” dans VSCodium (ou clique droit puis une option de type “run cell” ou “run all cell”).</li>
+</ul>
+<div id="8bc47677" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Début de cellule</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">3</span>)  <span class="co"># commentaire en ligne</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># %%</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Une autre cellule</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">2</span><span class="op">**</span><span class="dv">3</span>)  <span class="co"># commentaire en ligne</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>4
+8</code></pre>
+</div>
+</div>
+<div class="quarto-video"><video id="video_shortcode_videojs_video4" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="./Videos/Cells.mp4"></video></div>
+<!-- ffmpeg -i Cells.webm -vf "pad=ceil(iw/2)*2:ceil(ih/2)*2" -r 24 -t 15 -y -an Cells.mp4 -->
+<ul>
+<li><p>Cliquer dans VSCodium sur la version de “Python” en bas de votre écran et choisir sur les machines de l’école l’environnement ‘datascience’ (version: 3.10.6 au 20/01/2024). Si vous travaillez sur votre machine personnelle, choisissez un environnement de base, ou bien créer un environnement <code>conda</code> qui vous conviendra, par exemple avec <code>Miniconda</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+<li><p>Vérifier que maintenant vous pouvez lancer une cellule, par exemple en tapant <code>crtl + enter</code>, ou bien en cliquant sur le bouton “run cell”.</p></li>
+</ul>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://zestedesavoir.com/tutoriels/1448/installer-un-environnement-de-developpement-python-avec-conda/">Installer un environnement de développement Python avec Conda</a></p></li></div></section>
+<section id="lenvironnement-de-travail" class="level3">
+<h3 class="anchored" data-anchor-id="lenvironnement-de-travail">L’environnement de travail</h3>
+<p>Vous voyez apparaître plusieurs fenêtres :</p>
+<ul>
+<li>la console (à droite), avec les environnement et l’historique (en haut à droite)</li>
+<li>la fenêtre de texte (à gauche)</li>
+</ul>
+<p>La console permet d’exécuter des instructions ou commandes. C’est ici que vous donnez vos instructions et que s’affichent les résultats demandés. La fenêtre d’environnement et d’historique recense l’historique des commandes et les variables qui ont été définies. Enfin, la fenêtre de texte permet d’écrire du texte, des commentaires, bref les fichiers que vous conserverez.</p>
+<p>Une manière simple de garder traces de vos calculs/instructions est de les écrire dans un fichier texte (ici <code>HAX603X_tp1.py</code>), et de les délimiter par des symboles <code>\# \%\%</code> (voir ci-dessus), et de les lancer en tapant <code>shift + enter</code> dans une cellule délimitée par les symboles <code>\# \%\%</code>.</p>
+<p>Une première utilisation basique de Python concerne les calculs. Vous pouvez entrer toutes les opérations classiques : addition <code>+</code>, soustraction <code>-</code>, multiplication <code>*</code>, division <code>/</code>, puissance <code>**</code>, etc. Les fonctions usuelles sont également déjà programmées en Python, mais nécessite le chargement du package <code>numpy</code> : exponentielle, logarithme, fonctions trigonométriques, racine carrée, etc.</p>
+<p>Pour cela il suffit de taper <code>import numpy as np</code> dans une cellule de code, puis d’utiliser les fonctions de <code>numpy</code> comme suit par exemple:</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.exp(<span class="dv">1</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.log(<span class="dv">2</span>))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sin(np.pi))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="c7b61245" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<pre><code>2.718281828459045
+0.6931471805599453
+1.2246467991473532e-16</code></pre>
+</div>
+</div>
+</div>
+<section id="question-fonctions-mathématiques" class="level4">
+<h4 class="anchored" data-anchor-id="question-fonctions-mathématiques">Question : fonctions mathématiques</h4>
+<p>Entrez quelques opérations de base pour vous familiariser avec les instructions sur Python. Faire de même avec les fonctions <code>np.exp</code>, <code>np.log</code>, <code>np.sin</code>, <code>np.cos</code>, <code>np.tan</code>, <code>np.sqrt</code>, <code>np.abs</code>,<code>np.round</code>. Entrer les instructions <code>1/0</code> et <code>np.sqrt(-2)</code>. Que constatez-vous ?\</p>
+<p>On remarquera qu’on peut utiliser le symbole <code>np.inf</code> pour représenter l’infini. Par ailleurs, si un résultat n’est pas possible (par exemple en tapant <code>np.sqrt(-2)</code>), alors on obtient <code>nan</code> qui signifie <strong>Not a Number</strong>.</p>
+<p>Il faut se souvenir que les calculs numériques ne sont pas toujours exacts du fait de la discrétisation des nombres sur machine. Taper par exemple <code>np.sin(0)</code>, <code>np.sin(2*np.pi)</code> et <code>np.sin(np.pi*10**16)</code>. Voir aussi les différences entre:</p>
+<div id="045e9a2f" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.1</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.3</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.6 0.6
+0.6 0.6000000000000001</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="aide-en-python" class="level3">
+<h3 class="anchored" data-anchor-id="aide-en-python">Aide en Python</h3>
+<p>On peut utiliser l’aide de base de <code>python</code> avec les commandes <code>help(la-fonction)</code> ou <code>?la-fonction</code>. L’aide en ligne est aussi conseillée, surtout pour la création de graphiques avec <code>matplotlib</code> pour avoir plus de détails et des galleries de visualisation.</p>
+</section>
+<section id="répertoire-de-travail" class="level3">
+<h3 class="anchored" data-anchor-id="répertoire-de-travail">Répertoire de travail</h3>
+<p>Le répertoire de travail (🇬🇧: <strong>working directory</strong>) est le répertoire par défaut, c’est-à-dire le répertoire qui s’ouvre quand vous cliquez sur le bouton pour enregistrer un fichier. La commande pour connaître le répertoire de travail actuel est <code>getcwd</code> du package <code>os</code>:</p>
+<div id="7e23cd70" class="cell" data-execution_count="4">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/jsalmon/Documents/Mes_cours/Montpellier/HAX603X/HAX603X/TP</code></pre>
+</div>
+</div>
+<p>Pour changer le répertoire de travail, on pourra utiliser la commande <code>os.chdir</code> avec un nom de répertoire (valide) entre guillemets, par exemple sous linux:</p>
+<div id="dd69c008" class="cell" data-execution_count="5">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'../'</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Aussi si l’on ferme la fenêtre interactive (à droite), alors exécuter une cellule lancera une nouvelle fenêtre interactive, mais dans le répertoire de travail par défaut (celui où se trouve le fichier courant, ici <code>HAX603X_tp1.py</code>).</p>
+</section>
+<section id="création-et-affectation-de-variables" class="level3">
+<h3 class="anchored" data-anchor-id="création-et-affectation-de-variables">Création et affectation de variables</h3>
+<p>Pour créer des objets, il suffit d’utiliser la commande <code>=</code>.</p>
+<section id="question-variables" class="level4">
+<h4 class="anchored" data-anchor-id="question-variables">Question : variables</h4>
+<p>Créer une variable <code>x</code> qui contient la valeur <span class="math inline">12</span>. Effectuer des calculs du type <code>x+3</code>, <code>x**4</code>, <code>4*x</code> pour vérifier que tout se passe comme prévu.</p>
+<p>En pratique on donnera des noms d’objets pertinents, par exemple</p>
+<div id="4280b30b" class="cell" data-execution_count="6">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> <span class="dv">105</span>  <span class="co"># en km</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> <span class="dv">2</span>  <span class="co"># en heures</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>vitesse <span class="op">=</span> distance<span class="op">/</span>temps  <span class="co"># en km/h</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>On remarquera que lorsqu’on crée des objets, ils sont stockées dans l’environnement de travail (chercher l’onglet <code>variables</code> de la fenêtre interactive).</p>
+</section>
+</section>
+<section id="vecteurs-en-numpy" class="level3">
+<h3 class="anchored" data-anchor-id="vecteurs-en-numpy">Vecteurs en <code>numpy</code></h3>
+<p><code>numpy</code> est essentiellement basé sur du calcul vectoriel. Pour créer un vecteur, la commande de base est la fonction <code>np.array</code>. Ensuite, on peut concaténer des vecteurs, les multiplier par une constante, leur ajouter une constante, les élever à une certaine puissance, etc. Si on manipule deux vecteurs, on prendra garde à leur taille.</p>
+<section id="question-vecteurs" class="level4">
+<h4 class="anchored" data-anchor-id="question-vecteurs">Question : Vecteurs</h4>
+<p>Créez un vecteur <code>v1</code> composé des réels <span class="math inline">7, 8, 3</span>, un vecteur <code>v2</code> composé des réels <span class="math inline">-0.5,120,-12</span>, et un vecteur <code>v3</code> composé des réels <span class="math inline">0,1,0,1</span>. Testez les commandes suivantes : <code>v1-7</code>, <code>v2**4</code>, <code>10*v3</code>, <code>v1+v2</code>, <code>v1*v2</code>, <code>v1/v2</code>, <code>v1+v3</code>.</p>
+<p>Il existe un grand nombre de fonctions mathématiques qui s’appliquent directement sur un vecteur : <code>np.sum()</code>, <code>np.prod()</code>, <code>np.len()</code>, <code>np.min()</code>, <code>np.max()</code>, <code>np.nanmax()</code>, <code>np.argmax()</code>, <code>np.mean()</code>, <code>np.median()</code>, <code>np.var()</code>, <code>np.std()</code>.</p>
+<p>Enfin on peut aussi utiliser des fonctions de tri, partiel ou non: <code>np.sort()</code>, <code>np.argsort()</code>, <code>np.partition()</code>, <code>np.argpartition()</code> on pourra consulter l’aide en ligne pour plus de détails: <a href="https://numpy.org/doc/stable/reference/routines.sort.html">https://numpy.org/doc/stable/reference/routines.sort.html</a></p>
+</section>
+<section id="question-opérations-sur-les-vecteurs" class="level4">
+<h4 class="anchored" data-anchor-id="question-opérations-sur-les-vecteurs">Question : Opérations sur les vecteurs</h4>
+<p>Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie, utiliser l’aide avec <code>??</code> ou <code>?</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pour aller plus loin: vectorisation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vous pourrez consulter les commandes décrites visuellement <a href="https://josephsalmon.github.io/HAX712X/Courses/Numpy/tp.html">ici</a> pour créer des vecteurs et/ou des matrices classiques.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="suites-régulières" class="level3">
+<h3 class="anchored" data-anchor-id="suites-régulières">Suites régulières</h3>
+<p>Une autre manière de créer des vecteurs consiste à créer des suites régulières :</p>
+<ul>
+<li>La commande np.arange(n1,n2) crée un vecteur de réels partant de <code>n1</code> et croissant d’une unité pour arriver à <code>n2</code> (exclu). On peut changer le pas en ajoutant un argument optionnel <code>np.arange(n1, n2, step=pas)</code>. Ainsi, on a :</li>
+</ul>
+<div id="bc933d9b" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, step<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="7">
+<pre><code>array([0, 2, 4, 6, 8])</code></pre>
+</div>
+</div>
+<ul>
+<li>La commande np.tile() permet de répéter un vecteur un nombre de fois fixé.</li>
+</ul>
+<section id="exercice-suite" class="level4">
+<h4 class="anchored" data-anchor-id="exercice-suite">Exercice: Suite</h4>
+<p>Exécutez les commandes suivantes et essayer de analysez les sorties :</p>
+<div id="58ef126f" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector starting from 3 finishing at -8 with step 1, but in a decreasing order</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">3</span>, <span class="op">-</span><span class="dv">8</span>, step<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>np.tile(np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>), (<span class="dv">4</span>, <span class="dv">1</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
+<pre><code>array([[ 9, 12],
+       [ 9, 12],
+       [ 9, 12],
+       [ 9, 12]])</code></pre>
+</div>
+</div>
+<p>Enfin, pour extraire la valeur <span class="math inline">i</span> d’un vecteur <code>x</code>, on tapera <code>x[i]</code> (avec la convention que Python commence à énumérer à 0). Plus généralement, pour extraire les <span class="math inline">3\ieme</span>, <span class="math inline">4\ieme</span> et <span class="math inline">7\ieme</span> composante on tapera <code>x[[3,4,7]]</code>. Le vérifier sur un vecteur de taille 10.</p>
+</section>
+</section>
+<section id="matrices-en-numpy" class="level3 page-columns page-full">
+<h3 class="anchored" data-anchor-id="matrices-en-numpy">Matrices en <code>numpy</code></h3>
+<p>La fonction <code>np.shape</code> permet de connaître la taille d’un vecteur ou d’une matrice. On regardera son comportement sur les vecteurs notamment.</p>
+<section id="question-opérations-élémentaires" class="level4">
+<h4 class="anchored" data-anchor-id="question-opérations-élémentaires">Question : opérations élémentaires</h4>
+<p>Manipulez les opérations classiques sur des matrices (<em>arrays</em>) de <code>numpy</code> (si vous êtes déjà habitués à <code>numpy</code> vous pouvez continuer)</p>
+<p>Opérations termes à termes:</p>
+<div id="ebc346c2" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Somme de deux vecteurs</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">3.0</span>])</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Attribuer à la variable C la somme de A et B</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sum_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.zeros((<span class="dv">3</span>,)), sum_A_B)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Le produit terme à terme avec *</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>prod_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">9</span>]), prod_A_B)</span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remarque: la même chose fonctionne terme à terme avec \, ** (puissance)</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="fl">1.0</span>, <span class="dv">4</span>, <span class="dv">9</span>]), A <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: even for powers"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Le produit scalaire (ou matriciel) est l’opérateur <code>@</code>. Vérifiez que pour la matrice <span class="math inline">J</span> ci-dessous <span class="math inline">J^3 = Id</span> de deux façons. Pour cela on pourra aussi utiliser la puissance matricielle avec <code>np.linalg.matrix_power</code>:</p>
+<div id="20c0d5e9" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>I3 <span class="op">=</span> np.eye(<span class="dv">3</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 1"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 2"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-résolution-de-systèmes-linéaires" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="question-résolution-de-systèmes-linéaires">Question : résolution de systèmes linéaires</h4>
+<p>Pour résoudre le système <span class="math inline">Ax=b</span> en mathématiques, la formule explicite est <span class="math inline">x=A^{-1}b</span> (dans le cas où <span class="math inline">A</span> est inversible).</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>En pratique vous n’utiliserez presque jamais l’inversion de matrice ! En effet, on n’inverse <strong>JAMAIS JAMAIS (!)</strong> une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !</p>
+</div>
+</div>
+<div id="022e131b" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L'inverse de la matrice: </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>J<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss"> est </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>inv(J)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span>  <span class="co"># XXX </span><span class="al">TODO</span><span class="co">: tester avec n=100</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>Jbig <span class="op">=</span> np.roll(np.eye(n), <span class="op">-</span><span class="dv">1</span>, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># matrice de permutation de taille n</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.arange(n)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># on peut transposer une matrice facilement de 2 manières:</span></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig.T)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.transpose(Jbig))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Comparons niveau temps d’execution l’inversion explicite vs.&nbsp;l’utilisation d’un solveur de système linéaire tel que <code>np.linalg.solve</code>:</p>
+<div id="6d214465" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode naive: inversion de matrice</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> ... <span class="op">@</span> b</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>timing_naive <span class="op">=</span> ...</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_naive<span class="sc">:.4f}</span><span class="ss"> s."</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> ...</span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>timinig_optimized <span class="op">=</span> ...</span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_optimized<span class="sc">:.4f}</span><span class="ss"> s.</span><span class="ch">\n</span><span class="ss">C'est donc </span><span class="sc">{</span>timing_naive <span class="op">/</span> timing_optimized<span class="sc">}</span><span class="ss"> fois plus rapide d'utiliser la seconde formulation"</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(y1, y2)</span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Les deux méthodes trouvent le même résultat"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Astuce
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pour des comparaisons d’efficacité temporelle plus poussées on pourra utiliser le package <code>timeit</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</div>
+</div>
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<a href="https://docs.python.org/3/library/timeit.html">lien vers la documentation de timeit</a></p></li></div></section>
+<section id="question-découpage-slicing" class="level4">
+<h4 class="anchored" data-anchor-id="question-découpage-slicing">Question découpage (🇬🇧: <em>slicing</em>)</h4>
+<p>Le découpage permet d’extraire des éléments selon un critère (position, condition, etc.). La notation <code>:</code> signifie “tout le monde”, et l’indexation commence en <span class="math inline">0</span>. Pour partir de la fin, il est possible de mettre le signe <code>-</code> devant le nombre: ainsi <span class="math inline">-1</span> renvoie donc au dernier élément.</p>
+<div id="d9f33930" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The first column is </span><span class="sc">{</span>A[:, <span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher la deuxième ligne de A</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The second row is </span><span class="sc">{...}</span><span class="ss">"</span>)  <span class="co"># XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mettre à zéro une ligne sur 2 de la matrice identité de taille <span class="math inline">5\times 5</span></p>
+<div id="3122f169" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.eye(<span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>C[...,...] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mettre à zéro une ligne sur deux. # XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="visualisation-dune-figure" class="level2">
+<h2 class="anchored" data-anchor-id="visualisation-dune-figure">Visualisation d’une figure</h2>
+<p>Pour lancer une figure on peut utiliser la package <code>matplotlib</code>. Un exemple utilisant le package <code>numpy</code> pour créer une figure simple est donné ci-dessous, dans la <a href="#fig-cos" class="quarto-xref">Figure&nbsp;1</a>.</p>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ax.plot(r,theta)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="cell-fig-cos" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="fig-cos" class="quarto-figure quarto-figure-center anchored" height="411" width="590">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-cos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="TP1_files/figure-html/fig-cos-output-1.png" width="590" height="411" class="figure-img">
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-cos-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Une figure simple.
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="aspects-aléatoires" class="level2">
+<h2 class="anchored" data-anchor-id="aspects-aléatoires">Aspects aléatoires</h2>
+<p>Le module <code>random</code> de <code>numpy</code> permet d’utiliser l’aléatoire et des lois usuelles en Python. On crée d’abord un générateur qui nous permettra ensuite d’appeler les lois voulues comme suite:</p>
+<div id="6caf6e59" class="cell" data-execution_count="16">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># package de calcul scientifique</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># package graphique</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>generateur.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="10">
+<pre><code>0.06053362578372183</code></pre>
+</div>
+</div>
+<section id="question-matrices-aléatoires" class="level4">
+<h4 class="anchored" data-anchor-id="question-matrices-aléatoires">Question : Matrices aléatoires</h4>
+<p>Créer une matrice de taille <span class="math inline">4\times 5</span> dont les entrées sont <span class="math inline">i.i.d</span> de loi de Laplace d’espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s’aider <a href="https://numpy.org/doc/stable/reference/random/generator.html">de l’aide en ligne</a> si besoin.</p>
+<div id="06ba99da" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-reproduire-des-résultats" class="level4">
+<h4 class="anchored" data-anchor-id="question-reproduire-des-résultats">Question : Reproduire des résultats</h4>
+<p>Pour reproduire des résultats ou débugger un code, il est utile de “figer” l’aléatoire. On utilise pour cela une graine (🇫🇷 <em>seed</em>) dans la création du générateur. Fixez la graine à 0 dans <code>default_rng()</code> et lancez une génération aléatoire. Commenter.</p>
+<div id="4825b09c" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rng.normal()</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>rng2 <span class="op">=</span> np.random.default_rng(...)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>rng.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="question-afficher-un-histogramme" class="level3">
+<h3 class="anchored" data-anchor-id="question-afficher-un-histogramme">Question : afficher un histogramme</h3>
+<p>Avec <code>plt.subplot</code>, créer 3 histogrammes de <span class="math inline">100</span> tirages aléatoires de distributions suivantes:</p>
+<ol type="1">
+<li>loi gaussienne (centrée-réduite)</li>
+<li>loi de Cauchy</li>
+<li>loi de Laplace.</li>
+</ol>
+<p>On utilisera les mêmes paramètres de centrage et d’échelle pour les trois lois.</p>
+<div id="2a066699" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.empty([n_samples, <span class="dv">3</span>])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">0</span>] <span class="op">=</span> ...</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">1</span>] <span class="op">=</span> ...</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">2</span>] <span class="op">=</span> ...</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>lois <span class="op">=</span> [<span class="st">"Loi de Gauss"</span>, <span class="st">"Loi de Laplace"</span>, <span class="st">"Loi de Cauchy"</span>]</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>fig_hist, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(lois):</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    ax[i].hist(..., bins<span class="op">=</span><span class="dv">100</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(name)</span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>De manière complémentaire le module <code>scipy.stats</code> permet d’utiliser des lois usuelles, et de faire des tests statistiques. On pourra consulter la documentation en ligne pour plus de détails: <a href="https://docs.scipy.org/doc/scipy/reference/stats.html">https://docs.scipy.org/doc/scipy/reference/stats.html</a>.</p>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pour aller plus loin.
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>La plupart des lois usuelles sont disponibles, cf.&nbsp;<a href="https://numpy.org/doc/stable/reference/random/generator.html">la documentation</a>; vous pourrez <a href="https://github.com/josephsalmon/Random-Widgets">en manipuler avec des widgets ici</a>.</p>
+</div>
+</div>
 
 
+
 </section>
+</section>
+
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -695,6 +1225,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
+<script>videojs(video_shortcode_videojs_video2);</script>
+<script>videojs(video_shortcode_videojs_video3);</script>
+<script>videojs(video_shortcode_videojs_video4);</script>
 
 
 
