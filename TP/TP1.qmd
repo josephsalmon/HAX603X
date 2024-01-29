@@ -6,6 +6,7 @@ format:
     out.width: 50%
 filters:
   - shinylive
+
 ---
 
 
@@ -234,7 +235,7 @@ np.tile(np.arange(9, 13, step=3), (4, 1))
 ```
 
 Enfin, pour extraire la valeur $i$ d'un vecteur `x`, on tapera `x[i]` (avec la convention que Python commence à énumérer à 0).
-Plus généralement, pour extraire les $3\ieme$, $4\ieme$ et $7\ieme$ composante on tapera `x[[3,4,7]]`. Le vérifier sur un vecteur de taille 10.
+Plus généralement, pour extraire les valeurs associées aux indices $3$, $4$ et $7$, on tapera `x[[3,4,7]]`. Le vérifier sur un vecteur de taille 10.
 
 
 ### Matrices en `numpy`
