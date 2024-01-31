@@ -739,16 +739,16 @@ m = 4
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
 fig1.show()
 ```
-Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = x {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$.
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = \tfrac{x}{2} {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=8$.
 
 ```{python}
 #| echo: false
 #| label: fig-rejet-polynome-tri
 #| fig-cap:
 #|       - Visualisation des zones d'acceptations/rejet (g triangulaire)
-g = lambda x: x
+g = lambda x: x / 2
 g_sampler = lambda: np.random.triangular(0, 1, 1)
-m = 4
+m = 8
 
 fig2, ratio2 = plot_accept_reject(n, f, g, g_sampler, m)
 fig2.show()
