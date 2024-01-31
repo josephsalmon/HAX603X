@@ -37,6 +37,7 @@ website:
             - Slides/slides_intro.qmd
             - Slides/slides_notations_premiers_pas.qmd
             - Slides/slides_th_asymptotique.qmd
+            - Slides/slides_simulation.qmd
 
 
     - id: TP
