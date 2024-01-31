@@ -33,10 +33,23 @@ code-line-numbers: false
 jupyter: python3
 format:
     revealjs:
+      html-math-method: mathjax
+      include-in-header:
+        - text: |
+            <script>
+            MathJax = {
+              options: {
+                menuOptions: {
+                  settings: {
+                    assistiveMml: false
+                  }
+                }
+              }
+            };
+            </script>
       chalkboard:
         buttons: false
       slide-number: true
-      html-math-method: katex
       controls-tutorial: true
       preview-links: auto
       # logo: images/logo-um.svg

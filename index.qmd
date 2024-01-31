@@ -76,6 +76,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ### Niveau avancé
 - [Software Dev. for datascience](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier, &#127468;&#127463;
+- [Monte Carlo Methods and Applications](https://geometrycollective.github.io/monte-carlo/) by Keenan Crane &#127468;&#127463;
 - Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
 - [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi;  &#127468;&#127463;
 - [Maximum likelihood by numerical optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html)  &#127468;&#127463;

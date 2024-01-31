@@ -3,8 +3,6 @@ title: "Théorèmes asymptotiques"
 subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
-    html-math-method: mathjax
-    include-before: [ '<script type="text/x-mathjax-config">MathJax.Hub.Config({tex2jax: {enableAssistiveMml: false}});</script>']
     toc: true
     template-partials:
         - toc-slide.html
