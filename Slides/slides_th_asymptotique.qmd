@@ -13,6 +13,13 @@ filters:
   - shinylive
 ---
 
+
+##
+```{=html}
+<div id='toc'></div>
+```
+
+
 # Loi des grands nombres
 
 ## Loi forte des grands nombres
@@ -181,7 +188,7 @@ def server(input, output, session):
         legend=dict(
             yanchor="top",
             y=1.18,
-            x=0.95,
+            x=0.85,
             bgcolor="rgba(0,0,0,0)",
         )
     )
@@ -532,14 +539,26 @@ On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hsp
 :::
 
 ## Somme et convolutions
+
 :::: {#thm-tcl}
 ## Loi de la somme et convolutions
-Soient $X$ et $Y$ des v.a. de densités $f$ et $g$ respectivement,
-la densité de $X+Y$ est donnée par la convolution $f*g$.
+Soient $X$ et $Y$ des v.a. indépendantes de densités respectives $f$ et $g$,
+alors la densité de $X+Y$ est donnée par la convolution $f*g$.
 ::::
 
+
+[Rappel]{.underscore}: pour un scalaire $\alpha\neq 0$, la densité de $\alpha X$ est donnée par la fonction $x \mapsto \frac{1}{|\alpha|} \cdot f(\frac{x}{\alpha})$.
+
+:::: {#cor-tclappli}
+
+## Loi de la moyenne
+
+Soient $X_1,\dots,X_n$ des v.a. i.i.d. de densité $f$,
+la densité de $\bar{X}_n$ est donnée par la fonction $x \mapsto n \cdot [f*\dots*f](n \cdot x)$.
+:::
+
 ## Convolution et TCL
-Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la loi de $\bar{X}_n$.
+Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la loi de $\bar{X}_n$ (à une constante près)
 
 
 ```{shinylive-python}
@@ -635,7 +654,7 @@ def server(input, output, session):
             line=dict(color="black", width=3),
             x=[],
             y=[],
-            name=r"f*...*f",
+            name="loi de de la moyenne empirique<br>(variance adéquate)",
         )
     )
 
@@ -661,10 +680,10 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=0.90,
+        y=0.95,
         xanchor="left",
-        x=-0.1,
-        font=dict(size= 10)
+        x=0.8,
+        font=dict(size= 18)
     ))
     fig.update_layout(
     height=250,
@@ -681,12 +700,7 @@ def server(input, output, session):
             y[mask == 1] = 1
 
         else:
-            # else str(input.loi()) == 'laplace':
-            y=np.exp(-np.abs(x))/2
-            # y = np.zeros(nnzeros)
-            # mask = np.where(np.abs(x) >= 0.5, 1, 0)
-            # y[mask == 1] = 0
-            # y = np.cos(np.pi * x) + 1
+            y=np.exp(-np.abs(x)) / 2
             y = y / (np.sum(y) * delta)
 
         var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2

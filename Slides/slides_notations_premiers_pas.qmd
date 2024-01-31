@@ -395,7 +395,7 @@ et $F_X$ sa fonction de répartion.
 La **fonction quantile** associée
 $F_X^\leftarrow: ]0,1[ \rightarrow \mathbb{R}$ est définie par
 $$
-  F_X^\leftarrow(p) = \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
+  F_X^\leftarrow(p) = \inf\{ x \in \mathbb{R} : F_X(x)\geq p\} \enspace.
 $$
 :::
 

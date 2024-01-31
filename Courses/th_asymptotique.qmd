@@ -503,6 +503,18 @@ la loi de $X+Y$ est donnée par la convolution $f*g$.
 ::::
 
 
+[Rappel]{.underscore}: pour un scalaire $\alpha\neq 0$, la densité de $\alpha X$ est donnée par la fonction $x \mapsto \frac{1}{|\alpha|} \cdot f(\frac{x}{\alpha})$.
+
+:::: {#cor-tclappli}
+
+## Loi de la moyenne
+
+Soient $X_1,\dots,X_n$ des v.a. i.i.d. de densité $f$,
+la densité de $\bar{X}_n$ est donnée par la fonction $x \mapsto n \cdot [f*\dots*f](n \cdot x)$.
+:::
+
+
+
 Dessous, pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la densité de la loi de $\bar{X}_n$.
 
 ```{shinylive-python}
@@ -598,7 +610,7 @@ def server(input, output, session):
             line=dict(color="black", width=3),
             x=[],
             y=[],
-            name=r"f*...*f",
+            name="loi de de la moyenne empirique<br>(variance adéquate)",
         )
     )
 
@@ -624,10 +636,10 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=0.90,
+        y=0.95,
         xanchor="left",
-        x=-0.1,
-        font=dict(size= 10)
+        x=0.8,
+        font=dict(size= 18)
     ))
     fig.update_layout(
     height=250,
@@ -644,12 +656,7 @@ def server(input, output, session):
             y[mask == 1] = 1
 
         else:
-            # else str(input.loi()) == 'laplace':
-            y=np.exp(-np.abs(x))/2
-            # y = np.zeros(nnzeros)
-            # mask = np.where(np.abs(x) >= 0.5, 1, 0)
-            # y[mask == 1] = 0
-            # y = np.cos(np.pi * x) + 1
+            y=np.exp(-np.abs(x)) / 2
             y = y / (np.sum(y) * delta)
 
         var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2
@@ -663,7 +670,6 @@ def server(input, output, session):
 
 
 app = App(app_ui, server)
-
 ```
 
 

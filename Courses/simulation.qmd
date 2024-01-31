@@ -69,7 +69,7 @@ L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables
 <br>
 
 Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
-Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second une transformation simple permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
 :::
 
 
@@ -127,7 +127,7 @@ print(rng.random(size=5))  ## cinq tirages uniformes sur [0,1]
 print(rng.random(size=(3, 2)))  ## matrice 3x2, à entrées unif. sur [0,1]
 ```
 
-Dans la suite on va voir comment générer d'autres lois à partir de la loi uniforme, mais il est clair que les logiciels modernes propose un large éventail de distribution classique (gaussienne, exponentielle, etc.).
+Dans la suite on va voir comment générer d'autres lois à partir de la loi uniforme, mais il est clair que les logiciels modernes proposent un large éventail de distribution classique (gaussienne, exponentielle, etc.).
 Une liste exhaustive est donnée [ici](https://numpy.org/doc/stable/reference/random/generator.html#distributions) pour `numpy`.
 
 ::: {.callout-note appearance="simple"}
@@ -152,16 +152,50 @@ On peut démontrer facilement la même relation pour $x<0$ et $x>1$, d'où le r�
 ## Méthode d'inversion
 
 
-L'idée de la méthode d'inversion repose sur le résultat suivant : si $F$ est une fonction de répartition bijective et $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F^{-1}(U)$ a pour fonction de répartition $F$. C'est une conséquence de la suite d'égalités :
+L'idée de la méthode d'inversion repose sur le résultat suivant :
+
+
+## Rappel sur la fonction quantile
+
+Rappel : Pour $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante, on note
+
+$$
+\forall q \in ]0,1[, \quad F^\leftarrow(q) = \inf\{ x \in \mathbb{R} : F(x)\geq q\}
+$${#eq-inf}
+
+
+
+:::{#thm-quantile}
+
+## Caratérisation des quantiles
+Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante et continue à droite, alors pour tout $q \in ]0, 1[$, on a
 $$
 \begin{align}
-  \mathbb{P}( F^{-1}(U) \leq x ) & = \mathbb{P}( U \leq F(x) ) \\ 
-                                 & = F(x)\,,
+   \{x \in \mathbb{R} :  F(x) \geq q) \} & =
+   \{x \in \mathbb{R} : x \geq F_X^\leftarrow(q)  \}
 \end{align}
-$${#eq-methode_inversion}
+$$ 
+:::
 
-où la deuxième égalité résulte de la bijectivité de $F$.
-Ainsi, si $F$ est facilement inversible, on peut simuler une variable aléatoire $X$ de loi $F$ en simulant une variable aléatoire uniforme $U$ et en posant $X = F^{-1}(U)$.
+[Preuve]{.underline}
+
+- Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
+- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F_X^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
+
+
+## Méthode d'inversion
+:::{#thm-methode_inversion}
+
+## Méthode d'inversion
+Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^{}(U)$ a même loi que $X$.
+:::
+
+
+[Preuve]{.underline}: En utilisant le théorème précédent, on a
+$\mathbb{P}(F_X^{-1}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
+Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
+
+On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, car les deux v.a. ont la même fonction de répartition.
 
 
 ::: {#exm-inverse-exponentielle}
@@ -199,7 +233,7 @@ Si $F$ n'est pas bijective, deux problèmes apparaissent :
 - l'équation a plusieurs solutions ce qui revient à dire que $F$ n'est pas injective (graphiquement cela se matérialise par un plateau à la hauteur $\alpha$). Un exemple classique est celui où $F$ est la fonction de répartition d'une variable aléatoire discrète.
 
 Le passage à l'inéquation $F(x) \geq u$ permet de contourner la non-surjectivité : on ne regarde non plus les droites horizontales $y=u$ mais la région $\{y \geq \alpha\}$. Le choix de l'$\inf$ dans la définition de $F^{\leftarrow}$ permet de contourner la non-injectivité : vu qu'il y a possiblement plusieurs $x$ tels que $F(x) \geq u$, on choisit le "premier".
-sCes considérations sont illustrées en Figure @fig-3-quantiles.
+Ces considérations sont illustrées en Figure @fig-3-quantiles.
 
 
 
@@ -479,9 +513,6 @@ invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd
 ```
 
 
-
-
-
 ## Méthode de rejet
 
 L'idée de la méthode de rejet est la suivante. On souhaite simuler une variable aléatoire $X$ de densité $f$, appelée **loi cible**, mais $f$ est trop compliquée pour que la simulation puisse se faire directement.
@@ -498,7 +529,7 @@ $$
 $$
 
 
-L'idée est alors de considérer deux suites iid de variables aléatoires indépendantes entre elles :
+L'idée est alors de considérer deux suites i.i.d. de variables aléatoires indépendantes entre elles:
 
 - $(Y_n)_{n \geq 1}$ de loi $g$,
 - $(U_n)_{n \geq 1}$ de loi uniforme sur $[0,1]$.
@@ -506,7 +537,8 @@ L'idée est alors de considérer deux suites iid de variables aléatoires indép
 En pratique, $Y_n$ correspond à une proposition et $U_n$ permettra de décider si on accepte la proposition ou non. Si oui, alors on conserve $Y_n$, sinon on simule $Y_{n+1}$. Le rapport d'acceptation, c'est-à-dire la proportion de $Y_n$ acceptées, correspond à $r(x)$.
 
 
-Autrement dit, pour simuler $X$ de densité $f$, il suffit de simuler $Y$ de densité $g$ et $U$ uniforme jusqu'à ce que $U \leq r(Y)$ (voir Figure ??? pour une illustration). La proposition suivante assure que cette méthode donne bien le résultat voulu.
+Autrement dit, pour simuler $X$ de densité $f$, il suffit de simuler $Y$ de densité $g$ et $U$ uniforme jusqu'à ce que $U \leq r(Y)$.
+La proposition suivante assure que cette méthode donne bien le résultat voulu.
 
 :::: {#prp-rejet}
 
@@ -524,7 +556,7 @@ Soit $T = \inf \{n \geq 1 : U_n \leq r(Y_n)\}$ le premier instant où le tirage 
 
 *Démonstration*:
 
-Il s'agit d'étudier la loi du couple $(X,T)$. Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}$, on écrit
+Il s'agit d'étudier la loi du couple $(X,T)$. Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}^{*}$, on écrit
 $\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1}), U_n \leq r(Y_n), Y_n \leq x).$
 Les $n$ tirages étant iid, on obtient
 $$
@@ -533,7 +565,7 @@ $$
 
 Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indépendantes donc leur loi jointe correspond au produit des densités :
 $$\begin{align*}
-		\mathbb{P}(U_1 > r(Y_1)
+		\mathbb{P}(U_1 > r(Y_1))
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
 		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, \mathrm du \mathrm dy  \\
 		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, \mathrm du\bigg) g(y)\, \mathrm d y \\
