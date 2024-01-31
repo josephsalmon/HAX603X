@@ -447,6 +447,10 @@ Benjamin Charlier
 </ul>
 </nav>
 </section>
+<section id="section" class="slide level2">
+<h2></h2>
+<div id="toc"></div>
+</section>
 <section>
 <section id="loi-des-grands-nombres" class="title-slide slide level1 center">
 <h1>Loi des grands nombres</h1>
@@ -604,7 +608,7 @@ def server(input, output, session):
         legend=dict(
             yanchor="top",
             y=1.18,
-            x=0.95,
+            x=0.85,
             bgcolor="rgba(0,0,0,0)",
         )
     )
@@ -724,7 +728,7 @@ app = App(app_ui, server)
 </ul>
 </div>
 <div class="fragment">
-<div id="8dad51b6" class="cell" data-execution_count="1">
+<div id="cdca818c" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Calcul du quantile (en: Percent point function) de niveau 1-0.05/2</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -948,12 +952,16 @@ x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 <section id="somme-et-convolutions" class="slide level2">
 <h2>Somme et convolutions</h2>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des v.a. de densités <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> respectivement, la densité de <span class="math inline">\(X+Y\)</span> est donnée par la convolution <span class="math inline">\(f*g\)</span>.</p>
+<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des v.a. indépendantes de densités respectives <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span>, alors la densité de <span class="math inline">\(X+Y\)</span> est donnée par la convolution <span class="math inline">\(f*g\)</span>.</p>
+</div>
+<p><span class="underscore">Rappel</span>: pour un scalaire <span class="math inline">\(\alpha\neq 0\)</span>, la densité de <span class="math inline">\(\alpha X\)</span> est donnée par la fonction <span class="math inline">\(x \mapsto \frac{1}{|\alpha|} \cdot f(\frac{x}{\alpha})\)</span>.</p>
+<div id="cor-tclappli" class="theorem corollary">
+<p><span class="theorem-title"><strong>Corollaire 1 (Loi de la moyenne) </strong></span>Soient <span class="math inline">\(X_1,\dots,X_n\)</span> des v.a. i.i.d. de densité <span class="math inline">\(f\)</span>, la densité de <span class="math inline">\(\bar{X}_n\)</span> est donnée par la fonction <span class="math inline">\(x \mapsto n \cdot [f*\dots*f](n \cdot x)\)</span>.</p>
 </div>
 </section>
 <section id="convolution-et-tcl" class="slide level2">
 <h2>Convolution et TCL</h2>
-<p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la loi de <span class="math inline">\(\bar{X}_n\)</span>.</p>
+<p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la loi de <span class="math inline">\(\bar{X}_n\)</span> (à une constante près)</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
@@ -1046,7 +1054,7 @@ def server(input, output, session):
             line=dict(color="black", width=3),
             x=[],
             y=[],
-            name=r"f*...*f",
+            name="loi de de la moyenne empirique&lt;br&gt;(variance adéquate)",
         )
     )
 
@@ -1072,10 +1080,10 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=0.90,
+        y=0.95,
         xanchor="left",
-        x=-0.1,
-        font=dict(size= 10)
+        x=0.8,
+        font=dict(size= 18)
     ))
     fig.update_layout(
     height=250,
@@ -1092,12 +1100,7 @@ def server(input, output, session):
             y[mask == 1] = 1
 
         else:
-            # else str(input.loi()) == 'laplace':
-            y=np.exp(-np.abs(x))/2
-            # y = np.zeros(nnzeros)
-            # mask = np.where(np.abs(x) &gt;= 0.5, 1, 0)
-            # y[mask == 1] = 0
-            # y = np.cos(np.pi * x) + 1
+            y=np.exp(-np.abs(x)) / 2
             y = y / (np.sum(y) * delta)
 
         var = np.sum(y * x**2 * delta) - (np.sum(y * x * delta))**2
