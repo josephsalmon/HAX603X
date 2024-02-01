@@ -478,7 +478,7 @@ app = App(app_ui, server)
 Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l'analyse.
 Pour cela supposons que l'on ait une suite de variables aléatoires réelles $X_1, \dots, X_n$, i.i.d. dont la fonction de densité commune est notée par $f$.
 
-On rappel quelques éléments de probabilités concernant les densités.
+On rappelle quelques éléments de probabilités concernant les densités.
 Pour cela on rappelle la définition de la convolution deux fonctions.
 Pour cela prenons deux fonctions $f$ et $g$ définies sur $\mathbb{R}$ et qui sont intégrables au sens de Lebesgue.
 La **convolution** de $f$ par $g$ est alors la fonction $f*g$ suivante:
@@ -498,7 +498,7 @@ On peut aussi obtenir $f*g(x)$ en calculant $\int_{\mathbb{R}^2} f(u)g(v) {1\hsp
 
 :::: {#thm-tcl}
 ## Loi de la somme et convolutions
-Soient $X$ et $Y$ des v.a. de densités $f$ et $g$ respectivement,
+Soient $X$ et $Y$ des v.a. indépendantes de densités $f$ et $g$ respectivement,
 la loi de $X+Y$ est donnée par la convolution $f*g$.
 ::::
 

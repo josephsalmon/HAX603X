@@ -69,7 +69,7 @@ L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables
 <br>
 
 Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
-Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain intervalle. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
 :::
 
 
@@ -83,7 +83,7 @@ Parfois il est utile d'aller chercher dans le code source certaines information 
 Un tel algorithme se construit de la manière suivante :
 
 1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
-2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots·, U_n$.
+2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots, U_n$.
 
 
 - La fonction $f$ est déterministe et prend ses valeurs dans un ensemble fini, donc l'algorithme est périodique. Le but est donc d'avoir la plus grande période possible.
@@ -172,7 +172,7 @@ Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croiss
 $$
 \begin{align}
    \{x \in \mathbb{R} :  F(x) \geq q) \} & =
-   \{x \in \mathbb{R} : x \geq F_X^\leftarrow(q)  \}
+   \{x \in \mathbb{R} : x \geq F^\leftarrow(q)  \}
 \end{align}
 $$ 
 :::
@@ -180,7 +180,7 @@ $$
 [Preuve]{.underline}
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
-- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F_X^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
+- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
 
 
 ## Méthode d'inversion
