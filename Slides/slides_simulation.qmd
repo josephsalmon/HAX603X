@@ -1,0 +1,1160 @@
+---
+title: "Simulation"
+subtitle: "HAX603X: Modélisation stochastique"
+format:
+  revealjs:
+    toc: true
+    template-partials:
+        - toc-slide.html
+    include-after-body: toc-add.html
+filters:
+  - shinylive
+jupyter: python3
+---
+
+## Enjeu
+
+<br>
+<br>
+
+
+[Question: Comment simuler en pratique des variables aléatoires i.i.d?]{.r-fit-text}
+
+
+<br>
+<br>
+
+. . .
+
+[Approche: commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
+<br>
+<br>
+
+
+##
+```{=html}
+<div id='toc'></div>
+```
+
+# Variables aléatoires uniformes
+
+## Rappel sur les variables uniformes
+
+[Rappel]{.underline} : $U$ suit une loi uniforme sur $[0,1]$: $U\sim\mathcal{U}([0,1])$ ssi sa fonction de répartition $F_U$ vaut
+$$
+F_U(x)
+=
+\begin{cases}
+    0, & \text{si }x < 0\,,        \\
+    x, & \text{si }x \in [0,1]\,,  \\
+    1, & \text{si }x > 1\,.
+\end{cases}
+$$
+
+::: {.r-stack}
+
+```{python}
+#| echo: false
+#| layout-ncol: 1
+
+import numpy as np
+import scipy
+import plotly.graph_objects as go
+
+
+x = np.linspace(-3, 4, num=300)
+
+fig = go.Figure(layout=go.Layout(autosize=True, width=1000, height=720))
+
+fig.add_trace(
+    go.Scatter(
+        mode="lines",
+        line=dict(color="black", width=3),
+        x=x,
+        y=scipy.stats.uniform.cdf(x),
+        name="F_U",
+    )
+)
+
+
+fig.update_xaxes(tickfont_size=18)
+fig.update_yaxes(tickfont_size=18)
+fig.update_layout(
+    template="simple_white",
+    showlegend=True,
+)
+fig.update_layout(
+    legend=dict(
+        bgcolor="#ffffff",
+        font=dict(
+            size=18,
+            color="black"
+        )
+    )
+)
+```
+:::
+
+## Challenges
+
+<br>
+
+[Objectif]{.underline}: simuler sur machine une suite $U_1, \dots, U_n$  de v.a., i.i.d., de loi $\mathcal{U}([0,1])$. 
+
+<br>
+[Difficultés]{.underline}:
+
+:::{.incremental}
+
+- Une machine est déterministe.
+- Les nombres flottant entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres.
+- Vérifier qu'une suite est bien i.i.d. est un problème difficile.
+:::
+
+
+# Générateurs de nombres pseudo-aléatoires
+
+## Générateurs de nombres pseudo-aléatoires
+
+::: {#def-PRNG}
+## Générateur de nombres pseudo-aléatoires
+
+<br>
+
+Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
+:::
+
+<br>
+
+[Remarque]{.underline}: ces nombres sont obtenus depuis des **nombres entiers** générés aléatoirement et uniformément sur grand interval, puis une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+
+
+## Détails techniques
+
+Un PRNG se construit ainsi :
+
+1. Initialisation: une graine (&#127468;&#127463;: *seed*) $U_0$, détermine la première valeur (choix arbitraire)
+2. On calcule $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, telle que $U_{n+1}$ est "le plus indépendant possible" de $U_1, \dots, U_n$.
+
+. . .
+
+- $f$ : à valeur dans un ensemble fini $\implies$ **périodicité** (contrainte: utiliser la plus grande période possible)
+- L'algorithme est **déterministe** (une fois la graine fixée). Utilité de fixer la graine: répéter des simulations dans des conditions identiques et ainsi repérer des erreurs
+
+
+## Le générateur congruentiel linéaire
+
+La plupart des PRNG s'appuient sur des résultats arithmétiques.
+
+:::{.incremental}
+
+- Le plus célèbre: Générateur Congruentiel Linéaire (&#127468;&#127463; Linear Congruential Generator, LCG).
+
+- Récurrence:
+$$
+  X_{n+1} = a X_n + b \quad \text{mod } m \enspace,
+$$
+$a,b,m$, entiers bien choisis pour que la suite obtenue ait de bonnes propriétés
+- Normalisation: $X_n/m$.
+- Exemple: la fonction ```rand``` de ```scilab``` utilisait cette congruence avec $m=2^{31}$, $a=843\; 314\; 861$, et $b=453\; 816\; 693$.
+:::
+
+## Exemples de générateurs alternatifs
+
+<br>
+<br>
+
+- méthode par défaut pour `Python` et `R`:  **Mersenne-Twister**, s'appuie sur la multiplication vectorielle (période du générateur $m =2^{19937}-1$)
+
+<br>
+
+- méthode par défaut pour `numpy`: **PCG64** (cf. [documentation de `numpy`](https://numpy.org/doc/stable/reference/random/bit_generators/pcg64.html)),
+dispose de meilleures garanties statistiques; voir [https://www.pcg-random.org](https://www.pcg-random.org/statistical-tests.html#id4)
+
+<br>
+
+- On suppose désormais disposer d'un générateur pseudo-aléatoire sur $[0,1]$.
+
+
+## Usage en `numpy`
+
+
+En `numpy` (version>1.17): utiliser des éléments aléatoires est d'utiliser un générateur
+
+<br>
+
+```{python}
+#| echo: true
+seed = 12345                       #  choix de la graine
+rng = np.random.default_rng(seed)  #  générateur
+```
+
+<br>
+
+. . .
+
+```{python}
+#| echo: true
+print(rng.random())                #  un tirage uniforme sur [0,1]
+```
+
+<br>
+
+. . .
+
+
+```{python}
+#| echo: true
+print(rng.random(size=5))          #  5 tirages uniformes sur [0,1]
+```
+
+<br>
+
+. . .
+
+
+```{python}
+#| echo: true
+print(rng.random(size=(3, 2)))     #  matrice 3x2, à entrées unif. sur [0,1]
+```
+
+## Plus sur les lois aléatoires et Python
+
+:::{.incremental}
+
+<br>
+
+- Suite du cours: apprendre à générer de nombreuses lois à partir de la loi uniforme
+
+- [En pratique]{.underline}: les logiciels proposent les distributions classiques (gaussiennes, exponentielles, etc.), utiliser plutôt ces fonctions que de les implémenter soi-même.
+
+- Liste exhaustive pour `numpy`:
+  
+  [https://numpy.org/doc/stable/reference/random/generator.html#distributions](https://numpy.org/doc/stable/reference/random/generator.html#distributions)
+
+:::
+
+<br>
+
+. . .
+
+::: {.callout-note appearance="simple"}
+## Pour aller plus loin
+Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://albertcthomas.github.io/good-practices-random-number-generators/).
+:::
+
+
+# Méthode d'inversion
+
+
+
+## Rappel sur la fonction quantile
+
+[Rappel]{.underline}: Pour $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante, on note
+
+$$
+\forall q \in ]0,1[, \quad F^\leftarrow(q) = \inf\{ x \in \mathbb{R} : F(x)\geq q\}
+$${#eq-inf}
+
+. . .
+
+
+:::{#thm-quantile}
+
+## Caratérisation des quantiles
+Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante et continue à droite, alors pour tout $q \in ]0, 1[$, on a
+$$
+\begin{align}
+   \{x \in \mathbb{R} :  F(x) \geq q) \} & =
+   \{x \in \mathbb{R} : x \geq F^\leftarrow(q)  \}
+\end{align}
+$$ 
+:::
+
+. . .
+
+[Cas $\subset$:]{.underline}
+
+Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$
+
+<br>
+
+. . .
+
+[Cas $\supset$:]{.underline}
+
+Soit  $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$; par continuité à droite de $F$, $F(x) \geq q$
+
+
+## Méthode d'inversion
+:::{#thm-methode_inversion}
+
+## Méthode d'inversion
+Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^\leftarrow(U)$ a même loi que $X$.
+:::
+
+. . .
+
+<br>
+
+[Preuve]{.underline}: en utilisant le théorème précédent, on a
+$$
+\forall x\in\mathbb{R}, \quad \mathbb{P}(F_X^\leftarrow(U) \leq x) = \mathbb{P}(U \leq F_X(x)) 
+$$
+
+. . .
+
+Puis, comme $U$ est une loi uniforme sur $[0,1]$:
+
+$$
+\mathbb{P}(U\leq F_X(x))=F_X(x)
+$$
+
+. . .
+
+Ainsi, $F_X^\leftarrow(U)$ et $X$ ont même loi: les deux v.a. ont la même fonction de répartition
+
+
+
+## Symétrie de la loi uniforme
+
+
+:::{#prp-uni}
+
+## Symétrie de la loi uniforme
+Soit $U \sim \mathcal{U}([0,1])$ une variable uniforme sur $[0,1]$. Alors,  $1-U$ suit aussi une loi uniforme sur $[0,1]$.
+:::
+
+:::{.fragment fragment-index=1}
+
+[Preuve]{.underline}:
+
+On va décrire la fonction de répartition de $1-U$ et montrer qu'elle est égale à celle d'une loi uniforme sur $[0,1]$.
+:::
+
+:::{.fragment fragment-index=2}
+
+
+Le résultat est facile pour $x \notin [0,1]$, on suppose donc $x \in [0,1]$.
+:::
+
+$$
+\begin{align*}
+\class{fragment}{{}\mathbb{P}(1-U \leq x)} & \class{fragment}{{}= \mathbb{P}(U \geq 1-x) }\\
+                       & \class{fragment}{{} = 1-(1-x)} \\
+                       & \class{fragment}{{} = x}
+\end{align*}
+$$
+
+## Exemple : loi exponentielle
+
+<br>
+
+:::{.incremental}
+- Densité d'une loi $\mathcal{E}(\lambda)$ pour $\lambda > 0$ : $f_{\lambda}(x) = \lambda e^{-\lambda x}{1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)$
+- Fonction de répartition: $F_{\lambda}(x) = (1 - e^{-\lambda x}) {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)$
+- $F_{\lambda}$ est bijective (de $\mathbb{R}_+$ dans $]0,1[$) et pour tout $u \in ]0,1[$, $F_{\lambda}^{-1}(u) = -\frac{1}{\lambda} \log(1-u)$
+:::
+
+. . .
+
+<br>
+
+Avec le résultat:
+$$
+U \sim \mathcal{U}([0,1]) \iff 1-U \sim \mathcal{U}([0,1])\enspace,
+$$
+
+<br>
+
+Pour simuler une loi exponentielle: simuler $U$ uniforme et appliquer $-\tfrac{1}{\lambda} \log(\cdot)$
+
+$$
+\boxed{-\tfrac{1}{\lambda} \log(U) \sim \mathcal{E}(\lambda)}
+$$
+
+## Visualisation
+
+Voir animation dans la section [Cours, section "Méthode d'inversion"](../Courses/simulation.html#m%C3%A9thode-dinversion-1).
+
+
+
+# Méthode de rejet
+
+## Méthode de rejet: contraintes
+
+[Motivation]{.underline}: simuler une variable aléatoire $X$ de densité $f$  (**loi cible**), mais $f$ est trop compliquée pour la méthode de l'inverse.
+
+. . .
+
+Supposons disposer d'une autre densité $g$ t.q. :
+
+:::{.incremental}
+
+- on sait simuler $Y$ de loi $g$,
+- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$
+- on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{mg(x)}$
+
+:::
+
+. . .
+
+[Remarque]{.underline}: $m \leq 1$ car
+$$
+	1 = \int_\mathbb{R} f(x) \,  dx \class{fragment}{{}\leq m \int_\mathbb{R} g(x)\,  dx} \class{fragment}{{}= m}
+$$
+
+
+## Méthode de rejet: principe
+
+Considérer deux suites i.i.d. de v.a. indépendantes entre elles:
+
+- $(Y_n)_{n \geq 1}$ de loi $g$,
+- $(U_n)_{n \geq 1}$ de loi uniforme sur $[0,1]$.
+
+En pratique, $Y_n$ correspond à une **proposition** et $U_n$ permettra de décider l'**acceptation**/**rejet** de la proposition:
+
+. . .
+
+- Si oui, alors on conserve $Y_n$
+- Si non, on simule $Y_{n+1}$
+
+Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniforme et puis  vérifier si $U_n \leq r(Y_n)$
+
+
+
+## Exemple simple
+<br>
+<br>
+
+:::{.incremental}
+
+- $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
+- $f$ est majorée par $4$ $\implies$ $g = {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=4$ conviennent
+- $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $4 U_1 \leq 4 Y_1^3$, etc.
+
+:::
+
+## Visualisation de l'exemple
+
+```{python}
+#| echo: false
+
+def accept_reject(n, f, g, g_sampler, m, rng):
+    """
+    n: number of samples
+    f: target density
+    g: proposal density
+    m: constant such that f(x) <= m*g(x)
+    """
+    x_samples = np.zeros(n)
+    u_samples = np.zeros(n)
+    accepted = np.zeros(n)
+    n_accepted = 0
+    while n_accepted < n:
+        x = g_sampler()
+        u = rng.uniform()
+        alpha = u * m * g(x)
+        u_samples [n_accepted] = alpha
+        x_samples[n_accepted] = x
+        if  alpha <= f(x):
+            accepted[n_accepted] = 1
+        n_accepted += 1
+    return x_samples, u_samples, accepted
+```
+
+
+
+```{python}
+#| echo: false
+#| layout-ncol: 1
+
+def plot_accept_reject(n, f, g, g_sampler, m, rng):
+    x_samples, u_samples, accepted = accept_reject(n, f, g, g_sampler, m, rng)
+    x = np.linspace(0, 1, 100)
+
+    fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+    fig.add_trace(
+        go.Scatter(
+            x=x_samples[accepted == 1],
+            y=u_samples[accepted == 1],
+            mode="markers",
+            marker=dict(color="blue", symbol="circle", size=10, opacity=0.5),
+            name="Accepté",
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=x_samples[accepted == 0],
+            y=u_samples[accepted == 0],
+            mode="markers",
+            marker=dict(color="red", symbol="circle", size=10, opacity=0.5),
+            name="Rejeté",
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=f(x), mode="lines", line=dict(color="black", dash="dash"), name="f"
+        )
+    )
+    fig.add_trace(
+        go.Scatter(
+            x=x, y=m * g(x), mode="lines", line=dict(color="black"), name="m  · g"
+        )
+    )
+
+    fig.update_xaxes(range=[0, 1.1])
+    fig.update_yaxes(range=[0, 5.5])
+
+
+
+    fig.update_layout(template="simple_white", showlegend=True)
+    fig.update_layout(
+        legend=dict(
+            yanchor="top",
+            y=0.92,
+            x=.05,
+            bgcolor="#ffffff",
+            bordercolor="Black", 
+            borderwidth=1,
+            font=dict(
+                size=18,
+                color="black"
+            )
+        )
+    )
+    ratio = np.sum(accepted) / n
+    return fig, ratio, x_samples[accepted == 1]
+
+
+f = lambda x: 4 * x**3
+g = lambda x: np.ones_like(x)
+m = 4
+seed = 1234
+```
+
+
+::: {.r-stack}
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 0
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 1
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 2
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 3
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 30
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 1000
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1, x_accepted = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+::: {.fragment}
+```{python}
+
+x = np.linspace(0, 1, 100)
+
+fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+fig.update_xaxes(range=[0, 1.1])
+fig.update_yaxes(range=[0, 5.5])
+
+
+
+fig.update_layout(template="simple_white", showlegend=True)
+fig.update_layout(
+    legend=dict(
+        yanchor="top",
+        y=0.92,
+        x=.05,
+        bgcolor="#ffffff",
+        bordercolor="Black", 
+        borderwidth=1,
+        font=dict(
+            size=18,
+            color="black"
+        )
+    )
+)
+fig.add_trace(
+      go.Scatter(
+          x=x_accepted,
+          y=0.05*np.ones_like(x_accepted),
+          mode="markers",
+          marker=dict(color="blue", symbol="circle", size=10, opacity=0.5),
+          name="Abscisse des points acceptés",
+      )
+  )
+
+fig.add_trace(
+    go.Scatter(
+        x=x, y=f(x), mode="lines", line=dict(color="black", dash="dash"), name="f"
+    )
+)
+```
+:::
+
+
+::: {.fragment}
+
+```{python}
+
+fig.add_trace(
+    go.Histogram(
+        x=x_accepted,
+        y=np.zeros_like(x_accepted),
+        nbinsx=30,
+        histnorm="probability density",
+        marker=dict(color="blue", opacity=0.5),
+        name="Histogramme des points acceptés",
+    )
+)
+
+fig.show()
+```
+:::
+
+:::
+
+
+## Variante avec une loi triangulaire
+
+<br>
+<br>
+
+Supposons disposer d'un générateur de loi triangulaire sur $[0,1]$ (cf. `np.random.triangular(0, 1, 1)`)
+
+
+:::{.incremental}
+
+
+- $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
+- $f(x)$ est majorée par $4 x \cdot {1\hspace{-3.8pt} 1}_{[0,1]}(x)$ $\implies$ $g = \tfrac{x}{2} \cdot {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=8$ conviennent
+- $r(x)=f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$.
+
+:::
+
+## Variante (continuée)
+
+::: {.r-stack}
+
+::: {.fragment}
+```{python}
+#| echo: false
+n = 1000
+rng = np.random.default_rng(seed)
+g_sampler = lambda: rng.uniform()
+fig1, ratio1, x_accepted = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig1.show()
+```
+:::
+
+
+::: {.fragment}
+
+```{python}
+#| echo: false
+
+g = lambda x: x/2
+rng = np.random.default_rng(seed)
+g_sampler = lambda: np.random.triangular(0, 1, 1)
+m = 8
+
+fig2, ratio2, _ = plot_accept_reject(n, f, g, g_sampler, m, rng)
+fig2.show()
+```
+:::
+
+:::
+
+
+## Comparaison des deux méthodes
+
+```{python}
+#| echo: false
+ojs_define(ratio1=ratio1)
+ojs_define(ratio2=ratio2)
+```
+
+::: {.r-fit-text}
+```{ojs}
+//| echo: false
+md`Taux d'acceptation: avec la loi uniforme **${ratio1.toPrecision(5)}**`
+```
+
+```{ojs}
+//| echo: false
+md`Taux d'acceptation: avec la loi triangulaire **${ratio2.toPrecision(5)}**`
+```
+
+[Conclusion]{.underline}: plus le majorant est proche de la loi cible, plus le taux d'acceptation est élevé, et moins de simulations sont nécessaires
+:::
+
+
+## Méthode de rejet: validation théorique
+
+[Rappel]{.underline}:
+
+- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$ et $r(x) = \frac{f(x)}{mg(x)}$
+- $(Y_n)_{n \geq 1}$ i.i.d. de loi $g$
+- $(U_n)_{n \geq 1}$ i.i.d. de loi uniforme sur $[0,1]$ (indépendamment des $Y_n$)
+
+. . .
+
+
+:::: {#thm-rejet}
+
+## Méthode de rejet
+
+<br>
+
+Soit $T = \inf \{n \geq 1 : U_n \leq r(Y_n)\}$ le premier instant où le tirage est accepté. Alors :
+
+- $T \sim \mathcal{G}(\frac{1}{m})$ : loi géométrique de paramètre $\frac{1}{m}$
+- $Y_T$ a pour densité $f$ et est indépendante de $T$
+::::
+
+
+##  Démonstration
+
+Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}^{*}$, on écrit
+$\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1}), U_n \leq r(Y_n), Y_n \leq x)$
+
+
+::: {.fragment fragment-index=1}
+$$
+    \mathbb{P}(X \leq x, T=n) = {\color{blue}\mathbb{P}(U_1 > r(Y_1))}^{n-1} \cdot {\color{brown}\mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)}, \quad \text{( tirages i.i.d.)}
+$$
+:::
+
+::: {.fragment fragment-index=2}
+[Premier terme]{.underline}:  $Y_1$ et $U_1$ sont indépendantes, leur loi jointe correspond au produit des densités :
+:::
+
+::: {.fragment fragment-index=3}
+
+$$
+{\color{blue}
+\begin{align*}
+		\mathbb{P}(U_1 > r(Y_1))
+		 & \class{fragment}{{} = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})}                             \\
+		 & \class{fragment}{{} = \int_{\mathbb{R}^2} \left( {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \right) \cdot \left({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)\right) \,  du  dy}  \\
+		 & \class{fragment}{{} = \int_\mathbb{R} \left( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \,  du\right) g(y)\,  d y}
+		 \class{fragment}{{} =  \int_\mathbb{R} (1-r(y)) \, g(y)\,  d y}\\
+		 & \class{fragment}{{} =  \int_\mathbb{R} g(y) -  \int_\mathbb{R}\frac{f(y)}{m} d y, \quad\quad \text{car }  r(y) = \frac{f(y)}{m \cdot g(y)}}\\
+     & \class{fragment}{{} = 1-\tfrac{1}{m}}
+\end{align*}
+}
+$$
+
+:::
+
+## Démonstration (suite)
+
+[Second terme]{.underline}:
+$$
+{\color{brown}
+\begin{align*}
+    \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
+    & \class{fragment}{{ = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \,  du  dy  }} \\
+    & \class{fragment}{{} = \int_\mathbb{R} \left( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \,  du\right) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\,  d y} \\
+		& \class{fragment}{{} = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\,  d y } \\
+		& \class{fragment}{{} = \int_{-\infty}^x \dfrac{f(y)}{m}\,  d y } \\
+ 		& \class{fragment}{{} = \dfrac{F(x)}{m} , \quad F \text{ fonction de répartition associée à} f}
+\end{align*}
+}
+$$
+
+##  Démonstration (suite)
+$$
+    \mathbb{P}(X \leq x, T=n)
+    =
+    {\color{blue}\left(1 - \tfrac{1}{m}\right)^{n-1}} \cdot {\color{brown}\tfrac{F(x)}{m}}
+$$
+
+. . .
+
+On peut alors obtenir les lois marginales:
+$$
+\begin{align*}
+    \mathbb{P}(T=n)
+    & = \lim_{q \to \infty} \mathbb{P}(X \in ]-\infty, q], T=n) = \lim_{q \to \infty} \left(1 - \tfrac{1}{m}\right)^{n-1} \tfrac{F(q)}{m}\\
+    & = \left(1 - \tfrac{1}{m}\right)^{n-1} \tfrac{1}{m}
+\end{align*}
+$$
+Ainsi, $T$ suit une loi géométrique de paramètre $1/m$, puis $X$ a pour loi $F$:
+
+. . .
+
+$$
+\begin{align*}
+    \mathbb{P}(X \leq x)
+    & = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)
+      = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n) \\
+    & = \sum_{n=1}^\infty \left(1 - \tfrac{1}{m}\right)^{n-1} \tfrac{F(x)}{m}
+      = \tfrac{1}{1-(1-1/m)} \tfrac{F(x)}{m} = F(x) \enspace.
+\end{align*}
+$$
+
+
+## Fin de la démonstration
+
+On obtient l'indépendance de $T$ et $X$ car on peut alors écrire:
+$$
+    \mathbb{P}(X \leq x, T=n)
+    =
+    \mathbb{P}(X \leq x) \cdot \mathbb{P}(T=n)
+$$
+
+
+# Cas multidimensionnel
+
+## Cas multidimensionnel
+
+<br>
+
+:::{.incremental}
+
+- impossibilité de la méthode de l'inverse: fonction de répartition non disponible (en général)
+
+- la méthode de rejet : généralisable au cas multidimensionnel
+  - "fléau de la dimension": plus la dimension est grande, plus la méthode est inefficace (penser au nombre de points nécessaires pour quadriller un hypercube...)
+  - difficulté d'écrire une fonction de majoration en toute généralité.
+
+:::
+
+## Exemple: loi uniforme sur le disque unité (2D)
+
+<br>
+
+[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{x_1+x_2^2 \leq 1}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
+
+<br>
+
+[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$  ($m=1$ fonctionne).
+
+<br>
+
+
+:::{.callout-note}
+
+La loi uniforme sur le carré est une loi produit: il suffit de savoir générer une loi uniforme sur un segment 1D pour l'obtenir
+
+:::
+
+## Exemple: loi uniforme sur le disque (visualisation)
+
+```{python}
+#| echo: false
+
+
+def cardiode(n_discr=100):
+    theta = np.linspace(0, 2 * np.pi, n_discr)
+    r = (1 + np.cos(theta))
+    x = r * np.cos(theta)
+    y = r * np.sin(theta)
+    return x, y
+
+
+def circle(n_discr=100):
+    theta = np.linspace(0, 2 * np.pi, n_discr)
+    x = np.cos(theta)
+    y = np.sin(theta)
+    return x, y
+
+
+def plot_curve(fig, plot_type="circle", n_discr=100):
+    if plot_type=="circle":
+        x, y = circle(n_discr)
+    elif plot_type=="cardioide":
+        x, y = cardiode(n_discr)
+    fig.add_trace(go.Scatter(x=x, y=y, mode="lines", line=dict(color="black", width=4), name="Limite de surface"))
+    fig.update_layout(template="simple_white", showlegend=True,    yaxis_scaleanchor="x")
+    return fig
+```
+
+```{python}
+#| echo: false
+def test_cardioide(x, y):
+    if (x**2 + y**2 - x) ** 2 <= (x**2 + y**2):
+        return 1
+    else:
+        return 0
+
+
+def test_unit_circle(x, y):
+    if x**2 + y**2 <= 1:
+        return 1
+    else:
+        return 0
+
+
+color = ["red", "blue"]
+status = ["Rejeté", "Accepté"]
+
+
+def plot_samples(fig, n_sample, plot_type="circle"):
+    if plot_type == "circle":
+        test_func = test_unit_circle
+        x_samples = np.random.uniform(-1, 1, n_sample)
+        y_samples = np.random.uniform(-1., 1, n_sample)
+
+    elif plot_type == "cardioide":
+        test_func = test_cardioide
+        x_samples = np.random.uniform(-2, 3, n_sample)
+        y_samples = np.random.uniform(-1.5, 1.5, n_sample)
+
+    test_func = np.vectorize(test_func)
+    test_samples = test_func(x_samples, y_samples)
+    for i in [0, 1]:
+        fig.add_trace(
+            go.Scatter(
+                x=x_samples[test_samples == i],
+                y=y_samples[test_samples == i],
+                mode="markers",
+                marker=dict(color=color[i], symbol="circle", size=7, opacity=0.5),
+                name=status[i],
+            )
+        )
+    fig.update_layout(
+        legend=dict(
+            yanchor="top",
+            bgcolor="#ffffff",
+            bordercolor="Black",
+            borderwidth=1,
+            font=dict(
+                size=18,
+                color="black"
+            )
+        )
+    )
+    return fig, test_samples
+```
+
+
+::: {.r-stack}
+
+::: {.fragment}
+```{python}
+#| echo: false
+#| layout-ncol: 1
+
+n_sample = 3000
+plot_type = "circle"
+
+fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=700))
+fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
+fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
+fig.update_xaxes(range=[-2, 2.])
+fig.update_yaxes(range=[-1.5, 1.5])
+fig.update_layout(legend=dict(y=0.95, x=.74))
+ratio = np.sum(test_samples_circle) / n_sample
+aire = 2 * 2 * ratio
+fig.show()
+```
+
+:::
+
+:::
+
+::: {.r-stack}
+
+
+::: {.fragment}
+
+
+```{python}
+#| echo: false
+ojs_define(aire=aire)
+ojs_define(ratio=ratio)
+
+```
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+md`Ratio estimée: **${ratio.toPrecision(5)}**`
+md`Aire (bleue) estimé: **${aire.toPrecision(5)}**`
+```
+
+:::
+
+:::
+
+
+
+## Exemple: loi uniforme sur une cardioïde (2D)
+
+<br>
+
+[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{(x_1^2+x_2^2 - x_2)^2 \leq x_1^2+ x_2^2}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
+<br>
+
+[Loi majorante]{.underline}: loi uniforme sur le rectangle $[-2,3]\times [-1.5,1.5]$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-2,3]\times [-1.5,1.5]}(x)$  ($m=1$ fonctionne).
+
+<br>
+
+:::{.callout-note}
+
+La loi uniforme sur un rectangle est une loi produit: il suffit de savoir générer une loi uniforme sur un segment 1D pour l'obtenir
+
+:::
+
+## Exemple: loi uniforme sur une cardioïde (2D)
+
+::: {.r-stack}
+
+::: {.fragment}
+```{python}
+#| echo: false
+#| layout-ncol: 1
+
+n_sample = 3000
+plot_type = "cardioide"
+
+fig = go.Figure(layout=go.Layout(autosize=True, width=800, height=700))
+fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
+fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
+fig.update_xaxes(range=[-3, 4.])
+fig.update_yaxes(range=[-3, 3])
+fig.update_layout(legend=dict(y=0.95, x=.74))
+ratio_cardioid = np.sum(test_samples_circle) / n_sample
+aire_cardioid = 3* 5 * ratio_cardioid
+fig.show()
+```
+
+:::
+
+:::
+
+::: {.r-stack}
+
+
+::: {.fragment}
+
+
+```{python}
+#| echo: false
+ojs_define(aire_cardioid=aire_cardioid)
+ojs_define(ratio_cardioid=ratio_cardioid)
+
+```
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+md`Ratio estimée: **${ratio_cardioid}**`
+md`Aire (bleue) estimé: **${aire_cardioid}**`
+```
+
+:::
+
+:::
+
+
+## Théorie
+
+
+:::{#thm-unif-mesurable}
+## Géneration uniforme sur un ensemble
+
+Suppons $A\subset B \subset \mathbb{R}^d$ pour générer selon une loi uniforme sur $A$, connaissant un générateur uniforme sur $B$, on peut utiliser la méthode du rejet, en tirant $Y_i \sim \mathcal{U}(B)$ (i.i.d) et en ne gardant  $Y_i$ que si $Y_i \in A$.
+:::
+
+
+:::{.fragment fragment-index=1}
+
+
+[Preuve]{.underline}:
+On note $f\triangleq \frac{1}{|A|} {1\hspace{-3.8pt} 1}_{A}$, $g\triangleq \frac{1}{|B|}{1\hspace{-3.8pt} 1}_{B}$ et $m\triangleq\frac{|B|}{|A|}$.
+Comme $A \subset B$, pour tout $x\in \mathbb{R}^{d}$:
+$$
+\begin{align*}
+\class{fragment}{{}f(x)} \class{fragment}{{}= \frac{1}{|A|} {1\hspace{-3.8pt} 1}_{A}(x)} \class{fragment}{{}\leq \frac{1}{|B|} {1\hspace{-3.8pt} 1}_{B}(x) \cdot \frac{|B|}{|A|}} \class{fragment}{{}\leq g(x) \cdot m}
+\end{align*}
+$$
+
+
+
+<!-- On peut donc utiliser la méthode du rejet avec $Y \sim \mathcal{U}(B)$ et $U \sim \mathcal{U}([0,1])$ et $r$ qui vaut: -->
+
+$$
+\begin{align*}
+&\class{fragment}{{}Y \sim \mathcal{U}(B),} \quad \class{fragment}{{} U \sim \mathcal{U}([0,1])} \\
+&\class{fragment}{{}r(Y)} \class{fragment}{{}= \frac{f(Y)}{m\cdot g(Y)}}
+\class{fragment}{{}=
+\frac{ \frac{1}{|A|} {1\hspace{-3.8pt} 1}_{A}(Y)}
+{\frac{|B|}{|A|}\cdot \frac{1}{|B|} {1\hspace{-3.8pt} 1}_{B}(Y)}}
+\class{fragment}{{}=
+\frac{  {1\hspace{-3.8pt} 1}_{A}(Y)}
+{ {1\hspace{-3.8pt} 1}_{B}(Y)}}
+\class{fragment}{{}= {1\hspace{-3.8pt} 1}_{A}(Y)}
+\end{align*}
+$$
+
+$$
+\begin{align*}
+\class{fragment}{{}\text{Enfin}, U \leq {1\hspace{-3.8pt} 1}_{A}(Y) \iff {1\hspace{-3.8pt} 1}_{A}(Y)=1}\class{fragment}{{}\iff Y \in A}
+\end{align*}
+$$
+
+:::
+
+<!-- On peut donc appliquer la méthode de rejet sans la connaissance de $|A|$! -->
