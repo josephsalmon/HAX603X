@@ -12,6 +12,24 @@ filters:
 jupyter: python3
 ---
 
+
+<!-- <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  extensions: ["tex2jax.js"],
+  jax: ["input/TeX", "output/HTML-CSS"],
+  tex2jax: {
+    inlineMath: [ ['$','$'] ],
+    displayMath: [ ['$$','$$']],
+    processEscapes: true
+  },
+  "HTML-CSS": {
+    availableFonts: ["Source Sans Pro", "Helvetica", "sans-serif"],
+    preferredFont: "Source Sans Pro",
+    webFont: "Source Sans Pro"
+  }
+});
+</script> -->
+
 ## Enjeu
 
 <br>
@@ -26,7 +44,7 @@ jupyter: python3
 
 . . .
 
-[Approche: commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
+[Approche: Commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
 <br>
 <br>
 
@@ -64,7 +82,7 @@ import plotly.graph_objects as go
 
 x = np.linspace(-3, 4, num=300)
 
-fig = go.Figure(layout=go.Layout(autosize=True, width=1000, height=720))
+fig = go.Figure(layout=go.Layout(autosize=True, width=1000, height=550))
 
 fig.add_trace(
     go.Scatter(
@@ -99,7 +117,7 @@ fig.update_layout(
 
 <br>
 
-[Objectif]{.underline}: simuler sur machine une suite $U_1, \dots, U_n$  de v.a., i.i.d., de loi $\mathcal{U}([0,1])$. 
+[Objectif]{.underline}: simuler sur machine une suite $U_1, \dots, U_n$  de v.a., i.i.d., de loi $\mathcal{U}([0,1])$.
 
 <br>
 [Difficultés]{.underline}:
@@ -107,7 +125,7 @@ fig.update_layout(
 :::{.incremental}
 
 - Une machine est déterministe.
-- Les nombres flottant entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres.
+- Les nombres flottants entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres.
 - Vérifier qu'une suite est bien i.i.d. est un problème difficile.
 :::
 
@@ -229,7 +247,7 @@ print(rng.random(size=(3, 2)))     #  matrice 3x2, à entrées unif. sur [0,1]
 - [En pratique]{.underline}: les logiciels proposent les distributions classiques (gaussiennes, exponentielles, etc.), utiliser plutôt ces fonctions que de les implémenter soi-même.
 
 - Liste exhaustive pour `numpy`:
-  
+
   [https://numpy.org/doc/stable/reference/random/generator.html#distributions](https://numpy.org/doc/stable/reference/random/generator.html#distributions)
 
 :::
@@ -244,7 +262,7 @@ Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'u
 :::
 
 
-# Méthode d'inversion
+# Méthode d'inversion (unidimensionnel)
 
 
 
@@ -255,6 +273,8 @@ Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'u
 $$
 \forall q \in ]0,1[, \quad F^\leftarrow(q) = \inf\{ x \in \mathbb{R} : F(x)\geq q\}
 $${#eq-inf}
+
+[Note]{.underline}: Si $x_0 \in \{ x \in \mathbb{R} : F(x)\geq q\}$ alors $[x_0,+\infty[ \subset \{ x \in \mathbb{R} : F(x)\geq q\}$
 
 . . .
 
@@ -268,22 +288,18 @@ $$
    \{x \in \mathbb{R} :  F(x) \geq q) \} & =
    \{x \in \mathbb{R} : x \geq F^\leftarrow(q)  \}
 \end{align}
-$$ 
+$$
 :::
 
 . . .
 
-[Cas $\subset$:]{.underline}
-
-Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$
+[Cas $\subset$:]{.underline} Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$
 
 <br>
 
 . . .
 
-[Cas $\supset$:]{.underline}
-
-Soit  $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$; par continuité à droite de $F$, $F(x) \geq q$
+[Cas $\supset$:]{.underline} Soient $\epsilon>0$ et $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors (def. de l'inf) $\exists x_0 \in \{ x \in \mathbb{R} : F(x)\geq q\}$, t.q. $x + \epsilon > x_0$. Ainsi, $F(x + \epsilon) \geq F(x_0) \geq q$; par continuité à droite de $F$, $F(x) \geq q$
 
 
 ## Méthode d'inversion
@@ -299,7 +315,7 @@ Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable alé
 
 [Preuve]{.underline}: en utilisant le théorème précédent, on a
 $$
-\forall x\in\mathbb{R}, \quad \mathbb{P}(F_X^\leftarrow(U) \leq x) = \mathbb{P}(U \leq F_X(x)) 
+\forall x\in\mathbb{R}, \quad \mathbb{P}(x \geq F_X^\leftarrow(U)) = \mathbb{P}(F_X(x) \geq U)
 $$
 
 . . .
@@ -307,7 +323,7 @@ $$
 Puis, comme $U$ est une loi uniforme sur $[0,1]$:
 
 $$
-\mathbb{P}(U\leq F_X(x))=F_X(x)
+\mathbb{P}(F_X(x) \geq U) = F_X(x)
 $$
 
 . . .
@@ -379,7 +395,7 @@ Voir animation dans la section [Cours, section "Méthode d'inversion"](../Course
 
 
 
-# Méthode de rejet
+# Méthode de rejet (unidimensionnel)
 
 ## Méthode de rejet: contraintes
 
@@ -393,7 +409,7 @@ Supposons disposer d'une autre densité $g$ t.q. :
 
 - on sait simuler $Y$ de loi $g$,
 - il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$
-- on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{mg(x)}$
+- on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{m\cdot g(x)}$
 
 :::
 
@@ -431,7 +447,7 @@ Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniform
 
 - $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
 - $f$ est majorée par $4$ $\implies$ $g = {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=4$ conviennent
-- $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $4 U_1 \leq 4 Y_1^3$, etc.
+- $r(x) =f(x) / (m\cdot g(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $4 U_1 \leq 4 Y_1^3$, etc.
 
 :::
 
@@ -515,7 +531,7 @@ def plot_accept_reject(n, f, g, g_sampler, m, rng):
             y=0.92,
             x=.05,
             bgcolor="#ffffff",
-            bordercolor="Black", 
+            bordercolor="Black",
             borderwidth=1,
             font=dict(
                 size=18,
@@ -625,7 +641,7 @@ fig.update_layout(
         y=0.92,
         x=.05,
         bgcolor="#ffffff",
-        bordercolor="Black", 
+        bordercolor="Black",
         borderwidth=1,
         font=dict(
             size=18,
@@ -687,7 +703,7 @@ Supposons disposer d'un générateur de loi triangulaire sur $[0,1]$ (cf. `np.ra
 
 - $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
 - $f(x)$ est majorée par $4 x \cdot {1\hspace{-3.8pt} 1}_{[0,1]}(x)$ $\implies$ $g = \tfrac{x}{2} \cdot {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=8$ conviennent
-- $r(x)=f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$.
+- $r(x)=f(x) / (m\cdot g(x)) = x^3$, pour $x \in [0,1]$.
 
 :::
 
@@ -752,7 +768,7 @@ md`Taux d'acceptation: avec la loi triangulaire **${ratio2.toPrecision(5)}**`
 
 [Rappel]{.underline}:
 
-- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$ et $r(x) = \frac{f(x)}{mg(x)}$
+- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$ et $r(x) = \frac{f(x)}{m\cdot g(x)}$
 - $(Y_n)_{n \geq 1}$ i.i.d. de loi $g$
 - $(U_n)_{n \geq 1}$ i.i.d. de loi uniforme sur $[0,1]$ (indépendamment des $Y_n$)
 
@@ -780,7 +796,7 @@ $\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1})
 
 ::: {.fragment fragment-index=1}
 $$
-    \mathbb{P}(X \leq x, T=n) = {\color{blue}\mathbb{P}(U_1 > r(Y_1))}^{n-1} \cdot {\color{brown}\mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)}, \quad \text{( tirages i.i.d.)}
+    \mathbb{P}(X \leq x, T=n) = {\color{blue}\mathbb{P}(U_1 > r(Y_1))}^{n-1} \cdot {\color{brown}\mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)}, \quad \textsf{( tirages i.i.d.)}
 $$
 :::
 
@@ -817,7 +833,7 @@ $$
     & \class{fragment}{{} = \int_\mathbb{R} \left( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \,  du\right) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\,  d y} \\
 		& \class{fragment}{{} = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\,  d y } \\
 		& \class{fragment}{{} = \int_{-\infty}^x \dfrac{f(y)}{m}\,  d y } \\
- 		& \class{fragment}{{} = \dfrac{F(x)}{m} , \quad F \text{ fonction de répartition associée à} f}
+ 		& \class{fragment}{{} = \dfrac{F(x)}{m} , \quad F \textsf{ fonction de répartition associée à} f}
 \end{align*}
 }
 $$
@@ -864,7 +880,8 @@ $$
 $$
 
 
-# Cas multidimensionnel
+# Méthode de rejet (multidimensionnel)
+
 
 ## Cas multidimensionnel
 
@@ -1100,8 +1117,8 @@ ojs_define(ratio_cardioid=ratio_cardioid)
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
-md`Ratio estimée: **${ratio_cardioid}**`
-md`Aire (bleue) estimé: **${aire_cardioid}**`
+md`Ratio estimée: **${ratio_cardioid.toPrecision(5)}**`
+md`Aire (bleue) estimé: **${aire_cardioid.toPrecision(5)}**`
 ```
 
 :::
@@ -1115,7 +1132,8 @@ md`Aire (bleue) estimé: **${aire_cardioid}**`
 :::{#thm-unif-mesurable}
 ## Géneration uniforme sur un ensemble
 
-Suppons $A\subset B \subset \mathbb{R}^d$ pour générer selon une loi uniforme sur $A$, connaissant un générateur uniforme sur $B$, on peut utiliser la méthode du rejet, en tirant $Y_i \sim \mathcal{U}(B)$ (i.i.d) et en ne gardant  $Y_i$ que si $Y_i \in A$.
+Suppons $A\subset B \subset \mathbb{R}^d$, deux ensembles mesureables pour la mesure de Lebesgue.
+Pour générer selon une loi uniforme sur $A$, connaissant un générateur uniforme sur $B$, on peut utiliser la méthode du rejet, en tirant $Y_i \sim \mathcal{U}(B)$ (i.i.d) et en ne gardant  $Y_i$ que si $Y_i \in A$.
 :::
 
 
@@ -1157,4 +1175,15 @@ $$
 
 :::
 
-<!-- On peut donc appliquer la méthode de rejet sans la connaissance de $|A|$! -->
+
+## Remarque sur les constantes
+
+<br>
+Dans l'exemple précédent, on voir qu'on a pu appliquer la méthode de rejet sans la connaissance de $m$.
+
+<br>
+
+Ce point est important: parfois la connaissance de $m$ est difficile à obtenir, et il est préférable de ne pas l'utiliser (notamment quand les constantes de normalisation des densités sont difficiles à calculer).
+
+<br>
+[Exemples]{.underscore}: statistiques bayesiennes, modèles graphiques, etc.
