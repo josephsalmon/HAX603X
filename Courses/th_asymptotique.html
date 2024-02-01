@@ -545,7 +545,7 @@ app = App(app_ui, server)
 \end{align}
 </span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
 <p>Dans le cas classique d’un intervalle de confiance à 95%, c’est-à-dire quand <span class="math inline">\alpha_n=0.05</span>, et en prenant un intervalle de confiance symétrique (alors <span class="math inline">a=-t</span> et <span class="math inline">b=q</span>) on obtient <span class="math inline">1-\alpha_n= \int_{-q}^q \varphi(x) \, dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}</span> et <span class="math inline">q</span> est donc le quantile de niveau <span class="math inline">1-\tfrac{\alpha_n}{2}</span> de la loi normale centrée réduite. Numériquement on peut facilement évaluer <span class="math inline">q</span> et vérifier que <span class="math inline">q\approx 1.96</span> avec <code>scipy</code>:</p>
-<div id="34f228d9" class="cell" data-execution_count="1">
+<div id="ee058909" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf(<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussienne centrée réduite,</span><span class="ch">\n</span><span class="ss">Quantile de niveau (1-α/2):</span><span class="ch">\n</span><span class="ss">q = </span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -740,7 +740,7 @@ def server(input, output, session):
 app = App(app_ui, server)
 </code></pre>
 <p>Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l’analyse. Pour cela supposons que l’on ait une suite de variables aléatoires réelles <span class="math inline">X_1, \dots, X_n</span>, i.i.d. dont la fonction de densité commune est notée par <span class="math inline">f</span>.</p>
-<p>On rappel quelques éléments de probabilités concernant les densités. Pour cela on rappelle la définition de la convolution deux fonctions. Pour cela prenons deux fonctions <span class="math inline">f</span> et <span class="math inline">g</span> définies sur <span class="math inline">\mathbb{R}</span> et qui sont intégrables au sens de Lebesgue. La <strong>convolution</strong> de <span class="math inline">f</span> par <span class="math inline">g</span> est alors la fonction <span class="math inline">f*g</span> suivante:</p>
+<p>On rappelle quelques éléments de probabilités concernant les densités. Pour cela on rappelle la définition de la convolution deux fonctions. Pour cela prenons deux fonctions <span class="math inline">f</span> et <span class="math inline">g</span> définies sur <span class="math inline">\mathbb{R}</span> et qui sont intégrables au sens de Lebesgue. La <strong>convolution</strong> de <span class="math inline">f</span> par <span class="math inline">g</span> est alors la fonction <span class="math inline">f*g</span> suivante:</p>
 <p><span class="math display">
 \begin{align}
 \mathbb{R} &amp;\mapsto \mathbb{R} \nonumber\\
@@ -761,7 +761,7 @@ Note
 </div>
 </div>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">X</span> et <span class="math inline">Y</span> des v.a. de densités <span class="math inline">f</span> et <span class="math inline">g</span> respectivement, la loi de <span class="math inline">X+Y</span> est donnée par la convolution <span class="math inline">f*g</span>.</p>
+<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">X</span> et <span class="math inline">Y</span> des v.a. indépendantes de densités <span class="math inline">f</span> et <span class="math inline">g</span> respectivement, la loi de <span class="math inline">X+Y</span> est donnée par la convolution <span class="math inline">f*g</span>.</p>
 </div>
 <p><span class="underscore">Rappel</span>: pour un scalaire <span class="math inline">\alpha\neq 0</span>, la densité de <span class="math inline">\alpha X</span> est donnée par la fonction <span class="math inline">x \mapsto \frac{1}{|\alpha|} \cdot f(\frac{x}{\alpha})</span>.</p>
 <div id="cor-tclappli" class="theorem corollary">
