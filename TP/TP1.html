@@ -402,7 +402,7 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <li>Créer un nouveau fichier dans VSCodium intitulé <code>HAX603X_tp1.py</code>, et sauvegarder le dans un dossier <code>HAX603X</code>.</li>
 <li>Dans ce fichier, copier-coller le code de la boîte suivante. On pourra alors lancer des cellules de code en tapant sur <code>shift + enter</code> dans une cellule délimitée par les symboles <code>\# \%\%</code>. On peut aussi lancer la cellule en cliquant sur le bouton “run cell” dans VSCodium (ou clique droit puis une option de type “run cell” ou “run all cell”).</li>
 </ul>
-<div id="9279bf0c" class="cell" data-execution_count="1">
+<div id="f96d5af8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Début de cellule</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">3</span>)  <span class="co"># commentaire en ligne</span></span>
@@ -437,7 +437,7 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.exp(<span class="dv">1</span>))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.log(<span class="dv">2</span>))</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sin(np.pi))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="bff0efca" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div id="0214eebf" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <pre><code>2.718281828459045
@@ -448,15 +448,28 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 </div>
 <section id="question-fonctions-mathématiques" class="level4">
 <h4 class="anchored" data-anchor-id="question-fonctions-mathématiques">Question : fonctions mathématiques</h4>
-<p>Entrez quelques opérations de base pour vous familiariser avec les instructions sur Python. Faire de même avec les fonctions <code>np.exp</code>, <code>np.log</code>, <code>np.sin</code>, <code>np.cos</code>, <code>np.tan</code>, <code>np.sqrt</code>, <code>np.abs</code>,<code>np.round</code>. Entrer les instructions <code>1/0</code> et <code>np.sqrt(-2)</code>. Que constatez-vous ?\</p>
-<p>On remarquera qu’on peut utiliser le symbole <code>np.inf</code> pour représenter l’infini. Par ailleurs, si un résultat n’est pas possible (par exemple en tapant <code>np.sqrt(-2)</code>), alors on obtient <code>nan</code> qui signifie <strong>Not a Number</strong>.</p>
+<p>Entrez quelques opérations de base pour vous familiariser avec les instructions sur Python. Faire de même avec les fonctions <code>np.exp</code>, <code>np.log</code>, <code>np.sin</code>, <code>np.cos</code>, <code>np.tan</code>, <code>np.sqrt</code>, <code>np.abs</code>,<code>np.round</code>. Entrer les instructions <code>1/0</code> et <code>np.sqrt(-2)</code>. Que constatez-vous ?</p>
+<p>On remarquera qu’on peut utiliser le symbole <code>np.inf</code> pour représenter l’infini. Par ailleurs, si un résultat n’est pas possible (par exemple en tapant <code>np.sqrt(-2)</code> ou <code>np.inf - np.inf</code>), alors on obtient <code>nan</code> qui signifie <strong>Not a Number</strong>.</p>
 <p>Il faut se souvenir que les calculs numériques ne sont pas toujours exacts du fait de la discrétisation des nombres sur machine. Taper par exemple <code>np.sin(0)</code>, <code>np.sin(2*np.pi)</code> et <code>np.sin(np.pi*10**16)</code>. Voir aussi les différences entre:</p>
-<div id="c7b9fbf2" class="cell" data-execution_count="3">
+<div id="7f276c07" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.3</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.6 0.6
 0.6 0.6000000000000001</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pour aller plus loin
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On pourra consulter <a href="https://0.30000000000000004.com/">https://0.30000000000000004.com/</a> pour plus de détails sur les ce type de phénomènes.</p>
 </div>
 </div>
 </section>
@@ -468,18 +481,18 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <section id="répertoire-de-travail" class="level3">
 <h3 class="anchored" data-anchor-id="répertoire-de-travail">Répertoire de travail</h3>
 <p>Le répertoire de travail (🇬🇧: <strong>working directory</strong>) est le répertoire par défaut, c’est-à-dire le répertoire qui s’ouvre quand vous cliquez sur le bouton pour enregistrer un fichier. La commande pour connaître le répertoire de travail actuel est <code>getcwd</code> du package <code>os</code>:</p>
-<div id="273a6b0b" class="cell" data-execution_count="4">
+<div id="5096dbfd" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>/home/jsalmon/Documents/Mes_cours/Montpellier/HAX603X/HAX603X/TP</code></pre>
 </div>
 </div>
-<p>Pour changer le répertoire de travail, on pourra utiliser la commande <code>os.chdir</code> avec un nom de répertoire (valide) entre guillemets, par exemple sous linux:</p>
-<div id="68a597d4" class="cell" data-execution_count="5">
+<p>Pour changer le répertoire de travail, on pourra utiliser la commande <code>os.chdir</code> avec un nom de répertoire (valide) entre guillemets, par exemple sous Linux la commande suivante permet de remonter d’un cran dans l’arborescence des répertoires:</p>
+<div id="950ba225" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'../'</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Aussi si l’on ferme la fenêtre interactive (à droite), alors exécuter une cellule lancera une nouvelle fenêtre interactive, mais dans le répertoire de travail par défaut (celui où se trouve le fichier courant, ici <code>HAX603X_tp1.py</code>).</p>
+<p>Si l’on ferme la fenêtre interactive (à droite), alors exécuter une cellule lancera une nouvelle fenêtre interactive dans le répertoire de travail qui correspond au fichier courant que l’on édite (ici le fichier <code>HAX603X_tp1.py</code>).</p>
 </section>
 <section id="création-et-affectation-de-variables" class="level3">
 <h3 class="anchored" data-anchor-id="création-et-affectation-de-variables">Création et affectation de variables</h3>
@@ -488,30 +501,38 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <h4 class="anchored" data-anchor-id="question-variables">Question : variables</h4>
 <p>Créer une variable <code>x</code> qui contient la valeur <span class="math inline">12</span>. Effectuer des calculs du type <code>x+3</code>, <code>x**4</code>, <code>4*x</code> pour vérifier que tout se passe comme prévu.</p>
 <p>En pratique on donnera des noms d’objets pertinents, par exemple</p>
-<div id="0904aaed" class="cell" data-execution_count="6">
+<div id="b6cb437b" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> <span class="dv">105</span>  <span class="co"># en km</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> <span class="dv">2</span>  <span class="co"># en heures</span></span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>vitesse <span class="op">=</span> distance<span class="op">/</span>temps  <span class="co"># en km/h</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>On remarquera que lorsqu’on crée des objets, ils sont stockées dans l’environnement de travail (chercher l’onglet <code>variables</code> de la fenêtre interactive).</p>
+<p>On remarquera que lorsque l’on crée des objets, ils sont stockées dans l’environnement de travail (chercher l’onglet <code>variables</code> de la fenêtre interactive).</p>
 </section>
 </section>
 </section>
 <section id="numpy-et-calcul-scientifique-en-python" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="numpy-et-calcul-scientifique-en-python"><code>numpy</code> et calcul scientifique en Python</h2>
-<p><code>numpy</code> est l’outils de base en Python pour faire du calcul vectoriel et matriciel.</p>
+<p><code>numpy</code> est l’outil de base en Python pour faire du calcul vectoriel et matriciel.</p>
 <section id="vecteurs-en-numpy" class="level3">
 <h3 class="anchored" data-anchor-id="vecteurs-en-numpy">Vecteurs en <code>numpy</code></h3>
-<p>Pour créer un vecteur, la commande de base est la fonction <code>np.array</code>. Ensuite, on peut concaténer des vecteurs, les multiplier par une constante, leur ajouter une constante, les élever à une certaine puissance, etc. Si on manipule deux vecteurs, on prendra garde à leur taille.</p>
+<p>Pour créer un vecteur, la commande de base est la fonction <code>np.array</code>:</p>
+<div id="8631131f" class="cell" data-execution_count="7">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1 2 3]</code></pre>
+</div>
+</div>
+<p>Ensuite, on peut concaténer des vecteurs, les multiplier par une constante, leur ajouter une constante, les élever à une certaine puissance, etc. Si on manipule deux vecteurs, on prendra garde à leur taille.</p>
 <section id="question-vecteurs" class="level4">
 <h4 class="anchored" data-anchor-id="question-vecteurs">Question : Vecteurs</h4>
-<p>Créez un vecteur <code>v1</code> composé des réels <span class="math inline">7, 8, 3</span>, un vecteur <code>v2</code> composé des réels <span class="math inline">-0.5,120,-12</span>, et un vecteur <code>v3</code> composé des réels <span class="math inline">0,1,0,1</span>. Testez les commandes suivantes : <code>v1-7</code>, <code>v2**4</code>, <code>10*v3</code>, <code>v1+v2</code>, <code>v1*v2</code>, <code>v1/v2</code>, <code>v1+v3</code>.</p>
+<p>Créez un vecteur <code>v1</code> composé des réels <span class="math inline">7, 8, 3</span>, un vecteur <code>v2</code> composé des réels <span class="math inline">-0.5, 120, -12</span>, et un vecteur <code>v3</code> composé des réels <span class="math inline">0, 1, 0, 1</span>. Testez les commandes suivantes : <code>v1-7</code>, <code>v2**4</code>, <code>10*v3</code>, <code>v1+v2</code>, <code>v1*v2</code>, <code>v1/v2</code>, <code>v1+v3</code>.</p>
 <p>Il existe un grand nombre de fonctions mathématiques qui s’appliquent directement sur un vecteur : <code>np.sum()</code>, <code>np.prod()</code>, <code>len()</code>, <code>np.min()</code>, <code>np.max()</code>, <code>np.nanmax()</code>, <code>np.argmax()</code>, <code>np.mean()</code>, <code>np.median()</code>, <code>np.var()</code>, <code>np.std()</code>.</p>
-<p>Enfin on peut aussi utiliser des fonctions de tri, partiel ou non: <code>np.sort()</code>, <code>np.argsort()</code>, <code>np.partition()</code>, <code>np.argpartition()</code> on pourra consulter l’aide en ligne pour plus de détails: <a href="https://numpy.org/doc/stable/reference/routines.sort.html">https://numpy.org/doc/stable/reference/routines.sort.html</a></p>
+<p>Enfin on peut aussi utiliser des fonctions de tri, partiel ou non: <code>np.sort()</code>, <code>np.argsort()</code>, <code>np.partition()</code>, <code>np.argpartition()</code> on pourra consulter l’aide en ligne pour plus de détails: <a href="https://numpy.org/doc/stable/reference/routines.sort.html">https://numpy.org/doc/stable/reference/routines.sort.html</a>, et les teser sur le vecteur <code>v2</code> par exemple.</p>
 </section>
 <section id="question-opérations-sur-les-vecteurs" class="level4">
 <h4 class="anchored" data-anchor-id="question-opérations-sur-les-vecteurs">Question : Opérations sur les vecteurs</h4>
-<p>Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie, utiliser l’aide avec <code>??</code> ou <code>?</code>.</p>
+<p>Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie (utiliser l’aide avec <code>?</code> ou la documentation en ligne).</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -531,35 +552,32 @@ Pour aller plus loin: vectorisation
 <h3 class="anchored" data-anchor-id="suites-régulières">Suites régulières</h3>
 <p>Une autre manière de créer des vecteurs consiste à créer des suites régulières :</p>
 <ul>
-<li>La commande np.arange(n1,n2) crée un vecteur de réels partant de <code>n1</code> et croissant d’une unité pour arriver à <code>n2</code> (exclu). On peut changer le pas en ajoutant un argument optionnel <code>np.arange(n1, n2, step=pas)</code>. Ainsi, on a :</li>
-</ul>
-<div id="5295c067" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, step<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="7">
+<li><p>La commande <code>np.arange(n1, n2)</code> crée un vecteur de réels partant de <code>n1</code> et croissant d’une unité pour arriver à <code>n2</code> (exclu). On peut changer le pas en ajoutant un argument optionnel <code>np.arange(n1, n2, step=pas)</code>. Ainsi,</p>
+<div id="f6b9c2ff" class="cell" data-execution_count="8">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, step<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>array([0, 2, 4, 6, 8])</code></pre>
 </div>
-</div>
-<ul>
-<li>La commande np.tile() permet de répéter un vecteur un nombre de fois fixé.</li>
+</div></li>
+<li><p>La commande <code>np.tile()</code> permet de répéter un vecteur un nombre de fois fixé.</p></li>
 </ul>
-<section id="exercice-suite" class="level4">
-<h4 class="anchored" data-anchor-id="exercice-suite">Exercice: Suite</h4>
-<p>Exécutez les commandes suivantes et essayer de analysez les sorties :</p>
-<div id="93785f3e" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a vector starting from 3 finishing at -8 with step 1, but in a decreasing order</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">3</span>, <span class="op">-</span><span class="dv">8</span>, step<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>)</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>np.tile(np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>), (<span class="dv">4</span>, <span class="dv">1</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
+<section id="question-arange-et-tile" class="level4">
+<h4 class="anchored" data-anchor-id="question-arange-et-tile">Question: <code>arange</code> et <code>tile</code></h4>
+<p>Exécutez les commandes suivantes et essayer d’analyser les sorties :</p>
+<div id="dbb5121b" class="cell" data-execution_count="9">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>)</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">3</span>, <span class="op">-</span><span class="dv">8</span>, step<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>np.tile(np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">3</span>), (<span class="dv">4</span>, <span class="dv">1</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="9">
 <pre><code>array([[ 9, 12],
        [ 9, 12],
        [ 9, 12],
        [ 9, 12]])</code></pre>
 </div>
 </div>
-<p>Enfin, pour extraire la valeur <span class="math inline">i</span> d’un vecteur <code>x</code>, on tapera <code>x[i]</code> (avec la convention que Python commence à énumérer à 0). Plus généralement, pour extraire les valeurs associées aux indices <span class="math inline">3</span>, <span class="math inline">4</span> et <span class="math inline">7</span>, on tapera <code>x[[3,4,7]]</code>. Le vérifier sur un vecteur de taille 10.</p>
+<p>Enfin, pour extraire la valeur d’indice <span class="math inline">i</span> d’un vecteur <code>x</code>, on tapera <code>x[i]</code> (avec la convention que Python commence à énumérer à 0). Plus généralement, pour extraire les valeurs associées aux indices <span class="math inline">3</span>, <span class="math inline">4</span> et <span class="math inline">7</span>, on tapera <code>x[[3,4,7]]</code>. Le vérifier sur un vecteur de taille 10. On peut aussi extraire des sous parties de vecteurs, par exemple <code>x[3:7]</code> pour extraire les valeurs d’indice <span class="math inline">3</span>, <span class="math inline">4</span>, <span class="math inline">5</span> et <span class="math inline">6</span>, ou bien <code>x[3:]</code> pour extraire les valeurs d’indice <span class="math inline">3</span>, <span class="math inline">4</span>, <span class="math inline">5</span>, etc. jusqu’à la fin. Enfin, on peut extraire des sous suites d’indices pair ou impair, par exemple <code>x[::2]</code> pour extraire les valeurs d’indice pair, ou bien <code>x[1::2]</code> pour extraire les valeurs d’indice impair. Enfin on peut aussi utiliser le signe <code>-</code> pour partir de la fin, par exemple <code>x[-1]</code> pour extraire la dernière valeur, ou bien <code>x[-2]</code> pour extraire l’avant-dernière valeur.</p>
 </section>
 </section>
 <section id="matrices-en-numpy" class="level3 page-columns page-full">
@@ -569,37 +587,37 @@ Pour aller plus loin: vectorisation
 <h4 class="anchored" data-anchor-id="question-opérations-élémentaires">Question : opérations élémentaires</h4>
 <p>Manipulez les opérations classiques sur des matrices (<em>arrays</em>) de <code>numpy</code> (si vous êtes déjà habitués à <code>numpy</code> vous pouvez continuer)</p>
 <p>Opérations termes à termes:</p>
-<div id="9cfe6c97" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Somme de deux vecteurs</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">3.0</span>])</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Attribuer à la variable C la somme de A et B</span></span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>sum_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.zeros((<span class="dv">3</span>,)), sum_A_B)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Le produit terme à terme avec *</span></span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>prod_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">9</span>]), prod_A_B)</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remarque: la même chose fonctionne terme à terme avec \, ** (puissance)</span></span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="fl">1.0</span>, <span class="dv">4</span>, <span class="dv">9</span>]), A <span class="op">**</span> <span class="dv">2</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: even for powers"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6cc705bc" class="cell" data-execution_count="10">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Somme de deux vecteurs</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">3.0</span>])</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Attribuer à la variable C la somme de A et B</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>sum_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.zeros((<span class="dv">3</span>,)), sum_A_B)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Le produit terme à terme avec *</span></span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>prod_A_B <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="op">-</span><span class="fl">1.0</span>, <span class="op">-</span><span class="dv">4</span>, <span class="op">-</span><span class="dv">9</span>]), prod_A_B)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked"</span>)</span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Remarque: la même chose fonctionne terme à terme avec \, ** (puissance)</span></span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(np.array([<span class="fl">1.0</span>, <span class="dv">4</span>, <span class="dv">9</span>]), A <span class="op">**</span> <span class="dv">2</span>)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: even for powers"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Le produit scalaire (ou matriciel) est l’opérateur <code>@</code>. Vérifiez que pour la matrice <span class="math inline">J</span> ci-dessous <span class="math inline">J^3 = Id</span> de deux façons. Pour cela on pourra aussi utiliser la puissance matricielle avec <code>np.linalg.matrix_power</code>:</p>
-<div id="9281a389" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>I3 <span class="op">=</span> np.eye(<span class="dv">3</span>)</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 1"</span>)</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 2"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="5541d81c" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>I3 <span class="op">=</span> np.eye(<span class="dv">3</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 1"</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(I3, ...)  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"it worked: method 2"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-résolution-de-systèmes-linéaires" class="level4 page-columns page-full">
@@ -618,42 +636,42 @@ Important
 <p>En pratique vous n’utiliserez presque jamais l’inversion de matrice ! En effet, on n’inverse <strong>JAMAIS JAMAIS (!)</strong> une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !</p>
 </div>
 </div>
-<div id="a65c9f01" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L'inverse de la matrice: </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>J<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss"> est </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>inv(J)<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span>  <span class="co"># XXX </span><span class="al">TODO</span><span class="co">: tester avec n=100</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>Jbig <span class="op">=</span> np.roll(np.eye(n), <span class="op">-</span><span class="dv">1</span>, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># matrice de permutation de taille n</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.arange(n)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a><span class="co"># on peut transposer une matrice facilement de 2 manières:</span></span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig.T)</span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.transpose(Jbig))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cbc7fff7" class="cell" data-execution_count="12">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L'inverse de la matrice: </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>J<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss"> est </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>inv(J)<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span>  <span class="co"># XXX </span><span class="al">TODO</span><span class="co">: tester avec n=100</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>Jbig <span class="op">=</span> np.roll(np.eye(n), <span class="op">-</span><span class="dv">1</span>, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># matrice de permutation de taille n</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>b <span class="op">=</span> np.arange(n)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(b)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># on peut transposer une matrice facilement de 2 manières:</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(Jbig.T)</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.transpose(Jbig))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparons niveau temps d’execution l’inversion explicite vs.&nbsp;l’utilisation d’un solveur de système linéaire tel que <code>np.linalg.solve</code>:</p>
-<div id="1e30c749" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode naive: inversion de matrice</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> ... <span class="op">@</span> b</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>timing_naive <span class="op">=</span> ...</span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_naive<span class="sc">:.4f}</span><span class="ss"> s."</span></span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``</span></span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> ...</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>timinig_optimized <span class="op">=</span> ...</span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_optimized<span class="sc">:.4f}</span><span class="ss"> s.</span><span class="ch">\n</span><span class="ss">C'est donc </span><span class="sc">{</span>timing_naive <span class="op">/</span> timing_optimized<span class="sc">}</span><span class="ss"> fois plus rapide d'utiliser la seconde formulation"</span></span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(y1, y2)</span>
-<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Les deux méthodes trouvent le même résultat"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="69aa9633" class="cell" data-execution_count="13">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode naive: inversion de matrice</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="op">=</span> ... <span class="op">@</span> b</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>timing_naive <span class="op">=</span> ...</span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_naive<span class="sc">:.4f}</span><span class="ss"> s."</span></span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``</span></span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>y2 <span class="op">=</span> ...</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>timinig_optimized <span class="op">=</span> ...</span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>    <span class="ss">f"Temps pour résoudre un système avec la formule mathématique: </span><span class="sc">{</span>timing_optimized<span class="sc">:.4f}</span><span class="ss"> s.</span><span class="ch">\n</span><span class="ss">C'est donc </span><span class="sc">{</span>timing_naive <span class="op">/</span> timing_optimized<span class="sc">}</span><span class="ss"> fois plus rapide d'utiliser la seconde formulation"</span></span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb20-17"><a href="#cb20-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb20-18"><a href="#cb20-18" aria-hidden="true" tabindex="-1"></a>np.testing.assert_almost_equal(y1, y2)</span>
+<span id="cb20-19"><a href="#cb20-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Les deux méthodes trouvent le même résultat"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -672,16 +690,16 @@ Astuce
 <section id="question-découpage-slicing" class="level4">
 <h4 class="anchored" data-anchor-id="question-découpage-slicing">Question découpage (🇬🇧: <em>slicing</em>)</h4>
 <p>Le découpage permet d’extraire des éléments selon un critère (position, condition, etc.). La notation <code>:</code> signifie “tout le monde”, et l’indexation commence en <span class="math inline">0</span>. Pour partir de la fin, il est possible de mettre le signe <code>-</code> devant le nombre: ainsi <span class="math inline">-1</span> renvoie donc au dernier élément.</p>
-<div id="0fded397" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The first column is </span><span class="sc">{</span>J[:, <span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher la deuxième ligne de J</span></span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The second row is </span><span class="sc">{...}</span><span class="ss">"</span>)  <span class="co"># XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8725d426" class="cell" data-execution_count="14">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The first column is </span><span class="sc">{</span>J[:, <span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher la deuxième ligne de J</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The second row is </span><span class="sc">{...}</span><span class="ss">"</span>)  <span class="co"># XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Mettre à zéro une ligne sur 2 de la matrice identité de taille <span class="math inline">5\times 5</span></p>
-<div id="d220bb90" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.eye(<span class="dv">5</span>, <span class="dv">5</span>)</span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>C[...,...] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mettre à zéro une ligne sur deux. # XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2c85d597" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.eye(<span class="dv">5</span>, <span class="dv">5</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>C[...,...] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mettre à zéro une ligne sur deux. # XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 </section>
@@ -689,16 +707,16 @@ Astuce
 <section id="visualisation-dune-figure" class="level2">
 <h2 class="anchored" data-anchor-id="visualisation-dune-figure">Visualisation d’une figure</h2>
 <p>Pour lancer une figure on peut utiliser la package <code>matplotlib</code>. Un exemple utilisant le package <code>numpy</code> pour créer une figure simple est donné ci-dessous, dans la <a href="#fig-cos" class="quarto-xref">Figure&nbsp;1</a>.</p>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>ax.plot(r,theta)</span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cell-fig-cos" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>r <span class="op">=</span> np.arange(<span class="dv">0</span>, <span class="dv">2</span>, <span class="fl">0.01</span>)</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> np.cos(<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> r)</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>ax.plot(r,theta)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cell-fig-cos" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="fig-cos" class="quarto-figure quarto-figure-center anchored" height="411" width="590">
@@ -718,33 +736,33 @@ Figure&nbsp;1: Une figure simple.
 <section id="aspects-aléatoires" class="level2">
 <h2 class="anchored" data-anchor-id="aspects-aléatoires">Aspects aléatoires</h2>
 <p>Le module <code>random</code> de <code>numpy</code> permet d’utiliser l’aléatoire et des lois usuelles en Python. On crée d’abord un générateur qui nous permettra ensuite d’appeler les lois voulues comme suite:</p>
-<div id="f7f1a5b0" class="cell" data-execution_count="16">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># package de calcul scientifique</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># package graphique</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>generateur.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>0.5267712048009846</code></pre>
+<div id="512501f9" class="cell" data-execution_count="17">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># package de calcul scientifique</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># package graphique</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>generateur.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="11">
+<pre><code>-2.4605422004009214</code></pre>
 </div>
 </div>
 <section id="question-matrices-aléatoires" class="level4">
 <h4 class="anchored" data-anchor-id="question-matrices-aléatoires">Question : Matrices aléatoires</h4>
 <p>Créer une matrice de taille <span class="math inline">4\times 5</span> dont les entrées sont <span class="math inline">i.i.d</span> de loi de Laplace d’espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s’aider <a href="https://numpy.org/doc/stable/reference/random/generator.html">de l’aide en ligne</a> si besoin.</p>
-<div id="d2d7ae59" class="cell" data-execution_count="17">
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="15d4d7b7" class="cell" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-reproduire-des-résultats" class="level4">
 <h4 class="anchored" data-anchor-id="question-reproduire-des-résultats">Question : Reproduire des résultats</h4>
 <p>Pour reproduire des résultats ou débugger un code, il est utile de “figer” l’aléatoire. On utilise pour cela une graine (🇫🇷 <em>seed</em>) dans la création du générateur. Fixez la graine à 0 dans <code>default_rng()</code> et lancez une génération aléatoire. Commenter.</p>
-<div id="aa5c18f8" class="cell" data-execution_count="18">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>rng.normal()</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>rng2 <span class="op">=</span> np.random.default_rng(...)</span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>rng.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cc9943d4" class="cell" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>rng.normal()</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>rng2 <span class="op">=</span> np.random.default_rng(...)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>rng.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="question-afficher-un-histogramme" class="level4">
@@ -756,23 +774,23 @@ Figure&nbsp;1: Une figure simple.
 <li>loi de Laplace.</li>
 </ol>
 <p>On utilisera les mêmes paramètres de centrage et d’échelle pour les trois lois.</p>
-<div id="7254f32e" class="cell" data-execution_count="19">
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.empty([n_samples, <span class="dv">3</span>])</span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">0</span>] <span class="op">=</span> ...</span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">1</span>] <span class="op">=</span> ...</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">2</span>] <span class="op">=</span> ...</span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>lois <span class="op">=</span> [<span class="st">"Loi de Gauss"</span>, <span class="st">"Loi de Laplace"</span>, <span class="st">"Loi de Cauchy"</span>]</span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>fig_hist, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(lois):</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    ax[i].hist(..., bins<span class="op">=</span><span class="dv">100</span>, density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(name)</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb26-15"><a href="#cb26-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb26-16"><a href="#cb26-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="eeea4d8d" class="cell" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.empty([n_samples, <span class="dv">3</span>])</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">0</span>] <span class="op">=</span> ...</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">1</span>] <span class="op">=</span> ...</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">2</span>] <span class="op">=</span> ...</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>lois <span class="op">=</span> [<span class="st">"Loi de Gauss"</span>, <span class="st">"Loi de Laplace"</span>, <span class="st">"Loi de Cauchy"</span>]</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>fig_hist, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">3</span>, <span class="dv">3</span>))</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, name <span class="kw">in</span> <span class="bu">enumerate</span>(lois):</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a>    ax[i].hist(..., bins<span class="op">=</span><span class="dv">100</span>, density<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(name)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>De manière complémentaire le module <code>scipy.stats</code> permet d’utiliser des lois usuelles, et de faire des tests statistiques. On pourra consulter la documentation en ligne pour plus de détails: <a href="https://docs.scipy.org/doc/scipy/reference/stats.html">https://docs.scipy.org/doc/scipy/reference/stats.html</a>.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
