@@ -188,7 +188,7 @@ Testez les commandes suivantes :
 `v1-7`, `v2**4`, `10*v3`,  `v1+v2`, `v1*v2`, `v1/v2`, `v1+v3`.
 
 Il existe un grand nombre de fonctions mathématiques qui s'appliquent directement sur un vecteur :
-`np.sum()`, `np.prod()`, `np.len()`, `np.min()`, `np.max()`, `np.nanmax()`, `np.argmax()`, `np.mean()`, `np.median()`, `np.var()`, `np.std()`.
+`np.sum()`, `np.prod()`, `len()`, `np.min()`, `np.max()`, `np.nanmax()`, `np.argmax()`, `np.mean()`, `np.median()`, `np.var()`, `np.std()`.
 
 
 
