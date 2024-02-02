@@ -246,8 +246,9 @@ np.tile(np.arange(9, 13, step=3), (4, 1))
 
 Enfin, pour extraire la valeur d'indice $i$ d'un vecteur `x`, on tapera `x[i]` (avec la convention que Python commence à énumérer à 0).
 Plus généralement, pour extraire les valeurs associées aux indices $3$, $4$ et $7$, on tapera `x[[3,4,7]]`. Le vérifier sur un vecteur de taille 10.
-On peut aussi extraire des sous parties de vecteurs, par exemple `x[3:7]` pour extraire les valeurs d'indice $3$, $4$, $5$ et $6$, ou bien `x[3:]` pour extraire les valeurs d'indice $3$, $4$, $5$, etc. jusqu'à la fin. Enfin, on peut extraire des sous suites d'indices pair ou impair, par exemple `x[::2]` pour extraire les valeurs d'indice pair, ou bien `x[1::2]` pour extraire les valeurs d'indice impair.
-Enfin on peut aussi utiliser le signe `-` pour partir de la fin, par exemple `x[-1]` pour extraire la dernière valeur, ou bien `x[-2]` pour extraire l'avant-dernière valeur.
+On peut aussi extraire des sous parties de vecteurs, par exemple `x[3:7]` pour extraire les valeurs d'indice $3$, $4$, $5$ et $6$, ou bien `x[3:]` pour extraire les valeurs d'indice $3$, $4$, $5$, etc. jusqu'à la fin. 
+
+
 
 ### Matrices en `numpy`
 
@@ -255,7 +256,7 @@ La fonction `np.shape` permet de connaître la taille d'un vecteur ou d'une matr
 
 
 #### Question : opérations élémentaires
-Manipulez les opérations classiques sur des matrices (*arrays*) de `numpy` (si vous êtes déjà habitués à `numpy` vous pouvez continuer)
+Manipulez les opérations classiques sur des matrices (*arrays*) de `numpy` (si vous êtes déjà habitué à `numpy` vous pouvez continuer)
 
 Opérations termes à termes:
 ```{python}
@@ -299,10 +300,10 @@ print("it worked: method 2")
 
 #### Question : résolution de systèmes linéaires
 
-Pour résoudre le système $Ax=b$ en mathématiques, la formule explicite est $x=A^{-1}b$ (dans le cas où $A$ est inversible).
+Pour résoudre le système de la forme $Ax=b$ en mathématiques, la formule explicite est $x=A^{-1}b$ (dans le cas où $A$ est inversible).
 
 ::: {.callout-important}
-En pratique vous n'utiliserez presque jamais l'inversion de matrice ! En effet, on n'inverse **JAMAIS JAMAIS (!)** une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !
+En pratique vous n'utiliserez (presque) jamais l'inversion de matrice ! En effet, on n'inverse **JAMAIS JAMAIS (!)** une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !
 :::
 
 ```{python}
@@ -330,15 +331,15 @@ import time
 # Résolution de système par une méthode naive: inversion de matrice
 t0 = time.perf_counter()  # XXX TODO
 y1 = ... @ b
-timing_naive = ...
+timing_naive = time.perf_counter() - t0
 print(
-    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive:.4f} s."
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive - t0:.4f} s."
 )
 
 # Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``
-# XXX TODO
+t0 = time.perf_counter()
 y2 = ...
-timinig_optimized = ...
+timinig_optimized = time.perf_counter()
 print(
     f"Temps pour résoudre un système avec la formule mathématique: {timing_optimized:.4f} s.\nC'est donc {timing_naive / timing_optimized} fois plus rapide d'utiliser la seconde formulation"
 )
@@ -348,7 +349,7 @@ print("Les deux méthodes trouvent le même résultat")
 ```
 
 ::: {.callout-tip}
-Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser le package `timeit`^[[lien vers la documentation de timeit](https://docs.python.org/3/library/timeit.html)]
+Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser le package `timeit`^[[lien vers la documentation de timeit](https://docs.python.org/3/library/timeit.html)] ou voir la discussion ici: [https://superfastpython.com/time-time-vs-time-perf_counter/](https://superfastpython.com/time-time-vs-time-perf_counter/).
 :::
 
 #### Question découpage (&#127468;&#127463;: *slicing*)
@@ -356,6 +357,8 @@ Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser
 Le découpage permet d'extraire des éléments selon un critère (position, condition, etc.).
 La notation `:` signifie "tout le monde", et l'indexation commence en $0$.
 Pour partir de la fin, il est possible de mettre le signe `-` devant le nombre: ainsi $-1$ renvoie donc au dernier élément.
+Enfin, on peut extraire des sous suites d'indices pair ou impair, par exemple `x[::2]` pour extraire les valeurs d'indice pair, ou bien `x[1::2]` pour extraire les valeurs d'indice impair de `x`.
+Enfin on peut aussi utiliser le signe `-` pour partir de la fin, par exemple `x[-1]` pour extraire la dernière valeur, ou bien `x[-2]` pour extraire l'avant-dernière valeur.
 
 ```{python}
 #| eval: false
