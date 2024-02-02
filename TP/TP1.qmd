@@ -348,9 +348,9 @@ Pour partir de la fin, il est possible de mettre le signe `-` devant le nombre: 
 
 ```{python}
 #| eval: false
-print(f"The first column is {A[:, 0]}")
+print(f"The first column is {J[:, 0]}")
 
-# Afficher la deuxième ligne de A
+# Afficher la deuxième ligne de J
 print(f"The second row is {...}")  # XXX TODO
 ```
 
