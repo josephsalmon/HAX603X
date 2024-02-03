@@ -491,6 +491,7 @@ viewof replay = html`<button>Relancer`
 //| layout-ncol: 1
 //| layout-align: center
 //| echo: false
+
 // Hack to make ojs load a github js file…
 // the repo is https://github.com/fradav/matter-playground
 // invcdfboard = {
@@ -610,15 +611,19 @@ $$
 $$
 ce qui donne
 $$
+\begin{align*}
     \mathbb{P}(T=n)
-    = \lim_{q \to \infty} \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(q)}{m}
-    = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{1}{m}\,.
+    & = \lim_{q \to \infty} \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(q)}{m}\\
+    & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{1}{m}\,.
+\end{align*}
 $$
 On en déduit que $T$ suit une loi géométrique de paramètre $1/m$. D'autre part, par $\sigma$-additivité,
 $$
+\begin{align*}
     \mathbb{P}(X \leq x)
-    = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)
-    = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n)\,,
+    & = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)\\
+    & = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n)\,,
+\end{align*}
 $$
 ce qui donne
 $$
@@ -1005,13 +1010,13 @@ Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée 
 
 <br>
 
-Soit $(E_n)_{n \geq 1}$ des variables aléatoires iid de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires iid de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors pour tout $n \in \mathbb{N}^*$
 $$
-    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\,, \quad n \in \mathbb{N}^*\,.
+    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
 Ainsi, la variable aléatoire $T$ définie par
 $$
-    T := \sup \{n \in \mathbb{N}^* : E_1 + \cdots + E_n \leq 1\}
+    T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}
 $$
 suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
