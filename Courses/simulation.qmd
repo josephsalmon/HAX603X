@@ -69,7 +69,7 @@ L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables
 <br>
 
 Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
-Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain intervalle. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
 :::
 
 
@@ -83,7 +83,7 @@ Parfois il est utile d'aller chercher dans le code source certaines information 
 Un tel algorithme se construit de la manière suivante :
 
 1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
-2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots, U_n$.
+2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots·, U_n$.
 
 
 - La fonction $f$ est déterministe et prend ses valeurs dans un ensemble fini, donc l'algorithme est périodique. Le but est donc d'avoir la plus grande période possible.
@@ -180,19 +180,19 @@ $$
 [Preuve]{.underline}
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
-- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
+- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
 
 
 ## Méthode d'inversion
 :::{#thm-methode_inversion}
 
 ## Méthode d'inversion
-Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^{}(U)$ a même loi que $X$.
+Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^{\leftarrow}(U)$ a même loi que $X$.
 :::
 
 
 [Preuve]{.underline}: En utilisant le théorème précédent, on a
-$\mathbb{P}(F_X^{-1}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
+$\mathbb{P}(F_X^{\leftarrow}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
 Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
 
 On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, car les deux v.a. ont la même fonction de répartition.
@@ -856,7 +856,7 @@ Mais prenons un autre exemple, à savoir tirer des points uniformément dans la 
 # plot a cardioid curve with polar coordinates in plotly
 
 def cardiode(n_discr=100):
-    theta = np.linspace(0, 2*np.pi, n_discr)
+    theta = np.linspace(0, 2 * np.pi, n_discr)
     r = (1 + np.cos(theta))
     x = r * np.cos(theta)
     y = r * np.sin(theta)
@@ -864,7 +864,7 @@ def cardiode(n_discr=100):
 
 
 def circle(n_discr=100):
-    theta = np.linspace(0, 2*np.pi, n_discr)
+    theta = np.linspace(0, 2 * np.pi, n_discr)
     x = np.cos(theta)
     y = np.sin(theta)
     return x, y
@@ -908,11 +908,12 @@ def plot_samples(fig, n_sample, plot_type="circle"):
     if plot_type == "circle":
         test_func = test_unit_circle
         x_samples = np.random.uniform(-1, 1, n_sample)
+        y_samples = np.random.uniform(-1., 1, n_sample)
     elif plot_type == "cardioide":
         test_func = test_cardioide
         x_samples = np.random.uniform(-2, 3, n_sample)
+        y_samples = np.random.uniform(-1.5, 1.5, n_sample)
 
-    y_samples = np.random.uniform(-1.5, 1.5, n_sample)
     test_func = np.vectorize(test_func)
     test_samples = test_func(x_samples, y_samples)
     for i in [0, 1]:
@@ -930,27 +931,11 @@ def plot_samples(fig, n_sample, plot_type="circle"):
 
 ```{python}
 #| echo: false
-#| label: fig-rejet-cardioide
-#| fig-cap:
-#|     - Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.
-
-n_sample = 3000
-plot_type = "cardioide"
-
-fig = go.Figure()
-fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
-fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
-fig.show()
-ratio = np.sum(test_samples_cardioide) / n_sample
-print(ratio * 3 * 5)
-```
-
-```{python}
-#| echo: false
 #| label: fig-rejet-cercle
 #| fig-cap:
 #|    - Méthode de rejet pour simuler une loi uniforme sur un disque unité. 
 
+n_sample = 3000
 plot_type = "circle"
 
 fig = go.Figure()
@@ -958,8 +943,27 @@ fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_t
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100) 
 fig.show()
 ratio = np.sum(test_samples_circle) / n_sample
-print(ratio * 3 * 2)
+print(f"Aire estimée: {ratio * 4}")
 ```
+
+```{python}
+#| echo: false
+#| label: fig-rejet-cardioide
+#| fig-cap:
+#|     - Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.
+
+plot_type = "cardioide"
+
+fig = go.Figure()
+fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
+fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
+fig.show()
+ratio = np.sum(test_samples_cardioide) / n_sample
+print(f"{ratio * 3 * 5}")
+
+```
+
+
 
 
 ::: {.callout-important appearance='default' icon="false"}
