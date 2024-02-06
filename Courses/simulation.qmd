@@ -653,10 +653,10 @@ $$
 
 def accept_reject(n, f, g, g_sampler, m):
     """
-    n: number of samples
-    f: target density
-    g: proposal density
-    m: constant such that f(x) <= m*g(x)
+    n: nombre de simulations
+    f: densité cible
+    g: densité des propositions, g_sampler: simulateur selon g
+    m: constante pour la majoration
     """
     x_samples = np.zeros(n)
     u_samples = np.zeros(n)
@@ -780,7 +780,7 @@ md`Le taux d'acceptation est passé de **${ratio1}** à
 ## Rejet d'une loi de densité d'Andrews
 Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
 Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
-On peut l'adapter en adaptant le test de la manière suivante:
+On peut l'adapter le test de la manière suivante:
 si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
 De plus on peut vérifier que $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
 
@@ -802,7 +802,7 @@ ojs_define(ratio=ratio)
 ```
 
 On peut approcher numériquement la valeur exacte de $S$ en utilisant une
-méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:
+méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous-jacente:
 
 ```{python}
 from scipy import integrate
@@ -1010,7 +1010,7 @@ Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée 
 
 <br>
 
-Soit $(E_n)_{n \geq 1}$ des variables aléatoires iid de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors pour tout $n \in \mathbb{N}^*$
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors, pour tout $n \in \mathbb{N}^*$
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
@@ -1031,7 +1031,7 @@ La preuve repose sur le lemme suivant.
 <br>
 
 
-Soit $n$ variables aléatoires $E_1, \dots, E_n$ iid de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
+Soit $n$ variables aléatoires $E_1, \dots, E_n$ i.i.d. de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
 $$
     F_{n,\lambda}(t) = 1 - \sum_{k=0}^{n-1} e^{-\lambda t} \frac{(\lambda t)^k}{k!}\,.
 $$
@@ -1069,7 +1069,7 @@ Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve 
 <div class="div-remaining">□</div>
 </div>
 
-On peut désormais prouver le résultat de la Proposition @{prp-poisson_exponentielle}.
+On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 
 *Démonstration*:
 

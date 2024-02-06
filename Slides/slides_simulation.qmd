@@ -36,7 +36,7 @@ MathJax.Hub.Config({
 <br>
 
 
-[Question: Comment simuler en pratique des variables aléatoires i.i.d?]{.r-fit-text}
+[[Question]{.underline}: Comment simuler en pratique des variables aléatoires i.i.d?]{.r-fit-text}
 
 
 <br>
@@ -44,7 +44,7 @@ MathJax.Hub.Config({
 
 . . .
 
-[Approche: Commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
+[[Approche]{.underline}: Commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
 <br>
 <br>
 
@@ -403,19 +403,19 @@ Voir animation dans la section [Cours, section "Méthode d'inversion"](../Course
 
 . . .
 
-Supposons disposer d'une autre densité $g$ t.q. :
+Supposons disposer d'une autre densité $g$ (**loi des propositions**) t.q. :
 
 :::{.incremental}
 
 - on sait simuler $Y$ de loi $g$,
-- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$
+- il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$ (**constante de majoration**)
 - on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{m\cdot g(x)}$
 
 :::
 
 . . .
 
-[Remarque]{.underline}: $m \leq 1$ car
+[Remarque]{.underline}: $m \geq 1$ car
 $$
 	1 = \int_\mathbb{R} f(x) \,  dx \class{fragment}{{}\leq m \int_\mathbb{R} g(x)\,  dx} \class{fragment}{{}= m}
 $$
@@ -451,35 +451,37 @@ Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniform
 
 :::
 
-## Visualisation de l'exemple
 
+## Code Python
+
+::: {.r-fit-text}
 ```{python}
-#| echo: false
-
-def accept_reject(n, f, g, g_sampler, m, rng):
+#| echo: true
+#| code-line-numbers: 1-8|9-11|12|13-17|18-19|20|
+def accept_reject(n, f, g, g_sampler, m, rng):                                  
     """
-    n: number of samples
-    f: target density
-    g: proposal density
-    m: constant such that f(x) <= m*g(x)
+    n: nombre de simulations
+    f: loi cible
+    g: loi des propositions, g_sampler: simulateur selon g
+    m: constante pour la majoration
+    rng: générateur pseudo-aléatoire
     """
     x_samples = np.zeros(n)
     u_samples = np.zeros(n)
     accepted = np.zeros(n)
-    n_accepted = 0
-    while n_accepted < n:
+    for i in range(n):
         x = g_sampler()
         u = rng.uniform()
         alpha = u * m * g(x)
-        u_samples [n_accepted] = alpha
-        x_samples[n_accepted] = x
+        u_samples [i] = alpha
+        x_samples[i] = x
         if  alpha <= f(x):
-            accepted[n_accepted] = 1
-        n_accepted += 1
+            accepted[i] = 1
     return x_samples, u_samples, accepted
 ```
+:::
 
-
+## Visualisation de l'exemple
 
 ```{python}
 #| echo: false
@@ -741,8 +743,9 @@ fig2.show()
 :::
 
 
-## Comparaison des deux méthodes
+## Comparaison des deux majorants
 
+<br>
 ```{python}
 #| echo: false
 ojs_define(ratio1=ratio1)
@@ -760,9 +763,21 @@ md`Taux d'acceptation: avec la loi uniforme **${ratio1.toPrecision(5)}**`
 md`Taux d'acceptation: avec la loi triangulaire **${ratio2.toPrecision(5)}**`
 ```
 
+<br>
+
 [Conclusion]{.underline}: plus le majorant est proche de la loi cible, plus le taux d'acceptation est élevé, et moins de simulations sont nécessaires
 :::
 
+<br>
+
+
+::: {.callout-note appearance="simple"}
+
+## Note
+
+L'exemple est pour l'illustration de la méthode, dans le cas présent méthode de l'inverse fonctionnerait aussi (on peut calculer la fonction quantile explicitement).
+
+:::
 
 ## Méthode de rejet: validation théorique
 
@@ -874,10 +889,164 @@ $$
 
 On obtient l'indépendance de $T$ et $X$ car on peut alors écrire:
 $$
+    \forall x \in \mathbb{R}, \forall n \in \mathbb{N}^*, \quad
     \mathbb{P}(X \leq x, T=n)
     =
     \mathbb{P}(X \leq x) \cdot \mathbb{P}(T=n)
 $$
+
+
+## Cas de densité connue à une constante près : exemple
+**Loi de Andrews **(densité proportionnelle à $\mathrm{sinc}$, sinus cardinal):
+$$
+\forall x \in \mathbb{R},\quad f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)
+$$
+avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$ non explicite. On note parfois: $f(x) \propto \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$
+
+<br>
+
+. . .
+
+[Méthode du rejet]{.underline}: prendre $m=2/S$ et $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$:
+
+$$
+u \leq r(x) = \frac{f(x)}{m \cdot g(x)} \iff u \leq \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}
+$$
+
+. . .
+
+Ainsi l'évaluation de $r(x)$ est possible sans connaître $S$!
+
+
+## Loi de Andrews: visualisation
+
+```{python}
+#| echo: true
+n = 300
+m = 2
+rng = np.random.default_rng(seed)
+g = lambda x: np.ones_like(x) / 2
+g_sampler = lambda: 2 * rng.uniform() - 1
+x_samples, u_samples, accepted = accept_reject(n, np.sinc, g, g_sampler, m, rng)
+```
+
+```{python}
+#| echo: false
+ratio_andrews = np.sum(accepted) / n
+ojs_define(ratio_andrews=ratio_andrews)
+# Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x
+```
+
+
+<br>
+
+
+
+```{python}
+from scipy import integrate
+S = integrate.quad(np.sinc, -1, 1)[0]
+ojs_define(s_int=S)
+# print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
+```
+```{ojs}
+//| echo: false
+md`Le taux d'acceptation est ici de **${ratio_andrews.toPrecision(3)}**.`
+```
+
+<br>
+
+```{python}
+#| echo: false
+fig = go.Figure()
+fig.add_trace(
+    go.Histogram(
+        x=x_samples[accepted == 1],
+        nbinsx=30,
+        marker=dict(color="blue", opacity=0.1),
+        histnorm="probability density", name="Histogramme des points acceptés"
+    )
+)
+
+# Plot the density
+x = np.linspace(-1, 1, 100)
+fig.add_trace(
+    go.Scatter(
+        x=x,
+        y=np.sinc(x) / S,
+        mode="lines",
+        line=dict(color="black", dash="dash", width=5),
+        name="Densité",
+    )
+)
+# Plot the samples
+fig.update_xaxes(range=[-1.1, 1.1])
+fig.update_yaxes(range=[0, 1.5])
+
+fig.add_trace(
+    go.Scatter(
+        x=x_samples[accepted == 1],
+        y=0.05 * np.ones_like(x_samples[accepted == 1]),
+        mode="markers",
+        marker=dict(color="blue", symbol="circle", size=15, opacity=0.59),
+        name="Abscisse des points acceptés",
+    )
+) 
+
+fig.update_layout(template="simple_white", showlegend=True)
+
+fig.update_layout(
+    legend=dict(
+        y=0.95, x=.74,
+        yanchor="top",
+        bgcolor="#ffffff",
+        bordercolor="Black",
+        borderwidth=1,
+        font=dict(
+            size=18,
+            color="black"
+        )
+    )
+)
+
+```
+
+. . .
+
+<br>
+
+```{ojs}
+//| echo: false
+md`Pour la visualization, on approxime S=**${s_int.toPrecision(3)}** en utilisant une méthode de calcul numérique.`
+```
+
+
+
+## Cas de densité connue à une constante près (cas général)
+
+Soit $\tilde{f}: \mathbb{R} \to [0,+\infty[$ connue et $S \triangleq \int_{\mathbb{R}} \tilde{f}(x) \,  d x  < + \infty$ inconnue (ou dure à évaluer)
+
+[Densité cible]{.underline}: $\quad f(x) = \frac{\tilde{f}(x)}{S}$
+
+<br>
+
+Méthode du rejet pour $f$, en utilisant seulement $\tilde{f}$:  soit $\tilde{m}>0$ un majorant de $\tilde{f}$ t.q.
+$$
+\begin{align*}
+\tilde{f}(x) \leq  \tilde{m} \cdot g(x)
+\end{align*}
+$$
+
+Application avec $m=\tilde{m}/S$  (sans connaître $S$), le test d'acceptation donne:
+
+. . .
+
+$$
+\begin{align*}
+U_n & \leq \frac{f(Y_n)}{m \cdot g(Y_n)}\\
+  & \class{fragment}{{}\leq \frac{\frac{\tilde{f}(Y_n)}{S}}{\frac{\tilde{m}}{S} \cdot g(Y_n)}} \class{fragment}{{}= \frac{\tilde{f}(Y_n)}{\tilde{m} \cdot g(Y_n)}}
+\end{align*}
+$$
+
 
 
 # Méthode de rejet (multidimensionnel)
@@ -893,7 +1062,7 @@ $$
 
 - la méthode de rejet : généralisable au cas multidimensionnel
   - "fléau de la dimension": plus la dimension est grande, plus la méthode est inefficace (penser au nombre de points nécessaires pour quadriller un hypercube...)
-  - difficulté d'écrire une fonction de majoration en toute généralité.
+  - difficulté d'écrire une fonction de majoration en toute généralité
 
 :::
 
@@ -901,11 +1070,11 @@ $$
 
 <br>
 
-[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{x_1+x_2^2 \leq 1}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
+[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{x_1^2+x_2^2 \leq 1}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
 
 <br>
 
-[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$  ($m=1$ fonctionne).
+[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $g(x)\triangleq{1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$ et $m=1$
 
 <br>
 
@@ -1064,7 +1233,7 @@ md`Aire (bleue) estimé: **${aire.toPrecision(5)}**`
 [Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{(x_1^2+x_2^2 - x_2)^2 \leq x_1^2+ x_2^2}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
 <br>
 
-[Loi majorante]{.underline}: loi uniforme sur le rectangle $[-2,3]\times [-1.5,1.5]$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-2,3]\times [-1.5,1.5]}(x)$  ($m=1$ fonctionne).
+[Loi majorante]{.underline}: loi uniforme sur le rectangle $[-2,3]\times [-1.5,1.5]$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-2,3]\times [-1.5,1.5]}(x)$ et $m=1$
 
 <br>
 
@@ -1132,7 +1301,7 @@ md`Aire (bleue) estimé: **${aire_cardioid.toPrecision(5)}**`
 :::{#thm-unif-mesurable}
 ## Géneration uniforme sur un ensemble
 
-Suppons $A\subset B \subset \mathbb{R}^d$, deux ensembles mesureables pour la mesure de Lebesgue.
+Supposons $A\subset B \subset \mathbb{R}^d$, deux ensembles mesureables pour la mesure de Lebesgue.
 Pour générer selon une loi uniforme sur $A$, connaissant un générateur uniforme sur $B$, on peut utiliser la méthode du rejet, en tirant $Y_i \sim \mathcal{U}(B)$ (i.i.d) et en ne gardant  $Y_i$ que si $Y_i \in A$.
 :::
 
@@ -1179,11 +1348,108 @@ $$
 ## Remarque sur les constantes
 
 <br>
-Dans l'exemple précédent, on voir qu'on a pu appliquer la méthode de rejet sans la connaissance de $m$.
+
+Dans l'exemple précédent, on a pu appliquer la méthode de rejet sans la connaissance de $m$
 
 <br>
 
-Ce point est important: parfois la connaissance de $m$ est difficile à obtenir, et il est préférable de ne pas l'utiliser (notamment quand les constantes de normalisation des densités sont difficiles à calculer).
+Point important: parfois la connaissance de $m$ est difficile à obtenir, et il est préférable de ne pas l'utiliser (notamment quand les constantes de normalisation des densités sont difficiles à calculer).
 
 <br>
 [Exemples]{.underscore}: statistiques bayesiennes, modèles graphiques, etc.
+
+
+# Autres méthodes
+
+
+
+## Sommes de variables aléatoires
+
+[Loi de Bernouilli]{.underline}:  avec $U_1, \ldots, U_n$ i.i.d uniformes sur $[0,1]$ (méthode d'inversion):
+$$
+X_i \triangleq {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(p)
+$$
+[Loi binomiale]{.underline}:
+$$
+	\sum_{i=1}^n {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)
+$$
+en rappelant que
+$$
+	X = X_1 + \cdots + X_n \sim \mathcal{B}(n,p)
+$$
+
+
+:::{.callout-note}
+
+## Note
+La méthode d'inversion marche, mais nécessite le calcul de l'inverse généralisée de $F$, donc de coefficients binomiaux...
+:::
+
+
+## Loi de Poisson
+
+[Rappel]{.underline}: $\quad X \sim \mathcal{P}(\lambda)$ si
+$\mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad  \forall k \in \mathbb{N}^*.$
+
+:::: {#prp-poisson_exponentielle}
+
+## Génération de v.a. de loi de Poisson
+
+<br>
+
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors pour tout $n \in \mathbb{N}^*$
+$$
+    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
+$$
+Ainsi, la variable aléatoire $T$ définie par
+$$
+    T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}
+$$
+suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+
+::::
+
+
+
+## Loi de Poisson (suite)
+
+La preuve repose sur le résultat suivant:
+
+:::: {#lem-erlang}
+
+## Loi de Erlang
+
+<br>
+
+
+Soit $n$ variables aléatoires $E_1, \dots, E_n$ i.i.d. de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
+$$
+    F_{n,\lambda}(t) = 1 - \sum_{k=0}^{n-1} e^{-\lambda t} \frac{(\lambda t)^k}{k!}\,.
+$$
+::::
+
+
+## Démonstration avec le lemme
+
+
+Pour $n \in \mathbb{N}^*$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
+$$
+\begin{align*}
+    \mathbb{P}(S_n \leq 1 < S_{n+1})
+    & = \mathbb{P}(\{S_n \leq 1\} \setminus \{S_{n+1} \leq 1\})\\
+    & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
+\end{align*}
+$$
+Le lemme précédent donne $\mathbb{P}(S_n \leq 1) = 1 - \sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}$
+et
+$\mathbb{P}(S_{n+1} \leq 1) = 1 - \sum_{k=0}^{n} e^{-\lambda} \dfrac{\lambda^k}{k!}.$
+On obtient alors le résultat souhaité :
+$$
+    \mathbb{P}(S_n \leq 1 < S_{n+1})
+    = e^{-\lambda} \dfrac{\lambda^n}{n!}\,.
+$$
+
+On conclut la preuve de la proposition en remarquant que
+$$
+    \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
+$$
