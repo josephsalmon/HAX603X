@@ -1388,8 +1388,7 @@ La méthode d'inversion marche, mais nécessite le calcul de l'inverse général
 
 ## Loi de Poisson
 
-[Rappel]{.underline}: $\quad X \sim \mathcal{P}(\lambda)$ si
-$\mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad  \forall k \in \mathbb{N}^*.$
+[Rappel]{.underline}: $\quad X \sim \mathcal{P}(\lambda) \iff \mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad  \forall k \in \mathbb{N}^*.$
 
 :::: {#prp-poisson_exponentielle}
 
@@ -1401,14 +1400,12 @@ Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
-Ainsi, la variable aléatoire $T$ définie par
-$$
-    T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}
-$$
-suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+Ainsi, la variable aléatoire $T$ définie par $T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
 ::::
 
+C'est la méthode utilisée par `numpy.random.poisson`,
+cf. [code source (GitHub)](https://github.com/numpy/numpy/blob/main/numpy/random/src/distributions/distributions.c#L540) (en passant à l'exponentiel), qui fut proposée par D. Knuth; Source: [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution#cite_note-Knuth1997-68)
 
 
 ## Loi de Poisson (suite)
