@@ -1,5 +1,5 @@
 ---
-title: "Loi normale (1D)"
+title: "Loi normale: cas 1D"
 format:
   html:
       out.width: 50%
@@ -111,5 +111,7 @@ ce qui donne le résultat voulu.
 <div class="div1"> </div>
 <div class="div-remaining">□</div>
 </div>
+
+
 
 

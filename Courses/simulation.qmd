@@ -451,12 +451,12 @@ fig.show()
 
 
 
-::: {#def-inversion_discrete}
+::: {#prp-inversion_discrete}
 ##  Loi à support fini
 
 <br>
 
-Soit $X$ une variable aléatoire discrète prenant uniquement les valeurs $x_1 < \dots < x_r$ avec probabilité $p_1, \dots, p_r$, et tel que $p_1 + \dots + p_r=1$.
+Soit $X$ une variable aléatoire discrète prenant uniquement les valeurs $x_1 < \dots < x_r$ ($r$ modalité possibles) avec probabilité $p_1, \dots, p_r$ (donc $p_1 + \dots + p_r=1$).
 On vérifie que pour tout $u \in ]0,1[$,
 $$
 		F^\leftarrow(u) =
@@ -464,20 +464,22 @@ $$
 			x_1 & \text{si } 0 < u \leq p_1\,,                  \\
 			x_2 & \text{si } p_1 < u \leq p_1+p_2\,,            \\
 			    & \vdots                                        \\
-			x_r & \text{si }  p_1 + \dots + p_{r-1} < u < 1\,.
+			x_r & \text{si }  \sum_{i=1}^{r-1} p_i < u < 1\,.
 		\end{cases}
 $$
 
 Sur cet exemple, on peut prolonger la définition de $F^\leftarrow$ à $u=1$ en posant $F^\leftarrow(1) = x_r$.
 L'inverse généralisée se réécrit alors sous la forme
 $$
-		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{p_1 + \dots + p_{k-1} < u \leq p_1 + \dots + p_k}\enspace,
+		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{ \{  \sum_{i=1}^{k-1}p_i < u \leq \sum_{i=1}^{k}p_i \} }\enspace,
 $$
-où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ prend un nombre infini dénombrable de valeurs (la somme devient alors une série).
+où on a posé $p_0=0$.
 :::
 
+L'expression précédente s'étend directement au cas où $X$ prend un nombre (infini) dénombrable de valeurs, la somme devenant alors une série.
 
 La méthode est illustré ci-dessous pour quelques lois intéressantes:
+
 
 ```{ojs}
 //| echo: false
@@ -526,7 +528,7 @@ On dispose cependant d'une autre densité $g$ possédant les propriétés suivan
 
 Remarquons d'ores et déjà que la constante $m$ est nécessairement plus grande que $1$ car
 $$
-	1 = \int_\mathbb{R} f(x) \, \mathrm dx \leq m \int_\mathbb{R} g(x)\, \mathrm dx = m\,.
+	1 = \int_\mathbb{R} f(x) \, dx \leq m \int_\mathbb{R} g(x)\, dx = m\,.
 $$
 
 
@@ -568,15 +570,15 @@ Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indé
 $$\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
-		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, \mathrm du \mathrm dy  \\
-		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, \mathrm du\bigg) g(y)\, \mathrm d y \\
-		 & =  \int_\mathbb{R} (1-r(y)) \, g(y)\, \mathrm d y\,,
+		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy  \\
+		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
+		 & =  \int_\mathbb{R} (1-r(y)) \, g(y)\, d y\,,
 	\end{align*}
 $$
 ce qui se réécrit, comme $f$ et $g$ sont des densités et que $r(y) = f(y)/(m \cdot g(y))$:
 $$\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
-		& = \int_\mathbb{R} g(y)\, \mathrm d y - \int_\mathbb{R} \dfrac{f(y)}{m}\, \mathrm dy \\
+		& = \int_\mathbb{R} g(y)\, d y - \int_\mathbb{R} \dfrac{f(y)}{m}\, dy \\
 		& = 1 - \dfrac{1}{m}\,.
 	\end{align*}
 $$
@@ -584,16 +586,16 @@ Le deuxième terme se calcule de manière analogue :
 $$
 \begin{align*}
     \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, \mathrm du \mathrm dy       \\
-        & = \int_\mathbb{R} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, \mathrm du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, \mathrm d y\,,
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy       \\
+        & = \int_\mathbb{R} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y\,,
 \end{align*}
 $$
 c'est-à-dire
 $$
 \begin{align*}
         \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-		& = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, \mathrm d y \\
-		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, \mathrm d y \\
+		& = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y \\
+		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, d y \\
 		& = \dfrac{F(x)}{m}\,,
 \end{align*}
 $$
@@ -638,9 +640,11 @@ ce qui prouve que $X$ a pour loi $F$.
 
 Enfin, la loi du couple $(X,T)$ est égale au produit des lois
 $$
+\begin{align*}
     \mathbb{P}(X \leq x, T=n)
-    = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}
-    = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
+    & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}\\
+    & = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
+\end{align*}
 $$
 <div class="container">
 <div class="div1">ce qui prouve l'indépendance de $X$ et $T$.</div>
@@ -1044,21 +1048,21 @@ Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^
 $$
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, \mathrm d x_1 \mathrm d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, \mathrm d x_1 \mathrm d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, \mathrm d x_1 \mathrm d x_2             \\
-        & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2\bigg)  \mathrm d x_1\,.
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
+        & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2\bigg)  d x_1\,.
 \end{align*}
 $$
 La première intégrale se calcule alors facilement :
 $$
-    \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
+    \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
 $$
 On obtient alors
 $$
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
-   & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} \mathrm d x_1\\
+   & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} d x_1\\
    & = 1 - e^{-\lambda t} - \lambda t e^{-\lambda t}\,.
 \end{align*}
 $$

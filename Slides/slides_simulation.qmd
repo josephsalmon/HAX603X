@@ -1404,9 +1404,15 @@ Ainsi, la variable aléatoire $T$ définie par $T \triangleq \sup \{n \in \mathb
 
 ::::
 
+<br>
+
+:::{.callout-note}
+
+## Point numérique
 C'est la méthode utilisée par `numpy.random.poisson`,
 cf. [code source (GitHub)](https://github.com/numpy/numpy/blob/main/numpy/random/src/distributions/distributions.c#L540) (en passant à l'exponentiel), qui fut proposée par D. Knuth; Source: [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution#cite_note-Knuth1997-68)
 
+:::
 
 ## Loi de Poisson (suite)
 
