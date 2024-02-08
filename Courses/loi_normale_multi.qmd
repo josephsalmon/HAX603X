@@ -7,12 +7,12 @@ filters:
   - shinylive
 ---
 
-# Loi normale: cas multivarié
 
 ## Introduction
 
 ```{ojs}
 //| echo: false
+//| layout-ncol: 1
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
@@ -24,23 +24,25 @@ viewof inputs = Inputs.form([
   Inputs.range([-1, 1], {label: tex`\mu_1`, step: 0.1}),
   Inputs.range([-1, 1], {label: tex`\mu_2`, step: 0.1}),
   Inputs.range([0.1, 2], {label: tex`\sigma_1`, step: 0.1}),
-  Inputs.range([0.1, 2], {label: tex`\sigma_2`, step: 0.1}),
+  Inputs.range([0.1, 2], {label: tex`\sigma_2`, step: 0.1, value: 0.3}),
   Inputs.range([0, 6.29], {label: tex`\theta`, step: 0.01}),
   Inputs.range([1, 100], {label: tex`n`, step: 1}),
+  Inputs.button("Re-Tirage")
 ])
+
+
+
+
+
+
+
 
 mu1 = inputs[0];
 mu2 = inputs[1];
-
 sigma1 = inputs[2];
 sigma2 = inputs[3];
-
 theta = inputs[4];
-
 n_samples = inputs[5];
-
-
-//  create a function that takes theta sigma1 and sigma2 and return the covariance matrix
 
 
 function create_sigma(theta, sigma1, sigma2){
@@ -56,36 +58,7 @@ function mvnpdf(x, mu, Sigma){
       math.exp(-0.5*math.multiply( math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x,mu)))
 }
 
-
-function mvnormal_on_grid(){
-  const ngridx1 = 50;
-  const ngridx2 = 50;
-  var griddata = [];
-  for (let x1 of d3.range(-5, 5, 10/ngridx1)){
-    for (let x2 of d3.range(-5, 5, 10/ngridx2)){
-      griddata.push({x1: x1, x2: x2, pdf: mvnpdf([x1, x2], [mu1,mu2], create_sigma(theta, sigma1, sigma2))  })
-    }
-  }
-  return griddata
-}
-
-
 {
-
-//   const ngridx1 = 50;
-//   const ngridx2 = 50;
-//   var griddata = [];
-//   for (let x1 of d3.range(-5, 5, 10/ngridx1)){
-//     for (let x2 of d3.range(-5, 5, 10/ngridx2)){
-//       griddata.push({x1: x1, x2: x2, pdf: mvnpdf([x1, x2], [mu1,mu2], create_sigma(theta, sigma1, sigma2))  })
-//     }
-//   }
-
-    //  create matrix Sigma as a product of three matrix with sin theta and cos theta
-
-    // const maxpdf = mvnpdf([mu1,mu2], [mu1,mu2], Sigma);
-    // const x = d3.range(-5, 5, 0.01);
-
 
 var npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;
 
@@ -105,90 +78,80 @@ for(var i = 0; i < npoints; i++) {
 }
 
 
+// function randn(n){
+//   return d3.range(n).map(d => jstat.normal.sample(0,1))
+// }
+
+// const p = math.matrix([mu1,mu2]).size()[0]
+
+// // create samples from the Gaussian distribution with the given parameters
+// var samples = math.add([mu1,mu2], math.multiply(jstat.cholesky(create_sigma(theta, sigma1, sigma2)),randn(p))) ;
+
+
+
 
 {
 
-//  create a trace with a contour Plot of the function             Plot.contour(mvnormal_on_grid(), {filter: d => d.pdf > Number.EPSILON, x: "x1", y: "x2", fill: "pdf", stroke: "black", blur: 4})
+var trace22 = {
+        x: x,
+        y: y,
+        z: z,
+        type: 'surface',
+        colorscale: 'Oranges',
+        showscale: false,
+        color: {
+            legend: false,
+            label: "pdf",
+        },
+
+}
+
 
 var trace21 = {
         x: x,
         y: y,
         z: z,
         type: 'contour',
+        colorscale: 'Oranges',
         color: {
             legend: true,
-            type: "diverging",
             label: "pdf",
         },
         blur: 4,
-        // marks: [
-        //     Plot.contour(mvnormal_on_grid(), {filter: d => d.pdf > Number.EPSILON, x: "x1", y: "x2", fill: "pdf", stroke: "black", blur: 4})
-        // ],
-        // xaxis: 'x1',
-        // yaxis: 'y1',
+        xaxis: 'x2',
 }
 
 
 
 
-// var trace21 = {
-//         x: {label: "x₁", domain: [-5,5]},
-//         y: {label: "x₂", domain: [-5,5]},
-//         color: {
-//             legend: true,
-//             type: "diverging",
-//             label: "pdf",
-//         },
-//         marks: [
-//             Plot.contour(mvnormal_on_grid(), {filter: d => d.pdf > Number.EPSILON, x: "x1", y: "x2", fill: "pdf", stroke: "black", blur: 4})
-//         ],
-//         xaxis: 'x1',
-//         yaxis: 'y1',
-// }
-
-// var trace22 = {
-//         x : [mu1, mu1],
-//         y : [mu1, 1],
-//         mode: 'lines',
-//         line: {
-//             dash: 'dash',
-//             width: 1,
-//             color: ' #428BCA',
-//             marks: {
-//                 size: 0,
-//                 color: ' #428BCA',
-//             }
-
-//           },
-//       xaxis: 'x1',
-//       yaxis: 'y2'
-// }
 
 
 var data = [
-  trace21
-//   trace22,
+  trace21,
+  trace22,
   ];
 
 
 var layout = {
+    scene: {
+        camera: {
+            eye: {
+                x: 0.5,
+                y: 1.2,
+                z: 1.5,
+            }
+        }
+    },
+  grid: {
+    rows: 1,
+    columns: 2,
+    subplots: [['xy','x2y']]
+   },
 
-  title: 'Distribution et quantile',
-//   xaxis: {
-//     domain: [0, 0.32],
-//     anchor: 'y1'
-//   },
-//   xaxis2: {
-//     domain: [0.35, 1],
-//     anchor: 'y'
-//   },
-
-// legend offset
-  showlegend: false,
-  height: 680,
+    showlegend: false,
 
 };
-// XXX: TODO: put the xticks labels on the middle plot for x and on the right plot for y
+
     var config = {responsive: true}
     const div = DOM.element('div');
     Plotly.newPlot(div, data, layout, config);

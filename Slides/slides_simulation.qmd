@@ -447,7 +447,16 @@ Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniform
 
 - $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
 - $f$ est majorée par $4$ $\implies$ $g = {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=4$ conviennent
-- $r(x) =f(x) / (m\cdot g(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $4 U_1 \leq 4 Y_1^3$, etc.
+- $r(x) =f(x) / (m\cdot g(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_n, U_n)$ et on teste si $4 \cdot U_1 \leq 4 Y_1^3$, etc.
+
+:::
+
+
+:::{.callout-note}
+
+## Note
+
+Dans la suite on verra qu'on tire des points $(Y_n, 4U_n)$ et qu'on teste si ils sont dans l'ensemble $\{(x,y) \in \mathbb{R}^2: y \leq f(x) \}$
 
 :::
 
@@ -704,7 +713,7 @@ Supposons disposer d'un générateur de loi triangulaire sur $[0,1]$ (cf. `np.ra
 
 
 - $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$
-- $f(x)$ est majorée par $4 x \cdot {1\hspace{-3.8pt} 1}_{[0,1]}(x)$ $\implies$ $g = \tfrac{x}{2} \cdot {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=8$ conviennent
+- $f(x)$ est majorée par $4 x \cdot {1\hspace{-3.8pt} 1}_{[0,1]}(x)$ $\implies$ $g = 2x \cdot {1\hspace{-3.8pt} 1}_{[0,1]}$ et $m=2$ conviennent
 - $r(x)=f(x) / (m\cdot g(x)) = x^3$, pour $x \in [0,1]$.
 
 :::
@@ -730,10 +739,10 @@ fig1.show()
 ```{python}
 #| echo: false
 
-g = lambda x: x/2
+g = lambda x: 2 * x
 rng = np.random.default_rng(seed)
 g_sampler = lambda: np.random.triangular(0, 1, 1)
-m = 8
+m = 2
 
 fig2, ratio2, _ = plot_accept_reject(n, f, g, g_sampler, m, rng)
 fig2.show()
@@ -805,7 +814,7 @@ Soit $T = \inf \{n \geq 1 : U_n \leq r(Y_n)\}$ le premier instant où le tirage 
 
 ##  Démonstration
 
-Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}^{*}$, on écrit
+Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}^{*}$, et $X = Y_T$, on écrit
 $\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1}), U_n \leq r(Y_n), Y_n \leq x)$
 
 
@@ -1070,11 +1079,11 @@ $$
 
 <br>
 
-[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{x_1^2+x_2^2 \leq 1}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
+[Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\propto {1\hspace{-3.8pt} 1}_{x_1^2+x_2^2 \leq 1}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
 
 <br>
 
-[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $g(x)\triangleq{1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$ et $m=1$
+[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $g(x)\triangleq \tfrac{1}{2} {1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$ et $m=2$
 
 <br>
 
@@ -1233,7 +1242,7 @@ md`Aire (bleue) estimé: **${aire.toPrecision(5)}**`
 [Loi cible]{.underline}: loi uniforme sur le disque unité, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{(x_1^2+x_2^2 - x_2)^2 \leq x_1^2+ x_2^2}(x)$ pour $x=(x_1,x_2)\in\mathbb{R}^2$
 <br>
 
-[Loi majorante]{.underline}: loi uniforme sur le rectangle $[-2,3]\times [-1.5,1.5]$, $f(x)\triangleq{1\hspace{-3.8pt} 1}_{[-2,3]\times [-1.5,1.5]}(x)$ et $m=1$
+[Loi majorante]{.underline}: loi uniforme sur le rectangle $[-2,3]\times [-1.5,1.5]$, $g(x)\triangleq \tfrac{1}{15}{1\hspace{-3.8pt} 1}_{[-2,3]\times [-1.5,1.5]}(x)$ et $m=15$
 
 <br>
 
