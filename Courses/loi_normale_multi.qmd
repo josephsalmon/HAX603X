@@ -10,12 +10,25 @@ filters:
 
 ## Introduction
 
+
+Loi normale multivariée: $\mu \in \mathbb{R}^p$ et $\Sigma \in \mathbb{R}^{p \times p}$ (symétrique et définie positive).
+$$
+X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
+$$
+
+
+Densité de probabilité :
+$$
+\phi(x) = \frac{1}{ \sqrt{2\pi |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big)
+$$
+
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+jstat = require('jstat');
 math = require("mathjs");
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
 // continuous case
@@ -29,12 +42,6 @@ viewof inputs = Inputs.form([
   Inputs.range([1, 100], {label: tex`n`, step: 1}),
   Inputs.button("Re-Tirage")
 ])
-
-
-
-
-
-
 
 
 mu1 = inputs[0];
@@ -72,25 +79,50 @@ for(var i = 0; i < npoints; i++) {
 for(var i = 0; i < npoints; i++) {
   	for(j = 0; j < npoints; j++) {
 
-    	z[i][j] = mvnpdf([x[i], x[j]], [mu1,mu2], create_sigma(theta, sigma1, sigma2));
+    	z[i][j] = mvnpdf([x[i], x[j]], [mu1, mu2], create_sigma(theta, sigma1, sigma2));
  	}
 
 }
 
+function randn(n){
+  return d3.range(n).map(d => jstat.normal.sample(0,1))
+}
 
+function mvnrand(mu, Sigma, n = 1){
+  const p = math.matrix(mu).size()[0]
+  if (n==1){
+    return math.add(mu, math.multiply(jstat.cholesky(Sigma),randn(p))) 
+  }else{
+    return d3.range(n).map(d => math.add(mu, math.multiply(jstat.cholesky(Sigma), randn(2))) )
+  }
+}
+// Create 100 samples from the multivariate normal distribution with the given parameters  using dists:
+// const samples = mvnrand([mu1, mu2], create_sigma(theta, sigma1, sigma2), 100);
+// var samples = dist["multivariate-normal"].samples([mu1, mu2], create_sigma(theta, sigma1, sigma2), 100);
 // function randn(n){
-//   return d3.range(n).map(d => jstat.normal.sample(0,1))
+//   return d3.range(n).map(d => dists["normal"].samples(1, 0, 1))
 // }
 
-// const p = math.matrix([mu1,mu2]).size()[0]
+// function mvnrand(mu, Sigma, n = 1){
+//   const p = math.matrix(mu).size()[0]
+//   if (n==1){
+//     return math.add(mu, math.multiply(jstat.cholesky(Sigma),randn(p))) 
+//   }else{
+//     return d3.range(n).map(d => math.add(mu, math.multiply(jstat.cholesky(Sigma),randn(2))) )
+//   }
+// }
 
-// // create samples from the Gaussian distribution with the given parameters
-// var samples = math.add([mu1,mu2], math.multiply(jstat.cholesky(create_sigma(theta, sigma1, sigma2)),randn(p))) ;
+
+// Create 100 samples from the multivariate normal distribution with the given parameters
 
 
+//extract n_samples from samples
+// samples = samples.slice(0, n_samples);
 
 
 {
+
+var samples_mult = d3.range(100).map(d => math.add([mu1, mu2], math.multiply(jstat.cholesky([mu1, mu2], create_sigma(theta, sigma1, sigma2)), randn(2))));
 
 var trace22 = {
         x: x,
@@ -121,14 +153,65 @@ var trace21 = {
         xaxis: 'x2',
 }
 
+// can you extract the samples from the multivariate normal distributionin samples_mult
 
 
+// from samples_mult extract the x and y coordinates and plot them on the same plot as the contour plot
+
+
+var trace1 = {
+        x: samples_mult[0,0],
+        y: samples_mult[0,1],
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: 'rgba(0,0,0,0.5)',
+            size: 25,
+        },
+        xaxis: 'x2',
+}
+// var trace1 = {
+//         x: [1.5, 2.5, 3.5, 4.5, 5.5],
+//         y: [4, 1, 7, 1, 4],
+//         mode: 'markers',
+//         type: 'scatter',
+//         marker: {
+//             color: 'rgba(0,0,0,0.5)',
+//             size: 25,
+//         },
+//         xaxis: 'x2',
+// }
+
+// var trace1 = {
+//         x: samples_mult.map(d => d[0]),
+//         y: samples_mult.map(d => d[1]),
+//         mode: 'markers',
+//         type: 'scatter',
+//         marker: {
+//             color: 'rgba(0,0,0,0.5)',
+//             size: 25,
+//         },
+//         xaxis: 'x2',
+// }
+
+// var trace1 = {
+//         x: samples_mult.map(d => d[0]),
+//         y: samples_mult.map(d => d[1]),
+//         mode: 'markers',
+//         type: 'scatter',
+//         marker: {
+//             color: 'rgba(0,0,0,0.5)',
+//             size: 25,
+//         },
+//         xaxis: 'x2',
+// }
 
 
 
 var data = [
   trace21,
   trace22,
+  trace1,
   ];
 
 
