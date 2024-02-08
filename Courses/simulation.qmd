@@ -748,16 +748,16 @@ m = 4
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
 fig1.show()
 ```
-Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = \tfrac{x}{2} {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=8$.
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = 2x {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=2$.
 
 ```{python}
 #| echo: false
 #| label: fig-rejet-polynome-tri
 #| fig-cap:
 #|       - Visualisation des zones d'acceptations/rejet (g triangulaire)
-g = lambda x: x / 2
+g = lambda x: 2*x 
 g_sampler = lambda: np.random.triangular(0, 1, 1)
-m = 8
+m = 2
 
 fig2, ratio2 = plot_accept_reject(n, f, g, g_sampler, m)
 fig2.show()
@@ -855,9 +855,9 @@ md`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`
 
 Commençons par un cas de dimension deux.
 
-Pour cela on va utiliser la méthode de rejet pour simuler une loi de densité $f$ sur $\mathbb{R}^2$. En particulier, un exemple classique est de tirer des points dans le disque unité, c'est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-1,1]^2$, et $m=1$ fonctionne.
+Pour cela on va utiliser la méthode de rejet pour simuler une loi de densité $f$ sur $\mathbb{R}^2$. En particulier, un exemple classique est de tirer des points dans le disque unité, c'est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-1,1]^2$.
 
-Mais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-2,2]^2$, et $m=1$ fonctionne.
+Mais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-2,2]^2$.
 
 ```{python}
 #| echo: false
@@ -968,7 +968,9 @@ fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plo
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
 fig.show()
 ratio = np.sum(test_samples_cardioide) / n_sample
-print(f"{ratio * 3 * 5}")
+# print(f"{ratio * 3 * 5}")
+print(f"Aire estimée: {ratio * 15}")
+
 
 ```
 
