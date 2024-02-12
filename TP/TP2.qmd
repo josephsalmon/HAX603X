@@ -7,3 +7,182 @@ format:
 filters:
   - shinylive
 ---
+
+
+::: {.callout-note}
+
+## Objectifs de ce TP
+- Utiliser les générateurs aléatoires en Python et `numpy`, savoir afficher un histogramme,  une densité, etc.
+- Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en `numpy`.
+:::
+
+
+## Loi uniforme et graine.
+Avec `numpy`, on génère des v.a. *pseudo-aléatoires* de loi uniforme sur $[0,1]$ via `random.uniform`.
+
+On peut modifier le paramètre pour obtenir $n$ variables aléatoires iid de loi uniforme : essayez par exemple
+```{python}
+import numpy as np
+np.random.uniform(size=4)
+```
+
+
+Pour rappel, l'algorithme de génération de v.a. est récursif et s'appuie sur une graine.
+La graine peut être modifiée avec la création d'un générateur, et il suffit d'entrer un nombre en argument pour fixer cette graine.
+
+```{python}
+rng = np.random.default_rng(seed=34)
+print(rng.uniform())
+rng = np.random.default_rng(34)
+print(rng.uniform())
+```
+
+Changer les valeurs de `seed` et vérifier que les tirages ont bien changé.
+
+
+## Exercice 1: Simulation de loi uniforme et histogramme
+
+Créez un vecteur de taille $1000$ composé de réalisations i.i.d. de v.a.uniformes sur $[-1,1]$.
+Dans la suite on supposera que l'on a chargé `matplotlib` pour l'affichage graphique avec la commande:
+```{python}
+import matplotlib.pylab as plt
+from scipy import stats
+```
+
+À l'aide de la fonction `plt.hist`, représentez l'histogramme de cet échantillon:
+
+```{python}
+#| layout-ncol: 1
+fig, ax = plt.subplots()
+vect = rng.uniform(-1, 1, 1000)
+ax.hist(vect, label="Histogramme");
+plt.legend()
+```
+
+On utilisera l'aide de  [hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html) de `matplotlib`s pour préciser les options graphiques suivantes:
+
+
+
+- Analysez en particulier ce que fait l'option `bins` en entrant l'option `bins=30` et `bins=10`.
+- Modifiez également votre histogramme avec l'option `density=True`, de sorte que l'aire soit de 1 (on représente donc une densité qui est constante par morceaux)
+- Ajoutez un titre à l'histogramme grâce à la commande `plt.title` (avec une chaîne de caractères entre guillemets). On peut également ajouter un nom aux axes avec l'option ```plt.xl``` et  ```plt.xlabel```.
+- Les options `ax.set_xlim` et `ax.set_ylim` permettent de préciser l'échelle de axes : il faut préciser un tuple `[a,b]` où $a<b$ sont les deux bornes choisies pour votre axe.
+- On modifiera aussi les options `fill` et `histtype` de `hist` pour obtenir le résultat suivant, en affichant sur un même graphique trois tirages, de tailles 1000, 5000 et 10000.
+-  La densité de la loi uniforme est obtenue avec la fonction `pdf` du module `scipy.stats`. Créer un vecteur équiréparti sur $[-2, 2]$ de longueur $300$ évaluer la fonction sur la même figure: on souhaite superposer cette densité à l'histogramme. On utilisera la fonction `plot` pour tracer la densité, et on pourra utiliser l'option `alpha` pour rendre la densité plus transparente.
+
+Un exemple de figure de qualité acceptable est par exemple celle qui suit:
+
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+cmap = plt.cm.coolwarm
+vect100 = rng.uniform(-1, 1, 1000)
+vect1000 = rng.uniform(-1, 1, 5000)
+vect10000 = rng.uniform(-1, 1, 10000)
+x = np.linspace(-2, 2, num=300)
+
+fig, ax = plt.subplots()
+colors=[cmap(0.99), cmap(0.7), cmap(0.5)]
+
+ax.plot(x, stats.uniform.pdf(x, loc=-1,scale=2),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vect10000, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+ax.hist(vect1000, histtype='step', density=True, bins=30, label="Histogramme 5000", fill=False, color=colors[1])
+ax.hist(vect100, histtype='step', density=True, bins=30, label="Histogramme 1000", fill=False, color=colors[2])
+# plot density
+
+plt.title('Histogramme: tirage uniforme sur [-1, -1]')
+plt.xlabel('Abscisse')
+plt.ylabel('Ordonnée')
+
+ax.set_xlim([-2,2])
+
+from matplotlib.lines import Line2D
+
+custom_lines = [Line2D([0], [0], color=colors[0], lw=2),
+                Line2D([0], [0], color=colors[1], lw=2),
+                Line2D([0], [0], color=colors[2], lw=2)]
+
+ax.legend(custom_lines, ['10000 tirages', '1000 tirages', '100 tirages'], loc='upper right')
+
+plt.show()
+
+```
+
+
+## Exercice 2: Fonction de répartition de la loi uniforme
+
+La fonction de répartition de la loi uniforme est obtenue via la commande `cdf` du module `scipy.stats.uniform`.
+À l'aide de la commande `plt.plot` tracez en bleu la fonction de répartition de la loi uniforme sur $[-1,1]$, $[-0.7, 0.7]$ et $[0.5,0.5]$ et donnez un titre à votre graphique.
+
+- On contrôle avec `lw` (*linewidth*) l'épaisseur du trait.
+- Vous pouvez modifier le style et les marqueurs facilement en `matplotlib`. Une liste exhaustive est donnée ici: [matplotlib.pyplot.plot.html](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
+- Enfin pour les couleurs on pourra consulter l'aide en ligne ici: [Color tutorial](https://matplotlib.org/stable/gallery/color/index.html). La manière la plus simple est souvent d'ajouter l'option `color=nom_couleur` dans la fonction `plot`.
+
+Manipulez les différentes options pour vous familiariser avec les graphes
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+fig, ax = plt.subplots()
+colors=[cmap(0.99), cmap(0.7), cmap(0.5)]
+
+ax.plot(x, stats.uniform.cdf(x, loc=-1,scale=2), color=colors[0], label="[-1,1]", lw=2)
+ax.plot(x, stats.uniform.cdf(x, loc=-0.7,scale=1.4), color=colors[1], label="[-0.7,0.7]", lw=2)
+ax.plot(x, stats.uniform.cdf(x, loc=-0.5,scale=1), color=colors[2], label="[-0.5,0.5]",lw=2)
+ax.set_xlim([-1.5,1.5])
+plt.legend()
+```
+
+:::{.callout-note}
+
+## Pour aller plus loin
+
+Tenter de reproduire la figure suivante
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+#| warning: false
+fig, ax = plt.subplots()
+lines = np.linspace(0, 1, 9)
+for i, vali in enumerate(lines):
+    ax.plot(x, stats.uniform.cdf(x, loc=-vali,scale=2*vali), color=cmap(0.2+0.8*i/len(lines)), label=f"[-{-vali},{-vali+2*vali}]", lw=2)
+
+ax.set_xlim([-1.5,1.5])
+plt.legend()
+plt.title("Fonctions de répartition de diverses loi uniformes");
+```
+
+:::
+
+
+
+## Exercice 3: Étude de la moyenne empirique
+
+Créez un vecteur de taille $100$ composé de réalisations i.i.d. de variables uniformes sur $[0,1]$.
+Calculez dans un vecteur la moyenne cumulée des valeurs générées.
+Représenter graphiquement l'évolution de ces moyennes. Vers quoi semble converger la moyenne quand la taille de l'échantillon augmente ?
+
+Pour ajouter une droite à un graphe, on utilise la commande `ax.axhline`.
+Ajoutez en rouge la droite d'équation $y=1/2$ sur le graphe précédent.
+Refaites cet exercice avec un échantillon de taille $n=1000$ pour observer plus finement la convergence.
+
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+#| warning: false
+
+vect = rng.uniform(0, 1, 1000)
+
+fig, ax = plt.subplots()
+ax.plot(np.cumsum(vect) / np.arange(1, len(vect)+1), label="Moyenne empirique")
+ax.axhline(0.5, linestyle="--", color='red', lw=2, label="Espérance de la loi")
+ax.set_title("Convergence de la moyenne empirique")
+plt.legend()
+```
+
+

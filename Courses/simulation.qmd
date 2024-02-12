@@ -968,7 +968,6 @@ fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plo
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
 fig.show()
 ratio = np.sum(test_samples_cardioide) / n_sample
-# print(f"{ratio * 3 * 5}")
 print(f"Aire estimée: {ratio * 15}")
 
 

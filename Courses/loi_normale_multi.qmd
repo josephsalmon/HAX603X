@@ -16,7 +16,11 @@ $$
 X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
 $$
 
-
+Densité de probabilité :
+$$
+\phi(x) = \frac{1}{ \sqrt{(2\pi)^p |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big)
+$$
+En dimension $p=2$, la matrice de covariance $\Sigma$ peut toujours s'écrire comme suit, et la visualisation suivante montre l'impact des différents paramètres sur la densité de probabilité.
 $$
 \Sigma =
 \begin{pmatrix}\cos(\theta) & - \sin(\theta)\\  \sin(\theta)& \cos(\theta)
@@ -27,14 +31,12 @@ $$
 \cos(\theta) &\sin(\theta)\\  -\sin(\theta)& \cos(\theta)\end{pmatrix}
 $$
 
-Densité de probabilité :
-$$
-\phi(x) = \frac{1}{ \sqrt{2\pi |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big)
-$$
 
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
+//| width: 50%
+
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
@@ -94,22 +96,13 @@ function normal_rng(mu, Sigma, n=100) {
 
     return samples;
 }
-
 var Sigma = create_sigma(theta, sigma1, sigma2).toArray();
 var mu = [mu1, mu2];
 
-//  execute the following line only when pressing the Re-Tirage button
-// var samples = normal_rng(mu, Sigma, 1000);
-
-
-
-
 var samples = normal_rng(mu, Sigma, 1000);
-
-
 var npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;
 
-//  create x y and z arrays for the contour plot, with x and y in the range -5, 5, for npoints points
+//  Densité:
 for(var i = 0; i < npoints; i++) {
     x[i] = mini + i * (maxi - mini) / (npoints - 1);
     y[i] = mini + i * (maxi - mini) / (npoints - 1);
