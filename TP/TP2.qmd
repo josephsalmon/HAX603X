@@ -205,7 +205,7 @@ ax.plot(x, stats.expon.cdf(x, scale=1), color='k', label="Fonction de répartiti
 
 
 def dzexpo(n, lbd):
-    U = np.random.uniform(size=n)
+    U = rng.uniform(size=n)
     return - np.log(U) / lbd
 
 ax.hist(dzexpo(100, 1), density=True,  cumulative=True, histtype='step',bins=30, label="Estimation de la fonction de répartition", color=colors[0])
@@ -268,7 +268,7 @@ ax.plot(x, stats.cauchy.pdf(x, scale=1), color='k', label="Fonction de répartit
 
 
 def dzcauchy(n, lbd):
-    U = np.random.uniform(size=n)
+    U = rng.uniform(size=n)
     return np.tan(np.pi * (U - 0.5))
 
 ax.hist(dzcauchy(100, 1), density=True,  cumulative=False, histtype='step',bins=30, label="Estimation de la fonction de densité", color=colors[0])
@@ -299,8 +299,9 @@ plt.show()
 vect = dzcauchy(1000, 1)
 fig, ax = plt.subplots()
 ax.plot(np.cumsum(vect) / np.arange(1, len(vect)+1), label="Moyenne empirique")
-ax.axhline(1, linestyle="--", color='red', lw=2, label="Espérance de la loi")
-ax.set_title("Convergence de la moyenne empirique, Cauchy")
+ax.axhline(1, linestyle="--", color='red', lw=2, label="Médiane de la loi")
+ax.set_title("Convergence de la moyenne empirique pour une loi de Cauchy?")
 plt.legend()
 
 ```
+
