@@ -12,13 +12,17 @@ On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cd
 
 ## La loi normale
 
-### Définitions et propriétés
+## Définitions et propriétés de la loi normale
 
 On rappelle que la loi normale de paramètres $\mu \in \mathbb{R}$ et $\nu > 0$ a une densité donnée pour tout $x \in \mathbb{R}$ par
 
 $$
 	\varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
 $$
+
+On parle aussi souvent de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss)^[[Carl Friedrich Gauss](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
+mathématicien, astronome et physicien né à Brunswick, et directeur de l'observatoire de Göttingen une bonne partie de sa vie.
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>].
 
 On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
 
@@ -60,12 +64,13 @@ Le théorème suivant permet de passer de la loi d'un couple $(X,Y)$ à celle de
 
 Pour cela rappelons que la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si $\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)$, alors
 $$
-{\rm{Jac}}~\phi^{-1} (u,v)
-=
+\begin{align*}
+{\rm{J}}_{\phi^{-1}}: (u,v) & \mapsto
 \begin{pmatrix}
   \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
 \end{pmatrix} \enspace.
+\end{align*}
 $$
 
 ::: {#thm-changement-variables}
@@ -76,8 +81,8 @@ $$
 Soit $(X,Y)$ un vecteur aléatoire de densité $f_{(X,Y)}$ définie sur l'ouvert $A \subset \mathbb{R}^2$ et $\phi : A \to B \subset \mathbb{R}^2$ un $C^1$-difféomorphisme. Le vecteur aléatoire $(U,V)=\phi(X,Y)$ admet alors pour densité $f_{(U,V)}$ définie sur $B$ pour tout $(u,v) \in \mathbb{R}^2$ par
 $$
 \begin{align*}
-  f_{(U,V)} (u,v)
-  = f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+    (u,v) & \mapsto
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
 \end{align*}
 $$
 
@@ -98,23 +103,24 @@ $$
 $$
 On applique alors la formule du changement de variables vu en théorie de l'intégration avec $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
 $$
-  \mathbb{E}[h(U,V)]
-  = \int_{B} h(u,v)) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| \, d u d v\,.
+\begin{align*}
+  & \mathbb{E}[h(U,V)]\\
+  & = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
+  & = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
+\end{align*}
 $$
-On conclut alors que
+<!-- On conclut alors que
 $$
 \mathbb{E}[h(U,V)]
-= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
-$$
+= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
+$$ -->
 ce qui donne le résultat voulu.
-
-
 <div class="container">
 <div class="div1"> </div>
 <div class="div-remaining">□</div>
 </div>
 
-
+<br>
 
 :::{#exm-cos}
 
@@ -156,17 +162,17 @@ $$
 
 Ici, le jacobien de $\phi^{-1}$ est la matrice
 $$
-	{\rm{Jac}} \phi^{-1} (r,\theta)
+	{\rm{J}}_{\phi^{-1}} (r,\theta)
 	=
 	\begin{pmatrix}
 		\cos(\theta) & -r \sin(\theta) \\
 		\sin(\theta) & r \cos(\theta)
 	\end{pmatrix}\,,
 $$
-qui vérifie $|\det({\rm{Jac}} \phi^{-1} (r, \theta))| = r$. Ainsi, si $(X,Y)$ a pour densité $f_{(X,Y)}$, alors $(R, \Theta) = \phi(X,Y)$ a pour densité
+qui vérifie $|\det({\rm{J}}_{\phi^{-1}} (r, \theta))| = r$. Ainsi, si $(X,Y)$ a pour densité $f_{(X,Y)}$, alors $(R, \Theta) = \phi(X,Y)$ a pour densité
 $$
-f_{(R, \Theta)} (r, \theta)
-= f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \cdot r \cdot {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \cdot {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,.
+  f_{(R, \Theta)} (r, \theta)
+  = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta).
 $$
 
 Dans le cas où $X$ et $Y$ sont des variables aléatoires gaussiennes indépendantes, on obtient le résultat suivant.
@@ -195,9 +201,9 @@ $$
 Le théorème précédent donne alors la densité de $(R, \Theta)$ :
 $$
 \begin{align*}
-  f_{(R, \Theta)} &
-  = f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \cdot r \cdot {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \cdot {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
-  &= \dfrac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot r \cdot {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \cdot {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
+  f_{(R, \Theta)} (r, \theta) &
+  = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
+  &= r \cdot\dfrac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
 \end{align*}
 $$
 ce qui conclut la preuve.
@@ -212,11 +218,11 @@ $$
 	\mathbb{P}(R^2 > x)
 	&= \mathbb{P}(R > \sqrt x)\\
 	&= \int_{\sqrt{x}}^\infty r e^{-r^2/2}\, \mathrm dr\\
-	&= \Big[- e^{-r^2/2} \Big]_{\sqrt{x}}^\infty\\
-	&= e^{-x/2}\,.
+	&= \Big[- e^{-\tfrac{r^2}{2}} \Big]_{\sqrt{x}}^\infty\\
+	&= e^{-\tfrac{x}{2}}\,.
 \end{align*}
 $$
-On reconnaît le fonction de survie d'une loi exponentielle de paramètre $1/2$. Or, on a vu que si $U$ suit une loi uniforme sur $[0,1]$, alors $-2 \ln(U)$ suit une loi exponentielle de paramètre $1/2$, donc $\sqrt{-2 \ln(U)}$ a la même loi que $R$.
+On reconnaît le fonction de survie d'une loi exponentielle de paramètre $1/2$. Or, on a vu (cf. méthode de l'inverse) que si $U$ suit une loi uniforme sur $[0,1]$, alors $-2 \ln(U)$ suit une loi exponentielle de paramètre $1/2$, donc $\sqrt{-2 \ln(U)}$ a la même loi que $R$.
 
 L'algorithme de Box-Müller s'en suit: si $U$ et $V$ sont des v.a. indépendantes de loi uniforme sur $[0,1]$ et qu'on définit $X$ et $Y$ par
 $$
@@ -233,3 +239,105 @@ alors $X$ et $Y$ des variables aléatoires gaussiennes centrées réduites indé
 Cet algorithme n'est en fait pas souvent utilisé en pratique : il fait appel à des fonctions dont l'évaluation est coûteuse (logarithme, cosinus, sinus).
 Pour s'affranchir des fonctions trigonométriques, une version modifiée de l'algorithme de Box-Müller a été proposée : la méthode de Marsaglia, qui s'appuie sur des variables aléatoires uniformes sur le disque unité (voir l'exercice dédié en TD). Une autre alternative est la méthode de Ziggurat.
 :::
+
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+//| width: 50%
+
+// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+Plotly = require('plotly.js-dist');
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+jstat = require('jstat');
+math = require("mathjs");
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
+
+viewof inputs = Inputs.form([
+  Inputs.range([-2, 2], {label: tex`\mu`, step: 0.1}, {value: 0}),
+  Inputs.range([0.1, 10], {label: tex`\nu`, step: 0.1, value: 1}),
+  Inputs.range([1, 1000], {label: tex`n`, step: 1}),
+  Inputs.button("Re-Tirage")
+])
+
+
+mu = inputs[0];
+nu = inputs[1];
+n_samples = inputs[2];
+
+{
+
+function mvnpdf(x, mu, nu){
+    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);
+}
+
+
+function normal_rng(mu, nu, n=100){
+    var samples = Array.from({length: n}, () => {
+        var x = jstat.normal.sample(mu, nu**0.5);
+        return x;
+    });
+
+    return samples;
+}
+
+var samples = normal_rng(mu, nu, 1000);
+var samples_jitter = normal_rng(0, 0.03, 1000)
+var npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;
+
+//  Densité:
+for(var i = 0; i < npoints; i++) {
+    x[i] = mini + i * (maxi - mini) / (npoints - 1);
+	z[i] = mvnpdf(x[i], mu, nu);
+    }
+
+{
+var trace1 = {
+        x: samples.slice(0, n_samples),
+        y: samples_jitter.slice(0, n_samples),
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: 'rgba(0,0,0,0.5)',
+            size: 5,
+        },
+
+  }
+
+var trace22 = {
+        x: x,
+        y: z,
+		type: "scatter",
+		mode: "lines",
+		name: 'Pdf',
+		line: {color: 'black'},
+		yaxis: 'y2',
+		xaxis: 'x2',
+        }
+
+
+var data = [
+  trace1,
+  trace22,
+  ];
+
+
+var layout = {
+    // rows: 2,
+    // columns: 1,
+	yaxis: {domain: [0, 0.2]},
+	xaxis2: {matches: 'x'},	
+	yaxis2: {domain: [0.29, 0.99]},
+
+  showlegend: false,
+
+};
+
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout, config);
+    return div;
+	}
+}
+```

@@ -92,7 +92,7 @@ function normal_rng(mu, Sigma, n=100) {
         var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;
         var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;
         return [transformedX, transformedY];
-    });
+    });   
 
     return samples;
 }
@@ -116,7 +116,7 @@ for(var i = 0; i < npoints; i++) {
  	}
 
 }
-
+  
 
 {
 
@@ -171,24 +171,33 @@ var data = [
   ];
 
 
-var layout = {
-    scene: {
-        camera: {
-            eye: {
-                x: 0.5,
-                y: 1.2,
-                z: 1.5,
-            }
-        }
-    },
-  grid: {
-    rows: 1,
-    columns: 2,
-    subplots: [['xy','x2y']]
-   },
-  showlegend: false,
+  var layout = {
+       yaxis2: {
+          range: [-5, 5],
+          autorange: false,
+        },
+       xaxis2: {
+          range: [-5, 5],
+          autorange: false,
+        },
 
-};
+      scene: {
+          camera: {
+              eye: {
+                  x: 0.5,
+                  y: 1.2,
+                  z: 1.5,
+              }
+          }
+      },
+    grid: {
+      rows: 1,
+      columns: 2,
+      subplots: [['xy','x2y']],
+    },
+    showlegend: false,
+
+  };
 
     var config = {responsive: true}
     const div = DOM.element('div');
