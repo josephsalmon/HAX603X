@@ -3,7 +3,6 @@ sidebar: false
 toc: false
 bibliography: ./Courses/references.bib
 website:
-
     page-footer: false
 ---
 # HAX603X: Modélisation stochastique {.unnumbered}

@@ -69,7 +69,7 @@ L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables
 <br>
 
 Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
-Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain intervalle. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
 :::
 
 
@@ -83,7 +83,7 @@ Parfois il est utile d'aller chercher dans le code source certaines information 
 Un tel algorithme se construit de la manière suivante :
 
 1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
-2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots, U_n$.
+2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots·, U_n$.
 
 
 - La fonction $f$ est déterministe et prend ses valeurs dans un ensemble fini, donc l'algorithme est périodique. Le but est donc d'avoir la plus grande période possible.
@@ -180,19 +180,19 @@ $$
 [Preuve]{.underline}
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
-- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
+- Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
 
 
 ## Méthode d'inversion
 :::{#thm-methode_inversion}
 
 ## Méthode d'inversion
-Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^{}(U)$ a même loi que $X$.
+Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable aléatoire $F_X^{\leftarrow}(U)$ a même loi que $X$.
 :::
 
 
 [Preuve]{.underline}: En utilisant le théorème précédent, on a
-$\mathbb{P}(F_X^{-1}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
+$\mathbb{P}(F_X^{\leftarrow}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
 Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
 
 On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, car les deux v.a. ont la même fonction de répartition.
@@ -451,12 +451,12 @@ fig.show()
 
 
 
-::: {#def-inversion_discrete}
+::: {#prp-inversion_discrete}
 ##  Loi à support fini
 
 <br>
 
-Soit $X$ une variable aléatoire discrète prenant uniquement les valeurs $x_1 < \dots < x_r$ avec probabilité $p_1, \dots, p_r$, et tel que $p_1 + \dots + p_r=1$.
+Soit $X$ une variable aléatoire discrète prenant uniquement les valeurs $x_1 < \dots < x_r$ ($r$ modalité possibles) avec probabilité $p_1, \dots, p_r$ (donc $p_1 + \dots + p_r=1$).
 On vérifie que pour tout $u \in ]0,1[$,
 $$
 		F^\leftarrow(u) =
@@ -464,20 +464,22 @@ $$
 			x_1 & \text{si } 0 < u \leq p_1\,,                  \\
 			x_2 & \text{si } p_1 < u \leq p_1+p_2\,,            \\
 			    & \vdots                                        \\
-			x_r & \text{si }  p_1 + \dots + p_{r-1} < u < 1\,.
+			x_r & \text{si }  \sum_{i=1}^{r-1} p_i < u < 1\,.
 		\end{cases}
 $$
 
 Sur cet exemple, on peut prolonger la définition de $F^\leftarrow$ à $u=1$ en posant $F^\leftarrow(1) = x_r$.
 L'inverse généralisée se réécrit alors sous la forme
 $$
-		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{p_1 + \dots + p_{k-1} < u \leq p_1 + \dots + p_k}\enspace,
+		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{ \{  \sum_{i=1}^{k-1}p_i < u \leq \sum_{i=1}^{k}p_i \} }\enspace,
 $$
-où on a posé $p_0=0$. Cette expression s'étend directement au cas où $X$ prend un nombre infini dénombrable de valeurs (la somme devient alors une série).
+où on a posé $p_0=0$.
 :::
 
+L'expression précédente s'étend directement au cas où $X$ prend un nombre (infini) dénombrable de valeurs, la somme devenant alors une série.
 
 La méthode est illustré ci-dessous pour quelques lois intéressantes:
+
 
 ```{ojs}
 //| echo: false
@@ -491,6 +493,7 @@ viewof replay = html`<button>Relancer`
 //| layout-ncol: 1
 //| layout-align: center
 //| echo: false
+
 // Hack to make ojs load a github js file…
 // the repo is https://github.com/fradav/matter-playground
 // invcdfboard = {
@@ -525,7 +528,7 @@ On dispose cependant d'une autre densité $g$ possédant les propriétés suivan
 
 Remarquons d'ores et déjà que la constante $m$ est nécessairement plus grande que $1$ car
 $$
-	1 = \int_\mathbb{R} f(x) \, \mathrm dx \leq m \int_\mathbb{R} g(x)\, \mathrm dx = m\,.
+	1 = \int_\mathbb{R} f(x) \, dx \leq m \int_\mathbb{R} g(x)\, dx = m\,.
 $$
 
 
@@ -567,15 +570,15 @@ Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indé
 $$\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
-		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, \mathrm du \mathrm dy  \\
-		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, \mathrm du\bigg) g(y)\, \mathrm d y \\
-		 & =  \int_\mathbb{R} (1-r(y)) \, g(y)\, \mathrm d y\,,
+		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy  \\
+		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
+		 & =  \int_\mathbb{R} (1-r(y)) \, g(y)\, d y\,,
 	\end{align*}
 $$
 ce qui se réécrit, comme $f$ et $g$ sont des densités et que $r(y) = f(y)/(m \cdot g(y))$:
 $$\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
-		& = \int_\mathbb{R} g(y)\, \mathrm d y - \int_\mathbb{R} \dfrac{f(y)}{m}\, \mathrm dy \\
+		& = \int_\mathbb{R} g(y)\, d y - \int_\mathbb{R} \dfrac{f(y)}{m}\, dy \\
 		& = 1 - \dfrac{1}{m}\,.
 	\end{align*}
 $$
@@ -583,16 +586,16 @@ Le deuxième terme se calcule de manière analogue :
 $$
 \begin{align*}
     \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, \mathrm du \mathrm dy       \\
-        & = \int_\mathbb{R} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, \mathrm du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, \mathrm d y\,,
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy       \\
+        & = \int_\mathbb{R} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y\,,
 \end{align*}
 $$
 c'est-à-dire
 $$
 \begin{align*}
         \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-		& = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, \mathrm d y \\
-		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, \mathrm d y \\
+		& = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y \\
+		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, d y \\
 		& = \dfrac{F(x)}{m}\,,
 \end{align*}
 $$
@@ -610,15 +613,19 @@ $$
 $$
 ce qui donne
 $$
+\begin{align*}
     \mathbb{P}(T=n)
-    = \lim_{q \to \infty} \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(q)}{m}
-    = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{1}{m}\,.
+    & = \lim_{q \to \infty} \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(q)}{m}\\
+    & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{1}{m}\,.
+\end{align*}
 $$
 On en déduit que $T$ suit une loi géométrique de paramètre $1/m$. D'autre part, par $\sigma$-additivité,
 $$
+\begin{align*}
     \mathbb{P}(X \leq x)
-    = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)
-    = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n)\,,
+    & = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)\\
+    & = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n)\,,
+\end{align*}
 $$
 ce qui donne
 $$
@@ -633,9 +640,11 @@ ce qui prouve que $X$ a pour loi $F$.
 
 Enfin, la loi du couple $(X,T)$ est égale au produit des lois
 $$
+\begin{align*}
     \mathbb{P}(X \leq x, T=n)
-    = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}
-    = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
+    & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}\\
+    & = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
+\end{align*}
 $$
 <div class="container">
 <div class="div1">ce qui prouve l'indépendance de $X$ et $T$.</div>
@@ -648,10 +657,10 @@ $$
 
 def accept_reject(n, f, g, g_sampler, m):
     """
-    n: number of samples
-    f: target density
-    g: proposal density
-    m: constant such that f(x) <= m*g(x)
+    n: nombre de simulations
+    f: densité cible
+    g: densité des propositions, g_sampler: simulateur selon g
+    m: constante pour la majoration
     """
     x_samples = np.zeros(n)
     u_samples = np.zeros(n)
@@ -739,16 +748,16 @@ m = 4
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
 fig1.show()
 ```
-Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = \tfrac{x}{2} {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=8$.
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = 2x {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=2$.
 
 ```{python}
 #| echo: false
 #| label: fig-rejet-polynome-tri
 #| fig-cap:
 #|       - Visualisation des zones d'acceptations/rejet (g triangulaire)
-g = lambda x: x / 2
+g = lambda x: 2*x 
 g_sampler = lambda: np.random.triangular(0, 1, 1)
-m = 8
+m = 2
 
 fig2, ratio2 = plot_accept_reject(n, f, g, g_sampler, m)
 fig2.show()
@@ -775,7 +784,7 @@ md`Le taux d'acceptation est passé de **${ratio1}** à
 ## Rejet d'une loi de densité d'Andrews
 Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
 Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
-On peut l'adapter en adaptant le test de la manière suivante:
+On peut l'adapter le test de la manière suivante:
 si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
 De plus on peut vérifier que $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
 
@@ -797,7 +806,7 @@ ojs_define(ratio=ratio)
 ```
 
 On peut approcher numériquement la valeur exacte de $S$ en utilisant une
-méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous jacente:
+méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous-jacente:
 
 ```{python}
 from scipy import integrate
@@ -846,9 +855,9 @@ md`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`
 
 Commençons par un cas de dimension deux.
 
-Pour cela on va utiliser la méthode de rejet pour simuler une loi de densité $f$ sur $\mathbb{R}^2$. En particulier, un exemple classique est de tirer des points dans le disque unité, c'est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-1,1]^2$, et $m=1$ fonctionne.
+Pour cela on va utiliser la méthode de rejet pour simuler une loi de densité $f$ sur $\mathbb{R}^2$. En particulier, un exemple classique est de tirer des points dans le disque unité, c'est-à-dire de simuler une loi uniforme sur le disque unité. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-1,1]^2$.
 
-Mais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-2,2]^2$, et $m=1$ fonctionne.
+Mais prenons un autre exemple, à savoir tirer des points uniformément dans la surface délimité par une cardioïde. Pour cela, on va utiliser la méthode de rejet avec $g$ la densité de la loi uniforme sur le carré $[-2,2]^2$.
 
 ```{python}
 #| echo: false
@@ -856,7 +865,7 @@ Mais prenons un autre exemple, à savoir tirer des points uniformément dans la 
 # plot a cardioid curve with polar coordinates in plotly
 
 def cardiode(n_discr=100):
-    theta = np.linspace(0, 2*np.pi, n_discr)
+    theta = np.linspace(0, 2 * np.pi, n_discr)
     r = (1 + np.cos(theta))
     x = r * np.cos(theta)
     y = r * np.sin(theta)
@@ -864,7 +873,7 @@ def cardiode(n_discr=100):
 
 
 def circle(n_discr=100):
-    theta = np.linspace(0, 2*np.pi, n_discr)
+    theta = np.linspace(0, 2 * np.pi, n_discr)
     x = np.cos(theta)
     y = np.sin(theta)
     return x, y
@@ -908,11 +917,12 @@ def plot_samples(fig, n_sample, plot_type="circle"):
     if plot_type == "circle":
         test_func = test_unit_circle
         x_samples = np.random.uniform(-1, 1, n_sample)
+        y_samples = np.random.uniform(-1., 1, n_sample)
     elif plot_type == "cardioide":
         test_func = test_cardioide
         x_samples = np.random.uniform(-2, 3, n_sample)
+        y_samples = np.random.uniform(-1.5, 1.5, n_sample)
 
-    y_samples = np.random.uniform(-1.5, 1.5, n_sample)
     test_func = np.vectorize(test_func)
     test_samples = test_func(x_samples, y_samples)
     for i in [0, 1]:
@@ -930,27 +940,11 @@ def plot_samples(fig, n_sample, plot_type="circle"):
 
 ```{python}
 #| echo: false
-#| label: fig-rejet-cardioide
-#| fig-cap:
-#|     - Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.
-
-n_sample = 3000
-plot_type = "cardioide"
-
-fig = go.Figure()
-fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
-fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
-fig.show()
-ratio = np.sum(test_samples_cardioide) / n_sample
-print(ratio * 3 * 5)
-```
-
-```{python}
-#| echo: false
 #| label: fig-rejet-cercle
 #| fig-cap:
 #|    - Méthode de rejet pour simuler une loi uniforme sur un disque unité. 
 
+n_sample = 3000
 plot_type = "circle"
 
 fig = go.Figure()
@@ -958,8 +952,28 @@ fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_t
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100) 
 fig.show()
 ratio = np.sum(test_samples_circle) / n_sample
-print(ratio * 3 * 2)
+print(f"Aire estimée: {ratio * 4}")
 ```
+
+```{python}
+#| echo: false
+#| label: fig-rejet-cardioide
+#| fig-cap:
+#|     - Méthode de rejet pour simuler une loi uniforme sur une surface délimitée par une cardioïde.
+
+plot_type = "cardioide"
+
+fig = go.Figure()
+fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
+fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
+fig.show()
+ratio = np.sum(test_samples_cardioide) / n_sample
+print(f"Aire estimée: {ratio * 15}")
+
+
+```
+
+
 
 
 ::: {.callout-important appearance='default' icon="false"}
@@ -1001,13 +1015,13 @@ Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée 
 
 <br>
 
-Soit $(E_n)_{n \geq 1}$ des variables aléatoires iid de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors, pour tout $n \in \mathbb{N}^*$
 $$
-    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\,, \quad n \in \mathbb{N}^*\,.
+    \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
 Ainsi, la variable aléatoire $T$ définie par
 $$
-    T := \sup \{n \in \mathbb{N}^* : E_1 + \cdots + E_n \leq 1\}
+    T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}
 $$
 suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
@@ -1022,7 +1036,7 @@ La preuve repose sur le lemme suivant.
 <br>
 
 
-Soit $n$ variables aléatoires $E_1, \dots, E_n$ iid de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
+Soit $n$ variables aléatoires $E_1, \dots, E_n$ i.i.d. de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
 $$
     F_{n,\lambda}(t) = 1 - \sum_{k=0}^{n-1} e^{-\lambda t} \frac{(\lambda t)^k}{k!}\,.
 $$
@@ -1035,21 +1049,21 @@ Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^
 $$
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, \mathrm d x_1 \mathrm d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, \mathrm d x_1 \mathrm d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, \mathrm d x_1 \mathrm d x_2             \\
-        & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2\bigg)  \mathrm d x_1\,.
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
+        & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2\bigg)  d x_1\,.
 \end{align*}
 $$
 La première intégrale se calcule alors facilement :
 $$
-    \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, \mathrm d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
+    \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
 $$
 On obtient alors
 $$
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
-   & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} \mathrm d x_1\\
+   & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} d x_1\\
    & = 1 - e^{-\lambda t} - \lambda t e^{-\lambda t}\,.
 \end{align*}
 $$
@@ -1060,7 +1074,7 @@ Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve 
 <div class="div-remaining">□</div>
 </div>
 
-On peut désormais prouver le résultat de la Proposition @{prp-poisson_exponentielle}.
+On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 
 *Démonstration*:
 

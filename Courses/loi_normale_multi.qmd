@@ -1,0 +1,210 @@
+---
+title: "Loi normale: cas multivarié"
+format:
+  html:
+      out.width: 50%
+filters:
+  - shinylive
+---
+
+
+## Introduction
+
+
+Loi normale multivariée: $\mu \in \mathbb{R}^p$ et $\Sigma \in \mathbb{R}^{p \times p}$ (symétrique et définie positive).
+$$
+X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
+$$
+
+Densité de probabilité :
+$$
+\phi(x) = \frac{1}{ \sqrt{(2\pi)^p |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big)
+$$
+En dimension $p=2$, la matrice de covariance $\Sigma$ peut toujours s'écrire comme suit, et la visualisation suivante montre l'impact des différents paramètres sur la densité de probabilité.
+$$
+\Sigma =
+\begin{pmatrix}\cos(\theta) & - \sin(\theta)\\  \sin(\theta)& \cos(\theta)
+\end{pmatrix} \cdot
+\begin{pmatrix}\sigma_1 & 0\\ 0 & \sigma_2
+\end{pmatrix}\cdot
+\begin{pmatrix}
+\cos(\theta) &\sin(\theta)\\  -\sin(\theta)& \cos(\theta)\end{pmatrix}
+$$
+
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+//| width: 50%
+
+// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+Plotly = require('plotly.js-dist');
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+jstat = require('jstat');
+math = require("mathjs");
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
+
+viewof inputs = Inputs.form([
+  Inputs.range([-1, 1], {label: tex`\mu_1`, step: 0.1}, {value: 0}),
+  Inputs.range([-1, 1], {label: tex`\mu_2`, step: 0.1}, {value: 0}),
+  Inputs.range([0.1, 2], {label: tex`\sigma_1`, step: 0.1, value: 1}),
+  Inputs.range([0.1, 2], {label: tex`\sigma_2`, step: 0.1, value: 1}),
+  Inputs.range([0, 6.29], {label: tex`\theta`, step: 0.01, value: 0}),
+  Inputs.range([1, 1000], {label: tex`n`, step: 1}),
+  Inputs.button("Re-Tirage")
+])
+
+
+mu1 = inputs[0];
+mu2 = inputs[1];
+sigma1 = inputs[2];
+sigma2 = inputs[3];
+theta = inputs[4];
+n_samples = inputs[5];
+
+
+function create_sigma(theta, sigma1, sigma2){
+  const mat_rot = math.matrix([[math.cos(theta), -math.sin(theta)], [math.sin(theta), math.cos(theta)]]);
+  const mat_sigma = math.matrix([[sigma1**2, 0], [0, sigma2**2]]);
+  return math.multiply(mat_rot, math.multiply(mat_sigma, math.transpose(mat_rot)));
+}
+
+
+function mvnpdf(x, mu, Sigma){
+  const p = 2;
+    return (2*math.pi)**(-p/2)*math.det(Sigma)**(-0.5)*
+      math.exp(-0.5*math.multiply( math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x,mu)));
+}
+
+{
+
+
+function normal_rng(mu, Sigma, n=100) {
+    // Compute the Cholesky decomposition of Sigma
+    var cholesky = jstat.cholesky(Sigma);
+
+    // Generate the samples
+    var samples = Array.from({length: n}, () => {
+        var x = jstat.normal.sample(0, 1);
+        var y = jstat.normal.sample(0, 1);
+        // Transform the standard normal random variables using the Cholesky decomposition
+        var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;
+        var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;
+        return [transformedX, transformedY];
+    });   
+
+    return samples;
+}
+var Sigma = create_sigma(theta, sigma1, sigma2).toArray();
+var mu = [mu1, mu2];
+
+var samples = normal_rng(mu, Sigma, 1000);
+var npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;
+
+//  Densité:
+for(var i = 0; i < npoints; i++) {
+    x[i] = mini + i * (maxi - mini) / (npoints - 1);
+    y[i] = mini + i * (maxi - mini) / (npoints - 1);
+    z[i] = new Array(npoints);
+    }
+
+for(var i = 0; i < npoints; i++) {
+  	for(j = 0; j < npoints; j++) {
+
+    	z[j][i] = mvnpdf([x[i], x[j]], mu, Sigma);
+ 	}
+
+}
+  
+
+{
+
+var trace1 = {
+        x: samples.slice(0, n_samples).map(sample => sample[0]),
+        y: samples.slice(0, n_samples).map(sample => sample[1]),
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: 'rgba(0,0,0,0.5)',
+            size: 5,
+        },
+
+        xaxis: 'x2',
+}
+
+var trace22 = {
+        x: x,
+        y: y,
+        z: z,
+        type: 'surface',
+        colorscale: 'Oranges',
+        showscale: false,
+        color: {
+            legend: false,
+            label: "pdf",
+        },
+
+}
+
+var trace21 = {
+        x: x,
+        y: y,
+        z: z,
+        type: 'contour',
+        colorscale: 'Oranges',
+        color: {
+            legend: true,
+            label: "pdf",
+        },
+        blur: 4,
+        xlim: [-5, 5],
+        ylim: [-5, 5],
+        xaxis: 'x2',
+}
+
+
+var data = [
+  trace21,
+  trace22,
+  trace1,
+  ];
+
+
+  var layout = {
+       yaxis2: {
+          range: [-5, 5],
+          autorange: false,
+        },
+       xaxis2: {
+          range: [-5, 5],
+          autorange: false,
+        },
+
+      scene: {
+          camera: {
+              eye: {
+                  x: 0.5,
+                  y: 1.2,
+                  z: 1.5,
+              }
+          }
+      },
+    grid: {
+      rows: 1,
+      columns: 2,
+      subplots: [['xy','x2y']],
+    },
+    showlegend: false,
+
+  };
+
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout, config);
+    return div;
+  }
+
+}
+
+```

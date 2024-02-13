@@ -28,6 +28,7 @@ website:
             - Courses/th_asymptotique.qmd
             - Courses/simulation.qmd
             - Courses/loi_normale1D.qmd
+            - Courses/loi_normale_multi.qmd
     - id: Slides
       collapse-level: 2
       contents:
@@ -38,6 +39,8 @@ website:
             - Slides/slides_notations_premiers_pas.qmd
             - Slides/slides_th_asymptotique.qmd
             - Slides/slides_simulation.qmd
+
+
 
 
     - id: TP

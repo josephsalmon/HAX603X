@@ -115,7 +115,7 @@ def server(input, output, session):
             + ")",
         ),
     )
-    fig = go.FigureWidget(subplots)
+    fig = go.FigureWidget(subplots) 
     fig.add_trace(
         go.Scatter(
             mode="lines",
@@ -136,8 +136,8 @@ def server(input, output, session):
             y=[],
             name=r"p",
         ),
-        row=1,
-        col=1,
+            row=1,
+            col=1,
     )
     fig.add_trace(
         go.Heatmap(
