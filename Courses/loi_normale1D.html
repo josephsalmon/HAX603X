@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,8 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Recherche"
   }
 }</script>
+<script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
+<link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -89,7 +125,7 @@ ul.task-list li input[type="checkbox"] {
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -276,16 +312,17 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#la-loi-normale" id="toc-la-loi-normale" class="nav-link active" data-scroll-target="#la-loi-normale">La loi normale</a>
+  <li><a href="#la-loi-normale" id="toc-la-loi-normale" class="nav-link active" data-scroll-target="#la-loi-normale">La loi normale</a></li>
+  <li><a href="#définitions-et-propriétés-de-la-loi-normale" id="toc-définitions-et-propriétés-de-la-loi-normale" class="nav-link" data-scroll-target="#définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</a>
   <ul class="collapse">
-  <li><a href="#définitions-et-propriétés" id="toc-définitions-et-propriétés" class="nav-link" data-scroll-target="#définitions-et-propriétés">Définitions et propriétés</a></li>
   <li><a href="#simulation-dune-loi-normale" id="toc-simulation-dune-loi-normale" class="nav-link" data-scroll-target="#simulation-dune-loi-normale">Simulation d’une loi normale</a></li>
   </ul></li>
+  <li><a href="#méthode-de-box-müller" id="toc-méthode-de-box-müller" class="nav-link" data-scroll-target="#méthode-de-box-müller">Méthode de Box-Müller</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale1D.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas 1D</a></li></ol></nav>
 <div class="quarto-title">
@@ -309,13 +346,15 @@ ul.task-list li input[type="checkbox"] {
 <p>On considère ici <span class="math inline">\mathbb{R}^d</span> muni du produit scalaire euclidien <span class="math inline">\langle \cdot, \cdot \rangle</span> et de la norme euclidienne <span class="math inline">\|\cdot\|</span> associée.</p>
 <section id="la-loi-normale" class="level2">
 <h2 class="anchored" data-anchor-id="la-loi-normale">La loi normale</h2>
-<section id="définitions-et-propriétés" class="level3">
-<h3 class="anchored" data-anchor-id="définitions-et-propriétés">Définitions et propriétés</h3>
+</section>
+<section id="définitions-et-propriétés-de-la-loi-normale" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</h2>
 <p>On rappelle que la loi normale de paramètres <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\nu &gt; 0</span> a une densité donnée pour tout <span class="math inline">x \in \mathbb{R}</span> par</p>
 <p><span class="math display">
     \varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
 </span></p>
-<p>On note <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, si <span class="math inline">X</span> est une variable aléatoire ayant pour densité <span class="math inline">\varphi_{\mu, \nu}</span>. Notons que si <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>, alors <span class="math inline">X</span> a pour <strong>espérance</strong> <span class="math inline">\mu</span> et pour <strong>variance</strong> <span class="math inline">\nu</span>. Le cas particulier <span class="math inline">\mu=0</span> et <span class="math inline">\nu=1</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</p>
+<p>On parle aussi souvent de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, et directeur de l’observatoire de Göttingen une bonne partie de sa vie. <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p></li></div><p>On note <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, si <span class="math inline">X</span> est une variable aléatoire ayant pour densité <span class="math inline">\varphi_{\mu, \nu}</span>. Notons que si <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>, alors <span class="math inline">X</span> a pour <strong>espérance</strong> <span class="math inline">\mu</span> et pour <strong>variance</strong> <span class="math inline">\nu</span>. Le cas particulier <span class="math inline">\mu=0</span> et <span class="math inline">\nu=1</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</p>
 <p>La loi normale vérifie la propriété de <strong>stabilité par transformation affine</strong> : si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> et si <span class="math inline">(a,b) \in \mathbb{R}^* \times \mathbb{R}</span>, alors la variable aléatoire <span class="math inline">a X + b</span> suit une loi normale <span class="math inline">\mathcal{N}(a\mu + b, a^2 \nu)</span>. On peut donc facilement passer d’une loi normale centrée réduite à une loi normale quelconque via une transformation affine :</p>
 <ul>
 <li>si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">\sqrt{\nu} X + \mu \sim \mathcal{N}(\mu, \nu)</span>,</li>
@@ -328,7 +367,6 @@ ul.task-list li input[type="checkbox"] {
 \phi_X(t) &amp; = \exp\Big( i \mu t - \dfrac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
 </span></p>
-</section>
 <section id="simulation-dune-loi-normale" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-dune-loi-normale">Simulation d’une loi normale</h3>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -350,34 +388,42 @@ Une mauvaise piste pour simuler une loi normale
 <h4 class="anchored" data-anchor-id="changement-de-variables">Changement de variables</h4>
 <p>Le théorème suivant permet de passer de la loi d’un couple <span class="math inline">(X,Y)</span> à celle de <span class="math inline">(U,V) = \phi(X,Y)</span>, où <span class="math inline">\phi</span> est un <span class="math inline">C^1</span>-difféomorphisme, c’est-à-dire une application bijective dont la réciproque est également de classe <span class="math inline">C^1</span>.</p>
 <p>Pour cela rappelons que la <strong>jacobienne</strong> de <span class="math inline">\phi^{-1}</span> correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si <span class="math inline">\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)</span>, alors <span class="math display">
-{\rm{Jac}}~\phi^{-1} (u,v)
-=
+\begin{align*}
+{\rm{J}}_{\phi^{-1}}: (u,v) &amp; \mapsto
 \begin{pmatrix}
   \frac{\partial x}{\partial u} &amp; \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} &amp; \frac{\partial y}{\partial v}
 \end{pmatrix} \enspace.
+\end{align*}
 </span></p>
 <div id="thm-changement-variables" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>XXX source</p>
-<p>Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
-  f_{(U,V)} (u,v)
-  = f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
+\begin{align*}
+    (u,v) &amp; \mapsto
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+\end{align*}
 </span></p>
 </div>
 <p>On a énoncé le résultat en dimension <span class="math inline">2</span> par simplicité. Il s’étend bien évidemment à une dimension <span class="math inline">d</span> quelconque. En particulier, pour <span class="math inline">d=1</span>, on retrouve le changement de variable classique dans le cas de l’intégration d’une fonction à valeurs réelles.</p>
 <p><em>Démonstration.</em></p>
-<p>On rappelle que la loi de <span class="math inline">(U,V)</span> est caractérisée par les quantités <span class="math inline">\mathbb{E}[h(U,V)]</span> pour tout <span class="math inline">h : \mathbb{R}^2 \to \mathbb{R}</span> mesurable bornée. On considère donc une telle fonction <span class="math inline">h</span> et on applique la formule de transfert : <span class="math display">
-  \mathbb{E}[h(U,V)]
-  =\mathbb{E}[h(\phi(X,Y))]
-  = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y
-  = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
+On rappelle que la loi de <span class="math inline">(U,V)</span> est caractérisée par les quantités <span class="math inline">\mathbb{E}[h(U,V)]</span> pour tout <span class="math inline">h : \mathbb{R}^2 \to \mathbb{R}</span> mesurable bornée. On considère donc une telle fonction <span class="math inline">h</span> et on applique la formule de transfert : <span class="math display">
+\begin{align*}
+  \mathbb{E}[h(U,V)] &amp;
+  =\mathbb{E}[h(\phi(X,Y))]\\
+&amp; = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
+&amp; = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
+\end{align*}
 </span> On applique alors la formule du changement de variables vu en théorie de l’intégration avec <span class="math inline">(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)</span> : <span class="math display">
-  \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y
-  = \int_{B} h(u,v)) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| \, d u d v\,.
-</span> On conclut alors que <span class="math display">
+\begin{align*}
+  &amp; \mathbb{E}[h(U,V)]\\
+  &amp; = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
+  &amp; = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
+\end{align*}
+</span> <!-- On conclut alors que
+$$
 \mathbb{E}[h(U,V)]
-= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{Jac}}~\phi^{-1} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
-</span> ce qui donne le résultat voulu.</p>
+= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
+$$ --> ce qui donne le résultat voulu.
 <div class="container">
 <div class="div1">
 
@@ -386,13 +432,274 @@ Une mauvaise piste pour simuler une loi normale
 □
 </div>
 </div>
+<p><br></p>
+<div id="exm-cos" class="theorem example">
+<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>) </strong></span>Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
+<p>On applique le théorème précédent avec la fonction <span class="math inline">\phi^{-1}(u) = \arccos(u)</span> sur <span class="math inline">]-1,1[</span>. La densité de <span class="math inline">U</span> est alors donnée pour tout <span class="math inline">u \in \mathbb{R}</span> par <span class="math display">
+\begin{align*}
+  f_U(u)
+&amp; = \dfrac{{1\hspace{-3.8pt} 1}_{]0,\pi[}(\arccos(u))}{\pi} \Big| \dfrac{-1}{\sqrt{1-u^2}} \Big| {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\\
+&amp; = \dfrac{1}{\pi \sqrt{1-u^2}} {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\enspace.
+\end{align*}
+</span></p>
+</div>
+</section>
+</section>
+</section>
+<section id="méthode-de-box-müller" class="level2">
+<h2 class="anchored" data-anchor-id="méthode-de-box-müller">Méthode de Box-Müller</h2>
+<p>Un cas particulier fondamental de la formule de changement de variables concerne le passage en coordonnées polaires. Cette transformation est définie via l’application <span class="math display">
+    \begin{array}{ccccc}
+        \phi^{-1} &amp; : &amp; ]0, \infty[ \times ]0, 2\pi[ &amp; \to     &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) \\
+                  &amp;   &amp; \begin{pmatrix} r \\ \theta \end{pmatrix}                   &amp; \mapsto &amp; \begin{pmatrix} r \cos(\theta) \\ r \sin(\theta) \end{pmatrix}\,.
+    \end{array}
+</span> L’expression de <span class="math inline">\phi</span> ne nous sera pas utile. On peut tout de même la donner au passage :</p>
+<p><span class="math display">
+    \begin{array}{ccccc}
+        \phi &amp; : &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) &amp; \to     &amp; ]0, \infty[ \times ]0, 2\pi[                                                      \\
+             &amp;   &amp; \begin{pmatrix} x \\ y \end{pmatrix}                                            &amp; \mapsto &amp; \begin{pmatrix}\sqrt{x^2+y^2} \\ 2 \arctan \Big( \frac{y}{x+\sqrt{x^2+y^2}} \Big)\end{pmatrix}\,.
+    \end{array}
+</span></p>
+<p>Ici, le jacobien de <span class="math inline">\phi^{-1}</span> est la matrice <span class="math display">
+    {\rm{J}}_{\phi^{-1}} (r,\theta)
+    =
+    \begin{pmatrix}
+        \cos(\theta) &amp; -r \sin(\theta) \\
+        \sin(\theta) &amp; r \cos(\theta)
+    \end{pmatrix}\,,
+</span> qui vérifie <span class="math inline">|\det({\rm{J}}_{\phi^{-1}} (r, \theta))| = r</span>. Ainsi, si <span class="math inline">(X,Y)</span> a pour densité <span class="math inline">f_{(X,Y)}</span>, alors <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
+  f_{(R, \Theta)} (r, \theta)
+  = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta).
+</span></p>
+<p>Dans le cas où <span class="math inline">X</span> et <span class="math inline">Y</span> sont des variables aléatoires gaussiennes indépendantes, on obtient le résultat suivant.</p>
+<div id="thm-box-muller" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normales centrées réduites : <span class="math inline">X,Y \sim \mathcal{N}(0,1)</span>. Le couple de variables aléatoires polaires <span class="math inline">(R, \Theta) = \phi^{-1}(X,Y)</span> a pour densité <span class="math display">
+            f_{R, \Theta}(r,\theta)
+            = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\dfrac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
+</span> Autrement dit, elles sont indépendantes, l’angle <span class="math inline">\Theta</span> suit une loi uniforme sur <span class="math inline">]0, 2\pi[</span> et la distance à l’origine <span class="math inline">R</span> suit une loi de Rayleigh donnée par la densité <span class="math display">
+    f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r &gt; 0\,.
+</span></p>
+</div>
+<em>Démonstration:</em> La densité du couple <span class="math inline">(X,Y)</span> est donnée par <span class="math display">
+  f_{(X,Y)}(x,y) = \dfrac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
+</span> Le théorème précédent donne alors la densité de <span class="math inline">(R, \Theta)</span> : <span class="math display">
+\begin{align*}
+  f_{(R, \Theta)} (r, \theta) &amp;
+  = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
+  &amp;= r \cdot\dfrac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
+\end{align*}
+</span> ce qui conclut la preuve.
+<div class="container">
+<div class="div1">
+
+</div>
+<div class="div-remaining">
+□
+</div>
+</div>
+<p>Notons que <span class="math inline">R^2</span> est à valeurs dans <span class="math inline">]0,\infty[</span> et vérifie pour <span class="math inline">x &gt; 0</span>: <span class="math display">
+\begin{align*}
+    \mathbb{P}(R^2 &gt; x)
+    &amp;= \mathbb{P}(R &gt; \sqrt x)\\
+    &amp;= \int_{\sqrt{x}}^\infty r e^{-r^2/2}\, \mathrm dr\\
+    &amp;= \Big[- e^{-\tfrac{r^2}{2}} \Big]_{\sqrt{x}}^\infty\\
+    &amp;= e^{-\tfrac{x}{2}}\,.
+\end{align*}
+</span> On reconnaît le fonction de survie d’une loi exponentielle de paramètre <span class="math inline">1/2</span>. Or, on a vu (cf.&nbsp;méthode de l’inverse) que si <span class="math inline">U</span> suit une loi uniforme sur <span class="math inline">[0,1]</span>, alors <span class="math inline">-2 \ln(U)</span> suit une loi exponentielle de paramètre <span class="math inline">1/2</span>, donc <span class="math inline">\sqrt{-2 \ln(U)}</span> a la même loi que <span class="math inline">R</span>.</p>
+<p>L’algorithme de Box-Müller s’en suit: si <span class="math inline">U</span> et <span class="math inline">V</span> sont des v.a. indépendantes de loi uniforme sur <span class="math inline">[0,1]</span> et qu’on définit <span class="math inline">X</span> et <span class="math inline">Y</span> par <span class="math display">
+\begin{cases}
+  X = \sqrt{-2 \ln(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
+\end{cases}
+</span> alors <span class="math inline">X</span> et <span class="math inline">Y</span> des variables aléatoires gaussiennes centrées réduites indépendantes.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Cet algorithme n’est en fait pas souvent utilisé en pratique : il fait appel à des fonctions dont l’évaluation est coûteuse (logarithme, cosinus, sinus). Pour s’affranchir des fonctions trigonométriques, une version modifiée de l’algorithme de Box-Müller a été proposée : la méthode de Marsaglia, qui s’appuie sur des variables aléatoires uniformes sur le disque unité (voir l’exercice dédié en TD). Une autre alternative est la méthode de Ziggurat.</p>
+</div>
+</div>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="250" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 249;"><span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="pp">require</span>(<span class="st">"mathjs"</span>)<span class="op">;</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="co">// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="co">// continuous case</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>viewof inputs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\n</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> nu){</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span> <span class="op">*</span>nu)<span class="op">**</span>(<span class="fl">0.5</span>)<span class="op">*</span> math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> nu)<span class="op">;</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>){</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(mu<span class="op">,</span> nu<span class="op">**</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">;</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples_jitter <span class="op">=</span> <span class="fu">normal_rng</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">500</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">10</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="fu">mvnpdf</span>(x[i]<span class="op">,</span> mu<span class="op">,</span> nu)<span class="op">;</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples_jitter<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> z<span class="op">,</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Pdf'</span><span class="op">,</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>    <span class="co">// rows: 2,</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>    <span class="co">// columns: 1,</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span>]}<span class="op">,</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span>}<span class="op">,</span> </span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]}<span class="op">,</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-layout-ncol="1" width="50%">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-1" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div id="ojs-cell-1-9" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 
 
 </section>
-</section>
-</section>
+
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
+<script type="ojs-module-contents">
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-2, 2], {label: tex`\\mu`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 10], {label: tex`\\nu`, step: 0.1, value: 1}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\n\nmu = inputs[0];\nnu = inputs[1];\nn_samples = inputs[2];\n\n{\n\nfunction mvnpdf(x, mu, nu){\n    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);\n}\n\n\nfunction normal_rng(mu, nu, n=100){\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(mu, nu**0.5);\n        return x;\n    });\n\n    return samples;\n}\n\nvar samples = normal_rng(mu, nu, 1000);\nvar samples_jitter = normal_rng(0, 0.03, 1000)\nvar npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n\tz[i] = mvnpdf(x[i], mu, nu);\n    }\n\n{\nvar trace1 = {\n        x: samples.slice(0, n_samples),\n        y: samples_jitter.slice(0, n_samples),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n  }\n\nvar trace22 = {\n        x: x,\n        y: z,\n\t\ttype: \"scatter\",\n\t\tmode: \"lines\",\n\t\tname: 'Pdf',\n\t\tline: {color: 'black'},\n\t\tyaxis: 'y2',\n\t\txaxis: 'x2',\n        }\n\n\nvar data = [\n  trace1,\n  trace22,\n  ];\n\n\nvar layout = {\n    // rows: 2,\n    // columns: 1,\n\tyaxis: {domain: [0, 0.2]},\n\txaxis2: {matches: 'x'},\t\n\tyaxis2: {domain: [0.29, 0.99]},\n\n  showlegend: false,\n\n};\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n\t}\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
+</script>
+<script type="module">
+if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
+window._ojs.paths.runtimeToDoc = "../../Courses";
+window._ojs.paths.runtimeToRoot = "../..";
+window._ojs.paths.docToRoot = "..";
+window._ojs.selfContained = false;
+window._ojs.runtime.interpretFromScriptTags();
+</script>
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

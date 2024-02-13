@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -67,6 +101,22 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
@@ -231,7 +281,17 @@ ul.task-list li input[type="checkbox"] {
 <div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Sur cette page</h2>
+   
+  <ul>
+  <li><a href="#loi-uniforme-et-graine." id="toc-loi-uniforme-et-graine." class="nav-link active" data-scroll-target="#loi-uniforme-et-graine.">Loi uniforme et graine.</a></li>
+  <li><a href="#exercice-1-simulation-de-loi-uniforme-et-histogramme" id="toc-exercice-1-simulation-de-loi-uniforme-et-histogramme" class="nav-link" data-scroll-target="#exercice-1-simulation-de-loi-uniforme-et-histogramme">Exercice 1: Simulation de loi uniforme et histogramme</a></li>
+  <li><a href="#exercice-2-fonction-de-répartition-de-la-loi-uniforme" id="toc-exercice-2-fonction-de-répartition-de-la-loi-uniforme" class="nav-link" data-scroll-target="#exercice-2-fonction-de-répartition-de-la-loi-uniforme">Exercice 2: Fonction de répartition de la loi uniforme</a></li>
+  <li><a href="#exercice-3-étude-de-la-moyenne-empirique" id="toc-exercice-3-étude-de-la-moyenne-empirique" class="nav-link" data-scroll-target="#exercice-3-étude-de-la-moyenne-empirique">Exercice 3: Étude de la moyenne empirique</a></li>
+  <li><a href="#exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy" id="toc-exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy" class="nav-link" data-scroll-target="#exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy">Exercice 4: Méthode d’inversion, loi exponentielle et loi de Cauchy</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP2.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -255,8 +315,207 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectifs de ce TP
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Utiliser les générateurs aléatoires en Python et <code>numpy</code>, savoir afficher un histogramme, une densité, etc.</li>
+<li>Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en <code>numpy</code>.</li>
+</ul>
+</div>
+</div>
+<section id="loi-uniforme-et-graine." class="level2">
+<h2 class="anchored" data-anchor-id="loi-uniforme-et-graine.">Loi uniforme et graine.</h2>
+<p>Avec <code>numpy</code>, on génère des v.a. <em>pseudo-aléatoires</em> de loi uniforme sur <span class="math inline">[0,1]</span> via <code>random.uniform</code>.</p>
+<p>On peut modifier le paramètre pour obtenir <span class="math inline">n</span> variables aléatoires iid de loi uniforme : essayez par exemple</p>
+<div id="7c69820f" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-display" data-execution_count="1">
+<pre><code>array([0.82911711, 0.37031618, 0.84738443, 0.68492103])</code></pre>
+</div>
+</div>
+<p>Pour rappel, l’algorithme de génération de v.a. est récursif et s’appuie sur une graine. La graine peut être modifiée avec la création d’un générateur, et il suffit d’entrer un nombre en argument pour fixer cette graine.</p>
+<div id="506f0e03" class="cell" data-execution_count="2">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">34</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.uniform())</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">34</span>)</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.uniform())</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0.004028243493043537
+0.004028243493043537</code></pre>
+</div>
+</div>
+<p>Changer les valeurs de <code>seed</code> et vérifier que les tirages ont bien changé.</p>
+</section>
+<section id="exercice-1-simulation-de-loi-uniforme-et-histogramme" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-1-simulation-de-loi-uniforme-et-histogramme">Exercice 1: Simulation de loi uniforme et histogramme</h2>
+<p>Créez un vecteur de taille <span class="math inline">1000</span> composé de réalisations i.i.d. de v.a.uniformes sur <span class="math inline">[-1,1]</span>. Dans la suite on supposera que l’on a chargé <code>matplotlib</code> pour l’affichage graphique avec la commande:</p>
+<div id="51771536" class="cell" data-execution_count="3">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pylab <span class="im">as</span> plt</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>À l’aide de la fonction <code>plt.hist</code>, représentez l’histogramme de cet échantillon:</p>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>vect <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.hist(vect, label<span class="op">=</span><span class="st">"Histogramme"</span>)<span class="op">;</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="a7103fa7" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-5-output-1.png" width="575" height="411"></p>
+</div>
+</div>
+</div>
+<p>On utilisera l’aide de <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html">hist</a> de <code>matplotlib</code>s pour préciser les options graphiques suivantes:</p>
+<ul>
+<li>Analysez en particulier ce que fait l’option <code>bins</code> en entrant l’option <code>bins=30</code> et <code>bins=10</code>.</li>
+<li>Modifiez également votre histogramme avec l’option <code>density=True</code>, de sorte que l’aire soit de 1 (on représente donc une densité qui est constante par morceaux)</li>
+<li>Ajoutez un titre à l’histogramme grâce à la commande <code>plt.title</code> (avec une chaîne de caractères entre guillemets). On peut également ajouter un nom aux axes avec l’option <code>plt.xl</code> et <code>plt.xlabel</code>.</li>
+<li>Les options <code>ax.set_xlim</code> et <code>ax.set_ylim</code> permettent de préciser l’échelle de axes : il faut préciser un tuple <code>[a,b]</code> où <span class="math inline">a&lt;b</span> sont les deux bornes choisies pour votre axe.</li>
+<li>On modifiera aussi les options <code>fill</code> et <code>histtype</code> de <code>hist</code> pour obtenir le résultat suivant, en affichant sur un même graphique trois tirages, de tailles 1000, 5000 et 10000.</li>
+<li>La densité de la loi uniforme est obtenue avec la fonction <code>pdf</code> du module <code>scipy.stats</code>. Créer un vecteur équiréparti sur <span class="math inline">[-2, 2]</span> de longueur <span class="math inline">300</span> évaluer la fonction sur la même figure: on souhaite superposer cette densité à l’histogramme. On utilisera la fonction <code>plot</code> pour tracer la densité, et on pourra utiliser l’option <code>alpha</code> pour rendre la densité plus transparente.</li>
+</ul>
+<p>Un exemple de figure de qualité acceptable est par exemple celle qui suit:</p>
+<div>
+
+</div>
+<div id="d1ce7906" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-6-output-1.png" width="599" height="449"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="exercice-2-fonction-de-répartition-de-la-loi-uniforme" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-2-fonction-de-répartition-de-la-loi-uniforme">Exercice 2: Fonction de répartition de la loi uniforme</h2>
+<p>La fonction de répartition de la loi uniforme est obtenue via la commande <code>cdf</code> du module <code>scipy.stats.uniform</code>. À l’aide de la commande <code>plt.plot</code> tracez en bleu la fonction de répartition de la loi uniforme sur <span class="math inline">[-1,1]</span>, <span class="math inline">[-0.7, 0.7]</span> et <span class="math inline">[0.5,0.5]</span> et donnez un titre à votre graphique.</p>
+<ul>
+<li>On contrôle avec <code>lw</code> (<em>linewidth</em>) l’épaisseur du trait.</li>
+<li>Vous pouvez modifier le style et les marqueurs facilement en <code>matplotlib</code>. Une liste exhaustive est donnée ici: <a href="https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html">matplotlib.pyplot.plot.html</a></li>
+<li>Enfin pour les couleurs on pourra consulter l’aide en ligne ici: <a href="https://matplotlib.org/stable/gallery/color/index.html">Color tutorial</a>. La manière la plus simple est souvent d’ajouter l’option <code>color=nom_couleur</code> dans la fonction <code>plot</code>.</li>
+</ul>
+<p>Manipulez les différentes options pour vous familiariser avec les graphes</p>
+<div>
+
+</div>
+<div id="8c5d9583" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-7-output-1.png" width="581" height="411"></p>
+</div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pour aller plus loin
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Tenter de reproduire la figure suivante</p>
+<div>
+
+</div>
+<div id="ed232f05" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-8-output-1.png" width="581" height="432"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="exercice-3-étude-de-la-moyenne-empirique" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-3-étude-de-la-moyenne-empirique">Exercice 3: Étude de la moyenne empirique</h2>
+<p>Créez un vecteur de taille <span class="math inline">100</span> composé de réalisations i.i.d. de variables uniformes sur <span class="math inline">[0,1]</span>. Calculez dans un vecteur la moyenne cumulée des valeurs générées. Représenter graphiquement l’évolution de ces moyennes. Vers quoi semble converger la moyenne quand la taille de l’échantillon augmente ?</p>
+<p>Pour ajouter une droite à un graphe, on utilise la commande <code>ax.axhline</code>. Ajoutez en rouge la droite d’équation <span class="math inline">y=1/2</span> sur le graphe précédent. Refaites cet exercice avec un échantillon de taille <span class="math inline">n=1000</span> pour observer plus finement la convergence.</p>
+<div>
+
+</div>
+<div id="8660707a" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-9-output-1.png" width="579" height="431"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy" class="level2">
+<h2 class="anchored" data-anchor-id="exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy">Exercice 4: Méthode d’inversion, loi exponentielle et loi de Cauchy</h2>
+<ul>
+<li>Représentez graphiquement la fonction de répartition d’une loi exponentielle de paramètre <span class="math inline">\lambda=1</span>.</li>
+<li>Écrivez une fonction <code>dzexpo</code> qui prend en argument une taille d’échantillon <span class="math inline">n</span> et un paramètre <span class="math inline">\lambda &gt; 0</span> et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{E}(\lambda)</span>. On utilisera la méthode d’inversion vue en cours et seulement des tirages uniformes sur [0,1]. Attention, le mot clef <code>lambda</code> est un mot réserver en Python.</li>
+<li>Représentez graphiquement l’histogramme cumulée (voir l’option <code>cumulative</code> de <code>hist</code>) d’un tel échantillon pour <span class="math inline">n=10^2</span>, <span class="math inline">n=10^3</span>, puis <span class="math inline">n=10^4</span>, et pour <span class="math inline">\lambda = 1</span>, puis <span class="math inline">\lambda = 4</span>. Superposez à chaque fois le graphe de la densité de <span class="math inline">\mathcal{E}(\lambda)</span>.</li>
+<li>Illustrez graphiquement la loi des grands nombres avec <span class="math inline">\lambda = 1</span>, puis <span class="math inline">\lambda = 4</span>. On tracera en particulier la droite d’équation <span class="math inline">y=\mathbb{E}[X]</span>, où <span class="math inline">X \sim \mathcal{E}(\lambda)</span>.</li>
+<li>Reprenez les questions précédentes avec la loi de Cauchy (mais représenter la densité plutôt que les fonctions de répartition). Commentez les résultats obtenus.</li>
+</ul>
+<div>
+
+</div>
+<div id="e91193a5" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-10-output-1.png" width="577" height="431"></p>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div id="ae1c30b2" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-11-output-1.png" width="571" height="431"></p>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div id="a3d71db2" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-12-output-1.png" width="588" height="431"></p>
+</div>
+</div>
+</div>
+<p>On reprend le tout avec la loi de Cauchy:</p>
+<div>
+
+</div>
+<div id="dea99529" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-13-output-1.png" width="579" height="431"></p>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div id="20ad7553" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP2_files/figure-html/cell-14-output-1.png" width="569" height="431"></p>
+</div>
+</div>
+</div>
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -714,4 +973,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP2.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
+</body></html>
