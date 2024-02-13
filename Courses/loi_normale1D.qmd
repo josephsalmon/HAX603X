@@ -361,7 +361,7 @@ Concernant la prononciation, on prononce "khi-deux" le nom de cette loi.
 
 Soit $X_1, \dots, X_k$ des variables aléatoires iid de loi normale centrée réduite. La loi de la variable aléatoire $X = X_1^2 + \dots + X_k^2$ est appelée **loi du $\chi^2$ à $k$ degrés de liberté**. Sa densité est donnée par
 $$
-f(x) = \frac{1}{2^{k/2}\Gamma(\frac{k}{2})} x^{k/2-1} e^{-x/2}\,, \quad x \geq 0\,,
+f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
 $$
 où $\Gamma$ désigne la fonction gamma d'Euler :
 $$
@@ -385,9 +385,9 @@ Soit $h : \mathbb{R} \to \mathbb{R}$ une fonction mesurable bornée. On a
 $$
 \begin{align*}
 	\mathbb{E}[h(X_1^2)]
-	& = \int_\mathbb{R} h(x^2) \frac{e^{-x^2/2}}{\sqrt{2 \pi}} \, dx\\
-	& = \int_{-\infty}^0 h(x^2) \frac{e^{-x^2/2}}{\sqrt{2 \pi}} \, dx
-	+ \int_0^{\infty} h(x^2) \frac{e^{-x^2/2}}{\sqrt{2 \pi}} \, dx\,.
+	& = \int_\mathbb{R} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
+	& = \int_{-\infty}^0 h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx
+	+ \int_0^{\infty} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\,.
 \end{align*}
 $$
 En effectuant le changement de variable $x=-\sqrt u$ dans la première intégrale et $x=\sqrt u$ dans la deuxième, on obtient
@@ -416,16 +416,16 @@ $$
 \begin{align*}
 	f_{\chi^2(k+1)}(x)
 	& = \int_0^{\infty} f_{\chi^2(k)}(x-y) f_{X_{k+1}^2}(y) \, dy\\
-	& = \int_0^x \frac{1}{2^{k/2}\Gamma(\frac{k}{2})} (x-y)^{k/2-1} e^{-\frac{x-y}{2}} \tfrac{e^{-y/2}}{\sqrt{2\pi y}} \, dy\\
-	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}\int_0^x  (x-y)^{k/2-1}  \tfrac{1}{\sqrt{ y}} \, dy\\
-	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})} x \int_0^1  (x-ux)^{k/2-1}  \tfrac{1}{\sqrt{xu}} \, du\\
+	& = \int_0^x \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} (x-y)^{\frac{k}{2}-1} e^{-\frac{x-y}{2}} \tfrac{e^{-\frac{y}{2}}}{\sqrt{2\pi y}} \, dy\\
+	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}\int_0^x  (x-y)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{ y}} \, dy\\
+	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})} x \int_0^1  (x-ux)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{xu}} \, du\\
 \end{align*}
 $$
 avec le changement de variable $y=ux$. Ensuite,
 $$
 \begin{align*}
 	f_{\chi^2(k+1)}(x)
-	& = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{k/2-1}  u^{1/2-1} du\enspace.
+	& = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{\frac{k}{2}-1}  u^{1/2-1} du\enspace.
 \end{align*}
 $$
 Or rappelons que si $\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du$, alors pour tout $a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$. En effet, en faisant le changement de variable dans l'intégrale double qui suit:
@@ -445,7 +445,7 @@ $$
 \end{align*}
 $$
 et donc  $\Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.
-En appliquant cette relation pour $a=k/2$ et $b=1/2$, on obtient
+En appliquant cette relation pour $a=\frac{k}{2}$ et $b=1/2$, on obtient
 
 $$
 \begin{align*}
@@ -514,12 +514,12 @@ $$
 $$
 dont le déterminant vaut $\frac{-2ku^2}{v^3}$. Par ailleurs, les variables aléatoires $X$ et $Y$ étant indépendantes, la densité du couple $(X,Y)$ correspond au produit des densités :
 $$
-	f_{(X,Y)}(x,y) = \dfrac{1}{\sqrt{2 \pi}} e^{-x^2/2} \dfrac{1}{2^{\frac{k}{2}2} \Gamma(k/2)} y^{\frac{k}{2}-1} e^{-y/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
+	f_{(X,Y)}(x,y) = \dfrac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}} \dfrac{1}{2^{\frac{k}{2}2} \Gamma(\frac{k}{2})} y^{\frac{k}{2}-1} e^{-\frac{y}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
 $$
 Tout est prêt pour appliquer la théorème du changement de variables qui assure que la densité du couple $(U,V)$ est donnée par
 $$
 	f_{(U,V)}(u,v)
-	= \dfrac{1}{\sqrt{2 \pi}} e^{-u^2/2} \dfrac{1}{2^{k/2} \Gamma(k/2)} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{3/2}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
+	= \dfrac{1}{\sqrt{2 \pi}} e^{-\frac{u^2}{2}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{\frac{3}{2}}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
 $$
 Il suffit alors de marginaliser pour obtenir la densité de $V$, ce qui s'effectue en calculant l'intégrale
 $$
@@ -541,13 +541,13 @@ On reconnaît dans l'intégrale la valeur de $\Gamma(\frac{k+1}{2})$ ce qui cond
 $$
 	f_V(v)
 	=
-	\dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{k/2} \Gamma(k/2)} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{3/2}}
+	\dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{\frac{3}{2}}}
 	\frac{2^{\frac{k+1}{2}}}{2} \bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}} \Gamma\bigg(\frac{k+1}{2}\bigg)\,.
 $$
 On réécrit alors les termes en $k/v^2$ via
 $$
 \begin{align*}
-\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{k}{(v^2)^{3/2}}
+\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{k}{(v^2)^{\frac{3}{2}}}
 	\bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}}
 	& =
 	\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{1}{\sqrt{k}} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{3}{2}}
@@ -561,6 +561,7 @@ $$
 	=
 	\dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
 $$
+
 <div class="container">
 <div class="div1"> </div>
 <div class="div-remaining">□</div>
@@ -584,7 +585,7 @@ $$
 
 La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]-\frac{\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
 
-::: {#prop-cauchy}
+::: {#prp-cauchy}
 
 ## Loi de Cauchy et loi normale
 
@@ -594,6 +595,7 @@ Soit $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centré
 
 Notons que $Y/X$ est bien définie puisque $X$ est différent de $0$ presque sûrement.
 
+*Preuve*:
 Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l'application
 $$
 	\begin{array}{ccccc}
@@ -633,11 +635,10 @@ $$
 	& = \dfrac{1}{\pi(1+v^2)}\,.
 \end{align*}
 $$
+
 <div class="container">
 <div class="div1"> </div>
 <div class="div-remaining">□</div>
 </div>
-
-<br>
 
 On obtient ainsi une autre manière de simuler une loi de Cauchy : on simule deux gaussiennes indépendantes et on prend leur ratio. Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
