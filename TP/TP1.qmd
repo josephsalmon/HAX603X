@@ -269,17 +269,17 @@ B = np.array([-1, -2, -3.0])
 # Attribuer à la variable C la somme de A et B
 sum_A_B = ...  # XXX TODO
 
-np.testing.assert_almost_equal(np.zeros((3,)), sum_A_B)
+np.testing.assert_allclose(np.zeros((3,)), sum_A_B)
 print("it worked")
 
 # Le produit terme à terme avec *
 prod_A_B = ...  # XXX TODO
 
-np.testing.assert_almost_equal(np.array([-1.0, -4, -9]), prod_A_B)
+np.testing.assert_allclose(np.array([-1.0, -4, -9]), prod_A_B)
 print("it worked")
 
 # Remarque: la même chose fonctionne terme à terme avec \, ** (puissance)
-np.testing.assert_almost_equal(np.array([1.0, 4, 9]), A ** 2)
+np.testing.assert_allclose(np.array([1.0, 4, 9]), A ** 2)
 print("it worked: even for powers")
 ```
 
@@ -292,9 +292,9 @@ J = np.array([[0, 0, 1.0], [1.0, 0, 0], [0, 1.0, 0]])
 
 I3 = np.eye(3)
 
-np.testing.assert_almost_equal(I3, ...)  # XXX TODO
+np.testing.assert_allclose(I3, ...)  # XXX TODO
 print("it worked: method 1")
-np.testing.assert_almost_equal(I3, ...)  # XXX TODO
+np.testing.assert_allclose(I3, ...)  # XXX TODO
 print("it worked: method 2")
 ```
 
@@ -344,7 +344,7 @@ print(
     f"Temps pour résoudre un système avec la formule mathématique: {timing_optimized:.4f} s.\nC'est donc {timing_naive / timing_optimized} fois plus rapide d'utiliser la seconde formulation"
 )
 
-np.testing.assert_almost_equal(y1, y2)
+np.testing.assert_allclose(y1, y2)
 print("Les deux méthodes trouvent le même résultat")
 ```
 
