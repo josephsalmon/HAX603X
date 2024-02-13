@@ -477,7 +477,7 @@ Dans la suite on verra qu'on tire des points $(Y_n, 4U_n)$ et qu'on teste si ils
 ```{python}
 #| echo: true
 #| code-line-numbers: 1-8|9-11|12|13-17|18-19|20|
-def accept_reject(n, f, g, g_sampler, m, rng):                                  
+def accept_reject(n, f, g, g_sampler, m, rng):
     """
     n: nombre de simulations
     f: loi cible

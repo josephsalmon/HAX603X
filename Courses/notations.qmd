@@ -15,7 +15,7 @@ On considère un espace probabilisé $(\Omega, {\mathcal{F}}, \mathbb{P})$, comp
 ## Variable aléatoire
 
 <br>
-
+    
 
 Soit $(E, \mathcal{E})$ un espace mesurable. Une *variable aléatoire* (ou v.a.) est une application mesurable
 $$
