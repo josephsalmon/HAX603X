@@ -18,17 +18,16 @@ filters:
 
 
 ## Loi uniforme et graine.
-Avec `numpy`, on génère des v.a. *pseudo-aléatoires* de loi uniforme sur $[0,1]$ via `random.uniform`.
+Avec `numpy`, la fonction `numpy.random.uniform` permet la génération de réalisations *pseudo-aléatoires* de la loi uniforme sur $[0,1]$.
 
-On peut modifier le paramètre pour obtenir $n$ variables aléatoires iid de loi uniforme : essayez par exemple
+On peut modifier la taille de l'échantillon généré en modifiant l'argument de la fonction. Pour obtenir $n=4$ réalisations i.i.d. de loi uniforme, essayez par exemple
 ```{python}
 import numpy as np
 np.random.uniform(size=4)
 ```
 
 
-Pour rappel, l'algorithme de génération de v.a. est récursif et s'appuie sur une graine.
-La graine peut être modifiée avec la création d'un générateur, et il suffit d'entrer un nombre en argument pour fixer cette graine.
+Pour rappel, l'algorithme de génération de v.a. est récursif et s'appuie sur une graine. La graine peut être modifiée avec la création d'un générateur, et il suffit d'entrer un nombre en argument pour fixer cette graine.
 
 ```{python}
 rng = np.random.default_rng(seed=34)
@@ -66,8 +65,8 @@ On utilisera l'aide de  [hist](https://matplotlib.org/stable/api/_as_gen/matplot
 - Analysez en particulier ce que fait l'option `bins` en entrant l'option `bins=30` et `bins=10`.
 - Modifiez également votre histogramme avec l'option `density=True`, de sorte que l'aire soit de 1 (on représente donc une densité qui est constante par morceaux)
 - Ajoutez un titre à l'histogramme grâce à la commande `plt.title` (avec une chaîne de caractères entre guillemets). On peut également ajouter un nom aux axes avec l'option ```plt.xl``` et  ```plt.xlabel```.
-- Les options `ax.set_xlim` et `ax.set_ylim` permettent de préciser l'échelle de axes : il faut préciser un tuple `[a,b]` où $a<b$ sont les deux bornes choisies pour votre axe.
-- On modifiera aussi les options `fill` et `histtype` de `hist` pour obtenir le résultat suivant, en affichant sur un même graphique trois tirages, de tailles 1000, 5000 et 10000.
+- Les options `ax.set_xlim` et `ax.set_ylim` permettent de préciser l'échelle de axes: il faut préciser un tuple `(a,b)` où $a<b$ sont les deux bornes choisies pour votre axe.
+- On modifiera aussi les options `fill` et `histtype` de `hist` pour obtenir le résultat suivant, en affichant sur un même graphique trois tirages, de tailles $1000$, $5000$ et $10000$.
 -  La densité de la loi uniforme est obtenue avec la fonction `pdf` du module `scipy.stats`. Créer un vecteur équiréparti sur $[-2, 2]$ de longueur $300$ évaluer la fonction sur la même figure: on souhaite superposer cette densité à l'histogramme. On utilisera la fonction `plot` pour tracer la densité, et on pourra utiliser l'option `alpha` pour rendre la densité plus transparente.
 
 Un exemple de figure de qualité acceptable est par exemple celle qui suit:
@@ -97,7 +96,7 @@ plt.title('Histogramme: tirage uniforme sur [-1, -1]')
 plt.xlabel('Abscisse')
 plt.ylabel('Ordonnée')
 
-ax.set_xlim([-2,2])
+ax.set_xlim((-2,2))
 
 from matplotlib.lines import Line2D
 
@@ -115,7 +114,7 @@ plt.show()
 ## Exercice 2: Fonction de répartition de la loi uniforme
 
 La fonction de répartition de la loi uniforme est obtenue via la commande `cdf` du module `scipy.stats.uniform`.
-À l'aide de la commande `plt.plot` tracez en bleu la fonction de répartition de la loi uniforme sur $[-1,1]$, $[-0.7, 0.7]$ et $[0.5,0.5]$ et donnez un titre à votre graphique.
+À l'aide de la commande `plt.plot` tracez en bleu la fonction de répartition de la loi uniforme sur $[-1,1]$, $[-0.7, 0.7]$ et $[-0.5,0.5]$ et donnez un titre à votre graphique.
 
 - On contrôle avec `lw` (*linewidth*) l'épaisseur du trait.
 - Vous pouvez modifier le style et les marqueurs facilement en `matplotlib`. Une liste exhaustive est donnée ici: [matplotlib.pyplot.plot.html](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
@@ -135,7 +134,7 @@ ax.plot(x, stats.uniform.cdf(x, loc=-0.5,scale=1), color=colors[2], label="[-0.5
 ax.set_xlim([-1.5,1.5])
 plt.legend()
 ```
-
+²
 :::{.callout-note}
 
 ## Pour aller plus loin
@@ -189,8 +188,8 @@ plt.legend()
 ## Exercice 4: Méthode d'inversion, loi exponentielle et loi de Cauchy
 
 - Représentez graphiquement la fonction de répartition d'une loi exponentielle de paramètre $\lambda=1$.
-- Écrivez une fonction `dzexpo` qui prend en argument une taille d'échantillon $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours et seulement des tirages uniformes sur [0,1]. Attention, le mot clef `lambda` est un mot réserver en Python.
-- Représentez graphiquement l'histogramme cumulée (voir l'option `cumulative` de `hist`) d'un tel échantillon pour $n=10^2$, $n=10^3$, puis $n=10^4$, et pour $\lambda = 1$, puis $\lambda = 4$. Superposez à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
+- Écrivez une fonction `dzexpo` qui prend en argument une taille d'échantillon $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours et seulement des tirages uniformes sur $[0,1]$. Attention, le mot clef `lambda` est un mot réservé en Python.
+- Représentez graphiquement l'histogramme cumulé (voir l'option `cumulative` de `hist`) d'un tel échantillon pour $n=10^2$, $n=10^3$, puis $n=10^4$, et pour $\lambda = 1$, puis $\lambda = 4$. Superposez à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
 - Illustrez graphiquement la loi des grands nombres avec $\lambda = 1$, puis $\lambda = 4$. On tracera en particulier la droite d'équation $y=\mathbb{E}[X]$, où $X \sim \mathcal{E}(\lambda)$.
 - Reprenez les questions précédentes avec la loi de Cauchy (mais représenter la densité plutôt que les fonctions de répartition). Commentez les résultats obtenus.
 
