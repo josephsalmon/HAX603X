@@ -21,7 +21,7 @@ $$
 $$
 
 On parle aussi souvent de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss)^[[Carl Friedrich Gauss](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
-mathématicien, astronome et physicien né à Brunswick, et directeur de l'observatoire de Göttingen une bonne partie de sa vie.
+mathématicien, astronome et physicien né à Brunswick, directeur de l'observatoire de [Göttingen](https://www.youtube.com/watch?v=t0sNy1xOhRc) de 1807 jusqu'à sa mort en 1855
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>].
 
 On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
@@ -324,10 +324,14 @@ var data = [
 
 
 var layout = {
-    // rows: 2,
-    // columns: 1,
-	yaxis: {domain: [0, 0.2]},
-	xaxis2: {matches: 'x'},	
+
+	yaxis: {domain: [0, 0.2],
+			showticklabels: false,
+			range: [-0.6, 0.6],
+            autorange: false},
+	xaxis2: {matches: 'x',
+	          range: [-10, 10],
+          autorange: false},
 	yaxis2: {domain: [0.29, 0.99]},
 
   showlegend: false,
