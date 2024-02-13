@@ -34,7 +34,7 @@ $$
 
 ```{ojs}
 //| echo: false
-//| layout: [[5,1]]
+//| layout-ncol: 1
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');

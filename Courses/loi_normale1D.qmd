@@ -428,7 +428,14 @@ $$
 	& = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{k/2-1}  u^{1/2-1} du\enspace.
 \end{align*}
 $$
-Or rappelons que si $\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du$, alors pour tout $a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$. En effet, en faisant le changement de variable $t+s=r$ et $t=rw$ dans l'intégrale double suivante, on obtient:
+Or rappelons que si $\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du$, alors pour tout $a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$. En effet, en faisant le changement de variable dans l'intégrale double qui suit:
+$$
+\begin{array}{ccccc}
+	\psi & : & \mathbb{R}^+ \times \mathbb{R}^+ & \to     & \mathbb{R}^+\times ]0,1[                 \\
+			&   & (s,t)                          & \mapsto & \Big(s+t, \frac{t}{s+t}\Big)\,,
+\end{array}
+$$
+c'est-à-dire $\psi^{-1}(r,w) = (r(1-w), rw)$, et le jacobien est donné par $J_{\psi^{-1}}(r,w) = \begin{pmatrix} 1-w & -r \\ w & r \end{pmatrix}$, et donc $J_{\psi^{-1}}(r,w)=r$, on obtient:
 $$
 \begin{align*}
 \Gamma(a)\Gamma(b) & = \int_0^{\infty} t^{a-1} e^{-t} \, dt \int_0^{\infty} s^{b-1} e^{-s} \, ds\\
@@ -453,3 +460,184 @@ Le résultat est donc prouvé par récurrence.
 </div>
 
 <br>
+
+
+### Loi de Student
+
+::: {#def-student}
+
+## Loi de Student
+
+Soit $X \sim \mathcal{N}(0,1)$ et $Y \sim \chi^2(k)$ deux variables aléatoires indépendantes. La loi de la variable aléatoire $V = \frac{X}{\sqrt{Y/k}}$ est appelée **loi de Student à $k$ degrés de liberté**. Elle admet pour densité
+$$
+	f_V(t)
+	= \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
+	\quad t \in \mathbb{R}\,.
+$$
+
+:::
+
+La loi de Student correspond donc au ratio d'une loi normale par la racine carrée d'une loi du $\chi^2(k)$ normalisée.
+Ce ratio apparaît souvent en statistique lors de la construction d'intervalles de confiance.
+Cette loi a été décrite en 1908 par
+[William Gosset](https://fr.wikipedia.org/wiki/William_Gosset)^[[William Gosset](https://fr.wikipedia.org/wiki/William_Gosset): (1876-1937)
+statisticien et chimiste anglais. Alors qu'il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, *Student* (&#x1F1EB;&#x1F1F7;: étudiant).
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></img>].
+
+
+Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule $k+1$ loi normales indépendantes $X_1, \ldots, X_{k+1}$ et on considère
+$$
+	V = \dfrac{\sqrt{k} X_{k+1}}{\sqrt{X_1^2+\cdots + X_k^2}}\,.
+$$
+
+*Preuve de la formule de la densité*:
+
+On applique pour cela la formule du changement de variables avec la transformation
+$$
+	\begin{array}{ccccc}
+		\phi & : & \mathbb{R}^* \times ]0, \infty[ & \to     & \mathbb{R}^* \times \mathbb{R}^*      \\
+		     &   & (x,y)                           & \mapsto & \Big(x, \dfrac{x}{\sqrt{y/k}}\Big)\,,
+	\end{array}
+$$
+c'est-à-dire
+$$
+	\phi^{-1}(u,v) = \Big(u, k\dfrac{u^2}{v^2}\Big)\,.
+$$
+La fonction $\phi^{-1}$ a pour matrice jacobienne
+$$
+	J_{\phi^{-1}} (u,v)
+	=
+	\begin{pmatrix}
+		1              & 0                  \\
+		\frac{2k}{v^2} & \frac{-2ku^2}{v^3}
+	\end{pmatrix}\,,
+$$
+dont le déterminant vaut $\frac{-2ku^2}{v^3}$. Par ailleurs, les variables aléatoires $X$ et $Y$ étant indépendantes, la densité du couple $(X,Y)$ correspond au produit des densités :
+$$
+	f_{(X,Y)}(x,y) = \dfrac{1}{\sqrt{2 \pi}} e^{-x^2/2} \dfrac{1}{2^{\frac{k}{2}2} \Gamma(k/2)} y^{\frac{k}{2}-1} e^{-y/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
+$$
+Tout est prêt pour appliquer la théorème du changement de variables qui assure que la densité du couple $(U,V)$ est donnée par
+$$
+	f_{(U,V)}(u,v)
+	= \dfrac{1}{\sqrt{2 \pi}} e^{-u^2/2} \dfrac{1}{2^{k/2} \Gamma(k/2)} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{3/2}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
+$$
+Il suffit alors de marginaliser pour obtenir la densité de $V$, ce qui s'effectue en calculant l'intégrale
+$$
+	\int_\mathbb{R} f_{(U,V)} (u,v) \, du\,.
+$$
+Les termes en $u$ de l'expression précédente s'intègre en
+$$
+\begin{align*}
+	\int_{-\infty}^\infty e^{-\frac{u^2}{2}(1+\frac{k}{v^2})} (u^2)^{\frac{k}{2}} \, d u
+	 & = \int_0^\infty e^{-s} \bigg( \dfrac{2 s}{1+\frac{k}{v^2}} \bigg)^{\frac{k}{2}} \sqrt{\dfrac{2}{1+\frac{k}{v^2}}} \dfrac{ds}{2\sqrt{s}} \\
+	 & = \frac{2^{\frac{k+1}{2}}}{2} \bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}} \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
+\end{align*}
+$$
+où la première égalité résulte du changement de variable
+$$
+	s = \dfrac{u^2}{2} \bigg( 1 + \dfrac{k}{v^2} \bigg) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
+$$
+On reconnaît dans l'intégrale la valeur de $\Gamma(\frac{k+1}{2})$ ce qui conduit à
+$$
+	f_V(v)
+	=
+	\dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{k/2} \Gamma(k/2)} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{3/2}}
+	\frac{2^{\frac{k+1}{2}}}{2} \bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}} \Gamma\bigg(\frac{k+1}{2}\bigg)\,.
+$$
+On réécrit alors les termes en $k/v^2$ via
+$$
+\begin{align*}
+\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{k}{(v^2)^{3/2}}
+	\bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}}
+	& =
+	\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{1}{\sqrt{k}} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{3}{2}}
+	\bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}}\\
+	& = \dfrac{1}{\sqrt{k}}\bigg(1+\dfrac{v^2}{k}\bigg)^{- \frac{k+1}{2}}\,,
+\end{align*}
+$$
+ce qui permet de conclure :
+$$
+	f_V(v)
+	=
+	\dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
+$$
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+<br>
+
+### Loi de Cauchy
+
+::: {#def-cauchy}
+
+## Loi de Cauchy
+
+Une variable aléatoire $X$ suit une **loi de Cauchy** si sa densité est donnée par
+$$
+	f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
+$$
+:::
+
+
+
+La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]-\frac{\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
+
+::: {#prop-cauchy}
+
+## Loi de Cauchy et loi normale
+
+Soit $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centrée réduite. Alors la variable aléatoire $Y/X$ suit une loi de Cauchy.
+
+:::
+
+Notons que $Y/X$ est bien définie puisque $X$ est différent de $0$ presque sûrement.
+
+Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l'application
+$$
+	\begin{array}{ccccc}
+		\phi & : & \mathbb{R}^* \times \mathbb{R} & \to     & \mathbb{R}^2                 \\
+				&   & (x,y)                          & \mapsto & \Big(x, \dfrac{y}{x}\Big)\,,
+	\end{array}
+$$
+c'est-à-dire
+$$
+	\phi^{-1}(u,v) = (u, uv)\,.
+$$
+La matrice jacobienne de $\phi^{-1}$ est donnée par
+$$
+	J_{\phi^{-1}} (u,v)
+	=
+	\begin{pmatrix}
+		1 & 0 \\
+		v & u
+	\end{pmatrix}\,,
+$$
+dont le déterminant vaut $u$. Rappelons également que la densité du couple $(X,Y)$ vaut
+$$
+	f_{(X,Y)}(x,y) = \dfrac{1}{2 \pi} e^{- \frac{x^2 + y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
+$$
+La formule du changement de variables donne alors la densité de $f_{(U,V)}$ :
+$$
+	f_{(U,V)}
+	= \dfrac{1}{2 \pi} e^{- \frac{u^2 + u^2v^2}{2}} |u|\,.
+$$
+On obtient alors la densité de $V$ en intégrant par rapport à $u$ :
+$$
+\begin{align*}
+	f_V(v)
+	& = \dfrac{1}{2 \pi} \int_\mathbb{R} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
+	& = \dfrac{1}{\pi} \int_0^\infty e^{- \frac{u^2(1 + v^2)}{2}} u \, \mathrm du\\
+	& = \dfrac{1}{\pi} \bigg[ -\dfrac{e^{- \frac{u^2(1 + v^2)}{2}}}{1+v^2} \bigg]_0^\infty\\
+	& = \dfrac{1}{\pi(1+v^2)}\,.
+\end{align*}
+$$
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+<br>
+
+On obtient ainsi une autre manière de simuler une loi de Cauchy : on simule deux gaussiennes indépendantes et on prend leur ratio. Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
