@@ -222,7 +222,7 @@ $$
 	&= e^{-\tfrac{x}{2}}\,.
 \end{align*}
 $$
-On reconnaît le fonction de survie d'une loi exponentielle de paramètre $1/2$. Or, on a vu (cf. méthode de l'inverse) que si $U$ suit une loi uniforme sur $[0,1]$, alors $-2 \ln(U)$ suit une loi exponentielle de paramètre $1/2$, donc $\sqrt{-2 \ln(U)}$ a la même loi que $R$.
+On reconnaît la fonction de survie d'une loi exponentielle de paramètre $1/2$. Or, on a vu (cf. méthode de l'inverse) que si $U$ suit une loi uniforme sur $[0,1]$, alors $-2 \ln(U)$ suit une loi exponentielle de paramètre $1/2$, donc $\sqrt{-2 \ln(U)}$ a la même loi que $R$.
 
 L'algorithme de Box-Müller s'en suit: si $U$ et $V$ sont des v.a. indépendantes de loi uniforme sur $[0,1]$ et qu'on définit $X$ et $Y$ par
 $$

@@ -35,7 +35,7 @@
 	\begin{enumerate}
 		\item Proposer une méthode de simulation de $X$ à l'aide de la méthode de rejet avec $Y \sim \mathcal{E}(1)$.
 		
-		\cor{Notons tout d'abord que $f$ est bien une densité. On note $g$ la densité de la loi exponentielle de paramètre $1$ :
+		\cor{Notons tout d'abord que $f$ est bien une densité. On note $g$ la densité de la loi exponentielle de paramètre $1$:
 		\[
 		g(x) = e^{-x} \one_{[0, \infty[}(x)\,.
 		\]
@@ -150,7 +150,7 @@
 		
 		\item On pose $T = X^2+Y^2$. Montrer que le couple $\big(X \sqrt{-2 \ln(T)/T}, Y \sqrt{-2\ln(T)/T}\big)$ est formée de deux \vas indépendantes de loi normales centrées réduites. On pourra étudier la loi des composantes radiale et angulaire de $(X,Y)$.
 		
-		\emph{Remarque : cette méthode de simulation est due à Marsaglia.}
+		\emph{Remarque: cette méthode de simulation est due à Marsaglia.}
 		
 		\cor{La composante radiale de $(X,Y)$ est la \va $T = X^2+Y^2$ qui vérifie
 		\[
@@ -202,13 +202,13 @@
 %\begin{exo}{}
 %	Cet exercice sera utile pour traiter les convergences en loi de l'exercice 5.
 %	\begin{enumerate}
-%		\item Soit $(X_n)_{n \geq 1}$ une suite de \vas réelles qui converge en loi vers une \va $X$. Soit $f : \R \to \R$ une fonction continue. Montrer que $(f(X_n))_{n \geq 1}$ converge en loi vers $f(X)$.
+%		\item Soit $(X_n)_{n \geq 1}$ une suite de \vas réelles qui converge en loi vers une \va $X$. Soit $f: \R \to \R$ une fonction continue. Montrer que $(f(X_n))_{n \geq 1}$ converge en loi vers $f(X)$.
 %		
-%		\cor{Rappelons que $X_n \to X$ en loi quand $n \to \infty$ si pour toute fonction $h : \R \to \R$ continue bornée,
+%		\cor{Rappelons que $X_n \to X$ en loi quand $n \to \infty$ si pour toute fonction $h: \R \to \R$ continue bornée,
 %		\[
 %		\E[h(X_n)] \to \E[h(X)]\,, \quad n \to \infty\,.
 %		\]
-%		Soit $h : \R \to \R$ continue bornée. La fonction $h \circ f$ est alors continue bornée donc l'hypothèse de convergence en loi de $X_n$ vers $X$ assure que
+%		Soit $h: \R \to \R$ continue bornée. La fonction $h \circ f$ est alors continue bornée donc l'hypothèse de convergence en loi de $X_n$ vers $X$ assure que
 %		\[
 %		\E[h(f(X_n))] \to \E[h(f(X))]\,, \quad n \to \infty\,,
 %		\]
@@ -242,7 +242,7 @@
 	Soit $X_1, \ldots, X_n$ des \vas iid de loi $\mathcal{N}(\mu, \sigma^2)$. Un estimateur de $\mu$ (resp. $\sigma^2$) est une quantité aléatoire basée sur l'échantillon $X_1, \ldots, X_n$ qui permet d'approcher $\mu$ (resp. $\sigma^2$). Le but de l'exercice est de proposer des estimateurs naturels de $\mu$ et $\sigma^2$ et d'étudier leurs propriétés.
 	
 	\begin{enumerate}
-		\item \underline{Cas 1 : $\mu$ inconnue et $\sigma$ connu}
+		\item \emph{Cas 1: $\mu$ inconnue et $\sigma$ connu}
 		
 		On suppose que la valeur de $\mu$ est inconnue mais que celle de $\sigma$ est connue.
 		\begin{enumerate}
@@ -291,7 +291,7 @@
 			contient $\mu$ avec une probabilité de $1-\alpha$.}
 		\end{enumerate}
 		
-		\item \underline{Cas 2 : $\sigma$ inconnu et $\mu$ connu}
+		\item \emph{Cas 2: $\sigma$ inconnu et $\mu$ connu}
 		
 		On suppose que la valeur de $\sigma$ est inconnue mais que celle de $\mu$ est connue. On rappelle que pour une \va de loi normale centrée réduite $X$, les moments sont donnés par
 		\[
@@ -311,7 +311,7 @@
 			= \var(X_1)
 			= \sigma^2\,.
 			\]
-			Pour la variance on utilise la formule de Koenig-Huygens :
+			Pour la variance on utilise la formule de Koenig-Huygens:
 			\[
 			\var(\hat \sigma_n^2)
 			= \dfrac{1}{n} \var((X_1-\mu)^2)
@@ -325,7 +325,7 @@
 			=  \sigma^4 \dfrac{4!}{2^2\,2!}
 			= 3 \sigma^4\,,
 			\]
-			où $N$ désigne une \va de loi normale centrée réduite. Par ailleurs, le terme $\E[(X_1-\mu)^2]^2$ correspond au carré de la variance de $X_1$, soit $\sigma^4$. On en déduit alors l'expression de la variance de $\hat \sigma_n^2$ :
+			où $N$ désigne une \va de loi normale centrée réduite. Par ailleurs, le terme $\E[(X_1-\mu)^2]^2$ correspond au carré de la variance de $X_1$, soit $\sigma^4$. On en déduit alors l'expression de la variance de $\hat \sigma_n^2$:
 			\[
 			\var( \hat \sigma_n^2) = \dfrac{2 \sigma^4}{n}\,.
 			\]
@@ -340,7 +340,7 @@
 			\]
 			est une somme de $n$ \vas indépendantes de loi normale centrée réduite. Ainsi, $\frac{n \hat \sigma_n^2}{\sigma^2}$ suit une loi du chi-deux à $n$ degrés de liberté.	
 			
-			Notons que la loi du chi-deux n'est pas symétrique : elle prend ses valeurs dans $[0, \infty[$ (ce qui est rassurant car $\hat \sigma_n^2$ est positif). Notons $q'_{\frac{\alpha}{2}}$ (resp. $q'_{1-\frac{\alpha}{2}}$) le quantile d'ordre $\frac{\alpha}{2}$ (resp. $1-\frac{\alpha}{2}$) de la loi du chi-deux à $n$ degrés de liberté. Alors,
+			Notons que la loi du chi-deux n'est pas symétrique: elle prend ses valeurs dans $[0, \infty[$ (ce qui est rassurant car $\hat \sigma_n^2$ est positif). Notons $q'_{\frac{\alpha}{2}}$ (resp. $q'_{1-\frac{\alpha}{2}}$) le quantile d'ordre $\frac{\alpha}{2}$ (resp. $1-\frac{\alpha}{2}$) de la loi du chi-deux à $n$ degrés de liberté. Alors,
 			\[
 			\P \Big(q'_{\frac{\alpha}{2}} \leq \dfrac{n \hat \sigma_n^2}{\sigma^2} \leq q'_{1-\frac{\alpha}{2}} \Big)
 			= 1- \alpha\,.
@@ -353,7 +353,7 @@
 		}
 		\end{enumerate}
 		
-		\item \underline{Cas 3 : $\mu$ et $\sigma$ inconnus}
+		\item \emph{Cas 3: $\mu$ et $\sigma$ inconnus}
 		
 		On suppose que l'espérance $\mu$ et l'écart-type $\sigma$ sont tous les deux inconnus.
 		
@@ -381,7 +381,7 @@
 				\]
 				Cette quantité correspond au ratio d'une loi normale par une loi du chi-deux à $n-1$ degrés de liberté, les deux \vas étant indépendantes d'après l'énoncé. Le cours assure alors que $\sqrt{n-1} \frac{\bar X_n -\mu}{S_n}$ suit une loi de Student à $n-1$ degrés de liberté.
 				
-				En notant $\tilde q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ d'une loi de Student (qui est symétrique), on en déduit l'intervalle de confiance demandé :
+				En notant $\tilde q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ d'une loi de Student (qui est symétrique), on en déduit l'intervalle de confiance demandé:
 				\[
 				I_3(X_1, \ldots, X_n)
 				=  \Big[  \bar X_n - \frac{S_n}{\sqrt {n-1}} \tilde q_{1-\frac{\alpha}{2}}, \bar X_n + \frac{S_n}{\sqrt {n-1}} \tilde q_{1-\frac{\alpha}{2}} \Big]\,.
@@ -409,7 +409,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 \P(\mu \in I_1(X_1, \ldots, X_n)) \to 1- \alpha\,, \quad n \to \infty\,.
 \]
 
-\cor{Notons $q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ de $N$ : $\P(N \leq q_{1-\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2}$. Par symétrie de la loi normale, on obtient
+\cor{Notons $q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ de $N$: $\P(N \leq q_{1-\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2}$. Par symétrie de la loi normale, on obtient
 	\[
 	\P( -q_{1-\frac{\alpha}{2}} \leq N \leq q_{1-\frac{\alpha}{2}}) = 1 - \alpha
 	\]
@@ -436,7 +436,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 	Soit $X_1, \ldots, X_n$ des \vas iid de variance $\sigma^2 < \infty$. On note $\mu$ l'espérance des $X_i$. Un estimateur de $\mu$ (resp. $\sigma^2$) est une quantité aléatoire basée sur l'échantillon $X_1, \ldots, X_n$ qui permet d'approcher $\mu$ (resp. $\sigma^2$). Le but de l'exercice est de proposer des estimateurs naturels de $\mu$ et $\sigma^2$ et d'étudier leurs propriétés.
 	
 	\begin{enumerate}		
-		\item \underline{Cas 1 : $\mu$ inconnue et $\sigma$ connu}
+		\item \emph{Cas 1: $\mu$ inconnue et $\sigma$ connu}
 		
 		On suppose que la valeur de $\mu$ est inconnue mais que celle de $\sigma$ est connue.
 		\begin{enumerate}
@@ -465,7 +465,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\P(\mu \in I_1(X_1, \ldots, X_n)) \to 1- \alpha\,, \quad n \to \infty\,.
 			\]
 			
-			\cor{Notons $q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ de $N$ : $\P(N \leq q_{1-\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2}$. Par symétrie de la loi normale, on obtient
+			\cor{Notons $q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ de $N$: $\P(N \leq q_{1-\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2}$. Par symétrie de la loi normale, on obtient
 			\[
 			\P( -q_{1-\frac{\alpha}{2}} \leq N \leq q_{1-\frac{\alpha}{2}}) = 1 - \alpha
 			\]
@@ -488,7 +488,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			}
 		\end{enumerate}
 	
-		\item \underline{Cas 2 : $\sigma$ inconnu et $\mu$ connue}
+		\item \emph{Cas 2: $\sigma$ inconnu et $\mu$ connue}
 		
 		On suppose que la valeur de $\sigma$ est inconnue, mais que celle de $\mu$ est connue.
 		\begin{enumerate}
@@ -556,7 +556,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			où $q_{1-\frac{\alpha}{2}}$ désigne encore le quantile d'ordre $1-\frac{\alpha}{2}$ d'une loi normale centrée réduite.}
 		\end{enumerate}
 	
-		\item \underline{Cas 3 : $\mu$ et $\sigma$ inconnus}
+		\item \emph{Cas 3: $\mu$ et $\sigma$ inconnus}
 		
 		On suppose que l'espérance $\mu$ et l'écart-type $\sigma$ sont tous les deux inconnus. On pose
 		\[
@@ -607,7 +607,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 		\[
 		s_n^2 = \dfrac{n}{n-1} S_n^2 =  \dfrac{1}{n-1} \sum_{k=1}^n(X_k - \bar X_n)^2\,,
 		\]
-		qui vérifie alors $\E[s_n^2] = \sigma^2$. Par ailleurs, la convergence presque sûre est encore vérifiée par $s_n^2$ :
+		qui vérifie alors $\E[s_n^2] = \sigma^2$. Par ailleurs, la convergence presque sûre est encore vérifiée par $s_n^2$:
 		\[
 		s_n^2 = \dfrac{n}{n-1} S_n^2 \to \sigma^2\,, \quad n \to \infty\,.
 		\]
@@ -633,7 +633,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 		= \sqrt{n} \dfrac{\bar X_n - \mu}{S_n}
 		\xrightarrow[n \to \infty]{\mathcal{L}} 1 \times N = N\,.
 		\]
-		Bref, on peut remplacer la quantité inconnue $\sigma$ par l'estimateur $S_n$ et la convergence reste vérifiée. L'intervalle $I_3$ s'obtient alors comme dans la question 1 :
+		Bref, on peut remplacer la quantité inconnue $\sigma$ par l'estimateur $S_n$ et la convergence reste vérifiée. L'intervalle $I_3$ s'obtient alors comme dans la question 1:
 		\[
 		I_3
 		= I_3(X_1, \ldots, X_n)
