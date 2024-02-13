@@ -403,7 +403,8 @@ Voir animation dans la section [Cours, section "Méthode d'inversion"](../Course
 
 . . .
 
-Supposons disposer d'une autre densité $g$ (**loi des propositions**) t.q. :
+[Idée]{.underline}: tirer suivant une autre loi $g$ (**loi des propositions**) et rejeter certains tirages.
+
 
 :::{.incremental}
 
@@ -413,12 +414,17 @@ Supposons disposer d'une autre densité $g$ (**loi des propositions**) t.q. :
 
 :::
 
+
+
 . . .
 
-[Remarque]{.underline}: $m \geq 1$ car
-$$
-	1 = \int_\mathbb{R} f(x) \,  dx \class{fragment}{{}\leq m \int_\mathbb{R} g(x)\,  dx} \class{fragment}{{}= m}
-$$
+
+[Remarque 1]{.underline}: $g(x)=0 \implies f(x)=0$, ainsi le support de $g$ doit englober celui de $f$
+
+. . .
+
+
+[Remarque 2]{.underline}: $m \geq 1$ car $m = m \displaystyle\int_\mathbb{R} g(x)\, dx \class{fragment}{{} \geq \displaystyle\int_\mathbb{R} f(x) dx} \class{fragment}{{} = 1}$
 
 
 ## Méthode de rejet: principe
@@ -435,7 +441,10 @@ En pratique, $Y_n$ correspond à une **proposition** et $U_n$ permettra de déci
 - Si oui, alors on conserve $Y_n$
 - Si non, on simule $Y_{n+1}$
 
-Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniforme et puis  vérifier si $U_n \leq r(Y_n)$
+Pour simuler $X$ de densité $f$, simuler $Y_n$  (suivant $g$), $U_n$ (suivant $\mathcal{U}[0,1]$) et accepter si 
+$$
+U_n \leq r(Y_n) = \frac{f(Y_n)}{m\cdot g(Y_n)}
+$$
 
 
 
@@ -451,6 +460,7 @@ Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniform
 
 :::
 
+. . .
 
 :::{.callout-note}
 
