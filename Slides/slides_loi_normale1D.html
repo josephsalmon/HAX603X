@@ -29,7 +29,26 @@
       margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
       vertical-align: middle;
     }
-  </style>
+    /* CSS for citations */
+    div.csl-bib-body { }
+    div.csl-entry {
+      clear: both;
+    }
+    .hanging-indent div.csl-entry {
+      margin-left:2em;
+      text-indent:-2em;
+    }
+    div.csl-left-margin {
+      min-width:2em;
+      float:left;
+    }
+    div.csl-right-inline {
+      margin-left:2em;
+      padding-left:1em;
+    }
+    div.csl-indent {
+      margin-left: 2em;
+    }  </style>
   <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
   <link rel="stylesheet" href="slides.css">
   <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
@@ -384,6 +403,7 @@ Benjamin Charlier
 <ul>
 <li><a href="#/définitions-et-propriétés-de-la-loi-normale" id="/toc-définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</a></li>
 <li><a href="#/simulation-dune-loi-normale" id="/toc-simulation-dune-loi-normale">Simulation d’une loi normale</a></li>
+<li><a href="#/lois-autour-de-la-loi-normale" id="/toc-lois-autour-de-la-loi-normale">Lois autour de la loi normale</a></li>
 </ul>
 </nav>
 </section>
@@ -394,16 +414,25 @@ Benjamin Charlier
 </section>
 <section id="rappel-concernant-la-loi-normale" class="slide level2">
 <h2>Rappel concernant la loi normale</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
 <p>Pour <span class="math inline">\(\mu \in \mathbb{R}\)</span> et <span class="math inline">\(\nu &gt; 0\)</span>, on note <span class="math inline">\(X \sim \mathcal{N}(\mu, \nu)\)</span>, si <span class="math inline">\(X\)</span> est une variable aléatoire ayant pour densité <span class="math inline">\(\varphi_{\mu, \nu}\)</span>:</p>
 <p><span class="math display">\[
 \forall x \in \mathbb{R}, \quad \varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
 \]</span></p>
+<div class="fragment" data-fragment-index="1">
 <ul>
-<li>Espérance: <span class="math inline">\(X\)</span> a pour <strong>espérance</strong> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\mathbb{E}(X)=\mu\)</span>,<br>
-</li>
+<li>Espérance: <span class="math inline">\(X\)</span> a pour <strong>espérance</strong> <span class="math inline">\(\mu\)</span>, <span class="math inline">\(\mathbb{E}(X)=\mu\)</span>,</li>
 <li>Variance: <span class="math inline">\(X\)</span> a pour <strong>variance</strong> <span class="math inline">\(\nu\)</span>, <span class="math inline">\(\mathbb{V}(X)=\nu\)</span>.</li>
 <li>Cas particulier <span class="math inline">\(\mu=0\)</span> et <span class="math inline">\(\nu=1\)</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</li>
 </ul>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="2">
+<p>On parle aussi de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p>
+</div>
+</div>
+</div>
 </section>
 <section id="visualisation-de-la-densité-de-la-loi-normale" class="slide level2">
 <h2>Visualisation de la densité de la loi normale</h2>
@@ -432,12 +461,10 @@ Benjamin Charlier
 <div id="prp-caract" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale) </strong></span>La fonction caractéristique d’une variable aléatoire <span class="math inline">\(X \sim \mathcal{N}(\mu, \nu)\)</span> est donnée pour tout <span class="math inline">\(t \in \mathbb{R}\)</span> par <span class="math display">\[
 \begin{align*}
-\phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X})  \\
-&amp; = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
+\phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X}) = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
 \]</span></p>
 </div>
-<p><br></p>
 <ul>
 <li>Cas particulier: si <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span>, alors <span class="math inline">\(\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)\)</span></li>
 </ul>
@@ -447,7 +474,7 @@ Benjamin Charlier
 \begin{align*}
 \mathbb{E}[e^{zX}]&amp;
 =\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx = \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
-&amp;=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy\\
+&amp;=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy
 =e^{\frac12z^2}.
 \end{align*}
 \]</span></p>
@@ -458,8 +485,8 @@ Benjamin Charlier
 <h1>Simulation d’une loi normale</h1>
 
 </section>
-<section id="idée-naives-pour-simuler-une-loi-normale" class="slide level2">
-<h2>Idée naives pour simuler une loi normale</h2>
+<section id="idée-naïves-pour-simuler-une-loi-normale" class="slide level2">
+<h2>Idée naïves pour simuler une loi normale</h2>
 <ul>
 <li><p>Méthode de l’inverse: besoin d’un calcul de la fonction de répartition de la loi normale, qui n’a pas de forme analytique simple (analyse numérique, méthode coûteuse).</p></li>
 <li><p>TCL: tirer <span class="math inline">\(U_1, \dots, U_n\)</span> i.i.d. et uniforme sur <span class="math inline">\([0,1]\)</span>, puis poser <span class="math display">\[
@@ -510,17 +537,19 @@ Benjamin Charlier
 <h2>Méthode de Box-Müller</h2>
 <p>L’algorithme de Box-Müller est le suivant: si <span class="math inline">\(U\)</span> et <span class="math inline">\(V\)</span> sont des v.a. indépendantes de loi uniforme sur <span class="math inline">\([0,1]\)</span> et qu’on définit <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> par <span class="math display">\[
 \begin{cases}
-  X = \sqrt{-2 \ln(U)} \cos(2\pi V)\\
-  Y = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
+  X = \sqrt{-2 \log(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \log(U)} \sin(2\pi V)\,.
 \end{cases}
 \]</span> alors <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des variables aléatoires gaussiennes centrées réduites indépendantes.</p>
 </section>
 <section id="preuve-de-la-méthode-de-box-müller" class="slide level2">
 <h2>Preuve de la méthode de Box-Müller</h2>
-<p>Considérons: <span class="math display">\[
+<p><span class="math display">\[
     \begin{array}{ccccc}
-        \phi^{-1} &amp; : &amp; ]0, \infty[ \times ]0, 2\pi[ &amp; \to     &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) \\
-                  &amp;   &amp; \begin{pmatrix} r \\ \theta \end{pmatrix}                   &amp; \mapsto &amp; \begin{pmatrix} r \cos(\theta) \\ r \sin(\theta) \end{pmatrix}\,.
+        \phi^{-1} &amp; : &amp; ]0, \infty[ \times ]0, 2\pi[ &amp; \to     &amp; &amp;\mathbb{R}^2 \setminus ([0,\infty[ \times \{0\})  \\
+                  &amp;   &amp; ( r , \theta)                   &amp; \mapsto &amp;&amp; (r \cos(\theta) , r \sin(\theta))  \\
+        \phi &amp; : &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) &amp; \to  &amp;&amp; ]0, \infty[ \times ]0, 2\pi[                                                       \\
+             &amp;   &amp; ( x, y )                                            &amp; \mapsto &amp;&amp; (\sqrt{x^2+y^2} , 2 \arctan \Big( \frac{y}{x+\sqrt{x^2+y^2}} \Big)
     \end{array}
 \]</span></p>
 <div id="thm-box-muller" class="theorem">
@@ -530,6 +559,76 @@ Benjamin Charlier
 \]</span> Autrement dit, elles sont indépendantes, l’angle <span class="math inline">\(\Theta\)</span> suit une loi uniforme sur <span class="math inline">\(]0, 2\pi[\)</span> et la distance à l’origine <span class="math inline">\(R\)</span> suit une loi de Rayleigh donnée par la densité <span class="math display">\[
     f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r &gt; 0\,.
 \]</span></p>
+</div>
+</section>
+<section id="preuve-de-la-méthode-de-box-müller-suite" class="slide level2">
+<h2>Preuve de la méthode de Box-Müller (suite)</h2>
+<div id="lem-rayleigh" class="theorem lemma">
+<p><span class="theorem-title"><strong>Lemme 1 (Simulation selon la loi de Rayleigh) </strong></span>Si <span class="math inline">\(U\)</span> est une variable aléatoire de loi uniforme sur <span class="math inline">\(]0,1[\)</span>, alors <span class="math inline">\(\sqrt{-2 \log(U)}\)</span> suit une loi de Rayleigh.</p>
+</div>
+<p><br></p>
+<p><strong>Preuve</strong>: Pour tout <span class="math inline">\(x &gt; 0\)</span>, <span class="math inline">\(F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})\)</span>, et donc pour tout <span class="math inline">\(q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}\)</span>. Ainsi par la méthode de l’inverse, <span class="math inline">\(\sqrt{-2\log(1-U)}\)</span> suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi <span class="math inline">\(sqrt{-2\log(U)}\)</span>.</p>
+<p><br></p>
+<p>Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme de Rayleigh, et en notant que <span class="math inline">\(~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]\)</span></p>
+</section>
+<section id="alternatives" class="slide level2">
+<h2>Alternatives</h2>
+<ul>
+<li>l’algorithme de Box-Müller n’est pas utilisé si souvent en pratique (evaluation de fonctions coûteuses: logarithme, cosinus, sinus).</li>
+<li>Pour s’affranchir des fonctions trigonométriques, une version modifiée de l’algorithme de Box-Müller a été proposée : la méthode de Marsaglia, qui s’appuie sur des variables aléatoires uniformes sur le disque unité (voir l’exercice dédié en TD).</li>
+<li>Une autre alternative est la méthode de Ziggurat implémentée dans la librairie <code>numpy</code>, notamment.</li>
+</ul>
+</section></section>
+<section>
+<section id="lois-autour-de-la-loi-normale" class="title-slide slide level1 center">
+<h1>Lois autour de la loi normale</h1>
+
+</section>
+<section id="loi-du-chi2" class="slide level2">
+<h2>Loi du <span class="math inline">\(\chi^2\)</span></h2>
+<p>Concernant la prononciation, on prononce “khi-deux” le nom de cette loi.</p>
+<div id="def-chi2" class="theorem definition">
+<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\(\chi^2\)</span>) </strong></span>Soit <span class="math inline">\(X_1, \dots, X_k\)</span> des variables aléatoires i.I.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">\(X = X_1^2 + \dots + X_k^2\)</span> est appelée <strong>loi du <span class="math inline">\(\chi^2\)</span> à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">\[
+f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
+\]</span> où <span class="math inline">\(\Gamma\)</span> désigne la fonction gamma d’Euler : <span class="math display">\[
+\Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
+\]</span> On note alors <span class="math inline">\(X \sim \chi^2(k)\)</span>.</p>
+</div>
+</section>
+<section id="loi-de-student" class="slide level2">
+<h2>Loi de Student</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div id="def-student" class="theorem definition">
+<p><span class="theorem-title"><strong>Définition 2 (Loi de Student) </strong></span>Soit <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span> et <span class="math inline">\(Y \sim \chi^2(k)\)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">\(V = \frac{X}{\sqrt{Y/k}}\)</span> est appelée <strong>loi de Student à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">\[
+    f_V(t)
+    = \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
+    \quad t \in \mathbb{R}\,.
+\]</span></p>
+</div>
+</div><div class="column" style="width:40%;">
+<div class="fragment" data-fragment-index="1">
+<p>Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="50%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908.">.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="loi-de-cauchy" class="slide level2">
+<h2>Loi de Cauchy</h2>
+<div id="def-cauchy" class="theorem definition">
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">\[
+    f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
+\]</span></p>
+</div>
+<p>La fonction de répartition de <span class="math inline">\(X\)</span> correspond, à une constante près, à la fonction arctangente qui est bijective de <span class="math inline">\(\mathbb{R}\)</span> sur <span class="math inline">\(]\frac{-\pi}{2},\frac{\pi}{2}[\)</span>. La méthode d’inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.</p>
+<div id="prp-cauchy" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy.</p>
+</div>
+</section>
+<section id="bibliographie" class="slide level2 smaller scrollable">
+<h2>Bibliographie</h2>
+<div id="refs" role="list">
+
 </div>
 
 <div class="footer footer-default">

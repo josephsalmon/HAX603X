@@ -396,90 +396,89 @@ div.csl-indent {
 <span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
 <span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>])</span>
 <span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> nu){</span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span> <span class="op">*</span>nu)<span class="op">**</span>(<span class="fl">0.5</span>)<span class="op">*</span> math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> nu)<span class="op">;</span></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> nu){</span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span> <span class="op">*</span>nu)<span class="op">**</span>(<span class="fl">0.5</span>)<span class="op">*</span> math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> nu)<span class="op">;</span></span>
+<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>){</span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(mu<span class="op">,</span> nu<span class="op">**</span><span class="fl">0.5</span>)<span class="op">;</span></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">;</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples_jitter <span class="op">=</span> <span class="fu">normal_rng</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="dv">1000</span>)</span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">500</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">10</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="fu">mvnpdf</span>(x[i]<span class="op">,</span> mu<span class="op">,</span> nu)<span class="op">;</span></span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples_jitter<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> z<span class="op">,</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Pdf'</span><span class="op">,</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>){</span>
+<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(mu<span class="op">,</span> nu<span class="op">**</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">;</span></span>
+<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
+<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples_jitter <span class="op">=</span> <span class="fu">normal_rng</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">500</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">10</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
+<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="fu">mvnpdf</span>(x[i]<span class="op">,</span> mu<span class="op">,</span> nu)<span class="op">;</span></span>
+<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
+<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples_jitter<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
+<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
+<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
+<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
+<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
+<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> z<span class="op">,</span></span>
+<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
+<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
+<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Pdf'</span><span class="op">,</span></span>
+<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
+<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
+<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
+<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
+<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span>]<span class="op">,</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>            <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>            <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span><span class="op">,</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]}<span class="op">,</span></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
-<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-125"><a href="#cb1-125" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" width="50%" data-layout-ncol="1">
+<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
+<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span>]<span class="op">,</span></span>
+<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>            <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span></span>
+<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>            <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
+<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span><span class="op">,</span></span>
+<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
+<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
+<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]}<span class="op">,</span></span>
+<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">react</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
+<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-123"><a href="#cb1-123" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-124"><a href="#cb1-124" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -708,19 +707,11 @@ $$ --> ce qui donne le résultat voulu.
 □
 </div>
 </div>
-<p>Notons que <span class="math inline">R^2</span> est à valeurs dans <span class="math inline">]0,\infty[</span> et vérifie pour <span class="math inline">x &gt; 0</span>: <span class="math display">
-\begin{align*}
-    \mathbb{P}(R^2 &gt; x)
-    &amp;= \mathbb{P}(R &gt; \sqrt x)\\
-    &amp;= \int_{\sqrt{x}}^{\infty} r e^{-r^2/2}\, dr\\
-    &amp;= \Big[- e^{-\tfrac{r^2}{2}} \Big]_{\sqrt{x}}^{\infty}\\
-    &amp;= e^{-\tfrac{x}{2}}\,.
-\end{align*}
-</span> On reconnaît la fonction de survie d’une loi exponentielle de paramètre <span class="math inline">1/2</span>. Or, on a vu (cf.&nbsp;méthode de l’inverse) que si <span class="math inline">U</span> suit une loi uniforme sur <span class="math inline">[0,1]</span>, alors <span class="math inline">-2 \ln(U)</span> suit une loi exponentielle de paramètre <span class="math inline">1/2</span>, donc <span class="math inline">\sqrt{-2 \ln(U)}</span> a la même loi que <span class="math inline">R</span>.</p>
+<p>Si <span class="math inline">R</span> suit une loi de Rayleigh alors <span class="math inline">\sqrt{-2 \log(U)}</span> a la même loi que <span class="math inline">R</span>, où <span class="math inline">U</span> est une variable aléatoire de loi uniforme sur <span class="math inline">]0,1[</span>: Pour cela il suffit de remarquer que pour tout <span class="math inline">x &gt; 0</span>, <span class="math inline">F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})</span>, et donc que pour tout <span class="math inline">q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}</span> et donc <span class="math inline">\sqrt{-2\log(1-U)}</span>, puis <span class="math inline">\sqrt{-2\log(U)}</span> on donc la même loi que <span class="math inline">R</span>.</p>
 <p>L’algorithme de Box-Müller s’en suit: si <span class="math inline">U</span> et <span class="math inline">V</span> sont des v.a. indépendantes de loi uniforme sur <span class="math inline">[0,1]</span> et qu’on définit <span class="math inline">X</span> et <span class="math inline">Y</span> par <span class="math display">
 \begin{cases}
-  X = \sqrt{-2 \ln(U)} \cos(2\pi V)\\
-  Y = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
+  X = \sqrt{-2 \log(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \log(U)} \sin(2\pi V)\,.
 \end{cases}
 </span> alors <span class="math inline">X</span> et <span class="math inline">Y</span> des variables aléatoires gaussiennes centrées réduites indépendantes.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -743,7 +734,7 @@ Note
 <h3 class="anchored" data-anchor-id="loi-du-chi2">Loi du <span class="math inline">\chi^2</span></h3>
 <p>Concernant la prononciation, on prononce “khi-deux” le nom de cette loi.</p>
 <div id="def-chi2" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\chi^2</span>) </strong></span>Soit <span class="math inline">X_1, \dots, X_k</span> des variables aléatoires iid de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">X = X_1^2 + \dots + X_k^2</span> est appelée <strong>loi du <span class="math inline">\chi^2</span> à <span class="math inline">k</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">
+<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\chi^2</span>) </strong></span>Soit <span class="math inline">X_1, \dots, X_k</span> des variables aléatoires i.i.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">X = X_1^2 + \dots + X_k^2</span> est appelée <strong>loi du <span class="math inline">\chi^2</span> à <span class="math inline">k</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">
 f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
 </span> où <span class="math inline">\Gamma</span> désigne la fonction gamma d’Euler : <span class="math display">
 \Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
@@ -826,7 +817,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 </span></p>
 </div>
 <p>La loi de Student correspond donc au ratio d’une loi normale par la racine carrée d’une loi du <span class="math inline">\chi^2(k)</span> normalisée. Ce ratio apparaît souvent en statistique lors de la construction d’intervalles de confiance. Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Alors qu’il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p></li></div><p>Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule <span class="math inline">k+1</span> loi normales indépendantes <span class="math inline">X_1, \ldots, X_{k+1}</span> et on considère <span class="math display">
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin, chargé du contrôle qualité. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p></li></div><p>Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule <span class="math inline">k+1</span> loi normales indépendantes <span class="math inline">X_1, \ldots, X_{k+1}</span> et on considère <span class="math display">
     V = \dfrac{\sqrt{k} X_{k+1}}{\sqrt{X_1^2+\cdots + X_k^2}}\,.
 </span></p>
 <p><em>Preuve de la formule de la densité</em>:</p>
@@ -946,7 +937,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-2, 2], {label: tex`\\mu`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 10], {label: tex`\\nu`, step: 0.1, value: 1}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\n\nmu = inputs[0];\nnu = inputs[1];\nn_samples = inputs[2];\n\n{\n\nfunction mvnpdf(x, mu, nu){\n    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);\n}\n\n\nfunction normal_rng(mu, nu, n=100){\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(mu, nu**0.5);\n        return x;\n    });\n\n    return samples;\n}\n\nvar samples = normal_rng(mu, nu, 1000);\nvar samples_jitter = normal_rng(0, 0.03, 1000)\nvar npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n\tz[i] = mvnpdf(x[i], mu, nu);\n    }\n\n{\nvar trace1 = {\n        x: samples.slice(0, n_samples),\n        y: samples_jitter.slice(0, n_samples),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n  }\n\nvar trace22 = {\n        x: x,\n        y: z,\n\t\ttype: \"scatter\",\n\t\tmode: \"lines\",\n\t\tname: 'Pdf',\n\t\tline: {color: 'black'},\n\t\tyaxis: 'y2',\n\t\txaxis: 'x2',\n        }\n\n\nvar data = [\n  trace1,\n  trace22,\n  ];\n\n\nvar layout = {\n\n\tyaxis: {domain: [0, 0.2],\n\t\t\tshowticklabels: false,\n\t\t\trange: [-0.6, 0.6],\n            autorange: false},\n\txaxis2: {matches: 'x',\n\t          range: [-10, 10],\n          autorange: false},\n\tyaxis2: {domain: [0.29, 0.99]},\n\n  showlegend: false,\n\n};\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n\t}\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-2, 2], {label: tex`\\mu`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 10], {label: tex`\\nu`, step: 0.1, value: 1}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\nmu = inputs[0];\nnu = inputs[1];\nn_samples = inputs[2];\n\n{\n\nfunction mvnpdf(x, mu, nu){\n    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);\n}\n\n\nfunction normal_rng(mu, nu, n=100){\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(mu, nu**0.5);\n        return x;\n    });\n\n    return samples;\n}\n\nvar samples = normal_rng(mu, nu, 1000);\nvar samples_jitter = normal_rng(0, 0.03, 1000)\nvar npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n\tz[i] = mvnpdf(x[i], mu, nu);\n    }\n\n{\nvar trace1 = {\n        x: samples.slice(0, n_samples),\n        y: samples_jitter.slice(0, n_samples),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n  }\n\nvar trace22 = {\n        x: x,\n        y: z,\n\t\ttype: \"scatter\",\n\t\tmode: \"lines\",\n\t\tname: 'Pdf',\n\t\tline: {color: 'black'},\n\t\tyaxis: 'y2',\n\t\txaxis: 'x2',\n        }\n\n\nvar data = [\n  trace1,\n  trace22,\n  ];\n\n\nvar layout = {\n\twidth: 600,\n\tyaxis: {domain: [0, 0.2],\n\t\t\tshowticklabels: false,\n\t\t\trange: [-0.6, 0.6],\n            autorange: false},\n\txaxis2: {matches: 'x',\n\t          range: [-10, 10],\n          autorange: false},\n\tyaxis2: {domain: [0.29, 0.99]},\n\n  showlegend: false,\n\n};\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.react(div, data, layout, config);\n    return div;\n\t}\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
