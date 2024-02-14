@@ -177,7 +177,7 @@ $$
 $$ 
 :::
 
-[Preuve]{.underline}
+*Démonstration*:
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
 - Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
@@ -191,11 +191,19 @@ Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable alé
 :::
 
 
-[Preuve]{.underline}: En utilisant le théorème précédent, on a
+*Démonstration*: En utilisant le théorème précédent, on a
 $\mathbb{P}(F_X^{\leftarrow}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
 Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
 
 On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, car les deux v.a. ont la même fonction de répartition.
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+<br>
+
 
 
 ::: {#exm-inverse-exponentielle}
@@ -208,7 +216,7 @@ f_{\lambda}(x) = \lambda e^{-\lambda x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\e
 $$
 et donc pour fonction de répartition
 $$
-F_{\lambda}(x) = 1 - e^{-\lambda x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+F_{\lambda}(x) = (1 - e^{-\lambda x}) {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
 $$
 On vérifie que $F_{\lambda}$ est bijective de $\mathbb{R}_+$ dans $]0,1[$ et que son inverse est donnée pour tout $u \in ]0,1[$ par
 $$
@@ -216,7 +224,21 @@ F_{\lambda}^{-1}(u) = -\frac{1}{\lambda} \log(1-u)\enspace.
 $$
 :::
 
+<br>
 
+::: {#exm-inverse-weibull}
+
+## Simulation d'une loi de Weibull
+La loi de Weibull de paramètre $\lambda > 0$ et $k >0$ est caractérisée par la fonction de répartition
+$$
+F(x) = (1 - e^{-(x/\lambda)^k}){1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)
+$$
+C'est une loi utilisée dans différents domaines, notamment en gestion des risques (hydrologie, finance, assurance, etc.). Le calcul de l'inverse généralisée $F^\leftarrow$ est immédiat car $F$ est bijective sur $]0, \infty[$ :
+$$
+    F^\leftarrow (u) = \lambda (-\ln(1-u))^{\frac{1}{k}}\,, \quad u \in ]0,1[\,.
+$$
+La méthode d'inversion s'applique : si $U \sim \mathcal{U}([0,1])$, alors la variable aléatoire $X = \lambda (-\ln(U))^{\frac{1}{k}}$ suit une loi de Weibull de paramètres $\lambda$ et $k$.
+:::
 
 Malheureusement, la fonction $F$ n'est pas toujours inversible (penser aux lois discrètes) c'est donc pourquoi on utilise l'inverse l'inverse généralisée ou fonction quantile introduite dans la section [Notations](notations.qmd):
 <!-- @def-quantile: -->
@@ -449,6 +471,36 @@ fig.show()
 - La fonction $F^\leftarrow$ n'est rien d'autre que la fonction quantile : si $0 < \alpha < 1$, $q_{1-\alpha} = F^\leftarrow(1-\alpha)$ est le quantile d'ordre $(1-\alpha)$ de $F$. Par exemple, $F^\leftarrow(1/2)$ correspond à la médiane.
 - Notons que si $u=0$, on peut alors naturellement poser $F^{\leftarrow}(0) = -\infty$. De même, avec la convention la convention $\inf \emptyset = +\infty$, on peut alors étendre la définition de $F^\leftarrow$ à $u=1$ (mais $F^\leftarrow(1)$ n'est pas toujours égal à $\infty$, voir les exemples ci-dessous).
 
+
+::: {#exm-inverse-bernouilli}
+
+## Simulation d'une loi de Bernoulli
+
+La fonction de répartition $F$ d'une loi de Bernoulli de paramètre $p \in ]0,1[$ est donnée par
+$$
+    F(x) =
+    \Bigg\{ \begin{array}{ll}
+        0   & \text{ si } x < 0\,,        \\
+        1-p & \text{ si } 0 \leq x < 1\,, \\
+        1   & \text{ si } x \leq 1\,.
+    \end{array}
+$$
+L'inverse généralisée de $F$ peut ainsi être calculée via la formule de l'exemple \ref{ex:inversion_discrete} :
+$$
+    F^\leftarrow(u) =
+    \bigg\{ \begin{array}{ll}
+        0 & \text{ si } 0 < u \leq 1-p\,, \\
+        1 & \text{ si } 1-p < u \leq 1\,.
+    \end{array}
+$$
+ce qui se réécrit plus simplement $F^\leftarrow(u) = {1\hspace{-3.8pt} 1}_{\{1-p < u\}}$.
+
+Ainsi, si $U$ suit une loi uniforme sur $[0,1]$ alors ${1\hspace{-3.8pt} 1}_{\{1-p < U\}}$ suit une loi de Bernoulli de paramètre $p$.
+Comme $1-U$ suit aussi une loi uniforme sur $[0,1]$, on en déduit que ${1\hspace{-3.8pt} 1}_{\{U < p\}}$ suit une loi de Bernoulli de paramètre $p$.
+Notons que l'on peut remplacer l'inégalité stricte par une inégalité large.
+:::
+
+<br>
 
 
 ::: {#prp-inversion_discrete}
@@ -817,6 +869,7 @@ print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
 Enfin, on peut visualiser la qualité l'approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:
 
 ```{python}
+#| echo: false
 #| label: fig-rejet-Andrews
 #| fig-cap:
 #|      - Méthode de rejet pour simuler une loi de densité de type Andrews, sans connaissance de la valeur exacte de la constante de normalisation.

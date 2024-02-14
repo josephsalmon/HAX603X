@@ -39,7 +39,7 @@ website:
             - Slides/slides_notations_premiers_pas.qmd
             - Slides/slides_th_asymptotique.qmd
             - Slides/slides_simulation.qmd
-
+            - Slides/slides_loi_normale1D.qmd
 
 
 
