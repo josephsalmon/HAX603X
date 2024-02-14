@@ -22,8 +22,7 @@ On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant
 
 ```{ojs}
 //| echo: false
-//| layout-ncol: 1
-//| width: 50%
+
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
@@ -39,7 +38,6 @@ viewof inputs = Inputs.form([
   Inputs.range([1, 1000], {label: tex`n`, step: 1}),
   Inputs.button("Re-Tirage")
 ])
-
 
 mu = inputs[0];
 nu = inputs[1];
@@ -119,7 +117,7 @@ var layout = {
 
     var config = {responsive: true}
     const div = DOM.element('div');
-    Plotly.newPlot(div, data, layout, config);
+    Plotly.react(div, data, layout, config);
     return div;
 	}
 }
@@ -340,23 +338,14 @@ ce qui conclut la preuve.
 <div class="div-remaining">□</div>
 </div>
 
-Notons que $R^2$ est à valeurs dans $]0,\infty[$ et vérifie pour $x > 0$:
-$$
-\begin{align*}
-	\mathbb{P}(R^2 > x)
-	&= \mathbb{P}(R > \sqrt x)\\
-	&= \int_{\sqrt{x}}^{\infty} r e^{-r^2/2}\, dr\\
-	&= \Big[- e^{-\tfrac{r^2}{2}} \Big]_{\sqrt{x}}^{\infty}\\
-	&= e^{-\tfrac{x}{2}}\,.
-\end{align*}
-$$
-On reconnaît la fonction de survie d'une loi exponentielle de paramètre $1/2$. Or, on a vu (cf. méthode de l'inverse) que si $U$ suit une loi uniforme sur $[0,1]$, alors $-2 \ln(U)$ suit une loi exponentielle de paramètre $1/2$, donc $\sqrt{-2 \ln(U)}$ a la même loi que $R$.
+Si $R$ suit une loi de Rayleigh alors $\sqrt{-2 \log(U)}$ a la même loi que $R$, où $U$ est une variable aléatoire de loi uniforme sur $]0,1[$:
+Pour cela il suffit de remarquer que pour tout $x > 0$, $F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})$, et donc que pour tout $q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}$ et donc $\sqrt{-2\log(1-U)}$, puis $\sqrt{-2\log(U)}$ on donc la même loi que $R$.
 
 L'algorithme de Box-Müller s'en suit: si $U$ et $V$ sont des v.a. indépendantes de loi uniforme sur $[0,1]$ et qu'on définit $X$ et $Y$ par
 $$
 \begin{cases}
-  X = \sqrt{-2 \ln(U)} \cos(2\pi V)\\
-  Y = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
+  X = \sqrt{-2 \log(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \log(U)} \sin(2\pi V)\,.
 \end{cases}
 $$
 alors $X$ et $Y$ des variables aléatoires gaussiennes centrées réduites indépendantes.
@@ -382,7 +371,7 @@ Concernant la prononciation, on prononce "khi-deux" le nom de cette loi.
 ## Loi du $\chi^2$
 
 
-Soit $X_1, \dots, X_k$ des variables aléatoires iid de loi normale centrée réduite. La loi de la variable aléatoire $X = X_1^2 + \dots + X_k^2$ est appelée **loi du $\chi^2$ à $k$ degrés de liberté**. Sa densité est donnée par
+Soit $X_1, \dots, X_k$ des variables aléatoires i.i.d. de loi normale centrée réduite. La loi de la variable aléatoire $X = X_1^2 + \dots + X_k^2$ est appelée **loi du $\chi^2$ à $k$ degrés de liberté**. Sa densité est donnée par
 $$
 f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
 $$
