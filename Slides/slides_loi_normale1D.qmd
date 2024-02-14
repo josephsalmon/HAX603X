@@ -1,0 +1,343 @@
+---
+title: "Loi normale: cas univarié"
+subtitle: "HAX603X: Modélisation stochastique"
+format:
+  revealjs:
+    toc: true
+    template-partials:
+        - toc-slide.html
+    include-after-body: toc-add.html
+---
+
+# Définitions et propriétés de la loi normale
+
+
+## Rappel concernant la loi normale
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+Pour $\mu \in \mathbb{R}$ et $\nu > 0$, on note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$:
+
+$$
+\forall x \in \mathbb{R}, \quad	\varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
+$$
+
+:::{.fragment fragment-index=1}
+
+- Espérance: $X$ a pour **espérance** $\mu$, $\mathbb{E}(X)=\mu$,
+- Variance: $X$ a pour **variance** $\nu$, $\mathbb{V}(X)=\nu$.
+- Cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
+
+:::
+
+:::
+
+
+:::{.column width="40%"}
+
+:::{.fragment fragment-index=2}
+
+On parle aussi de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
+mathématicien, astronome et physicien né à Brunswick, directeur de l'observatoire de [Göttingen](https://www.youtube.com/watch?v=t0sNy1xOhRc) de 1807 jusqu'à sa mort en 1855
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>
+
+:::
+
+:::
+
+:::
+
+
+## Visualisation de la densité de la loi normale
+
+ voir [https://josephsalmon.github.io/HAX603X/Courses/loi_normale1D.html](https://josephsalmon.github.io/HAX603X/Courses/loi_normale1D.html)
+
+
+
+## Propriétés de la loi normale
+
+:::{.incremental}
+- **stabilité par transformation affine** :
+
+  si $X \sim \mathcal{N}(\mu, \nu)$ et si $(\alpha,\beta) \in \mathbb{R}^* \times \mathbb{R}$, alors $\alpha X + \beta \sim \mathcal{N}(\alpha\mu + \beta, \alpha^2 \nu)$.
+  - si $X \sim \mathcal{N}(0,1)$, alors $\sqrt{\nu} X + \mu \sim \mathcal{N}(\mu, \nu)$,
+  - si $X \sim \mathcal{N}(\mu, \nu)$, alors $(X-\mu)/\sqrt{\nu} \sim \mathcal{N}(0,1)$.
+:::
+
+. . .
+
+- [Conséquence]{.underline}: pour simuler selon une loi normale, il suffit de savoir le faire pour le cas centré-réduit
+
+
+## Fonction caractéristique
+
+:::{#prp-caract}
+
+# Fonction caractéristique de la loi normale
+La fonction caractéristique d'une variable aléatoire $X \sim \mathcal{N}(\mu, \nu)$ est donnée pour tout $t \in \mathbb{R}$ par
+$$
+\begin{align*}
+\phi_{\mu,\nu}(t) & \triangleq \mathbb{E}(e^{i t X}) = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
+\end{align*}
+$$
+:::
+
+
+- Cas particulier: si $X \sim \mathcal{N}(0,1)$, alors $\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)$
+
+. . .
+
+
+Élements de preuve: pour tout $z \in \mathbb{R}$, on a
+
+$$
+\begin{align*}
+\mathbb{E}[e^{zX}]& 
+=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx = \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
+&=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy
+=e^{\frac12z^2}.
+\end{align*}
+$$
+
+
+
+# Simulation d'une loi normale
+
+
+## Idée naïves pour simuler une loi normale
+
+- Méthode de l'inverse: besoin d'un calcul de la fonction de répartition de la loi normale, qui n'a pas de forme analytique simple (analyse numérique, méthode coûteuse).
+
+- TCL: tirer $U_1, \dots, U_n$  i.i.d. et uniforme sur $[0,1]$, puis poser
+$$
+	\sqrt{n}\frac{(\bar{U}_n - 1/2)}{\sqrt{1/12}}\,.
+$$
+Limite: seulement une approximation, et convergence relativement lente (coût élevé)
+
+- Alternatives: nécessite opérations de changement de variables
+
+
+## Changement de variables en dimension 2
+
+Soit $\phi$ un $C^1$-difféomorphisme de $\mathbb{R}^2$ (une application bijective dont la réciproque est également de classe $C^1$)
+
+Rappel: la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles.
+Ainsi, si $\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)$, alors
+$$
+\begin{align*}
+{\rm{J}}_{\phi^{-1}}: (u,v) & \mapsto
+\begin{pmatrix}
+  \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}    \\
+  \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+\end{pmatrix} \in \mathbb{R}^{2\times 2} \enspace.
+\end{align*}
+$$
+
+::: {#thm-changement-variables}
+
+
+## Caractérisation de la loi d'une variable aléatoire réelle
+
+Soit $(X,Y)$ un vecteur aléatoire de densité $f_{(X,Y)}$ définie sur l'ouvert $A \subset \mathbb{R}^2$ et $\phi : A \to B \subset \mathbb{R}^2$ un $C^1$-difféomorphisme. Le vecteur aléatoire $(U,V)=\phi(X,Y)$ admet alors pour densité $f_{(U,V)}$ définie sur $B$ pour tout $(u,v) \in \mathbb{R}^2$ par
+$$
+\begin{align*}
+    (u,v) & \mapsto
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+\end{align*}
+$$
+
+:::
+
+[Remarque]{.underline}: le résultat s'étend facilement en dimension supérieure.
+
+
+## Preuve
+
+
+On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb{E}[h(U,V)]$ pour tout $h : \mathbb{R}^2 \to \mathbb{R}$ mesurable bornée.
+
+Soit un tel $h$ et on applique la formule de transfert :
+$$
+\begin{align*}
+  \mathbb{E}[h(U,V)] & = \mathbb{E}[h(\phi(X,Y))] = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
+ & = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
+\end{align*}
+$$
+On applique alors la formule du changement de variables $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
+$$
+\begin{align*}
+   \mathbb{E}[h(U,V)] &
+  = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
+  & = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
+\end{align*}
+$$
+ce qui donne le résultat voulu.
+
+
+## Méthode de Box-Müller
+
+
+L'algorithme de Box-Müller est le suivant: si $U$ et $V$ sont des v.a. indépendantes de loi uniforme sur $[0,1]$ et qu'on définit $X$ et $Y$ par
+$$
+\begin{cases}
+  X = \sqrt{-2 \log(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \log(U)} \sin(2\pi V)\,.
+\end{cases}
+$$
+alors $X$ et $Y$ des variables aléatoires gaussiennes centrées réduites indépendantes.
+
+
+
+## Preuve de la méthode de Box-Müller
+$$
+	\begin{array}{ccccc}
+		\phi^{-1} & : & ]0, \infty[ \times ]0, 2\pi[ & \to     & &\mathbb{R}^2 \setminus ([0,\infty[ \times \{0\})  \\
+		          &   & ( r , \theta)                   & \mapsto && (r \cos(\theta) , r \sin(\theta))  \\
+		\phi & : & \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) & \to  && ]0, \infty[ \times ]0, 2\pi[                                                       \\
+		     &   & ( x, y )                                            & \mapsto && (\sqrt{x^2+y^2} , 2 \arctan \Big( \frac{y}{x+\sqrt{x^2+y^2}} \Big)
+	\end{array}
+$$
+
+
+::: {#thm-box-muller}
+
+## Méthode de Box-Müller
+
+Soit $X$ et $Y$ deux v.a. indépendantes $X,Y \sim \mathcal{N}(0,1)$. Le couple de variables aléatoires polaires $(R, \Theta) = \phi(X,Y)$ a pour densité
+$$
+			f_{R, \Theta}(r,\theta)
+			= \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
+$$
+Autrement dit, elles sont indépendantes, l'angle $\Theta$ suit une loi uniforme sur $]0, 2\pi[$ et la distance à l'origine $R$ suit une loi de Rayleigh donnée par la densité
+$$
+    f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r > 0\,.
+$$
+
+:::
+
+## Preuve de la méthode de Box-Müller (suite)
+
+:::{#lem-rayleigh}
+
+## Simulation selon la loi de Rayleigh
+Si $U$ est une variable aléatoire de loi uniforme sur $]0,1[$, alors 
+$\sqrt{-2 \log(U)}$ suit une loi de Rayleigh.
+:::
+
+<br>
+
+**Preuve**: Pour tout $x > 0$, $F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})$, et donc pour tout $q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}$.
+Ainsi par la méthode de l'inverse,
+$\sqrt{-2\log(1-U)}$ suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi $sqrt{-2\log(U)}$.
+
+
+<br>
+
+Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme de Rayleigh, et en notant que $~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]$
+
+## Alternatives
+
+- l'algorithme de Box-Müller n'est pas utilisé si souvent en pratique (evaluation de fonctions coûteuses: logarithme, cosinus, sinus).
+- Pour s’affranchir des fonctions trigonométriques, une version modifiée de l’algorithme de Box-Müller a été proposée : la méthode de Marsaglia, qui s’appuie sur des variables aléatoires uniformes sur le disque unité (voir l’exercice dédié en TD).
+- Une autre alternative est la méthode de Ziggurat implémentée dans la librairie `numpy`, notamment.
+
+# Lois autour de la loi normale
+
+
+## Loi du $\chi^2$
+
+Concernant la prononciation, on prononce "khi-deux" le nom de cette loi.
+
+
+::: {#def-chi2}
+
+## Loi du $\chi^2$
+
+
+Soit $X_1, \dots, X_k$ des variables aléatoires i.I.d. de loi normale centrée réduite. La loi de la variable aléatoire $X = X_1^2 + \dots + X_k^2$ est appelée **loi du $\chi^2$ à $k$ degrés de liberté**. Sa densité est donnée par
+$$
+f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
+$$
+où $\Gamma$ désigne la fonction gamma d'Euler :
+$$
+\Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
+$$
+On note alors $X \sim \chi^2(k)$.
+
+:::
+
+
+
+## Loi de Student
+
+::::{.columns}
+
+:::{.column width="60%"}
+
+::: {#def-student}
+
+## Loi de Student
+
+Soit $X \sim \mathcal{N}(0,1)$ et $Y \sim \chi^2(k)$ deux variables aléatoires indépendantes. La loi de la variable aléatoire $V = \frac{X}{\sqrt{Y/k}}$ est appelée **loi de Student à $k$ degrés de liberté**. Elle admet pour densité
+$$
+	f_V(t)
+	= \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
+	\quad t \in \mathbb{R}\,.
+$$
+
+:::
+
+:::
+
+:::{.column width="40%"}
+
+
+:::{.fragment fragment-index=1}
+
+Cette loi a été décrite en 1908 par
+[William Gosset](https://fr.wikipedia.org/wiki/William_Gosset): (1876-1937)
+statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, *Student* (&#x1F1EB;&#x1F1F7;: étudiant).
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="50%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></img>.
+
+:::
+
+:::
+
+:::
+
+
+
+
+## Loi de Cauchy
+
+::: {#def-cauchy}
+
+## Loi de Cauchy
+
+Une variable aléatoire $X$ suit une **loi de Cauchy** si sa densité est donnée par
+$$
+	f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
+$$
+:::
+
+
+
+La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]\frac{-\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
+
+
+
+::: {#prp-cauchy}
+
+## Loi de Cauchy et loi normale
+
+Soient $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, $Y/X$ suit une loi de Cauchy.
+
+:::
+
+
+## Bibliographie
+
+::: {#refs}
+:::
