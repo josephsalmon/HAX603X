@@ -22,7 +22,8 @@ On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant
 
 ```{ojs}
 //| echo: false
-
+//| layout-ncol: 1
+//| figalign: "center"
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
@@ -101,7 +102,7 @@ var data = [
 
 
 var layout = {
-
+	width: 600,
 	yaxis: {domain: [0, 0.2],
 			showticklabels: false,
 			range: [-0.6, 0.6],
@@ -493,7 +494,7 @@ La loi de Student correspond donc au ratio d'une loi normale par la racine carr�
 Ce ratio apparaît souvent en statistique lors de la construction d'intervalles de confiance.
 Cette loi a été décrite en 1908 par
 [William Gosset](https://fr.wikipedia.org/wiki/William_Gosset)^[[William Gosset](https://fr.wikipedia.org/wiki/William_Gosset): (1876-1937)
-statisticien et chimiste anglais. Alors qu'il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, *Student* (&#x1F1EB;&#x1F1F7;: étudiant).
+statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin, chargé du contrôle qualité. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, *Student* (&#x1F1EB;&#x1F1F7;: étudiant).
 <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></img>].
 
 
