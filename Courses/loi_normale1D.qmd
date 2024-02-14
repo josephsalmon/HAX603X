@@ -1,5 +1,6 @@
 ---
 title: "Loi normale: cas 1D"
+bibliography: references.bib
 format:
   html:
       out.width: 50%
@@ -15,16 +16,124 @@ On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cd
 ## Définitions et propriétés de la loi normale
 
 On rappelle que la loi normale de paramètres $\mu \in \mathbb{R}$ et $\nu > 0$ a une densité donnée pour tout $x \in \mathbb{R}$ par
-
 $$
 	\varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
 $$
+
+On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
+
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+//| width: 50%
+
+// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+Plotly = require('plotly.js-dist');
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+jstat = require('jstat');
+math = require("mathjs");
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
+
+viewof inputs = Inputs.form([
+  Inputs.range([-2, 2], {label: tex`\mu`, step: 0.1}, {value: 0}),
+  Inputs.range([0.1, 10], {label: tex`\nu`, step: 0.1, value: 1}),
+  Inputs.range([1, 1000], {label: tex`n`, step: 1}),
+  Inputs.button("Re-Tirage")
+])
+
+
+mu = inputs[0];
+nu = inputs[1];
+n_samples = inputs[2];
+
+{
+
+function mvnpdf(x, mu, nu){
+    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);
+}
+
+
+function normal_rng(mu, nu, n=100){
+    var samples = Array.from({length: n}, () => {
+        var x = jstat.normal.sample(mu, nu**0.5);
+        return x;
+    });
+
+    return samples;
+}
+
+var samples = normal_rng(mu, nu, 1000);
+var samples_jitter = normal_rng(0, 0.03, 1000)
+var npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;
+
+//  Densité:
+for(var i = 0; i < npoints; i++) {
+    x[i] = mini + i * (maxi - mini) / (npoints - 1);
+	z[i] = mvnpdf(x[i], mu, nu);
+    }
+
+{
+var trace1 = {
+        x: samples.slice(0, n_samples),
+        y: samples_jitter.slice(0, n_samples),
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: 'rgba(0,0,0,0.5)',
+            size: 5,
+        },
+
+  }
+
+var trace22 = {
+        x: x,
+        y: z,
+		type: "scatter",
+		mode: "lines",
+		name: 'Pdf',
+		line: {color: 'black'},
+		yaxis: 'y2',
+		xaxis: 'x2',
+        }
+
+
+var data = [
+  trace1,
+  trace22,
+  ];
+
+
+var layout = {
+
+	yaxis: {domain: [0, 0.2],
+			showticklabels: false,
+			range: [-0.6, 0.6],
+            autorange: false},
+	xaxis2: {matches: 'x',
+	          range: [-10, 10],
+          autorange: false},
+	yaxis2: {domain: [0.29, 0.99]},
+
+  showlegend: false,
+
+};
+
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.newPlot(div, data, layout, config);
+    return div;
+	}
+}
+```
+
+
 
 On parle aussi souvent de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss)^[[Carl Friedrich Gauss](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
 mathématicien, astronome et physicien né à Brunswick, directeur de l'observatoire de [Göttingen](https://www.youtube.com/watch?v=t0sNy1xOhRc) de 1807 jusqu'à sa mort en 1855
 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>].
 
-On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
 
 
 La loi normale vérifie la propriété de **stabilité par transformation affine** : si $X \sim \mathcal{N}(\mu, \nu)$ et si $(a,b) \in \mathbb{R}^* \times \mathbb{R}$, alors la variable aléatoire $a X + b$ suit une loi normale $\mathcal{N}(a\mu + b, a^2 \nu)$. On peut donc facilement passer d'une loi normale centrée réduite à une loi normale quelconque via une transformation affine :
@@ -34,14 +143,36 @@ La loi normale vérifie la propriété de **stabilité par transformation affine
 
 Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n'importe quelle loi normale.
 
-Rappelons enfin que la fonction caractéristique d'une variable aléatoire $X \sim \mathcal{N}(\mu, \nu)$ est donnée pour tout $t \in \mathbb{R}$ par
+:::{#prp-caract}
+
+## Fonction caractéristique de la loi normale
+fonction caractéristique d'une variable aléatoire $X \sim \mathcal{N}(\mu, \nu)$ est donnée pour tout $t \in \mathbb{R}$ par
 $$
 \begin{align*}
-\phi_{\mu, \nu}(t) & \triangleq \mathbb{E}(e^{i t X})  \\
-\phi_X(t) & = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
+\phi_{\mu,\nu}(t) & \triangleq \mathbb{E}(e^{i t X})  \\
+& = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
 $$
+:::
 
+*Preuve*: on remarque d'abord que si $X \sim \mathcal{N}(0,1)$ alors pour tout $z \in \mathbb{R}$, on a
+
+$$
+\begin{align*}
+\mathbb{E}[e^{zX}]&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx\\
+&= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
+&=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy\\
+&=e^{\frac12z^2}.
+\end{align*}
+$$
+En utilisant le théorème de prolongement analytique (voir par exemple [Théorème I.10., @Queffelec_Zuily13] on peut donc étendre cette formule à tout $z \in \mathbb{C}$, et particulier au cas $z=it$ pour $t \in \mathbb{R}$. On obtient alors $\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}$.
+Enfin, on utilise la linéarité de l'espérance pour obtenir le résultat pour $X \sim \mathcal{N}(\mu,\nu)$. En effet, si $X \sim \mathcal{N}(0,1)$, alors $X=\mu+\sqrt{\nu}Z$ avec $Z \sim \mathcal{N}(0,1)$, et donc $\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}$.
+
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
 
 ### Simulation d'une loi  normale
 
@@ -241,111 +372,6 @@ Pour s'affranchir des fonctions trigonométriques, une version modifiée de l'al
 :::
 
 
-```{ojs}
-//| echo: false
-//| layout-ncol: 1
-//| width: 50%
-
-// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
-Plotly = require('plotly.js-dist');
-dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
-jstat = require('jstat');
-math = require("mathjs");
-// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
-// continuous case
-
-viewof inputs = Inputs.form([
-  Inputs.range([-2, 2], {label: tex`\mu`, step: 0.1}, {value: 0}),
-  Inputs.range([0.1, 10], {label: tex`\nu`, step: 0.1, value: 1}),
-  Inputs.range([1, 1000], {label: tex`n`, step: 1}),
-  Inputs.button("Re-Tirage")
-])
-
-
-mu = inputs[0];
-nu = inputs[1];
-n_samples = inputs[2];
-
-{
-
-function mvnpdf(x, mu, nu){
-    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);
-}
-
-
-function normal_rng(mu, nu, n=100){
-    var samples = Array.from({length: n}, () => {
-        var x = jstat.normal.sample(mu, nu**0.5);
-        return x;
-    });
-
-    return samples;
-}
-
-var samples = normal_rng(mu, nu, 1000);
-var samples_jitter = normal_rng(0, 0.03, 1000)
-var npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;
-
-//  Densité:
-for(var i = 0; i < npoints; i++) {
-    x[i] = mini + i * (maxi - mini) / (npoints - 1);
-	z[i] = mvnpdf(x[i], mu, nu);
-    }
-
-{
-var trace1 = {
-        x: samples.slice(0, n_samples),
-        y: samples_jitter.slice(0, n_samples),
-        mode: 'markers',
-        type: 'scatter',
-        marker: {
-            color: 'rgba(0,0,0,0.5)',
-            size: 5,
-        },
-
-  }
-
-var trace22 = {
-        x: x,
-        y: z,
-		type: "scatter",
-		mode: "lines",
-		name: 'Pdf',
-		line: {color: 'black'},
-		yaxis: 'y2',
-		xaxis: 'x2',
-        }
-
-
-var data = [
-  trace1,
-  trace22,
-  ];
-
-
-var layout = {
-
-	yaxis: {domain: [0, 0.2],
-			showticklabels: false,
-			range: [-0.6, 0.6],
-            autorange: false},
-	xaxis2: {matches: 'x',
-	          range: [-10, 10],
-          autorange: false},
-	yaxis2: {domain: [0.29, 0.99]},
-
-  showlegend: false,
-
-};
-
-    var config = {responsive: true}
-    const div = DOM.element('div');
-    Plotly.newPlot(div, data, layout, config);
-    return div;
-	}
-}
-```
-
 
 ## Lois autour de la loi normale
 
@@ -514,12 +540,12 @@ $$
 $$
 dont le déterminant vaut $\frac{-2ku^2}{v^3}$. Par ailleurs, les variables aléatoires $X$ et $Y$ étant indépendantes, la densité du couple $(X,Y)$ correspond au produit des densités :
 $$
-	f_{(X,Y)}(x,y) = \dfrac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}} \dfrac{1}{2^{\frac{k}{2}2} \Gamma(\frac{k}{2})} y^{\frac{k}{2}-1} e^{-\frac{y}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
+	f_{(X,Y)}(x,y) = \dfrac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}}  \dfrac{1}{2^{\frac{k}{2}2} \Gamma(\frac{k}{2})} y^{\frac{k}{2}-1} e^{-\frac{y}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
 $$
 Tout est prêt pour appliquer la théorème du changement de variables qui assure que la densité du couple $(U,V)$ est donnée par
 $$
 	f_{(U,V)}(u,v)
-	= \dfrac{1}{\sqrt{2 \pi}} e^{-\frac{u^2}{2}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{\frac{3}{2}}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
+	= \dfrac{e^{-\frac{u^2}{2}}}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{\frac{3}{2}}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
 $$
 Il suffit alors de marginaliser pour obtenir la densité de $V$, ce qui s'effectue en calculant l'intégrale
 $$
@@ -530,29 +556,29 @@ $$
 \begin{align*}
 	\int_{-\infty}^\infty e^{-\frac{u^2}{2}(1+\frac{k}{v^2})} (u^2)^{\frac{k}{2}} \, d u
 	 & = \int_0^\infty e^{-s} \bigg( \dfrac{2 s}{1+\frac{k}{v^2}} \bigg)^{\frac{k}{2}} \sqrt{\dfrac{2}{1+\frac{k}{v^2}}} \dfrac{ds}{2\sqrt{s}} \\
-	 & = \frac{2^{\frac{k+1}{2}}}{2} \bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}} \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
+	 & = \frac{2^{\frac{k+1}{2}}}{2} \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}} \!\!\! \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
 \end{align*}
 $$
 où la première égalité résulte du changement de variable
 $$
-	s = \dfrac{u^2}{2} \bigg( 1 + \dfrac{k}{v^2} \bigg) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
+	s = \dfrac{u^2}{2} \left( 1 + \dfrac{k}{v^2} \right) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
 $$
 On reconnaît dans l'intégrale la valeur de $\Gamma(\frac{k+1}{2})$ ce qui conduit à
 $$
 	f_V(v)
 	=
 	\dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{\frac{3}{2}}}
-	\frac{2^{\frac{k+1}{2}}}{2} \bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}} \Gamma\bigg(\frac{k+1}{2}\bigg)\,.
+	\frac{2^{\frac{k+1}{2}}}{2} \frac{\Gamma\left(\tfrac{k+1}{2}\right)}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\,.
 $$
 On réécrit alors les termes en $k/v^2$ via
 $$
 \begin{align*}
-\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{k}{(v^2)^{\frac{3}{2}}}
-	\bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}}
+\left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{k}{(v^2)^{\frac{3}{2}}}
+	\frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}
 	& =
-	\bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{1}{\sqrt{k}} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{3}{2}}
-	\bigg(1+\dfrac{k}{v^2}\bigg)^{- \frac{k+1}{2}}\\
-	& = \dfrac{1}{\sqrt{k}}\bigg(1+\dfrac{v^2}{k}\bigg)^{- \frac{k+1}{2}}\,,
+	\left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{1}{\sqrt{k}} \left(\tfrac{k}{v^2}\right)^{\frac{3}{2}}
+	\frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\\
+	& = \tfrac{1}{\sqrt{k}}\left(1+\tfrac{v^2}{k}\right)^{- \frac{k+1}{2}}\,,
 \end{align*}
 $$
 ce qui permet de conclure :
@@ -583,7 +609,7 @@ $$
 
 
 
-La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]-\frac{\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
+La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]\frac{-\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
 
 ::: {#prp-cauchy}
 
@@ -641,4 +667,5 @@ $$
 <div class="div-remaining">□</div>
 </div>
 
-On obtient ainsi une autre manière de simuler une loi de Cauchy : on simule deux gaussiennes indépendantes et on prend leur ratio. Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
+On obtient ainsi une autre manière de simuler une loi de Cauchy, en simulant deux gaussiennes indépendantes et en prennant leur ratio.
+Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
