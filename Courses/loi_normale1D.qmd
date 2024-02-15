@@ -8,8 +8,6 @@ filters:
   - shinylive
 ---
 
-## La loi normale
-
 ## Définitions et propriétés de la loi normale
 
 On rappelle que la loi normale de paramètres $\mu \in \mathbb{R}$ et $\nu > 0$ a une densité donnée pour tout $x \in \mathbb{R}$ par
