@@ -1,5 +1,5 @@
 ---
-title: "TP2: ..."
+title: "TP2: Simulation de lois élémentaires"
 bibliography: ../Courses/references.bib
 format:
   html:
@@ -109,7 +109,48 @@ ax.legend(custom_lines, ['10000 tirages', '1000 tirages', '100 tirages'], loc='u
 plt.show()
 
 ```
+Attention quand vous tracez des histogrammes pour des réalisation de la v.a. non bornées:
 
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+vectGauss = np.random.randn(1000)
+
+fig, ax = plt.subplots()
+
+xx = np.linspace(vectGauss.min() - 1, vectGauss.max() + 1, 100)
+ax.plot(xx, stats.norm.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectGauss, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+# plot density
+
+plt.title('Histogramme: tirage Gaussien')
+
+vectCauchy = np.random.standard_cauchy(10000)
+
+fig, ax = plt.subplots()
+
+xx = np.linspace(vectCauchy.min() - 1, vectCauchy.max() + 1, 100)
+ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectCauchy, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+# plot density
+
+plt.title('Histogramme naïf: tirage Cauchy...')
+
+xmax = 11
+fig, ax = plt.subplots()
+
+xx = np.linspace(-xmax - 1, xmax + 1, 100)
+ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectCauchy[np.abs(vectCauchy) < xmax], histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+# plot density
+
+ax.set_xlim((-xmax - 1, xmax + 1))
+plt.title('Histogramme : tirage Cauchy tronquée...')
+```
 
 ## Exercice 2: Fonction de répartition de la loi uniforme
 
