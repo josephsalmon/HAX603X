@@ -9,7 +9,7 @@ format:
     include-after-body: toc-add.html
 ---
 
-# Définitions et propriétés de la loi normale
+# Définitions et propriétés de la loi normale/gaussienne
 
 
 ## Rappel concernant la loi normale
@@ -35,13 +35,13 @@ $$
 :::
 
 
-:::{.column width="40%"}
+:::{.column width="35%"}
 
 :::{.fragment fragment-index=2}
 
 On parle aussi de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
 mathématicien, astronome et physicien né à Brunswick, directeur de l'observatoire de [Göttingen](https://www.youtube.com/watch?v=t0sNy1xOhRc) de 1807 jusqu'à sa mort en 1855
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>
 
 :::
 
@@ -68,7 +68,7 @@ mathématicien, astronome et physicien né à Brunswick, directeur de l'observat
 
 . . .
 
-- [Conséquence]{.underline}: pour simuler selon une loi normale, il suffit de savoir le faire pour le cas centré-réduit
+- [Conséquence]{.underline}: pour simuler selon une loi normale, il suffit de savoir le faire pour le cas centré-réduit, puis d'utiliser la propriété ci-dessus
 
 
 ## Fonction caractéristique
@@ -84,22 +84,24 @@ $$
 $$
 :::
 
-
-- Cas particulier: si $X \sim \mathcal{N}(0,1)$, alors $\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)$
+[Cas particulier]{.underline}: si $X \sim \mathcal{N}(0,1)$, alors $\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)$
 
 . . .
 
 
-Élements de preuve: pour tout $z \in \mathbb{R}$, on a
+*Éléments de preuve*: pour tout $z \in \mathbb{R}$, on calcule la transformée de Laplace, puis on l'étend ensuite sur $\mathbb{C}$, et on l'instancie pour $z=it$.
+
+. . .
 
 $$
 \begin{align*}
-\mathbb{E}[e^{zX}]& 
-=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx = \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
-&=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy
-=e^{\frac12z^2}.
+\class{fragment}{{}\mathbb{E}[e^{zX}]}& 
+\class{fragment}{{}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx} \class{fragment}{{}= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx}\\
+&\class{fragment}{{}=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy}\class{fragment}{{}
+=e^{\frac12z^2}}
 \end{align*}
 $$
+
 
 
 
@@ -112,18 +114,20 @@ $$
 
 - TCL: tirer $U_1, \dots, U_n$  i.i.d. et uniforme sur $[0,1]$, puis poser
 $$
-	\sqrt{n}\frac{(\bar{U}_n - 1/2)}{\sqrt{1/12}}\,.
+	\sqrt{n}\frac{(\bar{U}_n - 1/2)}{\sqrt{1/12}}
 $$
-Limite: seulement une approximation, et convergence relativement lente (coût élevé)
+[Limite]{.underline}: seulement une approximation, et convergence relativement lente (coût élevé)
 
 - Alternatives: nécessite opérations de changement de variables
 
 
 ## Changement de variables en dimension 2
 
-Soit $\phi$ un $C^1$-difféomorphisme de $\mathbb{R}^2$ (une application bijective dont la réciproque est également de classe $C^1$)
+Soit $\phi$ un $C^1$-difféomorphisme de $\mathbb{R}^2$ (bijection dont la réciproque est également de classe $C^1$)
 
-Rappel: la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles.
+. . .
+
+[Rappel]{.underline}: la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles.
 Ainsi, si $\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)$, alors
 $$
 \begin{align*}
@@ -131,12 +135,13 @@ $$
 \begin{pmatrix}
   \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
-\end{pmatrix} \in \mathbb{R}^{2\times 2} \enspace.
+\end{pmatrix} \in \mathbb{R}^{2\times 2}
 \end{align*}
 $$
 
-::: {#thm-changement-variables}
+. . .
 
+::: {#thm-changement-variables}
 
 ## Caractérisation de la loi d'une variable aléatoire réelle
 
@@ -144,19 +149,21 @@ Soit $(X,Y)$ un vecteur aléatoire de densité $f_{(X,Y)}$ définie sur l'ouvert
 $$
 \begin{align*}
     (u,v) & \mapsto
-    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)
 \end{align*}
 $$
 
 :::
 
-[Remarque]{.underline}: le résultat s'étend facilement en dimension supérieure.
+[Remarque]{.underline}: le résultat s'étend facilement en dimension supérieure
 
 
 ## Preuve
 
 
-On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb{E}[h(U,V)]$ pour tout $h : \mathbb{R}^2 \to \mathbb{R}$ mesurable bornée.
+[Rappel]{.underline}: la loi de $(U,V)$ est caractérisée par $\mathbb{E}[h(U,V)]$ pour tout $h$ mesurable bornée.
+
+. . .
 
 Soit un tel $h$ et on applique la formule de transfert :
 $$
@@ -165,6 +172,9 @@ $$
  & = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
 \end{align*}
 $$
+
+. . .
+
 On applique alors la formule du changement de variables $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
 $$
 \begin{align*}
@@ -210,7 +220,7 @@ $$
 			f_{R, \Theta}(r,\theta)
 			= \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
 $$
-Autrement dit, elles sont indépendantes, l'angle $\Theta$ suit une loi uniforme sur $]0, 2\pi[$ et la distance à l'origine $R$ suit une loi de Rayleigh donnée par la densité
+$R$ et $\Theta$ sont indépendantes, $\Theta \sim \mathcal{U}(]0, 2\pi[)$, $R$ suit une loi de Rayleigh de densité
 $$
     f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r > 0\,.
 $$
@@ -230,12 +240,13 @@ $\sqrt{-2 \log(U)}$ suit une loi de Rayleigh.
 
 **Preuve**: Pour tout $x > 0$, $F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})$, et donc pour tout $q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}$.
 Ainsi par la méthode de l'inverse,
-$\sqrt{-2\log(1-U)}$ suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi $sqrt{-2\log(U)}$.
+$\sqrt{-2\log(1-U)}$ suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi $\sqrt{-2\log(U)}$.
 
+. . .
 
 <br>
 
-Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme de Rayleigh, et en notant que $~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]$
+Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme ci-dessus, et en notant que $~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]$
 
 ## Alternatives
 
@@ -289,17 +300,23 @@ $$
 
 :::
 
+
+:::{.fragment fragment-index=2}
+
+[Application]{.underline}: elle est utilisée en statistiques pour déterminer l'intervalle de confiance de l’espérance d'une loi normale, quand la variance est inconnue (en lien avec le [théorème de Cochran](https://fr.wikipedia.org/wiki/Théorème_de_Cochran))
 :::
 
-:::{.column width="40%"}
+:::
+
+:::{.column width="35%"}
 
 
-:::{.fragment fragment-index=1}
+:::{.fragment fragment-index=3}
 
 Cette loi a été décrite en 1908 par
 [William Gosset](https://fr.wikipedia.org/wiki/William_Gosset): (1876-1937)
 statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, *Student* (&#x1F1EB;&#x1F1F7;: étudiant).
-<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="50%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></img>.
+<img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></img>
 
 :::
 
@@ -316,15 +333,11 @@ statisticien et chimiste anglais. Il était employé à la brasserie Guinness à
 
 ## Loi de Cauchy
 
-Une variable aléatoire $X$ suit une **loi de Cauchy** si sa densité est donnée par
+Une v.a. $X$ suit une **loi de Cauchy** si sa densité est donnée par
 $$
 	f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 $$
 :::
-
-
-
-La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]\frac{-\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
 
 
 
@@ -336,6 +349,31 @@ Soient $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centr
 
 :::
 
+[Remarque]{.underline}: la méthode d'inversion permet aussi de simuler une variable aléatoire de loi de Cauchy (cf. TD/TP).
+
+## Preuve (rapport de variables gaussiennes):
+
+
+*Preuve*:
+Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l'application
+$$
+	\begin{array}{ccccc}
+		\phi & : & \mathbb{R}^* \times \mathbb{R} & \to     & \mathbb{R}^* \times \mathbb{R} \\
+				&   & (x,y) & \mapsto & \Big(x, \dfrac{y}{x}\Big)\\
+        \phi^{-1} & :  & \mathbb{R}^* \times \mathbb{R} & \to     & \mathbb{R}^* \times \mathbb{R}\\
+				&   & (u, v) & \mapsto & \Big(u, uv)
+\end{array}
+$$
+
+$$
+	J_{\phi^{-1}} (u,v)
+	=
+	\begin{pmatrix}
+		1 & 0 \\
+		v & u
+	\end{pmatrix}\,,
+$$
+et son déterminant vaut $u$. Le reste est calculatoire et laissé en exercice.
 
 ## Bibliographie
 

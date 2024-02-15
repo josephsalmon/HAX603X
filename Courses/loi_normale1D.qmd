@@ -654,5 +654,5 @@ $$
 <div class="div-remaining">□</div>
 </div>
 
-On obtient ainsi une autre manière de simuler une loi de Cauchy, en simulant deux gaussiennes indépendantes et en prenant leur ratio.
+On obtient ainsi une autre manière de simuler une loi de Cauchy, en prenant le ratio de deux  gaussiennes indépendantes.
 Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
