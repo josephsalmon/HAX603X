@@ -1383,7 +1383,7 @@ Point important: parfois la connaissance de $m$ est difficile à obtenir, et il 
 
 ## Sommes de variables aléatoires
 
-[Loi de Bernouilli]{.underline}:  avec $U_1, \ldots, U_n$ i.i.d uniformes sur $[0,1]$ (méthode d'inversion):
+[Loi de Bernoulli]{.underline}:  avec $U_1, \ldots, U_n$ i.i.d uniformes sur $[0,1]$ (méthode d'inversion):
 $$
 X_i \triangleq {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(p)
 $$
@@ -1410,7 +1410,7 @@ La méthode d'inversion marche aussi, mais nécessite le calcul de l'inverse gé
 
 ## Loi de Poisson
 
-[Rappel]{.underline}: $\quad X \sim \mathcal{P}(\lambda) \iff \mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad  \forall k \in \mathbb{N}^*.$
+[Rappel]{.underline}: $\quad X \sim \mathcal{P}(\lambda) \iff \mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad  \forall k \in \mathbb{N}.$
 
 :::: {#prp-poisson_exponentielle}
 
@@ -1418,11 +1418,11 @@ La méthode d'inversion marche aussi, mais nécessite le calcul de l'inverse gé
 
 <br>
 
-Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors pour tout $n \in \mathbb{N}^*$
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors pour tout $n \in \mathbb{N}$
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
-Ainsi, $T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+Ainsi, $T \triangleq \sup \{n \in \mathbb{N} : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
 ::::
 
@@ -1484,7 +1484,7 @@ $$
 
 . . .
 
-Du lemme précédent : $\mathbb{P}(S_n \leq 1) = 1 - \displaystyle\sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}$
+Du lemme précédent : $\mathbb{P}(S_n \leq 1) = 1 - \displaystyle\sum_{k=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}$
 et
 $\mathbb{P}(S_{n+1} \leq 1) = 1 - \displaystyle\sum_{k=0}^{n} e^{-\lambda} \dfrac{\lambda^k}{k!}$.
 
