@@ -401,15 +401,15 @@ Benjamin Charlier
 <nav id="toc-nav" role="doc-toc" style="padding-top: 5px; padding-bottom: 5px;">  
 <h3 id="toc-title">Table des matières</h3>
 <ul>
-<li><a href="#/définitions-et-propriétés-de-la-loi-normale" id="/toc-définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</a></li>
+<li><a href="#/définitions-et-propriétés-de-la-loi-normalegaussienne" id="/toc-définitions-et-propriétés-de-la-loi-normalegaussienne">Définitions et propriétés de la loi normale/gaussienne</a></li>
 <li><a href="#/simulation-dune-loi-normale" id="/toc-simulation-dune-loi-normale">Simulation d’une loi normale</a></li>
 <li><a href="#/lois-autour-de-la-loi-normale" id="/toc-lois-autour-de-la-loi-normale">Lois autour de la loi normale</a></li>
 </ul>
 </nav>
 </section>
 <section>
-<section id="définitions-et-propriétés-de-la-loi-normale" class="title-slide slide level1 center">
-<h1>Définitions et propriétés de la loi normale</h1>
+<section id="définitions-et-propriétés-de-la-loi-normalegaussienne" class="title-slide slide level1 center">
+<h1>Définitions et propriétés de la loi normale/gaussienne</h1>
 
 </section>
 <section id="rappel-concernant-la-loi-normale" class="slide level2">
@@ -427,9 +427,9 @@ Benjamin Charlier
 <li>Cas particulier <span class="math inline">\(\mu=0\)</span> et <span class="math inline">\(\nu=1\)</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</li>
 </ul>
 </div>
-</div><div class="column" style="width:40%;">
+</div><div class="column" style="width:35%;">
 <div class="fragment" data-fragment-index="2">
-<p>On parle aussi de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p>
+<p>On parle aussi de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p>
 </div>
 </div>
 </div>
@@ -452,7 +452,7 @@ Benjamin Charlier
 </div>
 <div class="fragment">
 <ul>
-<li><u>Conséquence</u>: pour simuler selon une loi normale, il suffit de savoir le faire pour le cas centré-réduit</li>
+<li><u>Conséquence</u>: pour simuler selon une loi normale, il suffit de savoir le faire pour le cas centré-réduit, puis d’utiliser la propriété ci-dessus</li>
 </ul>
 </div>
 </section>
@@ -465,17 +465,17 @@ Benjamin Charlier
 \end{align*}
 \]</span></p>
 </div>
-<ul>
-<li>Cas particulier: si <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span>, alors <span class="math inline">\(\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)\)</span></li>
-</ul>
+<p><u>Cas particulier</u>: si <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span>, alors <span class="math inline">\(\phi_{0,1}(t) = \exp\Big( - \frac{t^2}{2}\Big)\)</span></p>
 <div class="fragment">
-<p>Élements de preuve: pour tout <span class="math inline">\(z \in \mathbb{R}\)</span>, on a</p>
+<p><em>Éléments de preuve</em>: pour tout <span class="math inline">\(z \in \mathbb{R}\)</span>, on calcule la transformée de Laplace, puis on l’étend ensuite sur <span class="math inline">\(\mathbb{C}\)</span>, et on l’instancie pour <span class="math inline">\(z=it\)</span>.</p>
+</div>
+<div class="fragment">
 <p><span class="math display">\[
 \begin{align*}
-\mathbb{E}[e^{zX}]&amp;
-=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx = \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
-&amp;=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy
-=e^{\frac12z^2}.
+\class{fragment}{{}\mathbb{E}[e^{zX}]}&amp;
+\class{fragment}{{}=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx} \class{fragment}{{}= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx}\\
+&amp;\class{fragment}{{}=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy}\class{fragment}{{}
+=e^{\frac12z^2}}
 \end{align*}
 \]</span></p>
 </div>
@@ -490,48 +490,57 @@ Benjamin Charlier
 <ul>
 <li><p>Méthode de l’inverse: besoin d’un calcul de la fonction de répartition de la loi normale, qui n’a pas de forme analytique simple (analyse numérique, méthode coûteuse).</p></li>
 <li><p>TCL: tirer <span class="math inline">\(U_1, \dots, U_n\)</span> i.i.d. et uniforme sur <span class="math inline">\([0,1]\)</span>, puis poser <span class="math display">\[
-  \sqrt{n}\frac{(\bar{U}_n - 1/2)}{\sqrt{1/12}}\,.
-\]</span> Limite: seulement une approximation, et convergence relativement lente (coût élevé)</p></li>
+  \sqrt{n}\frac{(\bar{U}_n - 1/2)}{\sqrt{1/12}}
+\]</span> <u>Limite</u>: seulement une approximation, et convergence relativement lente (coût élevé)</p></li>
 <li><p>Alternatives: nécessite opérations de changement de variables</p></li>
 </ul>
 </section>
 <section id="changement-de-variables-en-dimension-2" class="slide level2">
 <h2>Changement de variables en dimension 2</h2>
-<p>Soit <span class="math inline">\(\phi\)</span> un <span class="math inline">\(C^1\)</span>-difféomorphisme de <span class="math inline">\(\mathbb{R}^2\)</span> (une application bijective dont la réciproque est également de classe <span class="math inline">\(C^1\)</span>)</p>
-<p>Rappel: la <strong>jacobienne</strong> de <span class="math inline">\(\phi^{-1}\)</span> correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si <span class="math inline">\(\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)\)</span>, alors <span class="math display">\[
+<p>Soit <span class="math inline">\(\phi\)</span> un <span class="math inline">\(C^1\)</span>-difféomorphisme de <span class="math inline">\(\mathbb{R}^2\)</span> (bijection dont la réciproque est également de classe <span class="math inline">\(C^1\)</span>)</p>
+<div class="fragment">
+<p><u>Rappel</u>: la <strong>jacobienne</strong> de <span class="math inline">\(\phi^{-1}\)</span> correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si <span class="math inline">\(\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)\)</span>, alors <span class="math display">\[
 \begin{align*}
 {\rm{J}}_{\phi^{-1}}: (u,v) &amp; \mapsto
 \begin{pmatrix}
   \frac{\partial x}{\partial u} &amp; \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} &amp; \frac{\partial y}{\partial v}
-\end{pmatrix} \in \mathbb{R}^{2\times 2} \enspace.
+\end{pmatrix} \in \mathbb{R}^{2\times 2}
 \end{align*}
 \]</span></p>
+</div>
+<div class="fragment">
 <div id="thm-changement-variables" class="theorem">
 <p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>Soit <span class="math inline">\((X,Y)\)</span> un vecteur aléatoire de densité <span class="math inline">\(f_{(X,Y)}\)</span> définie sur l’ouvert <span class="math inline">\(A \subset \mathbb{R}^2\)</span> et <span class="math inline">\(\phi : A \to B \subset \mathbb{R}^2\)</span> un <span class="math inline">\(C^1\)</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">\((U,V)=\phi(X,Y)\)</span> admet alors pour densité <span class="math inline">\(f_{(U,V)}\)</span> définie sur <span class="math inline">\(B\)</span> pour tout <span class="math inline">\((u,v) \in \mathbb{R}^2\)</span> par <span class="math display">\[
 \begin{align*}
     (u,v) &amp; \mapsto
-    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)
 \end{align*}
 \]</span></p>
 </div>
-<p><u>Remarque</u>: le résultat s’étend facilement en dimension supérieure.</p>
+<p><u>Remarque</u>: le résultat s’étend facilement en dimension supérieure</p>
+</div>
 </section>
 <section id="preuve" class="slide level2">
 <h2>Preuve</h2>
-<p>On rappelle que la loi de <span class="math inline">\((U,V)\)</span> est caractérisée par les quantités <span class="math inline">\(\mathbb{E}[h(U,V)]\)</span> pour tout <span class="math inline">\(h : \mathbb{R}^2 \to \mathbb{R}\)</span> mesurable bornée.</p>
+<p><u>Rappel</u>: la loi de <span class="math inline">\((U,V)\)</span> est caractérisée par <span class="math inline">\(\mathbb{E}[h(U,V)]\)</span> pour tout <span class="math inline">\(h\)</span> mesurable bornée.</p>
+<div class="fragment">
 <p>Soit un tel <span class="math inline">\(h\)</span> et on applique la formule de transfert : <span class="math display">\[
 \begin{align*}
   \mathbb{E}[h(U,V)] &amp; = \mathbb{E}[h(\phi(X,Y))] = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
 &amp; = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
 \end{align*}
-\]</span> On applique alors la formule du changement de variables <span class="math inline">\((u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)\)</span> : <span class="math display">\[
+\]</span></p>
+</div>
+<div class="fragment">
+<p>On applique alors la formule du changement de variables <span class="math inline">\((u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)\)</span> : <span class="math display">\[
 \begin{align*}
    \mathbb{E}[h(U,V)] &amp;
   = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
   &amp; = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
 \end{align*}
 \]</span> ce qui donne le résultat voulu.</p>
+</div>
 </section>
 <section id="méthode-de-box-müller" class="slide level2">
 <h2>Méthode de Box-Müller</h2>
@@ -556,7 +565,7 @@ Benjamin Charlier
 <p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller) </strong></span>Soit <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux v.a. indépendantes <span class="math inline">\(X,Y \sim \mathcal{N}(0,1)\)</span>. Le couple de variables aléatoires polaires <span class="math inline">\((R, \Theta) = \phi(X,Y)\)</span> a pour densité <span class="math display">\[
             f_{R, \Theta}(r,\theta)
             = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
-\]</span> Autrement dit, elles sont indépendantes, l’angle <span class="math inline">\(\Theta\)</span> suit une loi uniforme sur <span class="math inline">\(]0, 2\pi[\)</span> et la distance à l’origine <span class="math inline">\(R\)</span> suit une loi de Rayleigh donnée par la densité <span class="math display">\[
+\]</span> <span class="math inline">\(R\)</span> et <span class="math inline">\(\Theta\)</span> sont indépendantes, <span class="math inline">\(\Theta \sim \mathcal{U}(]0, 2\pi[)\)</span>, <span class="math inline">\(R\)</span> suit une loi de Rayleigh de densité <span class="math display">\[
     f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r &gt; 0\,.
 \]</span></p>
 </div>
@@ -567,9 +576,11 @@ Benjamin Charlier
 <p><span class="theorem-title"><strong>Lemme 1 (Simulation selon la loi de Rayleigh) </strong></span>Si <span class="math inline">\(U\)</span> est une variable aléatoire de loi uniforme sur <span class="math inline">\(]0,1[\)</span>, alors <span class="math inline">\(\sqrt{-2 \log(U)}\)</span> suit une loi de Rayleigh.</p>
 </div>
 <p><br></p>
-<p><strong>Preuve</strong>: Pour tout <span class="math inline">\(x &gt; 0\)</span>, <span class="math inline">\(F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})\)</span>, et donc pour tout <span class="math inline">\(q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}\)</span>. Ainsi par la méthode de l’inverse, <span class="math inline">\(\sqrt{-2\log(1-U)}\)</span> suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi <span class="math inline">\(sqrt{-2\log(U)}\)</span>.</p>
+<p><strong>Preuve</strong>: Pour tout <span class="math inline">\(x &gt; 0\)</span>, <span class="math inline">\(F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})\)</span>, et donc pour tout <span class="math inline">\(q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}\)</span>. Ainsi par la méthode de l’inverse, <span class="math inline">\(\sqrt{-2\log(1-U)}\)</span> suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi <span class="math inline">\(\sqrt{-2\log(U)}\)</span>.</p>
+<div class="fragment">
 <p><br></p>
-<p>Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme de Rayleigh, et en notant que <span class="math inline">\(~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]\)</span></p>
+<p>Enfin, on prouve le bien fondé de la méthode de Box-Müller en utilisant le lemme ci-dessus, et en notant que <span class="math inline">\(~U\sim\mathcal{U}[0,1] \implies 2 \pi U\sim\mathcal{U}[0,2\pi]\)</span></p>
+</div>
 </section>
 <section id="alternatives" class="slide level2">
 <h2>Alternatives</h2>
@@ -606,9 +617,12 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
     \quad t \in \mathbb{R}\,.
 \]</span></p>
 </div>
-</div><div class="column" style="width:40%;">
-<div class="fragment" data-fragment-index="1">
-<p>Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="50%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908.">.</p>
+<div class="fragment" data-fragment-index="2">
+<p><u>Application</u>: elle est utilisée en statistiques pour déterminer l’intervalle de confiance de l’espérance d’une loi normale, quand la variance est inconnue (en lien avec le <a href="https://fr.wikipedia.org/wiki/Théorème_de_Cochran">théorème de Cochran</a>)</p>
+</div>
+</div><div class="column" style="width:35%;">
+<div class="fragment" data-fragment-index="3">
+<p>Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p>
 </div>
 </div>
 </div>
@@ -616,14 +630,33 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <section id="loi-de-cauchy" class="slide level2">
 <h2>Loi de Cauchy</h2>
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une v.a. <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">\[
     f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 \]</span></p>
 </div>
-<p>La fonction de répartition de <span class="math inline">\(X\)</span> correspond, à une constante près, à la fonction arctangente qui est bijective de <span class="math inline">\(\mathbb{R}\)</span> sur <span class="math inline">\(]\frac{-\pi}{2},\frac{\pi}{2}[\)</span>. La méthode d’inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.</p>
 <div id="prp-cauchy" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy.</p>
 </div>
+<p><u>Remarque</u>: la méthode d’inversion permet aussi de simuler une variable aléatoire de loi de Cauchy (cf.&nbsp;TD/TP).</p>
+</section>
+<section id="preuve-rapport-de-variables-gaussiennes" class="slide level2">
+<h2>Preuve (rapport de variables gaussiennes):</h2>
+<p><em>Preuve</em>: Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l’application <span class="math display">\[
+    \begin{array}{ccccc}
+        \phi &amp; : &amp; \mathbb{R}^* \times \mathbb{R} &amp; \to     &amp; \mathbb{R}^* \times \mathbb{R} \\
+                &amp;   &amp; (x,y) &amp; \mapsto &amp; \Big(x, \dfrac{y}{x}\Big)\\
+        \phi^{-1} &amp; :  &amp; \mathbb{R}^* \times \mathbb{R} &amp; \to     &amp; \mathbb{R}^* \times \mathbb{R}\\
+                &amp;   &amp; (u, v) &amp; \mapsto &amp; \Big(u, uv)
+\end{array}
+\]</span></p>
+<p><span class="math display">\[
+    J_{\phi^{-1}} (u,v)
+    =
+    \begin{pmatrix}
+        1 &amp; 0 \\
+        v &amp; u
+    \end{pmatrix}\,,
+\]</span> et son déterminant vaut <span class="math inline">\(u\)</span>. Le reste est calculatoire et laissé en exercice.</p>
 </section>
 <section id="bibliographie" class="slide level2 smaller scrollable">
 <h2>Bibliographie</h2>
