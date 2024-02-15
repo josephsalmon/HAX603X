@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.429">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -95,7 +95,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -121,33 +120,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -156,7 +128,7 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -257,7 +229,7 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP2.html">
- <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
+ <span class="dropdown-text">TP2: …</span></a>
   </li>  
     </ul>
   </li>
@@ -271,11 +243,11 @@ window.Quarto = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale_multi.html">Loi normale: cas multivarié</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -283,7 +255,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -336,7 +308,7 @@ window.Quarto = {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -555,99 +527,99 @@ X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
 <span id="cb1-208"><a href="#cb1-208" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-209"><a href="#cb1-209" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-7" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-8" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-9" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-10" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-11" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-12" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-13" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-14" data-nodetype="expression">
 
 </div>
@@ -660,7 +632,7 @@ X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdGx5ID0gcmVxdWlyZShcImh0dHBzOi8vY2RuLnBsb3QubHkvcGxvdGx5LWxhdGVzdC5taW4uanNcIilcblBsb3RseSA9IHJlcXVpcmUoJ3Bsb3RseS5qcy1kaXN0Jyk7XG5kaXN0cyA9IHJlcXVpcmUoICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvc3RkbGliLWpzL3N0YXRzLWJhc2UtZGlzdHNAdW1kL2Jyb3dzZXIuanMnICk7XG5qc3RhdCA9IHJlcXVpcmUoJ2pzdGF0Jyk7XG5tYXRoID0gcmVxdWlyZShcIm1hdGhqc1wiKTtcbi8vIHNlZSBzb3VyY2UgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL3N0ZGxpYi1qcy9zdGF0cy1iYXNlLWRpc3RzL3RyZWUvdW1kXG4vLyBjb250aW51b3VzIGNhc2Vcblxudmlld29mIGlucHV0cyA9IElucHV0cy5mb3JtKFtcbiAgSW5wdXRzLnJhbmdlKFstMSwgMV0sIHtsYWJlbDogdGV4YFxcbXVfMWAsIHN0ZXA6IDAuMX0sIHt2YWx1ZTogMH0pLFxuICBJbnB1dHMucmFuZ2UoWy0xLCAxXSwge2xhYmVsOiB0ZXhgXFxtdV8yYCwgc3RlcDogMC4xfSwge3ZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMC4xLCAyXSwge2xhYmVsOiB0ZXhgXFxzaWdtYV8xYCwgc3RlcDogMC4xLCB2YWx1ZTogMX0pLFxuICBJbnB1dHMucmFuZ2UoWzAuMSwgMl0sIHtsYWJlbDogdGV4YFxcc2lnbWFfMmAsIHN0ZXA6IDAuMSwgdmFsdWU6IDF9KSxcbiAgSW5wdXRzLnJhbmdlKFswLCA2LjI5XSwge2xhYmVsOiB0ZXhgXFx0aGV0YWAsIHN0ZXA6IDAuMDEsIHZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMSwgMTAwMF0sIHtsYWJlbDogdGV4YG5gLCBzdGVwOiAxfSksXG4gIElucHV0cy5idXR0b24oXCJSZS1UaXJhZ2VcIilcbl0pXG5cblxubXUxID0gaW5wdXRzWzBdO1xubXUyID0gaW5wdXRzWzFdO1xuc2lnbWExID0gaW5wdXRzWzJdO1xuc2lnbWEyID0gaW5wdXRzWzNdO1xudGhldGEgPSBpbnB1dHNbNF07XG5uX3NhbXBsZXMgPSBpbnB1dHNbNV07XG5cblxuZnVuY3Rpb24gY3JlYXRlX3NpZ21hKHRoZXRhLCBzaWdtYTEsIHNpZ21hMil7XG4gIGNvbnN0IG1hdF9yb3QgPSBtYXRoLm1hdHJpeChbW21hdGguY29zKHRoZXRhKSwgLW1hdGguc2luKHRoZXRhKV0sIFttYXRoLnNpbih0aGV0YSksIG1hdGguY29zKHRoZXRhKV1dKTtcbiAgY29uc3QgbWF0X3NpZ21hID0gbWF0aC5tYXRyaXgoW1tzaWdtYTEqKjIsIDBdLCBbMCwgc2lnbWEyKioyXV0pO1xuICByZXR1cm4gbWF0aC5tdWx0aXBseShtYXRfcm90LCBtYXRoLm11bHRpcGx5KG1hdF9zaWdtYSwgbWF0aC50cmFuc3Bvc2UobWF0X3JvdCkpKTtcbn1cblxuXG5mdW5jdGlvbiBtdm5wZGYoeCwgbXUsIFNpZ21hKXtcbiAgY29uc3QgcCA9IDI7XG4gICAgcmV0dXJuICgyKm1hdGgucGkpKiooLXAvMikqbWF0aC5kZXQoU2lnbWEpKiooLTAuNSkqXG4gICAgICBtYXRoLmV4cCgtMC41Km1hdGgubXVsdGlwbHkoIG1hdGgubXVsdGlwbHkoIG1hdGgudHJhbnNwb3NlKG1hdGguc3VidHJhY3QoeCxtdSkpLCBtYXRoLmludihTaWdtYSkpLCBtYXRoLnN1YnRyYWN0KHgsbXUpKSk7XG59XG5cbntcblxuXG5mdW5jdGlvbiBub3JtYWxfcm5nKG11LCBTaWdtYSwgbj0xMDApIHtcbiAgICAvLyBDb21wdXRlIHRoZSBDaG9sZXNreSBkZWNvbXBvc2l0aW9uIG9mIFNpZ21hXG4gICAgdmFyIGNob2xlc2t5ID0ganN0YXQuY2hvbGVza3koU2lnbWEpO1xuXG4gICAgLy8gR2VuZXJhdGUgdGhlIHNhbXBsZXNcbiAgICB2YXIgc2FtcGxlcyA9IEFycmF5LmZyb20oe2xlbmd0aDogbn0sICgpID0+IHtcbiAgICAgICAgdmFyIHggPSBqc3RhdC5ub3JtYWwuc2FtcGxlKDAsIDEpO1xuICAgICAgICB2YXIgeSA9IGpzdGF0Lm5vcm1hbC5zYW1wbGUoMCwgMSk7XG4gICAgICAgIC8vIFRyYW5zZm9ybSB0aGUgc3RhbmRhcmQgbm9ybWFsIHJhbmRvbSB2YXJpYWJsZXMgdXNpbmcgdGhlIENob2xlc2t5IGRlY29tcG9zaXRpb25cbiAgICAgICAgdmFyIHRyYW5zZm9ybWVkWCA9IG11WzBdICsgY2hvbGVza3lbMF1bMF0gKiB4ICsgY2hvbGVza3lbMF1bMV0gKiB5O1xuICAgICAgICB2YXIgdHJhbnNmb3JtZWRZID0gbXVbMV0gKyBjaG9sZXNreVsxXVswXSAqIHggKyBjaG9sZXNreVsxXVsxXSAqIHk7XG4gICAgICAgIHJldHVybiBbdHJhbnNmb3JtZWRYLCB0cmFuc2Zvcm1lZFldO1xuICAgIH0pOyAgIFxuXG4gICAgcmV0dXJuIHNhbXBsZXM7XG59XG52YXIgU2lnbWEgPSBjcmVhdGVfc2lnbWEodGhldGEsIHNpZ21hMSwgc2lnbWEyKS50b0FycmF5KCk7XG52YXIgbXUgPSBbbXUxLCBtdTJdO1xuXG52YXIgc2FtcGxlcyA9IG5vcm1hbF9ybmcobXUsIFNpZ21hLCAxMDAwKTtcbnZhciBucG9pbnRzPTEwMCwgbWluaSA9IC01LCBtYXhpPTUsIHggPSBuZXcgQXJyYXkobnBvaW50cyksIHkgPSBuZXcgQXJyYXkobnBvaW50cyksIHogPSBuZXcgQXJyYXkobnBvaW50cyksIGksIGo7XG5cbi8vICBEZW5zaXTDqTpcbmZvcih2YXIgaSA9IDA7IGkgPCBucG9pbnRzOyBpKyspIHtcbiAgICB4W2ldID0gbWluaSArIGkgKiAobWF4aSAtIG1pbmkpIC8gKG5wb2ludHMgLSAxKTtcbiAgICB5W2ldID0gbWluaSArIGkgKiAobWF4aSAtIG1pbmkpIC8gKG5wb2ludHMgLSAxKTtcbiAgICB6W2ldID0gbmV3IEFycmF5KG5wb2ludHMpO1xuICAgIH1cblxuZm9yKHZhciBpID0gMDsgaSA8IG5wb2ludHM7IGkrKykge1xuICBcdGZvcihqID0gMDsgaiA8IG5wb2ludHM7IGorKykge1xuXG4gICAgXHR6W2pdW2ldID0gbXZucGRmKFt4W2ldLCB4W2pdXSwgbXUsIFNpZ21hKTtcbiBcdH1cblxufVxuICBcblxue1xuXG52YXIgdHJhY2UxID0ge1xuICAgICAgICB4OiBzYW1wbGVzLnNsaWNlKDAsIG5fc2FtcGxlcykubWFwKHNhbXBsZSA9PiBzYW1wbGVbMF0pLFxuICAgICAgICB5OiBzYW1wbGVzLnNsaWNlKDAsIG5fc2FtcGxlcykubWFwKHNhbXBsZSA9PiBzYW1wbGVbMV0pLFxuICAgICAgICBtb2RlOiAnbWFya2VycycsXG4gICAgICAgIHR5cGU6ICdzY2F0dGVyJyxcbiAgICAgICAgbWFya2VyOiB7XG4gICAgICAgICAgICBjb2xvcjogJ3JnYmEoMCwwLDAsMC41KScsXG4gICAgICAgICAgICBzaXplOiA1LFxuICAgICAgICB9LFxuXG4gICAgICAgIHhheGlzOiAneDInLFxufVxuXG52YXIgdHJhY2UyMiA9IHtcbiAgICAgICAgeDogeCxcbiAgICAgICAgeTogeSxcbiAgICAgICAgejogeixcbiAgICAgICAgdHlwZTogJ3N1cmZhY2UnLFxuICAgICAgICBjb2xvcnNjYWxlOiAnT3JhbmdlcycsXG4gICAgICAgIHNob3dzY2FsZTogZmFsc2UsXG4gICAgICAgIGNvbG9yOiB7XG4gICAgICAgICAgICBsZWdlbmQ6IGZhbHNlLFxuICAgICAgICAgICAgbGFiZWw6IFwicGRmXCIsXG4gICAgICAgIH0sXG5cbn1cblxudmFyIHRyYWNlMjEgPSB7XG4gICAgICAgIHg6IHgsXG4gICAgICAgIHk6IHksXG4gICAgICAgIHo6IHosXG4gICAgICAgIHR5cGU6ICdjb250b3VyJyxcbiAgICAgICAgY29sb3JzY2FsZTogJ09yYW5nZXMnLFxuICAgICAgICBjb2xvcjoge1xuICAgICAgICAgICAgbGVnZW5kOiB0cnVlLFxuICAgICAgICAgICAgbGFiZWw6IFwicGRmXCIsXG4gICAgICAgIH0sXG4gICAgICAgIGJsdXI6IDQsXG4gICAgICAgIHhsaW06IFstNSwgNV0sXG4gICAgICAgIHlsaW06IFstNSwgNV0sXG4gICAgICAgIHhheGlzOiAneDInLFxufVxuXG5cbnZhciBkYXRhID0gW1xuICB0cmFjZTIxLFxuICB0cmFjZTIyLFxuICB0cmFjZTEsXG4gIF07XG5cblxuICB2YXIgbGF5b3V0ID0ge1xuICAgICAgIHlheGlzMjoge1xuICAgICAgICAgIHJhbmdlOiBbLTUsIDVdLFxuICAgICAgICAgIGF1dG9yYW5nZTogZmFsc2UsXG4gICAgICAgIH0sXG4gICAgICAgeGF4aXMyOiB7XG4gICAgICAgICAgcmFuZ2U6IFstNSwgNV0sXG4gICAgICAgICAgYXV0b3JhbmdlOiBmYWxzZSxcbiAgICAgICAgfSxcblxuICAgICAgc2NlbmU6IHtcbiAgICAgICAgICBjYW1lcmE6IHtcbiAgICAgICAgICAgICAgZXllOiB7XG4gICAgICAgICAgICAgICAgICB4OiAwLjUsXG4gICAgICAgICAgICAgICAgICB5OiAxLjIsXG4gICAgICAgICAgICAgICAgICB6OiAxLjUsXG4gICAgICAgICAgICAgIH1cbiAgICAgICAgICB9XG4gICAgICB9LFxuICAgIGdyaWQ6IHtcbiAgICAgIHJvd3M6IDEsXG4gICAgICBjb2x1bW5zOiAyLFxuICAgICAgc3VicGxvdHM6IFtbJ3h5JywneDJ5J11dLFxuICAgIH0sXG4gICAgc2hvd2xlZ2VuZDogZmFsc2UsXG5cbiAgfTtcblxuICAgIHZhciBjb25maWcgPSB7cmVzcG9uc2l2ZTogdHJ1ZX1cbiAgICBjb25zdCBkaXYgPSBET00uZWxlbWVudCgnZGl2Jyk7XG4gICAgUGxvdGx5Lm5ld1Bsb3QoZGl2LCBkYXRhLCBsYXlvdXQsIGNvbmZpZyk7XG4gICAgcmV0dXJuIGRpdjtcbiAgfVxuXG59XG5cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgnaW5wdXRzJykifV19
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-1, 1], {label: tex`\\mu_1`, step: 0.1}, {value: 0}),\n  Inputs.range([-1, 1], {label: tex`\\mu_2`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_1`, step: 0.1, value: 1}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_2`, step: 0.1, value: 1}),\n  Inputs.range([0, 6.29], {label: tex`\\theta`, step: 0.01, value: 0}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\n\nmu1 = inputs[0];\nmu2 = inputs[1];\nsigma1 = inputs[2];\nsigma2 = inputs[3];\ntheta = inputs[4];\nn_samples = inputs[5];\n\n\nfunction create_sigma(theta, sigma1, sigma2){\n  const mat_rot = math.matrix([[math.cos(theta), -math.sin(theta)], [math.sin(theta), math.cos(theta)]]);\n  const mat_sigma = math.matrix([[sigma1**2, 0], [0, sigma2**2]]);\n  return math.multiply(mat_rot, math.multiply(mat_sigma, math.transpose(mat_rot)));\n}\n\n\nfunction mvnpdf(x, mu, Sigma){\n  const p = 2;\n    return (2*math.pi)**(-p/2)*math.det(Sigma)**(-0.5)*\n      math.exp(-0.5*math.multiply( math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x,mu)));\n}\n\n{\n\n\nfunction normal_rng(mu, Sigma, n=100) {\n    // Compute the Cholesky decomposition of Sigma\n    var cholesky = jstat.cholesky(Sigma);\n\n    // Generate the samples\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(0, 1);\n        var y = jstat.normal.sample(0, 1);\n        // Transform the standard normal random variables using the Cholesky decomposition\n        var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;\n        var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;\n        return [transformedX, transformedY];\n    });   \n\n    return samples;\n}\nvar Sigma = create_sigma(theta, sigma1, sigma2).toArray();\nvar mu = [mu1, mu2];\n\nvar samples = normal_rng(mu, Sigma, 1000);\nvar npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n    y[i] = mini + i * (maxi - mini) / (npoints - 1);\n    z[i] = new Array(npoints);\n    }\n\nfor(var i = 0; i < npoints; i++) {\n  \tfor(j = 0; j < npoints; j++) {\n\n    \tz[j][i] = mvnpdf([x[i], x[j]], mu, Sigma);\n \t}\n\n}\n  \n\n{\n\nvar trace1 = {\n        x: samples.slice(0, n_samples).map(sample => sample[0]),\n        y: samples.slice(0, n_samples).map(sample => sample[1]),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n        xaxis: 'x2',\n}\n\nvar trace22 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'surface',\n        colorscale: 'Oranges',\n        showscale: false,\n        color: {\n            legend: false,\n            label: \"pdf\",\n        },\n\n}\n\nvar trace21 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'contour',\n        colorscale: 'Oranges',\n        color: {\n            legend: true,\n            label: \"pdf\",\n        },\n        blur: 4,\n        xlim: [-5, 5],\n        ylim: [-5, 5],\n        xaxis: 'x2',\n}\n\n\nvar data = [\n  trace21,\n  trace22,\n  trace1,\n  ];\n\n\n  var layout = {\n       yaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n       xaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n\n      scene: {\n          camera: {\n              eye: {\n                  x: 0.5,\n                  y: 1.2,\n                  z: 1.5,\n              }\n          }\n      },\n    grid: {\n      rows: 1,\n      columns: 2,\n      subplots: [['xy','x2y']],\n    },\n    showlegend: false,\n\n  };\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n  }\n\n}\n\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -849,28 +821,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -879,15 +861,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1122,4 +1097,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale_multi.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
+</body></html>
