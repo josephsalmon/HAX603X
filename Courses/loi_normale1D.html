@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - Loi normale: cas univarié</title>
+<title>HAX603X: Modélisation stochastique - Loi normale: cas 1D</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -54,27 +54,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -116,6 +96,7 @@ div.csl-indent {
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -141,6 +122,33 @@ div.csl-indent {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -149,7 +157,7 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -186,7 +194,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="../Courses/loi_normale1D.html">
- <span class="dropdown-text">Loi normale: cas univarié</span></a>
+ <span class="dropdown-text">Loi normale: cas 1D</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../Courses/loi_normale_multi.html">
@@ -220,10 +228,6 @@ div.csl-indent {
     <a class="dropdown-item" href="../Slides/slides_simulation.html">
  <span class="dropdown-text">Simulation</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
- <span class="dropdown-text">Loi normale: cas univarié</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -250,7 +254,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP2.html">
- <span class="dropdown-text">TP2: …</span></a>
+ <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
   </li>  
     </ul>
   </li>
@@ -264,11 +268,11 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas univarié</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas 1D</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -276,7 +280,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -315,7 +319,7 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../Courses/loi_normale1D.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Loi normale: cas univarié</span></a>
+ <span class="menu-text">Loi normale: cas 1D</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -329,33 +333,28 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#définitions-et-propriétés-de-la-loi-normale" id="toc-définitions-et-propriétés-de-la-loi-normale" class="nav-link active" data-scroll-target="#définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</a>
+  <li><a href="#la-loi-normale" id="toc-la-loi-normale" class="nav-link active" data-scroll-target="#la-loi-normale">La loi normale</a></li>
+  <li><a href="#définitions-et-propriétés-de-la-loi-normale" id="toc-définitions-et-propriétés-de-la-loi-normale" class="nav-link" data-scroll-target="#définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</a>
   <ul class="collapse">
   <li><a href="#simulation-dune-loi-normale" id="toc-simulation-dune-loi-normale" class="nav-link" data-scroll-target="#simulation-dune-loi-normale">Simulation d’une loi normale</a></li>
   </ul></li>
   <li><a href="#méthode-de-box-müller" id="toc-méthode-de-box-müller" class="nav-link" data-scroll-target="#méthode-de-box-müller">Méthode de Box-Müller</a></li>
-  <li><a href="#lois-autour-de-la-loi-normale" id="toc-lois-autour-de-la-loi-normale" class="nav-link" data-scroll-target="#lois-autour-de-la-loi-normale">Lois autour de la loi normale</a>
-  <ul class="collapse">
-  <li><a href="#loi-du-chi2" id="toc-loi-du-chi2" class="nav-link" data-scroll-target="#loi-du-chi2">Loi du <span class="math inline">\chi^2</span></a></li>
-  <li><a href="#loi-de-student" id="toc-loi-de-student" class="nav-link" data-scroll-target="#loi-de-student">Loi de Student</a></li>
-  <li><a href="#loi-de-cauchy" id="toc-loi-de-cauchy" class="nav-link" data-scroll-target="#loi-de-cauchy">Loi de Cauchy</a></li>
-  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale1D.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas univarié</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas 1D</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Loi normale: cas univarié</h1>
+<h1 class="title">Loi normale: cas 1D</h1>
 </div>
 
 
@@ -372,207 +371,30 @@ div.csl-indent {
 </header>
 
 
+<p>On considère ici <span class="math inline">\mathbb{R}^d</span> muni du produit scalaire euclidien <span class="math inline">\langle \cdot, \cdot \rangle</span> et de la norme euclidienne <span class="math inline">\|\cdot\|</span> associée.</p>
+<section id="la-loi-normale" class="level2">
+<h2 class="anchored" data-anchor-id="la-loi-normale">La loi normale</h2>
+</section>
 <section id="définitions-et-propriétés-de-la-loi-normale" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="définitions-et-propriétés-de-la-loi-normale">Définitions et propriétés de la loi normale</h2>
-<p>On rappelle que la loi normale de paramètres <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\nu &gt; 0</span> a une densité donnée pour tout <span class="math inline">x \in \mathbb{R}</span> par <span class="math display">
+<p>On rappelle que la loi normale de paramètres <span class="math inline">\mu \in \mathbb{R}</span> et <span class="math inline">\nu &gt; 0</span> a une densité donnée pour tout <span class="math inline">x \in \mathbb{R}</span> par</p>
+<p><span class="math display">
     \varphi_{\mu, \nu}(x)=\frac{1}{\sqrt{2 \pi \nu}}\exp\Big(-\frac{(x-\mu)^2}{2\nu}\Big)\enspace.
 </span></p>
-<p>On note <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, si <span class="math inline">X</span> est une variable aléatoire ayant pour densité <span class="math inline">\varphi_{\mu, \nu}</span>. Notons que si <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>, alors <span class="math inline">X</span> a pour <strong>espérance</strong> <span class="math inline">\mu</span> et pour <strong>variance</strong> <span class="math inline">\nu</span>. Le cas particulier <span class="math inline">\mu=0</span> et <span class="math inline">\nu=1</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</p>
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="27" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 26;"><span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="pp">require</span>(<span class="st">"mathjs"</span>)<span class="op">;</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a><span class="co">// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd</span></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="co">// continuous case</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>viewof inputs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\n</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
-<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
-<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
-<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
-<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
-<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> nu){</span>
-<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span> <span class="op">*</span>nu)<span class="op">**</span>(<span class="fl">0.5</span>)<span class="op">*</span> math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> nu)<span class="op">;</span></span>
-<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-51"><a href="#cb1-51" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-52"><a href="#cb1-52" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>){</span>
-<span id="cb1-53"><a href="#cb1-53" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb1-54"><a href="#cb1-54" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(mu<span class="op">,</span> nu<span class="op">**</span><span class="fl">0.5</span>)<span class="op">;</span></span>
-<span id="cb1-55"><a href="#cb1-55" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">;</span></span>
-<span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
-<span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
-<span id="cb1-59"><a href="#cb1-59" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-60"><a href="#cb1-60" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-61"><a href="#cb1-61" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
-<span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples_jitter <span class="op">=</span> <span class="fu">normal_rng</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="dv">1000</span>)</span>
-<span id="cb1-63"><a href="#cb1-63" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">500</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">10</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
-<span id="cb1-64"><a href="#cb1-64" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-65"><a href="#cb1-65" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
-<span id="cb1-66"><a href="#cb1-66" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb1-67"><a href="#cb1-67" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-68"><a href="#cb1-68" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="fu">mvnpdf</span>(x[i]<span class="op">,</span> mu<span class="op">,</span> nu)<span class="op">;</span></span>
-<span id="cb1-69"><a href="#cb1-69" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-70"><a href="#cb1-70" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-71"><a href="#cb1-71" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb1-72"><a href="#cb1-72" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
-<span id="cb1-73"><a href="#cb1-73" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
-<span id="cb1-74"><a href="#cb1-74" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples_jitter<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
-<span id="cb1-75"><a href="#cb1-75" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
-<span id="cb1-76"><a href="#cb1-76" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
-<span id="cb1-77"><a href="#cb1-77" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
-<span id="cb1-78"><a href="#cb1-78" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
-<span id="cb1-79"><a href="#cb1-79" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-80"><a href="#cb1-80" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-81"><a href="#cb1-81" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-82"><a href="#cb1-82" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-83"><a href="#cb1-83" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-84"><a href="#cb1-84" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
-<span id="cb1-85"><a href="#cb1-85" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
-<span id="cb1-86"><a href="#cb1-86" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> z<span class="op">,</span></span>
-<span id="cb1-87"><a href="#cb1-87" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
-<span id="cb1-88"><a href="#cb1-88" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
-<span id="cb1-89"><a href="#cb1-89" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Pdf'</span><span class="op">,</span></span>
-<span id="cb1-90"><a href="#cb1-90" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
-<span id="cb1-91"><a href="#cb1-91" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
-<span id="cb1-92"><a href="#cb1-92" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb1-93"><a href="#cb1-93" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb1-94"><a href="#cb1-94" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-95"><a href="#cb1-95" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
-<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
-<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
-<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
-<span id="cb1-100"><a href="#cb1-100" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-101"><a href="#cb1-101" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-102"><a href="#cb1-102" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
-<span id="cb1-103"><a href="#cb1-103" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
-<span id="cb1-104"><a href="#cb1-104" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span>]<span class="op">,</span></span>
-<span id="cb1-105"><a href="#cb1-105" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-106"><a href="#cb1-106" aria-hidden="true" tabindex="-1"></a>            <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.6</span><span class="op">,</span> <span class="fl">0.6</span>]<span class="op">,</span></span>
-<span id="cb1-107"><a href="#cb1-107" aria-hidden="true" tabindex="-1"></a>            <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb1-108"><a href="#cb1-108" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span><span class="op">,</span></span>
-<span id="cb1-109"><a href="#cb1-109" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">10</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span></span>
-<span id="cb1-110"><a href="#cb1-110" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb1-111"><a href="#cb1-111" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]}<span class="op">,</span></span>
-<span id="cb1-112"><a href="#cb1-112" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-113"><a href="#cb1-113" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-114"><a href="#cb1-114" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-115"><a href="#cb1-115" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb1-116"><a href="#cb1-116" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-117"><a href="#cb1-117" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
-<span id="cb1-118"><a href="#cb1-118" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
-<span id="cb1-119"><a href="#cb1-119" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">react</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
-<span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-1" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-2" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-3" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-4" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-5" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-6" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-7" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-8" data-nodetype="declaration">
-
-</div>
-</div>
-</div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<div id="ojs-cell-1-9" data-nodetype="expression">
-
-</div>
-</div>
-</div>
-</div>
 <p>On parle aussi souvent de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p></li></div><p>La loi normale vérifie la propriété de <strong>stabilité par transformation affine</strong> : si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> et si <span class="math inline">(a,b) \in \mathbb{R}^* \times \mathbb{R}</span>, alors la variable aléatoire <span class="math inline">a X + b</span> suit une loi normale <span class="math inline">\mathcal{N}(a\mu + b, a^2 \nu)</span>. On peut donc facilement passer d’une loi normale centrée réduite à une loi normale quelconque via une transformation affine :</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, et directeur de l’observatoire de Göttingen une bonne partie de sa vie. <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p></div><p>On note <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, si <span class="math inline">X</span> est une variable aléatoire ayant pour densité <span class="math inline">\varphi_{\mu, \nu}</span>. Notons que si <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>, alors <span class="math inline">X</span> a pour <strong>espérance</strong> <span class="math inline">\mu</span> et pour <strong>variance</strong> <span class="math inline">\nu</span>. Le cas particulier <span class="math inline">\mu=0</span> et <span class="math inline">\nu=1</span> correspond à une variable aléatoire dite <strong>centrée réduite</strong>.</p>
+<p>La loi normale vérifie la propriété de <strong>stabilité par transformation affine</strong> : si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> et si <span class="math inline">(a,b) \in \mathbb{R}^* \times \mathbb{R}</span>, alors la variable aléatoire <span class="math inline">a X + b</span> suit une loi normale <span class="math inline">\mathcal{N}(a\mu + b, a^2 \nu)</span>. On peut donc facilement passer d’une loi normale centrée réduite à une loi normale quelconque via une transformation affine :</p>
 <ul>
 <li>si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">\sqrt{\nu} X + \mu \sim \mathcal{N}(\mu, \nu)</span>,</li>
 <li>si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, alors <span class="math inline">(X-\mu)/\sqrt{\nu} \sim \mathcal{N}(0,1)</span>.</li>
 </ul>
 <p>Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n’importe quelle loi normale.</p>
-<div id="prp-caract" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale) </strong></span>La fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par <span class="math display">
+<p>Rappelons enfin que la fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par <span class="math display">
 \begin{align*}
-\phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X})  \\
-&amp; = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
+\phi_{\mu, \nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X})  \\
+\phi_X(t) &amp; = \exp\Big( i \mu t - \dfrac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
 </span></p>
-</div>
-<p><em>Preuve</em>: on remarque d’abord que si <span class="math inline">X \sim \mathcal{N}(0,1)</span> alors pour tout <span class="math inline">z \in \mathbb{R}</span>, on a</p>
-<p><span class="math display">
-\begin{align*}
-\mathbb{E}[e^{zX}]&amp;=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx\\
-&amp;= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
-&amp;=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy\\
-&amp;=e^{\frac12z^2}.
-\end{align*}
-</span> En utilisant le théorème de prolongement analytique (voir par exemple <span class="citation" data-cites="Queffelec_Zuily13">(Théorème I.10., <a href="#ref-Queffelec_Zuily13" role="doc-biblioref">Queffélec et Zuily 2013</a>)</span> on peut donc étendre cette formule à tout <span class="math inline">z \in \mathbb{C}</span>, et particulier au cas <span class="math inline">z=it</span> pour <span class="math inline">t \in \mathbb{R}</span>. On obtient alors <span class="math inline">\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}</span>. Enfin, on utilise la linéarité de l’espérance pour obtenir le résultat pour <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>. En effet, si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">X=\mu+\sqrt{\nu}Z</span> avec <span class="math inline">Z \sim \mathcal{N}(0,1)</span>, et donc <span class="math inline">\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="ref-Queffelec_Zuily13" class="csl-entry" role="listitem">
-Queffélec, H., et C. Zuily. 2013. <em>Analyse pour l’agrégation</em>. Dunod.
-</div></div><div class="container">
-<div class="div1">
-
-</div>
-<div class="div-remaining">
-□
-</div>
-</div>
 <section id="simulation-dune-loi-normale" class="level3">
 <h3 class="anchored" data-anchor-id="simulation-dune-loi-normale">Simulation d’une loi normale</h3>
 <div class="callout callout-style-simple callout-note callout-titled">
@@ -585,8 +407,8 @@ Une mauvaise piste pour simuler une loi normale
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>On peut simuler une loi normale à partir de variables aléatoires uniformes <span class="math inline">U_1, \dots, U_n</span> iid en appliquant le théorème central limite à <span class="math display">
-    \frac{U_1 + \cdots + U_n - n/2}{\sqrt{n/12}}\,.
+<p>On peut simuler une loi normale à partir de variables aléatoires uniformes <span class="math inline">U_1, \ldots, U_n</span> iid en appliquant le théorème central limite à <span class="math display">
+    \dfrac{U_1 + \cdots + U_n - n/2}{\sqrt{n/12}}\,.
 </span> Cependant, cette méthode ne donne qu’une approximation d’une loi normale. Par ailleurs, la vitesse de convergence étant relativement lente (de l’ordre de <span class="math inline">\sqrt n</span>), il faudra simuler beaucoup de variables aléatoires uniformes pour avoir une approximation correcte, ce qui demande un temps de calcul assez élevé.</p>
 </div>
 </div>
@@ -603,7 +425,7 @@ Une mauvaise piste pour simuler une loi normale
 \end{align*}
 </span></p>
 <div id="thm-changement-variables" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle)</strong></span> Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
 \begin{align*}
     (u,v) &amp; \mapsto
     f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
@@ -640,12 +462,12 @@ $$ --> ce qui donne le résultat voulu.
 </div>
 <p><br></p>
 <div id="exm-cos" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>) </strong></span>Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
+<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>)</strong></span> Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
 <p>On applique le théorème précédent avec la fonction <span class="math inline">\phi^{-1}(u) = \arccos(u)</span> sur <span class="math inline">]-1,1[</span>. La densité de <span class="math inline">U</span> est alors donnée pour tout <span class="math inline">u \in \mathbb{R}</span> par <span class="math display">
 \begin{align*}
   f_U(u)
-&amp; = \frac{{1\hspace{-3.8pt} 1}_{]0,\pi[}(\arccos(u))}{\pi} \Big| \frac{-1}{\sqrt{1-u^2}} \Big| {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\\
-&amp; = \frac{1}{\pi \sqrt{1-u^2}} {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\enspace.
+&amp; = \dfrac{{1\hspace{-3.8pt} 1}_{]0,\pi[}(\arccos(u))}{\pi} \Big| \dfrac{-1}{\sqrt{1-u^2}} \Big| {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\\
+&amp; = \dfrac{1}{\pi \sqrt{1-u^2}} {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\enspace.
 \end{align*}
 </span></p>
 </div>
@@ -656,7 +478,7 @@ $$ --> ce qui donne le résultat voulu.
 <h2 class="anchored" data-anchor-id="méthode-de-box-müller">Méthode de Box-Müller</h2>
 <p>Un cas particulier fondamental de la formule de changement de variables concerne le passage en coordonnées polaires. Cette transformation est définie via l’application <span class="math display">
     \begin{array}{ccccc}
-        \phi^{-1} &amp; : &amp; ]0, \infty[ \times ]0, 2\pi[ &amp; \to   &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) \\
+        \phi^{-1} &amp; : &amp; ]0, \infty[ \times ]0, 2\pi[ &amp; \to     &amp; \mathbb{R}^2 \setminus ([0,\infty[ \times \{0\}) \\
                   &amp;   &amp; \begin{pmatrix} r \\ \theta \end{pmatrix}                   &amp; \mapsto &amp; \begin{pmatrix} r \cos(\theta) \\ r \sin(\theta) \end{pmatrix}\,.
     \end{array}
 </span> L’expression de <span class="math inline">\phi</span> ne nous sera pas utile. On peut tout de même la donner au passage :</p>
@@ -679,20 +501,20 @@ $$ --> ce qui donne le résultat voulu.
 </span></p>
 <p>Dans le cas où <span class="math inline">X</span> et <span class="math inline">Y</span> sont des variables aléatoires gaussiennes indépendantes, on obtient le résultat suivant.</p>
 <div id="thm-box-muller" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normales centrées réduites : <span class="math inline">X,Y \sim \mathcal{N}(0,1)</span>. Le couple de variables aléatoires polaires <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller)</strong></span> Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normales centrées réduites : <span class="math inline">X,Y \sim \mathcal{N}(0,1)</span>. Le couple de variables aléatoires polaires <span class="math inline">(R, \Theta) = \phi^{-1}(X,Y)</span> a pour densité <span class="math display">
             f_{R, \Theta}(r,\theta)
-            = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
+            = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\dfrac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
 </span> Autrement dit, elles sont indépendantes, l’angle <span class="math inline">\Theta</span> suit une loi uniforme sur <span class="math inline">]0, 2\pi[</span> et la distance à l’origine <span class="math inline">R</span> suit une loi de Rayleigh donnée par la densité <span class="math display">
     f_R(r) =  r \cdot e^{-r^2/2} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)\,, \quad r &gt; 0\,.
 </span></p>
 </div>
 <em>Démonstration:</em> La densité du couple <span class="math inline">(X,Y)</span> est donnée par <span class="math display">
-  f_{(X,Y)}(x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
+  f_{(X,Y)}(x,y) = \dfrac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
 </span> Le théorème précédent donne alors la densité de <span class="math inline">(R, \Theta)</span> : <span class="math display">
 \begin{align*}
   f_{(R, \Theta)} (r, \theta) &amp;
   = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
-  &amp;= r \cdot\frac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
+  &amp;= r \cdot\dfrac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
 \end{align*}
 </span> ce qui conclut la preuve.
 <div class="container">
@@ -703,11 +525,19 @@ $$ --> ce qui donne le résultat voulu.
 □
 </div>
 </div>
-<p>Si <span class="math inline">R</span> suit une loi de Rayleigh alors <span class="math inline">\sqrt{-2 \log(U)}</span> a la même loi que <span class="math inline">R</span>, où <span class="math inline">U</span> est une variable aléatoire de loi uniforme sur <span class="math inline">]0,1[</span>: Pour cela il suffit de remarquer que pour tout <span class="math inline">x &gt; 0</span>, <span class="math inline">F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})</span>, et donc que pour tout <span class="math inline">q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}</span> et donc <span class="math inline">\sqrt{-2\log(1-U)}</span>, puis <span class="math inline">\sqrt{-2\log(U)}</span> on donc la même loi que <span class="math inline">R</span>.</p>
+<p>Notons que <span class="math inline">R^2</span> est à valeurs dans <span class="math inline">]0,\infty[</span> et vérifie pour <span class="math inline">x &gt; 0</span>: <span class="math display">
+\begin{align*}
+    \mathbb{P}(R^2 &gt; x)
+    &amp;= \mathbb{P}(R &gt; \sqrt x)\\
+    &amp;= \int_{\sqrt{x}}^\infty r e^{-r^2/2}\, \mathrm dr\\
+    &amp;= \Big[- e^{-\tfrac{r^2}{2}} \Big]_{\sqrt{x}}^\infty\\
+    &amp;= e^{-\tfrac{x}{2}}\,.
+\end{align*}
+</span> On reconnaît la fonction de survie d’une loi exponentielle de paramètre <span class="math inline">1/2</span>. Or, on a vu (cf.&nbsp;méthode de l’inverse) que si <span class="math inline">U</span> suit une loi uniforme sur <span class="math inline">[0,1]</span>, alors <span class="math inline">-2 \ln(U)</span> suit une loi exponentielle de paramètre <span class="math inline">1/2</span>, donc <span class="math inline">\sqrt{-2 \ln(U)}</span> a la même loi que <span class="math inline">R</span>.</p>
 <p>L’algorithme de Box-Müller s’en suit: si <span class="math inline">U</span> et <span class="math inline">V</span> sont des v.a. indépendantes de loi uniforme sur <span class="math inline">[0,1]</span> et qu’on définit <span class="math inline">X</span> et <span class="math inline">Y</span> par <span class="math display">
 \begin{cases}
-  X = \sqrt{-2 \log(U)} \cos(2\pi V)\\
-  Y = \sqrt{-2 \log(U)} \sin(2\pi V)\,.
+  X = \sqrt{-2 \ln(U)} \cos(2\pi V)\\
+  Y = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
 \end{cases}
 </span> alors <span class="math inline">X</span> et <span class="math inline">Y</span> des variables aléatoires gaussiennes centrées réduites indépendantes.</p>
 <div class="callout callout-style-default callout-note callout-titled">
@@ -723,217 +553,172 @@ Note
 <p>Cet algorithme n’est en fait pas souvent utilisé en pratique : il fait appel à des fonctions dont l’évaluation est coûteuse (logarithme, cosinus, sinus). Pour s’affranchir des fonctions trigonométriques, une version modifiée de l’algorithme de Box-Müller a été proposée : la méthode de Marsaglia, qui s’appuie sur des variables aléatoires uniformes sur le disque unité (voir l’exercice dédié en TD). Une autre alternative est la méthode de Ziggurat.</p>
 </div>
 </div>
-</section>
-<section id="lois-autour-de-la-loi-normale" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="lois-autour-de-la-loi-normale">Lois autour de la loi normale</h2>
-<section id="loi-du-chi2" class="level3">
-<h3 class="anchored" data-anchor-id="loi-du-chi2">Loi du <span class="math inline">\chi^2</span></h3>
-<p>Concernant la prononciation, on prononce “khi-deux” le nom de cette loi.</p>
-<div id="def-chi2" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\chi^2</span>) </strong></span>Soit <span class="math inline">X_1, \dots, X_k</span> des variables aléatoires i.i.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">X = X_1^2 + \dots + X_k^2</span> est appelée <strong>loi du <span class="math inline">\chi^2</span> à <span class="math inline">k</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">
-f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
-</span> où <span class="math inline">\Gamma</span> désigne la fonction gamma d’Euler : <span class="math display">
-\Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
-</span> On note alors <span class="math inline">X \sim \chi^2(k)</span>.</p>
-</div>
-<p>Au vu de sa définition, la simulation d’une loi du <span class="math inline">\chi^2</span> est claire : on simule <span class="math inline">k</span> variables aléatoires gaussiennes centrées réduites indépendantes et on somme leur carrés.</p>
-<p><em>Preuve</em>: Montrons pour <span class="math inline">k=1</span> que la densité est bien de la forme précédente, c’est-à-dire <span class="math display">
-    f(x) = \frac{1}{\sqrt{2\pi}} \frac{e^{-x/2}}{\sqrt x}\,, \quad x \geq 0\,,
-</span> où on a utilisé la relation <span class="math inline">\Gamma(1/2) = \sqrt \pi</span> (intégrale de Gauss).</p>
-<p>Soit <span class="math inline">h : \mathbb{R} \to \mathbb{R}</span> une fonction mesurable bornée. On a <span class="math display">
-\begin{align*}
-    \mathbb{E}[h(X_1^2)]
-    &amp; = \int_\mathbb{R} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
-    &amp; = \int_{-\infty}^0 h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx
-    + \int_0^{\infty} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\,.
-\end{align*}
-</span> En effectuant le changement de variable <span class="math inline">x=-\sqrt u</span> dans la première intégrale et <span class="math inline">x=\sqrt u</span> dans la deuxième, on obtient <span class="math display">
-    \mathbb{E}[h(X_1^2)]
-    = \int_{\infty}^0 h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}} \frac{ du}{2 \sqrt u}
-    + \int_0^{\infty} h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}} \frac {du}{2 \sqrt u}\,.
-</span> Les deux intégrales étant égales, on conclut que <span class="math display">
-    \mathbb{E}[h(X_1^2)] = \int_0^{\infty} h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}\sqrt u}\, du\,,
-</span> ce qui prouve le résultat pour <span class="math inline">k=1</span>.</p>
-<p>La généralisation à <span class="math inline">k</span> quelconque se fait par récurrence: on utilise la formule de convolution des la loi pour obtenir la loi pour <span class="math inline">k+1</span>:</p>
-<p><span class="math display">
-\begin{align*}
-    X_1^2 + \dots + X_k^2 + X_{k+1}^2
-    &amp; = (X_1^2 + \dots + X_k^2) + X_{k+1}^2\\
-    &amp; = \chi^2(k) + X_{k+1}^2\,.
-\end{align*}
-</span> Ainsi, <span class="math display">
-\begin{align*}
-    f_{\chi^2(k+1)}(x)
-    &amp; = \int_0^{\infty} f_{\chi^2(k)}(x-y) f_{X_{k+1}^2}(y) \, dy\\
-    &amp; = \int_0^x \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} (x-y)^{\frac{k}{2}-1} e^{-\frac{x-y}{2}} \tfrac{e^{-\frac{y}{2}}}{\sqrt{2\pi y}} \, dy\\
-    &amp; = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}\int_0^x  (x-y)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{ y}} \, dy\\
-    &amp; = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})} x \int_0^1  (x-ux)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{xu}} \, du\\
-\end{align*}
-</span> avec le changement de variable <span class="math inline">y=ux</span>. Ensuite, <span class="math display">
-\begin{align*}
-    f_{\chi^2(k+1)}(x)
-    &amp; = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{\frac{k}{2}-1}  u^{1/2-1} du\enspace.
-\end{align*}
-</span> Or rappelons que si <span class="math inline">\Beta(a,b) = \int_0^1 (1-u)^{a-1} u^{b-1} \, du</span>, alors pour tout <span class="math inline">a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En effet, en faisant le changement de variable dans l’intégrale double qui suit: <span class="math display">
-\begin{array}{ccccc}
-    \psi &amp; : &amp; \mathbb{R}^+ \times \mathbb{R}^+ &amp; \to     &amp; \mathbb{R}^+\times ]0,1[                 \\
-            &amp;   &amp; (s,t)                          &amp; \mapsto &amp; \Big(s+t, \frac{t}{s+t}\Big)\,,
-\end{array}
-</span> c’est-à-dire <span class="math inline">\psi^{-1}(r,w) = (r(1-w), rw)</span>, et le jacobien est donné par <span class="math inline">J_{\psi^{-1}}(r,w) = \begin{pmatrix} 1-w &amp; -r \\ w &amp; r \end{pmatrix}</span>, et donc <span class="math inline">J_{\psi^{-1}}(r,w)=r</span>, on obtient: <span class="math display">
-\begin{align*}
-\Gamma(a)\Gamma(b) &amp; = \int_0^{\infty} t^{a-1} e^{-t} \, dt \int_0^{\infty} s^{b-1} e^{-s} \, ds\\
-&amp; = \int_0^{\infty} \int_0^{\infty} e^{-t-s} t^{a-1} s^{b-1} \, dt \, ds\\
-&amp; = \int_0^{1} \int_0^{\infty} e^{-r} (rw)^{a-1} (r(1-w))^{b-1} r \, dr \, dw\\
-&amp; = \int_0^1 w^{a-1} (1-w)^{b-1} \int_0^{\infty} e^{-r} r^{a+b-1} \, dr \, dw\\
-\end{align*}
-</span> et donc <span class="math inline">\Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En appliquant cette relation pour <span class="math inline">a=\frac{k}{2}</span> et <span class="math inline">b=1/2</span>, on obtient</p>
-<span class="math display">
-\begin{align*}
-    f_{\chi^2(k+1)}(x)
-    &amp; = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k+1}{2})} \enspace.
-\end{align*}
-</span> Le résultat est donc prouvé par récurrence.
-<div class="container">
-<div class="div1">
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="250" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 249;"><span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="pp">require</span>(<span class="st">"mathjs"</span>)<span class="op">;</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a><span class="co">// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd</span></span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a><span class="co">// continuous case</span></span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>viewof inputs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">2</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">10</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\n</span><span class="vs">u`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">1</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>nu <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> nu){</span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="fl">1.0</span> <span class="op">/</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span> <span class="op">*</span>nu)<span class="op">**</span>(<span class="fl">0.5</span>)<span class="op">*</span> math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>(x<span class="op">-</span>mu)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> nu)<span class="op">;</span></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>){</span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(mu<span class="op">,</span> nu<span class="op">**</span><span class="fl">0.5</span>)<span class="op">;</span></span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> x<span class="op">;</span></span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> nu<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples_jitter <span class="op">=</span> <span class="fu">normal_rng</span>(<span class="dv">0</span><span class="op">,</span> <span class="fl">0.03</span><span class="op">,</span> <span class="dv">1000</span>)</span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">500</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">10</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">10</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="fu">mvnpdf</span>(x[i]<span class="op">,</span> mu<span class="op">,</span> nu)<span class="op">;</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples_jitter<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">,</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> z<span class="op">,</span></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Pdf'</span><span class="op">,</span></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>    <span class="co">// rows: 2,</span></span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>    <span class="co">// columns: 1,</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.2</span>]}<span class="op">,</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span>}<span class="op">,</span> </span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]}<span class="op">,</span></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell quarto-layout-panel" width="50%" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
-<div class="div-remaining">
-□
 </div>
 </div>
-<p><br></p>
-</section>
-<section id="loi-de-student" class="level3 page-columns page-full">
-<h3 class="anchored" data-anchor-id="loi-de-student">Loi de Student</h3>
-<div id="def-student" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 2 (Loi de Student) </strong></span>Soit <span class="math inline">X \sim \mathcal{N}(0,1)</span> et <span class="math inline">Y \sim \chi^2(k)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">V = \frac{X}{\sqrt{Y/k}}</span> est appelée <strong>loi de Student à <span class="math inline">k</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">
-    f_V(t)
-    = \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
-    \quad t \in \mathbb{R}\,.
-</span></p>
-</div>
-<p>La loi de Student correspond donc au ratio d’une loi normale par la racine carrée d’une loi du <span class="math inline">\chi^2(k)</span> normalisée. Ce ratio apparaît souvent en statistique lors de la construction d’intervalles de confiance. Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin, chargé du contrôle qualité. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p></li></div><p>Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule <span class="math inline">k+1</span> loi normales indépendantes <span class="math inline">X_1, \ldots, X_{k+1}</span> et on considère <span class="math display">
-    V = \dfrac{\sqrt{k} X_{k+1}}{\sqrt{X_1^2+\cdots + X_k^2}}\,.
-</span></p>
-<p><em>Preuve de la formule de la densité</em>:</p>
-<p>On applique pour cela la formule du changement de variables avec la transformation <span class="math display">
-    \begin{array}{ccccc}
-        \phi &amp; : &amp; \mathbb{R}^* \times ]0, \infty[ &amp; \to     &amp; \mathbb{R}^* \times \mathbb{R}^*      \\
-             &amp;   &amp; (x,y)                           &amp; \mapsto &amp; \Big(x, \dfrac{x}{\sqrt{y/k}}\Big)\,,
-    \end{array}
-</span> c’est-à-dire <span class="math display">
-    \phi^{-1}(u,v) = \Big(u, k\dfrac{u^2}{v^2}\Big)\,.
-</span> La fonction <span class="math inline">\phi^{-1}</span> a pour matrice jacobienne <span class="math display">
-    J_{\phi^{-1}} (u,v)
-    =
-    \begin{pmatrix}
-        1              &amp; 0                  \\
-        \frac{2k}{v^2} &amp; \frac{-2ku^2}{v^3}
-    \end{pmatrix}\,,
-</span> dont le déterminant vaut <span class="math inline">\frac{-2ku^2}{v^3}</span>. Par ailleurs, les variables aléatoires <span class="math inline">X</span> et <span class="math inline">Y</span> étant indépendantes, la densité du couple <span class="math inline">(X,Y)</span> correspond au produit des densités : <span class="math display">
-    f_{(X,Y)}(x,y) = \dfrac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}}  \dfrac{1}{2^{\frac{k}{2}2} \Gamma(\frac{k}{2})} y^{\frac{k}{2}-1} e^{-\frac{y}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(y)\, \quad x,y \in \mathbb{R}\,.
-</span> Tout est prêt pour appliquer la théorème du changement de variables qui assure que la densité du couple <span class="math inline">(U,V)</span> est donnée par <span class="math display">
-    f_{(U,V)}(u,v)
-    = \dfrac{e^{-\frac{u^2}{2}}}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{\frac{3}{2}}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
-</span> Il suffit alors de marginaliser pour obtenir la densité de <span class="math inline">V</span>, ce qui s’effectue en calculant l’intégrale <span class="math display">
-    \int_\mathbb{R} f_{(U,V)} (u,v) \, du\,.
-</span> Les termes en <span class="math inline">u</span> de l’expression précédente s’intègre en <span class="math display">
-\begin{align*}
-    \int_{-\infty}^\infty e^{-\frac{u^2}{2}(1+\frac{k}{v^2})} (u^2)^{\frac{k}{2}} \, d u
-     &amp; = \int_0^\infty e^{-s} \bigg( \dfrac{2 s}{1+\frac{k}{v^2}} \bigg)^{\frac{k}{2}} \sqrt{\dfrac{2}{1+\frac{k}{v^2}}} \dfrac{ds}{2\sqrt{s}} \\
-     &amp; = \frac{2^{\frac{k+1}{2}}}{2} \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}} \!\!\! \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
-\end{align*}
-</span> où la première égalité résulte du changement de variable <span class="math display">
-    s = \dfrac{u^2}{2} \left( 1 + \dfrac{k}{v^2} \right) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
-</span> On reconnaît dans l’intégrale la valeur de <span class="math inline">\Gamma(\frac{k+1}{2})</span> ce qui conduit à <span class="math display">
-    f_V(v)
-    =
-    \dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{\frac{3}{2}}}
-    \frac{2^{\frac{k+1}{2}}}{2} \frac{\Gamma\left(\tfrac{k+1}{2}\right)}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\,.
-</span> On réécrit alors les termes en <span class="math inline">k/v^2</span> via <span class="math display">
-\begin{align*}
-\left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{k}{(v^2)^{\frac{3}{2}}}
-    \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}
-    &amp; =
-    \left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{1}{\sqrt{k}} \left(\tfrac{k}{v^2}\right)^{\frac{3}{2}}
-    \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\\
-    &amp; = \tfrac{1}{\sqrt{k}}\left(1+\tfrac{v^2}{k}\right)^{- \frac{k+1}{2}}\,,
-\end{align*}
-</span> ce qui permet de conclure : <span class="math display">
-    f_V(v)
-    =
-    \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
-</span></p>
-<div class="container">
-<div class="div1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
-<div class="div-remaining">
-□
 </div>
 </div>
-<p><br></p>
-</section>
-<section id="loi-de-cauchy" class="level3">
-<h3 class="anchored" data-anchor-id="loi-de-cauchy">Loi de Cauchy</h3>
-<div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">X</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">
-    f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
-</span></p>
-</div>
-<p>La fonction de répartition de <span class="math inline">X</span> correspond, à une constante près, à la fonction arctangente qui est bijective de <span class="math inline">\mathbb{R}</span> sur <span class="math inline">]\frac{-\pi}{2},\frac{\pi}{2}[</span>. La méthode d’inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.</p>
-<div id="prp-cauchy" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors la variable aléatoire <span class="math inline">Y/X</span> suit une loi de Cauchy.</p>
-</div>
-<p>Notons que <span class="math inline">Y/X</span> est bien définie puisque <span class="math inline">X</span> est différent de <span class="math inline">0</span> presque sûrement.</p>
-<p><em>Preuve</em>: Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l’application <span class="math display">
-    \begin{array}{ccccc}
-        \phi &amp; : &amp; \mathbb{R}^* \times \mathbb{R} &amp; \to     &amp; \mathbb{R}^2                 \\
-                &amp;   &amp; (x,y)                          &amp; \mapsto &amp; \Big(x, \dfrac{y}{x}\Big)\,,
-    \end{array}
-</span> c’est-à-dire <span class="math display">
-    \phi^{-1}(u,v) = (u, uv)\,.
-</span> La matrice jacobienne de <span class="math inline">\phi^{-1}</span> est donnée par <span class="math display">
-    J_{\phi^{-1}} (u,v)
-    =
-    \begin{pmatrix}
-        1 &amp; 0 \\
-        v &amp; u
-    \end{pmatrix}\,,
-</span> dont le déterminant vaut <span class="math inline">u</span>. Rappelons également que la densité du couple <span class="math inline">(X,Y)</span> vaut <span class="math display">
-    f_{(X,Y)}(x,y) = \dfrac{1}{2 \pi} e^{- \frac{x^2 + y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
-</span> La formule du changement de variables donne alors la densité de <span class="math inline">f_{(U,V)}</span> : <span class="math display">
-    f_{(U,V)}
-    = \dfrac{1}{2 \pi} e^{- \frac{u^2 + u^2v^2}{2}} |u|\,.
-</span> On obtient alors la densité de <span class="math inline">V</span> en intégrant par rapport à <span class="math inline">u</span> : <span class="math display">
-\begin{align*}
-    f_V(v)
-    &amp; = \dfrac{1}{2 \pi} \int_\mathbb{R} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
-    &amp; = \dfrac{1}{\pi} \int_0^\infty e^{- \frac{u^2(1 + v^2)}{2}} u \, \mathrm du\\
-    &amp; = \dfrac{1}{\pi} \bigg[ -\dfrac{e^{- \frac{u^2(1 + v^2)}{2}}}{1+v^2} \bigg]_0^\infty\\
-    &amp; = \dfrac{1}{\pi(1+v^2)}\,.
-\end{align*}
-</span></p>
-<div class="container">
-<div class="div1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-3" data-nodetype="declaration">
 
 </div>
-<div class="div-remaining">
-□
 </div>
 </div>
-<p>On obtient ainsi une autre manière de simuler une loi de Cauchy, en prenant le ratio de deux gaussiennes indépendantes. Cependant, la simulation via la méthode d’inversion peut-être moins coûteuse puisqu’elle ne fait appel qu’à une variable aléatoire uniforme et à la fonction tangente.</p>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-5" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-6" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-7" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-8" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div id="ojs-cell-1-9" data-nodetype="expression">
+
+</div>
+</div>
+</div>
+</div>
 
 
-
-</section>
 </section>
 
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-2, 2], {label: tex`\\mu`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 10], {label: tex`\\nu`, step: 0.1, value: 1}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\nmu = inputs[0];\nnu = inputs[1];\nn_samples = inputs[2];\n\n{\n\nfunction mvnpdf(x, mu, nu){\n    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);\n}\n\n\nfunction normal_rng(mu, nu, n=100){\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(mu, nu**0.5);\n        return x;\n    });\n\n    return samples;\n}\n\nvar samples = normal_rng(mu, nu, 1000);\nvar samples_jitter = normal_rng(0, 0.03, 1000)\nvar npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n\tz[i] = mvnpdf(x[i], mu, nu);\n    }\n\n{\nvar trace1 = {\n        x: samples.slice(0, n_samples),\n        y: samples_jitter.slice(0, n_samples),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n  }\n\nvar trace22 = {\n        x: x,\n        y: z,\n\t\ttype: \"scatter\",\n\t\tmode: \"lines\",\n\t\tname: 'Pdf',\n\t\tline: {color: 'black'},\n\t\tyaxis: 'y2',\n\t\txaxis: 'x2',\n        }\n\n\nvar data = [\n  trace1,\n  trace22,\n  ];\n\n\nvar layout = {\n\twidth: 600,\n\tyaxis: {domain: [0, 0.2],\n\t\t\tshowticklabels: false,\n\t\t\trange: [-0.6, 0.6],\n            autorange: false},\n\txaxis2: {matches: 'x',\n\t          range: [-10, 10],\n          autorange: false},\n\tyaxis2: {domain: [0.29, 0.99]},\n\n  showlegend: false,\n\n};\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.react(div, data, layout, config);\n    return div;\n\t}\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdGx5ID0gcmVxdWlyZShcImh0dHBzOi8vY2RuLnBsb3QubHkvcGxvdGx5LWxhdGVzdC5taW4uanNcIilcblBsb3RseSA9IHJlcXVpcmUoJ3Bsb3RseS5qcy1kaXN0Jyk7XG5kaXN0cyA9IHJlcXVpcmUoICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvc3RkbGliLWpzL3N0YXRzLWJhc2UtZGlzdHNAdW1kL2Jyb3dzZXIuanMnICk7XG5qc3RhdCA9IHJlcXVpcmUoJ2pzdGF0Jyk7XG5tYXRoID0gcmVxdWlyZShcIm1hdGhqc1wiKTtcbi8vIHNlZSBzb3VyY2UgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL3N0ZGxpYi1qcy9zdGF0cy1iYXNlLWRpc3RzL3RyZWUvdW1kXG4vLyBjb250aW51b3VzIGNhc2Vcblxudmlld29mIGlucHV0cyA9IElucHV0cy5mb3JtKFtcbiAgSW5wdXRzLnJhbmdlKFstMiwgMl0sIHtsYWJlbDogdGV4YFxcbXVgLCBzdGVwOiAwLjF9LCB7dmFsdWU6IDB9KSxcbiAgSW5wdXRzLnJhbmdlKFswLjEsIDEwXSwge2xhYmVsOiB0ZXhgXFxudWAsIHN0ZXA6IDAuMSwgdmFsdWU6IDF9KSxcbiAgSW5wdXRzLnJhbmdlKFsxLCAxMDAwXSwge2xhYmVsOiB0ZXhgbmAsIHN0ZXA6IDF9KSxcbiAgSW5wdXRzLmJ1dHRvbihcIlJlLVRpcmFnZVwiKVxuXSlcblxuXG5tdSA9IGlucHV0c1swXTtcbm51ID0gaW5wdXRzWzFdO1xubl9zYW1wbGVzID0gaW5wdXRzWzJdO1xuXG57XG5cbmZ1bmN0aW9uIG12bnBkZih4LCBtdSwgbnUpe1xuICAgIHJldHVybiAxLjAgLyAoMiptYXRoLnBpICpudSkqKigwLjUpKiBtYXRoLmV4cCgtMC41Kih4LW11KSoqMiAvIG51KTtcbn1cblxuXG5mdW5jdGlvbiBub3JtYWxfcm5nKG11LCBudSwgbj0xMDApe1xuICAgIHZhciBzYW1wbGVzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBufSwgKCkgPT4ge1xuICAgICAgICB2YXIgeCA9IGpzdGF0Lm5vcm1hbC5zYW1wbGUobXUsIG51KiowLjUpO1xuICAgICAgICByZXR1cm4geDtcbiAgICB9KTtcblxuICAgIHJldHVybiBzYW1wbGVzO1xufVxuXG52YXIgc2FtcGxlcyA9IG5vcm1hbF9ybmcobXUsIG51LCAxMDAwKTtcbnZhciBzYW1wbGVzX2ppdHRlciA9IG5vcm1hbF9ybmcoMCwgMC4wMywgMTAwMClcbnZhciBucG9pbnRzPTUwMCwgbWluaSA9IC0xMCwgbWF4aT0xMCwgeCA9IG5ldyBBcnJheShucG9pbnRzKSwgeiA9IG5ldyBBcnJheShucG9pbnRzKSwgaSwgajtcblxuLy8gIERlbnNpdMOpOlxuZm9yKHZhciBpID0gMDsgaSA8IG5wb2ludHM7IGkrKykge1xuICAgIHhbaV0gPSBtaW5pICsgaSAqIChtYXhpIC0gbWluaSkgLyAobnBvaW50cyAtIDEpO1xuXHR6W2ldID0gbXZucGRmKHhbaV0sIG11LCBudSk7XG4gICAgfVxuXG57XG52YXIgdHJhY2UxID0ge1xuICAgICAgICB4OiBzYW1wbGVzLnNsaWNlKDAsIG5fc2FtcGxlcyksXG4gICAgICAgIHk6IHNhbXBsZXNfaml0dGVyLnNsaWNlKDAsIG5fc2FtcGxlcyksXG4gICAgICAgIG1vZGU6ICdtYXJrZXJzJyxcbiAgICAgICAgdHlwZTogJ3NjYXR0ZXInLFxuICAgICAgICBtYXJrZXI6IHtcbiAgICAgICAgICAgIGNvbG9yOiAncmdiYSgwLDAsMCwwLjUpJyxcbiAgICAgICAgICAgIHNpemU6IDUsXG4gICAgICAgIH0sXG5cbiAgfVxuXG52YXIgdHJhY2UyMiA9IHtcbiAgICAgICAgeDogeCxcbiAgICAgICAgeTogeixcblx0XHR0eXBlOiBcInNjYXR0ZXJcIixcblx0XHRtb2RlOiBcImxpbmVzXCIsXG5cdFx0bmFtZTogJ1BkZicsXG5cdFx0bGluZToge2NvbG9yOiAnYmxhY2snfSxcblx0XHR5YXhpczogJ3kyJyxcblx0XHR4YXhpczogJ3gyJyxcbiAgICAgICAgfVxuXG5cbnZhciBkYXRhID0gW1xuICB0cmFjZTEsXG4gIHRyYWNlMjIsXG4gIF07XG5cblxudmFyIGxheW91dCA9IHtcbiAgICAvLyByb3dzOiAyLFxuICAgIC8vIGNvbHVtbnM6IDEsXG5cdHlheGlzOiB7ZG9tYWluOiBbMCwgMC4yXX0sXG5cdHhheGlzMjoge21hdGNoZXM6ICd4J30sXHRcblx0eWF4aXMyOiB7ZG9tYWluOiBbMC4yOSwgMC45OV19LFxuXG4gIHNob3dsZWdlbmQ6IGZhbHNlLFxuXG59O1xuXG4gICAgdmFyIGNvbmZpZyA9IHtyZXNwb25zaXZlOiB0cnVlfVxuICAgIGNvbnN0IGRpdiA9IERPTS5lbGVtZW50KCdkaXYnKTtcbiAgICBQbG90bHkubmV3UGxvdChkaXYsIGRhdGEsIGxheW91dCwgY29uZmlnKTtcbiAgICByZXR1cm4gZGl2O1xuXHR9XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2lucHV0cycpIn1dfQ==
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -1122,38 +907,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1162,8 +937,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1401,4 +1183,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale1D.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
