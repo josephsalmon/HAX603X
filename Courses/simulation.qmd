@@ -472,7 +472,7 @@ fig.show()
 - Notons que si $u=0$, on peut alors naturellement poser $F^{\leftarrow}(0) = -\infty$. De même, avec la convention la convention $\inf \emptyset = +\infty$, on peut alors étendre la définition de $F^\leftarrow$ à $u=1$ (mais $F^\leftarrow(1)$ n'est pas toujours égal à $\infty$, voir les exemples ci-dessous).
 
 
-::: {#exm-inverse-bernouilli}
+::: {#exm-inverse-bernoulli}
 
 ## Simulation d'une loi de Bernoulli
 
@@ -1057,7 +1057,7 @@ $$
 
 Rappelons qu'une variable aléatoire $X$ suit une loi de Poisson de paramètre $\lambda > 0$, notée $X \sim \mathcal{P}(\lambda)$ si
 $$
-	\mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad k \in \mathbb{N}^*\,.
+	\mathbb{P}(X = k) = e^{-\lambda} \dfrac{\lambda^k}{k!}\,, \quad k \in \mathbb{N}\,.
 $$
 Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée par la proposition suivante.
 
@@ -1068,13 +1068,13 @@ Une méthode pour simuler une variable aléatoire de loi de Poisson est donnée 
 
 <br>
 
-Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors, pour tout $n \in \mathbb{N}^*$
+Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de paramètre $\lambda > 0$. On pose $S_k = E_1 + \cdots + E_k$. Alors, pour tout $n \in \mathbb{N}$
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
 Ainsi, la variable aléatoire $T$ définie par
 $$
-    T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}
+    T \triangleq \sup \{n \in \mathbb{N} : S_n \leq 1\}
 $$
 suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
@@ -1131,7 +1131,7 @@ On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 
 *Démonstration*:
 
-Pour $n \in \mathbb{N}^*$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
+Pour $n \in \mathbb{N}$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
 $$
 \begin{align*}
     \mathbb{P}(S_n \leq 1 < S_{n+1})
@@ -1141,7 +1141,7 @@ $$
 $$
 Le lemme précédent donne
 $$
-    \mathbb{P}(S_n \leq 1) = 1 - \sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}
+    \mathbb{P}(S_n \leq 1) = 1 - \sum_{k=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}
 $$
 et
 $$
