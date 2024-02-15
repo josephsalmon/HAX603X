@@ -1383,7 +1383,7 @@ Point important: parfois la connaissance de $m$ est difficile à obtenir, et il 
 
 ## Sommes de variables aléatoires
 
-[Loi de Bernouilli]{.underline}:  avec $U_1, \ldots, U_n$ i.i.d uniformes sur $[0,1]$ (méthode d'inversion):
+[Loi de Bernoulli]{.underline}:  avec $U_1, \ldots, U_n$ i.i.d uniformes sur $[0,1]$ (méthode d'inversion):
 $$
 X_i \triangleq {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(p)
 $$
@@ -1422,7 +1422,7 @@ Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
-Ainsi, $T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+Ainsi, $T \triangleq \sup \{n \in \mathbb{N} : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
 ::::
 
