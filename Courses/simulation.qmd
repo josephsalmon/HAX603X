@@ -1031,7 +1031,7 @@ print(f"Aire estimée: {ratio * 15}")
 
 ::: {.callout-important appearance='default' icon="false"}
 
-##  EXERCISE loi uniforme sur un cylindre
+##  EXERCICE loi uniforme sur un cylindre
 
 Proposer une méthode pour simuler une loi uniforme sur un cylindre de rayon $1$ et de hauteur $10$.
 :::
