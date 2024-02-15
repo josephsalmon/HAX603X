@@ -403,7 +403,8 @@ Voir animation dans la section [Cours, section "Méthode d'inversion"](../Course
 
 . . .
 
-Supposons disposer d'une autre densité $g$ (**loi des propositions**) t.q. :
+[Idée]{.underline}: tirer suivant une autre loi $g$ (**loi des propositions**) et rejeter certains tirages.
+
 
 :::{.incremental}
 
@@ -413,12 +414,17 @@ Supposons disposer d'une autre densité $g$ (**loi des propositions**) t.q. :
 
 :::
 
+
+
 . . .
 
-[Remarque]{.underline}: $m \geq 1$ car
-$$
-	1 = \int_\mathbb{R} f(x) \,  dx \class{fragment}{{}\leq m \int_\mathbb{R} g(x)\,  dx} \class{fragment}{{}= m}
-$$
+
+[Remarque 1]{.underline}: $g(x)=0 \implies f(x)=0$, ainsi le support de $g$ doit englober celui de $f$
+
+. . .
+
+
+[Remarque 2]{.underline}: $m \geq 1$ car $m = m \displaystyle\int_\mathbb{R} g(x)\, dx \class{fragment}{{} \geq \displaystyle\int_\mathbb{R} f(x) dx} \class{fragment}{{} = 1}$
 
 
 ## Méthode de rejet: principe
@@ -435,7 +441,10 @@ En pratique, $Y_n$ correspond à une **proposition** et $U_n$ permettra de déci
 - Si oui, alors on conserve $Y_n$
 - Si non, on simule $Y_{n+1}$
 
-Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniforme et puis  vérifier si $U_n \leq r(Y_n)$
+Pour simuler $X$ de densité $f$, simuler $Y_n$  (suivant $g$), $U_n$ (suivant $\mathcal{U}[0,1]$) et accepter si 
+$$
+U_n \leq r(Y_n) = \frac{f(Y_n)}{m\cdot g(Y_n)}
+$$
 
 
 
@@ -451,6 +460,7 @@ Pour simuler $X$ de densité $f$, simuler $Y_n$ de densité $g$ et $U_n$ uniform
 
 :::
 
+. . .
 
 :::{.callout-note}
 
@@ -467,11 +477,11 @@ Dans la suite on verra qu'on tire des points $(Y_n, 4U_n)$ et qu'on teste si ils
 ```{python}
 #| echo: true
 #| code-line-numbers: 1-8|9-11|12|13-17|18-19|20|
-def accept_reject(n, f, g, g_sampler, m, rng):                                  
+def accept_reject(n, f, g, g_sampler, m, rng):
     """
     n: nombre de simulations
     f: loi cible
-    g: loi des propositions, g_sampler: simulateur selon g
+    g, g_sampler: loi et générateur des propositions                            
     m: constante pour la majoration
     rng: générateur pseudo-aléatoire
     """
@@ -481,7 +491,7 @@ def accept_reject(n, f, g, g_sampler, m, rng):
     for i in range(n):
         x = g_sampler()
         u = rng.uniform()
-        alpha = u * m * g(x)
+        alpha = u * m * g(x)  # note: pour le test on peut éviter les divisions
         u_samples [i] = alpha
         x_samples[i] = x
         if  alpha <= f(x):
@@ -947,8 +957,6 @@ ojs_define(ratio_andrews=ratio_andrews)
 ```
 
 
-<br>
-
 
 
 ```{python}
@@ -962,11 +970,12 @@ ojs_define(s_int=S)
 md`Le taux d'acceptation est ici de **${ratio_andrews.toPrecision(3)}**.`
 ```
 
-<br>
+::: {.r-stack}
 
 ```{python}
 #| echo: false
-fig = go.Figure()
+#| layout-ncol: 1
+fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=550))
 fig.add_trace(
     go.Histogram(
         x=x_samples[accepted == 1],
@@ -1019,9 +1028,9 @@ fig.update_layout(
 
 ```
 
-. . .
+:::
 
-<br>
+. . .
 
 ```{ojs}
 //| echo: false
@@ -1310,8 +1319,8 @@ md`Aire (bleue) estimé: **${aire_cardioid.toPrecision(5)}**`
 :::{#thm-unif-mesurable}
 ## Géneration uniforme sur un ensemble
 
-Supposons $A\subset B \subset \mathbb{R}^d$, deux ensembles mesureables pour la mesure de Lebesgue.
-Pour générer selon une loi uniforme sur $A$, connaissant un générateur uniforme sur $B$, on peut utiliser la méthode du rejet, en tirant $Y_i \sim \mathcal{U}(B)$ (i.i.d) et en ne gardant  $Y_i$ que si $Y_i \in A$.
+Soient $A\subset B \subset \mathbb{R}^d$, deux ensembles mesurables pour la mesure de Lebesgue.
+Pour générer selon $\mathcal{U}(A)$, connaissant un générateur selon $\mathcal{U}(B)$, la méthode du rejet consiste ici à tirer $Y_i \sim \mathcal{U}(B)$ (i.i.d) et à garder $Y_i$ si $Y_i \in A$.
 :::
 
 
@@ -1378,6 +1387,9 @@ Point important: parfois la connaissance de $m$ est difficile à obtenir, et il 
 $$
 X_i \triangleq {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(p)
 $$
+
+. . .
+
 [Loi binomiale]{.underline}:
 $$
 	\sum_{i=1}^n {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)
@@ -1387,11 +1399,12 @@ $$
 	X = X_1 + \cdots + X_n \sim \mathcal{B}(n,p)
 $$
 
+. . .
 
 :::{.callout-note}
 
 ## Note
-La méthode d'inversion marche, mais nécessite le calcul de l'inverse généralisée de $F$, donc de coefficients binomiaux...
+La méthode d'inversion marche aussi, mais nécessite le calcul de l'inverse généralisée de $F$, donc de coefficients binomiaux...
 :::
 
 
@@ -1409,7 +1422,7 @@ Soit $(E_n)_{n \geq 1}$ des variables aléatoires i.i.d. de loi exponentielle de
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1}) =  e^{-\lambda} \dfrac{\lambda^n}{n!}\enspace .
 $$
-Ainsi, la variable aléatoire $T$ définie par $T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
+Ainsi, $T \triangleq \sup \{n \in \mathbb{N}^* : S_n \leq 1\}$ suit une loi de Poisson de paramètre $\lambda$ : $T \sim \mathcal{P}(\lambda)$.
 
 ::::
 
@@ -1418,8 +1431,8 @@ Ainsi, la variable aléatoire $T$ définie par $T \triangleq \sup \{n \in \mathb
 :::{.callout-note}
 
 ## Point numérique
-C'est la méthode utilisée par `numpy.random.poisson`,
-cf. [code source (GitHub)](https://github.com/numpy/numpy/blob/main/numpy/random/src/distributions/distributions.c#L540) (en passant à l'exponentiel), qui fut proposée par D. Knuth; Source: [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution#cite_note-Knuth1997-68)
+Méthode adaptée par `numpy.random.poisson`,
+cf. [code source](https://github.com/numpy/numpy/blob/main/numpy/random/src/distributions/distributions.c#L540), qui fut proposée par D. Knuth; Source: [Wikipedia](https://en.wikipedia.org/wiki/Poisson_distribution#cite_note-Knuth1997-68)
 
 :::
 
@@ -1434,12 +1447,28 @@ La preuve repose sur le résultat suivant:
 <br>
 
 
-Soit $n$ variables aléatoires $E_1, \dots, E_n$ i.i.d. de loi exponentielle de paramètre $\lambda >0$. La somme $E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, donnée par la fonction de répartition
+Soient $E_1, \dots, E_n$ des v.a., i.i.d. de loi exponentielle de paramètre $\lambda >0$. La somme $S_n=E_1+\dots+E_n$ suit une loi d'Erlang de paramètres $(n,\lambda)$, de fonction de répartition
 $$
     F_{n,\lambda}(t) = 1 - \sum_{k=0}^{n-1} e^{-\lambda t} \frac{(\lambda t)^k}{k!}\,.
 $$
 ::::
 
+. . .
+
+*Preuve partielle*: Transformée de Laplace de $\mathcal{E}(\lambda)$: $\mathbb{E}\left(e^{-tE_1}\right) = \int_0^{+\infty} e^{-t x} \lambda e^{-\lambda x} \,  d x = \frac{\lambda}{\lambda+t}$
+
+. . .
+
+Densité d'une loi  $\Gamma(\alpha,\beta): \quad f(x) = \tfrac{\beta^\alpha}{\Gamma(\alpha)} x^{\alpha-1} e^{-\beta x}$
+
+. . .
+
+
+Transformée de Laplace d'une loi  $\Gamma(\alpha,\beta): \quad \mathbb{E}\left(e^{-tX}\right) = \left(\tfrac{\beta}{\beta+t}\right)^\alpha$
+
+. . .
+
+Enfin, $\mathbb{E}\left(e^{-t S_n}\right) = \left(\mathbb{E}\left(e^{-t E_1}\right)\right)^n=\left(\tfrac{\lambda}{\lambda+t}\right)^n$
 
 ## Démonstration avec le lemme
 
@@ -1452,16 +1481,24 @@ $$
     & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
 \end{align*}
 $$
-Le lemme précédent donne $\mathbb{P}(S_n \leq 1) = 1 - \sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}$
+
+. . .
+
+Du lemme précédent : $\mathbb{P}(S_n \leq 1) = 1 - \displaystyle\sum_{n=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}$
 et
-$\mathbb{P}(S_{n+1} \leq 1) = 1 - \sum_{k=0}^{n} e^{-\lambda} \dfrac{\lambda^k}{k!}.$
-On obtient alors le résultat souhaité :
+$\mathbb{P}(S_{n+1} \leq 1) = 1 - \displaystyle\sum_{k=0}^{n} e^{-\lambda} \dfrac{\lambda^k}{k!}$.
+
+. . .
+
+Puis,
 $$
     \mathbb{P}(S_n \leq 1 < S_{n+1})
     = e^{-\lambda} \dfrac{\lambda^n}{n!}\,.
 $$
 
-On conclut la preuve de la proposition en remarquant que
+. . .
+
+On conclut la preuve de la proposition en remarquant que pour $T \triangleq \sup \{k \in \mathbb{N}^* : S_k \leq 1\}$
 $$
     \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
 $$

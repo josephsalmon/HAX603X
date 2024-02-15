@@ -7,6 +7,8 @@ filters:
   - shinylive
 ---
 
+On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cdot, \cdot \rangle$ et de la norme euclidienne $\|\cdot\|$ associée.
+
 
 ## Introduction
 
@@ -35,7 +37,6 @@ $$
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
-//| width: 50%
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');

@@ -939,8 +939,10 @@ app = App(app_ui, server)
 
 ## Observable
 
+
 ```{ojs}
 //| echo: false
+
 discretePDFs = () => {
   const distributions = Object.keys(dists);
   // Get in continuousDistributions the distributions whose pdf, cdf and quantile are defined
@@ -1219,7 +1221,6 @@ var layout = {
 
   showlegend: false,
   height: 680,
-
 
   annotations: [
 
@@ -1627,6 +1628,5 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 ```
-
 
 :::
