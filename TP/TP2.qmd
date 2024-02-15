@@ -109,11 +109,11 @@ ax.legend(custom_lines, ['10000 tirages', '1000 tirages', '100 tirages'], loc='u
 plt.show()
 
 ```
-Attention quand vous tracez des histogrammes pour des réalisation de la v.a. non bornées:
+Attention quand vous tracez des histogrammes pour des réalisation de la v.a. non bornées: pour la gaussienne, les histogrammes sont bons
 
 ```{python}
+#| code-fold: true
 #| layout-ncol: 1
-#| echo: false
 
 vectGauss = np.random.randn(1000)
 
@@ -126,6 +126,13 @@ ax.hist(vectGauss, histtype='step', density=True, bins=30, label="Histogramme 10
 # plot density
 
 plt.title('Histogramme: tirage Gaussien')
+plt.show()
+```
+Pour la Cauchy, les histogrammes se comportent mal
+
+```{python}
+#| code-fold: true
+#| layout-ncol: 1
 
 vectCauchy = np.random.standard_cauchy(10000)
 
@@ -135,9 +142,15 @@ xx = np.linspace(vectCauchy.min() - 1, vectCauchy.max() + 1, 100)
 ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
 
 ax.hist(vectCauchy, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
-# plot density
-
 plt.title('Histogramme naïf: tirage Cauchy...')
+plt.show()
+# plot density
+```
+Il faut tronquer pour retrouver une représentation fidèle:
+
+```{python}
+#| layout-ncol: 1
+#| code-fold: true
 
 xmax = 11
 fig, ax = plt.subplots()
@@ -150,6 +163,7 @@ ax.hist(vectCauchy[np.abs(vectCauchy) < xmax], histtype='step', density=True, bi
 
 ax.set_xlim((-xmax - 1, xmax + 1))
 plt.title('Histogramme : tirage Cauchy tronquée...')
+plt.show()
 ```
 
 ## Exercice 2: Fonction de répartition de la loi uniforme
