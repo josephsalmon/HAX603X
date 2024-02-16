@@ -356,7 +356,7 @@ Le résultat est facile pour $x \notin [0,1]$, on suppose donc $x \in [0,1]$.
 
 $$
 \begin{align*}
-\class{fragment}{{}\mathbb{P}(1-U \leq x)} & \class{fragment}{{}= \mathbb{P}(U \geq 1-x) }\\
+\mathbb{P}(1-U \leq x)} & \class{fragment}{{}= \mathbb{P}(U \geq 1-x) }\\
                        & \class{fragment}{{} = 1-(1-x)} \\
                        & \class{fragment}{{} = x}
 \end{align*}
