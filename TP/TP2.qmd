@@ -64,7 +64,7 @@ On utilisera l'aide de  [hist](https://matplotlib.org/stable/api/_as_gen/matplot
 
 - Analysez en particulier ce que fait l'option `bins` en entrant l'option `bins=30` et `bins=10`.
 - Modifiez également votre histogramme avec l'option `density=True`, de sorte que l'aire soit de 1 (on représente donc une densité qui est constante par morceaux)
-- Ajoutez un titre à l'histogramme grâce à la commande `plt.title` (avec une chaîne de caractères entre guillemets). On peut également ajouter un nom aux axes avec l'option ```plt.xl``` et  ```plt.xlabel```.
+- Ajoutez un titre à l'histogramme grâce à la commande `plt.title` (avec une chaîne de caractères entre guillemets). On peut également ajouter un nom aux axes avec l'option ```plt.xlabel``` et  ```plt.ylabel```.
 - Les options `ax.set_xlim` et `ax.set_ylim` permettent de préciser l'échelle de axes: il faut préciser un tuple `(a,b)` où $a<b$ sont les deux bornes choisies pour votre axe.
 - On modifiera aussi les options `fill` et `histtype` de `hist` pour obtenir le résultat suivant, en affichant sur un même graphique trois tirages, de tailles $1000$, $5000$ et $10000$.
 -  La densité de la loi uniforme est obtenue avec la fonction `pdf` du module `scipy.stats`. Créer un vecteur équiréparti sur $[-2, 2]$ de longueur $300$ évaluer la fonction sur la même figure: on souhaite superposer cette densité à l'histogramme. On utilisera la fonction `plot` pour tracer la densité, et on pourra utiliser l'option `alpha` pour rendre la densité plus transparente.
