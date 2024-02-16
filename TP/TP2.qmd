@@ -54,8 +54,9 @@ from scipy import stats
 #| layout-ncol: 1
 fig, ax = plt.subplots()
 vect = rng.uniform(-1, 1, 1000)
-ax.hist(vect, label="Histogramme");
+ax.hist(vect, label="Histogramme")
 plt.legend()
+plt.show()
 ```
 
 On utilisera l'aide de  [hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html) de `matplotlib`s pour préciser les options graphiques suivantes:
@@ -208,7 +209,8 @@ for i, vali in enumerate(lines):
 
 ax.set_xlim([-1.5,1.5])
 plt.legend()
-plt.title("Fonctions de répartition de diverses loi uniformes");
+plt.title("Fonctions de répartition de diverses loi uniformes")
+plt.show()
 ```
 
 :::
