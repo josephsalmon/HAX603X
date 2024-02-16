@@ -367,21 +367,112 @@ plt.legend()
 
 ## Pour aller plus loin: les méthodes à noyaux (KDE)
 
+
+
+
+Le phénomène qui apparaît avec la loi de Cauchy est les suivant: les queues de la loi de Cauchy sont tellement épaisses que la moyenne empirique que l'écart entre  $\min_i(X_i)$ et le $\max_i(X_i)$ (les $X_i$ étant les tirages effectués) est du même ordre de grandeur que le nombre de tirages, $n$.
+Comme la fonction `hist` discrétise l'intervalle $[\min(X_i), \max(X_i)]$ en le nombre de boîtes (`bins`) on observe peu de points dans chaque boîte ce qui rend l'estimation de la densité trop petite.
+
+Ce point n'est pas un problème pour les lois gaussiennes, car la largeur de l'intervalle $[\min(X_i), \max(X_i)]$ est de l'ordre de $\sqrt{\log(n)}$, et comme on a $n$ points à placer dans cet intervalle, il y a assez de points dans chaque boîte pour obtenir une bonne estimation.
+
+Notons que les méthodes à noyaux (KDE) ne souffrent pas de ce défaut, car les "boîtes" sont en fait fixé autour des données et non sur une grille discrétisée comme c'est le cas pour l'histogramme.
+Voir par exemple l'aide de [scikit learn](https://scikit-learn.org/stable/modules/density.html#kernel-density) ou encore [wikipedia, méthode à noyau](https://fr.wikipedia.org/wiki/Estimation_par_noyau).
+
+
+
 ```{python}
 import plotly.graph_objects as go
 from sklearn.neighbors import KernelDensity
-X=dzcauchy(1000, 1)
-X_plot = np.linspace(np.min(X),np.max(X), 1000)
+n_sample = 1000
+x = np.linspace(-2, 10, num=10000)
+X=dzcauchy(n_sample, 1)
 
 kde = KernelDensity(kernel="tophat", bandwidth=0.1).fit(X.reshape(-1, 1))
-log_dens = kde.score_samples(X_plot.reshape(-1, 1))
+log_dens = kde.score_samples(x.reshape(-1, 1))
 fig=go.Figure()
 
-fig.add_trace(go.Scatter(x=X_plot, y=np.exp(log_dens), mode='lines', line=dict(color='blue', width=2), name="Estimation de la densité"))
-fig.add_trace(go.Scatter(x=X_plot, y=stats.cauchy.pdf(X_plot, scale=1, loc=0), mode='lines', opacity=0.6, line=dict(color='black', width=2), name="Densité de Cauchy"))
+fig.add_trace(go.Scatter(x=x, y=np.exp(log_dens), mode='lines', line=dict(color='blue', width=2), name="Estimation de la densité"))
+fig.add_trace(go.Scatter(x=x, y=stats.cauchy.pdf(x, scale=1, loc=0), mode='lines', opacity=0.6, line=dict(color='black', width=2), name="Densité de Cauchy"))
 
 fig.update_layout(
     template="simple_white",
     showlegend=True,
 )
+print(f"Taille de l'échantillon: {n_sample}")
+print(f"Étendue: {np.max(X)-np.min(X)}")
+
+```
+
+
+Notons qu'un phénomène similaire apparaît aussi avec la loi de Pareto, qui est une loi à queue lourde quand son paramètre $\alpha$ est plus petit que 1.
+
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+#| warning: false
+
+pareto_params_vect =[0.9, 1.5]
+fig, ax = plt.subplots(1, len(pareto_params_vect), figsize=(8, 3))
+
+for i, pareto_params in enumerate(pareto_params_vect):
+
+    n_sample = 1000
+    X=rng.pareto(pareto_params, n_sample)
+    x = np.linspace(-2, 10, num=10000)
+
+
+    ax[i].plot(x, stats.pareto.pdf(x, pareto_params, loc=-1), color='k', label="Fonction de répartition", lw=2)
+
+    n_bins = 30
+    ax[i].hist(rng.pareto(pareto_params, 100), density=True,  cumulative=False, histtype='step',bins=n_bins, label="Estimation de la fonction de densité", color=colors[0])
+    ax[i].hist(rng.pareto(pareto_params, 1000), density=True,  cumulative=False, histtype='step',bins=n_bins, label="Estimation de la fonction de densité", color=colors[1])
+    ax[i].hist(rng.pareto(pareto_params, 10000), density=True,  cumulative=False, histtype='step',bins=n_bins, label="Estimation de la fonction de densité", color=colors[2])
+
+    # Effet symétrique, contrainte positivies sur les KDE
+    low_bound = 0
+    data = rng.pareto(pareto_params, 10000)
+    data_sym = np.concatenate((data, 2*low_bound-data))
+    x_sym = np.concatenate((x, 2*low_bound-x))
+
+    kde = KernelDensity(kernel="tophat", bandwidth=0.2).fit(data.reshape(-1, 1))
+    kde_sym = KernelDensity(kernel="tophat", bandwidth=0.2).fit(data_sym.reshape(-1, 1))
+
+
+    # Symetric trick: https://kdepy.readthedocs.io/en/latest/examples.html#boundary-correction-using-mirroring
+    dens = np.exp(kde.score_samples(x.reshape(-1, 1)))
+    dens_sym = np.exp(kde_sym.score_samples(x_sym.reshape(-1, 1)))
+    dens_sym[x_sym<0] = 0
+
+
+    order = np.argsort(x_sym)
+    ax[i].plot(x, dens, color='red', lw=2)
+    ax[i].plot(x_sym[order], dens_sym[order]*2, color='blue', lw=1, )
+
+
+
+    ax[i].set_title(f"Loi de Pareto ($\\alpha = {pareto_params:}$)")
+    ax[i].set_xlim([np.min(x),np.max(x)])
+    custom_lines = [Line2D([0], [0], color='k', lw=2),
+                    Line2D([0], [0], color=colors[0], lw=2),
+                    Line2D([0], [0], color=colors[1], lw=2),
+                    Line2D([0], [0], color=colors[2], lw=2),
+                    Line2D([0], [0], color='red', lw=2),
+                    Line2D([0], [0], color='blue', lw=2)
+                    ]
+
+
+
+    print(f"Taille de l'échantillon: {n_sample}")
+    print(f"Étendue: {np.max(X)-np.min(X)}")
+
+ax[i].legend(custom_lines,['Densité (théorique)',
+                        'Hist. (n=100)',
+                        'Hist. (n=1000)',
+                        'Hist. (n=10000)',
+                        'KDE, n=10000, sans contrainte >0',
+                        'KDE, n=10000, avec contrainte >0',
+                        ], loc='upper right', fontsize=7)
+plt.show()
+
 ```
