@@ -10,18 +10,140 @@ filters:
 On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cdot, \cdot \rangle$ et de la norme euclidienne $\|\cdot\|$ associée.
 
 
-## Introduction
+
+## Rappel sur les vecteurs aléatoires
 
 
-Loi normale multivariée: $\mu \in \mathbb{R}^p$ et $\Sigma \in \mathbb{R}^{p \times p}$ (symétrique et définie positive).
+Si $\mathbf{X} = (X_1, \dots, X_d) \in \mathbb{R}^d$ est un vecteur aléatoire, son espérance est définie coordonnée par coordonnée :
 $$
-X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^p
+	\mathbb{E}[\mathbf{X}] = (\mathbb{E}[X_1], \dots, \mathbb{E}[X_d]) \in \mathbb{R}^d\
+$$
+quantité qui existe dès que chaque espérance est bien définie. De plus, si $\mathbb{E}[X_j^2] < \infty$ pour tout $j\in \llbracket 1, d\rrbracket$, on peut alors définir les covariances pour tout $(i,j) \in \llbracket 1, d\rrbracket^2$ :
+$$
+	\textrm{cov}(X_i, X_j) = \mathbb{E}[(X_i- \mathbb{E}[X_i]) (X_j - \mathbb{E}[X_j])] \enspace,
+$$
+quantités que l'on rassemble dans une matrice appelée *matrice de variance-covariance* :
+$$
+	\Sigma = (\textrm{cov}(X_i, X_j))_{1 \leq i,j \leq d} \in \mathbb{R}^{d \times d} \,.
+$$
+On peut montrer que cette matrice est symétrique et semi-définie positive. En particulier, si les $X_j$ sont indépendants, alors $\Sigma$ est une matrice diagonale.
+
+:::{.callout-note}
+
+Un point important.
+Si $(X,Y)$ est un vecteur aléatoire, il ne suffit pas de connaître les marginales $X$ et $Y$ pour caractériser entièrement le vecteur. Par exemple, si $X$ et $Y$ suivent toutes les deux une loi normale, alors on peut avoir par exemple $X=Y$, ou bien $X$ indépendant de $Y$, et ces deux cas modélisent clairement deux vecteurs aléatoires de lois distinctes.
+
+:::
+
+## Vecteurs gaussiens
+
+
+
+
+:::{#def-gaussian-vector}
+
+## Vecteur gaussien
+Un vecteur aléatoire $\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d$ est un *vecteur gaussien* si pour tout $\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top$, la variable aléatoire réelle
+$$
+  \langle \bm{\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
+$$
+suit une loi normale.
+:::
+
+En particulier chaque (loi marginale) $X_j$ suit alors une loi gaussienne (choisir ci-dessus $t = e_j$,  les autres égaux à $0$).
+
+
+
+Cependant, il ne suffit pas que les $X_j$ soient des gaussiennes pour que le vecteur $X$ soit un vecteur gaussien.
+Par exemple, si $X$ suit une loi normale centrée réduite et $\varepsilon$ une loi uniforme (discrète) sur $\{-1,1\}$, alors on peut montrer que $\varepsilon X$ suit encore une loi normale centrée réduite. En effet, pour tout $t \in \mathbb{R}$, on a
+$$
+\begin{align*}
+  \mathbb{P}(\varepsilon X \leq t)
+  & =  \mathbb{P}(X \leq t) \mathbb{P}(\varepsilon = 1) + \mathbb{P}(-X \leq t) \mathbb{P}(\varepsilon = -1)\\
+  & = \tfrac{1}{2} \mathbb{P}(X \leq t) + \tfrac{1}{2} \mathbb{P}(-X \leq t) = \mathbb{P}(X \leq t) \enspace.
+\end{align*}
+$$
+Cependant, $X + \varepsilon X$ prend la valeur $0$ avec probabilité $1/2$ donc ne suit pas une loi normale.
+Ainsi le vecteur $(X, \varepsilon X)^{\top}$ n'est pas un vecteur gaussien bi-dimensionnel.
+
+
+Soit $\mathbf{X}$ un vecteur gaussien. Notons $\bm{\mu}$ son espérance et $\Sigma$ sa matrice de variance-covariance.
+En reprenant les notations de la définition, la variable aléatoire $\langle \bm{\alpha}, \mathbf{X} \rangle$ vérifie
+$$
+\begin{align*}
+  \mathbb{E}[\langle \bm{\alpha}, \mathbf{X} \rangle]
+  & = \mathbb{E}[\alpha_1 X_1 + \cdots + \alpha_d X_d] \\
+  & =  \alpha_1 \mathbb{E}[X_1] + \cdots + \alpha_d \mathbb{E}[X_d]
+  & = \langle \bm{\alpha}, \bm{\mu} \rangle\,,
+\end{align*}
+$$
+et
+$$
+\begin{align*}
+  \mathrm{var}(\langle \bm{\alpha}, \mathbf{X} \rangle)
+    & = \mathrm{var}(\alpha_1 X_1 + \cdots + \alpha_d X_d)\\
+    & = \mathrm{cov}(\alpha_1 X_1 + \cdots + \alpha_d X_d, \alpha_1 X_1 + \cdots + \alpha_d X_d) \\
+    & = \sum_{1 \leq i,j \leq d} \alpha_i \mathrm{cov}(X_i, X_j) \alpha_j
+  = \bm{\alpha}^\top \Sigma \bm{\alpha}
+\end{align*}
+$$
+Ainsi, $\langle \bm{\alpha}, \mathbf{X} \rangle \sim \mathcal{N}\left(\langle \bm{\alpha}, \bm{\mu} \rangle, \bm{\alpha}^\top \Sigma \bm{\alpha}\right)$.
+
+
+### Loi d'un vecteur gaussien
+
+La fonction caractéristique d'un vecteur gaussien d'espérance $\bm{\mu}$ et de matrice de variance-covariance $\Sigma$ est donnée par
+$$
+	\phi_\mathbf{X}(\bm{\alpha})
+	= \mathbb{E}[e^{i \langle \bm{\alpha}, \mathbf{X} \rangle}]
+	= \exp\Big(i \langle \bm{\alpha}, \bm{\mu} \rangle - \frac{\bm{\alpha}^\top \Sigma \bm{\alpha}}{2}\Big)\,,
+	\quad \bm{\alpha} \in \mathbb{R}^d\,.
+$$
+où on a utilisé l'expression de la fonction caractéristique d'une variable aléatoire de loi normale $\mathcal{N}(\langle \bm{\alpha}, \bm{\mu} \rangle, \bm{\alpha}^\top \Sigma \bm{\alpha})$.
+Ainsi, $\phi_\mathbf{X}$ est entièrement déterminée par les quantités $\bm{\mu}$ et $\Sigma$. Comme cette fonction caractérise la loi de $\mathbf{X}$, on en déduit que la loi d'un vecteur gaussien est entièrement caractérisée par son espérance et sa matrice de variance-covariance. On note alors
+$$
+	\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)\,.
+$$
+En particulier, si les variables aléatoires $X_1, \dots, X_d$ sont indépendantes de loi $\mathcal{N}(0,1)$, alors $\bm{\mu} = (0,\ldots,0)^\top$ et $\Sigma = \mathrm{Id}_d$.
+
+
+### Densité de probabilité
+Commençons par le cas $\mu=0$ et $\Sigma = \mathrm{Id}_d$ correspond à la loi gaussienne centrée réduite, notée $\mathcal{N}(0, \mathrm{Id}_d)$.
+La loi de $(X_1,\dots,X_n)^\top$ correspond alors à la loi produit de $n$ lois gaussiennes centrées réduites indépendantes (pour les gaussiennes la décorrélation implique l'indépendance).
+Sa densité est donc donnée par
+$$
+\varphi_{0,\mathrm{Ids}_d}(x) = \frac{1}{ \sqrt{(2\pi)^d}} \exp\left( -\tfrac{1}{2}x^\top x   \right) \enspace.
 $$
 
-Densité de probabilité :
+Dans le cas général, $\mu \in \mathbb{R}^d$ et $\Sigma \in \mathbb{R}^{d \times d}$ (symétrique et définie positive) sont donnés, et on note
 $$
-\phi(x) = \frac{1}{ \sqrt{(2\pi)^p |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big)
+X \sim \mathcal{N}(\mu,\Sigma), \quad \forall x \in \mathbb{R}^d
 $$
+
+Alors la densité de probabilité de $X$ est donnée par
+
+$$
+\varphi_{\mu,\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\mu)^\top\Sigma^{-1}(x - \mu)   \Big) \enspace.
+$$
+
+[Preuve]{.underline}:
+Prenons une matrice $L\in \mathbb{R}^{d \times d}$ telle que $LL^\top = \Sigma$ (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous).
+Calculons alors la loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \mu$, pour $X\sim \mathcal{N}(0,\mathrm{Id_d})$.
+Pour appliquer la formule du changement de variable nous donne, on calcule  $\psi^{-1}$ et son jacobien:
+$\psi^{-1}(y) = L^{-1}(y-\mu)$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\Sigma|^{-1/2}$.
+
+En notant que $LL^\top \left(L^{-1}\right)^\top L^{-1}=\mathrm{Id}_d$, et donc que $\left(L^{-1}\right)^\top L^{-1}=\Sigma^{-1}$, on en déduit que la densité de $\mathbf{Y}$ est donnée par
+$$
+\begin{align*}
+\varphi_{\mu,\Sigma}(y)
+& = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) \det(J_{\psi^{-1}}) \\
+& = \frac{|\Sigma|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-\mu)^\top \left(L^{-1}\right)^\top L^{-1}(y - \mu)\right)\\
+& = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(y-\mu)^\top\Sigma^{-1}(y - \mu)   \Big) \enspace.
+\end{align*}
+$$
+
+## Vecteurs gaussiens : cas bidimensionnel
+
 En dimension $p=2$, la matrice de covariance $\Sigma$ peut toujours s'écrire comme suit, et la visualisation suivante montre l'impact des différents paramètres sur la densité de probabilité.
 $$
 \Sigma =
@@ -32,6 +154,7 @@ $$
 \begin{pmatrix}
 \cos(\theta) &\sin(\theta)\\  -\sin(\theta)& \cos(\theta)\end{pmatrix}
 $$
+où $\theta$ est l'angle de rotation et $\sigma_1$ et $\sigma_2$ les écarts-types des marginales (dans le repère orthonormal après rotation).
 
 
 ```{ojs}
@@ -75,7 +198,7 @@ function create_sigma(theta, sigma1, sigma2){
 function mvnpdf(x, mu, Sigma){
   const p = 2;
     return (2*math.pi)**(-p/2)*math.det(Sigma)**(-0.5)*
-      math.exp(-0.5*math.multiply( math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x,mu)));
+      math.exp(-0.5*math.multiply(math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x, mu)));
 }
 
 {

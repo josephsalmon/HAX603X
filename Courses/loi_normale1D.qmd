@@ -586,15 +586,51 @@ $$
 
 ## Loi de Cauchy
 
-Une variable aléatoire $X$ suit une **loi de Cauchy** si sa densité est donnée par
+Une variable aléatoire $X$ suit une **loi de Cauchy** standard si sa densité est donnée par
 $$
 	f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 $$
 :::
 
+On note alors $X\sim \mathcal{C}(0,1)$ dans ce cas.
+Plus généralement on dit que $Y$ suit une loi de Cauchy de paramètres $(\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[$ si $Y=\mu+\sigma X$ où $X$ suit une loi de Cauchy standard. Sa densité est alors donnée par
+$$
+	f_Y(y) = \dfrac{1}{\sigma \pi(1 + \tfrac{(y-\mu)^2}{\sigma^2})}\,, \quad y \in \mathbb{R}\,.
+$$
+
+Pour rappel cette loi est importante comme exemple de loi qui n'admet ni espérance, ni variance a fortiori.
+En effet, si $X$ suit une loi de Cauchy standard,
+$$
+\int_{\mathbb{R}} |x| f_X(x) \, dx = \int_{\mathbb{R}} \frac{|x|}{\pi(1+x^2)} \, dx.
+$$
+Or $\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi x}$ quand $|x|\to \infty$, et $x\mapsto \frac{|x|}{\pi(1+x^2)}$ n'est donc pas intégrable sur $\mathbb{R}$ au sens de Lebesgue. C'est donc un exemple de loi pour laquelle la loi des grands nombres et le théorème central limite ne s'appliquent pas.
 
 
-La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]\frac{-\pi}{2},\frac{\pi}{2}[$. La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.
+#### Fonction caractéristique
+
+
+La fonction caractéristique de la loi de Cauchy standard est donnée par
+$$
+\begin{align*}
+\varphi_X(t) & \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
+\end{align*}
+$$
+et donc si $X\sim \mathcal{C}(\mu,\sigma)$, alors pour tout $t \in \mathbb{R}$, $\varphi_X(t) = e^{i\mu t - \sigma |t|}$.
+Pour la preuve voir par exemple [Exemple III.5.5., @Barbe_Ledoux06]
+Une conséquence directe est que la somme de deux variables aléatoires indépendantes de loi de Cauchy reste une loi de Cauchy:
+Si $X_1 \sim \mathcal{C}(\mu_1,\sigma_2)$ et $X_2 \sim \mathcal{C}(\mu_2,\sigma_2)$ sont indépendantes, alors $X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)$ (car elles ont la même fonction caractéristique).
+
+On en déduit que la moyenne de variables de Cauchy standard i.i.d suit la loi de Cauchy standard. En effet, si $X_1, \ldots, X_n$ sont i.i.d de loi de Cauchy standard, alors pour tout $t \in \mathbb{R}$, $\varphi_{\frac{1}{n}\sum_{i=1}^n X_i}(t) = e^{-|t|}$, et donc $\frac{1}{n}\sum_{i=1}^n X_i \sim \mathcal{C}(0,1)$. Ainsi la moyenne empirique ne converge pas en probabilité vers une constante!
+
+
+#### Fonction de répartition et simulation
+
+
+La fonction de répartition de $X$ correspond, à une constante près, à la fonction arctangente qui est bijective de $\mathbb{R}$ sur $]\frac{-\pi}{2},\frac{\pi}{2}[$.
+La méthode d'inversion permet donc de simuler une variable aléatoire de loi de Cauchy.
+La proposition suivante donne un autre moyen.
+
+
 
 ::: {#prp-cauchy}
 

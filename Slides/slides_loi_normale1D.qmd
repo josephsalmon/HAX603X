@@ -329,27 +329,124 @@ statisticien et chimiste anglais. Il était employé à la brasserie Guinness à
 
 ## Loi de Cauchy
 
+::::{.columns}
+
+:::{.column width="60%"}
+
 ::: {#def-cauchy}
 
-## Loi de Cauchy
+## Loi de Cauchy standard
 
-Une v.a. $X$ suit une **loi de Cauchy** si sa densité est donnée par
+Une v.a. $X$ suit une **loi de Cauchy standard** si sa densité est donnée par
 $$
 	f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 $$
+On note alors $X\sim \mathcal{C}(0,1)$ dans ce cas.
 :::
 
 
+
+:::{.fragment fragment-index=2}
+
+[Application]{.underline}: Loi souvent utile comme contre-exemple, n'ayant ni espérance (ni variance a fortiori), et ne satisfaisant pas la loi des grands nombres ou le TCL.
+
+
+:::
+
+:::
+
+:::{.column width="35%"}
+
+
+:::{.fragment fragment-index=3}
+
+::: {style="font-size: 80%;"}
+
+Loi étudiée en particulier par
+[Augustin-Louis Cauchy](https://fr.wikipedia.org/wiki/Augustin_Louis_Cauchy): (1789-1857)
+mathématicien et physicien français, connu pour ses travaux fondateurs en analyse complexe et dans l'étude du groupe des permutations.
+<img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Augustin_Louis_Cauchy.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo Augustin-Louis Cauchy" title="Photographie d'Augustin-Louis Cauchy par C. H. Reutlinger."></img>
+
+cf. [@Stigler74] pour plus de détails historiques sur cette loi
+:::
+
+
+:::
+
+:::
+
+:::
+
+
+
+
+
+
+## Loi de Cauchy: fonctions caractéristiques
+
+
+
+::: {#def-cauchy}
+
+## Loi de Cauchy
+On dit que $Y$ suit une loi de Cauchy de paramètres $(\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[$ si $Y=\mu + \sigma X$, où $X$ suit une loi de Cauchy standard. On note alors $X\sim \mathcal{C}(0,1)$ dans ce cas, et la densité de $Y$ est donnée par
+$$
+	f_Y(y) = \dfrac{1}{\sigma \pi(1 + \tfrac{1}{\sigma^2}\left(y-\mu\right)^2)}\,, \quad y \in \mathbb{R}\,.
+$$
+
+:::
+
+
+::: {#prp-cauchy}
+
+## Loi de Cauchy et fonction caractéristique
+
+
+La fonction caractéristique de la loi de Cauchy standard est donnée par
+$$
+\begin{align*}
+\varphi_X(t) & \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
+\end{align*}
+$$
+et donc si $Y\sim \mathcal{C}(\mu,\sigma)$, alors pour tout $t \in \mathbb{R}$, $\varphi_Y(t) = e^{i\mu t - \sigma |t|}$.
+
+:::
+
+Pour la preuve voir par exemple [Exemple III.5.5., @Barbe_Ledoux06]
+
+
+## Loi de Cauchy : stabilité par somme
+
+[Implications]{.underline}:
+
+- la somme de deux variables aléatoires indépendantes de loi de Cauchy est de Cauchy: Si $X_1 \sim \mathcal{C}(\mu_1,\sigma_2)$ et $X_2 \sim \mathcal{C}(\mu_2,\sigma_2)$ sont indépendantes, alors $X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)$ ([preuve]{.underline}: même fonction caractéristique).
+
+. . .
+
+- la moyenne de variables de Cauchy standard i.i.d suit la loi de Cauchy standard: si $X_1, \ldots, X_n$ sont i.i.d de loi de Cauchy standard alors  $\bar{X}_n \sim \mathcal{C}(0,1)$ ([preuve]{.underline}: pour tout $t \in \mathbb{R}$, $\varphi_{\bar{X}_n}(t) = e^{-|t|}$)
+
+
+[Conclusion]{.underline}: la moyenne empirique de v.a. $\mathcal{C}(0,1)$ i.i.d ne converge pas en probabilité vers une constante!
+
+
+
+## Loi de Cauchy: propriété
 
 ::: {#prp-cauchy}
 
 ## Loi de Cauchy et loi normale
 
-Soient $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, $Y/X$ suit une loi de Cauchy.
+Soient $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, $Y/X$ suit une loi de Cauchy standard.
 
 :::
 
 [Remarque]{.underline}: la méthode d'inversion permet aussi de simuler une variable aléatoire de loi de Cauchy (cf. TD/TP).
+
+. . .
+
+<br>
+
+[Conséquence]{.underline}: $X\sim \mathcal{C}(0,1) \implies 1/X \sim \mathcal{C}(0,1)$
 
 ## Preuve (rapport de variables gaussiennes):
 
