@@ -211,11 +211,11 @@ En pratique, les temps d'éxécution peuvent varier suivant la charge d'utilisat
 ## Méthode de rejet et loi Beta
 
 On rappelle que la loi de Beta de paramètres $\alpha, \beta > 0$, notée $\text{Beta}(\alpha, \beta)$, est donnée par la densité
-\[
+$$
 	f_{\alpha, \beta}(x)
 	= \dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
 	\quad x \in [0,1]\,.
-\]
+$$
 La fonction $\Gamma$ s'obtient sur \texttt{R} avec \texttt{gamma}.
 	
 1.  Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi. On pourra utiliser la fonction `scipy.special.gamma`.
