@@ -1,0 +1,236 @@
+---
+title: "TP2: Simulation de lois élémentaires"
+bibliography: ../Courses/references.bib
+format:
+  html:
+    out.width: 50%
+filters:
+  - shinylive
+---
+
+
+::: {.callout-note}
+
+## Objectifs de ce TP
+- Utiliser les générateurs aléatoires en Python et `numpy`, savoir afficher un histogramme,  une densité, etc.
+- Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en `numpy`.
+:::
+
+
+## Méthode d'inversion : loi exponentielle et loi de Cauchy
+	
+1. Représenter graphiquement la fonction de répartition d'une loi exponentielle (on pourra se restreindre aux réels positifs).
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+import numpy as np
+import matplotlib.pyplot as plt
+
+t = np.linspace(0, 5, 100)
+plt.plot(t, 1 - np.exp(-t), color="red", label="lambda = 1")
+plt.plot(t, 1 - np.exp(-2*t), color="blue", label="lambda = 2")
+plt.plot(t, 1 - np.exp(-(1/2)*t), color="green", label="lambda = 1/2")
+plt.xlabel("t")
+plt.ylabel("F(t)")
+plt.title("Fonction de répartition d'une loi exponentielle de paramètre 1")
+plt.legend()
+plt.show()
+```
+2. Écrire une fonction `expo` qui prend en argument un entier $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+def expo(n, lam):
+    """
+    Generates random samples from an exponential distribution.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        lam (float): Rate parameter lambda of the exponential distribution.
+
+    Returns:
+        numpy.ndarray: Random samples from the exponential distribution.
+    """
+    return -np.log(np.random.rand(n)) / lam   
+```
+
+
+3. Représenter graphiquement l'histogramme d'un tel échantillon pour $n=10^2$, $n=10^3$, puis $n=10^4$, et pour $\lambda = 1/2, 1, 4$. Superposer à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+from scipy import stats
+
+# Define parameters
+t = np.linspace(0, 10, 200)
+n = 10**2
+lam = 1/2
+
+# Generate exponential random variables
+va_expo = expo(n, lam)
+
+# Plot histogram
+fig, ax = plt.subplots()
+
+ax.plot(t, stats.norm.pdf(t, loc=0, scale=lam),'--', color='k', label="Loi théorique", alpha=0.5)
+plt.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.7)
+
+plt.title("Histogramme de 100 variables aléatoires exponentielles")
+plt.ylim(0, 0.5)
+plt.show()
+```
+
+4. Illustrer graphiquement la loi des grands nombres avec $\lambda = 1/2, 1, 4$. On tracera en particulier la droite d'équation $y=\mathbb E[X]$, où $X \sim \mathcal{E}(\lambda)$.
+5. \emph{À faire chez soi pour s'entraîner.} Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?
+
+## Lois discrètes
+
+### Loi de Bernoulli
+
+1. Écrire une fonction `bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{B}(p)$.
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+import numpy as np
+
+def bernou(n, p):
+    """
+    Generates random samples from a Bernoulli distribution.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        p (float): Probability of success for each trial.
+
+    Returns:
+        numpy.ndarray: Random samples from the Bernoulli distribution.
+    """
+    return 1 * (np.random.rand(n) < p)  # Multiplication by 1 converts boolean to integer
+
+# Define parameters
+p = 0.5
+n = 10
+
+# Generate Bernoulli random variables
+b = bernou(n, p)
+print(b)   
+```
+2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$ (on pourra superposer les graphes).
+
+### Loi géométrique
+
+1. Rappeler les deux méthodes vues en TD pour simuler une loi géométrique.
+
+2. Écrire une fonction `geo_bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `bernou`.
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+import numpy as np
+
+def geo_bernou(n, p):
+    """
+    Generates random samples from a geometric distribution based on Bernoulli trials.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        p (float): Probability of success for each Bernoulli trial.
+
+    Returns:
+        numpy.ndarray: Random samples from the geometric distribution.
+    """
+    geo = np.zeros(n)
+    for j in range(n):
+        i = 1
+        while bernou(1, p)[0] == 0:  # Simulate until a Bernoulli trial yields 1
+            i += 1
+        geo[j] = i
+    return geo
+```
+
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Example usage
+n = 12
+p = 0.3
+geometric_samples = geo_bernou(n, p)
+print(geometric_samples)
+
+```
+
+3. Écrire une fonction `geo_expo` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
+
+4. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer 
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| eval: false
+
+import time
+
+t0 = time.process_time()
+
+""" code chunck to be timed """ 
+
+t1 = time.process_time()
+
+print("Time elaped  when running code chunk:", t1 - t0)
+```
+Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.
+
+::: {.callout-note}
+En pratique, les temps d'éxécution peuvent varier suivant la charge d'utilisation de la machine (c'est un phenomène aléatoire). Pour donner une meilleur approximation de tzemps réel d'éxécution, on répète plusieurs fois la mesure et on affiche le temps moyen.
+:::
+
+
+## Méthode de rejet et loi Beta
+
+On rappelle que la loi de Beta de paramètres $\alpha, \beta > 0$, notée $\text{Beta}(\alpha, \beta)$, est donnée par la densité
+\[
+	f_{\alpha, \beta}(x)
+	= \dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
+	\quad x \in [0,1]\,.
+\]
+La fonction $\Gamma$ s'obtient sur \texttt{R} avec \texttt{gamma}.
+	
+1.  Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi. On pourra utiliser la fonction `scipy.special.gamma`.
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.special import gamma
+
+def f_beta(x, alpha, beta):
+    return (gamma(alpha + beta) / (gamma(alpha) * gamma(beta))) * x**(alpha - 1) * (1 - x)**(beta - 1)
+
+t = np.linspace(0, 1, 100)
+
+plt.plot(t, f_beta(t, alpha=2, beta=5), color="red", label="alpha = 2, beta = 5")
+plt.plot(t, f_beta(t, alpha=1, beta=3), color="blue", label="alpha = 1, beta = 3")
+plt.plot(t, f_beta(t, alpha=3, beta=1), color="green", label="alpha = 3, beta = 1")
+plt.plot(t, f_beta(t, alpha=2, beta=2), color="black", label="alpha = 2, beta = 2")
+
+plt.xlabel("t")
+plt.ylabel("f(t)")
+plt.title("Densité d'une loi Beta")
+plt.ylim(0, 3)
+
+plt.legend()
+plt.show()
+
+```
+2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. 
+
+3. Illustrer graphiquement votre résultat en représentant l'histogramme pour $n=10^3$ et différentes valeurs de $\alpha, \beta$. On superposera à chaque fois la densité adéquate.
+
+
