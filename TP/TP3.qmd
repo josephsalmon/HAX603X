@@ -427,15 +427,10 @@ print("Reject ratio :", len(x_rejected) / (len(x_rejected) + len(x_accepted)))
 #| layout-ncol: 1
 #| echo: false
 
-# Generate samples
-echant = unif_disque2(100)
-disque = echant[0]  # Points within the unit disk
-non_disque = echant[1]  # Points outside the unit disk
-
 # Plot the points
 plt.figure()
-plt.scatter(disque[:, 0], disque[:, 1], color='red', marker='^', label='Points in the disk')
-plt.scatter(non_disque[:, 0], non_disque[:, 1], color='blue', marker='^', label='Points outside the disk')
+plt.scatter(x_accepted[:, 0], x_accepted[:, 1], color='red', marker='^', label='Points in the disk')
+plt.scatter(x_rejected[:, 0], x_rejected[:, 1], color='blue', marker='^', label='Points outside the disk')
 plt.title("Un échantillon de 100 réalisations de loi uniforme sur le disque")
 plt.xlabel("X")
 plt.ylabel("Y")
