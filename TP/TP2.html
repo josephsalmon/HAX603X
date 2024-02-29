@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../TP/TP3.html" rel="next">
 <link href="../TP/TP1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -233,6 +234,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../TP/TP2.html">
  <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/TP3.html">
+ <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
+  </li>  
     </ul>
   </li>
 </ul>
@@ -278,6 +283,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP2.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
   </div>
 </li>
@@ -345,15 +356,15 @@ Objectifs de ce TP
 <h2 class="anchored" data-anchor-id="loi-uniforme-et-graine.">Loi uniforme et graine.</h2>
 <p>Avec <code>numpy</code>, la fonction <code>numpy.random.uniform</code> permet la génération de réalisations <em>pseudo-aléatoires</em> de la loi uniforme sur <span class="math inline">[0,1]</span>.</p>
 <p>On peut modifier la taille de l’échantillon généré en modifiant l’argument de la fonction. Pour obtenir <span class="math inline">n=4</span> réalisations i.i.d. de loi uniforme, essayez par exemple</p>
-<div id="82106a08" class="cell" data-execution_count="1">
+<div id="137d0428" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([0.35906122, 0.67812341, 0.69487194, 0.6328024 ])</code></pre>
+<pre><code>array([0.08088254, 0.20741855, 0.41807592, 0.73682502])</code></pre>
 </div>
 </div>
 <p>Pour rappel, l’algorithme de génération de v.a. est récursif et s’appuie sur une graine. La graine peut être modifiée avec la création d’un générateur, et il suffit d’entrer un nombre en argument pour fixer cette graine.</p>
-<div id="36da7ab2" class="cell" data-execution_count="2">
+<div id="c0c9ba58" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">34</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.uniform())</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">34</span>)</span>
@@ -368,7 +379,7 @@ Objectifs de ce TP
 <section id="exercice-1-simulation-de-loi-uniforme-et-histogramme" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-1-simulation-de-loi-uniforme-et-histogramme">Exercice 1: Simulation de loi uniforme et histogramme</h2>
 <p>Créez un vecteur de taille <span class="math inline">1000</span> composé de réalisations i.i.d. de v.a.uniformes sur <span class="math inline">[-1,1]</span>. Dans la suite on supposera que l’on a chargé <code>matplotlib</code> pour l’affichage graphique avec la commande:</p>
-<div id="1060d5f7" class="cell" data-execution_count="3">
+<div id="adbd7721" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pylab <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -378,7 +389,7 @@ Objectifs de ce TP
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.hist(vect, label<span class="op">=</span><span class="st">"Histogramme"</span>)</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="c68bbb5f" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="dacdbc3a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-5-output-1.png" width="575" height="411"></p>
@@ -398,7 +409,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="c3d27f7c" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
+<div id="959be92d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="5">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-6-output-1.png" width="599" height="449"></p>
@@ -421,7 +432,7 @@ Objectifs de ce TP
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme: tirage Gaussien'</span>)</span>
 <span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="83164edb" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="54d78a87" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-7-output-1.png" width="571" height="431"></p>
@@ -443,7 +454,7 @@ Objectifs de ce TP
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co"># plot density</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="7b507edf" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="2de2f5ae" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-8-output-1.png" width="604" height="431"></p>
@@ -467,7 +478,7 @@ Objectifs de ce TP
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme : tirage Cauchy tronquée...'</span>)</span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div id="a8df7749" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="a4ae9ad7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-9-output-1.png" width="579" height="432"></p>
@@ -487,7 +498,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="db9ab400" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div id="3997ee71" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="9">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-10-output-1.png" width="581" height="411"></p>
@@ -502,7 +513,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="18109189" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="95ee0eb8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-11-output-1.png" width="581" height="432"></p>
@@ -518,7 +529,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="22d952d0" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div id="514a5a0a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-12-output-1.png" width="579" height="431"></p>
@@ -538,7 +549,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="0381c023" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div id="fa8c46f7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="12">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-13-output-1.png" width="577" height="431"></p>
@@ -548,7 +559,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="be2fe2c2" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div id="708ed5c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-14-output-1.png" width="571" height="431"></p>
@@ -558,7 +569,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="03fa342c" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
+<div id="d5d6fb01" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="14">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-15-output-1.png" width="588" height="431"></p>
@@ -569,7 +580,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="29626aaa" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div id="93a0df1c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-16-output-1.png" width="579" height="431"></p>
@@ -579,7 +590,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="7d02bb80" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
+<div id="3d7b7834" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-17-output-1.png" width="569" height="431"></p>
@@ -592,7 +603,7 @@ Objectifs de ce TP
 <p>Le phénomène qui apparaît avec la loi de Cauchy est les suivant: les queues de la loi de Cauchy sont tellement épaisses que la moyenne empirique que l’écart entre <span class="math inline">\min_i(X_i)</span> et le <span class="math inline">\max_i(X_i)</span> (les <span class="math inline">X_i</span> étant les tirages effectués) est du même ordre de grandeur que le nombre de tirages, <span class="math inline">n</span>. Comme la fonction <code>hist</code> discrétise l’intervalle <span class="math inline">[\min(X_i), \max(X_i)]</span> en le nombre de boîtes (<code>bins</code>) on observe peu de points dans chaque boîte ce qui rend l’estimation de la densité trop petite.</p>
 <p>Ce point n’est pas un problème pour les lois gaussiennes, car la largeur de l’intervalle <span class="math inline">[\min(X_i), \max(X_i)]</span> est de l’ordre de <span class="math inline">\sqrt{\log(n)}</span>, et comme on a <span class="math inline">n</span> points à placer dans cet intervalle, il y a assez de points dans chaque boîte pour obtenir une bonne estimation.</p>
 <p>Notons que les méthodes à noyaux (KDE) ne souffrent pas de ce défaut, car les “boîtes” sont en fait fixé autour des données et non sur une grille discrétisée comme c’est le cas pour l’histogramme. Voir par exemple l’aide de <a href="https://scikit-learn.org/stable/modules/density.html#kernel-density">scikit learn</a> ou encore <a href="https://fr.wikipedia.org/wiki/Estimation_par_noyau">wikipedia, méthode à noyau</a>.</p>
-<div id="67e52e6b" class="cell" data-execution_count="17">
+<div id="554efdff" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>n_sample <span class="op">=</span> <span class="dv">1000</span></span>
@@ -621,7 +632,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="ce6df720" class="cell quarto-layout-panel" data-execution_count="18" data-layout-ncol="1">
+<div id="eef32e17" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="18">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <pre><code>Taille de l'échantillon: 1000
@@ -1089,6 +1100,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../TP/TP3.html" class="pagination-link" aria-label="TP2: Simulation de lois élémentaires">
+        <span class="nav-page-text">TP2: Simulation de lois élémentaires</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

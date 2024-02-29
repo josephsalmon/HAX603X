@@ -578,7 +578,7 @@ Benjamin Charlier
 <p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky) </strong></span>Soit <span class="math inline">\(\Sigma \in \mathbb{R}^{d \times d}\)</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">\(L \in \mathbb{R}^{d \times d}\)</span> telle que <span class="math inline">\(\Sigma = LL^\top\)</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">\(L\)</span> soient strictement positifs.</p>
 </div>
 <div class="fragment" data-fragment-index="2">
-<p><u>Preuve</u>: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss; détails <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#/bibliographie" role="doc-biblioref" onclick="">Ciarlet 2006</a>)</span>.</p>
+<p><u>Preuve</u>: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss; détails <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#/bibliographieo" role="doc-biblioref" onclick="">Ciarlet 2006</a>)</span>.</p>
 </div>
 <div class="fragment" data-fragment-index="3">
 <p><u>Utilité</u>: Résolution de systèmes linéaires “<span class="math inline">\(Ax=b\)</span>” avec <span class="math inline">\(A\)</span> symétrique définie positive (notamment pour résoudre plusieurs systèmes avec la même matrice A)</p>
@@ -595,7 +595,7 @@ Benjamin Charlier
 <section id="numérique" class="slide level2">
 <h2>Numérique</h2>
 <p>En <code>numpy</code>, la factorisation de Cholesky est disponible via la fonction <code>linalg.cholesky</code>.</p>
-<div id="89fc29a5" class="cell" data-execution_count="1">
+<div id="402529f1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Sigma <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.5</span>], [<span class="fl">0.5</span>, <span class="dv">2</span>]])</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.cholesky(Sigma)</span>
@@ -660,7 +660,7 @@ L^TL:
 </section>
 <section id="vecteurs-gaussiens-cas-bidimensionnel" class="slide level2">
 <h2>Vecteurs gaussiens : cas bidimensionnel</h2>
-<p>En dimension <span class="math inline">\(p=2\)</span>, la matrice de covariance <span class="math inline">\(\Sigma\)</span> peut toujours s’écrire comme suit, et la visualisation suivante montre l’impact des différents paramètres sur la densité de probabilité. <span class="math display">\[
+<p>En dimension <span class="math inline">\(p=2\)</span>, la matrice de covariance <span class="math inline">\(\Sigma\)</span> peut toujours s’écrire comme suit: <span class="math display">\[
 \Sigma =
 \begin{pmatrix}\cos(\theta) &amp; - \sin(\theta)\\  \sin(\theta)&amp; \cos(\theta)
 \end{pmatrix} \cdot
@@ -668,14 +668,18 @@ L^TL:
 \end{pmatrix}\cdot
 \begin{pmatrix}
 \cos(\theta) &amp;\sin(\theta)\\  -\sin(\theta)&amp; \cos(\theta)\end{pmatrix}
-\]</span> où <span class="math inline">\(\theta\)</span> est l’angle de rotation et <span class="math inline">\(\sigma_1\)</span> et <span class="math inline">\(\sigma_2\)</span> les écarts-types des marginales (dans le repère orthonormal après rotation).</p>
+\]</span></p>
+<ul>
+<li><span class="math inline">\(\theta\)</span> : l’angle de rotation des axes</li>
+<li><span class="math inline">\(\sigma_1\)</span> et <span class="math inline">\(\sigma_2\)</span> écarts-types des marginales (dans le repère orthonormal après rotation)</li>
+</ul>
 </section>
 <section id="visualisation-de-la-densité-de-probabilité" class="slide level2">
 <h2>Visualisation de la densité de probabilité</h2>
 <p>cf.&nbsp;<a href="http://josephsalmon.github.io/HAX603X/Courses/loi_normale_multi.html">cours</a></p>
 </section>
-<section id="bibliographie" class="slide level2 smaller scrollable">
-<h2>Bibliographie</h2>
+<section id="bibliographieo" class="slide level2 smaller scrollable">
+<h2>Bibliographieo</h2>
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
 <div id="ref-Ciarlet06" class="csl-entry" role="listitem">
 Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</span>rique matricielle et <span>à</span> l’optimisation. Cours et exercices corrig<span>é</span>s</em>. Dunod.
