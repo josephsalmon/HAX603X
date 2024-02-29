@@ -7,11 +7,11 @@
 
 \input{../../common/header.tex}
 
-\newcommand{\va}{variable aléatoire\xspace} 
+\newcommand{\va}{variable aléatoire\xspace}
 \newcommand{\vas}{variables aléatoires\xspace}
 \newcommand{\evs}{événements\xspace}
 \newcommand{\ev}{événement\xspace}
-\newcommand{\fdr}{fonction de répartition\xspace} 
+\newcommand{\fdr}{fonction de répartition\xspace}
 \usepackage{xspace} % gestion des espaces apres les macros
 \usepackage[ruled]{algorithm2e} % to write algorithms
 
@@ -34,7 +34,7 @@
     I_1= 4 \int_0^1 \sqrt{1-x^2} dx \quad \hbox{ et } \quad I_2= \int_{\mathbb R^2} \one_{\{ x^2+ y^2 \leq 1\}} dx dy
     $$
     \begin{enumerate}
-        \item  Montrer que $I_1=I_2=\pi$. Que représentent ces intégrales d'un point de vue géométrique ? 
+        \item  Montrer que $I_1=I_2=\pi$. Que représentent ces intégrales d'un point de vue géométrique ?
 %--------------------------------------------
             \cor{
                 L'intégrale $\int_0^1\sqrt{1-x^2} dx$ représente l'aire du quart de disque unité soit $\pi /4$. (La courbe représentative de la fonction définie sur $[0,1]$ par $x\mapsto \sqrt{1-x^2}$ est le quart de cercle de rayon 1 et de centre l'origine du repère orthonormé.) Ainsi $I_1=4\times \pi /4=\pi$. \\
@@ -57,14 +57,14 @@
                 Quant à $I_2$, cette intégrale double représente l'aire du disque unité.
             }
 %--------------------------------------------
-        \item Exprimer $I_1$ et $I_2$ comme des espérances. 
+        \item Exprimer $I_1$ et $I_2$ comme des espérances.
 %--------------------------------------------
             \cor{
                 Exprimons $I_1$ comme une espérance :
                 $$
                 I_1=4 \mathbb E\left(\sqrt{1-X^2}\right) \quad \hbox{où } X\sim U(0,1)
                 $$
-                et pour $I_2$ remarquons qu'en prenant $X\sim U(-1,1)$ et $Y\sim U(-1,1)$ indépendantes, on a 
+                et pour $I_2$ remarquons qu'en prenant $X\sim U(-1,1)$ et $Y\sim U(-1,1)$ indépendantes, on a
                 $$
                 \mathbb P\left(X^2+Y^2 \leq 1\right)=\mathbb E \left( \one_{ \{X^2+Y^2\leq 1\}}\right)
                 = \int_{-1}^1 \int_{-1}^1 \one_{\{x^2+y^2\leq 1\}} \, \frac12 \times \frac12 dxdy=\frac14 I_2
@@ -75,10 +75,10 @@
                 $$
             }
 %--------------------------------------------
-        \item Écrire le pseudo code des algorithmes qui calculent les approximations $I_{1,n}$ et $\hat I_{2,n}$ de $\pi$ par méthode de Monte-Carlo, appliquée à $I_1$ et à $I_2$. 
+        \item Écrire le pseudo code des algorithmes qui calculent les approximations $I_{1,n}$ et $\hat I_{2,n}$ de $\pi$ par méthode de Monte-Carlo, appliquée à $I_1$ et à $I_2$.
 %--------------------------------------------
             \cor{
-                On approche $I_1$ par $\frac{4}{n} \sum_{i=1}^n \sqrt{1-X_i^2}$ où $X_1, \cdots, X_n$ sont i.i.d de loi $U(0,1)$ 
+                On approche $I_1$ par $\frac{4}{n} \sum_{i=1}^n \sqrt{1-X_i^2}$ où $X_1, \cdots, X_n$ sont i.i.d de loi $U(0,1)$
 
                 \begin{algorithm}[H]
                     \SetAlgoLined
@@ -107,7 +107,7 @@
                             FIN SI
                             FIN de boucle i
                     \end{enumerate}
-                    \textbf{Sortie:} Retourner la valeur $\tfrac{4S}{n}$.            
+                    \textbf{Sortie:} Retourner la valeur $\tfrac{4S}{n}$.
                 \end{algorithm}
             }
 %--------------------------------------------
@@ -116,7 +116,7 @@
 
 %=========================
 \begin{exo}{} % [Probabilités de dépassement d'une Cauchy]
-    Supposons que nous souhaitions estimer la probabilité qu'une variable aléatoire 
+    Supposons que nous souhaitions estimer la probabilité qu'une variable aléatoire
     $X \sim \mbox{Cauchy}(0, 1)$ soit plus grande que 2.
 
     \begin{enumerate}
@@ -127,7 +127,7 @@
                 \end{equation*}
             }
 %--------------------------------------------
-        \item Trouver un estimateur basique par Monte--Carlo pour $I$ et déterminer sa variance. 
+        \item Trouver un estimateur basique par Monte--Carlo pour $I$ et déterminer sa variance.
 %--------------------------------------------
             \cor{
                 L'estimateur par Monte--Carlo classique s'écrit
@@ -143,12 +143,12 @@
             }
 %--------------------------------------------
         \item Trouver un estimateur antithétique (simple) pour $I$ et
-            déterminer sa variance. 
+            déterminer sa variance.
 %--------------------------------------------
             \cor{
                 Puisqu'une $\mbox{Cauchy}(0,1)$ est symétrique autour de 0,
                 un estimateur antithétique s'écrit alors
-                \begin{equation*} 
+                \begin{equation*}
                     I_n^a = \frac{1}{2n} \sum_{i=1}^n \left(\one_{\{X_i > 2\}} +
                     \one_{\{-X_i > 2\}} \right) = \frac{1}{2n} \sum_{i=1}^n
                     \one_{\{|X_i| > 2\}}, \qquad X_1, \ldots, X_n \stackrel{\rm
@@ -168,7 +168,7 @@
                 \frac{2}{\pi (1 + X_i^2)}, \qquad X_i \stackrel{\rm iid}{\sim}
                 U(0,2),
             \end{equation*}
-            est un estimateur sans biais de $I$, i.e., $\mathbb{E}[\tilde{I}_n] = I$ et calculer sa variance. 
+            est un estimateur sans biais de $I$, i.e., $\mathbb{E}[\tilde{I}_n] = I$ et calculer sa variance.
 %--------------------------------------------
             \cor{
                 \begin{align*}
@@ -187,7 +187,6 @@
                     &= \frac{4}{\pi^2 n} \left[ \mathbb{E}\{(1 + X^2)^{-2}\} -
                     \mathbb{E}\{(1 + X^2)^{-1}\}^2 \right].
                 \end{align*}
-
                 Or on a
                 \begin{align*}
                     \mathbb{E}\{(1 + X^2)^{-2}\} &= \frac{1}{2} \int_0^2 (1 +
@@ -226,7 +225,7 @@
                 \hat{I}_n = \frac{1}{n} \sum_{i=1}^n \left\{ \frac{1}{2 \pi
                 (1 + X_i^2)}  \right\}, \qquad X_1, \ldots, X_n \stackrel{\rm
                 iid}{\sim} U(0,1/2).
-            \end{equation*} 
+            \end{equation*}
 %--------------------------------------------
             \cor{
                 C'est à peu près la même chose. On a
@@ -300,7 +299,7 @@
     \begin{enumerate}
         \item Montrez que, pour $\ell \leq d$, la probabilité que l'aiguille soit à cheval sur une ligne est
             $2 \ell / (\pi d)$. En déduire un estimateur pour
-            $I= 1 / \pi$. 
+            $I= 1 / \pi$.
 %-----------------------
             \cor{
                 D'après la Figure~\ref{fig:buffon} et puisque l'aiguille est jetée
@@ -330,7 +329,7 @@
             }
 %-----------------------
         \item Trouvez la variance de cet estimateur et déduisez en un choix optimal pour
-            $\ell$ et $d$. 
+            $\ell$ et $d$.
 %-----------------------
             \cor{
                 La variance se trouve très facilement
@@ -343,7 +342,7 @@
                 pas être strictement plus grand que $d$.
             }
 %-----------------------
-        \item  Avec ce choix optimal, construisez un estimateur de $\pi$. 
+        \item  Avec ce choix optimal, construisez un estimateur de $\pi$.
 %-----------------------
             \cor{
                 Lorsque $\ell = d$, un estimateur de $\pi$ est alors
@@ -360,7 +359,7 @@
 
 
 
-\begin{exo}{} %[Probabilités de dépassement d'une Normale] 
+\begin{exo}{} %[Probabilités de dépassement d'une Normale]
     Soit $Z \sim N(0,1)$. Nous cherchons à évaluer la
     probabilité $I = \mathbb P(Z >4.5)$.
     \begin{enumerate}
@@ -406,7 +405,7 @@
                     \frac{1}{\sqrt{2 \pi}\exp\{-(z - 4.5)\}} \exp\left\{-\frac{z^2}{2}\right\}\exp\{-(z - 4.5)\}dz\\
                     &=\bbE[\frac{1}{\sqrt{2 \pi}} \exp\left\{-\frac{Y^2}{2}+ Y - 4.5 \right\}]
                 \end{align*}
-                puisque $\mathbb P(Y > 4.5) = 1$. 
+                puisque $\mathbb P(Y > 4.5) = 1$.
                 L'estimateur est alors
                 \begin{align*}
                     I_n^e&=  \frac{1}{n} \sum_{i=1}^n \frac{1}{\sqrt{2 \pi}}
@@ -419,14 +418,14 @@
 
 
 
-\begin{exo}{} % 
+\begin{exo}{} %
     On veut utiliser la m\'ethode de Monte Carlo pour calculer le prix $C$ d'une option européenne d'achat (call) au temps 0 dans le mod\`ele de Black et Scholes. Une option européenne est un actif financier caractérisé par un prix d'exercice $K$, une date échéance $T$ et un actif risqué de valeur initiale $x$ suivant le mod\`ele de Black et Scholes. Son prix s'exprime par la formule
     \begin{eqnarray*}
         C&=&\mathbb{E}\left[\left(x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}-K\mathrm{e}^{-rT}\right)_+\right],
 %&=&\mathbb{E}\left[(K\mathrm{e}^{-rT}-x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}})\one_{\{X\leq -d_2\}}\right]
     \end{eqnarray*}
     où $X$ est une variable al\'eatoire de loi normale centr\'ee r\'eduite et $(\cdot)_+$ désigne la partie positive,
-    $r$ est le taux d'intérêt sans risque, et $\sigma$ la volatilité du modèle de Black et Scholes. 
+    $r$ est le taux d'intérêt sans risque, et $\sigma$ la volatilité du modèle de Black et Scholes.
     \begin{enumerate}
         \item Donner un estimateur basique de $C$.
 %-----------------------
@@ -445,7 +444,7 @@
             }
 %-----------------------
             Dans toute la suite, on suppose que $x=K$ et $r=\sigma^2/2$.
-        \item  Montrer que 
+        \item  Montrer que
             \begin{align*}
                 C=\frac{x\mathrm{e}^{-rT}}{\sqrt{2\pi}}\mathbb{E}\Big[\frac{\mathrm{e}^{\sigma\sqrt{2TU}}-1}{\sqrt{2U}}\Big],
             \end{align*}
@@ -488,7 +487,7 @@
 
 %-----------------------
             \cor{
-                On a 
+                On a
                 \begin{align*}
                     C-P&=\mathbb{E}\left[\left(x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}-K\mathrm{e}^{-rT}\right)_+\right]-\mathbb{E}\left[\left(K\mathrm{e}^{-rT}-x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}\right)_+\right]\\
                     &=\mathbb{E}\left[\left(x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}-K\mathrm{e}^{-rT}\right)_+-\left(x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}-K\mathrm{e}^{-rT}\right)_-\right]\\
@@ -503,7 +502,7 @@
                     &=\mathrm{e}^{\sigma^2T/2}\frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\mathrm{e}^{-\frac{1}{2}(x-\sigma\sqrt{T})^2}dx\\
                     &=\mathrm{e}^{\sigma^2T/2}\ =\ \mathrm{e}^{rT}.
                 \end{align*}
-                donc on a 
+                donc on a
                 \begin{align*}
                     C-P&=x\mathrm{e}^{-rT}\mathbb{E}\left[\mathrm{e}^{\sigma\sqrt{T}X}-1\right]\\
                     &=x\mathrm{e}^{-rT}(\mathrm{e}^{rT}-1)\ =\ x(1-\mathrm{e}^{-rT}).
@@ -513,7 +512,7 @@
         \item En déduire un estimateur par variable de contrôle de $C$.
 %-----------------------
             \cor{
-                A partir de la relation de parité call-put $C=P+x(1-\mathrm{e}^{-rT})$, on peut estimer $C$ par 
+                A partir de la relation de parité call-put $C=P+x(1-\mathrm{e}^{-rT})$, on peut estimer $C$ par
                 $$C_n^c=\frac{1}{n}\sum_{k=1}^n\left(K\mathrm{e}^{-rT}-x\mathrm{e}^{\sigma\sqrt{T}X_k-\frac{\sigma^2T}{2}}\right)_++x(1-\mathrm{e}^{-rT}),$$
                 avec $X_k$ iid de loi $\scrN(0,1)$.
             }

@@ -43,8 +43,6 @@ website:
             - Slides/slides_loi_normale_multi.qmd
 
 
-
-
     - id: TP
       collapse-level: 2
       contents:
