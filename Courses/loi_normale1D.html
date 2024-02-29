@@ -224,6 +224,10 @@ div.csl-indent {
     <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
  <span class="dropdown-text">Loi normale: cas univarié</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../Slides/slides_loi_normale_multi.html">
+ <span class="dropdown-text">Loi normale: cas multivarié</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -474,7 +478,7 @@ div.csl-indent {
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
+<div class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center">
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -875,13 +879,32 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 </div>
 <p><br></p>
 </section>
-<section id="loi-de-cauchy" class="level3">
+<section id="loi-de-cauchy" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="loi-de-cauchy">Loi de Cauchy</h3>
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">X</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">X</span> suit une <strong>loi de Cauchy</strong> standard si sa densité est donnée par <span class="math display">
     f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 </span></p>
 </div>
+<p>On note alors <span class="math inline">X\sim \mathcal{C}(0,1)</span> dans ce cas. Plus généralement on dit que <span class="math inline">Y</span> suit une loi de Cauchy de paramètres <span class="math inline">(\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[</span> si <span class="math inline">Y=\mu+\sigma X</span> où <span class="math inline">X</span> suit une loi de Cauchy standard. Sa densité est alors donnée par <span class="math display">
+    f_Y(y) = \dfrac{1}{\sigma \pi(1 + \tfrac{(y-\mu)^2}{\sigma^2})}\,, \quad y \in \mathbb{R}\,.
+</span></p>
+<p>Pour rappel cette loi est importante comme exemple de loi qui n’admet ni espérance, ni variance a fortiori. En effet, si <span class="math inline">X</span> suit une loi de Cauchy standard, <span class="math display">
+\int_{\mathbb{R}} |x| f_X(x) \, dx = \int_{\mathbb{R}} \frac{|x|}{\pi(1+x^2)} \, dx.
+</span> Or <span class="math inline">\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi x}</span> quand <span class="math inline">|x|\to \infty</span>, et <span class="math inline">x\mapsto \frac{|x|}{\pi(1+x^2)}</span> n’est donc pas intégrable sur <span class="math inline">\mathbb{R}</span> au sens de Lebesgue. C’est donc un exemple de loi pour laquelle la loi des grands nombres et le théorème central limite ne s’appliquent pas.</p>
+<section id="fonction-caractéristique" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="fonction-caractéristique">Fonction caractéristique</h4>
+<p>La fonction caractéristique de la loi de Cauchy standard est donnée par <span class="math display">
+\begin{align*}
+\varphi_X(t) &amp; \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
+\end{align*}
+</span> et donc si <span class="math inline">X\sim \mathcal{C}(\mu,\sigma)</span>, alors pour tout <span class="math inline">t \in \mathbb{R}</span>, <span class="math inline">\varphi_X(t) = e^{i\mu t - \sigma |t|}</span>. Pour la preuve voir par exemple <span class="citation" data-cites="Barbe_Ledoux06">(Exemple III.5.5., <a href="#ref-Barbe_Ledoux06" role="doc-biblioref">Barbe et Ledoux 2006</a>)</span> Une conséquence directe est que la somme de deux variables aléatoires indépendantes de loi de Cauchy reste une loi de Cauchy: Si <span class="math inline">X_1 \sim \mathcal{C}(\mu_1,\sigma_2)</span> et <span class="math inline">X_2 \sim \mathcal{C}(\mu_2,\sigma_2)</span> sont indépendantes, alors <span class="math inline">X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)</span> (car elles ont la même fonction caractéristique).</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Barbe_Ledoux06" class="csl-entry" role="listitem">
+Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
+</div></div><p>On en déduit que la moyenne de variables de Cauchy standard i.i.d suit la loi de Cauchy standard. En effet, si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d de loi de Cauchy standard, alors pour tout <span class="math inline">t \in \mathbb{R}</span>, <span class="math inline">\varphi_{\frac{1}{n}\sum_{i=1}^n X_i}(t) = e^{-|t|}</span>, et donc <span class="math inline">\frac{1}{n}\sum_{i=1}^n X_i \sim \mathcal{C}(0,1)</span>. Ainsi la moyenne empirique ne converge pas en probabilité vers une constante!</p>
+</section>
+<section id="fonction-de-répartition-et-simulation" class="level4">
+<h4 class="anchored" data-anchor-id="fonction-de-répartition-et-simulation">Fonction de répartition et simulation</h4>
 <p>La fonction de répartition de <span class="math inline">X</span> correspond, à une constante près, à la fonction arctangente qui est bijective de <span class="math inline">\mathbb{R}</span> sur <span class="math inline">]\frac{-\pi}{2},\frac{\pi}{2}[</span>. La méthode d’inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.</p>
 <div id="prp-cauchy" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors la variable aléatoire <span class="math inline">Y/X</span> suit une loi de Cauchy.</p>
@@ -927,6 +950,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 
 
 
+</section>
 </section>
 </section>
 

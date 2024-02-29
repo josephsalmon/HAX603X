@@ -33,6 +33,7 @@
     div.csl-bib-body { }
     div.csl-entry {
       clear: both;
+      margin-bottom: 0em;
     }
     .hanging-indent div.csl-entry {
       margin-left:2em;
@@ -629,15 +630,65 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 </section>
 <section id="loi-de-cauchy" class="slide level2">
 <h2>Loi de Cauchy</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une v.a. <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy</strong> si sa densité est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy standard) </strong></span>Une v.a. <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy standard</strong> si sa densité est donnée par <span class="math display">\[
     f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
+\]</span> On note alors <span class="math inline">\(X\sim \mathcal{C}(0,1)\)</span> dans ce cas.</p>
+</div>
+<div class="fragment" data-fragment-index="2">
+<p><u>Application</u>: Loi souvent utile comme contre-exemple, n’ayant ni espérance (ni variance a fortiori), et ne satisfaisant pas la loi des grands nombres ou le TCL.</p>
+</div>
+</div><div class="column" style="width:35%;">
+<div class="fragment" data-fragment-index="3">
+<div style="font-size: 80%;">
+<p>Loi étudiée en particulier par <a href="https://fr.wikipedia.org/wiki/Augustin_Louis_Cauchy">Augustin-Louis Cauchy</a>: (1789-1857) mathématicien et physicien français, connu pour ses travaux fondateurs en analyse complexe et dans l’étude du groupe des permutations. <img src="https://upload.wikimedia.org/wikipedia/commons/7/7f/Augustin_Louis_Cauchy.jpg" width="45%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo Augustin-Louis Cauchy" title="Photographie d'Augustin-Louis Cauchy par C. H. Reutlinger."></p>
+<p>cf. <span class="citation" data-cites="Stigler74">(<a href="#/bibliographie" role="doc-biblioref" onclick="">Stigler 1974</a>)</span> pour plus de détails historiques sur cette loi</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="loi-de-cauchy-fonctions-caractéristiques" class="slide level2">
+<h2>Loi de Cauchy: fonctions caractéristiques</h2>
+<div id="def-cauchy" class="theorem definition">
+<p><span class="theorem-title"><strong>Définition 4 (Loi de Cauchy) </strong></span>On dit que <span class="math inline">\(Y\)</span> suit une loi de Cauchy de paramètres <span class="math inline">\((\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[\)</span> si <span class="math inline">\(Y=\mu + \sigma X\)</span>, où <span class="math inline">\(X\)</span> suit une loi de Cauchy standard. On note alors <span class="math inline">\(X\sim \mathcal{C}(0,1)\)</span> dans ce cas, et la densité de <span class="math inline">\(Y\)</span> est donnée par <span class="math display">\[
+    f_Y(y) = \dfrac{1}{\sigma \pi(1 + \tfrac{1}{\sigma^2}\left(y-\mu\right)^2)}\,, \quad y \in \mathbb{R}\,.
 \]</span></p>
 </div>
 <div id="prp-cauchy" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy.</p>
+<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et fonction caractéristique) </strong></span>La fonction caractéristique de la loi de Cauchy standard est donnée par <span class="math display">\[
+\begin{align*}
+\varphi_X(t) &amp; \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
+\end{align*}
+\]</span> et donc si <span class="math inline">\(Y\sim \mathcal{C}(\mu,\sigma)\)</span>, alors pour tout <span class="math inline">\(t \in \mathbb{R}\)</span>, <span class="math inline">\(\varphi_Y(t) = e^{i\mu t - \sigma |t|}\)</span>.</p>
+</div>
+<p>Pour la preuve voir par exemple <span class="citation" data-cites="Barbe_Ledoux06">(Exemple III.5.5., <a href="#/bibliographie" role="doc-biblioref" onclick="">Barbe et Ledoux 2006</a>)</span></p>
+</section>
+<section id="loi-de-cauchy-stabilité-par-somme" class="slide level2">
+<h2>Loi de Cauchy : stabilité par somme</h2>
+<p><u>Implications</u>:</p>
+<ul>
+<li>la somme de deux variables aléatoires indépendantes de loi de Cauchy est de Cauchy: Si <span class="math inline">\(X_1 \sim \mathcal{C}(\mu_1,\sigma_2)\)</span> et <span class="math inline">\(X_2 \sim \mathcal{C}(\mu_2,\sigma_2)\)</span> sont indépendantes, alors <span class="math inline">\(X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)\)</span> (<u>preuve</u>: même fonction caractéristique).</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>la moyenne de variables de Cauchy standard i.i.d suit la loi de Cauchy standard: si <span class="math inline">\(X_1, \ldots, X_n\)</span> sont i.i.d de loi de Cauchy standard alors <span class="math inline">\(\bar{X}_n \sim \mathcal{C}(0,1)\)</span> (<u>preuve</u>: pour tout <span class="math inline">\(t \in \mathbb{R}\)</span>, <span class="math inline">\(\varphi_{\bar{X}_n}(t) = e^{-|t|}\)</span>)</li>
+</ul>
+<p><u>Conclusion</u>: la moyenne empirique de v.a. <span class="math inline">\(\mathcal{C}(0,1)\)</span> i.i.d ne converge pas en probabilité vers une constante!</p>
+</div>
+</section>
+<section id="loi-de-cauchy-propriété" class="slide level2">
+<h2>Loi de Cauchy: propriété</h2>
+<div id="prp-cauchy" class="theorem proposition">
+<p><span class="theorem-title"><strong>Proposition 3 (Loi de Cauchy et loi normale) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy standard.</p>
 </div>
 <p><u>Remarque</u>: la méthode d’inversion permet aussi de simuler une variable aléatoire de loi de Cauchy (cf.&nbsp;TD/TP).</p>
+<div class="fragment">
+<p><br></p>
+<p><u>Conséquence</u>: <span class="math inline">\(X\sim \mathcal{C}(0,1) \implies 1/X \sim \mathcal{C}(0,1)\)</span></p>
+</div>
 </section>
 <section id="preuve-rapport-de-variables-gaussiennes" class="slide level2">
 <h2>Preuve (rapport de variables gaussiennes):</h2>
@@ -660,8 +711,13 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 </section>
 <section id="bibliographie" class="slide level2 smaller scrollable">
 <h2>Bibliographie</h2>
-<div id="refs" role="list">
-
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="ref-Barbe_Ledoux06" class="csl-entry" role="listitem">
+Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
+</div>
+<div id="ref-Stigler74" class="csl-entry" role="listitem">
+Stigler, Stephen M. 1974. <span>«&nbsp;Studies in the History of Probability and Statistics. XXXIII Cauchy and the witch of Agnesi: An historical note on the Cauchy distribution&nbsp;»</span>. <em>Biometrika</em>, 375‑80.
+</div>
 </div>
 
 <div class="footer footer-default">
