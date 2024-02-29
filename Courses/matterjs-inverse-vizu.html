@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -94,6 +94,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -111,7 +112,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -186,10 +187,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
  <span class="dropdown-text">Loi normale: cas univarié</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../Slides/slides_loi_normale_multi.html">
- <span class="dropdown-text">Loi normale: cas multivarié</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -220,7 +217,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP3.html">
- <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
+ <span class="dropdown-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
   </li>  
     </ul>
   </li>
@@ -310,7 +307,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: \"bimodal\", label: \"Distribution type\"})\nviewof replay = html`<button>replay`\n"},{"methodName":"interpret","cellName":"ojs-cell-2","inline":false,"source":"// Hack to make ojs load a github js file…\n// the repo is https://github.com/fradav/matter-playground\n// invcdfboard = {\n//   const response = await fetch(\"https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs\");\n//   const blob = await response.blob();\n//   const url = URL.createObjectURL(blob);\n//   return require(url).catch(() => window.invcdfboard);\n// }\n\n// Or load from local file\ninvcdfboard = require(await FileAttachment(\"../inverse-vizu/dist/invcdfboard.umd.cjs\").url())\n\n{\n  replay\n  const canvas = DOM.canvas(500, 500);\n  const galton = invcdfboard.galton(canvas,dist);\n  \n  return html`${galton.canvas}`\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('dist')"},{"methodName":"interpretQuiet","source":"shinyInput('replay')"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InZpZXdvZiBkaXN0ID0gSW5wdXRzLnNlbGVjdChbJ25vcm1hbCcsJ2NhdWNoeScsJ2xhcGxhY2UnLCdiaW1vZGFsJ10sIHt2YWx1ZTogXCJiaW1vZGFsXCIsIGxhYmVsOiBcIkRpc3RyaWJ1dGlvbiB0eXBlXCJ9KVxudmlld29mIHJlcGxheSA9IGh0bWxgPGJ1dHRvbj5yZXBsYXlgXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiIvLyBIYWNrIHRvIG1ha2Ugb2pzIGxvYWQgYSBnaXRodWIganMgZmlsZeKAplxuLy8gdGhlIHJlcG8gaXMgaHR0cHM6Ly9naXRodWIuY29tL2ZyYWRhdi9tYXR0ZXItcGxheWdyb3VuZFxuLy8gaW52Y2RmYm9hcmQgPSB7XG4vLyAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goXCJodHRwczovL3Jhdy5naXRodWJ1c2VyY29udGVudC5jb20vZnJhZGF2L21hdHRlci1wbGF5Z3JvdW5kL21haW4vZGlzdC9pbnZjZGZib2FyZC51bWQuY2pzXCIpO1xuLy8gICBjb25zdCBibG9iID0gYXdhaXQgcmVzcG9uc2UuYmxvYigpO1xuLy8gICBjb25zdCB1cmwgPSBVUkwuY3JlYXRlT2JqZWN0VVJMKGJsb2IpO1xuLy8gICByZXR1cm4gcmVxdWlyZSh1cmwpLmNhdGNoKCgpID0+IHdpbmRvdy5pbnZjZGZib2FyZCk7XG4vLyB9XG5cbi8vIE9yIGxvYWQgZnJvbSBsb2NhbCBmaWxlXG5pbnZjZGZib2FyZCA9IHJlcXVpcmUoYXdhaXQgRmlsZUF0dGFjaG1lbnQoXCIuLi9pbnZlcnNlLXZpenUvZGlzdC9pbnZjZGZib2FyZC51bWQuY2pzXCIpLnVybCgpKVxuXG57XG4gIHJlcGxheVxuICBjb25zdCBjYW52YXMgPSBET00uY2FudmFzKDUwMCwgNTAwKTtcbiAgY29uc3QgZ2FsdG9uID0gaW52Y2RmYm9hcmQuZ2FsdG9uKGNhbnZhcyxkaXN0KTtcbiAgXG4gIHJldHVybiBodG1sYCR7Z2FsdG9uLmNhbnZhc31gXG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2Rpc3QnKSJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldFF1aWV0Iiwic291cmNlIjoic2hpbnlJbnB1dCgncmVwbGF5JykifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -499,38 +496,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -539,8 +526,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {

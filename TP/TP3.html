@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - TP2: Simulation de lois élémentaires</title>
+<title>HAX603X: Modélisation stochastique - TP3: Quarto et Simulation de variables aléatoires</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -95,6 +95,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -118,6 +119,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -126,7 +154,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -201,10 +229,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
  <span class="dropdown-text">Loi normale: cas univarié</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../Slides/slides_loi_normale_multi.html">
- <span class="dropdown-text">Loi normale: cas multivarié</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -235,7 +259,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP3.html">
- <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
+ <span class="dropdown-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
   </li>  
     </ul>
   </li>
@@ -249,11 +273,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP2: Simulation de lois élémentaires</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Quarto et Simulation de variables aléatoires</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -261,7 +285,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -288,7 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
+ <span class="menu-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
   </div>
 </li>
       </ul>
@@ -296,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -310,15 +334,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#loi-géométrique" id="toc-loi-géométrique" class="nav-link" data-scroll-target="#loi-géométrique">Loi géométrique</a></li>
   </ul></li>
   <li><a href="#méthode-de-rejet-et-loi-beta" id="toc-méthode-de-rejet-et-loi-beta" class="nav-link" data-scroll-target="#méthode-de-rejet-et-loi-beta">Méthode de rejet et loi Beta</a></li>
+  <li><a href="#loi-sur-le-disque" id="toc-loi-sur-le-disque" class="nav-link" data-scroll-target="#loi-sur-le-disque">Loi sur le disque</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP3.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP2: Simulation de lois élémentaires</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Quarto et Simulation de variables aléatoires</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TP2: Simulation de lois élémentaires</h1>
+<h1 class="title">TP3: Quarto et Simulation de variables aléatoires</h1>
 </div>
 
 
@@ -346,8 +371,8 @@ Objectifs de ce TP
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Utiliser les générateurs aléatoires en Python et <code>numpy</code>, savoir afficher un histogramme, une densité, etc.</li>
-<li>Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en <code>numpy</code>.</li>
+<li>Utiliser les générateurs aléatoires en Python et <code>numpy</code> pour générer des échantillons de lois non triviales.</li>
+<li>Rédiger un compte-rendu sous <code>Quarto</code> pour présenter ses résultats de TP.</li>
 </ul>
 </div>
 </div>
@@ -359,8 +384,8 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="299dc043" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="4aee4b13" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-2-output-1.png" width="589" height="450"></p>
 </div>
@@ -373,11 +398,24 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="7fe15c3d" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="40dca537" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-4-output-1.png" width="571" height="432"></p>
 </div>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Attention! les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours…</p>
 </div>
 </div>
 <ol start="4" type="1">
@@ -395,10 +433,10 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="afdcd9ea" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<pre><code>[0 0 1 0 1 1 0 0 1 1]</code></pre>
+<div id="7729b63d" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[1 0 0 0 1 1 1 0 1 1]</code></pre>
 </div>
 </div>
 </div>
@@ -417,10 +455,10 @@ Objectifs de ce TP
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="a9c4a463" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<pre><code>[4. 3. 3. 1. 4. 4. 9. 2. 2. 2. 1. 3.]</code></pre>
+<div id="6b6b9909" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[ 3.  5.  2.  3.  2. 12.  4.  3.  3.  3.  3.  2.]</code></pre>
 </div>
 </div>
 </div>
@@ -437,7 +475,7 @@ Objectifs de ce TP
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elaped  when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cd3f4655" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="0fd8459e" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 
 </div>
 <p>Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.</p>
@@ -458,24 +496,93 @@ Note
 </section>
 <section id="méthode-de-rejet-et-loi-beta" class="level2">
 <h2 class="anchored" data-anchor-id="méthode-de-rejet-et-loi-beta">Méthode de rejet et loi Beta</h2>
-<p>On rappelle que la loi de Beta de paramètres <span class="math inline">\alpha, \beta &gt; 0</span>, notée <span class="math inline">\text{Beta}(\alpha, \beta)</span>, est donnée par la densité [ f_{, }(x) = x^{} (1-x)^{},, x ,. ] La fonction <span class="math inline">\Gamma</span> s’obtient sur avec .</p>
+<p>On rappelle que la loi de Beta de paramètres <span class="math inline">\alpha, \beta &gt; 0</span>, notée <span class="math inline">\text{Beta}(\alpha, \beta)</span>, est donnée par la densité <span class="math display">
+    f_{\alpha, \beta}(x)
+    = \dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
+    \quad x \in [0,1]\,.
+</span> La fonction <span class="math inline">\Gamma</span> s’obtient sur avec .</p>
 <ol type="1">
 <li>Représenter la densité pour différentes valeurs de <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> pour visualiser cette loi. On pourra utiliser la fonction <code>scipy.special.gamma</code>.</li>
 </ol>
 <div>
 
 </div>
-<div id="2347d809" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="feb6edbf" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-9-output-1.png" width="589" height="449"></p>
 </div>
 </div>
 </div>
 <ol start="2" type="1">
-<li><p>À l’aide de la méthode de rejet vue en TD, construire une fonction <code>loi_beta</code> qui génère <span class="math inline">n</span> variables aléatoires de loi <span class="math inline">\text{Beta}(\alpha,\beta)</span>.</p></li>
-<li><p>Illustrer graphiquement votre résultat en représentant l’histogramme pour <span class="math inline">n=10^3</span> et différentes valeurs de <span class="math inline">\alpha, \beta</span>. On superposera à chaque fois la densité adéquate.</p></li>
+<li>À l’aide de la méthode de rejet vue en TD, construire une fonction <code>loi_beta</code> qui génère <span class="math inline">n</span> variables aléatoires de loi <span class="math inline">\text{Beta}(\alpha,\beta)</span>.</li>
 </ol>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="40590526" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[0.73943572 0.03946336 0.3993816  0.46175597 0.05591014 0.34348159
+ 0.12125736 0.61363536 0.46777926 0.55814503 0.18407814 0.75811648]</code></pre>
+</div>
+</div>
+</div>
+<ol start="3" type="1">
+<li>Illustrer graphiquement votre résultat en représentant l’histogramme pour <span class="math inline">n=10^3</span> et différentes valeurs de <span class="math inline">\alpha, \beta</span>. On superposera à chaque fois la densité adéquate.</li>
+</ol>
+<div>
+
+</div>
+<div id="10f346d4" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP3_files/figure-html/cell-12-output-1.png" width="571" height="432"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="loi-sur-le-disque" class="level2">
+<h2 class="anchored" data-anchor-id="loi-sur-le-disque">Loi sur le disque</h2>
+<ol type="1">
+<li>Écrire une fonction <code>unif_disque</code> basée sur une méthode de rejet qui génère <span class="math inline">n</span> uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur <span class="math inline">[0,1]</span>. Utiliser cette fonction pour représenter graphiquement un échantillon de <span class="math inline">n=100</span> uniformes sur le disque.</li>
+</ol>
+<div>
+
+</div>
+<div id="047a3607" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP3_files/figure-html/cell-14-output-1.png" width="526" height="450"></p>
+</div>
+</div>
+</div>
+<ol start="2" type="1">
+<li>Écrire une fonction <code>unif_disque2</code>, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés. Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l’extérieur).</li>
+</ol>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7af5acc1" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>Reject ratio : 0.12280701754385964</code></pre>
+</div>
+</div>
+</div>
+<div>
+
+</div>
+<div id="53c5aab5" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP3_files/figure-html/cell-17-output-1.png" width="526" height="450"></p>
+</div>
+</div>
+</div>
 
 
 </section>
@@ -660,38 +767,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -700,8 +797,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -936,4 +1040,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP3.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>

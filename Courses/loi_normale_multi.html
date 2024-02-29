@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -115,6 +115,7 @@ div.csl-indent {
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -140,6 +141,33 @@ div.csl-indent {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -148,7 +176,7 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -223,10 +251,6 @@ div.csl-indent {
     <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
  <span class="dropdown-text">Loi normale: cas univarié</span></a>
   </li>  
-        <li>
-    <a class="dropdown-item" href="../Slides/slides_loi_normale_multi.html">
- <span class="dropdown-text">Loi normale: cas multivarié</span></a>
-  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -257,7 +281,7 @@ div.csl-indent {
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP3.html">
- <span class="dropdown-text">TP2: Simulation de lois élémentaires</span></a>
+ <span class="dropdown-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
   </li>  
     </ul>
   </li>
@@ -271,11 +295,11 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale_multi.html">Loi normale: cas multivarié</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -283,7 +307,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -336,7 +360,7 @@ div.csl-indent {
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -408,7 +432,7 @@ Note
 <section id="vecteurs-gaussiens" class="level2">
 <h2 class="anchored" data-anchor-id="vecteurs-gaussiens">Vecteurs gaussiens</h2>
 <div id="def-gaussian-vector" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien) </strong></span>Un vecteur aléatoire <span class="math inline">\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top</span>, la variable aléatoire réelle <span class="math display">
+<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien)</strong></span> Un vecteur aléatoire <span class="math inline">\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top</span>, la variable aléatoire réelle <span class="math display">
   \langle \bm{\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
 </span> suit une loi normale.</p>
 </div>
@@ -453,7 +477,7 @@ Note
 \varphi_{0,\mathrm{Id}_d}(x) = \frac{1}{ \sqrt{(2\pi)^d}} \exp\left( -\tfrac{1}{2}x^\top x   \right) \enspace.
 </span></p>
 <div id="prp-densite-mutli" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée) </strong></span>Soient <span class="math inline">\bm{\mu} \in \mathbb{R}^d</span> et <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> (symétrique et définie positive) et supposons que <span class="math inline">X \sim \mathcal{N}(\bm{\mu},\Sigma)</span>. Alors la densité de probabilité de <span class="math inline">X</span> est donnée pour tout <span class="math inline">x \in \mathbb{R}^d</span> par (en notant <span class="math inline">|\Sigma|</span> le déterminant de <span class="math inline">\Sigma</span>)</p>
+<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée)</strong></span> Soient <span class="math inline">\bm{\mu} \in \mathbb{R}^d</span> et <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> (symétrique et définie positive) et supposons que <span class="math inline">X \sim \mathcal{N}(\bm{\mu},\Sigma)</span>. Alors la densité de probabilité de <span class="math inline">X</span> est donnée pour tout <span class="math inline">x \in \mathbb{R}^d</span> par (en notant <span class="math inline">|\Sigma|</span> le déterminant de <span class="math inline">\Sigma</span>)</p>
 <p><span class="math display">
 \varphi_{\bm{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\bm{\mu})^\top\Sigma^{-1}(x - \bm{\mu})   \Big) \enspace.
 </span></p>
@@ -468,7 +492,7 @@ Note
 \end{align*}
 </span></p>
 <div id="prp-affine-gauss" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens) </strong></span>Soit <span class="math inline">\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)</span> un vecteur gaussien sur <span class="math inline">\mathbb{R}^d</span>, <span class="math inline">\Omega \in \mathbb{R}^{d' \times d}</span> et <span class="math inline">\bm{\nu}\in \mathbb{R}^{d'}</span>. Alors, le vecteur aléatoire <span class="math inline">\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}</span> est un vecteur gaussien vérifiant <span class="math display">
+<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens)</strong></span> Soit <span class="math inline">\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)</span> un vecteur gaussien sur <span class="math inline">\mathbb{R}^d</span>, <span class="math inline">\Omega \in \mathbb{R}^{d' \times d}</span> et <span class="math inline">\bm{\nu}\in \mathbb{R}^{d'}</span>. Alors, le vecteur aléatoire <span class="math inline">\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}</span> est un vecteur gaussien vérifiant <span class="math display">
   \mathbf{Y} \sim \mathcal{N}(\Omega \bm{\bm{\mu}} + \bm{\nu}, \Omega \Sigma \Omega^\top)\,.
 </span></p>
 </div>
@@ -478,8 +502,8 @@ Note
 <section id="la-factorisation-de-cholesky" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="la-factorisation-de-cholesky">La factorisation de Cholesky</h2>
 <p>Pour rappel, la factorisation de <a href="https://fr.wikipedia.org/wiki/Andr%C3%A9-Louis_Cholesky">Cholesky</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> d’une matrice symétrique définie positive est donnée ci-dessous.</p>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="André-Louis Cholesky, dit René">André-Louis Cholesky, dit René</a>: (1875-1918) ingénieur topographe et géodésien dans l’armée française, mort des suites de blessures reçues au champs de bataille. <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Andre_Cholesky.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo d'André-Louis Cholevsky" title="Photos d'André-Louis Cholevsky par Aron Gerschel (1897), Archives de l'Ecole polytechnique."></p></li></div><div id="thm-cholesky" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky) </strong></span>Soit <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">L \in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">\Sigma = LL^\top</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">L</span> soient strictement positifs.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<a href="André-Louis Cholesky, dit René">André-Louis Cholesky, dit René</a>: (1875-1918) ingénieur topographe et géodésien dans l’armée française, mort des suites de blessures reçues au champs de bataille. <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Andre_Cholesky.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo d'André-Louis Cholevsky" title="Photos d'André-Louis Cholevsky par Aron Gerschel (1897), Archives de l'Ecole polytechnique."></p></div><div id="thm-cholesky" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky)</strong></span> Soit <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">L \in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">\Sigma = LL^\top</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">L</span> soient strictement positifs.</p>
 </div>
 <p><u>Preuve</u>: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#ref-Ciarlet06" role="doc-biblioref">Ciarlet 2006</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Ciarlet06" class="csl-entry" role="listitem">
@@ -682,99 +706,99 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
 <span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-7" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-8" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-9" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-10" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-11" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-12" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-13" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-14" data-nodetype="expression">
 
 </div>
@@ -789,7 +813,7 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-1, 1], {label: tex`\\mu_1`, step: 0.1}, {value: 0}),\n  Inputs.range([-1, 1], {label: tex`\\mu_2`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_1`, step: 0.1, value: 1}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_2`, step: 0.1, value: 1}),\n  Inputs.range([0, 6.29], {label: tex`\\theta`, step: 0.01, value: 0}),\n  Inputs.range([0, 1000], {label: tex`n`, step: 1, value: 10}),\n  Inputs.button(\"Re-Tirage\")\n])\n\n\nmu1 = inputs[0];\nmu2 = inputs[1];\nsigma1 = inputs[2];\nsigma2 = inputs[3];\ntheta = inputs[4];\nn_samples = inputs[5];\n\n\nfunction create_sigma(theta, sigma1, sigma2){\n  const mat_rot = math.matrix([[math.cos(theta), -math.sin(theta)], [math.sin(theta), math.cos(theta)]]);\n  const mat_sigma = math.matrix([[sigma1**2, 0], [0, sigma2**2]]);\n  return math.multiply(mat_rot, math.multiply(mat_sigma, math.transpose(mat_rot)));\n}\n\n\nfunction mvnpdf(x, mu, Sigma){\n  const p = 2;\n    return (2*math.pi)**(-p/2)*math.det(Sigma)**(-0.5)*\n      math.exp(-0.5*math.multiply(math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x, mu)));\n}\n\n{\n\n\nfunction normal_rng(mu, Sigma, n=100) {\n    // Compute the Cholesky decomposition of Sigma\n    var cholesky = jstat.cholesky(Sigma);\n\n    // Generate the samples\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(0, 1);\n        var y = jstat.normal.sample(0, 1);\n        // Transform the standard normal random variables using the Cholesky decomposition\n        var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;\n        var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;\n        return [transformedX, transformedY];\n    });   \n\n    return samples;\n}\nvar Sigma = create_sigma(theta, sigma1, sigma2).toArray();\nvar mu = [mu1, mu2];\n\nvar samples = normal_rng(mu, Sigma, 1000);\nvar npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n    y[i] = mini + i * (maxi - mini) / (npoints - 1);\n    z[i] = new Array(npoints);\n    }\n\nfor(var i = 0; i < npoints; i++) {\n  \tfor(j = 0; j < npoints; j++) {\n\n    \tz[j][i] = mvnpdf([x[i], x[j]], mu, Sigma);\n \t}\n\n}\n  \n\n{\n\nvar trace1 = {\n        x: samples.slice(0, n_samples).map(sample => sample[0]),\n        y: samples.slice(0, n_samples).map(sample => sample[1]),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n        xaxis: 'x2',\n}\n\nvar trace22 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'surface',\n        colorscale: 'Oranges',\n        showscale: false,\n        color: {\n            legend: false,\n            label: \"pdf\",\n        },\n\n}\n\nvar trace21 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'contour',\n        colorscale: 'Oranges',\n        color: {\n            legend: true,\n            label: \"pdf\",\n        },\n        blur: 4,\n        xlim: [-5, 5],\n        ylim: [-5, 5],\n        xaxis: 'x2',\n}\n\n\nvar data = [\n  trace21,\n  trace22,\n  trace1,\n  ];\n\n\n  var layout = {\n       yaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n       xaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n\n      scene: {\n          camera: {\n              eye: {\n                  x: 0.5,\n                  y: 1.2,\n                  z: 1.5,\n              }\n          }\n      },\n    grid: {\n      rows: 1,\n      columns: 2,\n      subplots: [['xy','x2y']],\n    },\n    showlegend: false,\n\n  };\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n  }\n\n}\n\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdGx5ID0gcmVxdWlyZShcImh0dHBzOi8vY2RuLnBsb3QubHkvcGxvdGx5LWxhdGVzdC5taW4uanNcIilcblBsb3RseSA9IHJlcXVpcmUoJ3Bsb3RseS5qcy1kaXN0Jyk7XG5kaXN0cyA9IHJlcXVpcmUoICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvc3RkbGliLWpzL3N0YXRzLWJhc2UtZGlzdHNAdW1kL2Jyb3dzZXIuanMnICk7XG5qc3RhdCA9IHJlcXVpcmUoJ2pzdGF0Jyk7XG5tYXRoID0gcmVxdWlyZShcIm1hdGhqc1wiKTtcbi8vIHNlZSBzb3VyY2UgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL3N0ZGxpYi1qcy9zdGF0cy1iYXNlLWRpc3RzL3RyZWUvdW1kXG4vLyBjb250aW51b3VzIGNhc2Vcblxudmlld29mIGlucHV0cyA9IElucHV0cy5mb3JtKFtcbiAgSW5wdXRzLnJhbmdlKFstMSwgMV0sIHtsYWJlbDogdGV4YFxcbXVfMWAsIHN0ZXA6IDAuMX0sIHt2YWx1ZTogMH0pLFxuICBJbnB1dHMucmFuZ2UoWy0xLCAxXSwge2xhYmVsOiB0ZXhgXFxtdV8yYCwgc3RlcDogMC4xfSwge3ZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMC4xLCAyXSwge2xhYmVsOiB0ZXhgXFxzaWdtYV8xYCwgc3RlcDogMC4xLCB2YWx1ZTogMX0pLFxuICBJbnB1dHMucmFuZ2UoWzAuMSwgMl0sIHtsYWJlbDogdGV4YFxcc2lnbWFfMmAsIHN0ZXA6IDAuMSwgdmFsdWU6IDF9KSxcbiAgSW5wdXRzLnJhbmdlKFswLCA2LjI5XSwge2xhYmVsOiB0ZXhgXFx0aGV0YWAsIHN0ZXA6IDAuMDEsIHZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMCwgMTAwMF0sIHtsYWJlbDogdGV4YG5gLCBzdGVwOiAxLCB2YWx1ZTogMTB9KSxcbiAgSW5wdXRzLmJ1dHRvbihcIlJlLVRpcmFnZVwiKVxuXSlcblxuXG5tdTEgPSBpbnB1dHNbMF07XG5tdTIgPSBpbnB1dHNbMV07XG5zaWdtYTEgPSBpbnB1dHNbMl07XG5zaWdtYTIgPSBpbnB1dHNbM107XG50aGV0YSA9IGlucHV0c1s0XTtcbm5fc2FtcGxlcyA9IGlucHV0c1s1XTtcblxuXG5mdW5jdGlvbiBjcmVhdGVfc2lnbWEodGhldGEsIHNpZ21hMSwgc2lnbWEyKXtcbiAgY29uc3QgbWF0X3JvdCA9IG1hdGgubWF0cml4KFtbbWF0aC5jb3ModGhldGEpLCAtbWF0aC5zaW4odGhldGEpXSwgW21hdGguc2luKHRoZXRhKSwgbWF0aC5jb3ModGhldGEpXV0pO1xuICBjb25zdCBtYXRfc2lnbWEgPSBtYXRoLm1hdHJpeChbW3NpZ21hMSoqMiwgMF0sIFswLCBzaWdtYTIqKjJdXSk7XG4gIHJldHVybiBtYXRoLm11bHRpcGx5KG1hdF9yb3QsIG1hdGgubXVsdGlwbHkobWF0X3NpZ21hLCBtYXRoLnRyYW5zcG9zZShtYXRfcm90KSkpO1xufVxuXG5cbmZ1bmN0aW9uIG12bnBkZih4LCBtdSwgU2lnbWEpe1xuICBjb25zdCBwID0gMjtcbiAgICByZXR1cm4gKDIqbWF0aC5waSkqKigtcC8yKSptYXRoLmRldChTaWdtYSkqKigtMC41KSpcbiAgICAgIG1hdGguZXhwKC0wLjUqbWF0aC5tdWx0aXBseShtYXRoLm11bHRpcGx5KCBtYXRoLnRyYW5zcG9zZShtYXRoLnN1YnRyYWN0KHgsbXUpKSwgbWF0aC5pbnYoU2lnbWEpKSwgbWF0aC5zdWJ0cmFjdCh4LCBtdSkpKTtcbn1cblxue1xuXG5cbmZ1bmN0aW9uIG5vcm1hbF9ybmcobXUsIFNpZ21hLCBuPTEwMCkge1xuICAgIC8vIENvbXB1dGUgdGhlIENob2xlc2t5IGRlY29tcG9zaXRpb24gb2YgU2lnbWFcbiAgICB2YXIgY2hvbGVza3kgPSBqc3RhdC5jaG9sZXNreShTaWdtYSk7XG5cbiAgICAvLyBHZW5lcmF0ZSB0aGUgc2FtcGxlc1xuICAgIHZhciBzYW1wbGVzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBufSwgKCkgPT4ge1xuICAgICAgICB2YXIgeCA9IGpzdGF0Lm5vcm1hbC5zYW1wbGUoMCwgMSk7XG4gICAgICAgIHZhciB5ID0ganN0YXQubm9ybWFsLnNhbXBsZSgwLCAxKTtcbiAgICAgICAgLy8gVHJhbnNmb3JtIHRoZSBzdGFuZGFyZCBub3JtYWwgcmFuZG9tIHZhcmlhYmxlcyB1c2luZyB0aGUgQ2hvbGVza3kgZGVjb21wb3NpdGlvblxuICAgICAgICB2YXIgdHJhbnNmb3JtZWRYID0gbXVbMF0gKyBjaG9sZXNreVswXVswXSAqIHggKyBjaG9sZXNreVswXVsxXSAqIHk7XG4gICAgICAgIHZhciB0cmFuc2Zvcm1lZFkgPSBtdVsxXSArIGNob2xlc2t5WzFdWzBdICogeCArIGNob2xlc2t5WzFdWzFdICogeTtcbiAgICAgICAgcmV0dXJuIFt0cmFuc2Zvcm1lZFgsIHRyYW5zZm9ybWVkWV07XG4gICAgfSk7ICAgXG5cbiAgICByZXR1cm4gc2FtcGxlcztcbn1cbnZhciBTaWdtYSA9IGNyZWF0ZV9zaWdtYSh0aGV0YSwgc2lnbWExLCBzaWdtYTIpLnRvQXJyYXkoKTtcbnZhciBtdSA9IFttdTEsIG11Ml07XG5cbnZhciBzYW1wbGVzID0gbm9ybWFsX3JuZyhtdSwgU2lnbWEsIDEwMDApO1xudmFyIG5wb2ludHM9MTAwLCBtaW5pID0gLTUsIG1heGk9NSwgeCA9IG5ldyBBcnJheShucG9pbnRzKSwgeSA9IG5ldyBBcnJheShucG9pbnRzKSwgeiA9IG5ldyBBcnJheShucG9pbnRzKSwgaSwgajtcblxuLy8gIERlbnNpdMOpOlxuZm9yKHZhciBpID0gMDsgaSA8IG5wb2ludHM7IGkrKykge1xuICAgIHhbaV0gPSBtaW5pICsgaSAqIChtYXhpIC0gbWluaSkgLyAobnBvaW50cyAtIDEpO1xuICAgIHlbaV0gPSBtaW5pICsgaSAqIChtYXhpIC0gbWluaSkgLyAobnBvaW50cyAtIDEpO1xuICAgIHpbaV0gPSBuZXcgQXJyYXkobnBvaW50cyk7XG4gICAgfVxuXG5mb3IodmFyIGkgPSAwOyBpIDwgbnBvaW50czsgaSsrKSB7XG4gIFx0Zm9yKGogPSAwOyBqIDwgbnBvaW50czsgaisrKSB7XG5cbiAgICBcdHpbal1baV0gPSBtdm5wZGYoW3hbaV0sIHhbal1dLCBtdSwgU2lnbWEpO1xuIFx0fVxuXG59XG4gIFxuXG57XG5cbnZhciB0cmFjZTEgPSB7XG4gICAgICAgIHg6IHNhbXBsZXMuc2xpY2UoMCwgbl9zYW1wbGVzKS5tYXAoc2FtcGxlID0+IHNhbXBsZVswXSksXG4gICAgICAgIHk6IHNhbXBsZXMuc2xpY2UoMCwgbl9zYW1wbGVzKS5tYXAoc2FtcGxlID0+IHNhbXBsZVsxXSksXG4gICAgICAgIG1vZGU6ICdtYXJrZXJzJyxcbiAgICAgICAgdHlwZTogJ3NjYXR0ZXInLFxuICAgICAgICBtYXJrZXI6IHtcbiAgICAgICAgICAgIGNvbG9yOiAncmdiYSgwLDAsMCwwLjUpJyxcbiAgICAgICAgICAgIHNpemU6IDUsXG4gICAgICAgIH0sXG5cbiAgICAgICAgeGF4aXM6ICd4MicsXG59XG5cbnZhciB0cmFjZTIyID0ge1xuICAgICAgICB4OiB4LFxuICAgICAgICB5OiB5LFxuICAgICAgICB6OiB6LFxuICAgICAgICB0eXBlOiAnc3VyZmFjZScsXG4gICAgICAgIGNvbG9yc2NhbGU6ICdPcmFuZ2VzJyxcbiAgICAgICAgc2hvd3NjYWxlOiBmYWxzZSxcbiAgICAgICAgY29sb3I6IHtcbiAgICAgICAgICAgIGxlZ2VuZDogZmFsc2UsXG4gICAgICAgICAgICBsYWJlbDogXCJwZGZcIixcbiAgICAgICAgfSxcblxufVxuXG52YXIgdHJhY2UyMSA9IHtcbiAgICAgICAgeDogeCxcbiAgICAgICAgeTogeSxcbiAgICAgICAgejogeixcbiAgICAgICAgdHlwZTogJ2NvbnRvdXInLFxuICAgICAgICBjb2xvcnNjYWxlOiAnT3JhbmdlcycsXG4gICAgICAgIGNvbG9yOiB7XG4gICAgICAgICAgICBsZWdlbmQ6IHRydWUsXG4gICAgICAgICAgICBsYWJlbDogXCJwZGZcIixcbiAgICAgICAgfSxcbiAgICAgICAgYmx1cjogNCxcbiAgICAgICAgeGxpbTogWy01LCA1XSxcbiAgICAgICAgeWxpbTogWy01LCA1XSxcbiAgICAgICAgeGF4aXM6ICd4MicsXG59XG5cblxudmFyIGRhdGEgPSBbXG4gIHRyYWNlMjEsXG4gIHRyYWNlMjIsXG4gIHRyYWNlMSxcbiAgXTtcblxuXG4gIHZhciBsYXlvdXQgPSB7XG4gICAgICAgeWF4aXMyOiB7XG4gICAgICAgICAgcmFuZ2U6IFstNSwgNV0sXG4gICAgICAgICAgYXV0b3JhbmdlOiBmYWxzZSxcbiAgICAgICAgfSxcbiAgICAgICB4YXhpczI6IHtcbiAgICAgICAgICByYW5nZTogWy01LCA1XSxcbiAgICAgICAgICBhdXRvcmFuZ2U6IGZhbHNlLFxuICAgICAgICB9LFxuXG4gICAgICBzY2VuZToge1xuICAgICAgICAgIGNhbWVyYToge1xuICAgICAgICAgICAgICBleWU6IHtcbiAgICAgICAgICAgICAgICAgIHg6IDAuNSxcbiAgICAgICAgICAgICAgICAgIHk6IDEuMixcbiAgICAgICAgICAgICAgICAgIHo6IDEuNSxcbiAgICAgICAgICAgICAgfVxuICAgICAgICAgIH1cbiAgICAgIH0sXG4gICAgZ3JpZDoge1xuICAgICAgcm93czogMSxcbiAgICAgIGNvbHVtbnM6IDIsXG4gICAgICBzdWJwbG90czogW1sneHknLCd4MnknXV0sXG4gICAgfSxcbiAgICBzaG93bGVnZW5kOiBmYWxzZSxcblxuICB9O1xuXG4gICAgdmFyIGNvbmZpZyA9IHtyZXNwb25zaXZlOiB0cnVlfVxuICAgIGNvbnN0IGRpdiA9IERPTS5lbGVtZW50KCdkaXYnKTtcbiAgICBQbG90bHkubmV3UGxvdChkaXYsIGRhdGEsIGxheW91dCwgY29uZmlnKTtcbiAgICByZXR1cm4gZGl2O1xuICB9XG5cbn1cblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdpbnB1dHMnKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -978,38 +1002,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1018,8 +1032,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1254,4 +1275,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale_multi.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
