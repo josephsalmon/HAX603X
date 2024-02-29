@@ -152,48 +152,48 @@
 	\]
 	À l'aide de la méthode de rejet, construisez une algorithme permettant de simuler $n$ \vas de loi $\text{Beta}(\alpha,\beta)$.
 
-	\cor{On remarque que la densité vérifie $f_{\alpha, \beta}(x) \leq m \one_{[0,1]}(x)$, où $m = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}$. On peut donc appliquer la méthode de rejet avec $m$ et la densité uniforme. L'algorithme est alors le suivant
+	% \cor{On remarque que la densité vérifie $f_{\alpha, \beta}(x) \leq m \one_{[0,1]}(x)$, où $m = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}$. On peut donc appliquer la méthode de rejet avec $m$ et la densité uniforme. L'algorithme est alors le suivant
 
-		\begin{algorithm}[H]
-			\SetAlgoLined
-			\textbf{Entrée:} une taille d'échantillon $n$
+	% 	\begin{algorithm}[H]
+	% 		\SetAlgoLined
+	% 		\textbf{Entrée:} une taille d'échantillon $n$
 
-			$k \leftarrow 1$
+	% 		$k \leftarrow 1$
 
-			\textbf{Tant que} $k \leq n$:
-			\begin{enumerate}
-				\item Générer $U,\, Y \sim \mathcal{U}([0,1])$ indépendantes
-				\item
-				\begin{itemize}[label=$\bullet$]
-					\item Si $U \leq Y^{\alpha-1}(1-Y)^{\beta-1}$, alors $X_k \leftarrow Y$ et $k \leftarrow k+1$,
-					\item Sinon rejeter et revenir en 1.
-				\end{itemize}
-			\end{enumerate}
-			\textbf{Sortie:} $X_1, \ldots, X_n$
-			\caption{Simulation de $n$ \vas de loi Beta.}
-		\end{algorithm}
-%--------------------------------------------
-                \begin{center}
-                    \begin{tikzpicture}[scale=1]
-                        \begin{axis}[,xlabel=$Y$,
-                                ylabel={$U$},
-                                width=6cm,
-                                height=6cm,
-                                ymin=0,
-                                xmin=0,
-                                ymax=1,
-                                xmax=1,
-                                grid=major,
-                                legend style={
-                                    cells={anchor=east},
-                                    legend pos=outer north east,
-                            }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
-                            \addplot[color=astral, samples=500, domain=0:1, very thick] {x * sqrt(1 - x )};
-                            \addlegendentry{$(\alpha, \beta)=(2,3/2)$}
-                        \end{axis}
-                    \end{tikzpicture}
-                \end{center}
-	}
+	% 		\textbf{Tant que} $k \leq n$:
+	% 		\begin{enumerate}
+	% 			\item Générer $U,\, Y \sim \mathcal{U}([0,1])$ indépendantes
+	% 			\item
+	% 			\begin{itemize}[label=$\bullet$]
+	% 				\item Si $U \leq Y^{\alpha-1}(1-Y)^{\beta-1}$, alors $X_k \leftarrow Y$ et $k \leftarrow k+1$,
+	% 				\item Sinon rejeter et revenir en 1.
+	% 			\end{itemize}
+	% 		\end{enumerate}
+	% 		\textbf{Sortie:} $X_1, \ldots, X_n$
+	% 		\caption{Simulation de $n$ \vas de loi Beta.}
+	% 	\end{algorithm}
+
+    %             \begin{center}
+    %                 \begin{tikzpicture}[scale=1]
+    %                     \begin{axis}[,xlabel=$Y$,
+    %                             ylabel={$U$},
+    %                             width=6cm,
+    %                             height=6cm,
+    %                             ymin=0,
+    %                             xmin=0,
+    %                             ymax=1,
+    %                             xmax=1,
+    %                             grid=major,
+    %                             legend style={
+    %                                 cells={anchor=east},
+    %                                 legend pos=outer north east,
+    %                         }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
+    %                         \addplot[color=astral, samples=500, domain=0:1, very thick] {x * sqrt(1 - x )};
+    %                         \addlegendentry{$(\alpha, \beta)=(2,3/2)$}
+    %                     \end{axis}
+    %                 \end{tikzpicture}
+    %             \end{center}
+	% }
 \end{exo}
 
 
@@ -220,30 +220,30 @@
 
 		\item Déterminer la densité de cette \va.
 
-		\cor{La densité $f$ de $Z$ correspond à la dérivée de la \fdr $F$ en tout point où celle-ci est dérivable. Ici, $F$ est dérivable pour tout $t \in \R \setminus \{0,1\}$. Si $t < 0$, alors $F'(t) = 0$. Si $t \in ]0,1[$, alors $F'(t) = 1 - e^{-t} + t e^{-t}$. Enfin, si $t > 1$, alors $F'(t) = e^{-t}$.
-                \begin{center}
-                    \begin{tikzpicture}[scale=1]
-                        \begin{axis}[,xlabel=$t$,
-                                ylabel={$f_Z(t)$},
-                                width=13cm,
-                                height=6cm,
-                                ymin=0,
-                                xmin=-5,
-                                ymax=1.2,
-                                xmax=5,
-                                grid=major,
-                                legend style={
-                                    cells={anchor=east},
-                                    legend pos=outer north east,
-                            }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
-                            \addplot[color=astral, samples=5, domain=-5:0, very thick] {0};
-                            \addplot[color=astral, samples=500, domain=0:1, very thick] {1 - exp(-x) + x * exp(-x)};
-                            \addplot[color=astral, samples=500, domain=1:5, very thick] { exp(-x)};
-                            %\addlegendentry{$(\alpha, \beta)=(2,3/2)$}
-                        \end{axis}
-                    \end{tikzpicture}
-                \end{center}
-		}
+		% {La densité $f$ de $Z$ correspond à la dérivée de la \fdr $F$ en tout point où celle-ci est dérivable. Ici, $F$ est dérivable pour tout $t \in \R \setminus \{0,1\}$. Si $t < 0$, alors $F'(t) = 0$. Si $t \in ]0,1[$, alors $F'(t) = 1 - e^{-t} + t e^{-t}$. Enfin, si $t > 1$, alors $F'(t) = e^{-t}$.
+        %         \begin{center}
+        %             \begin{tikzpicture}[scale=1]
+        %                 \begin{axis}[,xlabel=$t$,
+        %                         ylabel={$f_Z(t)$},
+        %                         width=13cm,
+        %                         height=6cm,
+        %                         ymin=0,
+        %                         xmin=-5,
+        %                         ymax=1.2,
+        %                         xmax=5,
+        %                         grid=major,
+        %                         legend style={
+        %                             cells={anchor=east},
+        %                             legend pos=outer north east,
+        %                     }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
+        %                     \addplot[color=astral, samples=5, domain=-5:0, very thick] {0};
+        %                     \addplot[color=astral, samples=500, domain=0:1, very thick] {1 - exp(-x) + x * exp(-x)};
+        %                     \addplot[color=astral, samples=500, domain=1:5, very thick] { exp(-x)};
+        %                     %\addlegendentry{$(\alpha, \beta)=(2,3/2)$}
+        %                 \end{axis}
+        %             \end{tikzpicture}
+        %         \end{center}
+		% }
 	\end{enumerate}
 \end{exo}
 
