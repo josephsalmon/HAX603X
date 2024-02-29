@@ -1,5 +1,5 @@
 ---
-title: "TP2: Simulation de lois élémentaires"
+title: "TP3: Quarto et Simulation de variables aléatoires"
 bibliography: ../Courses/references.bib
 format:
   html:
@@ -12,8 +12,8 @@ filters:
 ::: {.callout-note}
 
 ## Objectifs de ce TP
-- Utiliser les générateurs aléatoires en Python et `numpy`, savoir afficher un histogramme,  une densité, etc.
-- Comprendre au mieux comment utiliser les fonctions aléatoires (principalement les générateurs) en `numpy`.
+- Utiliser les générateurs aléatoires en Python et `numpy` pour générer des échantillons de lois non triviales.
+- Rédiger un compte-rendu sous `Quarto` pour présenter ses résultats de TP.
 :::
 
 
@@ -27,13 +27,16 @@ filters:
 import numpy as np
 import matplotlib.pyplot as plt
 
-t = np.linspace(0, 5, 100)
-plt.plot(t, 1 - np.exp(-t), color="red", label="lambda = 1")
-plt.plot(t, 1 - np.exp(-2*t), color="blue", label="lambda = 2")
-plt.plot(t, 1 - np.exp(-(1/2)*t), color="green", label="lambda = 1/2")
+t = np.linspace(0, 10, 100)
+
+fig, ax = plt.subplots()
+
+ax.plot(t, 1 - np.exp(-t), color="red", label="lambda = 1")
+ax.plot(t, 1 - np.exp(-2*t), color="blue", label="lambda = 2")
+ax.plot(t, 1 - np.exp(-(1/2)*t), color="green", label="lambda = 1/2")
 plt.xlabel("t")
 plt.ylabel("F(t)")
-plt.title("Fonction de répartition d'une loi exponentielle de paramètre 1")
+plt.title("Fonction de répartition de lois exponentielle")
 plt.legend()
 plt.show()
 ```
@@ -67,22 +70,37 @@ from scipy import stats
 
 # Define parameters
 t = np.linspace(0, 10, 200)
-n = 10**2
 lam = 1/2
 
-# Generate exponential random variables
-va_expo = expo(n, lam)
 
 # Plot histogram
 fig, ax = plt.subplots()
 
-ax.plot(t, stats.norm.pdf(t, loc=0, scale=lam),'--', color='k', label="Loi théorique", alpha=0.5)
-plt.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.7)
+ax.plot(t, stats.expon.pdf(t, loc=0, scale=1/lam),'--', color='k', label=f"Loi théorique lam={lam}", alpha=0.5)
 
-plt.title("Histogramme de 100 variables aléatoires exponentielles")
+# Generate exponential random variables
+n = 10**2
+va_expo = expo(n, lam)
+ax.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
+# Generate exponential random variables
+n = 10**3
+va_expo = expo(n, lam)
+ax.hist(va_expo, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
+# Generate exponential random variables
+#n = 10**4
+#va_expo = expo(n, lam)
+#ax.hist(va_expo, bins=120, density=True, color='red', alpha=0.2, label=f'n={n}')
+
+plt.title("Histogramme de variables aléatoires exponentielles")
 plt.ylim(0, 0.5)
+
+plt.legend()
 plt.show()
 ```
+
+::: {.callout-note}
+Attention! les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours...
+:::
 
 4. Illustrer graphiquement la loi des grands nombres avec $\lambda = 1/2, 1, 4$. On tracera en particulier la droite d'équation $y=\mathbb E[X]$, où $X \sim \mathcal{E}(\lambda)$.
 5. \emph{À faire chez soi pour s'entraîner.} Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?
@@ -230,7 +248,205 @@ plt.show()
 
 ```
 2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. 
+   
+```{python}
+#| layout-ncol: 1
+#| echo: false
+   
+   import numpy as np
 
+def loi_beta(n, alpha, beta):
+    """
+    Generates random samples from a Beta distribution.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        alpha (float): Shape parameter alpha of the Beta distribution.
+        beta (float): Shape parameter beta of the Beta distribution.
+
+    Returns:
+        numpy.ndarray: Random samples from the Beta distribution.
+    """
+    X = np.zeros(n)
+    k = 0
+    while k < n:
+        U = np.random.rand()  # Uniform distribution
+        Y = np.random.rand()  # Uniform distribution
+        if U <= Y**(alpha - 1) * (1 - Y)**(beta - 1):
+            X[k] = Y
+            k += 1
+    return X
+
+```
+
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Example usage
+n = 12
+alpha, beta = 2, 3
+
+beta_samples = loi_beta(n, alpha, beta)
+print(beta_samples)
+
+```
 3. Illustrer graphiquement votre résultat en représentant l'histogramme pour $n=10^3$ et différentes valeurs de $\alpha, \beta$. On superposera à chaque fois la densité adéquate.
 
+```{python}
+#| layout-ncol: 1
+#| echo: false
 
+from scipy import stats
+
+# Define parameters
+t = np.linspace(0, 1, 200)
+alpha, beta = 2, 3
+
+
+# Plot histogram
+fig, ax = plt.subplots()
+
+ax.plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théorique", alpha=0.5)
+
+# Generate exponential random variables
+n = 10**2
+va_beta = loi_beta(n, alpha, beta)
+ax.hist(va_beta, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
+# Generate exponential random variables
+n = 10**3
+va_beta = loi_beta(n, alpha, beta)
+ax.hist(va_beta, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
+
+plt.title(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
+
+plt.legend()
+plt.show()
+```
+
+## Loi sur le disque
+
+1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ \vas uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ \vas uniformes sur le disque.
+   
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+import numpy as np
+
+def unif_disque(n):
+    """
+    Generates random samples uniformly distributed within a unit disk.
+
+    Parameters:
+        n (int): Number of samples to generate.
+
+    Returns:
+        numpy.ndarray: Random samples within the unit disk.
+    """
+    X = np.zeros((n, 2))  # Matrix to hold the sample
+    k = 0
+    while k < n:
+        U = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        V = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        if U**2 + V**2 <= 1:  # If the point (U,V) falls within the unit disk
+            X[k, :] = [U, V]  # Assign (U,V) to the k-th row of matrix X
+            k += 1
+    return X
+
+```
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+# Generate random points
+x = unif_disque(100)
+
+# Plot the points
+plt.figure()
+plt.scatter(x[:, 0], x[:, 1], color='red', marker='^')
+plt.title("Un échantillon de 100 réalisations de loi uniforme sur le disque")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+
+# Plot a circle
+circle = plt.Circle((0, 0), 1, color='blue', fill=False, linestyle='--')
+plt.gca().add_artist(circle)
+
+plt.gca().set_aspect('equal', adjustable='box')
+plt.show()
+```
+
+2. Écrire une fonction `unif_disque2`, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés. Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l'extérieur).
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+import numpy as np
+
+def unif_disque2(n):
+    """
+    Generates random samples uniformly distributed within a unit disk.
+
+    Parameters:
+        n (int): Number of samples to generate.
+
+    Returns:
+        tuple: A tuple containing two numpy arrays:
+            - The first array contains the accepted samples within the unit disk.
+            - The second array contains the rejected samples.
+    """
+    X = np.zeros((n, 2))  # Matrix to hold the accepted samples
+    rejet = np.zeros((0, 2))  # Matrix to hold the rejected samples
+    k = 0
+    while k < n:
+        U = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        V = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        if U**2 + V**2 <= 1:  # If the point (U,V) falls within the unit disk
+            X[k, :] = [U, V]  # Assign (U,V) to the k-th row of matrix X
+            k += 1
+        else:
+            rejet = np.vstack((rejet, [U, V]))  # Add the rejected point to the matrix rejet
+    return X, rejet
+    
+
+```
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Example usage
+x_accepted, x_rejected = unif_disque2(100)
+print("Reject ratio :", len(x_rejected) / (len(x_rejected) + len(x_accepted)))
+```
+
+
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+# Generate samples
+echant = unif_disque2(100)
+disque = echant[0]  # Points within the unit disk
+non_disque = echant[1]  # Points outside the unit disk
+
+# Plot the points
+plt.figure()
+plt.scatter(disque[:, 0], disque[:, 1], color='red', marker='^', label='Points in the disk')
+plt.scatter(non_disque[:, 0], non_disque[:, 1], color='blue', marker='^', label='Points outside the disk')
+plt.title("Un échantillon de 100 réalisations de loi uniforme sur le disque")
+plt.xlabel("X")
+plt.ylabel("Y")
+plt.xlim(-1, 1)
+plt.ylim(-1, 1)
+
+# Plot a circle
+circle = plt.Circle((0, 0), 1, color='blue', fill=False, linestyle='--')
+plt.gca().add_artist(circle)
+
+plt.gca().set_aspect('equal', adjustable='box')
+plt.legend()
+plt.show()
+```
