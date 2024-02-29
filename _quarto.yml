@@ -52,6 +52,7 @@ website:
           contents:
             - TP/TP1.qmd
             - TP/TP2.qmd
+            - TP/TP3.qmd
 
     - id: TD
       collapse-level: 2
