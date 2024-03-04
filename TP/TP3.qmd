@@ -18,7 +18,7 @@ filters:
 
 
 ## Méthode d'inversion : loi exponentielle et loi de Cauchy
-	
+
 1. Représenter graphiquement la fonction de répartition d'une loi exponentielle (on pourra se restreindre aux réels positifs).
 
 ```{python}
@@ -31,16 +31,16 @@ t = np.linspace(0, 10, 100)
 
 fig, ax = plt.subplots()
 
+ax.plot(t, 1 - np.exp(-(1/2)*t), color="green", label="lambda = 1/2")
 ax.plot(t, 1 - np.exp(-t), color="red", label="lambda = 1")
 ax.plot(t, 1 - np.exp(-2*t), color="blue", label="lambda = 2")
-ax.plot(t, 1 - np.exp(-(1/2)*t), color="green", label="lambda = 1/2")
 plt.xlabel("t")
 plt.ylabel("F(t)")
 plt.title("Fonction de répartition de lois exponentielle")
 plt.legend()
 plt.show()
 ```
-2. Écrire une fonction `expo` qui prend en argument un entier $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+1. Écrire une fonction `expo` qui prend en argument un entier $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -56,7 +56,7 @@ def expo(n, lam):
     Returns:
         numpy.ndarray: Random samples from the exponential distribution.
     """
-    return -np.log(np.random.rand(n)) / lam   
+    return -np.log(np.random.rand(n)) / lam
 ```
 
 
@@ -135,7 +135,7 @@ n = 10
 
 # Generate Bernoulli random variables
 b = bernou(n, p)
-print(b)   
+print(b)
 ```
 2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$ (on pourra superposer les graphes).
 
@@ -185,7 +185,7 @@ print(geometric_samples)
 
 3. Écrire une fonction `geo_expo` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
 
-4. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer 
+4. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -195,7 +195,7 @@ import time
 
 t0 = time.process_time()
 
-""" code chunck to be timed """ 
+""" code chunck to be timed """
 
 t1 = time.process_time()
 
@@ -217,7 +217,7 @@ $$
 	\quad x \in [0,1]\,.
 $$
 La fonction $\Gamma$ s'obtient sur \texttt{R} avec \texttt{gamma}.
-	
+
 1.  Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi. On pourra utiliser la fonction `scipy.special.gamma`.
 
 ```{python}
@@ -247,12 +247,12 @@ plt.legend()
 plt.show()
 
 ```
-2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. 
-   
+2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$.
+
 ```{python}
 #| layout-ncol: 1
 #| echo: false
-   
+
    import numpy as np
 
 def loi_beta(n, alpha, beta):
@@ -327,7 +327,7 @@ plt.show()
 ## Loi sur le disque
 
 1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ \vas uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ \vas uniformes sur le disque.
-   
+
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -410,7 +410,7 @@ def unif_disque2(n):
         else:
             rejet = np.vstack((rejet, [U, V]))  # Add the rejected point to the matrix rejet
     return X, rejet
-    
+
 
 ```
 ```{python}
