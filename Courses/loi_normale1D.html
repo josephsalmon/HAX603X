@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.429">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -116,7 +116,6 @@ div.csl-indent {
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -142,33 +141,6 @@ div.csl-indent {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
-
 <link rel="stylesheet" href="../custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
@@ -177,7 +149,7 @@ window.Quarto = {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -220,6 +192,10 @@ window.Quarto = {
     <a class="dropdown-item" href="../Courses/loi_normale_multi.html">
  <span class="dropdown-text">Loi normale: cas multivarié</span></a>
   </li>  
+        <li>
+    <a class="dropdown-item" href="../Courses/monte_carlo.html">
+ <span class="dropdown-text">Méthode de Monte Carlo</span></a>
+  </li>  
     </ul>
   </li>
   <li class="nav-item dropdown ">
@@ -251,6 +227,10 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../Slides/slides_loi_normale1D.html">
  <span class="dropdown-text">Loi normale: cas univarié</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Slides/slides_loi_normale_multi.html">
+ <span class="dropdown-text">Loi normale: cas multivarié</span></a>
   </li>  
     </ul>
   </li>
@@ -296,11 +276,11 @@ window.Quarto = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale1D.html">Loi normale: cas univarié</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -308,7 +288,7 @@ window.Quarto = {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -356,12 +336,18 @@ window.Quarto = {
  <span class="menu-text">Loi normale: cas multivarié</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/monte_carlo.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Méthode de Monte Carlo</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -506,65 +492,65 @@ window.Quarto = {
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-7" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-8" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div id="ojs-cell-1-9" data-nodetype="expression">
 
 </div>
@@ -572,14 +558,14 @@ window.Quarto = {
 </div>
 </div>
 <p>On parle aussi souvent de loi gaussienne, en hommage au mathématicien <a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss, <em>le prince des mathématiciens</em></a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p></div><p>La loi normale vérifie la propriété de <strong>stabilité par transformation affine</strong> : si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> et si <span class="math inline">(a,b) \in \mathbb{R}^* \times \mathbb{R}</span>, alors la variable aléatoire <span class="math inline">a X + b</span> suit une loi normale <span class="math inline">\mathcal{N}(a\mu + b, a^2 \nu)</span>. On peut donc facilement passer d’une loi normale centrée réduite à une loi normale quelconque via une transformation affine :</p>
+<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss">Carl Friedrich Gauss</a>: (1777-1855) mathématicien, astronome et physicien né à Brunswick, directeur de l’observatoire de <a href="https://www.youtube.com/watch?v=t0sNy1xOhRc">Göttingen</a> de 1807 jusqu’à sa mort en 1855 <img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></p></li></div><p>La loi normale vérifie la propriété de <strong>stabilité par transformation affine</strong> : si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> et si <span class="math inline">(a,b) \in \mathbb{R}^* \times \mathbb{R}</span>, alors la variable aléatoire <span class="math inline">a X + b</span> suit une loi normale <span class="math inline">\mathcal{N}(a\mu + b, a^2 \nu)</span>. On peut donc facilement passer d’une loi normale centrée réduite à une loi normale quelconque via une transformation affine :</p>
 <ul>
 <li>si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">\sqrt{\nu} X + \mu \sim \mathcal{N}(\mu, \nu)</span>,</li>
 <li>si <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span>, alors <span class="math inline">(X-\mu)/\sqrt{\nu} \sim \mathcal{N}(0,1)</span>.</li>
 </ul>
 <p>Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n’importe quelle loi normale.</p>
 <div id="prp-caract" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale)</strong></span> La fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par <span class="math display">
+<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale) </strong></span>La fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par <span class="math display">
 \begin{align*}
 \phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X})  \\
 &amp; = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
@@ -635,7 +621,7 @@ Une mauvaise piste pour simuler une loi normale
 \end{align*}
 </span></p>
 <div id="thm-changement-variables" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle)</strong></span> Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
 \begin{align*}
     (u,v) &amp; \mapsto
     f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
@@ -672,7 +658,7 @@ $$ --> ce qui donne le résultat voulu.
 </div>
 <p><br></p>
 <div id="exm-cos" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>)</strong></span> Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
+<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>) </strong></span>Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
 <p>On applique le théorème précédent avec la fonction <span class="math inline">\phi^{-1}(u) = \arccos(u)</span> sur <span class="math inline">]-1,1[</span>. La densité de <span class="math inline">U</span> est alors donnée pour tout <span class="math inline">u \in \mathbb{R}</span> par <span class="math display">
 \begin{align*}
   f_U(u)
@@ -711,7 +697,7 @@ $$ --> ce qui donne le résultat voulu.
 </span></p>
 <p>Dans le cas où <span class="math inline">X</span> et <span class="math inline">Y</span> sont des variables aléatoires gaussiennes indépendantes, on obtient le résultat suivant.</p>
 <div id="thm-box-muller" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller)</strong></span> Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normales centrées réduites : <span class="math inline">X,Y \sim \mathcal{N}(0,1)</span>. Le couple de variables aléatoires polaires <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normales centrées réduites : <span class="math inline">X,Y \sim \mathcal{N}(0,1)</span>. Le couple de variables aléatoires polaires <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
             f_{R, \Theta}(r,\theta)
             = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
 </span> Autrement dit, elles sont indépendantes, l’angle <span class="math inline">\Theta</span> suit une loi uniforme sur <span class="math inline">]0, 2\pi[</span> et la distance à l’origine <span class="math inline">R</span> suit une loi de Rayleigh donnée par la densité <span class="math display">
@@ -762,7 +748,7 @@ Note
 <h3 class="anchored" data-anchor-id="loi-du-chi2">Loi du <span class="math inline">\chi^2</span></h3>
 <p>Concernant la prononciation, on prononce “khi-deux” le nom de cette loi.</p>
 <div id="def-chi2" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\chi^2</span>)</strong></span> Soit <span class="math inline">X_1, \dots, X_k</span> des variables aléatoires i.i.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">X = X_1^2 + \dots + X_k^2</span> est appelée <strong>loi du <span class="math inline">\chi^2</span> à <span class="math inline">k</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">
+<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\chi^2</span>) </strong></span>Soit <span class="math inline">X_1, \dots, X_k</span> des variables aléatoires i.i.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">X = X_1^2 + \dots + X_k^2</span> est appelée <strong>loi du <span class="math inline">\chi^2</span> à <span class="math inline">k</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">
 f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
 </span> où <span class="math inline">\Gamma</span> désigne la fonction gamma d’Euler : <span class="math display">
 \Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
@@ -806,7 +792,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
     f_{\chi^2(k+1)}(x)
     &amp; = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{\frac{k}{2}-1}  u^{1/2-1} du\enspace.
 \end{align*}
-</span> Or rappelons que si <span class="math inline">\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du</span>, alors pour tout <span class="math inline">a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En effet, en faisant le changement de variable dans l’intégrale double qui suit: <span class="math display">
+</span> Or rappelons que si <span class="math inline">\Beta(a,b) = \int_0^1 (1-u)^{a-1} u^{b-1} \, du</span>, alors pour tout <span class="math inline">a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En effet, en faisant le changement de variable dans l’intégrale double qui suit: <span class="math display">
 \begin{array}{ccccc}
     \psi &amp; : &amp; \mathbb{R}^+ \times \mathbb{R}^+ &amp; \to     &amp; \mathbb{R}^+\times ]0,1[                 \\
             &amp;   &amp; (s,t)                          &amp; \mapsto &amp; \Big(s+t, \frac{t}{s+t}\Big)\,,
@@ -838,14 +824,14 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <section id="loi-de-student" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="loi-de-student">Loi de Student</h3>
 <div id="def-student" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 2 (Loi de Student)</strong></span> Soit <span class="math inline">X \sim \mathcal{N}(0,1)</span> et <span class="math inline">Y \sim \chi^2(k)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">V = \frac{X}{\sqrt{Y/k}}</span> est appelée <strong>loi de Student à <span class="math inline">k</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">
+<p><span class="theorem-title"><strong>Définition 2 (Loi de Student) </strong></span>Soit <span class="math inline">X \sim \mathcal{N}(0,1)</span> et <span class="math inline">Y \sim \chi^2(k)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">V = \frac{X}{\sqrt{Y/k}}</span> est appelée <strong>loi de Student à <span class="math inline">k</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">
     f_V(t)
     = \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
     \quad t \in \mathbb{R}\,.
 </span></p>
 </div>
 <p>La loi de Student correspond donc au ratio d’une loi normale par la racine carrée d’une loi du <span class="math inline">\chi^2(k)</span> normalisée. Ce ratio apparaît souvent en statistique lors de la construction d’intervalles de confiance. Cette loi a été décrite en 1908 par <a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin, chargé du contrôle qualité. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p></div><p>Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule <span class="math inline">k+1</span> loi normales indépendantes <span class="math inline">X_1, \ldots, X_{k+1}</span> et on considère <span class="math display">
+<div class="no-row-height column-margin column-container"><li id="fn2"><p><sup>2</sup>&nbsp;<a href="https://fr.wikipedia.org/wiki/William_Gosset">William Gosset</a>: (1876-1937) statisticien et chimiste anglais. Il était employé à la brasserie Guinness à Dublin, chargé du contrôle qualité. Son employeur lui refusant le droit de publier sous son propre nom, W. Gosset choisit un pseudonyme, <em>Student</em> (🇫🇷: étudiant). <img src="https://upload.wikimedia.org/wikipedia/commons/4/42/William_Sealy_Gosset.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo William Gosset" title="Photographie de William Gosset, prise en 1908."></p></li></div><p>Au vu de la proposition précédente, simuler une loi de Student est assez simple : on simule <span class="math inline">k+1</span> loi normales indépendantes <span class="math inline">X_1, \ldots, X_{k+1}</span> et on considère <span class="math display">
     V = \dfrac{\sqrt{k} X_{k+1}}{\sqrt{X_1^2+\cdots + X_k^2}}\,.
 </span></p>
 <p><em>Preuve de la formule de la densité</em>:</p>
@@ -910,7 +896,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <section id="loi-de-cauchy" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="loi-de-cauchy">Loi de Cauchy</h3>
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy)</strong></span> Une variable aléatoire <span class="math inline">X</span> suit une <strong>loi de Cauchy</strong> standard si sa densité est donnée par <span class="math display">
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy) </strong></span>Une variable aléatoire <span class="math inline">X</span> suit une <strong>loi de Cauchy</strong> standard si sa densité est donnée par <span class="math display">
     f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 </span></p>
 </div>
@@ -935,7 +921,7 @@ Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
 <h4 class="anchored" data-anchor-id="fonction-de-répartition-et-simulation">Fonction de répartition et simulation</h4>
 <p>La fonction de répartition de <span class="math inline">X</span> correspond, à une constante près, à la fonction arctangente qui est bijective de <span class="math inline">\mathbb{R}</span> sur <span class="math inline">]\frac{-\pi}{2},\frac{\pi}{2}[</span>. La méthode d’inversion permet donc de simuler une variable aléatoire de loi de Cauchy. La proposition suivante donne un autre moyen.</p>
 <div id="prp-cauchy" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale)</strong></span> Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors la variable aléatoire <span class="math inline">Y/X</span> suit une loi de Cauchy.</p>
+<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et loi normale) </strong></span>Soit <span class="math inline">X</span> et <span class="math inline">Y</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors la variable aléatoire <span class="math inline">Y/X</span> suit une loi de Cauchy.</p>
 </div>
 <p>Notons que <span class="math inline">Y/X</span> est bien définie puisque <span class="math inline">X</span> est différent de <span class="math inline">0</span> presque sûrement.</p>
 <p><em>Preuve</em>: Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l’application <span class="math display">
@@ -985,7 +971,7 @@ Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdGx5ID0gcmVxdWlyZShcImh0dHBzOi8vY2RuLnBsb3QubHkvcGxvdGx5LWxhdGVzdC5taW4uanNcIilcblBsb3RseSA9IHJlcXVpcmUoJ3Bsb3RseS5qcy1kaXN0Jyk7XG5kaXN0cyA9IHJlcXVpcmUoICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvc3RkbGliLWpzL3N0YXRzLWJhc2UtZGlzdHNAdW1kL2Jyb3dzZXIuanMnICk7XG5qc3RhdCA9IHJlcXVpcmUoJ2pzdGF0Jyk7XG5tYXRoID0gcmVxdWlyZShcIm1hdGhqc1wiKTtcbi8vIHNlZSBzb3VyY2UgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL3N0ZGxpYi1qcy9zdGF0cy1iYXNlLWRpc3RzL3RyZWUvdW1kXG4vLyBjb250aW51b3VzIGNhc2Vcblxudmlld29mIGlucHV0cyA9IElucHV0cy5mb3JtKFtcbiAgSW5wdXRzLnJhbmdlKFstMiwgMl0sIHtsYWJlbDogdGV4YFxcbXVgLCBzdGVwOiAwLjF9LCB7dmFsdWU6IDB9KSxcbiAgSW5wdXRzLnJhbmdlKFswLjEsIDEwXSwge2xhYmVsOiB0ZXhgXFxudWAsIHN0ZXA6IDAuMSwgdmFsdWU6IDF9KSxcbiAgSW5wdXRzLnJhbmdlKFsxLCAxMDAwXSwge2xhYmVsOiB0ZXhgbmAsIHN0ZXA6IDF9KSxcbiAgSW5wdXRzLmJ1dHRvbihcIlJlLVRpcmFnZVwiKVxuXSlcblxubXUgPSBpbnB1dHNbMF07XG5udSA9IGlucHV0c1sxXTtcbm5fc2FtcGxlcyA9IGlucHV0c1syXTtcblxue1xuXG5mdW5jdGlvbiBtdm5wZGYoeCwgbXUsIG51KXtcbiAgICByZXR1cm4gMS4wIC8gKDIqbWF0aC5waSAqbnUpKiooMC41KSogbWF0aC5leHAoLTAuNSooeC1tdSkqKjIgLyBudSk7XG59XG5cblxuZnVuY3Rpb24gbm9ybWFsX3JuZyhtdSwgbnUsIG49MTAwKXtcbiAgICB2YXIgc2FtcGxlcyA9IEFycmF5LmZyb20oe2xlbmd0aDogbn0sICgpID0+IHtcbiAgICAgICAgdmFyIHggPSBqc3RhdC5ub3JtYWwuc2FtcGxlKG11LCBudSoqMC41KTtcbiAgICAgICAgcmV0dXJuIHg7XG4gICAgfSk7XG5cbiAgICByZXR1cm4gc2FtcGxlcztcbn1cblxudmFyIHNhbXBsZXMgPSBub3JtYWxfcm5nKG11LCBudSwgMTAwMCk7XG52YXIgc2FtcGxlc19qaXR0ZXIgPSBub3JtYWxfcm5nKDAsIDAuMDMsIDEwMDApXG52YXIgbnBvaW50cz01MDAsIG1pbmkgPSAtMTAsIG1heGk9MTAsIHggPSBuZXcgQXJyYXkobnBvaW50cyksIHogPSBuZXcgQXJyYXkobnBvaW50cyksIGksIGo7XG5cbi8vICBEZW5zaXTDqTpcbmZvcih2YXIgaSA9IDA7IGkgPCBucG9pbnRzOyBpKyspIHtcbiAgICB4W2ldID0gbWluaSArIGkgKiAobWF4aSAtIG1pbmkpIC8gKG5wb2ludHMgLSAxKTtcblx0eltpXSA9IG12bnBkZih4W2ldLCBtdSwgbnUpO1xuICAgIH1cblxue1xudmFyIHRyYWNlMSA9IHtcbiAgICAgICAgeDogc2FtcGxlcy5zbGljZSgwLCBuX3NhbXBsZXMpLFxuICAgICAgICB5OiBzYW1wbGVzX2ppdHRlci5zbGljZSgwLCBuX3NhbXBsZXMpLFxuICAgICAgICBtb2RlOiAnbWFya2VycycsXG4gICAgICAgIHR5cGU6ICdzY2F0dGVyJyxcbiAgICAgICAgbWFya2VyOiB7XG4gICAgICAgICAgICBjb2xvcjogJ3JnYmEoMCwwLDAsMC41KScsXG4gICAgICAgICAgICBzaXplOiA1LFxuICAgICAgICB9LFxuXG4gIH1cblxudmFyIHRyYWNlMjIgPSB7XG4gICAgICAgIHg6IHgsXG4gICAgICAgIHk6IHosXG5cdFx0dHlwZTogXCJzY2F0dGVyXCIsXG5cdFx0bW9kZTogXCJsaW5lc1wiLFxuXHRcdG5hbWU6ICdQZGYnLFxuXHRcdGxpbmU6IHtjb2xvcjogJ2JsYWNrJ30sXG5cdFx0eWF4aXM6ICd5MicsXG5cdFx0eGF4aXM6ICd4MicsXG4gICAgICAgIH1cblxuXG52YXIgZGF0YSA9IFtcbiAgdHJhY2UxLFxuICB0cmFjZTIyLFxuICBdO1xuXG5cbnZhciBsYXlvdXQgPSB7XG5cdHdpZHRoOiA2MDAsXG5cdHlheGlzOiB7ZG9tYWluOiBbMCwgMC4yXSxcblx0XHRcdHNob3d0aWNrbGFiZWxzOiBmYWxzZSxcblx0XHRcdHJhbmdlOiBbLTAuNiwgMC42XSxcbiAgICAgICAgICAgIGF1dG9yYW5nZTogZmFsc2V9LFxuXHR4YXhpczI6IHttYXRjaGVzOiAneCcsXG5cdCAgICAgICAgICByYW5nZTogWy0xMCwgMTBdLFxuICAgICAgICAgIGF1dG9yYW5nZTogZmFsc2V9LFxuXHR5YXhpczI6IHtkb21haW46IFswLjI5LCAwLjk5XX0sXG5cbiAgc2hvd2xlZ2VuZDogZmFsc2UsXG5cbn07XG5cbiAgICB2YXIgY29uZmlnID0ge3Jlc3BvbnNpdmU6IHRydWV9XG4gICAgY29uc3QgZGl2ID0gRE9NLmVsZW1lbnQoJ2RpdicpO1xuICAgIFBsb3RseS5yZWFjdChkaXYsIGRhdGEsIGxheW91dCwgY29uZmlnKTtcbiAgICByZXR1cm4gZGl2O1xuXHR9XG59XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXRRdWlldCIsInNvdXJjZSI6InNoaW55SW5wdXQoJ2lucHV0cycpIn1dfQ==
+{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-2, 2], {label: tex`\\mu`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 10], {label: tex`\\nu`, step: 0.1, value: 1}),\n  Inputs.range([1, 1000], {label: tex`n`, step: 1}),\n  Inputs.button(\"Re-Tirage\")\n])\n\nmu = inputs[0];\nnu = inputs[1];\nn_samples = inputs[2];\n\n{\n\nfunction mvnpdf(x, mu, nu){\n    return 1.0 / (2*math.pi *nu)**(0.5)* math.exp(-0.5*(x-mu)**2 / nu);\n}\n\n\nfunction normal_rng(mu, nu, n=100){\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(mu, nu**0.5);\n        return x;\n    });\n\n    return samples;\n}\n\nvar samples = normal_rng(mu, nu, 1000);\nvar samples_jitter = normal_rng(0, 0.03, 1000)\nvar npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n\tz[i] = mvnpdf(x[i], mu, nu);\n    }\n\n{\nvar trace1 = {\n        x: samples.slice(0, n_samples),\n        y: samples_jitter.slice(0, n_samples),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n  }\n\nvar trace22 = {\n        x: x,\n        y: z,\n\t\ttype: \"scatter\",\n\t\tmode: \"lines\",\n\t\tname: 'Pdf',\n\t\tline: {color: 'black'},\n\t\tyaxis: 'y2',\n\t\txaxis: 'x2',\n        }\n\n\nvar data = [\n  trace1,\n  trace22,\n  ];\n\n\nvar layout = {\n\twidth: 600,\n\tyaxis: {domain: [0, 0.2],\n\t\t\tshowticklabels: false,\n\t\t\trange: [-0.6, 0.6],\n            autorange: false},\n\txaxis2: {matches: 'x',\n\t          range: [-10, 10],\n          autorange: false},\n\tyaxis2: {domain: [0.29, 0.99]},\n\n  showlegend: false,\n\n};\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.react(div, data, layout, config);\n    return div;\n\t}\n}\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -1174,28 +1160,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
+        typesetMath(container);
         return container.innerHTML
       } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -1204,15 +1200,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
+      typesetMath(note);
+      return note.innerHTML;
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1450,4 +1439,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale1D.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
+</body></html>

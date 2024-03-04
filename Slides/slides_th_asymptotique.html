@@ -9,11 +9,11 @@
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.2.1/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+  <meta name="generator" content="quarto-1.4.429">
 
   <meta name="dcterms.date" content="2024-01-19">
   <title>HAX603X: Modélisation stochastique - Théorèmes asymptotiques</title>
@@ -474,7 +474,7 @@ Benjamin Charlier
 \]</span> quand on observe <span class="math inline">\(n\)</span> variables aléatoires i.i.d <span class="math inline">\(X_1,\dots,X_n\)</span>, ayant une espérance finie.</li>
 </ul>
 <div id="thm-lfgn" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres) </strong></span><br></p>
 <p>Soit <span class="math inline">\((X_n)_{n \geq 1}\)</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">\(L^1(\Omega, \mathcal{F}, \mathbb{P})\)</span>. Notons <span class="math inline">\(\mu = \mathbb{E}[X_1]\)</span>. Alors <span class="math inline">\(\bar X_n\)</span> converge vers <span class="math inline">\(\mu\)</span> presque sûrement : <span class="math display">\[
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 \]</span></p>
@@ -484,7 +484,7 @@ Benjamin Charlier
 <h2>Interprétation</h2>
 <p>Intuitivement, la probabilité d’un événement <span class="math inline">\(A\)</span> correspond à la fréquence d’apparition de <span class="math inline">\(A\)</span> quand on répète une expérience qui fait intervenir cet événement.</p>
 <div id="exm-bernoulli" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Cas Bernouilli: pile ou face)</strong></span> La probabilité d’apparition du côté pile (noté <span class="math inline">\(p\)</span>) peut-être estimée en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu.</p>
+<p><span class="theorem-title"><strong>Exemple 1 (Cas Bernouilli: pile ou face) </strong></span>La probabilité d’apparition du côté pile (noté <span class="math inline">\(p\)</span>) peut-être estimée en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu.</p>
 <p>La loi des grands nombres justifie cette intuition : si <span class="math inline">\(X_1, \ldots, X_n\)</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">\(p\)</span>, alors <span class="math display">\[
     \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p =\mathbb{E}(X_1)
 \]</span></p>
@@ -680,7 +680,7 @@ app = App(app_ui, server)
 <section id="théorème-central-limite-1" class="slide level2">
 <h2>Théorème central limite</h2>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite)</strong></span> Soit <span class="math inline">\(X_1, \ldots, X_n\)</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\(\sigma^2 = {\rm var}(X_1) \in ]0, \infty[\)</span>. On note <span class="math inline">\(\mu = \mathbb{E}[X_1]\)</span> leur espérance. Alors <span class="math display">\[
+<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite) </strong></span>Soit <span class="math inline">\(X_1, \ldots, X_n\)</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\(\sigma^2 = {\rm var}(X_1) \in ]0, \infty[\)</span>. On note <span class="math inline">\(\mu = \mathbb{E}[X_1]\)</span> leur espérance. Alors <span class="math display">\[
 \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 \]</span> où <span class="math inline">\(N\)</span> suit une loi normale centrée réduite : <span class="math inline">\(N \sim\mathcal{N}(0,1)\)</span>.</p>
 </div>
@@ -738,10 +738,10 @@ app = App(app_ui, server)
 </ul>
 </div>
 <div class="fragment">
-<div id="480f7a38" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Calcul du quantile (en: Percent point function) de niveau 1-0.05/2</span></span>
-<span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="494e2041" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Calcul du quantile (en: Percent point function) de niveau 1-0.05/2</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.96</code></pre>
 </div>
@@ -936,7 +936,7 @@ app = App(app_ui, server)
 <p><br></p>
 <p><u>Notation</u>: Soient <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span> définies sur <span class="math inline">\(\mathbb{R}\)</span> (intégrables au sens de Lebesgue).</p>
 <div id="def-loi" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Convolution)</strong></span> La <strong>convolution</strong> de <span class="math inline">\(f\)</span> par <span class="math inline">\(g\)</span> est la fonction <span class="math inline">\(f*g\)</span> suivante: <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 1 (Convolution) </strong></span>La <strong>convolution</strong> de <span class="math inline">\(f\)</span> par <span class="math inline">\(g\)</span> est la fonction <span class="math inline">\(f*g\)</span> suivante: <span class="math display">\[
 \begin{align}
 f*g:
 \mathbb{R} &amp;\mapsto \mathbb{R} \nonumber\\
@@ -962,11 +962,11 @@ x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 <section id="somme-et-convolutions" class="slide level2">
 <h2>Somme et convolutions</h2>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions)</strong></span> Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des v.a. indépendantes de densités respectives <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span>, alors la densité de <span class="math inline">\(X+Y\)</span> est donnée par la convolution <span class="math inline">\(f*g\)</span>.</p>
+<p><span class="theorem-title"><strong>Théorème 3 (Loi de la somme et convolutions) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> des v.a. indépendantes de densités respectives <span class="math inline">\(f\)</span> et <span class="math inline">\(g\)</span>, alors la densité de <span class="math inline">\(X+Y\)</span> est donnée par la convolution <span class="math inline">\(f*g\)</span>.</p>
 </div>
 <p><span class="underscore">Rappel</span>: pour un scalaire <span class="math inline">\(\alpha\neq 0\)</span>, la densité de <span class="math inline">\(\alpha X\)</span> est donnée par la fonction <span class="math inline">\(x \mapsto \frac{1}{|\alpha|} \cdot f(\frac{x}{\alpha})\)</span>.</p>
 <div id="cor-tclappli" class="theorem corollary">
-<p><span class="theorem-title"><strong>Corollaire 1 (Loi de la moyenne)</strong></span> Soient <span class="math inline">\(X_1,\dots,X_n\)</span> des v.a. i.i.d. de densité <span class="math inline">\(f\)</span>, la densité de <span class="math inline">\(\bar{X}_n\)</span> est donnée par la fonction <span class="math inline">\(x \mapsto n \cdot [f*\dots*f](n \cdot x)\)</span>.</p>
+<p><span class="theorem-title"><strong>Corollaire 1 (Loi de la moyenne) </strong></span>Soient <span class="math inline">\(X_1,\dots,X_n\)</span> des v.a. i.i.d. de densité <span class="math inline">\(f\)</span>, la densité de <span class="math inline">\(\bar{X}_n\)</span> est donnée par la fonction <span class="math inline">\(x \mapsto n \cdot [f*\dots*f](n \cdot x)\)</span>.</p>
 </div>
 </section>
 <section id="convolution-et-tcl" class="slide level2">
@@ -1139,10 +1139,8 @@ app = App(app_ui, server)
 </div>
 </div>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><span style="color:grey;float:left;margin-left:7%;"><em>Théorèmes asymptotiques</em></span></p>
-</div>
 </div>
 </section></section>
     </div>
@@ -1621,7 +1619,7 @@ app = App(app_ui, server)
                   options: {
                     flipVariations: false, // true by default
                     allowedAutoPlacements: ['right'],
-                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
                   },
                 },
                 {

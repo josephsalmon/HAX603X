@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.549">
+  <meta name="generator" content="quarto-1.4.429">
 
   <meta name="dcterms.date" content="2024-01-19">
   <title>HAX603X: Modélisation stochastique - Loi normale: cas univarié</title>
@@ -460,7 +460,7 @@ Benjamin Charlier
 <section id="fonction-caractéristique" class="slide level2">
 <h2>Fonction caractéristique</h2>
 <div id="prp-caract" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale)</strong></span> La fonction caractéristique d’une variable aléatoire <span class="math inline">\(X \sim \mathcal{N}(\mu, \nu)\)</span> est donnée pour tout <span class="math inline">\(t \in \mathbb{R}\)</span> par <span class="math display">\[
+<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale) </strong></span>La fonction caractéristique d’une variable aléatoire <span class="math inline">\(X \sim \mathcal{N}(\mu, \nu)\)</span> est donnée pour tout <span class="math inline">\(t \in \mathbb{R}\)</span> par <span class="math display">\[
 \begin{align*}
 \phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X}) = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
@@ -512,7 +512,7 @@ Benjamin Charlier
 </div>
 <div class="fragment">
 <div id="thm-changement-variables" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle)</strong></span> Soit <span class="math inline">\((X,Y)\)</span> un vecteur aléatoire de densité <span class="math inline">\(f_{(X,Y)}\)</span> définie sur l’ouvert <span class="math inline">\(A \subset \mathbb{R}^2\)</span> et <span class="math inline">\(\phi : A \to B \subset \mathbb{R}^2\)</span> un <span class="math inline">\(C^1\)</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">\((U,V)=\phi(X,Y)\)</span> admet alors pour densité <span class="math inline">\(f_{(U,V)}\)</span> définie sur <span class="math inline">\(B\)</span> pour tout <span class="math inline">\((u,v) \in \mathbb{R}^2\)</span> par <span class="math display">\[
+<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle) </strong></span>Soit <span class="math inline">\((X,Y)\)</span> un vecteur aléatoire de densité <span class="math inline">\(f_{(X,Y)}\)</span> définie sur l’ouvert <span class="math inline">\(A \subset \mathbb{R}^2\)</span> et <span class="math inline">\(\phi : A \to B \subset \mathbb{R}^2\)</span> un <span class="math inline">\(C^1\)</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">\((U,V)=\phi(X,Y)\)</span> admet alors pour densité <span class="math inline">\(f_{(U,V)}\)</span> définie sur <span class="math inline">\(B\)</span> pour tout <span class="math inline">\((u,v) \in \mathbb{R}^2\)</span> par <span class="math display">\[
 \begin{align*}
     (u,v) &amp; \mapsto
     f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)
@@ -563,7 +563,7 @@ Benjamin Charlier
     \end{array}
 \]</span></p>
 <div id="thm-box-muller" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller)</strong></span> Soit <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux v.a. indépendantes <span class="math inline">\(X,Y \sim \mathcal{N}(0,1)\)</span>. Le couple de variables aléatoires polaires <span class="math inline">\((R, \Theta) = \phi(X,Y)\)</span> a pour densité <span class="math display">\[
+<p><span class="theorem-title"><strong>Théorème 2 (Méthode de Box-Müller) </strong></span>Soit <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux v.a. indépendantes <span class="math inline">\(X,Y \sim \mathcal{N}(0,1)\)</span>. Le couple de variables aléatoires polaires <span class="math inline">\((R, \Theta) = \phi(X,Y)\)</span> a pour densité <span class="math display">\[
             f_{R, \Theta}(r,\theta)
             = \Big( r \cdot e^{-\tfrac{r^2}{2}} {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) \Big) \bigg(\frac{{1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)}{2 \pi} \bigg)\,.
 \]</span> <span class="math inline">\(R\)</span> et <span class="math inline">\(\Theta\)</span> sont indépendantes, <span class="math inline">\(\Theta \sim \mathcal{U}(]0, 2\pi[)\)</span>, <span class="math inline">\(R\)</span> suit une loi de Rayleigh de densité <span class="math display">\[
@@ -574,7 +574,7 @@ Benjamin Charlier
 <section id="preuve-de-la-méthode-de-box-müller-suite" class="slide level2">
 <h2>Preuve de la méthode de Box-Müller (suite)</h2>
 <div id="lem-rayleigh" class="theorem lemma">
-<p><span class="theorem-title"><strong>Lemme 1 (Simulation selon la loi de Rayleigh)</strong></span> Si <span class="math inline">\(U\)</span> est une variable aléatoire de loi uniforme sur <span class="math inline">\(]0,1[\)</span>, alors <span class="math inline">\(\sqrt{-2 \log(U)}\)</span> suit une loi de Rayleigh.</p>
+<p><span class="theorem-title"><strong>Lemme 1 (Simulation selon la loi de Rayleigh) </strong></span>Si <span class="math inline">\(U\)</span> est une variable aléatoire de loi uniforme sur <span class="math inline">\(]0,1[\)</span>, alors <span class="math inline">\(\sqrt{-2 \log(U)}\)</span> suit une loi de Rayleigh.</p>
 </div>
 <p><br></p>
 <p><strong>Preuve</strong>: Pour tout <span class="math inline">\(x &gt; 0\)</span>, <span class="math inline">\(F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})\)</span>, et donc pour tout <span class="math inline">\(q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}\)</span>. Ainsi par la méthode de l’inverse, <span class="math inline">\(\sqrt{-2\log(1-U)}\)</span> suit est une v.a. distribuée selon la loi de Rayleigh, et donc aussi <span class="math inline">\(\sqrt{-2\log(U)}\)</span>.</p>
@@ -600,7 +600,7 @@ Benjamin Charlier
 <h2>Loi du <span class="math inline">\(\chi^2\)</span></h2>
 <p>Concernant la prononciation, on prononce “khi-deux” le nom de cette loi.</p>
 <div id="def-chi2" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\(\chi^2\)</span>)</strong></span> Soit <span class="math inline">\(X_1, \dots, X_k\)</span> des variables aléatoires i.I.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">\(X = X_1^2 + \dots + X_k^2\)</span> est appelée <strong>loi du <span class="math inline">\(\chi^2\)</span> à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 1 (Loi du <span class="math inline">\(\chi^2\)</span>) </strong></span>Soit <span class="math inline">\(X_1, \dots, X_k\)</span> des variables aléatoires i.I.d. de loi normale centrée réduite. La loi de la variable aléatoire <span class="math inline">\(X = X_1^2 + \dots + X_k^2\)</span> est appelée <strong>loi du <span class="math inline">\(\chi^2\)</span> à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Sa densité est donnée par <span class="math display">\[
 f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,, \quad x \geq 0\,,
 \]</span> où <span class="math inline">\(\Gamma\)</span> désigne la fonction gamma d’Euler : <span class="math display">\[
 \Gamma(x) = \int_0^{\infty} t^{x-1} e^{-t}\,  dt\,.
@@ -612,7 +612,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <div class="columns">
 <div class="column" style="width:60%;">
 <div id="def-student" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 2 (Loi de Student)</strong></span> Soit <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span> et <span class="math inline">\(Y \sim \chi^2(k)\)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">\(V = \frac{X}{\sqrt{Y/k}}\)</span> est appelée <strong>loi de Student à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 2 (Loi de Student) </strong></span>Soit <span class="math inline">\(X \sim \mathcal{N}(0,1)\)</span> et <span class="math inline">\(Y \sim \chi^2(k)\)</span> deux variables aléatoires indépendantes. La loi de la variable aléatoire <span class="math inline">\(V = \frac{X}{\sqrt{Y/k}}\)</span> est appelée <strong>loi de Student à <span class="math inline">\(k\)</span> degrés de liberté</strong>. Elle admet pour densité <span class="math display">\[
     f_V(t)
     = \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(1+\dfrac{t^2}{k}\Big)^{-\frac{k+1}{2}}\,,
     \quad t \in \mathbb{R}\,.
@@ -633,7 +633,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <div class="columns">
 <div class="column" style="width:60%;">
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy standard)</strong></span> Une v.a. <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy standard</strong> si sa densité est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 3 (Loi de Cauchy standard) </strong></span>Une v.a. <span class="math inline">\(X\)</span> suit une <strong>loi de Cauchy standard</strong> si sa densité est donnée par <span class="math display">\[
     f_X(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \mathbb{R}\,.
 \]</span> On note alors <span class="math inline">\(X\sim \mathcal{C}(0,1)\)</span> dans ce cas.</p>
 </div>
@@ -653,12 +653,12 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <section id="loi-de-cauchy-fonctions-caractéristiques" class="slide level2">
 <h2>Loi de Cauchy: fonctions caractéristiques</h2>
 <div id="def-cauchy" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 4 (Loi de Cauchy)</strong></span> On dit que <span class="math inline">\(Y\)</span> suit une loi de Cauchy de paramètres <span class="math inline">\((\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[\)</span> si <span class="math inline">\(Y=\mu + \sigma X\)</span>, où <span class="math inline">\(X\)</span> suit une loi de Cauchy standard. On note alors <span class="math inline">\(X\sim \mathcal{C}(0,1)\)</span> dans ce cas, et la densité de <span class="math inline">\(Y\)</span> est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 4 (Loi de Cauchy) </strong></span>On dit que <span class="math inline">\(Y\)</span> suit une loi de Cauchy de paramètres <span class="math inline">\((\mu,\sigma)\in \mathbb{R} \times ]0,+\infty[\)</span> si <span class="math inline">\(Y=\mu + \sigma X\)</span>, où <span class="math inline">\(X\)</span> suit une loi de Cauchy standard. On note alors <span class="math inline">\(X\sim \mathcal{C}(0,1)\)</span> dans ce cas, et la densité de <span class="math inline">\(Y\)</span> est donnée par <span class="math display">\[
     f_Y(y) = \dfrac{1}{\sigma \pi(1 + \tfrac{1}{\sigma^2}\left(y-\mu\right)^2)}\,, \quad y \in \mathbb{R}\,.
 \]</span></p>
 </div>
 <div id="prp-cauchy" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et fonction caractéristique)</strong></span> La fonction caractéristique de la loi de Cauchy standard est donnée par <span class="math display">\[
+<p><span class="theorem-title"><strong>Proposition 2 (Loi de Cauchy et fonction caractéristique) </strong></span>La fonction caractéristique de la loi de Cauchy standard est donnée par <span class="math display">\[
 \begin{align*}
 \varphi_X(t) &amp; \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
 \end{align*}
@@ -682,7 +682,7 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <section id="loi-de-cauchy-propriété" class="slide level2">
 <h2>Loi de Cauchy: propriété</h2>
 <div id="prp-cauchy" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 3 (Loi de Cauchy et loi normale)</strong></span> Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy standard.</p>
+<p><span class="theorem-title"><strong>Proposition 3 (Loi de Cauchy et loi normale) </strong></span>Soient <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> deux variables aléatoires indépendantes de loi normale centrée réduite. Alors, <span class="math inline">\(Y/X\)</span> suit une loi de Cauchy standard.</p>
 </div>
 <p><u>Remarque</u>: la méthode d’inversion permet aussi de simuler une variable aléatoire de loi de Cauchy (cf.&nbsp;TD/TP).</p>
 <div class="fragment">
@@ -720,10 +720,8 @@ Stigler, Stephen M. 1974. <span>«&nbsp;Studies in the History of Probability an
 </div>
 </div>
 
-<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><span style="color:grey;float:left;margin-left:7%;"><em>Loi normale: cas univarié</em></span></p>
-</div>
 </div>
 </section></section>
     </div>
@@ -1202,7 +1200,7 @@ Stigler, Stephen M. 1974. <span>«&nbsp;Studies in the History of Probability an
                   options: {
                     flipVariations: false, // true by default
                     allowedAutoPlacements: ['right'],
-                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
                   },
                 },
                 {
