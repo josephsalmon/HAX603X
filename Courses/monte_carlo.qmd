@@ -138,11 +138,11 @@ Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotiq
 $$
 	\left(I_n-F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
 $$
-où $F^{-1}_{\cN(0,1)}$ est la fonction quantile\footnote{c'est-à-dire l'inverse de la fonction de répartition} de la loi normale centrée réduite et 
+où $F^{-1}_{\cN(0,1)}$ est la fonction quantile^[c'est-à-dire l'inverse de la fonction de répartition] de la loi normale centrée réduite et 
 $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
-est l'estimateur sans biais\footnote{Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$} de la variance empirique.
+est l'estimateur sans biais^[Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$] de la variance empirique.
 ::::
 
 *Démonstration*:
@@ -166,7 +166,7 @@ On peut en déduire facilement la construction de l'intervalle de confiance asym
 <div class="div-remaining">□</div>
 </div>
 
-Ce résultat a deux conséquences importantes. D'une part, la vitesse de convergence est en $n^{-1/2}$, ce qui est relativement lent, mais indépendant à la fois de la dimension de $X$ et de la régularité de $g$. D'autre part, on peut calculer $S_n^2$ donc estimer l'erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer $I$. {\bf Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l'estimation Monte Carlo de l'espérance.}
+Ce résultat a deux conséquences importantes. D'une part, la vitesse de convergence est en $n^{-1/2}$, ce qui est relativement lent, mais indépendant à la fois de la dimension de $X$ et de la régularité de $g$. D'autre part, on peut calculer $S_n^2$ donc estimer l'erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer $I$.  **Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l'estimation Monte Carlo de l'espérance.**
 
 ::: {#exm-actif}
 
@@ -202,7 +202,7 @@ La proposition @prp-tcl2 donne deux leviers pour augmenter la précision de l'es
 1. augmenter le nombre $n$ de tirages,
 2. diminuer la variance $\var(g(X))$.
    
-Si le premier levier est facilement praticable pour des cas simples, il n'est pas envisageable lorsque une simulation de $g(X)$ est coûteuse en temps de calcul ou lorsque la variance est très grande, ce qui arrive couramment. Nous allons examiner le deuxième levier dans cette partie, c'est ce qu'on appelle les méthodes de réduction de variance.\\
+Si le premier levier est facilement praticable pour des cas simples, il n'est pas envisageable lorsque une simulation de $g(X)$ est coûteuse en temps de calcul ou lorsque la variance est très grande, ce qui arrive couramment. Nous allons examiner le deuxième levier dans cette partie, c'est ce qu'on appelle les **méthodes de réduction de variance**.
 
 Regardons d'abord un exemple pour bien comprendre l'intérêt de ces méthodes.
 
@@ -346,10 +346,11 @@ L'idée derrière l'échantillonnage préférentiel est similaire à celle des v
 
 
 Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
-$$
-I=\mathbb E[g(X)]=\int g(x)f(x)dx=\int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
-$$
-On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$. \\
+\begin{align*}
+I&=\mathbb E[g(X)]=\int g(x)f(x)dx 
+\\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
+\end{align*}
+On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$
 
 Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Evidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
 
