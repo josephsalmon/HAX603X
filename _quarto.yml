@@ -29,6 +29,7 @@ website:
             - Courses/simulation.qmd
             - Courses/loi_normale1D.qmd
             - Courses/loi_normale_multi.qmd
+            - Courses/monte_carlo.qmd
     - id: Slides
       collapse-level: 2
       contents:

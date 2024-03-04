@@ -1,0 +1,399 @@
+
+---
+title: "Méthode de Monte Carlo"
+format:
+  html:
+      out.width: 50%
+filters:
+  - shinylive
+---
+
+::: {.hidden}
+{{
+\newcommand{\cN}{\mathcal{N}}
+\DeclareMathOperator{\var}{Var} % variance
+\DeclareMathOperator{\cov}{Cov} % covariance
+}}
+:::
+
+De manière générale, ce qu'on appelle une méthode de **Monte-Carlo** est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
+
+Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles le le sont plus du tout ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières. Ainsi une {intégration par Monte Carlo} pour le cas de la grande dimension sera bien plus profitable.
+
+## Principe de la méthode
+
+<br>
+
+L'idée de la Méthode de Monte Carlo est d'exprimer l'intégrale qu'on cherche à approcher comme l'espérance d'une variable aléatoire, puis d'approcher cette espérance par une moyenne empirique. Si on veut calculer une intégrale de la forme
+$$
+	I=\int g(x)f(x)dx,
+$$
+on la réécrit comme 
+$$
+	I=\mathbb E[g(X)],
+$$
+où $X$ est une variable aléatoire de densité $f$. On suppose évidemment que $g(X)$ est bien intégrable, puis on approche l'espérance par la moyenne empirique
+$$
+	I_n=\frac{g(X_1)+g(X_2)+\cdots+g(X_n)}{n}.
+$$
+Il y a donc deux étapes : traduction sous forme d'espérance puis calcul de la moyenne empirique. Si l'expression à calculer est déjà sous forme d'espérance, il y a juste le calcul de la moyenne empirique à faire. Ce calcul se fait à partir de simulation de la variable aléatoire $X$ sous-jacente.
+
+:::: {#exm-unif}
+
+On peut approcher l'intégrale
+
+$$
+	I=\int_0^1 g(x)dx \simeq  \sum_{i=0}^nw_ig(x_i),
+$$
+où les $w_i$ sont des nombres entre $0$ et $1$ dont la somme vaut $1$, et les $x_i$ sont des points de l'intervalle $[0,1]$. Par exemple, pour la méthode des trapèzes, on prend $w_0=w_n=\frac{1}{2n}$ et $w_i=\frac 1 n$ sinon et les $x_i=\frac i  n$ sont régulièrement répartis. Pour une méthode de Monte Carlo, on interprète l'intégrale comme $\mathbb E[g(X)]$ où $X$ est une variable aléatoire de loi uniforme sur $[0,1]$. Alors les $w_i$ valent $\frac{1}{n+1}$ et les $x_i$ sont tirés selon la loi uniforme sur $[0,1]$. Contrairement aux méthodes déterministes, la valeur de l'approximation change si on relance le calcul puisque les tirages sont aléatoires.
+
+::::
+
+La méthode de Monte Carlo est très facile à programmer si on dispose d'un simulateur de la loi de $X$, et n'impose aucune régularité sur $g$ à part de la mesurabilité.
+
+## Théorèmes de convergence
+
+On s'intéresse maintenant à la convergence de cet algorithme : sous quelles conditions est-ce que $I_n$ converge vers $I$, en quel sens, et à la vitesse de cette convergence : combien de tirages faut-il faire pour atteindre une précision souhaitée.
+
+### Convergence de la méthode
+
+Commençons par énoncer des conditions sous lesquelles la méthode converge.
+
+:::: {#prp-cvmc}
+Soit $(X_n)_{n\in\N}$ une suite de variables aléatoires indépendantes et de même loi que $X$, et $g$ une fonction mesurable telle que $g(X)$ est intégrable. Alors la variable aléatoire
+$$
+	I_n=\frac{g(X_1)+g(X_2)+\cdots+g(X_n)}{n}
+$$
+converge presque presque sûrement vers $I=\mathbb E[g(X)]$ lorsque $n$ tend vers l'infini.
+::::
+
+*Démonstration*:
+
+Comme $g(X)$ est intégrable, et que les variables sont indépendantes et de même loi, il s'agit d'une application directe de la loi forte des grands nombres.
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1$, \ldots, $X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand. 
+
+
+::: {#exm-ex-p}
+Par exemple, si l'on répète un très grand nombre de fois $n$ une expérience aléatoire et que l'on s'intéresse à la réalisation de l'événement $A$ alors la loi des grands nombres nous garantit que :
+$$
+f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrightarrow[n \to \infty]{ps}\mathbb P(A).
+$$
+car $f_n(A)=(1/n) \sum_{i=1}^n X_i$ où $X_i$ est une v.a. de Bernoulli de paramètre $p=\mathbb P(A)=\mathbb E[X]$. Autrement dit, la fréquence observée $f_n(A)$ de la réalisation de l'événement $A$ au cours d'un grand nombre de répétitions de l'expérience se rapproche de la probabilité $P(A)$.
+:::
+	
+::: {#exm-montyHall}
+
+## Le jeu des trois portes ou paradoxe de Monty Hall
+
+Un jeu télévisé se déroule face à trois portes identiques. On a placé une voiture derrière l'une des portes, et une chèvre derrière chacune des deux autres. Le candidat est placé devant les trois portes, il en choisit une au hasard et se place devant.
+
+La présentatrice (qui sait où se trouve la voiture) ouvre alors l'une des deux autres portes, derrière laquelle il y a une chèvre, puis elle demande au candidat :  "Voulez-vous modifier votre choix ?"
+
+Le candidat a alors deux possibilités :
+
+1. soit il ouvre la porte qu'il avait choisie en premier ; (il conserve son premier choix)
+2. soit il ouvre une autre porte (celle qui n'a pas été ouverte par la présentatrice). 
+
+Quelle est la meilleure stratégie pour le candidat ? Garder son premier choix ou changer de porte ?
+
+Un raisonnement probabiliste peut fournir  la  solution. Mais vous pouvez vous aider en faisant des expériences pour faire une conjecture ! On  peut  par  exemple  lancer  le programme ci-dessous en  demandant  de  reproduire  dix mille fois l'expérience ($n= 10 000$).
+
+```{python}
+import numpy as np
+
+portes = np.array(["chevre", "chevre", "voiture"])
+NbSimulations = 10000
+
+gagne_avec_change = 0
+gagne_avec_conserve = 0
+
+for _ in range(NbSimulations):
+    porte_choisie = np.random.choice(portes)
+    if porte_choisie == "voiture":
+        gagne_avec_conserve += 1
+    else:
+        gagne_avec_change += 1
+
+print("Gagne en changeant : ", gagne_avec_change / NbSimulations * 100, "%")
+print("Gagne sans changer : ", gagne_avec_conserve / NbSimulations * 100, "%")
+
+```
+On peut alors conjecturer que la probabilité de gagner en changeant de porte est égale à $2/3$ alors que si le candidat reste sur son premier choix la probabilité de gagner ne sera que de $1/3$.
+
+:::
+
+### Précision de la méthode
+
+On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez grand pour que l'approximation soit satisfaisante.
+
+:::: {#prp-tcl2}
+
+Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est 
+$$
+	\left(I_n-F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
+$$
+où $F^{-1}_{\cN(0,1)}$ est la fonction quantile\footnote{c'est-à-dire l'inverse de la fonction de répartition} de la loi normale centrée réduite et 
+$$
+	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
+$$
+est l'estimateur sans biais\footnote{Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$} de la variance empirique.
+::::
+
+*Démonstration*:
+
+Comme $g(X)$ est de carré intégrable, et que les $X_i$ sont iid, on peut appliquer le théorème central limite à la suite $(g(X_i))$, ce qui donne
+$$
+	\frac{\frac{1}{n}\sum_{i=1}^n g(X_i)-\mathbb E[g(X)]}{\sqrt{\frac{\var(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1),
+$$
+ce qui se traduit dans notre contexte par
+$$
+	\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1).
+$$
+En général, on ne connaît pas non plus $\var(g(X))$, donc on la remplace par un estimateur de la variance $S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2$. D'après la loi des grands nombres, cet estimateur converge ps, donc en probabilité (donc en loi) vers $\var(g(X))$ qui est une constante. D'après le lemme de Slutsky, le couple $(\frac{I_n-I}{\sqrt{n\var(g(X))}},S^2_n)$ converge en loi vers le couple $(\mathcal N(0,1), \delta_{\var(g(X))})$. En particulier, on a encore la convergence en loi du produit
+$$
+	\frac{I_n-I}{\sqrt{\frac{S^2_n}{n}}}=\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\times \frac{\sqrt{\var(g(X))}}{\sqrt{S^2_n}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1) \times 1.
+$$
+On peut en déduire facilement la construction de l'intervalle de confiance asymptotique de l'énoncé.
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+Ce résultat a deux conséquences importantes. D'une part, la vitesse de convergence est en $n^{-1/2}$, ce qui est relativement lent, mais indépendant à la fois de la dimension de $X$ et de la régularité de $g$. D'autre part, on peut calculer $S_n^2$ donc estimer l'erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer $I$. {\bf Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l'estimation Monte Carlo de l'espérance.}
+
+::: {#exm-actif}
+
+En finance, certains contrats permettent de vendre un actif à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans la contrat. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Estimons cette quantité par la méthode de Monte Carlo.
+	
+```{python}
+#| echo: true
+
+import numpy as np
+
+n = 100000
+N = 60
+I = []
+
+for i in range(n):
+    X = np.random.normal(0, 1, N)
+    S = max(np.sum(X) - 1, 0)
+    I.append(S)
+
+I = np.array(I)
+m = np.mean(I)
+s = np.var(I)
+
+print([m - 1.96 * np.sqrt(s / n), m, m + 1.96 * np.sqrt(s / n)])
+```
+
+:::
+
+## Réduction de variance
+
+La proposition @prp-tcl2 donne deux leviers pour augmenter la précision de l'estimation $I_n$ de $I$ :
+
+1. augmenter le nombre $n$ de tirages,
+2. diminuer la variance $\var(g(X))$.
+   
+Si le premier levier est facilement praticable pour des cas simples, il n'est pas envisageable lorsque une simulation de $g(X)$ est coûteuse en temps de calcul ou lorsque la variance est très grande, ce qui arrive couramment. Nous allons examiner le deuxième levier dans cette partie, c'est ce qu'on appelle les méthodes de réduction de variance.\\
+
+Regardons d'abord un exemple pour bien comprendre l'intérêt de ces méthodes.
+
+::: {#exm-ex-p2}
+
+Revenons sur l'exemple @exm-ex-p où on cherche à estimer $p=\mathbb P(A)$ à partir de tirages de loi de Bernoulli.  Avec $n$ tirages, on a $I_n\simeq p + \sqrt{\frac{p(1-p)}{n}}Z$ avec $Z$ de loi normale centrée réduite. La valeur de $p$ est inconnue, mais on peut majorer $p(1-p)$ par $1/4$. Si on veut faire une erreur de l'ordre $0.01$ sur $p$, il convient de choisir $n=\frac{1}{4\times 0.01^2}=0.25\cdot 10^{4}=2500$.
+
+Si $p$ est proche de $0.5$, une erreur de $10^{-2}$ peut être acceptable. Mais si on cherche à approcher une probabilité très petite, par exemple $p=10^{-5}$, il faudra une précision d'au moins $10^{-6}$, et donc prendre $n=0.25\cdot 10^{12}$ tirages. On voit bien apparaître les limites de la méthode directe, et l'intérêt de toujours calculer l'ordre de grandeur de l'erreur commise.
+
+:::
+
+Il existe de nombreuses techniques de réduction de variance pour améliorer la vitesse de convergence. Malheureusement, aucune ne marche de façon automatique, il faut les choisir et les adapter au cas par cas. Il s'agit essentiellement d'exploiter d'une façon ou d'une autre l'idée que l'intégrale $I$ peut s'écrire de nombreuses façons différentes comme une espérance, et de choisir l'expression de variance minimale.
+
+### Variable de contrôle
+
+Une première façon très simple de décomposer $I$ est la suivante
+$$
+	I=\mathbb{E}[g(X)]=\mathbb{E}[g(X)-h(X)]+\mathbb{E}[h(X)].
+$$
+Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h(X)]$ et si la variance diminue : $\var\big(g(X)-h(X)\big)<\var\big(g(X)\big)$. Idéalement, on voudrait que la variance de $g(X)-h(X)$ soit très petite. Or rappelons qu'une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en oeuvre cette méthode, on va donc chercher une fonction $h$ qui soit une bonne approximation de $g$ sur l'intervalle d'intégration pour que la différence $g-h$ soit presque constante.
+
+::: {#exm-carre}
+
+Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
+$$
+	\mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
+$$
+On peut donc approcher $I$ par
+$$
+	I_n^{c}=\frac{1}{n}\sum_{i=1}^n\big(e^{X_i^2}-1-X_i^2\big)+\frac{4}{3},
+$$
+où les $X_i$ sont iid de loi uniforme sur $[0,1]$. Regardons ce que ça donne numériquement.
+
+```{python}
+
+import numpy as np
+
+n = 10000
+X = np.random.uniform(0, 1, n)
+
+## Direct method
+gX = np.exp(X**2)
+m1 = np.mean(gX)
+s1 = np.var(gX)
+confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
+print("Direct method confidence interval:", confidence_interval1)
+
+## Control variable
+ghX = np.exp(X**2) - 1 - X**2
+m2 = np.mean(ghX) + 4/3
+s2 = np.var(ghX)
+confidence_interval2 = [m2 - 1.96 * np.sqrt(s2 / n), m2, m2 + 1.96 * np.sqrt(s2 / n)]
+print("Control variable confidence interval:", confidence_interval2)
+
+```
+On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable de contrôle. On a divisé la variance (empirique) par $6.7$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $6.7^2\simeq45$ fois plus de simulations.
+
+:::
+
+### Variables antithétiques
+
+S'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi, on peut  écrire $I$ comme
+$$
+I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
+$$
+On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les \emph{mêmes tirages}. En fait on a introduit une certaine forme de dépendance puisqu'on utilise $g(X_i)$ et $g(h(X_i))$ dans l'estimateur.
+
+Examinons l'effet de cette décomposition sur la variance.
+
+:::: {lem-redvar}
+Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors 
+$$
+	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq \frac{\var (g(X))}{2},
+$$
+Autrement dit la méthode des variables antithétiques permet de réduire la variance au moins de moitié si $g(X)$ et $g(h(X))$ sont négativement corrélées.
+
+::::
+
+*Démonstration*:
+
+Calculons la variance
+\begin{align*}
+	\var\big(g(X)+g(h(X))\big)
+	&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
+	&= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
+	&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
+	&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
+\end{align*}
+En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a 
+$$
+	\var\left(\frac{g(X)+g(h(X))}{2}\right)  \leq \frac{ \var (g(X))+\var(g(h(X))}{4}=\frac{\var (g(X))}{2},
+$$
+car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a quand toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
+$$
+	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq 2\frac{\var (g(X))+\var(g(h(X))}{4}=\var (g(X)),
+$$
+donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
+	%On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
+	
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+	
+Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie.	
+
+::: {#exm-carre2}
+
+Revenons sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Cette loi a une propriété de symétrie : $X$ et $1-X$ ont la même loi. On a donc une approximation de $I$ de qualité identique ou meilleure en prenant
+$$
+	I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
+$$
+	Regardons ce que ça donne numériquement.
+
+```{python}
+import numpy as np
+
+n = 10000
+X = np.random.uniform(0, 1, n)
+
+## Direct method
+gX = np.exp(X**2)
+m1 = np.mean(gX)
+s1 = np.var(gX)
+confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
+print("Direct method confidence interval:", confidence_interval1)
+
+## Antithetic variable method
+gaX = (np.exp(X**2) + np.exp((1 - X)**2)) / 2
+m3 = np.mean(gaX)
+s3 = np.var(gaX)
+confidence_interval3 = [m3 - 1.96 * np.sqrt(s3 / n), m3, m3 + 1.96 * np.sqrt(s3 / n)]
+print("Antithetic variable method confidence interval:", confidence_interval3)
+```
+On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable antithétique. On a divisé la variance (empirique) par $8$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $8^2=64$ fois plus de simulations.
+:::
+
+### Echantillonnage préférentiel
+
+L'idée derrière l'échantillonnage préférentiel est similaire à celle des variables de contrôle. Cette fois-ci, au lieu de retrancher et d'ajouter une quantité, on va multiplier et diviser. L'interprétation en terme d'espérance est cependant complètement différente.
+
+
+Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
+$$
+I=\mathbb E[g(X)]=\int g(x)f(x)dx=\int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
+$$
+On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$. \\
+
+Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Evidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
+
+::: {#exm-loiUnif}
+
+Revenons une fois de plus sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. On a donc $f(x)=1$ sur l'intervalle d'intégration, on cherche donc à nouveau une approximation de $g(x)=e^{x^2}$. Utilisons encore l'approximation $g(x)\simeq 1+x^2$, ce qui nous conne comme densité candidate $h(x)=\frac{3}{4}(1+x^2)$. Regardons si on peut facilement simuler cette densité. Calculons sa fonction de répartition (sur $[0,1]$)
+$$
+	F(t)=\int_0^t \frac{3}{4}(1+x^2)=\frac{3}{4}\big[x+\frac{x^3}{3}\big]_0^1=\frac{3}{4}(t+\frac{t^3}{3}).
+$$
+Essayons de l'inverser
+$$
+	F(t)=u \Leftrightarrow u = \frac{4}{3}(t+\frac{t^3}{3}) \Leftrightarrow t^3+3t-4u=0
+$$
+On trouve alors par la **méthode de Cardan**^[voir par exemple la page [*Equation du troisième degré / Méthode de Cardan*](https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan)]
+$$
+	F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
+$$
+Regardons ce que ça donne numériquement.
+```{python}
+
+import numpy as np
+
+n = 10000
+X = np.random.uniform(0, 1, n)
+
+## Direct method
+gX = np.exp(X**2)
+m1 = np.mean(gX)
+s1 = np.var(gX)
+confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
+print("Direct method confidence interval:", confidence_interval1)
+
+## Importance sampling
+Y = (2*X + np.sqrt(1 + 4*X**2))**(1/3) - (np.sqrt(1 + 4*X**2) - 2*X)**(1/3)
+gpX = np.exp(Y**2) / (3 * (1 + Y**2) / 4)
+m4 = np.mean(gpX)
+s4 = np.var(gpX)
+confidence_interval4 = [m4 - 1.96 * np.sqrt(s4 / n), m4, m4 + 1.96 * np.sqrt(s4 / n)]
+print("Importance sampling confidence interval:", confidence_interval4)
+
+```
+
+On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec l'échantillonnage préférentiel. On a divisé la variance (empirique) par environ $12$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $12^2=144$ fois plus de simulations.
+
+:::
+
+Il existe bien d'autres méthodes de réduction de variance, comme par exemple la méthode de stratification très utilisée en théorie des sondages.

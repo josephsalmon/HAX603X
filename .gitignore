@@ -301,3 +301,8 @@ TSWLatexianTemp*
 #*Notes.bib
 
 /.quarto/
+/_site/
+/_extensions/
+*venv*
+/.vscode/
+.Rhistory
