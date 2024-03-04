@@ -30,6 +30,7 @@ website:
             - Courses/loi_normale1D.qmd
             - Courses/loi_normale_multi.qmd
             - Courses/monte_carlo.qmd
+            - Courses/marche_aleatoire.qmd
     - id: Slides
       collapse-level: 2
       contents:
