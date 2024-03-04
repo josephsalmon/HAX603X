@@ -1,11 +1,8 @@
-
 ---
 title: "Méthode de Monte Carlo"
 format:
   html:
       out.width: 50%
-filters:
-  - shinylive
 ---
 
 ::: {.hidden}
@@ -38,7 +35,7 @@ $$
 $$
 Il y a donc deux étapes : traduction sous forme d'espérance puis calcul de la moyenne empirique. Si l'expression à calculer est déjà sous forme d'espérance, il y a juste le calcul de la moyenne empirique à faire. Ce calcul se fait à partir de simulation de la variable aléatoire $X$ sous-jacente.
 
-:::: {#exm-unif}
+::: {#exm-unif}
 
 On peut approcher l'intégrale
 
@@ -47,7 +44,7 @@ $$
 $$
 où les $w_i$ sont des nombres entre $0$ et $1$ dont la somme vaut $1$, et les $x_i$ sont des points de l'intervalle $[0,1]$. Par exemple, pour la méthode des trapèzes, on prend $w_0=w_n=\frac{1}{2n}$ et $w_i=\frac 1 n$ sinon et les $x_i=\frac i  n$ sont régulièrement répartis. Pour une méthode de Monte Carlo, on interprète l'intégrale comme $\mathbb E[g(X)]$ où $X$ est une variable aléatoire de loi uniforme sur $[0,1]$. Alors les $w_i$ valent $\frac{1}{n+1}$ et les $x_i$ sont tirés selon la loi uniforme sur $[0,1]$. Contrairement aux méthodes déterministes, la valeur de l'approximation change si on relance le calcul puisque les tirages sont aléatoires.
 
-::::
+:::
 
 La méthode de Monte Carlo est très facile à programmer si on dispose d'un simulateur de la loi de $X$, et n'impose aucune régularité sur $g$ à part de la mesurabilité.
 
@@ -59,22 +56,17 @@ On s'intéresse maintenant à la convergence de cet algorithme : sous quelles co
 
 Commençons par énoncer des conditions sous lesquelles la méthode converge.
 
-:::: {#prp-cvmc}
+::: {#prp-cvmc}
 Soit $(X_n)_{n\in\N}$ une suite de variables aléatoires indépendantes et de même loi que $X$, et $g$ une fonction mesurable telle que $g(X)$ est intégrable. Alors la variable aléatoire
 $$
 	I_n=\frac{g(X_1)+g(X_2)+\cdots+g(X_n)}{n}
 $$
 converge presque presque sûrement vers $I=\mathbb E[g(X)]$ lorsque $n$ tend vers l'infini.
-::::
+:::
 
-*Démonstration*:
-
+::: {.proof}
 Comme $g(X)$ est intégrable, et que les variables sont indépendantes et de même loi, il s'agit d'une application directe de la loi forte des grands nombres.
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1$, \ldots, $X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand. 
 
@@ -142,10 +134,10 @@ où $F^{-1}_{\cN(0,1)}$ est la fonction quantile^[c'est-à-dire l'inverse de la 
 $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
-est l'estimateur sans biais^[Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$] de la variance empirique.
+est l'estimateur sans biais\footnote{Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$} de la variance empirique.
 ::::
 
-*Démonstration*:
+::: {.proof}
 
 Comme $g(X)$ est de carré intégrable, et que les $X_i$ sont iid, on peut appliquer le théorème central limite à la suite $(g(X_i))$, ce qui donne
 $$
@@ -160,11 +152,7 @@ $$
 	\frac{I_n-I}{\sqrt{\frac{S^2_n}{n}}}=\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\times \frac{\sqrt{\var(g(X))}}{\sqrt{S^2_n}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1) \times 1.
 $$
 On peut en déduire facilement la construction de l'intervalle de confiance asymptotique de l'énoncé.
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 Ce résultat a deux conséquences importantes. D'une part, la vitesse de convergence est en $n^{-1/2}$, ce qui est relativement lent, mais indépendant à la fois de la dimension de $X$ et de la régularité de $g$. D'autre part, on peut calculer $S_n^2$ donc estimer l'erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer $I$.  **Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l'estimation Monte Carlo de l'espérance.**
 
@@ -281,7 +269,7 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 
 ::::
 
-*Démonstration*:
+::: {.proof}
 
 Calculons la variance
 \begin{align*}
@@ -302,10 +290,7 @@ $$
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
 	%On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
 	
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 	
 Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie.	
 
