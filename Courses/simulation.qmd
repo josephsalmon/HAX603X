@@ -83,7 +83,7 @@ Parfois il est utile d'aller chercher dans le code source certaines information 
 Un tel algorithme se construit de la manière suivante :
 
 1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
-2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots·, U_n$.
+2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots, U_n$.
 
 
 - La fonction $f$ est déterministe et prend ses valeurs dans un ensemble fini, donc l'algorithme est périodique. Le but est donc d'avoir la plus grande période possible.
