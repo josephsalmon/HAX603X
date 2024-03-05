@@ -58,7 +58,7 @@ On s'intéresse maintenant à la convergence de cet algorithme : sous quelles co
 
 Commençons par énoncer des conditions sous lesquelles la méthode converge.
 
-:::: {#prp-cvmc}
+::: {#prp-cvmc}
 
 ##
 
@@ -120,8 +120,8 @@ for _ in range(NbSimulations):
     else:
         gagne_avec_change += 1
 
-print("Gagne en changeant : ", gagne_avec_change / NbSimulations * 100, "%")
-print("Gagne sans changer : ", gagne_avec_conserve / NbSimulations * 100, "%")
+print(f"Gagne en changeant : {gagne_avec_change / NbSimulations * 100:.3f} %")
+print(f"Gagne sans changer : {gagne_avec_conserve / NbSimulations * 100:.3f} %")
 
 ```
 On peut alors conjecturer que la probabilité de gagner en changeant de porte est égale à $2/3$ alors que si le candidat reste sur son premier choix la probabilité de gagner ne sera que de $1/3$.
@@ -132,7 +132,7 @@ On peut alors conjecturer que la probabilité de gagner en changeant de porte es
 
 On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez grand pour que l'approximation soit satisfaisante.
 
-:::: {#prp-tcl2}
+::: {#prp-tcl2}
 
 ##
 
@@ -145,7 +145,7 @@ $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
 est l'estimateur sans biais\footnote{Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$} de la variance empirique.
-::::
+:::
 
 ::: {.proof}
 
@@ -168,7 +168,6 @@ Ce résultat a deux conséquences importantes. D'une part, la vitesse de converg
 
 ::: {#exm-actif}
 
-## 
 
 En finance, certains contrats permettent de vendre un actif à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans la contrat. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Estimons cette quantité par la méthode de Monte Carlo.
 	
@@ -190,7 +189,7 @@ I = np.array(I)
 m = np.mean(I)
 s = np.var(I)
 
-print([m - 1.96 * np.sqrt(s / n), m, m + 1.96 * np.sqrt(s / n)])
+print(f"[{m - 1.96 * np.sqrt(s / n):.3f}, {m:.3f}, {m + 1.96 * np.sqrt(s / n):.3f}]")
 ```
 
 :::
@@ -208,7 +207,6 @@ Regardons d'abord un exemple pour bien comprendre l'intérêt de ces méthodes.
 
 ::: {#exm-ex-p2}
 
-## 
 
 Revenons sur l'exemple @exm-ex-p où on cherche à estimer $p=\mathbb P(A)$ à partir de tirages de loi de Bernoulli.  Avec $n$ tirages, on a $I_n\simeq p + \sqrt{\frac{p(1-p)}{n}}Z$ avec $Z$ de loi normale centrée réduite. La valeur de $p$ est inconnue, mais on peut majorer $p(1-p)$ par $1/4$. Si on veut faire une erreur de l'ordre $0.01$ sur $p$, il convient de choisir $n=\frac{1}{4\times 0.01^2}=0.25\cdot 10^{4}=2500$.
 
@@ -228,8 +226,6 @@ Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h
 
 ::: {#exm-carre}
 
-## 
-
 Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
 $$
 	\mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
@@ -247,23 +243,27 @@ import numpy as np
 n = 10000
 X = np.random.uniform(0, 1, n)
 
-## Direct method
+# Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
 s1 = np.var(gX)
-confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
-print("Direct method confidence interval:", confidence_interval1)
 
-## Control variable
+print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
+print(f"Variance {s1:.3f}")
+```
+
+
+```{python}
+# Control variable
 ghX = np.exp(X**2) - 1 - X**2
 m2 = np.mean(ghX) + 4/3
 s2 = np.var(ghX)
-confidence_interval2 = [m2 - 1.96 * np.sqrt(s2 / n), m2, m2 + 1.96 * np.sqrt(s2 / n)]
-print("Control variable confidence interval:", confidence_interval2)
 
+print(f"Control variable confidence interval: [{m2 - 1.96 * np.sqrt(s2 / n):.3f}, {m2:.3f}, {m2 + 1.96 * np.sqrt(s2 / n):.3f}]")
+print(f"Variance {s2:.3f}")
 ```
-On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable de contrôle. On a divisé la variance (empirique) par $6.7$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $6.7^2\simeq45$ fois plus de simulations.
 
+On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable de contrôle. On a divisé la variance (empirique) par $6.7$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $6.7^2\simeq45$ fois plus de simulations.
 :::
 
 ### Variables antithétiques
@@ -276,17 +276,17 @@ On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons
 
 Examinons l'effet de cette décomposition sur la variance.
 
-:::: {lem-redvar}
+::: {lem-redvar}
 
-## 
 
 Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors 
 $$
 	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq \frac{\var (g(X))}{2},
 $$
+
 Autrement dit la méthode des variables antithétiques permet de réduire la variance au moins de moitié si $g(X)$ et $g(h(X))$ sont négativement corrélées.
 
-::::
+:::
 
 ::: {.proof}
 
@@ -309,6 +309,7 @@ $$
 	& =\frac{\var (g(X))}{2},
 \end{align*}
 $$
+
 car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a quand toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
 $$
 \begin{align*}
@@ -317,6 +318,7 @@ $$
 	& = \var (g(X)),
 \end{align*}
 $$
+
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
 On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
 
@@ -326,11 +328,11 @@ Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qu
 
 ::: {#exm-carre2}
 
-
 Revenons sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Cette loi a une propriété de symétrie : $X$ et $1-X$ ont la même loi. On a donc une approximation de $I$ de qualité identique ou meilleure en prenant
 $$
 	I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
 $$
+
 Regardons ce que cela donne numériquement.
 
 ```{python}
@@ -339,22 +341,28 @@ import numpy as np
 n = 10000
 X = np.random.uniform(0, 1, n)
 
-## Direct method
+# Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
 s1 = np.var(gX)
-confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
-print("Direct method confidence interval:", confidence_interval1)
 
-## Antithetic variable method
+print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
+print(f"Variance {s1:.3f}")
+```
+
+```{python}
+# Antithetic variable method
 gaX = (np.exp(X**2) + np.exp((1 - X)**2)) / 2
 m3 = np.mean(gaX)
 s3 = np.var(gaX)
-confidence_interval3 = [m3 - 1.96 * np.sqrt(s3 / n), m3, m3 + 1.96 * np.sqrt(s3 / n)]
-print("Antithetic variable method confidence interval:", confidence_interval3)
+
+print(f"Antithetic variable method confidence interval:, [{m3 - 1.96 * np.sqrt(s3 / n):.3f}, {m3:.3f}, {m3 + 1.96 * np.sqrt(s3 / n):.3f}]")
+print(f"Variance {s3:.3f}")
 ```
+
 On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable antithétique. On a divisé la variance (empirique) par $8$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $8^2=64$ fois plus de simulations.
 :::
+
 
 ### Échantillonnage préférentiel
 
@@ -368,14 +376,12 @@ I&=\mathbb E[g(X)]=\int g(x)f(x)dx
 \\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
 \end{align*}
 $$
-On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$
+
+On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$.
 
 Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Évidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
 
 ::: {#exm-loiUnif}
-
-## 
-
 
 Revenons une fois de plus sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. On a donc $f(x)=1$ sur l'intervalle d'intégration, on cherche donc à nouveau une approximation de $g(x)=e^{x^2}$. Utilisons encore l'approximation $g(x)\simeq 1+x^2$, ce qui nous conne comme densité candidate $h(x)=\frac{3}{4}(1+x^2)$. Regardons si on peut facilement simuler cette densité. Calculons sa fonction de répartition (sur $[0,1]$)
 $$
@@ -385,10 +391,12 @@ Essayons de l'inverser
 $$
 	F(t)=u \Leftrightarrow u = \frac{4}{3}(t+\frac{t^3}{3}) \Leftrightarrow t^3+3t-4u=0
 $$
+
 On trouve alors par la **méthode de Cardan**^[voir par exemple la page [*Equation du troisième degré / Méthode de Cardan*](https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan)]
 $$
 	F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
 $$
+
 Regardons ce que ça donne numériquement.
 ```{python}
 
@@ -397,25 +405,27 @@ import numpy as np
 n = 10000
 X = np.random.uniform(0, 1, n)
 
-## Direct method
+# Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
 s1 = np.var(gX)
-confidence_interval1 = [m1 - 1.96 * np.sqrt(s1 / n), m1, m1 + 1.96 * np.sqrt(s1 / n)]
-print("Direct method confidence interval:", confidence_interval1)
 
-## Importance sampling
+print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
+print(f"Variance {s1:.3f}")
+```
+
+```{python}
+# Importance sampling
 Y = (2*X + np.sqrt(1 + 4*X**2))**(1/3) - (np.sqrt(1 + 4*X**2) - 2*X)**(1/3)
 gpX = np.exp(Y**2) / (3 * (1 + Y**2) / 4)
 m4 = np.mean(gpX)
 s4 = np.var(gpX)
-confidence_interval4 = [m4 - 1.96 * np.sqrt(s4 / n), m4, m4 + 1.96 * np.sqrt(s4 / n)]
-print("Importance sampling confidence interval:", confidence_interval4)
 
+print(f"Importance sampling confidence interval: [{m4 - 1.96 * np.sqrt(s4 / n):.3f}, {m4:.3f}, {m4 + 1.96 * np.sqrt(s4 / n):.3f}]")
+print(f"Variance {s4:.3f}")
 ```
 
 On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec l'échantillonnage préférentiel. On a divisé la variance (empirique) par environ $12$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $12^2=144$ fois plus de simulations.
-
 :::
 
 Il existe bien d'autres méthodes de réduction de variance, comme par exemple la méthode de stratification très utilisée en théorie des sondages.

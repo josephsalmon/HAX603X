@@ -1,10 +1,10 @@
-
 ---
 title: "Marches aléatoires"
 format:
   html:
       out.width: 50%
 ---
+
 ::: {.hidden}
 {{
 \providecommand{\N}{\mathbb{N}}
@@ -504,11 +504,13 @@ Il y a donc le même nombre de chemins des deux types.
 :::
 
 A nouveau, nous n'avons pas utilisé le fait que $\mathbb P(X=1)=\mathbb P(X=-1)$, mais uniquement le fait que $X$ ne peut prendre que les valeurs $-1$ et $1$ qui sont symétriques l'une de l'autre. Le résultat ci-dessus est donc également valable pour les marches asymétriques où $p=\mathbb P(X=1)=1-\mathbb P(X=-1)\neq \frac{1}{2}$.
-Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème su scrutin}.
+Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème su scrutin*.
 
 ::: {#thm-election}
-Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ a obtenu $a$ voix et la candidate $B$ $b$ voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
-$$p=1-\frac{b}{a+1}.$$
+Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
+$$
+p=1-\frac{b}{a+1}.
+$$
 :::
 
 ::: {.proof}
