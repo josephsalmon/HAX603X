@@ -48,7 +48,7 @@ On parle de *marche* car ce processus peut représenter la position d'une person
 
 Ce processus peut également servir à modéliser la richesse d'une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d'une richesse initiale $S_0=x>0$, à chaque pas de temps elle perd ou gagne $1$\euro{} en fonction du tirage obtenu. Les variables $X_n$ représentent alors le gain du $n$-ème jeu, et $S_n$ la richesse totale de la joueuse après le $n$-ème tirage.
 
-
+::: {#fig-marche}
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
@@ -177,8 +177,8 @@ var layout = {
 	}
 }
 ```
-
-
+Marche aléatoire simple symétrique et son chemin, initialisée en $(0,x)$.
+:::
 
 
 A partir de la définition, on obtient très facilement le comportement moyen de la marche.
@@ -215,7 +215,7 @@ Ainsi, en moyenne la marche reste constante, mais sa variance devient de plus en
 
 ### Représentation graphique  {#sec-chap03-graphe}
 
-Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, \dots,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. @lst-import.
+Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, \dots,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. @fig-marche.
 
 <!-- ::: {#exm-traj}
 La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4=1$, $X_5=-1$ est donnée ... .
@@ -306,7 +306,7 @@ On a donc nécessairement $|b-a|\leq n-m$.
 Il n'existe pas de chemin de $(0,0)$ à $(2,4)$.
 :::
 
-
+::: {#fig-pont}
 
 ```{ojs}
 //| echo: false
@@ -443,6 +443,8 @@ var layout = {
 	}
 }
 ```
+Marche aléatoire simple symétrique passant en $(0,0)$ et en  $(100,0)$.
+:::
 
 
 Une fois les conditions de parité et d'amplitude satisfaites, il existe toujours des chemins reliant deux points, et on peut les dénombrer explicitement.
