@@ -122,10 +122,10 @@ $$
 ## Densité de la loi gaussienne multivariée
 
 Soient $\bm{\mu} \in \mathbb{R}^d$ et $\Sigma \in \mathbb{R}^{d \times d}$ (symétrique et définie positive) et supposons que $X \sim \mathcal{N}(\bm{\mu},\Sigma)$.
-Alors la densité de probabilité de $X$ est donnée pour tout $x \in \mathbb{R}^d$ par (en notant $|\Sigma|$ le déterminant de $\Sigma$)
+Alors la densité de probabilité de $X$ est donnée pour tout $x \in \mathbb{R}^d$ par
 
 $$
-\varphi_{\bm{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-\bm{\mu})^\top\Sigma^{-1}(x - \bm{\mu})   \Big) \enspace.
+\varphi_{\bm{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-\bm{\mu})^\top\Sigma^{-1}(x - \bm{\mu})   \Big) \enspace.
 $$
 :::
 
@@ -134,15 +134,15 @@ $$
 Prenons une matrice $L\in \mathbb{R}^{d \times d}$ telle que $LL^\top = \Sigma$ (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous).
 Calculons alors la loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \bm{\mu}$, pour $X\sim \mathcal{N}(0,\mathrm{Id_d})$.
 Pour appliquer la formule du changement de variable nous donne, on calcule  $\psi^{-1}$ et son jacobien:
-$\psi^{-1}(y) = L^{-1}(y-\bm{\mu})$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\Sigma|^{-1/2}$.
+$\psi^{-1}(y) = L^{-1}(y-\bm{\mu})$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\det(\Sigma)|^{-1/2}$.
 
 En notant que $LL^\top \left(L^{-1}\right)^\top L^{-1}=\mathrm{Id}_d$, et donc que $\left(L^{-1}\right)^\top L^{-1}=\Sigma^{-1}$, on en déduit que la densité de $\mathbf{Y}$ est donnée par
 $$
 \begin{align*}
 \varphi_{\bm{\mu},\Sigma}(y)
-& = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) \det(J_{\psi^{-1}}) \\
-& = \frac{|\Sigma|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-\bm{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - \bm{\mu})\right)\\
-& = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(y-\bm{\mu})^\top\Sigma^{-1}(y - \bm{\mu})   \Big) \enspace.
+& = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) |\det(J_{\psi^{-1}})| \\
+& = \frac{|\det(\Sigma)|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-\bm{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - \bm{\mu})\right)\\
+& = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(y-\bm{\mu})^\top\Sigma^{-1}(y - \bm{\mu})   \Big) \enspace.
 \end{align*}
 $$
 :::

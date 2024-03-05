@@ -112,11 +112,11 @@ Soient ${\mu} \in \mathbb{R}^d$ et $\Sigma \in \mathbb{R}^{d \times d}$ (symétr
 Alors la densité de probabilité de $X$ est donnée pour tout $x \in \mathbb{R}^d$ par
 
 $$
-\varphi_{{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(x-{\mu})^\top\Sigma^{-1}(x - {\mu})   \Big) \enspace.
+\varphi_{{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-{\mu})^\top\Sigma^{-1}(x - {\mu})   \Big) \enspace.
 $$
 :::
 
-[Notation]{.underline}: $|\Sigma|\triangleq \mathrm{\Sigma}$
+
 
 ## Démonstration
 
@@ -126,7 +126,7 @@ Loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + {\mu}$, pour $X\sim \math
 . . .
 
 Application de la formule du changement de variable avec $\psi^{-1}$ et son jacobien:
-$\psi^{-1}(y) = L^{-1}(y-{\mu})$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\Sigma|^{-1/2}$.
+$\psi^{-1}(y) = L^{-1}(y-{\mu})$, et $|\det(J_{\psi^{-1}})| = |\det(L^{-1})| = |\det(L)|^{-1} = |\det(\Sigma)|^{-1/2}$.
 
 . . .
 
@@ -138,9 +138,9 @@ On en déduit la densité de $\mathbf{Y}$ :
 $$
 \begin{align*}
 \varphi_{{\mu},\Sigma}(y)
-& = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) \det(J_{\psi^{-1}}) \\
-& = \frac{|\Sigma|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - {\mu})\right)\\
-& = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(y-{\mu})^\top\Sigma^{-1}(y - {\mu})   \Big) \enspace.
+& = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) |\det(J_{\psi^{-1}})| \\
+& = \frac{|\det(\Sigma)|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - {\mu})\right)\\
+& = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(y-{\mu})^\top\Sigma^{-1}(y - {\mu})   \Big) \enspace.
 \end{align*}
 $$
 
@@ -209,7 +209,7 @@ ingénieur topographe et géodésien dans l'armée française, mort des suites d
 :::
 
 :::
-  
+
 
 
 ## Numérique
@@ -250,7 +250,7 @@ print(f"L^TL:\n{L.T@L}\n")
 ## Approche par la factorisation de Cholesky
 
 La matrice $\Sigma$ étant symétrique, elle peut s'écrire comme $\Sigma = LL^\top$ où $L$ est une matrice triangulaire inférieure de taille $d \times d$.
-Grâce à la décomposition de Cholevsky et en reprenant les éléments de la preuve de la @prp-densite-mutli, on peut écrire $\mathbf{Y} = L \mathbf{X} + \bm{\mu}$ où $\mathbf{X} \sim \mathcal{N}(0, \mathrm{Id}_d)$ et vérifier que $\mathbf{Y} \sim \mathcal{N}(\bm{\mu}, \Sigma)$.
+Grâce à la décomposition de Cholevsky et en reprenant les éléments de la preuve de la @prp-densite-mutli, on peut écrire $\mathbf{Y} = L \mathbf{X} + {\mu}$ où $\mathbf{X} \sim \mathcal{N}(0, \mathrm{Id}_d)$ et vérifier que $\mathbf{Y} \sim \mathcal{N}({\mu}, \Sigma)$.
 
 
 
@@ -294,7 +294,7 @@ $$
 ## Visualisation de la densité de probabilité
 cf.  [cours](http://josephsalmon.github.io/HAX603X/Courses/loi_normale_multi.html)
 
-## Bibliographieo
+## Bibliographie
 
 ::: {#refs}
 :::

@@ -37,6 +37,7 @@ Il y a donc deux étapes : traduction sous forme d'espérance puis calcul de la 
 
 ::: {#exm-unif}
 
+## 
 On peut approcher l'intégrale
 
 $$
@@ -56,7 +57,16 @@ On s'intéresse maintenant à la convergence de cet algorithme : sous quelles co
 
 Commençons par énoncer des conditions sous lesquelles la méthode converge.
 
+<<<<<<< HEAD
 ::: {#prp-cvmc}
+=======
+
+:::: {#prp-cvmc}
+
+## 
+
+
+>>>>>>> 18e597ff019e0b4111e9d62ad4f4d7a90293e73c
 Soit $(X_n)_{n\in\N}$ une suite de variables aléatoires indépendantes et de même loi que $X$, et $g$ une fonction mesurable telle que $g(X)$ est intégrable. Alors la variable aléatoire
 $$
 	I_n=\frac{g(X_1)+g(X_2)+\cdots+g(X_n)}{n}
@@ -72,6 +82,9 @@ En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1$, \ldo
 
 
 ::: {#exm-ex-p}
+
+## 
+
 Par exemple, si l'on répète un très grand nombre de fois $n$ une expérience aléatoire et que l'on s'intéresse à la réalisation de l'événement $A$ alors la loi des grands nombres nous garantit que :
 $$
 f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrightarrow[n \to \infty]{ps}\mathbb P(A).
@@ -126,6 +139,8 @@ On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez gr
 
 :::: {#prp-tcl2}
 
+## 
+
 Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est 
 $$
 	\left(I_n-F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
@@ -157,6 +172,8 @@ On peut en déduire facilement la construction de l'intervalle de confiance asym
 Ce résultat a deux conséquences importantes. D'une part, la vitesse de convergence est en $n^{-1/2}$, ce qui est relativement lent, mais indépendant à la fois de la dimension de $X$ et de la régularité de $g$. D'autre part, on peut calculer $S_n^2$ donc estimer l'erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer $I$.  **Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l'estimation Monte Carlo de l'espérance.**
 
 ::: {#exm-actif}
+
+## 
 
 En finance, certains contrats permettent de vendre un actif à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans la contrat. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Estimons cette quantité par la méthode de Monte Carlo.
 	
@@ -196,6 +213,8 @@ Regardons d'abord un exemple pour bien comprendre l'intérêt de ces méthodes.
 
 ::: {#exm-ex-p2}
 
+## 
+
 Revenons sur l'exemple @exm-ex-p où on cherche à estimer $p=\mathbb P(A)$ à partir de tirages de loi de Bernoulli.  Avec $n$ tirages, on a $I_n\simeq p + \sqrt{\frac{p(1-p)}{n}}Z$ avec $Z$ de loi normale centrée réduite. La valeur de $p$ est inconnue, mais on peut majorer $p(1-p)$ par $1/4$. Si on veut faire une erreur de l'ordre $0.01$ sur $p$, il convient de choisir $n=\frac{1}{4\times 0.01^2}=0.25\cdot 10^{4}=2500$.
 
 Si $p$ est proche de $0.5$, une erreur de $10^{-2}$ peut être acceptable. Mais si on cherche à approcher une probabilité très petite, par exemple $p=10^{-5}$, il faudra une précision d'au moins $10^{-6}$, et donc prendre $n=0.25\cdot 10^{12}$ tirages. On voit bien apparaître les limites de la méthode directe, et l'intérêt de toujours calculer l'ordre de grandeur de l'erreur commise.
@@ -213,6 +232,8 @@ $$
 Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h(X)]$ et si la variance diminue : $\var\big(g(X)-h(X)\big)<\var\big(g(X)\big)$. Idéalement, on voudrait que la variance de $g(X)-h(X)$ soit très petite. Or rappelons qu'une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en oeuvre cette méthode, on va donc chercher une fonction $h$ qui soit une bonne approximation de $g$ sur l'intervalle d'intégration pour que la différence $g-h$ soit presque constante.
 
 ::: {#exm-carre}
+
+## 
 
 Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
 $$
@@ -261,6 +282,9 @@ On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons
 Examinons l'effet de cette décomposition sur la variance.
 
 :::: {lem-redvar}
+
+## 
+
 Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors 
 $$
 	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq \frac{\var (g(X))}{2},
@@ -272,6 +296,7 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 ::: {.proof}
 
 Calculons la variance
+$$
 \begin{align*}
 	\var\big(g(X)+g(h(X))\big)
 	&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
@@ -279,6 +304,8 @@ Calculons la variance
 	&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
 	&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
 \end{align*}
+$$
+
 En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a 
 $$
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)  \leq \frac{ \var (g(X))+\var(g(h(X))}{4}=\frac{\var (g(X))}{2},
@@ -292,9 +319,12 @@ donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augm
 	
 :::
 	
-Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie.	
+Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie
 
 ::: {#exm-carre2}
+
+## 
+
 
 Revenons sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Cette loi a une propriété de symétrie : $X$ et $1-X$ ont la même loi. On a donc une approximation de $I$ de qualité identique ou meilleure en prenant
 $$
@@ -325,21 +355,26 @@ print("Antithetic variable method confidence interval:", confidence_interval3)
 On constate que l'intervalle de confiance est plus étroit donc la précision meilleure avec la variable antithétique. On a divisé la variance (empirique) par $8$. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu $8^2=64$ fois plus de simulations.
 :::
 
-### Echantillonnage préférentiel
+### Échantillonnage préférentiel
 
 L'idée derrière l'échantillonnage préférentiel est similaire à celle des variables de contrôle. Cette fois-ci, au lieu de retrancher et d'ajouter une quantité, on va multiplier et diviser. L'interprétation en terme d'espérance est cependant complètement différente.
 
 
 Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
+$$
 \begin{align*}
 I&=\mathbb E[g(X)]=\int g(x)f(x)dx 
 \\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
 \end{align*}
+$$
 On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$
 
-Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Evidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
+Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Évidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
 
 ::: {#exm-loiUnif}
+
+## 
+
 
 Revenons une fois de plus sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. On a donc $f(x)=1$ sur l'intervalle d'intégration, on cherche donc à nouveau une approximation de $g(x)=e^{x^2}$. Utilisons encore l'approximation $g(x)\simeq 1+x^2$, ce qui nous conne comme densité candidate $h(x)=\frac{3}{4}(1+x^2)$. Regardons si on peut facilement simuler cette densité. Calculons sa fonction de répartition (sur $[0,1]$)
 $$
