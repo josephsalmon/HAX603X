@@ -149,7 +149,9 @@ $$
 $$
 :::
 
-*Preuve*: on remarque d'abord que si $X \sim \mathcal{N}(0,1)$ alors pour tout $z \in \mathbb{R}$, on a
+
+::: {.proof}
+on remarque d'abord que si $X \sim \mathcal{N}(0,1)$ alors pour tout $z \in \mathbb{R}$, on a
 
 $$
 \begin{align*}
@@ -161,12 +163,7 @@ $$
 $$
 En utilisant le théorème de prolongement analytique (voir par exemple [Théorème I.10., @Queffelec_Zuily13] on peut donc étendre cette formule à tout $z \in \mathbb{C}$, et particulier au cas $z=it$ pour $t \in \mathbb{R}$. On obtient alors $\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}$.
 Enfin, on utilise la linéarité de l'espérance pour obtenir le résultat pour $X \sim \mathcal{N}(\mu,\nu)$. En effet, si $X \sim \mathcal{N}(0,1)$, alors $X=\mu+\sqrt{\nu}Z$ avec $Z \sim \mathcal{N}(0,1)$, et donc $\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}$.
-
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 ### Simulation d'une loi  normale
 
@@ -215,7 +212,7 @@ $$
 
 On a énoncé le résultat en dimension $2$ par simplicité. Il s'étend bien évidemment à une dimension $d$ quelconque. En particulier, pour $d=1$, on retrouve le changement de variable classique dans le cas de l'intégration d'une fonction à valeurs réelles.
 
-*Démonstration.*
+::: {.proof}
 
 On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb{E}[h(U,V)]$ pour tout $h : \mathbb{R}^2 \to \mathbb{R}$ mesurable bornée. On considère donc une telle fonction $h$ et on applique la formule de transfert :
 $$
@@ -240,10 +237,7 @@ $$
 = \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
 $$ -->
 ce qui donne le résultat voulu.
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 <br>
 
@@ -318,7 +312,7 @@ $$
 
 :::
 
-*Démonstration:*
+::: {.proof}
 La densité du couple $(X,Y)$ est donnée par
 $$
   f_{(X,Y)}(x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
@@ -332,10 +326,7 @@ $$
 \end{align*}
 $$
 ce qui conclut la preuve.
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 Si $R$ suit une loi de Rayleigh alors $\sqrt{-2 \log(U)}$ a la même loi que $R$, où $U$ est une variable aléatoire de loi uniforme sur $]0,1[$:
 Pour cela il suffit de remarquer que pour tout $x > 0$, $F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})$, et donc que pour tout $q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}$ et donc $\sqrt{-2\log(1-U)}$, puis $\sqrt{-2\log(U)}$ on donc la même loi que $R$.
@@ -385,7 +376,7 @@ On note alors $X \sim \chi^2(k)$.
 Au vu de sa définition, la simulation d'une loi du $\chi^2$ est claire : on simule $k$ variables aléatoires gaussiennes centrées réduites indépendantes et on somme leur carrés.
 
 
-*Preuve*:
+::: {.proof}
 Montrons pour $k=1$ que la densité est bien de la forme précédente, c'est-à-dire
 $$
 	f(x) = \frac{1}{\sqrt{2\pi}} \frac{e^{-x/2}}{\sqrt x}\,, \quad x \geq 0\,,
@@ -465,10 +456,7 @@ $$
 \end{align*}
 $$
 Le résultat est donc prouvé par récurrence.
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 <br>
 
@@ -501,7 +489,9 @@ $$
 	V = \dfrac{\sqrt{k} X_{k+1}}{\sqrt{X_1^2+\cdots + X_k^2}}\,.
 $$
 
-*Preuve de la formule de la densité*:
+::: {.proof}
+
+## Formule de la densité
 
 On applique pour cela la formule du changement de variables avec la transformation
 $$
@@ -572,11 +562,7 @@ $$
 	=
 	\dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
 $$
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 <br>
 
@@ -642,7 +628,8 @@ Soit $X$ et $Y$ deux variables aléatoires indépendantes de loi normale centré
 
 Notons que $Y/X$ est bien définie puisque $X$ est différent de $0$ presque sûrement.
 
-*Preuve*:
+::: {.proof}
+
 Comme pour la loi de Student, on démontre ce résultat avec un changement de variables. On considère l'application
 $$
 	\begin{array}{ccccc}
@@ -682,11 +669,7 @@ $$
 	& = \dfrac{1}{\pi(1+v^2)}\,.
 \end{align*}
 $$
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 On obtient ainsi une autre manière de simuler une loi de Cauchy, en prenant le ratio de deux  gaussiennes indépendantes.
 Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.

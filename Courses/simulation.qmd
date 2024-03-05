@@ -177,10 +177,17 @@ $$
 $$ 
 :::
 
-[Preuve]{.underline}
+*Démonstration*:
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
 - Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
+
+<div class="container">
+<div class="div1"> </div>
+<div class="div-remaining">□</div>
+</div>
+
+<br>
 
 
 ## Méthode d'inversion
@@ -191,7 +198,9 @@ Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable alé
 :::
 
 
-[Preuve]{.underline}: En utilisant le théorème précédent, on a
+*Démonstration*:
+
+En utilisant le théorème précédent, on a
 $\mathbb{P}(F_X^{\leftarrow}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
 Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
 

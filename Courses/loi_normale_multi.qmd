@@ -130,7 +130,7 @@ $$
 :::
 
 
-[Preuve]{.underline}:
+::: {.proof}
 Prenons une matrice $L\in \mathbb{R}^{d \times d}$ telle que $LL^\top = \Sigma$ (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous).
 Calculons alors la loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \bm{\mu}$, pour $X\sim \mathcal{N}(0,\mathrm{Id_d})$.
 Pour appliquer la formule du changement de variable nous donne, on calcule  $\psi^{-1}$ et son jacobien:
@@ -145,6 +145,7 @@ $$
 & = \frac{1}{ \sqrt{(2\pi)^d |\Sigma|}}  \exp\Big( -\tfrac{1}{2}(y-\bm{\mu})^\top\Sigma^{-1}(y - \bm{\mu})   \Big) \enspace.
 \end{align*}
 $$
+:::
 
 :::{#prp-affine-gauss}
 
@@ -177,8 +178,9 @@ Soit $\Sigma \in \mathbb{R}^{d \times d}$ une matrice symétrique définie posit
 La décomposition est unique si l'on impose que les éléments diagonaux de $L$ soient strictement positifs.
 :::
 
-[Preuve]{.underline}: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans [Th. 4.4.1, @Ciarlet06].
-
+::: {.proof}
+La factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans [Th. 4.4.1, @Ciarlet06].
+:::
 
 
 
