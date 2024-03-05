@@ -15,7 +15,8 @@ format:
 
 De manière générale, ce qu'on appelle une méthode de **Monte-Carlo** est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
 
-Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles le le sont plus du tout ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières. Ainsi une {intégration par Monte Carlo} pour le cas de la grande dimension sera bien plus profitable.
+Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières.
+Ainsi une intégration par Monte Carlo pour le cas de la grande dimension sera bien plus profitable.
 
 ## Principe de la méthode
 
