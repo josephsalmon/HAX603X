@@ -57,16 +57,10 @@ On s'intéresse maintenant à la convergence de cet algorithme : sous quelles co
 
 Commençons par énoncer des conditions sous lesquelles la méthode converge.
 
-<<<<<<< HEAD
-::: {#prp-cvmc}
-=======
-
 :::: {#prp-cvmc}
 
-## 
+##
 
-
->>>>>>> 18e597ff019e0b4111e9d62ad4f4d7a90293e73c
 Soit $(X_n)_{n\in\N}$ une suite de variables aléatoires indépendantes et de même loi que $X$, et $g$ une fonction mesurable telle que $g(X)$ est intégrable. Alors la variable aléatoire
 $$
 	I_n=\frac{g(X_1)+g(X_2)+\cdots+g(X_n)}{n}
@@ -139,7 +133,7 @@ On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez gr
 
 :::: {#prp-tcl2}
 
-## 
+##
 
 Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est 
 $$

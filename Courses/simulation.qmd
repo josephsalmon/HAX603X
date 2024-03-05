@@ -177,15 +177,11 @@ $$
 $$ 
 :::
 
-*Démonstration*:
+::: {.proof}
 
 - Cas $\subset$: Soit $x \in \mathbb{R}$ t.q. $F(x) \geq q$, alors par définition de l'inf dans @eq-inf, $x \geq F^\leftarrow(q)$.
 - Cas $\supset$: Soit  $x \in \mathbb{R}$ t.q. $x \geq F_X^\leftarrow(q)$ alors pour tout $\epsilon > 0$, $x + \epsilon > F^\leftarrow(q)$, donc $F(x + \epsilon) \geq q$. Puis, par continuité à droite de $F$, $F(x) \geq q$.
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 <br>
 
@@ -198,18 +194,14 @@ Soit $X$ une v.a réelle, et  $U \sim\mathcal{U}([0,1])$, alors la variable alé
 :::
 
 
-*Démonstration*:
+::: {.proof}
 
 En utilisant le théorème précédent, on a
 $\mathbb{P}(F_X^{\leftarrow}(U) \leq x) = \mathbb{P}(U \leq F_X(x))$ pour tout $x\in\mathbb{R}$.
 Puis, comme $U$ est une loi uniforme sur $[0,1],  \mathbb{P}(U\leq F_X(x))=F_X(x)$.
 
 On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, car les deux v.a. ont la même fonction de répartition.
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 <br>
 
@@ -618,7 +610,7 @@ Soit $T = \inf \{n \geq 1 : U_n \leq r(Y_n)\}$ le premier instant où le tirage 
 
 
 
-*Démonstration*:
+::: {.proof}
 
 Il s'agit d'étudier la loi du couple $(X,T)$. Pour $x \in \mathbb{R}$ et $n \in \mathbb{N}^{*}$, on écrit
 $\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1}), U_n \leq r(Y_n), Y_n \leq x).$
@@ -707,10 +699,7 @@ $$
     & = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
 \end{align*}
 $$
-<div class="container">
-<div class="div1">ce qui prouve l'indépendance de $X$ et $T$.</div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 
 ```{python}
@@ -1104,7 +1093,7 @@ $$
 $$
 ::::
 
-*Démonstration*:
+::: {.proof}
 
 On montre le résultat pour $n=2$. La généralisation à $k$ quelconque se fait par récurrence. 
 Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
@@ -1131,14 +1120,11 @@ $$
 $$
 Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve $\mathbb{P}(E_1 + E_2 \leq t) = 0$. Ceci prouve le résultat pour $n=2$.
 
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 
-*Démonstration*:
+::: {.proof}
 
 Pour $n \in \mathbb{N}$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
 $$
@@ -1166,11 +1152,7 @@ On conclut la preuve de la proposition en remarquant que
 $$
     \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
 $$
-
-<div class="container">
-<div class="div1"> </div>
-<div class="div-remaining">□</div>
-</div>
+:::
 
 La simulation d'une variable aléatoire de Poisson repose donc sur la simulation de lois exponentielles qui se fait via la méthode d'inversion, comme vu dans @exm-inverse-exponentielle. En pratique, on simule $E_1$ et on teste si $E_1 > 1$. Si oui, on pose alors $T=0$. Si non, on simule $E_2$ et on teste si $E_1 + E_2 > 1$. Si oui, on pose $T=1$. Sinon on continue la procédure.
 
