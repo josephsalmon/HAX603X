@@ -150,7 +150,7 @@ $$
 :::{#prp-affine-gauss}
 
 ## Transformation affine de vecteurs gaussiens
-Soit $\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)$ un vecqteur gaussien sur $\mathbb{R}^d$, $\Omega \in \mathbb{R}^{d' \times d}$ et $\bm{\nu}\in \mathbb{R}^{d'}$.
+Soit $\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)$ un vecteur gaussien sur $\mathbb{R}^d$, $\Omega \in \mathbb{R}^{d' \times d}$ et $\bm{\nu}\in \mathbb{R}^{d'}$.
 Alors, le vecteur aléatoire $\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}$ est un vecteur gaussien vérifiant
 $$
   \mathbf{Y} \sim \mathcal{N}(\Omega \bm{\bm{\mu}} + \bm{\nu}, \Omega \Sigma \Omega^\top)\,.

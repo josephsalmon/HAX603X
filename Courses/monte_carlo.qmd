@@ -136,11 +136,11 @@ On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez gr
 
 ##
 
-Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est 
+Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est
 $$
 	\left(I_n-F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
 $$
-où $F^{-1}_{\cN(0,1)}$ est la fonction quantile^[c'est-à-dire l'inverse de la fonction de répartition] de la loi normale centrée réduite et 
+où $F^{-1}_{\cN(0,1)}$ est la fonction quantile de la loi normale centrée réduite et
 $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
@@ -290,10 +290,10 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 
 ::: {.proof}
 
-Calculons la variance
+Calculons la variance $V=\var\big(g(X)+g(h(X))\big)$:
 $$
 \begin{align*}
-	\var\big(g(X)+g(h(X))\big)
+  V &= \var\big(g(X)+g(h(X))\big)\\
 	&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
 	&= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
 	&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
@@ -301,31 +301,37 @@ $$
 \end{align*}
 $$
 
-En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a 
+En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a
 $$
-	\var\left(\frac{g(X)+g(h(X))}{2}\right)  \leq \frac{ \var (g(X))+\var(g(h(X))}{4}=\frac{\var (g(X))}{2},
+\begin{align*}
+	\var\left(\frac{g(X)+g(h(X))}{2}\right)
+	& \leq \frac{ \var (g(X))+\var(g(h(X))}{4}\\
+	& =\frac{\var (g(X))}{2},
+\end{align*}
 $$
 car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a quand toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
 $$
-	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq 2\frac{\var (g(X))+\var(g(h(X))}{4}=\var (g(X)),
+\begin{align*}
+	\var\left(\frac{g(X)+g(h(X))}{2}\right)
+	& \leq 2\frac{\var (g(X))+\var(g(h(X)))}{4}\\
+	& = \var (g(X)),
+\end{align*}
 $$
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
-	%On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
-	
+On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
+
 :::
-	
+
 Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie
 
 ::: {#exm-carre2}
-
-## 
 
 
 Revenons sur l'exemple @exm-carre où on cherche à approcher $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Cette loi a une propriété de symétrie : $X$ et $1-X$ ont la même loi. On a donc une approximation de $I$ de qualité identique ou meilleure en prenant
 $$
 	I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
 $$
-	Regardons ce que ça donne numériquement.
+Regardons ce que cela donne numériquement.
 
 ```{python}
 import numpy as np
