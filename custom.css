@@ -1,3 +1,5 @@
+
+
 div.theorem {
   background-position: 1em .5em;
   background-size: 2em auto;
@@ -13,6 +15,8 @@ div.theorem {
   background-color: rgba(3, 78, 121, .04);
   min-height: 3em;
 }
+
+
 
 div.proposition {
   background-position: 1em .5em;
@@ -47,6 +51,7 @@ div.lemma {
   min-height: 3em;
 }
 
+
 div.definition {
   padding: .2em 1em .2em 1em;
   margin: 0 0 1em 0;
@@ -59,6 +64,7 @@ div.definition {
   min-height: 3em;
 }
 
+
 div.theorem.example {
   padding: .2em 0.2em;
   margin: 0 0 0 0;
@@ -68,4 +74,63 @@ div.theorem.example {
   min-height: 3em;
   border: 0px solid #b1e1fd;
   background-color: rgba(3, 78, 121, .04);
+}
+
+
+
+@mixin word-wrap() {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+a {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-all;
+  -ms-word-break: break-all;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+}
+
+
+.callout.callout-style-default .callout-header {
+  color: black;
+}
+
+
+.output-scroll {
+  max-height: 500px;
+  overflow-y: scroll;
+  overflow-x: scroll;
+}
+
+
+.cell-output-display {
+  overflow-x: scroll;
+}
+
+
+.cell-output {
+  background-color: rgb(251, 251, 251);
+}
+
+
+div.proof::after {
+  display: block;
+  content: "□";
+  font-size: x-large;
+  text-align-last: right;
+  margin-top: -1em;
+  margin-bottom: 1em;
 }
