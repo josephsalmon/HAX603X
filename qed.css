@@ -1,0 +1,8 @@
+div.proof::after { 
+    display: block;
+    content: "□";
+    font-size: x-large;
+    text-align-last: right;
+    margin-top: -1em;
+    margin-bottom: 1em;
+}

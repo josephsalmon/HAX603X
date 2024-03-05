@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.429">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -116,6 +116,7 @@ div.csl-indent {
     "search-more-match-text": "correspondance de plus dans ce document",
     "search-more-matches-text": "correspondances de plus dans ce document",
     "search-clear-button-title": "Effacer",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Annuler",
     "search-submit-button-title": "Envoyer",
     "search-label": "Recherche"
@@ -141,7 +142,34 @@ div.csl-indent {
   </script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
 
-<link rel="stylesheet" href="../custom.css">
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
@@ -149,7 +177,7 @@ div.csl-indent {
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../index.html">
@@ -195,6 +223,10 @@ div.csl-indent {
         <li>
     <a class="dropdown-item" href="../Courses/monte_carlo.html">
  <span class="dropdown-text">Méthode de Monte Carlo</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../Courses/marche_aleatoire.html">
+ <span class="dropdown-text">Marches aléatoires</span></a>
   </li>  
     </ul>
   </li>
@@ -276,11 +308,11 @@ div.csl-indent {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/perspective_historique.html">Cours</a></li><li class="breadcrumb-item"><a href="../Courses/loi_normale_multi.html">Loi normale: cas multivarié</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -288,7 +320,7 @@ div.csl-indent {
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
@@ -342,12 +374,18 @@ div.csl-indent {
  <span class="menu-text">Méthode de Monte Carlo</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../Courses/marche_aleatoire.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Marches aléatoires</span></a>
+  </div>
+</li>
       </ul>
   </li>
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -419,7 +457,7 @@ Note
 <section id="vecteurs-gaussiens" class="level2">
 <h2 class="anchored" data-anchor-id="vecteurs-gaussiens">Vecteurs gaussiens</h2>
 <div id="def-gaussian-vector" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien) </strong></span>Un vecteur aléatoire <span class="math inline">\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top</span>, la variable aléatoire réelle <span class="math display">
+<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien)</strong></span> Un vecteur aléatoire <span class="math inline">\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top</span>, la variable aléatoire réelle <span class="math display">
   \langle \bm{\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
 </span> suit une loi normale.</p>
 </div>
@@ -464,12 +502,13 @@ Note
 \varphi_{0,\mathrm{Id}_d}(x) = \frac{1}{ \sqrt{(2\pi)^d}} \exp\left( -\tfrac{1}{2}x^\top x   \right) \enspace.
 </span></p>
 <div id="prp-densite-mutli" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée) </strong></span>Soient <span class="math inline">\bm{\mu} \in \mathbb{R}^d</span> et <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> (symétrique et définie positive) et supposons que <span class="math inline">X \sim \mathcal{N}(\bm{\mu},\Sigma)</span>. Alors la densité de probabilité de <span class="math inline">X</span> est donnée pour tout <span class="math inline">x \in \mathbb{R}^d</span> par</p>
+<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée)</strong></span> Soient <span class="math inline">\bm{\mu} \in \mathbb{R}^d</span> et <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> (symétrique et définie positive) et supposons que <span class="math inline">X \sim \mathcal{N}(\bm{\mu},\Sigma)</span>. Alors la densité de probabilité de <span class="math inline">X</span> est donnée pour tout <span class="math inline">x \in \mathbb{R}^d</span> par</p>
 <p><span class="math display">
 \varphi_{\bm{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-\bm{\mu})^\top\Sigma^{-1}(x - \bm{\mu})   \Big) \enspace.
 </span></p>
 </div>
-<p><u>Preuve</u>: Prenons une matrice <span class="math inline">L\in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">LL^\top = \Sigma</span> (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous). Calculons alors la loi de <span class="math inline">\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \bm{\mu}</span>, pour <span class="math inline">X\sim \mathcal{N}(0,\mathrm{Id_d})</span>. Pour appliquer la formule du changement de variable nous donne, on calcule <span class="math inline">\psi^{-1}</span> et son jacobien: <span class="math inline">\psi^{-1}(y) = L^{-1}(y-\bm{\mu})</span>, et <span class="math inline">\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\det(\Sigma)|^{-1/2}</span>.</p>
+<div class="proof">
+<p><span class="proof-title"><em>Preuve</em>. </span>Prenons une matrice <span class="math inline">L\in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">LL^\top = \Sigma</span> (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous). Calculons alors la loi de <span class="math inline">\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \bm{\mu}</span>, pour <span class="math inline">X\sim \mathcal{N}(0,\mathrm{Id_d})</span>. Pour appliquer la formule du changement de variable nous donne, on calcule <span class="math inline">\psi^{-1}</span> et son jacobien: <span class="math inline">\psi^{-1}(y) = L^{-1}(y-\bm{\mu})</span>, et <span class="math inline">\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\det(\Sigma)|^{-1/2}</span>.</p>
 <p>En notant que <span class="math inline">LL^\top \left(L^{-1}\right)^\top L^{-1}=\mathrm{Id}_d</span>, et donc que <span class="math inline">\left(L^{-1}\right)^\top L^{-1}=\Sigma^{-1}</span>, on en déduit que la densité de <span class="math inline">\mathbf{Y}</span> est donnée par <span class="math display">
 \begin{align*}
 \varphi_{\bm{\mu},\Sigma}(y)
@@ -478,8 +517,9 @@ Note
 &amp; = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(y-\bm{\mu})^\top\Sigma^{-1}(y - \bm{\mu})   \Big) \enspace.
 \end{align*}
 </span></p>
+</div>
 <div id="prp-affine-gauss" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens) </strong></span>Soit <span class="math inline">\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)</span> un vecteur gaussien sur <span class="math inline">\mathbb{R}^d</span>, <span class="math inline">\Omega \in \mathbb{R}^{d' \times d}</span> et <span class="math inline">\bm{\nu}\in \mathbb{R}^{d'}</span>. Alors, le vecteur aléatoire <span class="math inline">\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}</span> est un vecteur gaussien vérifiant <span class="math display">
+<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens)</strong></span> Soit <span class="math inline">\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)</span> un vecteur gaussien sur <span class="math inline">\mathbb{R}^d</span>, <span class="math inline">\Omega \in \mathbb{R}^{d' \times d}</span> et <span class="math inline">\bm{\nu}\in \mathbb{R}^{d'}</span>. Alors, le vecteur aléatoire <span class="math inline">\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}</span> est un vecteur gaussien vérifiant <span class="math display">
   \mathbf{Y} \sim \mathcal{N}(\Omega \bm{\bm{\mu}} + \bm{\nu}, \Omega \Sigma \Omega^\top)\,.
 </span></p>
 </div>
@@ -489,13 +529,15 @@ Note
 <section id="la-factorisation-de-cholesky" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="la-factorisation-de-cholesky">La factorisation de Cholesky</h2>
 <p>Pour rappel, la factorisation de <a href="https://fr.wikipedia.org/wiki/Andr%C3%A9-Louis_Cholesky">Cholesky</a><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> d’une matrice symétrique définie positive est donnée ci-dessous.</p>
-<div class="no-row-height column-margin column-container"><li id="fn1"><p><sup>1</sup>&nbsp;<a href="André-Louis Cholesky, dit René">André-Louis Cholesky, dit René</a>: (1875-1918) ingénieur topographe et géodésien dans l’armée française, mort des suites de blessures reçues au champs de bataille. <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Andre_Cholesky.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo d'André-Louis Cholevsky" title="Photos d'André-Louis Cholevsky par Aron Gerschel (1897), Archives de l'Ecole polytechnique."></p></li></div><div id="thm-cholesky" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky) </strong></span>Soit <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">L \in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">\Sigma = LL^\top</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">L</span> soient strictement positifs.</p>
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<a href="André-Louis Cholesky, dit René">André-Louis Cholesky, dit René</a>: (1875-1918) ingénieur topographe et géodésien dans l’armée française, mort des suites de blessures reçues au champs de bataille. <img src="https://upload.wikimedia.org/wikipedia/commons/5/5f/Andre_Cholesky.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Photo d'André-Louis Cholevsky" title="Photos d'André-Louis Cholevsky par Aron Gerschel (1897), Archives de l'Ecole polytechnique."></p></div><div id="thm-cholesky" class="theorem">
+<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky)</strong></span> Soit <span class="math inline">\Sigma \in \mathbb{R}^{d \times d}</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">L \in \mathbb{R}^{d \times d}</span> telle que <span class="math inline">\Sigma = LL^\top</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">L</span> soient strictement positifs.</p>
 </div>
-<p><u>Preuve</u>: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#ref-Ciarlet06" role="doc-biblioref">Ciarlet 2006</a>)</span>.</p>
+<div class="proof page-columns page-full">
+<p><span class="proof-title"><em>Preuve</em>. </span>La factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#ref-Ciarlet06" role="doc-biblioref">Ciarlet 2006</a>)</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Ciarlet06" class="csl-entry" role="listitem">
 Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</span>rique matricielle et <span>à</span> l’optimisation. Cours et exercices corrig<span>é</span>s</em>. Dunod.
-</div></div></section>
+</div></div></div>
+</section>
 <section id="simulation-de-vecteurs-gaussiens" class="level2">
 <h2 class="anchored" data-anchor-id="simulation-de-vecteurs-gaussiens">Simulation de vecteurs gaussiens</h2>
 <p>La simulation d’un vecteur gaussien de paramètres <span class="math inline">\bm{\mu} = (0,\ldots,0)^\top</span> et <span class="math inline">\Sigma = \mathrm{Id}_d</span> ne pose pas de problème : il suffit de simuler <span class="math inline">X_1,\dots, X_d</span>, <span class="math inline">d</span> variables aléatoires indépendantes de loi normale centrée réduite. En effet, le vecteur <span class="math inline">\mathbf{X} = (X_1,\dots, X_d)^\top</span> est alors un vecteur gaussien de loi <span class="math inline">\mathcal{N}(0, \mathrm{Id}_d)</span>.</p>
@@ -524,268 +566,268 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
 \begin{pmatrix}
 \cos(\theta) &amp;\sin(\theta)\\  -\sin(\theta)&amp; \cos(\theta)\end{pmatrix}
 </span> où <span class="math inline">\theta</span> est l’angle de rotation et <span class="math inline">\sigma_1</span> et <span class="math inline">\sigma_2</span> les écarts-types des marginales (dans le repère orthonormal après rotation).</p>
-<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="238" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 237;"><span id="cb1-238"><a href="#cb1-238" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
-<span id="cb1-239"><a href="#cb1-239" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
-<span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
-<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="pp">require</span>(<span class="st">"mathjs"</span>)<span class="op">;</span></span>
-<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a><span class="co">// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd</span></span>
-<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a><span class="co">// continuous case</span></span>
-<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a>viewof inputs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
-<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u_1`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
-<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u_2`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
-<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\s</span><span class="vs">igma_1`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
-<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\s</span><span class="vs">igma_2`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
-<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">6.29</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\t</span><span class="vs">heta`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
-<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span>})<span class="op">,</span></span>
-<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
-<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a>mu1 <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a>mu2 <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
-<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>sigma1 <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
-<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="op">=</span> inputs[<span class="dv">3</span>]<span class="op">;</span></span>
-<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> inputs[<span class="dv">4</span>]<span class="op">;</span></span>
-<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">5</span>]<span class="op">;</span></span>
-<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">create_sigma</span>(theta<span class="op">,</span> sigma1<span class="op">,</span> sigma2){</span>
-<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mat_rot <span class="op">=</span> math<span class="op">.</span><span class="fu">matrix</span>([[math<span class="op">.</span><span class="fu">cos</span>(theta)<span class="op">,</span> <span class="op">-</span>math<span class="op">.</span><span class="fu">sin</span>(theta)]<span class="op">,</span> [math<span class="op">.</span><span class="fu">sin</span>(theta)<span class="op">,</span> math<span class="op">.</span><span class="fu">cos</span>(theta)]])<span class="op">;</span></span>
-<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mat_sigma <span class="op">=</span> math<span class="op">.</span><span class="fu">matrix</span>([[sigma1<span class="op">**</span><span class="dv">2</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span> [<span class="dv">0</span><span class="op">,</span> sigma2<span class="op">**</span><span class="dv">2</span>]])<span class="op">;</span></span>
-<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> math<span class="op">.</span><span class="fu">multiply</span>(mat_rot<span class="op">,</span> math<span class="op">.</span><span class="fu">multiply</span>(mat_sigma<span class="op">,</span> math<span class="op">.</span><span class="fu">transpose</span>(mat_rot)))<span class="op">;</span></span>
-<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> Sigma){</span>
-<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
-<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span>)<span class="op">**</span>(<span class="op">-</span>p<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>math<span class="op">.</span><span class="fu">det</span>(Sigma)<span class="op">**</span>(<span class="op">-</span><span class="fl">0.5</span>)<span class="op">*</span></span>
-<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>      math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>math<span class="op">.</span><span class="fu">multiply</span>(math<span class="op">.</span><span class="fu">multiply</span>( math<span class="op">.</span><span class="fu">transpose</span>(math<span class="op">.</span><span class="fu">subtract</span>(x<span class="op">,</span>mu))<span class="op">,</span> math<span class="op">.</span><span class="fu">inv</span>(Sigma))<span class="op">,</span> math<span class="op">.</span><span class="fu">subtract</span>(x<span class="op">,</span> mu)))<span class="op">;</span></span>
-<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>{</span>
+<div class="sourceCode cell-code hidden" id="cb1" data-startfrom="240" data-source-offset="-65"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 239;"><span id="cb1-240"><a href="#cb1-240" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
+<span id="cb1-241"><a href="#cb1-241" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
+<span id="cb1-242"><a href="#cb1-242" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
+<span id="cb1-243"><a href="#cb1-243" aria-hidden="true" tabindex="-1"></a>math <span class="op">=</span> <span class="pp">require</span>(<span class="st">"mathjs"</span>)<span class="op">;</span></span>
+<span id="cb1-244"><a href="#cb1-244" aria-hidden="true" tabindex="-1"></a><span class="co">// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd</span></span>
+<span id="cb1-245"><a href="#cb1-245" aria-hidden="true" tabindex="-1"></a><span class="co">// continuous case</span></span>
+<span id="cb1-246"><a href="#cb1-246" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-247"><a href="#cb1-247" aria-hidden="true" tabindex="-1"></a>viewof inputs <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
+<span id="cb1-248"><a href="#cb1-248" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u_1`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-249"><a href="#cb1-249" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="op">-</span><span class="dv">1</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\m</span><span class="vs">u_2`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span>}<span class="op">,</span> {<span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-250"><a href="#cb1-250" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\s</span><span class="vs">igma_1`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-251"><a href="#cb1-251" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="fl">0.1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\s</span><span class="vs">igma_2`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">1</span>})<span class="op">,</span></span>
+<span id="cb1-252"><a href="#cb1-252" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="fl">6.29</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`</span><span class="sc">\t</span><span class="vs">heta`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="fl">0.01</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">0</span>})<span class="op">,</span></span>
+<span id="cb1-253"><a href="#cb1-253" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">0</span><span class="op">,</span> <span class="dv">1000</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span> <span class="dt">value</span><span class="op">:</span> <span class="dv">10</span>})<span class="op">,</span></span>
+<span id="cb1-254"><a href="#cb1-254" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
+<span id="cb1-255"><a href="#cb1-255" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb1-256"><a href="#cb1-256" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-257"><a href="#cb1-257" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-258"><a href="#cb1-258" aria-hidden="true" tabindex="-1"></a>mu1 <span class="op">=</span> inputs[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb1-259"><a href="#cb1-259" aria-hidden="true" tabindex="-1"></a>mu2 <span class="op">=</span> inputs[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb1-260"><a href="#cb1-260" aria-hidden="true" tabindex="-1"></a>sigma1 <span class="op">=</span> inputs[<span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb1-261"><a href="#cb1-261" aria-hidden="true" tabindex="-1"></a>sigma2 <span class="op">=</span> inputs[<span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb1-262"><a href="#cb1-262" aria-hidden="true" tabindex="-1"></a>theta <span class="op">=</span> inputs[<span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb1-263"><a href="#cb1-263" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> inputs[<span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb1-264"><a href="#cb1-264" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-265"><a href="#cb1-265" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-266"><a href="#cb1-266" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">create_sigma</span>(theta<span class="op">,</span> sigma1<span class="op">,</span> sigma2){</span>
+<span id="cb1-267"><a href="#cb1-267" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mat_rot <span class="op">=</span> math<span class="op">.</span><span class="fu">matrix</span>([[math<span class="op">.</span><span class="fu">cos</span>(theta)<span class="op">,</span> <span class="op">-</span>math<span class="op">.</span><span class="fu">sin</span>(theta)]<span class="op">,</span> [math<span class="op">.</span><span class="fu">sin</span>(theta)<span class="op">,</span> math<span class="op">.</span><span class="fu">cos</span>(theta)]])<span class="op">;</span></span>
+<span id="cb1-268"><a href="#cb1-268" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> mat_sigma <span class="op">=</span> math<span class="op">.</span><span class="fu">matrix</span>([[sigma1<span class="op">**</span><span class="dv">2</span><span class="op">,</span> <span class="dv">0</span>]<span class="op">,</span> [<span class="dv">0</span><span class="op">,</span> sigma2<span class="op">**</span><span class="dv">2</span>]])<span class="op">;</span></span>
+<span id="cb1-269"><a href="#cb1-269" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> math<span class="op">.</span><span class="fu">multiply</span>(mat_rot<span class="op">,</span> math<span class="op">.</span><span class="fu">multiply</span>(mat_sigma<span class="op">,</span> math<span class="op">.</span><span class="fu">transpose</span>(mat_rot)))<span class="op">;</span></span>
+<span id="cb1-270"><a href="#cb1-270" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-271"><a href="#cb1-271" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-272"><a href="#cb1-272" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-273"><a href="#cb1-273" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">mvnpdf</span>(x<span class="op">,</span> mu<span class="op">,</span> Sigma){</span>
+<span id="cb1-274"><a href="#cb1-274" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> p <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb1-275"><a href="#cb1-275" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (<span class="dv">2</span><span class="op">*</span>math<span class="op">.</span><span class="at">pi</span>)<span class="op">**</span>(<span class="op">-</span>p<span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>math<span class="op">.</span><span class="fu">det</span>(Sigma)<span class="op">**</span>(<span class="op">-</span><span class="fl">0.5</span>)<span class="op">*</span></span>
+<span id="cb1-276"><a href="#cb1-276" aria-hidden="true" tabindex="-1"></a>      math<span class="op">.</span><span class="fu">exp</span>(<span class="op">-</span><span class="fl">0.5</span><span class="op">*</span>math<span class="op">.</span><span class="fu">multiply</span>(math<span class="op">.</span><span class="fu">multiply</span>( math<span class="op">.</span><span class="fu">transpose</span>(math<span class="op">.</span><span class="fu">subtract</span>(x<span class="op">,</span>mu))<span class="op">,</span> math<span class="op">.</span><span class="fu">inv</span>(Sigma))<span class="op">,</span> math<span class="op">.</span><span class="fu">subtract</span>(x<span class="op">,</span> mu)))<span class="op">;</span></span>
+<span id="cb1-277"><a href="#cb1-277" aria-hidden="true" tabindex="-1"></a>}</span>
 <span id="cb1-278"><a href="#cb1-278" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> Sigma<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>) {</span>
-<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Compute the Cholesky decomposition of Sigma</span></span>
-<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cholesky <span class="op">=</span> jstat<span class="op">.</span><span class="fu">cholesky</span>(Sigma)<span class="op">;</span></span>
-<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Generate the samples</span></span>
-<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> y <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Transform the standard normal random variables using the Cholesky decomposition</span></span>
-<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> transformedX <span class="op">=</span> mu[<span class="dv">0</span>] <span class="op">+</span> cholesky[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">*</span> x <span class="op">+</span> cholesky[<span class="dv">0</span>][<span class="dv">1</span>] <span class="op">*</span> y<span class="op">;</span></span>
-<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> transformedY <span class="op">=</span> mu[<span class="dv">1</span>] <span class="op">+</span> cholesky[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">*</span> x <span class="op">+</span> cholesky[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">*</span> y<span class="op">;</span></span>
-<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [transformedX<span class="op">,</span> transformedY]<span class="op">;</span></span>
-<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span>   </span>
-<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
-<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> Sigma <span class="op">=</span> <span class="fu">create_sigma</span>(theta<span class="op">,</span> sigma1<span class="op">,</span> sigma2)<span class="op">.</span><span class="fu">toArray</span>()<span class="op">;</span></span>
-<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> mu <span class="op">=</span> [mu1<span class="op">,</span> mu2]<span class="op">;</span></span>
-<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> Sigma<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
-<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">100</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">5</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> y <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
-<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
-<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">;</span></span>
-<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> npoints<span class="op">;</span> j<span class="op">++</span>) {</span>
-<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>        z[j][i] <span class="op">=</span> <span class="fu">mvnpdf</span>([x[i]<span class="op">,</span> x[j]]<span class="op">,</span> mu<span class="op">,</span> Sigma)<span class="op">;</span></span>
-<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-279"><a href="#cb1-279" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-280"><a href="#cb1-280" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-281"><a href="#cb1-281" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-282"><a href="#cb1-282" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> Sigma<span class="op">,</span> n<span class="op">=</span><span class="dv">100</span>) {</span>
+<span id="cb1-283"><a href="#cb1-283" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Compute the Cholesky decomposition of Sigma</span></span>
+<span id="cb1-284"><a href="#cb1-284" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> cholesky <span class="op">=</span> jstat<span class="op">.</span><span class="fu">cholesky</span>(Sigma)<span class="op">;</span></span>
+<span id="cb1-285"><a href="#cb1-285" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-286"><a href="#cb1-286" aria-hidden="true" tabindex="-1"></a>    <span class="co">// Generate the samples</span></span>
+<span id="cb1-287"><a href="#cb1-287" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> samples <span class="op">=</span> <span class="bu">Array</span><span class="op">.</span><span class="fu">from</span>({<span class="dt">length</span><span class="op">:</span> n}<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb1-288"><a href="#cb1-288" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> x <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-289"><a href="#cb1-289" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> y <span class="op">=</span> jstat<span class="op">.</span><span class="at">normal</span><span class="op">.</span><span class="fu">sample</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-290"><a href="#cb1-290" aria-hidden="true" tabindex="-1"></a>        <span class="co">// Transform the standard normal random variables using the Cholesky decomposition</span></span>
+<span id="cb1-291"><a href="#cb1-291" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> transformedX <span class="op">=</span> mu[<span class="dv">0</span>] <span class="op">+</span> cholesky[<span class="dv">0</span>][<span class="dv">0</span>] <span class="op">*</span> x <span class="op">+</span> cholesky[<span class="dv">0</span>][<span class="dv">1</span>] <span class="op">*</span> y<span class="op">;</span></span>
+<span id="cb1-292"><a href="#cb1-292" aria-hidden="true" tabindex="-1"></a>        <span class="kw">var</span> transformedY <span class="op">=</span> mu[<span class="dv">1</span>] <span class="op">+</span> cholesky[<span class="dv">1</span>][<span class="dv">0</span>] <span class="op">*</span> x <span class="op">+</span> cholesky[<span class="dv">1</span>][<span class="dv">1</span>] <span class="op">*</span> y<span class="op">;</span></span>
+<span id="cb1-293"><a href="#cb1-293" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> [transformedX<span class="op">,</span> transformedY]<span class="op">;</span></span>
+<span id="cb1-294"><a href="#cb1-294" aria-hidden="true" tabindex="-1"></a>    })<span class="op">;</span>   </span>
+<span id="cb1-295"><a href="#cb1-295" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-296"><a href="#cb1-296" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> samples<span class="op">;</span></span>
+<span id="cb1-297"><a href="#cb1-297" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-298"><a href="#cb1-298" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> Sigma <span class="op">=</span> <span class="fu">create_sigma</span>(theta<span class="op">,</span> sigma1<span class="op">,</span> sigma2)<span class="op">.</span><span class="fu">toArray</span>()<span class="op">;</span></span>
+<span id="cb1-299"><a href="#cb1-299" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> mu <span class="op">=</span> [mu1<span class="op">,</span> mu2]<span class="op">;</span></span>
+<span id="cb1-300"><a href="#cb1-300" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-301"><a href="#cb1-301" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples <span class="op">=</span> <span class="fu">normal_rng</span>(mu<span class="op">,</span> Sigma<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span></span>
+<span id="cb1-302"><a href="#cb1-302" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints<span class="op">=</span><span class="dv">100</span><span class="op">,</span> mini <span class="op">=</span> <span class="op">-</span><span class="dv">5</span><span class="op">,</span> maxi<span class="op">=</span><span class="dv">5</span><span class="op">,</span> x <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> y <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb1-303"><a href="#cb1-303" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-304"><a href="#cb1-304" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
+<span id="cb1-305"><a href="#cb1-305" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-306"><a href="#cb1-306" aria-hidden="true" tabindex="-1"></a>    x[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-307"><a href="#cb1-307" aria-hidden="true" tabindex="-1"></a>    y[i] <span class="op">=</span> mini <span class="op">+</span> i <span class="op">*</span> (maxi <span class="op">-</span> mini) <span class="op">/</span> (npoints <span class="op">-</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb1-308"><a href="#cb1-308" aria-hidden="true" tabindex="-1"></a>    z[i] <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints)<span class="op">;</span></span>
+<span id="cb1-309"><a href="#cb1-309" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-310"><a href="#cb1-310" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-311"><a href="#cb1-311" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb1-312"><a href="#cb1-312" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span>(j <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> j <span class="op">&lt;</span> npoints<span class="op">;</span> j<span class="op">++</span>) {</span>
+<span id="cb1-313"><a href="#cb1-313" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-314"><a href="#cb1-314" aria-hidden="true" tabindex="-1"></a>        z[j][i] <span class="op">=</span> <span class="fu">mvnpdf</span>([x[i]<span class="op">,</span> x[j]]<span class="op">,</span> mu<span class="op">,</span> Sigma)<span class="op">;</span></span>
+<span id="cb1-315"><a href="#cb1-315" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb1-316"><a href="#cb1-316" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-317"><a href="#cb1-317" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-318"><a href="#cb1-318" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb1-319"><a href="#cb1-319" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
-<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">.</span><span class="fu">map</span>(sample <span class="kw">=&gt;</span> sample[<span class="dv">0</span>])<span class="op">,</span></span>
-<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">.</span><span class="fu">map</span>(sample <span class="kw">=&gt;</span> sample[<span class="dv">1</span>])<span class="op">,</span></span>
-<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
-<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
-<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
-<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
-<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
-<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
-<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
-<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> y<span class="op">,</span></span>
-<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> z<span class="op">,</span></span>
-<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'surface'</span><span class="op">,</span></span>
-<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> <span class="st">'Oranges'</span><span class="op">,</span></span>
-<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>        <span class="dt">showscale</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>            <span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> <span class="st">"pdf"</span><span class="op">,</span></span>
-<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-320"><a href="#cb1-320" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb1-321"><a href="#cb1-321" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-322"><a href="#cb1-322" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
+<span id="cb1-323"><a href="#cb1-323" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">.</span><span class="fu">map</span>(sample <span class="kw">=&gt;</span> sample[<span class="dv">0</span>])<span class="op">,</span></span>
+<span id="cb1-324"><a href="#cb1-324" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> samples<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples)<span class="op">.</span><span class="fu">map</span>(sample <span class="kw">=&gt;</span> sample[<span class="dv">1</span>])<span class="op">,</span></span>
+<span id="cb1-325"><a href="#cb1-325" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">'markers'</span><span class="op">,</span></span>
+<span id="cb1-326"><a href="#cb1-326" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'scatter'</span><span class="op">,</span></span>
+<span id="cb1-327"><a href="#cb1-327" aria-hidden="true" tabindex="-1"></a>        <span class="dt">marker</span><span class="op">:</span> {</span>
+<span id="cb1-328"><a href="#cb1-328" aria-hidden="true" tabindex="-1"></a>            <span class="dt">color</span><span class="op">:</span> <span class="st">'rgba(0,0,0,0.5)'</span><span class="op">,</span></span>
+<span id="cb1-329"><a href="#cb1-329" aria-hidden="true" tabindex="-1"></a>            <span class="dt">size</span><span class="op">:</span> <span class="dv">5</span><span class="op">,</span></span>
+<span id="cb1-330"><a href="#cb1-330" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-331"><a href="#cb1-331" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-332"><a href="#cb1-332" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb1-333"><a href="#cb1-333" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-334"><a href="#cb1-334" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-335"><a href="#cb1-335" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
+<span id="cb1-336"><a href="#cb1-336" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb1-337"><a href="#cb1-337" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> y<span class="op">,</span></span>
+<span id="cb1-338"><a href="#cb1-338" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> z<span class="op">,</span></span>
+<span id="cb1-339"><a href="#cb1-339" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'surface'</span><span class="op">,</span></span>
+<span id="cb1-340"><a href="#cb1-340" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> <span class="st">'Oranges'</span><span class="op">,</span></span>
+<span id="cb1-341"><a href="#cb1-341" aria-hidden="true" tabindex="-1"></a>        <span class="dt">showscale</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-342"><a href="#cb1-342" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb1-343"><a href="#cb1-343" aria-hidden="true" tabindex="-1"></a>            <span class="dt">legend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-344"><a href="#cb1-344" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> <span class="st">"pdf"</span><span class="op">,</span></span>
+<span id="cb1-345"><a href="#cb1-345" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
 <span id="cb1-346"><a href="#cb1-346" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace21 <span class="op">=</span> {</span>
-<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
-<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> y<span class="op">,</span></span>
-<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> z<span class="op">,</span></span>
-<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'contour'</span><span class="op">,</span></span>
-<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> <span class="st">'Oranges'</span><span class="op">,</span></span>
-<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> {</span>
-<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>            <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> <span class="st">"pdf"</span><span class="op">,</span></span>
-<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>        <span class="dt">blur</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
-<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xlim</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
-<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ylim</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
-<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
-<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a>  trace21<span class="op">,</span></span>
-<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
-<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
-<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
-<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layout <span class="op">=</span> {</span>
-<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a>       <span class="dt">yaxis2</span><span class="op">:</span> {</span>
-<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>          <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
-<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>       <span class="dt">xaxis2</span><span class="op">:</span> {</span>
-<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>          <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
-<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
-<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>      <span class="dt">scene</span><span class="op">:</span> {</span>
-<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a>          <span class="dt">camera</span><span class="op">:</span> {</span>
-<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>              <span class="dt">eye</span><span class="op">:</span> {</span>
-<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">x</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
-<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">y</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span></span>
-<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">z</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
-<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>              }</span>
-<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>          }</span>
-<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
-<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> {</span>
-<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rows</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
-<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>      <span class="dt">columns</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
-<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>      <span class="dt">subplots</span><span class="op">:</span> [[<span class="st">'xy'</span><span class="op">,</span><span class="st">'x2y'</span>]]<span class="op">,</span></span>
-<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
-<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb1-347"><a href="#cb1-347" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-348"><a href="#cb1-348" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-349"><a href="#cb1-349" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace21 <span class="op">=</span> {</span>
+<span id="cb1-350"><a href="#cb1-350" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x<span class="op">,</span></span>
+<span id="cb1-351"><a href="#cb1-351" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> y<span class="op">,</span></span>
+<span id="cb1-352"><a href="#cb1-352" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> z<span class="op">,</span></span>
+<span id="cb1-353"><a href="#cb1-353" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'contour'</span><span class="op">,</span></span>
+<span id="cb1-354"><a href="#cb1-354" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> <span class="st">'Oranges'</span><span class="op">,</span></span>
+<span id="cb1-355"><a href="#cb1-355" aria-hidden="true" tabindex="-1"></a>        <span class="dt">color</span><span class="op">:</span> {</span>
+<span id="cb1-356"><a href="#cb1-356" aria-hidden="true" tabindex="-1"></a>            <span class="dt">legend</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb1-357"><a href="#cb1-357" aria-hidden="true" tabindex="-1"></a>            <span class="dt">label</span><span class="op">:</span> <span class="st">"pdf"</span><span class="op">,</span></span>
+<span id="cb1-358"><a href="#cb1-358" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-359"><a href="#cb1-359" aria-hidden="true" tabindex="-1"></a>        <span class="dt">blur</span><span class="op">:</span> <span class="dv">4</span><span class="op">,</span></span>
+<span id="cb1-360"><a href="#cb1-360" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xlim</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
+<span id="cb1-361"><a href="#cb1-361" aria-hidden="true" tabindex="-1"></a>        <span class="dt">ylim</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
+<span id="cb1-362"><a href="#cb1-362" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb1-363"><a href="#cb1-363" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb1-364"><a href="#cb1-364" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-365"><a href="#cb1-365" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-366"><a href="#cb1-366" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
+<span id="cb1-367"><a href="#cb1-367" aria-hidden="true" tabindex="-1"></a>  trace21<span class="op">,</span></span>
+<span id="cb1-368"><a href="#cb1-368" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
+<span id="cb1-369"><a href="#cb1-369" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
+<span id="cb1-370"><a href="#cb1-370" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb1-371"><a href="#cb1-371" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-372"><a href="#cb1-372" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-373"><a href="#cb1-373" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> layout <span class="op">=</span> {</span>
+<span id="cb1-374"><a href="#cb1-374" aria-hidden="true" tabindex="-1"></a>       <span class="dt">yaxis2</span><span class="op">:</span> {</span>
+<span id="cb1-375"><a href="#cb1-375" aria-hidden="true" tabindex="-1"></a>          <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
+<span id="cb1-376"><a href="#cb1-376" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-377"><a href="#cb1-377" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-378"><a href="#cb1-378" aria-hidden="true" tabindex="-1"></a>       <span class="dt">xaxis2</span><span class="op">:</span> {</span>
+<span id="cb1-379"><a href="#cb1-379" aria-hidden="true" tabindex="-1"></a>          <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">5</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">,</span></span>
+<span id="cb1-380"><a href="#cb1-380" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb1-381"><a href="#cb1-381" aria-hidden="true" tabindex="-1"></a>        }<span class="op">,</span></span>
+<span id="cb1-382"><a href="#cb1-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-383"><a href="#cb1-383" aria-hidden="true" tabindex="-1"></a>      <span class="dt">scene</span><span class="op">:</span> {</span>
+<span id="cb1-384"><a href="#cb1-384" aria-hidden="true" tabindex="-1"></a>          <span class="dt">camera</span><span class="op">:</span> {</span>
+<span id="cb1-385"><a href="#cb1-385" aria-hidden="true" tabindex="-1"></a>              <span class="dt">eye</span><span class="op">:</span> {</span>
+<span id="cb1-386"><a href="#cb1-386" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">x</span><span class="op">:</span> <span class="fl">0.5</span><span class="op">,</span></span>
+<span id="cb1-387"><a href="#cb1-387" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">y</span><span class="op">:</span> <span class="fl">1.2</span><span class="op">,</span></span>
+<span id="cb1-388"><a href="#cb1-388" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">z</span><span class="op">:</span> <span class="fl">1.5</span><span class="op">,</span></span>
+<span id="cb1-389"><a href="#cb1-389" aria-hidden="true" tabindex="-1"></a>              }</span>
+<span id="cb1-390"><a href="#cb1-390" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb1-391"><a href="#cb1-391" aria-hidden="true" tabindex="-1"></a>      }<span class="op">,</span></span>
+<span id="cb1-392"><a href="#cb1-392" aria-hidden="true" tabindex="-1"></a>    <span class="dt">grid</span><span class="op">:</span> {</span>
+<span id="cb1-393"><a href="#cb1-393" aria-hidden="true" tabindex="-1"></a>      <span class="dt">rows</span><span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb1-394"><a href="#cb1-394" aria-hidden="true" tabindex="-1"></a>      <span class="dt">columns</span><span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb1-395"><a href="#cb1-395" aria-hidden="true" tabindex="-1"></a>      <span class="dt">subplots</span><span class="op">:</span> [[<span class="st">'xy'</span><span class="op">,</span><span class="st">'x2y'</span>]]<span class="op">,</span></span>
+<span id="cb1-396"><a href="#cb1-396" aria-hidden="true" tabindex="-1"></a>    }<span class="op">,</span></span>
+<span id="cb1-397"><a href="#cb1-397" aria-hidden="true" tabindex="-1"></a>    <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
 <span id="cb1-398"><a href="#cb1-398" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
-<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
-<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
-<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-399"><a href="#cb1-399" aria-hidden="true" tabindex="-1"></a>  }<span class="op">;</span></span>
+<span id="cb1-400"><a href="#cb1-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-401"><a href="#cb1-401" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb1-402"><a href="#cb1-402" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb1-403"><a href="#cb1-403" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">newPlot</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
+<span id="cb1-404"><a href="#cb1-404" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb1-405"><a href="#cb1-405" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-406"><a href="#cb1-406" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-407"><a href="#cb1-407" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-layout-ncol="1">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-2" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-3" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-4" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-5" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-6" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-7" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-8" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-9" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-10" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-11" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-12" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-13" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-14" data-nodetype="expression">
 
 </div>
@@ -800,7 +842,7 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
 <script type="ojs-module-contents">
-{"contents":[{"methodName":"interpret","cellName":"ojs-cell-1","inline":false,"source":"\n// Plotly = require(\"https://cdn.plot.ly/plotly-latest.min.js\")\nPlotly = require('plotly.js-dist');\ndists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );\njstat = require('jstat');\nmath = require(\"mathjs\");\n// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd\n// continuous case\n\nviewof inputs = Inputs.form([\n  Inputs.range([-1, 1], {label: tex`\\mu_1`, step: 0.1}, {value: 0}),\n  Inputs.range([-1, 1], {label: tex`\\mu_2`, step: 0.1}, {value: 0}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_1`, step: 0.1, value: 1}),\n  Inputs.range([0.1, 2], {label: tex`\\sigma_2`, step: 0.1, value: 1}),\n  Inputs.range([0, 6.29], {label: tex`\\theta`, step: 0.01, value: 0}),\n  Inputs.range([0, 1000], {label: tex`n`, step: 1, value: 10}),\n  Inputs.button(\"Re-Tirage\")\n])\n\n\nmu1 = inputs[0];\nmu2 = inputs[1];\nsigma1 = inputs[2];\nsigma2 = inputs[3];\ntheta = inputs[4];\nn_samples = inputs[5];\n\n\nfunction create_sigma(theta, sigma1, sigma2){\n  const mat_rot = math.matrix([[math.cos(theta), -math.sin(theta)], [math.sin(theta), math.cos(theta)]]);\n  const mat_sigma = math.matrix([[sigma1**2, 0], [0, sigma2**2]]);\n  return math.multiply(mat_rot, math.multiply(mat_sigma, math.transpose(mat_rot)));\n}\n\n\nfunction mvnpdf(x, mu, Sigma){\n  const p = 2;\n    return (2*math.pi)**(-p/2)*math.det(Sigma)**(-0.5)*\n      math.exp(-0.5*math.multiply(math.multiply( math.transpose(math.subtract(x,mu)), math.inv(Sigma)), math.subtract(x, mu)));\n}\n\n{\n\n\nfunction normal_rng(mu, Sigma, n=100) {\n    // Compute the Cholesky decomposition of Sigma\n    var cholesky = jstat.cholesky(Sigma);\n\n    // Generate the samples\n    var samples = Array.from({length: n}, () => {\n        var x = jstat.normal.sample(0, 1);\n        var y = jstat.normal.sample(0, 1);\n        // Transform the standard normal random variables using the Cholesky decomposition\n        var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;\n        var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;\n        return [transformedX, transformedY];\n    });   \n\n    return samples;\n}\nvar Sigma = create_sigma(theta, sigma1, sigma2).toArray();\nvar mu = [mu1, mu2];\n\nvar samples = normal_rng(mu, Sigma, 1000);\nvar npoints=100, mini = -5, maxi=5, x = new Array(npoints), y = new Array(npoints), z = new Array(npoints), i, j;\n\n//  Densité:\nfor(var i = 0; i < npoints; i++) {\n    x[i] = mini + i * (maxi - mini) / (npoints - 1);\n    y[i] = mini + i * (maxi - mini) / (npoints - 1);\n    z[i] = new Array(npoints);\n    }\n\nfor(var i = 0; i < npoints; i++) {\n  \tfor(j = 0; j < npoints; j++) {\n\n    \tz[j][i] = mvnpdf([x[i], x[j]], mu, Sigma);\n \t}\n\n}\n  \n\n{\n\nvar trace1 = {\n        x: samples.slice(0, n_samples).map(sample => sample[0]),\n        y: samples.slice(0, n_samples).map(sample => sample[1]),\n        mode: 'markers',\n        type: 'scatter',\n        marker: {\n            color: 'rgba(0,0,0,0.5)',\n            size: 5,\n        },\n\n        xaxis: 'x2',\n}\n\nvar trace22 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'surface',\n        colorscale: 'Oranges',\n        showscale: false,\n        color: {\n            legend: false,\n            label: \"pdf\",\n        },\n\n}\n\nvar trace21 = {\n        x: x,\n        y: y,\n        z: z,\n        type: 'contour',\n        colorscale: 'Oranges',\n        color: {\n            legend: true,\n            label: \"pdf\",\n        },\n        blur: 4,\n        xlim: [-5, 5],\n        ylim: [-5, 5],\n        xaxis: 'x2',\n}\n\n\nvar data = [\n  trace21,\n  trace22,\n  trace1,\n  ];\n\n\n  var layout = {\n       yaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n       xaxis2: {\n          range: [-5, 5],\n          autorange: false,\n        },\n\n      scene: {\n          camera: {\n              eye: {\n                  x: 0.5,\n                  y: 1.2,\n                  z: 1.5,\n              }\n          }\n      },\n    grid: {\n      rows: 1,\n      columns: 2,\n      subplots: [['xy','x2y']],\n    },\n    showlegend: false,\n\n  };\n\n    var config = {responsive: true}\n    const div = DOM.element('div');\n    Plotly.newPlot(div, data, layout, config);\n    return div;\n  }\n\n}\n\n"},{"methodName":"interpretQuiet","source":"shinyInput('inputs')"}]}
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlxuLy8gUGxvdGx5ID0gcmVxdWlyZShcImh0dHBzOi8vY2RuLnBsb3QubHkvcGxvdGx5LWxhdGVzdC5taW4uanNcIilcblBsb3RseSA9IHJlcXVpcmUoJ3Bsb3RseS5qcy1kaXN0Jyk7XG5kaXN0cyA9IHJlcXVpcmUoICdodHRwczovL2Nkbi5qc2RlbGl2ci5uZXQvZ2gvc3RkbGliLWpzL3N0YXRzLWJhc2UtZGlzdHNAdW1kL2Jyb3dzZXIuanMnICk7XG5qc3RhdCA9IHJlcXVpcmUoJ2pzdGF0Jyk7XG5tYXRoID0gcmVxdWlyZShcIm1hdGhqc1wiKTtcbi8vIHNlZSBzb3VyY2UgaGVyZTogaHR0cHM6Ly9naXRodWIuY29tL3N0ZGxpYi1qcy9zdGF0cy1iYXNlLWRpc3RzL3RyZWUvdW1kXG4vLyBjb250aW51b3VzIGNhc2Vcblxudmlld29mIGlucHV0cyA9IElucHV0cy5mb3JtKFtcbiAgSW5wdXRzLnJhbmdlKFstMSwgMV0sIHtsYWJlbDogdGV4YFxcbXVfMWAsIHN0ZXA6IDAuMX0sIHt2YWx1ZTogMH0pLFxuICBJbnB1dHMucmFuZ2UoWy0xLCAxXSwge2xhYmVsOiB0ZXhgXFxtdV8yYCwgc3RlcDogMC4xfSwge3ZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMC4xLCAyXSwge2xhYmVsOiB0ZXhgXFxzaWdtYV8xYCwgc3RlcDogMC4xLCB2YWx1ZTogMX0pLFxuICBJbnB1dHMucmFuZ2UoWzAuMSwgMl0sIHtsYWJlbDogdGV4YFxcc2lnbWFfMmAsIHN0ZXA6IDAuMSwgdmFsdWU6IDF9KSxcbiAgSW5wdXRzLnJhbmdlKFswLCA2LjI5XSwge2xhYmVsOiB0ZXhgXFx0aGV0YWAsIHN0ZXA6IDAuMDEsIHZhbHVlOiAwfSksXG4gIElucHV0cy5yYW5nZShbMCwgMTAwMF0sIHtsYWJlbDogdGV4YG5gLCBzdGVwOiAxLCB2YWx1ZTogMTB9KSxcbiAgSW5wdXRzLmJ1dHRvbihcIlJlLVRpcmFnZVwiKVxuXSlcblxuXG5tdTEgPSBpbnB1dHNbMF07XG5tdTIgPSBpbnB1dHNbMV07XG5zaWdtYTEgPSBpbnB1dHNbMl07XG5zaWdtYTIgPSBpbnB1dHNbM107XG50aGV0YSA9IGlucHV0c1s0XTtcbm5fc2FtcGxlcyA9IGlucHV0c1s1XTtcblxuXG5mdW5jdGlvbiBjcmVhdGVfc2lnbWEodGhldGEsIHNpZ21hMSwgc2lnbWEyKXtcbiAgY29uc3QgbWF0X3JvdCA9IG1hdGgubWF0cml4KFtbbWF0aC5jb3ModGhldGEpLCAtbWF0aC5zaW4odGhldGEpXSwgW21hdGguc2luKHRoZXRhKSwgbWF0aC5jb3ModGhldGEpXV0pO1xuICBjb25zdCBtYXRfc2lnbWEgPSBtYXRoLm1hdHJpeChbW3NpZ21hMSoqMiwgMF0sIFswLCBzaWdtYTIqKjJdXSk7XG4gIHJldHVybiBtYXRoLm11bHRpcGx5KG1hdF9yb3QsIG1hdGgubXVsdGlwbHkobWF0X3NpZ21hLCBtYXRoLnRyYW5zcG9zZShtYXRfcm90KSkpO1xufVxuXG5cbmZ1bmN0aW9uIG12bnBkZih4LCBtdSwgU2lnbWEpe1xuICBjb25zdCBwID0gMjtcbiAgICByZXR1cm4gKDIqbWF0aC5waSkqKigtcC8yKSptYXRoLmRldChTaWdtYSkqKigtMC41KSpcbiAgICAgIG1hdGguZXhwKC0wLjUqbWF0aC5tdWx0aXBseShtYXRoLm11bHRpcGx5KCBtYXRoLnRyYW5zcG9zZShtYXRoLnN1YnRyYWN0KHgsbXUpKSwgbWF0aC5pbnYoU2lnbWEpKSwgbWF0aC5zdWJ0cmFjdCh4LCBtdSkpKTtcbn1cblxue1xuXG5cbmZ1bmN0aW9uIG5vcm1hbF9ybmcobXUsIFNpZ21hLCBuPTEwMCkge1xuICAgIC8vIENvbXB1dGUgdGhlIENob2xlc2t5IGRlY29tcG9zaXRpb24gb2YgU2lnbWFcbiAgICB2YXIgY2hvbGVza3kgPSBqc3RhdC5jaG9sZXNreShTaWdtYSk7XG5cbiAgICAvLyBHZW5lcmF0ZSB0aGUgc2FtcGxlc1xuICAgIHZhciBzYW1wbGVzID0gQXJyYXkuZnJvbSh7bGVuZ3RoOiBufSwgKCkgPT4ge1xuICAgICAgICB2YXIgeCA9IGpzdGF0Lm5vcm1hbC5zYW1wbGUoMCwgMSk7XG4gICAgICAgIHZhciB5ID0ganN0YXQubm9ybWFsLnNhbXBsZSgwLCAxKTtcbiAgICAgICAgLy8gVHJhbnNmb3JtIHRoZSBzdGFuZGFyZCBub3JtYWwgcmFuZG9tIHZhcmlhYmxlcyB1c2luZyB0aGUgQ2hvbGVza3kgZGVjb21wb3NpdGlvblxuICAgICAgICB2YXIgdHJhbnNmb3JtZWRYID0gbXVbMF0gKyBjaG9sZXNreVswXVswXSAqIHggKyBjaG9sZXNreVswXVsxXSAqIHk7XG4gICAgICAgIHZhciB0cmFuc2Zvcm1lZFkgPSBtdVsxXSArIGNob2xlc2t5WzFdWzBdICogeCArIGNob2xlc2t5WzFdWzFdICogeTtcbiAgICAgICAgcmV0dXJuIFt0cmFuc2Zvcm1lZFgsIHRyYW5zZm9ybWVkWV07XG4gICAgfSk7ICAgXG5cbiAgICByZXR1cm4gc2FtcGxlcztcbn1cbnZhciBTaWdtYSA9IGNyZWF0ZV9zaWdtYSh0aGV0YSwgc2lnbWExLCBzaWdtYTIpLnRvQXJyYXkoKTtcbnZhciBtdSA9IFttdTEsIG11Ml07XG5cbnZhciBzYW1wbGVzID0gbm9ybWFsX3JuZyhtdSwgU2lnbWEsIDEwMDApO1xudmFyIG5wb2ludHM9MTAwLCBtaW5pID0gLTUsIG1heGk9NSwgeCA9IG5ldyBBcnJheShucG9pbnRzKSwgeSA9IG5ldyBBcnJheShucG9pbnRzKSwgeiA9IG5ldyBBcnJheShucG9pbnRzKSwgaSwgajtcblxuLy8gIERlbnNpdMOpOlxuZm9yKHZhciBpID0gMDsgaSA8IG5wb2ludHM7IGkrKykge1xuICAgIHhbaV0gPSBtaW5pICsgaSAqIChtYXhpIC0gbWluaSkgLyAobnBvaW50cyAtIDEpO1xuICAgIHlbaV0gPSBtaW5pICsgaSAqIChtYXhpIC0gbWluaSkgLyAobnBvaW50cyAtIDEpO1xuICAgIHpbaV0gPSBuZXcgQXJyYXkobnBvaW50cyk7XG4gICAgfVxuXG5mb3IodmFyIGkgPSAwOyBpIDwgbnBvaW50czsgaSsrKSB7XG4gIFx0Zm9yKGogPSAwOyBqIDwgbnBvaW50czsgaisrKSB7XG5cbiAgICBcdHpbal1baV0gPSBtdm5wZGYoW3hbaV0sIHhbal1dLCBtdSwgU2lnbWEpO1xuIFx0fVxuXG59XG4gIFxuXG57XG5cbnZhciB0cmFjZTEgPSB7XG4gICAgICAgIHg6IHNhbXBsZXMuc2xpY2UoMCwgbl9zYW1wbGVzKS5tYXAoc2FtcGxlID0+IHNhbXBsZVswXSksXG4gICAgICAgIHk6IHNhbXBsZXMuc2xpY2UoMCwgbl9zYW1wbGVzKS5tYXAoc2FtcGxlID0+IHNhbXBsZVsxXSksXG4gICAgICAgIG1vZGU6ICdtYXJrZXJzJyxcbiAgICAgICAgdHlwZTogJ3NjYXR0ZXInLFxuICAgICAgICBtYXJrZXI6IHtcbiAgICAgICAgICAgIGNvbG9yOiAncmdiYSgwLDAsMCwwLjUpJyxcbiAgICAgICAgICAgIHNpemU6IDUsXG4gICAgICAgIH0sXG5cbiAgICAgICAgeGF4aXM6ICd4MicsXG59XG5cbnZhciB0cmFjZTIyID0ge1xuICAgICAgICB4OiB4LFxuICAgICAgICB5OiB5LFxuICAgICAgICB6OiB6LFxuICAgICAgICB0eXBlOiAnc3VyZmFjZScsXG4gICAgICAgIGNvbG9yc2NhbGU6ICdPcmFuZ2VzJyxcbiAgICAgICAgc2hvd3NjYWxlOiBmYWxzZSxcbiAgICAgICAgY29sb3I6IHtcbiAgICAgICAgICAgIGxlZ2VuZDogZmFsc2UsXG4gICAgICAgICAgICBsYWJlbDogXCJwZGZcIixcbiAgICAgICAgfSxcblxufVxuXG52YXIgdHJhY2UyMSA9IHtcbiAgICAgICAgeDogeCxcbiAgICAgICAgeTogeSxcbiAgICAgICAgejogeixcbiAgICAgICAgdHlwZTogJ2NvbnRvdXInLFxuICAgICAgICBjb2xvcnNjYWxlOiAnT3JhbmdlcycsXG4gICAgICAgIGNvbG9yOiB7XG4gICAgICAgICAgICBsZWdlbmQ6IHRydWUsXG4gICAgICAgICAgICBsYWJlbDogXCJwZGZcIixcbiAgICAgICAgfSxcbiAgICAgICAgYmx1cjogNCxcbiAgICAgICAgeGxpbTogWy01LCA1XSxcbiAgICAgICAgeWxpbTogWy01LCA1XSxcbiAgICAgICAgeGF4aXM6ICd4MicsXG59XG5cblxudmFyIGRhdGEgPSBbXG4gIHRyYWNlMjEsXG4gIHRyYWNlMjIsXG4gIHRyYWNlMSxcbiAgXTtcblxuXG4gIHZhciBsYXlvdXQgPSB7XG4gICAgICAgeWF4aXMyOiB7XG4gICAgICAgICAgcmFuZ2U6IFstNSwgNV0sXG4gICAgICAgICAgYXV0b3JhbmdlOiBmYWxzZSxcbiAgICAgICAgfSxcbiAgICAgICB4YXhpczI6IHtcbiAgICAgICAgICByYW5nZTogWy01LCA1XSxcbiAgICAgICAgICBhdXRvcmFuZ2U6IGZhbHNlLFxuICAgICAgICB9LFxuXG4gICAgICBzY2VuZToge1xuICAgICAgICAgIGNhbWVyYToge1xuICAgICAgICAgICAgICBleWU6IHtcbiAgICAgICAgICAgICAgICAgIHg6IDAuNSxcbiAgICAgICAgICAgICAgICAgIHk6IDEuMixcbiAgICAgICAgICAgICAgICAgIHo6IDEuNSxcbiAgICAgICAgICAgICAgfVxuICAgICAgICAgIH1cbiAgICAgIH0sXG4gICAgZ3JpZDoge1xuICAgICAgcm93czogMSxcbiAgICAgIGNvbHVtbnM6IDIsXG4gICAgICBzdWJwbG90czogW1sneHknLCd4MnknXV0sXG4gICAgfSxcbiAgICBzaG93bGVnZW5kOiBmYWxzZSxcblxuICB9O1xuXG4gICAgdmFyIGNvbmZpZyA9IHtyZXNwb25zaXZlOiB0cnVlfVxuICAgIGNvbnN0IGRpdiA9IERPTS5lbGVtZW50KCdkaXYnKTtcbiAgICBQbG90bHkubmV3UGxvdChkaXYsIGRhdGEsIGxheW91dCwgY29uZmlnKTtcbiAgICByZXR1cm4gZGl2O1xuICB9XG5cbn1cblxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0UXVpZXQiLCJzb3VyY2UiOiJzaGlueUlucHV0KCdpbnB1dHMnKSJ9XX0=
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -989,38 +1031,28 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    const typesetMath = (el) => {
-      if (window.MathJax) {
-        // MathJax Typeset
-        window.MathJax.typeset([el]);
-      } else if (window.katex) {
-        // KaTeX Render
-        var mathElements = el.getElementsByClassName("math");
-        var macros = [];
-        for (var i = 0; i < mathElements.length; i++) {
-          var texText = mathElements[i].firstChild;
-          if (mathElements[i].tagName == "SPAN") {
-            window.katex.render(texText.data, mathElements[i], {
-              displayMode: mathElements[i].classList.contains('display'),
-              throwOnError: false,
-              macros: macros,
-              fleqn: false
-            });
-          }
-        }
-      }
-    }
     if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
-        typesetMath(container);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
         return container.innerHTML
       } else {
-        typesetMath(note);
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
         return note.innerHTML;
       }
     } else {
@@ -1029,8 +1061,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
-      typesetMath(note);
-      return note.innerHTML;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
@@ -1268,4 +1307,4 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 
 
 
-</body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale_multi.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>

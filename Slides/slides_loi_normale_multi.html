@@ -8,7 +8,7 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.4.429">
+  <meta name="generator" content="quarto-1.4.549">
 
   <meta name="dcterms.date" content="2024-01-19">
   <title>HAX603X: Modélisation stochastique - Loi normale: cas multivarié</title>
@@ -476,7 +476,7 @@ Benjamin Charlier
 <section id="vecteurs-gaussiens" class="slide level2">
 <h2>Vecteurs gaussiens</h2>
 <div id="def-gaussian-vector" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien) </strong></span>Un vecteur aléatoire <span class="math inline">\(\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d\)</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\({\alpha} = (\alpha_1, \dots, \alpha_d)^\top\)</span>, la variable aléatoire réelle <span class="math display">\[
+<p><span class="theorem-title"><strong>Définition 1 (Vecteur gaussien)</strong></span> Un vecteur aléatoire <span class="math inline">\(\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d\)</span> est un <em>vecteur gaussien</em> si pour tout <span class="math inline">\({\alpha} = (\alpha_1, \dots, \alpha_d)^\top\)</span>, la variable aléatoire réelle <span class="math display">\[
   \langle {\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
 \]</span> suit une loi normale.</p>
 </div>
@@ -534,7 +534,7 @@ Benjamin Charlier
 \varphi_{0,\mathrm{Id}_d}(x) = \frac{1}{ \sqrt{(2\pi)^d}} \exp\left( -\tfrac{1}{2}x^\top x   \right) \enspace.
 \]</span></p>
 <div id="prp-densite-mutli" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée) </strong></span>Soient <span class="math inline">\({\mu} \in \mathbb{R}^d\)</span> et <span class="math inline">\(\Sigma \in \mathbb{R}^{d \times d}\)</span> (symétrique et définie positive) et supposons que <span class="math inline">\(X \sim \mathcal{N}({\mu},\Sigma)\)</span>. Alors la densité de probabilité de <span class="math inline">\(X\)</span> est donnée pour tout <span class="math inline">\(x \in \mathbb{R}^d\)</span> par</p>
+<p><span class="theorem-title"><strong>Proposition 1 (Densité de la loi gaussienne multivariée)</strong></span> Soient <span class="math inline">\({\mu} \in \mathbb{R}^d\)</span> et <span class="math inline">\(\Sigma \in \mathbb{R}^{d \times d}\)</span> (symétrique et définie positive) et supposons que <span class="math inline">\(X \sim \mathcal{N}({\mu},\Sigma)\)</span>. Alors la densité de probabilité de <span class="math inline">\(X\)</span> est donnée pour tout <span class="math inline">\(x \in \mathbb{R}^d\)</span> par</p>
 <p><span class="math display">\[
 \varphi_{{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-{\mu})^\top\Sigma^{-1}(x - {\mu})   \Big) \enspace.
 \]</span></p>
@@ -563,7 +563,7 @@ Benjamin Charlier
 <section id="transformation-de-vecteurs-gaussiens" class="slide level2">
 <h2>Transformation de vecteurs gaussiens</h2>
 <div id="prp-affine-gauss" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens) </strong></span>Soit <span class="math inline">\(\mathbf{X} \sim \mathcal{N}({\mu}, \Sigma)\)</span> un vecteur gaussien sur <span class="math inline">\(\mathbb{R}^d\)</span>, <span class="math inline">\(\Omega \in \mathbb{R}^{d' \times d}\)</span> et <span class="math inline">\({\nu}\in \mathbb{R}^{d'}\)</span>. Alors, le vecteur aléatoire <span class="math inline">\(\mathbf{Y} = \Omega \mathbf{X} + {\nu}\)</span> est un vecteur gaussien vérifiant <span class="math display">\[
+<p><span class="theorem-title"><strong>Proposition 2 (Transformation affine de vecteurs gaussiens)</strong></span> Soit <span class="math inline">\(\mathbf{X} \sim \mathcal{N}({\mu}, \Sigma)\)</span> un vecteur gaussien sur <span class="math inline">\(\mathbb{R}^d\)</span>, <span class="math inline">\(\Omega \in \mathbb{R}^{d' \times d}\)</span> et <span class="math inline">\({\nu}\in \mathbb{R}^{d'}\)</span>. Alors, le vecteur aléatoire <span class="math inline">\(\mathbf{Y} = \Omega \mathbf{X} + {\nu}\)</span> est un vecteur gaussien vérifiant <span class="math display">\[
   \mathbf{Y} \sim \mathcal{N}(\Omega {{\mu}} + {\nu}, \Omega \Sigma \Omega^\top)\,.
 \]</span></p>
 </div>
@@ -574,7 +574,7 @@ Benjamin Charlier
 <div class="columns">
 <div class="column" style="width:60%;">
 <div id="thm-cholesky" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky) </strong></span>Soit <span class="math inline">\(\Sigma \in \mathbb{R}^{d \times d}\)</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">\(L \in \mathbb{R}^{d \times d}\)</span> telle que <span class="math inline">\(\Sigma = LL^\top\)</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">\(L\)</span> soient strictement positifs.</p>
+<p><span class="theorem-title"><strong>Théorème 1 (Factorisation de Cholesky)</strong></span> Soit <span class="math inline">\(\Sigma \in \mathbb{R}^{d \times d}\)</span> une matrice symétrique définie positive. Alors il existe une matrice triangulaire inférieure <span class="math inline">\(L \in \mathbb{R}^{d \times d}\)</span> telle que <span class="math inline">\(\Sigma = LL^\top\)</span>. La décomposition est unique si l’on impose que les éléments diagonaux de <span class="math inline">\(L\)</span> soient strictement positifs.</p>
 </div>
 <div class="fragment" data-fragment-index="2">
 <p><u>Preuve</u>: la factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss; détails <span class="citation" data-cites="Ciarlet06">(Th. 4.4.1, <a href="#/bibliographie" role="doc-biblioref" onclick="">Ciarlet 2006</a>)</span>.</p>
@@ -594,15 +594,15 @@ Benjamin Charlier
 <section id="numérique" class="slide level2">
 <h2>Numérique</h2>
 <p>En <code>numpy</code>, la factorisation de Cholesky est disponible via la fonction <code>linalg.cholesky</code>.</p>
-<div id="e2888a97" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>Sigma <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.5</span>], [<span class="fl">0.5</span>, <span class="dv">2</span>]])</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.cholesky(Sigma)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sigma:</span><span class="ch">\n</span><span class="sc">{</span>Sigma<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LL^T:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="op">@</span>L<span class="sc">.</span>T<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L^TL:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="sc">.</span>T<span class="op">@</span>L<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7ff57c24" class="cell" data-execution_count="1">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a aria-hidden="true" tabindex="-1"></a>Sigma <span class="op">=</span> np.array([[<span class="dv">1</span>, <span class="fl">0.5</span>], [<span class="fl">0.5</span>, <span class="dv">2</span>]])</span>
+<span id="cb1-3"><a aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> np.linalg.cholesky(Sigma)</span>
+<span id="cb1-4"><a aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Sigma:</span><span class="ch">\n</span><span class="sc">{</span>Sigma<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-6"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-7"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"LL^T:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="op">@</span>L<span class="sc">.</span>T<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb1-8"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L^TL:</span><span class="ch">\n</span><span class="sc">{</span>L<span class="sc">.</span>T<span class="op">@</span>L<span class="sc">}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Sigma:
 [[1.  0.5]
@@ -685,8 +685,10 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
 </div>
 </div>
 
+<div class="quarto-auto-generated-content">
 <div class="footer footer-default">
 <p><span style="color:grey;float:left;margin-left:7%;"><em>Loi normale: cas multivarié</em></span></p>
+</div>
 </div>
 </section>
     </div>
@@ -1165,7 +1167,7 @@ Ciarlet, P. G. 2006. <em>Introduction <span>à</span> l’analyse num<span>é</s
                   options: {
                     flipVariations: false, // true by default
                     allowedAutoPlacements: ['right'],
-                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end'],
+                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
                   },
                 },
                 {
