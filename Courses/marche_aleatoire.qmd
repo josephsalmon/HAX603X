@@ -17,9 +17,9 @@ format:
 }}
 :::
 
-L'objet de ce chapitre est de faire une première introduction à  un exemple intéressant de processus stochastique, soit la marche aléatoire simple symétrique, et ce  avec un minimum de formalisme. 
+L'objet de ce chapitre est de faire une première introduction à  un exemple intéressant de processus stochastique, soit la marche aléatoire simple symétrique, et ce  avec un minimum de formalisme.
 
-Dans la partie @sec-chap03-traj, on définit la marche aléatoire simple symétrique, et on étudie l'allure de ses trajectoires. La partie @sec-chap03-infini est dédiée à son comportement en temps long. La partie @sec-chap03-ruine présente une première application vers les mathématiques financières avec l'étude d'un problème de ruine. 
+Dans la partie @sec-chap03-traj, on définit la marche aléatoire simple symétrique, et on étudie l'allure de ses trajectoires. La partie @sec-chap03-infini est dédiée à son comportement en temps long. La partie @sec-chap03-ruine présente une première application vers les mathématiques financières avec l'étude d'un problème de ruine.
 
 ## Trajectoires de la marche aléatoire {#sec-chap03-traj}
 
@@ -40,13 +40,141 @@ Une  **marche aléatoire simple symétrique** sur $\Z$ est une suite $(S_n)_{n\i
 
 où $(X_n)_{n\geq 1}$ est une suite de variables aléatoires indépendantes et de même loi de Rademacher de paramètre $\frac 1 2$ :
 $$
-\P(X_1=-1)=\P(X_1-1)=\frac{1}{2}.
+\P(X_1=-1)=\P(X_1=1)=\frac{1}{2}.
 $$
 :::
 
 On parle de *marche* car ce processus peut représenter la position d'une personne qui se déplace en ligne droite par pas d'une unité avec équiprobabilité d'aller vers l'avant ($+1$) ou vers l'arrière ($-1$). Cette marche est dite *simple* car on ne fait que des pas d'amplitude $1$ et *symétrique* car il y a la même probabilité de tirer $1$ et $-1$ pour chaque incrément.
 
 Ce processus peut également servir à modéliser la richesse d'une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d'une richesse initiale $S_0=x>0$, à chaque pas de temps elle perd ou gagne $1$\euro{} en fonction du tirage obtenu. Les variables $X_n$ représentent alors le gain du $n$-ème jeu, et $S_n$ la richesse totale de la joueuse après le $n$-ème tirage.
+
+
+```{ojs}
+//| echo: false
+//| layout-ncol: 1
+//| figalign: "center"
+//| label: "fig:chap03-traj"
+
+// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+Plotly = require('plotly.js-dist');
+dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+jstat = require('jstat');
+seedrandom = require('seedrandom@3.0.5');
+math = require("mathjs");
+// see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
+// continuous case
+
+viewof inputs = Inputs.form([
+  Inputs.range([-10, 10], {label: tex`x`, step: 1}, {value: 3}),
+//   Inputs.range([0.1, 10], {label: tex`\nu`, step: 0.1, value: 1}),
+  Inputs.range([1, 100], {label: tex`n`, step: 1}),
+  Inputs.button("Re-Tirage")
+])
+
+mu = inputs[0];
+n_samples = inputs[1];
+seed = 44 + inputs[2];
+
+{
+
+const rng = seedrandom(seed)
+
+function random_walk(n=100){
+    var samples = Array.from({length: n}, () => {
+         if (rng.double() > 0.5) {
+            return 1;
+        } else {
+            return -1;
+            }
+    });
+
+    return samples;
+}
+var samples = random_walk(100);
+
+
+// create a cumsum function:
+function cumsum(array) {
+  var result = [];
+  array.reduce(function(a,b,i) { return result[i] = a+b; },0);
+  return result;
+}
+
+
+var npoints=100, mini = 0, maxi=100;
+var x = new Array(npoints), walk =new Array(npoints), zeros = new Array(npoints), z = new Array(npoints), i, j;
+
+//  Densité:s
+for(var i = 0; i < npoints; i++) {
+    x[i] = i ;
+    zeros[i] = 0;
+    }
+
+{
+    // points lower
+var trace1 = {
+        x: x.slice(0, n_samples),
+        y: zeros.slice(0, n_samples),
+        mode: 'markers',
+        type: 'scatter',
+        marker: {
+            color: samples.slice(0, n_samples).map((x) => x > 0 ? 'blue' : 'red'),
+            size: 5,
+        },
+
+  }
+
+walk = cumsum(samples);
+for(var i = 0; i < npoints; i++) {
+    walk[i] = walk[i] + mu ;
+    }
+
+
+var trace22 = {
+        x: x.slice(0, n_samples),
+        y: walk.slice(0, n_samples),
+		type: "scatter",
+		mode: "lines",
+		name: 'Marche aléatoire',
+		line: {color: 'black'},
+		yaxis: 'y2',
+		xaxis: 'x2',
+        }
+
+
+
+var data = [
+  trace1,
+  trace22,
+  ];
+
+
+var layout = {
+	width: 600,
+	yaxis: {domain: [0, 0.2],
+			showticklabels: false,
+			range: [-2, 2],
+            autorange: false},
+	xaxis2: {matches: 'x',
+	          range: [0, 100],
+          autorange: false},
+	yaxis2: {domain: [0.29, 0.99],
+              range: [-50, 50]},
+
+  showlegend: false,
+
+};
+
+    var config = {responsive: true}
+    const div = DOM.element('div');
+    Plotly.react(div, data, layout, config);
+    return div;
+	}
+}
+```
+
+
+
 
 A partir de la définition, on obtient très facilement le comportement moyen de la marche.
 
@@ -59,11 +187,13 @@ $$
 
 ::: {.proof}
 
-Remarquons d'abord que 
+Remarquons d'abord que
+$$
 \begin{align*}
 \E[X_1]&=(-1)\times \frac{1}{2}+1\times  \frac{1}{2}=0,\\
 \var(X_1)&=\E[X_1^2]=(-1)^2\times \frac{1}{2}+1^2\times  \frac{1}{2}=1,
 \end{align*}
+$$
 les incréments sont donc centrés et réduits. Par linéarité de l'espérance, on obtient
 $$
 \E[S_n]=\E[S_0+\sum_{k=1}^n X_k]=S_0+\sum_{k=1}^n \E[X_k]=S_0,
@@ -80,84 +210,12 @@ Ainsi, en moyenne la marche reste constante, mais sa variance devient de plus en
 
 ### Représentation graphique  {#sec-chap03-graphe}
 
-Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, ...,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche.
+Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, \dots,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. @fig:chap03-traj
 
-::: {#exm-traj}
-La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4=1$, $X_5=-1$ est donnée figure \ref{fig:chap03-marche}.
-%=========================
-\begin{figure}[htp]
-\centering
-\includegraphics[height=5cm]{figures/chap03-marche.pdf}
-\caption{Représentation graphique d'une trajectoire de marche aléatoire \index{trajectoire de marche aléatoire} entre $0$ et $5$.\label{fig:chap03-marche}}
-\end{figure}
-%=========================
+<!-- ::: {#exm-traj}
+La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4=1$, $X_5=-1$ est donnée ... .
 
-```{python}
-import numpy as np
-np.random.seed(1234)
-
-def random_walk(N):
-    """
-    Simulates a discrete random walk
-    :param int N : the number of steps to take
-    """
-    # event space: set of possible increments
-    increments = np.array([1, -1])
-    # the probability to generate 1
-    p=0.5
-
-    # the epsilon values
-    random_increments = np.random.choice(increments, N, p)
-    # calculate the random walk
-    random_walk = np.cumsum(random_increments)
-
-    # return the entire walk and the increments
-    return random_walk, random_increments
-
-# generate a random walk
-N = 500
-X, epsilon = random_walk(N)
-
-# normalize the random walk using the Central Limit Theorem
-X = X * np.sqrt(1./N)
-import matplotlib.pyplot as plt
-import matplotlib.animation as animation
-# plt.style.use('seaborn')
-
-#general figure options
-fig = plt.figure(figsize=(15, 7))
-ax = plt.axes(xlim=(0, N), ylim=(np.min(X) - 0.5, np.max(X) + 0.5))
-line, = ax.plot([], [], lw=2)
-ax.set_title('2D Random Walk', fontsize=18)
-ax.set_xlabel('Steps', fontsize=16)
-ax.set_ylabel('Value', fontsize=16)
-ax.tick_params(labelsize=12)
-
-# initialization function 
-def init():
-    # creating an empty plot/frame 
-    line.set_data([], [])
-    return line,
-
-# lists to store x and y axis points 
-xdata, ydata = [], []
-
-# animation function 
-def animate(i):
-    # x, y values to be plotted 
-    y = X[i]
-
-    # appending new points to x, y axes points list 
-    xdata.append(i)
-    ydata.append(y)
-    line.set_data(xdata, ydata)
-    return line,
-
-# call the animator	 
-anim = animation.FuncAnimation(fig, animate, init_func=init,
-                               frames=N, interval=20, blit=True)
-```
-:::
+::: -->
 
 La marche aléatoire est un processus à temps discret, donc rigoureusement sa représentation graphique devrait être constituée des points $(n,S_n)$ non reliés. Par exemple, $S_{1/2}$ n'est pas défini. Cependant, on relie les points pour une meilleure lecture des graphiques.
 
@@ -170,13 +228,13 @@ Soit $n>m$ deux entiers naturels et $(a,b)\in\Z^2$ deux entiers relatifs. On app
 ::: {#exm-traj2} 
 
 La figure \ref{fig:chap03-chemins} présente deux chemins de $(1,1)$ à $(5,3)$.
-%=========================
+<!-- %=========================
 \begin{figure}[htp]
 \centering
 \includegraphics[height=5cm]{figures/chap03-chemins.pdf}
 \caption{Deux chemins de $(1,1)$ à $(5,3)$.\label{fig:chap03-chemins}}
 \end{figure}
-%=========================
+%========================= -->
 :::
 
 On peut maintenant se poser la question de savoir s'il existe toujours un chemin qui relie deux points quelconques, et s'il en existe, combien on peut construire de chemins différents reliant ces deux points. On peut facilement montrer que certains chemins sont impossibles en regardant la parité de la marche aléatoire et son amplitude maximale.
@@ -254,6 +312,7 @@ Si $|b-a|\leq n-m$ et $n-m$ et $b-a$ ont la même parité, alors le nombre de ch
 ::: {.proof}
 
 Un chemin de $(m,a)$ à $(n,b)$ correspond à $n-m$ pas de la marche aléatoire en partant de $a$ et en arrivant en $b$. Supposons sans perte de généralité que $b>a$. Alors on peut décomposer les pas de la marche entre $x$ pas vers le haut (tirages de $+1$) et $y$ pas vers le bas (tirages de $-1$). On doit avoir un nombre total de pas de $x+y=n-m$, et une différence des ordonnées de $x-y=b-a$, ce qui donne le système
+$$
 \begin{align*}
 \left\{\begin{array}{rcl}
 x+y&=&n-m\\
@@ -267,7 +326,9 @@ y&=&\frac{n-m}{2}-\frac{b-a}{2}
 \end{array}
 \right..
 \end{align*}
-Pour dénombrer le nombre total de chemins de longueur $x+y$ avec $x$ montées et $y$ descentes, il suffit de choisir les emplacements de $x$ montées parmi les $x+y$ pas. On obtient donc $\binom{x+y}{x}=\binom{n-m}{\frac{n-m}{2}+\frac{b-a}{2}}$ chemins.
+$$
+Pour dénombrer le nombre total de chemins de longueur $x+y$ avec $x$ montées et 
+$y$ descentes, il suffit de choisir les emplacements de $x$ montées parmi les $x+y$ pas. On obtient donc $\binom{x+y}{x}=\binom{n-m}{\frac{n-m}{2}+\frac{b-a}{2}}$ chemins.
 :::
 
 Remarquons que pour dénombrer le nombre de chemins d'un point à un autre, nous n'avons pas utilisé le fait que $\mathbb P(X=1)=\mathbb P(X=-1)$, mais uniquement le fait que $X$ ne peut prendre que les valeurs $-1$ et $1$. Le résultat ci-dessus est donc également valable pour les marches asymétriques où $p=\mathbb P(X=1)=1-\mathbb P(X=-1)\neq \frac{1}{2}$.
@@ -746,7 +807,7 @@ $$
 Alors la suite $(B^N_t)$ converge en loi lorsque $N$ tend vers l'infini, et c'est également le cas lorsqu'on prend plusieurs temps $t_i$.
 
 ::: {#prp-donsk}
-Pour tous $t_0=0<t_1 <...< t_p$, le vecteur $(B^N_{t_1},...,B^N_{t_p})$ converge en loi vers un vecteur $(B_{t_1},...,B_{t_p})$ tel que pour tout $i \in\{1,...,p\}$, $B_{t_{i}}-B_{t_{i-1}}$ est indépendant de $B_{t_{i-1}}$ et suit une loi normale $\mathcal{N}(0, t_i - t_{i-1} )$
+Pour tous $t_0=0<t_1 <\dots< t_p$, le vecteur $(B^N_{t_1},\dots,B^N_{t_p})$ converge en loi vers un vecteur $(B_{t_1},\dots,B_{t_p})$ tel que pour tout $i \in\{1,\dots,p\}$, $B_{t_{i}}-B_{t_{i-1}}$ est indépendant de $B_{t_{i-1}}$ et suit une loi normale $\mathcal{N}(0, t_i - t_{i-1} )$
 :::
 
 ::: {.proof}
@@ -755,7 +816,7 @@ On a
 $$
 B^N_{t_i} - B^N_{t_{i-1}}  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=\lfloor N t_{i-1} \rfloor + 1}^{\lfloor N t_i \rfloor} X_k
 $$
-donc les accroissements du vecteur $(B^N_{t_1},...,B^N_{t_p})$ sont indépendant. Il suffit maintenant de montrer qu'ils convergent vers la loi normale.  On a
+donc les accroissements du vecteur $(B^N_{t_1},\dots,B^N_{t_p})$ sont indépendant. Il suffit maintenant de montrer qu'ils convergent vers la loi normale.  On a
 $$
 B^N_{t_i} - B^N_{t_{i-1}}  = \sqrt{\frac{\lfloor N t_i \rfloor - \lfloor N t_{i-1} \rfloor }{N}}  \frac{1}{\sqrt{\lfloor N t_i \rfloor - \lfloor N t_{i-1} \rfloor }} \sum_{k=\lfloor N t_{i-1} \rfloor + 1}^{\lfloor N t_i \rfloor}   X_k \to \sqrt{t_i - t_{i-1}} \mathcal{N}(0,1),
 $$

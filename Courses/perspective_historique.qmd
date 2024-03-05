@@ -174,7 +174,7 @@ for i in range(3, t):
 
 fig.add_annotation(
     dict(
-        x=1.25,
+        x=1.01,
         y=0.14,
         xref="paper",
         yref="paper",
@@ -245,7 +245,7 @@ slider = dict(
     steps=steps,
 )
 
-fig.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
+fig.update_layout(legend=dict(x=0.5, y=0.31, xanchor='center', yanchor='bottom'))
 fig.update_layout(sliders=[slider])
 fig.show()
 ```
