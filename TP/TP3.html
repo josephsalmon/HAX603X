@@ -146,7 +146,6 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="custom.css">
 <link rel="stylesheet" href="../custom.scss">
 </head>
 
@@ -396,7 +395,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="b9c2c94d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
+<div id="bf0e79a7" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-2-output-1.png" width="589" height="450"></p>
@@ -410,7 +409,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="195e14a9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="918baf98" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-4-output-1.png" width="571" height="432"></p>
@@ -445,10 +444,10 @@ Note
 <div>
 
 </div>
-<div id="3a754a1e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="768fcb3c" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[1 0 0 1 0 0 0 0 1 0]</code></pre>
+<pre><code>[1 1 1 1 0 1 1 1 1 0]</code></pre>
 </div>
 </div>
 </div>
@@ -467,10 +466,10 @@ Note
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="281d2987" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="02ea111c" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[10.  2.  2.  1. 15. 10.  2.  2. 13.  4.  1.  6.]</code></pre>
+<pre><code>[1. 1. 2. 1. 1. 1. 5. 1. 4. 4. 1. 6.]</code></pre>
 </div>
 </div>
 </div>
@@ -487,7 +486,7 @@ Note
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elaped  when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="e176d256" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="497bb41f" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
 
 </div>
 <p>Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.</p>
@@ -519,7 +518,7 @@ Note
 <div>
 
 </div>
-<div id="764483bc" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="680f5533" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-9-output-1.png" width="589" height="449"></p>
@@ -535,11 +534,11 @@ Note
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="79debbe2" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="7f4c0f07" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0.43026691 0.69893612 0.47499955 0.11986403 0.49351335 0.63262792
- 0.57780762 0.24228695 0.24665673 0.26641963 0.1193211  0.26258608]</code></pre>
+<pre><code>[0.51055799 0.13813894 0.79631107 0.48430303 0.42472148 0.42658611
+ 0.70097994 0.31143426 0.2645798  0.62403705 0.22274176 0.22348049]</code></pre>
 </div>
 </div>
 </div>
@@ -549,7 +548,7 @@ Note
 <div>
 
 </div>
-<div id="78de4751" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="47241a02" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-12-output-1.png" width="571" height="432"></p>
@@ -565,7 +564,7 @@ Note
 <div>
 
 </div>
-<div id="6bcd7b2a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="45406326" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-14-output-1.png" width="526" height="450"></p>
@@ -578,17 +577,17 @@ Note
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="bfb090c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="e77f70ad" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Reject ratio : 0.1935483870967742</code></pre>
+<pre><code>Reject ratio : 0.2125984251968504</code></pre>
 </div>
 </div>
 </div>
 <div>
 
 </div>
-<div id="d530f806" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
+<div id="977a6ccd" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-17-output-1.png" width="526" height="450"></p>
