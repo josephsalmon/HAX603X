@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -460,7 +460,7 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 </ol>
 <p>Quelle est la meilleure stratégie pour le candidat ? Garder son premier choix ou changer de porte ?</p>
 <p>Un raisonnement probabiliste peut fournir la solution. Mais vous pouvez vous aider en faisant des expériences pour faire une conjecture ! On peut par exemple lancer le programme ci-dessous en demandant de reproduire dix mille fois l’expérience (<span class="math inline">n= 10 000</span>).</p>
-<div id="9665b2ce" class="cell" data-execution_count="1">
+<div id="84277cb7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>portes <span class="op">=</span> np.array([<span class="st">"chevre"</span>, <span class="st">"chevre"</span>, <span class="st">"voiture"</span>])</span>
@@ -479,8 +479,8 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Gagne en changeant : "</span>, gagne_avec_change <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span>
 <span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Gagne sans changer : "</span>, gagne_avec_conserve <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span>, <span class="st">"%"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gagne en changeant :  65.98 %
-Gagne sans changer :  34.02 %</code></pre>
+<pre><code>Gagne en changeant :  66.8 %
+Gagne sans changer :  33.2 %</code></pre>
 </div>
 </div>
 <p>On peut alors conjecturer que la probabilité de gagner en changeant de porte est égale à <span class="math inline">2/3</span> alors que si le candidat reste sur son premier choix la probabilité de gagner ne sera que de <span class="math inline">1/3</span>.</p>
@@ -508,7 +508,7 @@ Gagne sans changer :  34.02 %</code></pre>
 <p>Ce résultat a deux conséquences importantes. D’une part, la vitesse de convergence est en <span class="math inline">n^{-1/2}</span>, ce qui est relativement lent, mais indépendant à la fois de la dimension de <span class="math inline">X</span> et de la régularité de <span class="math inline">g</span>. D’autre part, on peut calculer <span class="math inline">S_n^2</span> donc estimer l’erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer <span class="math inline">I</span>. <strong>Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l’estimation Monte Carlo de l’espérance.</strong></p>
 <div id="exm-actif" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 4</strong></span> En finance, certains contrats permettent de vendre un actif à une date future <span class="math inline">N</span> fixée par le contrat s’il dépasse à ce moment là une certaine valeur cible <span class="math inline">K</span> également fixée dans la contrat. Considérons un modèle simplifié pour le cours de l’actif <span class="math inline">(S_n)_{n\geq 1}</span> : pour <span class="math inline">n\geq 1</span>, on pose <span class="math inline">S_n=\sum_{i=1}^nX_i</span> où les <span class="math inline">X_i</span> sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc <span class="math inline">\mathbb E[\max(S_N-K,0)]</span>. Estimons cette quantité par la méthode de Monte Carlo.</p>
-<div id="13b0b6f6" class="cell" data-execution_count="2">
+<div id="d1e9f41c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
@@ -526,7 +526,7 @@ Gagne sans changer :  34.02 %</code></pre>
 <span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>([m <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s <span class="op">/</span> n), m, m <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s <span class="op">/</span> n)])</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[2.573025260879009, 2.5988659937802945, 2.62470672668158]</code></pre>
+<pre><code>[2.615258811885248, 2.641372966434934, 2.66748712098462]</code></pre>
 </div>
 </div>
 </div>
@@ -557,7 +557,7 @@ Gagne sans changer :  34.02 %</code></pre>
 </span> On peut donc approcher <span class="math inline">I</span> par <span class="math display">
     I_n^{c}=\frac{1}{n}\sum_{i=1}^n\big(e^{X_i^2}-1-X_i^2\big)+\frac{4}{3},
 </span> où les <span class="math inline">X_i</span> sont iid de loi uniforme sur <span class="math inline">[0,1]</span>. Regardons ce que ça donne numériquement.</p>
-<div id="7fa9db03" class="cell" data-execution_count="3">
+<div id="5c0f6489" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -577,8 +577,8 @@ Gagne sans changer :  34.02 %</code></pre>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>confidence_interval2 <span class="op">=</span> [m2 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s2 <span class="op">/</span> n), m2, m2 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s2 <span class="op">/</span> n)]</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Control variable confidence interval:"</span>, confidence_interval2)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.4556162131564943, 1.4648838280237577, 1.4741514428910212]
-Control variable confidence interval: [1.4594704192272896, 1.463038354495709, 1.4666062897641285]</code></pre>
+<pre><code>Direct method confidence interval: [1.4567125671498176, 1.4661419880216147, 1.4755714088934118]
+Control variable confidence interval: [1.4611700722194856, 1.4648214688834928, 1.4684728655475001]</code></pre>
 </div>
 </div>
 <p>On constate que l’intervalle de confiance est plus étroit donc la précision meilleure avec la variable de contrôle. On a divisé la variance (empirique) par <span class="math inline">6.7</span>. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu <span class="math inline">6.7^2\simeq45</span> fois plus de simulations.</p>
@@ -627,7 +627,7 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 <p><span class="theorem-title"><strong>Exemple 7</strong></span> Revenons sur l’exemple <a href="#exm-carre" class="quarto-xref">Exemple&nbsp;6</a> où on cherche à approcher <span class="math inline">I=\int_0^1 e^{x^2} dx</span> à l’aide de la loi uniforme sur <span class="math inline">[0,1]</span>. Cette loi a une propriété de symétrie : <span class="math inline">X</span> et <span class="math inline">1-X</span> ont la même loi. On a donc une approximation de <span class="math inline">I</span> de qualité identique ou meilleure en prenant <span class="math display">
     I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
 </span> Regardons ce que cela donne numériquement.</p>
-<div id="816e2f6f" class="cell" data-execution_count="4">
+<div id="e32889cb" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -647,8 +647,8 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>confidence_interval3 <span class="op">=</span> [m3 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s3 <span class="op">/</span> n), m3, m3 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s3 <span class="op">/</span> n)]</span>
 <span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Antithetic variable method confidence interval:"</span>, confidence_interval3)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.4527007743180873, 1.461876870048435, 1.4710529657787828]
-Antithetic variable method confidence interval: [1.4577068771030575, 1.4609443213624513, 1.4641817656218452]</code></pre>
+<pre><code>Direct method confidence interval: [1.4553147233476091, 1.464690825594823, 1.4740669278420369]
+Antithetic variable method confidence interval: [1.4611772919494126, 1.464477661938589, 1.4677780319277656]</code></pre>
 </div>
 </div>
 <p>On constate que l’intervalle de confiance est plus étroit donc la précision meilleure avec la variable antithétique. On a divisé la variance (empirique) par <span class="math inline">8</span>. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu <span class="math inline">8^2=64</span> fois plus de simulations.</p>
@@ -671,7 +671,7 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
 </span> On trouve alors par la <strong>méthode de Cardan</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> <span class="math display">
     F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
 </span> Regardons ce que ça donne numériquement.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;voir par exemple la page <a href="https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan"><em>Equation du troisième degré / Méthode de Cardan</em></a></p></div><div id="2aac6821" class="cell" data-execution_count="5">
+<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;voir par exemple la page <a href="https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan"><em>Equation du troisième degré / Méthode de Cardan</em></a></p></div><div id="e9731325" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -692,8 +692,8 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
 <span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a>confidence_interval4 <span class="op">=</span> [m4 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s4 <span class="op">/</span> n), m4, m4 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(s4 <span class="op">/</span> n)]</span>
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Importance sampling confidence interval:"</span>, confidence_interval4)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.4564292193484805, 1.4657392409567376, 1.4750492625649947]
-Importance sampling confidence interval: [1.4607818249040458, 1.463559032112823, 1.4663362393216]</code></pre>
+<pre><code>Direct method confidence interval: [1.4467992017844988, 1.4560339209863933, 1.4652686401882877]
+Importance sampling confidence interval: [1.4579564772451985, 1.4607101160733476, 1.4634637549014966]</code></pre>
 </div>
 </div>
 <p>On constate que l’intervalle de confiance est plus étroit donc la précision meilleure avec l’échantillonnage préférentiel. On a divisé la variance (empirique) par environ <span class="math inline">12</span>. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu <span class="math inline">12^2=144</span> fois plus de simulations.</p>
@@ -1145,7 +1145,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Courses/loi_normale_multi.html" class="pagination-link  aria-label=" loi="" normale:="" cas="" multivarié"="">
+      <a href="../Courses/loi_normale_multi.html" class="pagination-link" aria-label="Loi normale: cas multivarié">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Loi normale: cas multivarié</span>
       </a>          
   </div>

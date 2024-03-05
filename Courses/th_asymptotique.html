@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - Théorèmes asymptotiques</title>
+<title>HAX603X: Modélisation stochastique</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -75,11 +75,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.2.6/shinylive/shinylive.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -416,7 +411,7 @@ window.Quarto = {
     \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
 </span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
 <p><strong>Remarque</strong>: Bien qu’assez intuitif, ce théorème est difficile à démontrer, cf.<span class="citation" data-cites="Ouvrard08 Barbe_Ledoux06">[@Ouvrard08;@Barbe_Ledoux06]</span> ou encore <span class="citation" data-cites="Williams91">[@Williams91]</span> pour une version de preuve avec des martingales.</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="{shinylive-python}"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -614,7 +609,7 @@ app = App(app_ui, server)
 \end{align}
 </span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
 <p>Dans le cas classique d’un intervalle de confiance à 95%, c’est-à-dire quand <span class="math inline">\alpha_n=0.05</span>, et en prenant un intervalle de confiance symétrique (alors <span class="math inline">a=-t</span> et <span class="math inline">b=q</span>) on obtient <span class="math inline">1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}</span> et <span class="math inline">q</span> est donc le quantile de niveau <span class="math inline">1-\tfrac{\alpha_n}{2}</span> de la loi normale centrée réduite. Numériquement on peut facilement évaluer <span class="math inline">q</span> et vérifier que <span class="math inline">q\approx 1.96</span> avec <code>scipy</code>:</p>
-<div id="f4f9ef94" class="cell" data-execution_count="1">
+<div id="49a6cb48" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf(<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussienne centrée réduite,</span><span class="ch">\n</span><span class="ss">Quantile de niveau (1-α/2):</span><span class="ch">\n</span><span class="ss">q = </span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -629,7 +624,7 @@ q = 1.96</code></pre>
     \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 </span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée dans le widget ci-dessous. Le contexte est le suivant. On répète <span class="math inline">t</span> fois le processus, qui consiste à afficher <span class="math inline">(\bar{X}_k)_{k \in [n]}</span>, où les <span class="math inline">n</span> variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre <span class="math inline">p</span>.</p>
 </div>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="{shinylive-python}"><code>#| standalone: true
 #| viewerHeight: 600
 import numpy as np
 from scipy.stats import norm
@@ -837,7 +832,7 @@ Note
 <p><span class="theorem-title"><strong>Corollaire 1 (Loi de la moyenne)</strong></span> Soient <span class="math inline">X_1,\dots,X_n</span> des v.a. i.i.d. de densité <span class="math inline">f</span>, la densité de <span class="math inline">\bar{X}_n</span> est donnée par la fonction <span class="math inline">x \mapsto n \cdot [f*\dots*f](n \cdot x)</span>.</p>
 </div>
 <p>Dessous, pour <span class="math inline">X_1, \dots, X_n</span>, i.i.d., de densité <span class="math inline">f</span>, on affiche la densité de la loi de <span class="math inline">\bar{X}_n</span>.</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="{shinylive-python}"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -1435,7 +1430,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Courses/notations.html" class="pagination-link  aria-label=" notations="" et="" rappels"="">
+      <a href="../Courses/notations.html" class="pagination-link" aria-label="Notations et rappels">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Notations et rappels</span>
       </a>          
   </div>
