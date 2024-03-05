@@ -59,10 +59,10 @@ function normal_rng(mu, nu, n=100){
 }
 
 var samples = normal_rng(mu, nu, 1000);
-var samples_jitter = normal_rng(0, 0.03, 1000)
+var samples_jitter = normal_rng(0, 0.03, 1000);
 var npoints=500, mini = -10, maxi=10, x = new Array(npoints), z = new Array(npoints), i, j;
 
-//  Densité:
+//  Densité:s
 for(var i = 0; i < npoints; i++) {
     x[i] = mini + i * (maxi - mini) / (npoints - 1);
 	z[i] = mvnpdf(x[i], mu, nu);

@@ -52,9 +52,6 @@ Ce processus peut également servir à modéliser la richesse d'une joueuse qui 
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
-//| figalign: "center"
-//| label: "fig:chap03-traj"
-
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
@@ -112,14 +109,19 @@ for(var i = 0; i < npoints; i++) {
 {
     // points lower
 var trace1 = {
-        x: x.slice(0, n_samples),
-        y: zeros.slice(0, n_samples),
-        mode: 'markers',
-        type: 'scatter',
-        marker: {
-            color: samples.slice(0, n_samples).map((x) => x > 0 ? 'blue' : 'red'),
-            size: 5,
-        },
+        x: x.slice(1, n_samples+1),
+        y: zeros.slice(1, n_samples+1),
+        z: samples.slice(0, n_samples),
+        // mode: 'markers',
+        type: 'heatmap',
+    		xaxis: 'x2',
+
+        // marker: {
+        //     color: samples2.slice(0, n_samples2).map((x) => x > 0 ? 'blue' : 'red'),
+        //     size: 5,
+        // },
+        showscale: false,
+        colorscale: [[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
 
   }
 
@@ -150,13 +152,17 @@ var data = [
 
 var layout = {
 	width: 600,
-	yaxis: {domain: [0, 0.2],
+  xaxis: {range: [0, n_samples+1],
+          showticklabels: false,
+          autorange: false},
+	yaxis: {domain: [0, 0.08],
 			showticklabels: false,
+      ticks:"",
 			range: [-0.5, 0.5],
             autorange: false},
 	xaxis2: {matches: 'x',
-	          range: [0, 100],
-          autorange: false},
+	          range: [0, n_samples+1],
+          autorange: true},
 	yaxis2: {domain: [0.29, 0.99],
               range: [-20, 20]},
 
@@ -209,7 +215,7 @@ Ainsi, en moyenne la marche reste constante, mais sa variance devient de plus en
 
 ### Représentation graphique  {#sec-chap03-graphe}
 
-Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, \dots,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. @fig:chap03-traj
+Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche $(S_n)_{n\in\N}$ sur l'intervalle de temps $\llbracket 0,N \rrbracket$ par une ligne brisée joignant les points $(0,S_0)$, $(1,S_1)$, \dots,$(N,S_N)$. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. @lst-import.
 
 <!-- ::: {#exm-traj}
 La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4=1$, $X_5=-1$ est donnée ... .
@@ -301,11 +307,12 @@ Il n'existe pas de chemin de $(0,0)$ à $(2,4)$.
 :::
 
 
+
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
 //| figalign: "center"
-//| label: "fig:pont"
+
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
@@ -372,14 +379,19 @@ for(var i = 0; i < npoints2+1; i++) {
 {
     // points lower
 var trace1 = {
-        x: x2.slice(0, n_samples2+1),
-        y: zeros2.slice(0, n_samples2+1),
-        mode: 'markers',
-        type: 'scatter',
-        marker: {
-            color: samples2.slice(0, n_samples2).map((x) => x > 0 ? 'blue' : 'red'),
-            size: 5,
-        },
+        x: x2.slice(1, n_samples2+1),
+        y: zeros2.slice(1, n_samples2+1),
+        z: samples2.slice(0, n_samples2),
+        // mode: 'markers',
+        type: 'heatmap',
+    		xaxis: 'x2',
+
+        // marker: {
+        //     color: samples2.slice(0, n_samples2).map((x) => x > 0 ? 'blue' : 'red'),
+        //     size: 5,
+        // },
+        showscale: false,
+        colorscale: [[0, "rgb(66, 139, 202)"], [1, "rgb(255,0,0)"]],
 
   }
 
@@ -406,15 +418,19 @@ var data = [
 
 var layout = {
 	width: 600,
-	yaxis: {domain: [0, 0.2],
+  xaxis: {range: [0, n_samples2+1],
+          showticklabels: false,
+          autorange: false},
+	yaxis: {domain: [0, 0.08],
 			showticklabels: false,
+      ticks:"",
 			range: [-0.5, 0.5],
             autorange: false},
 	xaxis2: {matches: 'x',
-	          range: [0, n_samples2],
-          autorange: false},
+	          range: [0, n_samples2+1],
+          autorange: true},
 	yaxis2: {domain: [0.29, 0.99],
-              range: [-10, 10]},
+              range: [-14, 14]},
 
   showlegend: false,
 
