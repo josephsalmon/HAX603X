@@ -1,5 +1,5 @@
 ---
-title: "TP3: Quarto et Simulation de variables aléatoires"
+title: "TP3: Simulation de variables aléatoires"
 bibliography: ../Courses/references.bib
 format:
   html:

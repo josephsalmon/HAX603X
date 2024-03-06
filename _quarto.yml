@@ -53,6 +53,7 @@ website:
             - TP/TP1.qmd
             - TP/TP2.qmd
             - TP/TP3.qmd
+            - TP/quarto.qmd
 
     - id: TD
       collapse-level: 2

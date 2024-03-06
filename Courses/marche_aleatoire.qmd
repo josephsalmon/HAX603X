@@ -184,7 +184,7 @@ Marche aléatoire simple symétrique et son chemin, initialisée en $(0,x)$.
 A partir de la définition, on obtient très facilement le comportement moyen de la marche.
 
 ::: {#prp-ma}
-Pour tout $n\in\N$, on a 
+Pour tout $n\in\N$, on a
 $$
 \E[S_n]=S_0,\quad \var(S_n)=n.
 $$
