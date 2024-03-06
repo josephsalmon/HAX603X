@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../TP/quarto.html" rel="next">
+<link href="../TP/markdown.html" rel="next">
 <link href="../TP/TP2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -274,6 +274,10 @@ window.Quarto = {
  <span class="dropdown-text">TP3: Simulation de variables aléatoires</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../TP/markdown.html">
+ <span class="dropdown-text">Démarrage en Markdown</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../TP/quarto.html">
  <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
@@ -329,6 +333,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">TP3: Simulation de variables aléatoires</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../TP/markdown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Démarrage en Markdown</span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -394,7 +404,7 @@ Objectifs de ce TP
 <div class="callout-body-container callout-body">
 <ul>
 <li>Utiliser les générateurs aléatoires en Python et <code>numpy</code> pour générer des échantillons de lois non triviales.</li>
-<li>Rédiger un compte-rendu sous <code>Quarto</code> pour présenter ses résultats de TP.</li>
+<li>Bien penser à utiliser le générateur aléatoire pour reproduire les résultats. Une fois le générateur défini, par exemple avec <code>rng = np.random.default_rng(44)</code>, on pourra utiliser <code>rng</code> pour générer des variables aléatoires, et si besoin le transmettre en argument des fonctions utilisant de l’aléatoire.</li>
 </ul>
 </div>
 </div>
@@ -406,7 +416,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="f89e8417" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
+<div id="ff720da6" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-2-output-1.png" width="589" height="450"></p>
@@ -414,13 +424,13 @@ Objectifs de ce TP
 </div>
 </div>
 <ol type="1">
-<li><p>Écrire une fonction <code>expo</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">\lambda &gt; 0</span> et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{E}(\lambda)</span>. On utilisera la méthode d’inversion vue en cours.</p></li>
+<li><p>Écrire une fonction <code>expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">\lambda &gt; 0</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{E}(\lambda)</span>. On utilisera la méthode d’inversion vue en cours.</p></li>
 <li><p>Représenter graphiquement l’histogramme d’un tel échantillon pour <span class="math inline">n=10^2</span>, <span class="math inline">n=10^3</span>, puis <span class="math inline">n=10^4</span>, et pour <span class="math inline">\lambda = 1/2, 1, 4</span>. Superposer à chaque fois le graphe de la densité de <span class="math inline">\mathcal{E}(\lambda)</span>.</p></li>
 </ol>
 <div>
 
 </div>
-<div id="45af6262" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="5a6a8cf4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-4-output-1.png" width="571" height="432"></p>
@@ -450,15 +460,15 @@ Note
 <section id="loi-de-bernoulli" class="level3">
 <h3 class="anchored" data-anchor-id="loi-de-bernoulli">Loi de Bernoulli</h3>
 <ol type="1">
-<li>Écrire une fonction <code>bernou</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">p \in ]0,1[</span> et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{B}(p)</span>.</li>
+<li>Écrire une fonction <code>bernou</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">p \in ]0,1[</span> et un générateur aléatoire (e.g., <code>rng</code>), et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{B}(p)</span>.</li>
 </ol>
 <div>
 
 </div>
-<div id="8b6432ec" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="5eddbc34" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[1 0 1 1 0 1 1 1 0 0]</code></pre>
+<pre><code>[0 0 0 0 0 1 0 0 0 1]</code></pre>
 </div>
 </div>
 </div>
@@ -470,22 +480,22 @@ Note
 <h3 class="anchored" data-anchor-id="loi-géométrique">Loi géométrique</h3>
 <ol type="1">
 <li><p>Rappeler les deux méthodes vues en TD pour simuler une loi géométrique.</p></li>
-<li><p>Écrire une fonction <code>geo_bernou</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">p \in ]0,1[</span> et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>bernou</code>.</p></li>
+<li><p>Écrire une fonction <code>geo_bernou</code> qui prend en argument un entier <span class="math inline">n</span>, un réal <span class="math inline">p \in ]0,1[</span>, un générateur aléatoire (e.g., <code>rng</code>) et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>bernou</code>.</p></li>
 </ol>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p, rng)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="ac8dcabd" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="c1b4d1fd" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[ 1.  2.  7.  5.  1.  1.  3.  2. 13.  3.  5.  1.]</code></pre>
+<pre><code>[2. 3. 7. 2. 7. 4. 2. 3. 1. 7. 3. 8.]</code></pre>
 </div>
 </div>
 </div>
-<ol start="3" type="1">
-<li><p>Écrire une fonction <code>geo_expo</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">p \in ]0,1[</span> et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>expo</code>.</p></li>
+<ol type="1">
+<li><p>Écrire une fonction <code>geo_expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">p \in ]0,1[</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>expo</code>.</p></li>
 <li><p>Le module <code>time</code> contient la fonction <code>process_time()</code> qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer</p></li>
 </ol>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
@@ -497,7 +507,7 @@ Note
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elaped  when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="f660e804" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="ba5ddabb" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 
 </div>
 <p>Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.</p>
@@ -511,7 +521,7 @@ Note
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>En pratique, les temps d’éxécution peuvent varier suivant la charge d’utilisation de la machine (c’est un phenomène aléatoire). Pour donner une meilleur approximation de tzemps réel d’éxécution, on répète plusieurs fois la mesure et on affiche le temps moyen.</p>
+<p>En pratique, les temps d’exécution peuvent varier suivant la charge d’utilisation de la machine (c’est un phénomène aléatoire). Pour donner une meilleur approximation de temps réel d’exécution, on répète plusieurs fois la mesure et on affiche le temps moyen.</p>
 </div>
 </div>
 </section>
@@ -522,34 +532,34 @@ Note
     f_{\alpha, \beta}(x)
     = \dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
     \quad x \in [0,1]\,.
-</span> La fonction <span class="math inline">\Gamma</span> s’obtient sur avec .</p>
+</span> La fonction <span class="math inline">\Gamma</span> s’obtient sur <code>Python</code> avec <code>scipy.special.gamma</code>.</p>
 <ol type="1">
-<li>Représenter la densité pour différentes valeurs de <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> pour visualiser cette loi. On pourra utiliser la fonction <code>scipy.special.gamma</code>.</li>
+<li>Représenter la densité pour différentes valeurs de <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> pour visualiser cette loi.</li>
 </ol>
 <div>
 
 </div>
-<div id="9881ec3e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
+<div id="56118eb7" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-9-output-1.png" width="589" height="449"></p>
 </div>
 </div>
 </div>
-<ol start="2" type="1">
-<li>À l’aide de la méthode de rejet vue en TD, construire une fonction <code>loi_beta</code> qui génère <span class="math inline">n</span> variables aléatoires de loi <span class="math inline">\text{Beta}(\alpha,\beta)</span>.</li>
+<ol type="1">
+<li>À l’aide de la méthode de rejet vue en TD, construire une fonction <code>loi_beta</code> qui génère <span class="math inline">n</span> variables aléatoires de loi <span class="math inline">\text{Beta}(\alpha,\beta)</span>. La fonction prendre donc en paramètre, <span class="math inline">n</span>, <span class="math inline">\alpha</span>, <span class="math inline">\beta</span>, et un générateur aléatoire (e.g., <code>rng</code>).</li>
 </ol>
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta, rng)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="2578e3ef" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="d609f70c" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0.61582429 0.50112604 0.50748761 0.45232163 0.77487079 0.40568319
- 0.50203394 0.3483966  0.39499544 0.36214897 0.31623463 0.27488559]</code></pre>
+<pre><code>[0.27558592 0.38507158 0.68837848 0.60839046 0.34287937 0.32886319
+ 0.45669064 0.60648049 0.09872267 0.13860872 0.66006806 0.48943829]</code></pre>
 </div>
 </div>
 </div>
@@ -559,7 +569,7 @@ Note
 <div>
 
 </div>
-<div id="ac6d5d04" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
+<div id="3ae44f3b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-12-output-1.png" width="571" height="432"></p>
@@ -570,12 +580,13 @@ Note
 <section id="loi-sur-le-disque" class="level2">
 <h2 class="anchored" data-anchor-id="loi-sur-le-disque">Loi sur le disque</h2>
 <ol type="1">
-<li>Écrire une fonction <code>unif_disque</code> basée sur une méthode de rejet qui génère <span class="math inline">n</span> uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur <span class="math inline">[0,1]</span>. Utiliser cette fonction pour représenter graphiquement un échantillon de <span class="math inline">n=100</span> uniformes sur le disque.</li>
+<li>Écrire une fonction <code>unif_disque</code> basée sur une méthode de rejet qui génère <span class="math inline">n</span> variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur <span class="math inline">[0,1]</span>, et prend comme second argument un générateur aléatoire (e.g., <code>rng</code>).</li>
+<li>Utiliser cette fonction pour représenter graphiquement un échantillon de <span class="math inline">n=100</span> variables aléatoires uniformes sur le disque.</li>
 </ol>
 <div>
 
 </div>
-<div id="4e50215d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
+<div id="ec870b0e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-14-output-1.png" width="526" height="450"></p>
@@ -583,22 +594,22 @@ Note
 </div>
 </div>
 <ol start="2" type="1">
-<li>Écrire une fonction <code>unif_disque2</code>, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés. Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l’extérieur).</li>
+<li>Écrire une fonction <code>unif_disque2</code>, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés (et dont les entrées sont similaires à celle de <code>unif_disque</code>). Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l’extérieur).</li>
 </ol>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>, rng)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="1d0deaca" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
+<div id="61ea95e0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Reject ratio : 0.1935483870967742</code></pre>
+<pre><code>Reject ratio : 0.25925925925925924</code></pre>
 </div>
 </div>
 </div>
 <div>
 
 </div>
-<div id="928b5c9d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
+<div id="a16817df" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-17-output-1.png" width="526" height="450"></p>
@@ -1055,8 +1066,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../TP/quarto.html" class="pagination-link" aria-label="Démarrage en Quarto">
-        <span class="nav-page-text">Démarrage en Quarto</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../TP/markdown.html" class="pagination-link" aria-label="Démarrage en Markdown">
+        <span class="nav-page-text">Démarrage en Markdown</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
