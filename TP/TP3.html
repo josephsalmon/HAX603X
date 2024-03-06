@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - TP3: Quarto et Simulation de variables aléatoires</title>
+<title>HAX603X: Modélisation stochastique - TP3: Simulation de variables aléatoires</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,6 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../TP/quarto.html" rel="next">
 <link href="../TP/TP2.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -270,7 +271,11 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP3.html">
- <span class="dropdown-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
+ <span class="dropdown-text">TP3: Simulation de variables aléatoires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -287,7 +292,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Quarto et Simulation de variables aléatoires</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Simulation de variables aléatoires</a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -323,7 +328,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
+ <span class="menu-text">TP3: Simulation de variables aléatoires</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../TP/quarto.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Démarrage en Quarto</span></a>
   </div>
 </li>
       </ul>
@@ -352,9 +363,9 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Quarto et Simulation de variables aléatoires</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP3.html">TP3: Simulation de variables aléatoires</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">TP3: Quarto et Simulation de variables aléatoires</h1>
+<h1 class="title">TP3: Simulation de variables aléatoires</h1>
 </div>
 
 
@@ -395,7 +406,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="e627f75e" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+<div id="f89e8417" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-2-output-1.png" width="589" height="450"></p>
@@ -409,7 +420,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="0353ef8a" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<div id="45af6262" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-4-output-1.png" width="571" height="432"></p>
@@ -444,10 +455,10 @@ Note
 <div>
 
 </div>
-<div id="0b0d88c5" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="8b6432ec" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0 1 0 1 0 1 0 1 0 0]</code></pre>
+<pre><code>[1 0 1 1 0 1 1 1 0 0]</code></pre>
 </div>
 </div>
 </div>
@@ -466,10 +477,10 @@ Note
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="d21a15ed" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="ac8dcabd" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[ 3.  1.  2.  8.  4. 13.  3.  3.  2.  4.  2.  8.]</code></pre>
+<pre><code>[ 1.  2.  7.  5.  1.  1.  3.  2. 13.  3.  5.  1.]</code></pre>
 </div>
 </div>
 </div>
@@ -486,7 +497,7 @@ Note
 <span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
 <span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elaped  when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="3ae6d121" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div id="f660e804" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 
 </div>
 <p>Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.</p>
@@ -518,7 +529,7 @@ Note
 <div>
 
 </div>
-<div id="4bcc431d" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="9881ec3e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="8">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-9-output-1.png" width="589" height="449"></p>
@@ -534,11 +545,11 @@ Note
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="9a2d825c" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="2578e3ef" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0.85410787 0.50497188 0.50972594 0.62416196 0.42216929 0.17082763
- 0.5805884  0.80426158 0.45222689 0.41601756 0.31896181 0.55872159]</code></pre>
+<pre><code>[0.61582429 0.50112604 0.50748761 0.45232163 0.77487079 0.40568319
+ 0.50203394 0.3483966  0.39499544 0.36214897 0.31623463 0.27488559]</code></pre>
 </div>
 </div>
 </div>
@@ -548,7 +559,7 @@ Note
 <div>
 
 </div>
-<div id="310b9651" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+<div id="ac6d5d04" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="11">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-12-output-1.png" width="571" height="432"></p>
@@ -564,7 +575,7 @@ Note
 <div>
 
 </div>
-<div id="76b8ba6e" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+<div id="4e50215d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="13">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-14-output-1.png" width="526" height="450"></p>
@@ -577,17 +588,17 @@ Note
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="d435cd11" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div id="1d0deaca" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="15">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Reject ratio : 0.17355371900826447</code></pre>
+<pre><code>Reject ratio : 0.1935483870967742</code></pre>
 </div>
 </div>
 </div>
 <div>
 
 </div>
-<div id="911376b2" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
+<div id="928b5c9d" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="16">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-17-output-1.png" width="526" height="450"></p>
@@ -1044,6 +1055,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../TP/quarto.html" class="pagination-link" aria-label="Démarrage en Quarto">
+        <span class="nav-page-text">Démarrage en Quarto</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

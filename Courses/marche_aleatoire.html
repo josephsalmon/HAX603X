@@ -272,7 +272,11 @@ window.Quarto = {
   </li>  
         <li>
     <a class="dropdown-item" href="../TP/TP3.html">
- <span class="dropdown-text">TP3: Quarto et Simulation de variables aléatoires</span></a>
+ <span class="dropdown-text">TP3: Simulation de variables aléatoires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -434,6 +438,9 @@ window.Quarto = {
 </div>
 <p>On parle de <em>marche</em> car ce processus peut représenter la position d’une personne qui se déplace en ligne droite par pas d’une unité avec équiprobabilité d’aller vers l’avant (<span class="math inline">+1</span>) ou vers l’arrière (<span class="math inline">-1</span>). Cette marche est dite <em>simple</em> car on ne fait que des pas d’amplitude <span class="math inline">1</span> et <em>symétrique</em> car il y a la même probabilité de tirer <span class="math inline">1</span> et <span class="math inline">-1</span> pour chaque incrément.</p>
 <p>Ce processus peut également servir à modéliser la richesse d’une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d’une richesse initiale <span class="math inline">S_0=x&gt;0</span>, à chaque pas de temps elle perd ou gagne <span class="math inline">1</span> en fonction du tirage obtenu. Les variables <span class="math inline">X_n</span> représentent alors le gain du <span class="math inline">n</span>-ème jeu, et <span class="math inline">S_n</span> la richesse totale de la joueuse après le <span class="math inline">n</span>-ème tirage.</p>
+<div id="fig-marche" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-marche-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="56" data-source-offset="-64"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 55;"><span id="cb1-56"><a href="#cb1-56" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
 <span id="cb1-57"><a href="#cb1-57" aria-hidden="true" tabindex="-1"></a>dists <span class="op">=</span> <span class="pp">require</span>( <span class="st">'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js'</span> )<span class="op">;</span></span>
 <span id="cb1-58"><a href="#cb1-58" aria-hidden="true" tabindex="-1"></a>jstat <span class="op">=</span> <span class="pp">require</span>(<span class="st">'jstat'</span>)<span class="op">;</span></span>
@@ -629,6 +636,12 @@ window.Quarto = {
 </div>
 </div>
 </div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-marche-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Marche aléatoire simple symétrique et son chemin, initialisée en <span class="math inline">(0,x)</span>.
+</figcaption>
+</figure>
+</div>
 <p>A partir de la définition, on obtient très facilement le comportement moyen de la marche.</p>
 <div id="prp-ma" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 1</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span>, on a <span class="math display">
@@ -651,7 +664,7 @@ window.Quarto = {
 </section>
 <section id="sec-chap03-graphe" class="level3">
 <h3 class="anchored" data-anchor-id="sec-chap03-graphe">Représentation graphique</h3>
-<p>Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche <span class="math inline">(S_n)_{n\in\mathbb{N}}</span> sur l’intervalle de temps <span class="math inline">\llbracket 0,N \rrbracket</span> par une ligne brisée joignant les points <span class="math inline">(0,S_0)</span>, <span class="math inline">(1,S_1)</span>, ,<span class="math inline">(N,S_N)</span>. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. <strong>?@lst-import</strong>.</p>
+<p>Les marches aléatoires, comme tous les processus à valeurs discrètes, ont une représentation graphique naturelle. On représente graphiquement un tirage de la marche <span class="math inline">(S_n)_{n\in\mathbb{N}}</span> sur l’intervalle de temps <span class="math inline">\llbracket 0,N \rrbracket</span> par une ligne brisée joignant les points <span class="math inline">(0,S_0)</span>, <span class="math inline">(1,S_1)</span>, ,<span class="math inline">(N,S_N)</span>. On a donc en abscisse le temps, et en ordonnée la valeur de la marche, cf. <a href="#fig-marche" class="quarto-xref">Figure&nbsp;1</a>.</p>
 <!-- ::: {#exm-traj}
 La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4=1$, $X_5=-1$ est donnée ... .
 
@@ -710,6 +723,9 @@ S_0-n\leq S_n\leq S_0+n,
 <div id="exm-nnchemin" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 3</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,4)</span>.</p>
 </div>
+<div id="fig-pont" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-pont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code hidden" id="cb2" data-startfrom="321" data-source-offset="-161"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 320;"><span id="cb2-321"><a href="#cb2-321" aria-hidden="true" tabindex="-1"></a>viewof inputs2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
 <span id="cb2-322"><a href="#cb2-322" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
 <span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
@@ -863,6 +879,12 @@ S_0-n\leq S_n\leq S_0+n,
 </div>
 </div>
 </div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Marche aléatoire simple symétrique passant en <span class="math inline">(0,0)</span> et en <span class="math inline">(100,0)</span>.
+</figcaption>
+</figure>
 </div>
 <p>Une fois les conditions de parité et d’amplitude satisfaites, il existe toujours des chemins reliant deux points, et on peut les dénombrer explicitement.</p>
 <div id="prp-chemins" class="theorem proposition">
