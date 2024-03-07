@@ -31,7 +31,7 @@ website:
 
     - id: Slides
       collapse-level: 2
-        contents:
+      contents:
           - Courses/slides.qmd
           - Slides/slides_intro.qmd
           - Slides/slides_notations_premiers_pas.qmd
@@ -49,7 +49,8 @@ website:
             - TP/TP1.qmd
             - TP/TP2.qmd
             - TP/TP3.qmd
-          - section: "Quarto"
+        - section: "Quarto"
+          contents:
             - TP/markdown.qmd
             - TP/quarto.qmd
 
