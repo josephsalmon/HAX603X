@@ -4,6 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
+correction: true
 filters:
   - shinylive
 
@@ -133,6 +134,11 @@ print(0.6, 0.1 + 0.2 + 0.3)
 
 ## Pour aller plus loin
 On pourra consulter [https://0.30000000000000004.com/](https://0.30000000000000004.com/) pour plus de détails sur les ce type de phénomènes.
+:::
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
 :::
 
 ### Aide en Python

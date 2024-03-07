@@ -86,7 +86,7 @@ website:
 format:
   html:
     theme:
-      spacelab
+      spacelabs
       # light: spacelab
     css: [custom.css]
     # mainfont: Atkinson Hyperlegible
