@@ -13,7 +13,7 @@ format:
 }}
 :::
 
-De manière générale, ce qu'on appelle une méthode de **Monte-Carlo** est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
+De manière générale, ce qu'on appelle une méthode de **Monte-Carlo**^[Le nom viendrait du *casino de Monte-Carlo* inspiré par la passion pour le jeu de l'oncle du physicien Stanislaw Ulam... Source [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method).] est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
 
 Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières.
 Ainsi une intégration par Monte Carlo pour le cas de la grande dimension sera bien plus profitable.
@@ -168,8 +168,9 @@ Ce résultat a deux conséquences importantes. D'une part, la vitesse de converg
 
 ::: {#exm-actif}
 
+En finance, certains contrats (dont le coût est $C>0$ et que l'on peut voir comme une assurance) permettent de vendre un actif acheté $K>0$ à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans le contrat. Si le prix de l'actif est plus bas que $K$, on récupère tout de même sa mise $K$. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Le contrat n'est pas gratuit... Ainsi, l'enjeu est de comparer le coût $C$ et l'espérance $\mathbb E[\max(S_N-K,0)]$.
 
-En finance, certains contrats permettent de vendre un actif à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans le contrat. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Estimons cette quantité par la méthode de Monte Carlo.
+Estimons cette quantité par la méthode de Monte Carlo.
 	
 ```{python}
 #| echo: true
@@ -178,11 +179,12 @@ import numpy as np
 
 n = 100000
 N = 60
+K= 1
 I = []
 
 for i in range(n):
     X = np.random.normal(0, 1, N)
-    S = max(np.sum(X) - 1, 0)
+    S = max(np.sum(X) - K, 0)
     I.append(S)
 
 I = np.array(I)

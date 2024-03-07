@@ -12,7 +12,7 @@ from: markdown+emoji
 Ce texte est principalement inspiré du travail d'Arthur Turrell et de son cours sur Quarto pour les économistes [](https://aeturrell.github.io/coding-for-economists/intro.html).
 
 
-## Introduction
+## Introduction {#sec-markdown}
 
 Markdown est un langage de balisage léger développé par [John Gruber](https://en.wikipedia.org/wiki/John_Gruber) et [Aaron Swartz](https://fr.wikipedia.org/wiki/Aaron_Swartz)^[[Aaron Swartz](https://fr.wikipedia.org/wiki/Aaron_Swartz): hacktiviste (1986-2013) qui a également contribué à développer les licences Creative Commons, RSS, Reddit, etc.
 Pour en savoir plus sur sa vie épique, voir le documentaire de Brian Knappenberger **The Internet's Own Boy: The Story of Aaron Swartz (2014)** <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Aaron_Swartz_profile.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;"></img>].

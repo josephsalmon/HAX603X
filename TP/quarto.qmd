@@ -19,26 +19,30 @@ Pour générer un document avec Quarto, vous devez écrire le contenu dans un fi
 Référence : le cours d'Arthur Turrell pour les économistes [](https://aeturrell.github.io/coding-for-economists/intro.html).
 
 
-## Installation
+## Mise en route
 
-<span style="color:red;">Inutile pour les machines de l'université!</span>: Vous devez vous rendre sur le site web de **Quarto** (<https://quarto.org/>) et suivre les instructions d'installation (<https://quarto.org/docs/getting-started/installation.html>) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
+### Sur les machine de la faculté des Sciences
 
-Vous trouverez l'extension Quarto pour Visual Studio Code ici: (<https://marketplace.visualstudio.com/items?itemName=quarto.quarto>). Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview".
+<span style="color:red;">Quarto est déjà installé sur les machines de l'université!</span> Il n'y a qu'à installer l'extension pour Visual Studio, voir @sec-vscode_quarto.
+
+### Installation
+
+Sur votre machine personnelle, vous devez vous rendre sur le site web de [**Quarto**](https://quarto.org/) et suivre les [instructions d'installation](https://quarto.org/docs/getting-started/installation.html) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
+
+### Visual studio {#sec-vscode_quarto}
+
+Vous trouverez l'[extension Quarto pour Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto). Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview".
 
 
 ## Rapports automatisés avec **Quarto**
 
-Quarto peut être utilisé pour créer des documents et des présentations de sortie dans une grande variété de formats, y compris HTML, PDF et bien d'autres.
-
-Vous pouvez écrire les documents d'entrée y compris les extraits de code, de la manière suivante :
-
-- Créer un fichier markdown spécial, avec l'extension de fichier `.qmd`. Pour en savoir plus sur markdown, voir {ref}`wrkflow-markdown`. Les blocs de code qui ont une syntaxe spéciale sont exécutés et leurs résultats sont inclus dans toutes les sorties.
+La première étape est de créer un fichier markdown spécial, avec l'extension de fichier `.qmd`. Pour en savoir plus sur markdown, voir le [TP markdown](markdown.qmd). Les blocs de code qui ont une syntaxe spéciale sont exécutés et leurs résultats sont inclus dans toutes les sorties.
 
 Vous pouvez également ajouter du code (Python, R, JavaScript, etc.) aux documents pour créer dynamiquement des figures, des tableaux, etc., puis rendre les documents à leur format final à l'aide de Quarto.
 
 ### Un exemple minimal d'un rapport écrit avec du contenu markdown
 
-Commençons par configurer notre exemple minimal. Le code et le markdown suivants forment le contenu d'un fichier appelé `rapport_tp.qmd`^[et le rendu donne alors un fichier `.pdf` ressemblant à cela :![Sortie `.pdf` du fichier `rapport_tp.qmd` ](Images/quarto_demo.jpg)] :
+Commençons par créer notre exemple minimal. Le code et le markdown suivants forment le contenu d'un fichier appelé `rapport_tp.qmd`^[et le rendu donne alors un fichier `.pdf` ressemblant à cela :![Sortie `.pdf` du fichier `rapport_tp.qmd` ](Images/quarto_demo.jpg)] :
 
 ````markdown
 ---
@@ -47,7 +51,6 @@ author: "Capitaine Haddock"
 format: pdf
 toc: false
 number-sections: true
-jupyter: python3
 ---
 
 ## Histogramme
@@ -72,12 +75,10 @@ plt.show()
 
 Cet exemple contient des types contenu importants :
 
-1. Un **en-tête YAML** entouré de `---`.
-2. Des **blocs** de code Python entourés de ```` ``` ````.
-3. Des formule délimités par `$$` ou `$`.
+1. Une **en-tête YAML** délimitée par `---` et contenant les options de rendu du document.
+2. Des **blocs** de code Python délimités par ```` ``` ```` ({{< kbd AltGr+7 >}} sur les claviers français). Le mot-clé `{python}` indique à **Quarto** que le bloc de code est en `python`.
+3. Des formules délimitées par `$$` ou `$`.
 4. Du markdown mélangé avec une mise en forme de texte simple comme `# heading` et `_italics_`.
-
-Dans ce fichier markdown `.qmd` "brut", la commande `{python}` indique à **Quarto** qu'un bloc de code est en Python et doit être exécuté, et `jupyter: python3` indique à **Quarto** quelle installation de Jupyter Notebooks utiliser. Si vous n'êtes pas sûr du nom de votre installation de Jupyter, vous pouvez voir une liste en exécutant `jupyter kernelspec list` sur la ligne de commande.
 
 
 ### Rendu dans des documents de sortie
@@ -88,7 +89,7 @@ Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-
 quarto render rapport_tp.qmd
 ```
 
-N'oubliez pas que si vous utilisez l'extension Visual Studio Code [quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton "render" à la place (mais vous devrez choisir PDF comme format de sortie), ou bien sur "preview".
+N'oubliez pas que si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}).
 
 :::{#exr-pdf}
 Créer un PDF en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`.
