@@ -228,7 +228,7 @@ Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h
 
 ::: {#exm-carre}
 
-Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
+Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
 $$
 	\mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
 $$
@@ -274,11 +274,11 @@ S'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi, on peut  
 $$
 I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 $$
-On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les \emph{mêmes tirages}. En fait on a introduit une certaine forme de dépendance puisqu'on utilise $g(X_i)$ et $g(h(X_i))$ dans l'estimateur.
+On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les **mêmes tirages**. En fait on a introduit une certaine forme de dépendance puisqu'on utilise $g(X_i)$ et $g(h(X_i))$ dans l'estimateur.
 
 Examinons l'effet de cette décomposition sur la variance.
 
-::: {lem-redvar}
+::: {#lem-redvar}
 
 
 Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors 

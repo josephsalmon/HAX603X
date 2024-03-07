@@ -17,12 +17,13 @@ Site en construction...(un peu de patience donc)
 ## Enseignants
 
 - [Joseph Salmon](https://josephsalmon.eu/): joseph.salmon@umontpellier.fr,
-- [Benjamin Charlier](https://imag.umontpellier.fr/~charlier/index.php?page=index): benjamin.charlier@umontpellier.fr
+- [Benjamin Charlier](https://imag.umontpellier.fr/~charlier/): benjamin.charlier@umontpellier.fr
 
 Ce cours est issu du travail antérieur de la part de:
 
 - [Nicolas Meyer](https://sites.google.com/view/nicolasmeyer/accueil)
 - [Benoîte de Saporta](https://imag.umontpellier.fr/~saporta/index-en.html)
+
 et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Prérequis
@@ -48,7 +49,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Modalité de contrôle des connaissances
 
-- TP notés : Rendu = fichier Python **.py** unique
+- TP notés :  Rendu en Quarto `.qmd` et `.pdf`.
   - TP noté 1 : rendre en fin de session
   - TP noté 2 : rendre en fin de session
 - CC : devoir sur table d'une heure
