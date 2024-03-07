@@ -20,46 +20,35 @@ website:
     - id: Cours
       collapse-level: 2
       contents:
-        - section: "Cours"
-          # href: docs/guide/index.qmd
-          contents:
-            - Courses/perspective_historique.qmd
-            - Courses/notations.qmd
-            - Courses/th_asymptotique.qmd
-            - Courses/simulation.qmd
-            - Courses/loi_normale1D.qmd
-            - Courses/loi_normale_multi.qmd
-            - Courses/monte_carlo.qmd
-            - Courses/marche_aleatoire.qmd
+          - Courses/perspective_historique.qmd
+          - Courses/notations.qmd
+          - Courses/th_asymptotique.qmd
+          - Courses/simulation.qmd
+          - Courses/loi_normale1D.qmd
+          - Courses/loi_normale_multi.qmd
+          - Courses/monte_carlo.qmd
+          - Courses/marche_aleatoire.qmd
+
     - id: Slides
       collapse-level: 2
-      contents:
-        - section: "Slides"
-          contents:
-            - Courses/slides.qmd
-            - Slides/slides_intro.qmd
-            - Slides/slides_notations_premiers_pas.qmd
-            - Slides/slides_th_asymptotique.qmd
-            - Slides/slides_simulation.qmd
-            - Slides/slides_loi_normale1D.qmd
-            - Slides/slides_loi_normale_multi.qmd
+        contents:
+          - Courses/slides.qmd
+          - Slides/slides_intro.qmd
+          - Slides/slides_notations_premiers_pas.qmd
+          - Slides/slides_th_asymptotique.qmd
+          - Slides/slides_simulation.qmd
+          - Slides/slides_loi_normale1D.qmd
+          - Slides/slides_loi_normale_multi.qmd
 
 
     - id: TP
       collapse-level: 2
       contents:
-        - section: "TP"
-          contents:
-            - TP/TP1.qmd
-            - TP/TP2.qmd
-            - TP/TP3.qmd
+          - TP/TP1.qmd
+          - TP/TP2.qmd
+          - TP/TP3.qmd
 
-    - id: TD
-      collapse-level: 2
-      contents:
-        - section: "TD"
-          contents:
-            - TD/TD1.qmd
+
   title: "HAX603X: Modélisation stochastique"
   site-url: https://josephsalmon.github.io/HAX603X/
   repo-url: https://github.com/josephsalmon/HAX603X
@@ -69,9 +58,7 @@ website:
     background: primary
     search: true
     left:
-      - sidebar:Cours
-      - sidebar:Slides
-      - sidebar:TD
+      - sidebar:Cours      - sidebar:Slides
       - sidebar:TP
 
         # menu:
