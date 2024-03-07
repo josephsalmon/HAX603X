@@ -12,7 +12,7 @@ On considère un espace probabilisé $(\Omega, {\mathcal{F}}, \mathbb{P})$, comp
 
 ::: {#def-va }
 
-## Variable aléatoire   
+## Variable aléatoire
 
 <br>
 

@@ -1,0 +1,279 @@
+---
+title: "Démarrage en Markdown"
+bibliography: ../Courses/references.bib
+format:
+  html:
+    out.width: 50%
+filters:
+  - shinylive
+from: markdown+emoji
+---
+
+Ce texte est principalement inspiré du travail d'Arthur Turrell et de son cours sur Quarto pour les économistes [](https://aeturrell.github.io/coding-for-economists/intro.html).
+
+
+## Introduction
+
+Markdown est un langage de balisage léger développé par [John Gruber](https://en.wikipedia.org/wiki/John_Gruber) et [Aaron Swartz](https://fr.wikipedia.org/wiki/Aaron_Swartz)^[[Aaron Swartz](https://fr.wikipedia.org/wiki/Aaron_Swartz): hacktiviste (1986-2013) qui a également contribué à développer les licences Creative Commons, RSS, Reddit, etc.
+Pour en savoir plus sur sa vie épique, voir le documentaire de Brian Knappenberger **The Internet's Own Boy: The Story of Aaron Swartz (2014)** <img src="https://upload.wikimedia.org/wikipedia/commons/0/06/Aaron_Swartz_profile.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;"></img>].
+
+Markdown est donc un langage de balisage facile à lire, populaire pour la mise en forme de texte simple, la création de documentation pour des projets logiciels, mais aussi pour l'écriture de jolis e-mails (pour [Thunderbird](https://addons.thunderbird.net/en-us/thunderbird/addon/markdown-here-xul/) ou [tout navigateur](https://www.markdownguide.org/tools/markdown-here/), etc.).
+
+L'extension pour un fichier Markdown est `.md`. Pour rendre un tel fichier dans VSCode ou Codium, et éventuellement exporter un fichier `.pdf` ou `.html`, vous devez installer un package pour cela (par exemple, *Markdown All in One* peut être installé avec `Ctrl+Shift+p`, et en recherchant le bon nom dans `Extensions: Install Extensions`).
+
+:::: {.columns}
+
+::: {.column width="45%"}
+
+**Gauche :** Code Markdown
+
+```markdown
+# Titre de niveau 1
+
+## Titre de niveau 2
+
+# Un autre titre de niveau 1
+
+## Un autre titre de niveau 2
+
+Ceci serait un paragraphe. Vous pouvez utiliser **une police en gras** mais aussi *en italique* ou ~~barrée~~.
+
+D'autres éléments sont listés ci-dessous :
+
+- élément 1
+- élément 2
+  - sous-élément 1
+  - sous-élément 2
+```
+:::
+
+::: {.column width="5%"}
+<!-- colonne vide pour créer un espace -->
+:::
+
+::: {.column width="45%"}
+**Droite :** rendu
+
+# Titre de niveau 1
+
+## Titre de niveau 2
+
+# Un autre titre de niveau 1
+
+## Un autre titre de niveau 2
+
+Ceci serait un paragraphe. Vous pouvez utiliser **une police en gras** mais aussi *en italique* ou ~~barrée~~.
+
+D'autres éléments sont listés ici :
+
+- élément 1
+- élément 2
+  - sous-élément 1
+  - sous-élément 2
+
+:::
+
+::::
+
+Une description complète peut être trouvée ici : <https://www.markdownguide.org/basic-syntax/>; un aide-mémoire pratique est également disponible ici : <https://www.markdownguide.org/cheat-sheet/>.
+
+
+## Pourquoi utiliser Markdown ?
+
+Il existe de nombreuses situations où vous souhaiterez utiliser markdown :
+
+* pour créer des sites web, des rapports et des présentations ; voir Combinaison de code et de texte dans Quarto Markdown pour plus d'informations
+* pour les répertoires de logiciels ou de réplications d'articles de recherche
+* en tant que format de base que des outils comme pandoc et Quarto peuvent convertir en d'autres types de documents
+* dans les cellules de texte des Jupyter Notebooks 
+* dans des emails.
+* pour écrire ... ce cours!
+
+Certains des avantages de markdown sont :
+
+* Les fichiers markdown peuvent être ouverts à l'aide de n'importe quel éditeur de texte brut
+* Markdown est indépendant du système d'exploitation
+* Markdown est très lisible, même lorsqu'il n'est pas rendu
+* De nombreux sites web prennent en charge la syntaxe markdown, par exemple GitHub (appelé GitHub-flavoured markdown) et Reddit.
+
+
+## La syntaxe Markdown
+
+### Titres
+
+Passons en revue les bases de Markdown. Par exemple, un seul dièse (`#`) désigne le titre d'un document, comme ceci :
+
+```markdown
+# Titre
+```
+
+Le niveau de sous-titre suivant peut être spécifié par deux dièses, comme ceci :
+
+```markdown
+## Sous-titre
+```
+
+Chaque niveau de titre suivant devient successivement plus petit, par exemple :
+
+```markdown
+### Embranchement
+
+#### Classe
+
+##### Ordre
+
+###### Famille
+
+```
+
+devient
+
+### Embranchement
+
+#### Classe
+
+##### Ordre
+
+###### Famille
+
+
+### Syntaxe en ligne
+
+Voici quelques autres fonctionnalités de syntaxe courantes dont vous aurez besoin :
+
+* pour créer du texte *en italique*, utilisez `*un astérisque de chaque côté du texte*`
+* le texte **en gras** est produit à partir de `**deux astérisques**`
+* le texte ***en gras et en italique*** est `***trois astérisques***`
+* les liens sont produits avec des crochets pour le texte et des parenthèses pour le lien hypertexte, comme ceci `[texte](lien)`
+* le code en ligne est affiché à l'aide d'accents graves, comme ceci \`code\`
+* `~~barré~~` ressemble à ceci ~~barré~~
+* `^(exposant)` crée ^(exposant)
+* Les mathématiques sont prises en charge en ligne via des signes dollar encadrants, par exemple `$\int_{-\infty}^{+infty} e^{-x^2/2}dx = \sqrt{2\pi}$`, qui s'affiche comme $\int_{-\infty}^{+\infty} e^{-x^2/2}dx = \sqrt{2\pi}$.
+* Unicode est pris en charge, vous pouvez donc écrire des symboles comme ∰, ainsi que des émojis ; la syntaxe comme `:tada:` crée :tada: (mais il faut rajouter `from: markdown+emoji` dans le préambule pour que cela fonctionne).
+
+### Syntaxe de bloc de texte
+
+Les citations peuvent être réalisées en ajoutant une flèche, `>`, à chaque ligne :
+
+> Voici une citation !
+
+Les listes non ordonnées peuvent être produites avec soit `-` soit `*` sur des lignes séparées, de sorte que
+
+```markdown
+- premier élément
+- deuxième élément
+- troisième élément
+```
+
+devient
+
+* premier élément
+* deuxième élément
+* troisième élément
+
+Les listes ordonnées peuvent être créées en écrivant simplement des numéros successifs sur des lignes successives :
+
+```markdown
+1. premier élément
+2. deuxième élément
+3. troisième élément
+```
+
+devient
+
+1. premier élément
+2. deuxième élément
+3. troisième élément
+
+Les deux types de listes peuvent être sous-ensembles, de sorte que
+
+```markdown
+- premier élément
+  - sous-élément
+    - sous-sous-élément
+- deuxième élément
+```
+
+devient
+
+* premier élément
+  * sous-élément
+    * sous-sous-élément
+* deuxième élément
+
+### Tableaux
+
+La syntaxe de base pour créer des tableaux est
+
+
+
+
+```markdown
+| Film                  | Année         | Durée (min) |
+|-----------------------|---------------|-------------|
+| Dr Strangelove        | 1964          | 94          |
+| 2001: A Space Odyssey | 1968          | 139         |
+| A Clockwork Orange    | 1971          | 136         |
+| Barry Lyndon          | 1975          | 185         |
+```
+
+qui devient
+
+| Film                  | Année         | Durée (min) |
+|-----------------------|---------------|-------------|
+| Dr Strangelove        | 1964          | 94          |
+| 2001: A Space Odyssey | 1968          | 139         |
+| A Clockwork Orange    | 1971          | 136         |
+| Barry Lyndon          | 1975          | 185         |
+
+mais vous ne voudrez presque jamais les écrire vous-même ! En pratique, il est plus facile d'exporter un fichier markdown à partir d'un dataframe **pandas** en utilisant `df.to_markdown()` ou d'utiliser le site web pratique, [générateur de tableaux markdown](https://www.tablesgenerator.com/markdown_tables).
+
+### Images
+
+Pour insérer des images, utilisez la structure `![texte alternatif](url ou chemin de fichier)`, par exemple :
+
+```markdown
+![Image à insérer](https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg){width=60%}
+```
+
+produit :
+
+![Image à insérer](https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg){width=60%}
+
+Vous pouvez également produire des listes de tâches, par exemple :
+
+```markdown
+- [x] Terminer le chapitre 1
+- [ ] Éditer le chapitre 2
+- [ ] Lancer le livre :rocket:
+```
+
+produit :
+
+* [x] Terminer le chapitre 1
+* [ ] Éditer le chapitre 2
+* [ ] Lancer le livre :rocket:
+
+Des notes de bas de page peuvent être créées en utilisant `[^1]` suivi de `[^2]`, et ainsi de suite, ou en utilisant des notes de bas de page liées au contenu comme `[^note]`. Voici ces trois utilisations : un exemple[^1], et un autre[^2], tandis que le troisième se trouve ici[^note] et a une étiquette à la place d'un numéro (que vous ne pouvez pas voir lorsqu'elle est rendue). Vous devrez faire défiler jusqu'au bas de la page pour voir les informations associées à ces notes de bas de page, mais la syntaxe pour remplir leurs informations est :
+
+```markdown
+[^1]: Première note de bas de page.
+[^2]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.
+  Cela vous permet d'avoir une note de bas de page avec plusieurs lignes.
+[^note]: Les notes de bas de page nommées s'afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.
+```
+
+[^1]: Première note de bas de page.
+[^2]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.  
+  Cela vous permet d'avoir une note de bas de page avec plusieurs lignes.
+[^note]: Les notes de bas de page nommées s'afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.
+
+Enfin, pour insérer un saut de ligne, utilisez :
+
+```markdown
+***
+```
+
+Pour produire :
+
+***

@@ -44,9 +44,14 @@ website:
     - id: TP
       collapse-level: 2
       contents:
-          - TP/TP1.qmd
-          - TP/TP2.qmd
-          - TP/TP3.qmd
+        - section: "TP"
+          contents:
+            - TP/TP1.qmd
+            - TP/TP2.qmd
+            - TP/TP3.qmd
+          - section: "Quarto"
+            - TP/markdown.qmd
+            - TP/quarto.qmd
 
 
   title: "HAX603X: Modélisation stochastique"

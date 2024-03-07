@@ -1,5 +1,5 @@
 ---
-title: "TP3: Quarto et Simulation de variables aléatoires"
+title: "TP3: Simulation de variables aléatoires"
 bibliography: ../Courses/references.bib
 format:
   html:
@@ -13,7 +13,7 @@ filters:
 
 ## Objectifs de ce TP
 - Utiliser les générateurs aléatoires en Python et `numpy` pour générer des échantillons de lois non triviales.
-- Rédiger un compte-rendu sous `Quarto` pour présenter ses résultats de TP.
+- Bien penser à utiliser le générateur aléatoire pour reproduire les résultats. Une fois le générateur défini, par exemple avec `rng = np.random.default_rng(44)`, on pourra utiliser `rng` pour générer des variables aléatoires, et si besoin le transmettre en argument des fonctions utilisant de l'aléatoire.
 :::
 
 
@@ -26,6 +26,8 @@ filters:
 #| echo: false
 import numpy as np
 import matplotlib.pyplot as plt
+
+rng = np.random.default_rng(44)
 
 t = np.linspace(0, 10, 100)
 
@@ -40,12 +42,12 @@ plt.title("Fonction de répartition de lois exponentielle")
 plt.legend()
 plt.show()
 ```
-1. Écrire une fonction `expo` qui prend en argument un entier $n$ et un paramètre $\lambda > 0$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+1. Écrire une fonction `expo` qui prend en argument un entier $n$, un paramètre $\lambda > 0$, et un générateur aléatoire (e.g., `rng`) et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-def expo(n, lam):
+def expo(n, lam, rng):
     """
     Generates random samples from an exponential distribution.
 
@@ -56,7 +58,7 @@ def expo(n, lam):
     Returns:
         numpy.ndarray: Random samples from the exponential distribution.
     """
-    return -np.log(np.random.rand(n)) / lam
+    return -np.log(rng.uniform(size=n)) / lam
 ```
 
 
@@ -80,11 +82,11 @@ ax.plot(t, stats.expon.pdf(t, loc=0, scale=1/lam),'--', color='k', label=f"Loi t
 
 # Generate exponential random variables
 n = 10**2
-va_expo = expo(n, lam)
+va_expo = expo(n, lam, rng)
 ax.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
 # Generate exponential random variables
 n = 10**3
-va_expo = expo(n, lam)
+va_expo = expo(n, lam, rng)
 ax.hist(va_expo, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
 # Generate exponential random variables
 #n = 10**4
@@ -109,32 +111,31 @@ Attention! les conventions pour le paramètre de la loi exponentielle ne sont pa
 
 ### Loi de Bernoulli
 
-1. Écrire une fonction `bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{B}(p)$.
+1. Écrire une fonction `bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et un générateur aléatoire (e.g., `rng`), et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{B}(p)$.
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-import numpy as np
 
-def bernou(n, p):
+def bernou(n, p, rng):
     """
     Generates random samples from a Bernoulli distribution.
 
     Parameters:
         n (int): Number of samples to generate.
         p (float): Probability of success for each trial.
-
+        rng (numpy.random.Generator): Random number generator.
     Returns:
         numpy.ndarray: Random samples from the Bernoulli distribution.
     """
-    return 1 * (np.random.rand(n) < p)  # Multiplication by 1 converts boolean to integer
+    return 1 * (rng.uniform(size=n) < p)  # Multiplication by 1 converts boolean to integer
 
 # Define parameters
 p = 0.5
 n = 10
 
 # Generate Bernoulli random variables
-b = bernou(n, p)
+b = bernou(n, p, rng)
 print(b)
 ```
 2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$ (on pourra superposer les graphes).
@@ -143,29 +144,28 @@ print(b)
 
 1. Rappeler les deux méthodes vues en TD pour simuler une loi géométrique.
 
-2. Écrire une fonction `geo_bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `bernou`.
+2. Écrire une fonction `geo_bernou` qui prend en argument un entier $n$, un réal $p \in ]0,1[$, un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `bernou`.
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-import numpy as np
 
-def geo_bernou(n, p):
+def geo_bernou(n, p, rng):
     """
     Generates random samples from a geometric distribution based on Bernoulli trials.
 
     Parameters:
         n (int): Number of samples to generate.
         p (float): Probability of success for each Bernoulli trial.
-
+        rng (numpy.random.Generator): Random number generator.
     Returns:
         numpy.ndarray: Random samples from the geometric distribution.
     """
     geo = np.zeros(n)
     for j in range(n):
         i = 1
-        while bernou(1, p)[0] == 0:  # Simulate until a Bernoulli trial yields 1
+        while bernou(1, p, rng)[0] == 0:  # Simulate until a Bernoulli trial yields 1
             i += 1
         geo[j] = i
     return geo
@@ -178,14 +178,14 @@ def geo_bernou(n, p):
 # Example usage
 n = 12
 p = 0.3
-geometric_samples = geo_bernou(n, p)
+geometric_samples = geo_bernou(n, p, rng)
 print(geometric_samples)
 
 ```
 
-3. Écrire une fonction `geo_expo` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
+1. Écrire une fonction `geo_expo` qui prend en argument un entier $n$, un paramètre $p \in ]0,1[$, et un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
 
-4. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
+2. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -204,7 +204,8 @@ print("Time elaped  when running code chunk:", t1 - t0)
 Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.
 
 ::: {.callout-note}
-En pratique, les temps d'éxécution peuvent varier suivant la charge d'utilisation de la machine (c'est un phenomène aléatoire). Pour donner une meilleur approximation de tzemps réel d'éxécution, on répète plusieurs fois la mesure et on affiche le temps moyen.
+En pratique, les temps d'exécution peuvent varier suivant la charge d'utilisation de la machine (c'est un phénomène aléatoire).
+Pour donner une meilleur approximation de temps réel d'exécution, on répète plusieurs fois la mesure et on affiche le temps moyen.
 :::
 
 
@@ -216,16 +217,14 @@ $$
 	= \dfrac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
 	\quad x \in [0,1]\,.
 $$
-La fonction $\Gamma$ s'obtient sur \texttt{R} avec \texttt{gamma}.
+La fonction $\Gamma$ s'obtient sur `Python` avec `scipy.special.gamma`.
 
-1.  Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi. On pourra utiliser la fonction `scipy.special.gamma`.
+1. Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi.
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-import numpy as np
-import matplotlib.pyplot as plt
 from scipy.special import gamma
 
 def f_beta(x, alpha, beta):
@@ -247,15 +246,14 @@ plt.legend()
 plt.show()
 
 ```
-2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$.
+1. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-   import numpy as np
 
-def loi_beta(n, alpha, beta):
+def loi_beta(n, alpha, beta, rng):
     """
     Generates random samples from a Beta distribution.
 
@@ -263,15 +261,15 @@ def loi_beta(n, alpha, beta):
         n (int): Number of samples to generate.
         alpha (float): Shape parameter alpha of the Beta distribution.
         beta (float): Shape parameter beta of the Beta distribution.
-
+        rng (numpy.random.Generator): Random number generator.
     Returns:
         numpy.ndarray: Random samples from the Beta distribution.
     """
     X = np.zeros(n)
     k = 0
     while k < n:
-        U = np.random.rand()  # Uniform distribution
-        Y = np.random.rand()  # Uniform distribution
+        U = rng.uniform()  # Uniform distribution
+        Y = rng.uniform()  # Uniform distribution
         if U <= Y**(alpha - 1) * (1 - Y)**(beta - 1):
             X[k] = Y
             k += 1
@@ -287,7 +285,7 @@ def loi_beta(n, alpha, beta):
 n = 12
 alpha, beta = 2, 3
 
-beta_samples = loi_beta(n, alpha, beta)
+beta_samples = loi_beta(n, alpha, beta, rng)
 print(beta_samples)
 
 ```
@@ -311,11 +309,11 @@ ax.plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théor
 
 # Generate exponential random variables
 n = 10**2
-va_beta = loi_beta(n, alpha, beta)
+va_beta = loi_beta(n, alpha, beta, rng)
 ax.hist(va_beta, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
 # Generate exponential random variables
 n = 10**3
-va_beta = loi_beta(n, alpha, beta)
+va_beta = loi_beta(n, alpha, beta, rng)
 ax.hist(va_beta, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
 
 plt.title(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
@@ -326,20 +324,21 @@ plt.show()
 
 ## Loi sur le disque
 
-1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ \vas uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ \vas uniformes sur le disque.
+1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$, et prend comme second argument un générateur aléatoire (e.g., `rng`).
+2. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ variables aléatoires uniformes sur le disque.
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-import numpy as np
 
-def unif_disque(n):
+def unif_disque(n, rng):
     """
     Generates random samples uniformly distributed within a unit disk.
 
     Parameters:
         n (int): Number of samples to generate.
+        rng (numpy.random.Generator): Random number generator.
 
     Returns:
         numpy.ndarray: Random samples within the unit disk.
@@ -347,8 +346,8 @@ def unif_disque(n):
     X = np.zeros((n, 2))  # Matrix to hold the sample
     k = 0
     while k < n:
-        U = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
-        V = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        U = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
+        V = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
         if U**2 + V**2 <= 1:  # If the point (U,V) falls within the unit disk
             X[k, :] = [U, V]  # Assign (U,V) to the k-th row of matrix X
             k += 1
@@ -360,7 +359,7 @@ def unif_disque(n):
 #| echo: false
 
 # Generate random points
-x = unif_disque(100)
+x = unif_disque(100, rng)
 
 # Plot the points
 plt.figure()
@@ -379,19 +378,19 @@ plt.gca().set_aspect('equal', adjustable='box')
 plt.show()
 ```
 
-2. Écrire une fonction `unif_disque2`, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés. Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l'extérieur).
+2. Écrire une fonction `unif_disque2`, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés (et dont les entrées sont similaires à celle de `unif_disque`). Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l'extérieur).
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
-import numpy as np
 
-def unif_disque2(n):
+def unif_disque2(n, rng):
     """
     Generates random samples uniformly distributed within a unit disk.
 
     Parameters:
         n (int): Number of samples to generate.
+        rng (numpy.random.Generator): Random number generator.
 
     Returns:
         tuple: A tuple containing two numpy arrays:
@@ -402,8 +401,8 @@ def unif_disque2(n):
     rejet = np.zeros((0, 2))  # Matrix to hold the rejected samples
     k = 0
     while k < n:
-        U = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
-        V = 2 * np.random.rand() - 1  # Uniform distribution on [-1, 1]
+        U = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
+        V = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
         if U**2 + V**2 <= 1:  # If the point (U,V) falls within the unit disk
             X[k, :] = [U, V]  # Assign (U,V) to the k-th row of matrix X
             k += 1
@@ -418,7 +417,7 @@ def unif_disque2(n):
 #| echo: true
 
 # Example usage
-x_accepted, x_rejected = unif_disque2(100)
+x_accepted, x_rejected = unif_disque2(100, rng)
 print("Reject ratio :", len(x_rejected) / (len(x_rejected) + len(x_accepted)))
 ```
 
