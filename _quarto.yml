@@ -3,9 +3,7 @@ project:
   type: website
   render:
   - "*.qmd"
-  #   - Courses/notations.qmd
-  #   - Courses/th_asymptotique.qmd
-  #   - Courses/simulation.qmd
+
 website:
   page-navigation: true
   back-to-top-navigation: true
@@ -40,7 +38,6 @@ website:
           - Slides/slides_loi_normale1D.qmd
           - Slides/slides_loi_normale_multi.qmd
 
-
     - id: TP
       collapse-level: 2
       contents:
@@ -64,17 +61,10 @@ website:
     background: primary
     search: true
     left:
-      - sidebar:Cours      - sidebar:Slides
+      - sidebar:Cours      
+      - sidebar:Slides
       - sidebar:TP
 
-        # menu:
-        #   - Courses/notations.qmd
-        #   - Courses/th_asymptotique.qmd
-        #   - Courses/simulation.qmd
-      # - text: "TD"
-      #   href: TD/TD1.qmd
-      # - text: "TP"
-      #   href: TP/TP1.qmd
     tools:
       - icon: github
         href: https://github.com/josephsalmon/HAX603X
@@ -86,10 +76,8 @@ website:
 format:
   html:
     theme:
-      spacelabs
-      # light: spacelab
+      spacelab
     css: [custom.css]
-    # mainfont: Atkinson Hyperlegible
     html-math-method: katex
     toc-location: right
     toc: true
@@ -104,5 +92,3 @@ format:
     fig.align: center
     reference-location: margin
     citation-location: margin
-    # self-contained: true
-    # fig-format: svg

@@ -44,11 +44,43 @@ On peut approcher l'intégrale
 $$
 	I=\int_0^1 g(x)dx \simeq  \sum_{i=0}^nw_ig(x_i),
 $$
-où les $w_i$ sont des nombres entre $0$ et $1$ dont la somme vaut $1$, et les $x_i$ sont des points de l'intervalle $[0,1]$. Par exemple, pour la méthode des trapèzes, on prend $w_0=w_n=\frac{1}{2n}$ et $w_i=\frac 1 n$ sinon et les $x_i=\frac i  n$ sont régulièrement répartis. Pour une méthode de Monte Carlo, on interprète l'intégrale comme $\mathbb E[g(X)]$ où $X$ est une variable aléatoire de loi uniforme sur $[0,1]$. Alors les $w_i$ valent $\frac{1}{n+1}$ et les $x_i$ sont tirés selon la loi uniforme sur $[0,1]$. Contrairement aux méthodes déterministes, la valeur de l'approximation change si on relance le calcul puisque les tirages sont aléatoires.
+où les $w_i$ sont des nombres entre $0$ et $1$ dont la somme vaut $1$, et les $x_i$ sont des points de l'intervalle $[0,1]$. Par exemple, pour la méthode des trapèzes, on prend $w_0=w_n=\frac{1}{2n}$ et $w_i=\frac 1 n$ sinon et les $x_i=\frac i  n$ sont régulièrement répartis. Si on considère la fonction $g(x) = e^{x^2}$ on approche $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$
 
+```{python}
+import numpy as np
+
+n= 10000
+t = np.linspace(0, 1, n + 1)
+w = np.ones_like(t) / n
+w[0] /= 2
+w[-1] /= 2
+m0 = np.sum(w * np.exp(t**2))
+print(f"La méthode des trapèzes donne {m0:.6f}...")
+```
+La question est alors d'avoir une borne sur l'erreur commise^[qui dépendra de $n$ et de la régularité de la fonction $g$, voir par exemple [Wikipedia](https://en.wikipedia.org/wiki/Trapezoidal_rule)].
+
+Pour une méthode de Monte Carlo, on interprète l'intégrale comme $\mathbb E[g(X)]$ où $X$ est une variable aléatoire de loi uniforme sur $[0,1]$. Alors les $w_i$ valent $\frac{1}{n+1}$ et les $x_i$ sont tirés selon la loi uniforme sur $[0,1]$.
+```{python}
+X = np.random.uniform(0, 1, n)
+
+# Direct method
+gX = np.exp(X**2)
+m1 = np.mean(gX)
+print(f"La méthode naïve de Monte-Carlo {m1:.6f}...")
+```
+
+Contrairement aux méthodes déterministes, la valeur de l'approximation change si on relance le calcul puisque les tirages sont aléatoires:
+```{python}
+X = np.random.uniform(0, 1, n)
+
+# Direct method
+gX = np.exp(X**2)
+m1 = np.mean(gX)
+print(f"La méthode naïve de Monte-Carlo donne mainenant {m1:.6f}...")
+```
 :::
 
-La méthode de Monte Carlo est très facile à programmer si on dispose d'un simulateur de la loi de $X$, et n'impose aucune régularité sur $g$ à part de la mesurabilité.
+La question est alors de déterminer un intervalle de confiance contenant la vraie valeur $I$. La méthode de Monte Carlo est très facile à programmer si on dispose d'un simulateur de la loi de $X$, et n'impose aucune régularité sur $g$ à part de la mesurabilité.
 
 ## Théorèmes de convergence
 
@@ -228,7 +260,7 @@ Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h
 
 ::: {#exm-carre}
 
-Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$ à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
+Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$ comme dans l'exemple @exm-unif à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
 $$
 	\mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
 $$
