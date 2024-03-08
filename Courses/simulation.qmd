@@ -1,8 +1,5 @@
 ---
 title: "Simulation"
-format:
-  html:
-    out.width: 50%
 jupyter: python3
 ---
 
@@ -139,13 +136,12 @@ Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'u
 
 ### Propriété de la loi uniforme
 On verra souvent apparaître la variable aléatoire $1-U$ où $U \sim \mathcal{U}([0,1])$. Il se trouve que $1-U$ suit aussi une loi uniforme sur $[0,1]$ comme le montre le calcul de sa fonction de répartition. Ainsi pour tout $x \in [0,1]$ on obtient
-$$
+
 \begin{align*}
 \mathbb{P}(1-U \leq x) & = \mathbb{P}(U \geq 1-x),\\
                        & = 1-(1-x), \\
                        & = x\,.
 \end{align*}
-$$
 On peut démontrer facilement la même relation pour $x<0$ et $x>1$, d'où le résultat.
 
 
@@ -167,14 +163,13 @@ $${#eq-inf}
 
 :::{#thm-quantile}
 
-## Caratérisation des quantiles
+## Caractérisation des quantiles
 Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante et continue à droite, alors pour tout $q \in ]0, 1[$, on a
-$$
+
 \begin{align}
    \{x \in \mathbb{R} :  F(x) \geq q) \} & =
    \{x \in \mathbb{R} : x \geq F^\leftarrow(q)  \}
 \end{align}
-$$ 
 :::
 
 ::: {.proof}
@@ -581,7 +576,7 @@ On dispose cependant d'une autre densité $g$ possédant les propriétés suivan
 
 Remarquons d'ores et déjà que la constante $m$ est nécessairement plus grande que $1$ car
 $$
-	1 = \int_\mathbb{R} f(x) \, dx \leq m \int_\mathbb{R} g(x)\, dx = m\,.
+	1 = \int_{\mathbb{R}} f(x) \, dx \leq m \int_{\mathbb{R}} g(x)\, dx = m\,.
 $$
 
 
@@ -620,38 +615,34 @@ $$
 $$
 
 Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indépendantes donc leur loi jointe correspond au produit des densités :
-$$\begin{align*}
+\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
 		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy  \\
-		 & = \int_\mathbb{R} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
-		 & =  \int_\mathbb{R} (1-r(y)) \, g(y)\, d y\,,
-	\end{align*}
-$$
+		 & = \int_{\mathbb{R}} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
+		 & =  \int_{\mathbb{R}} (1-r(y)) \, g(y)\, d y\,,
+\end{align*}
 ce qui se réécrit, comme $f$ et $g$ sont des densités et que $r(y) = f(y)/(m \cdot g(y))$:
-$$\begin{align*}
+\begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
-		& = \int_\mathbb{R} g(y)\, d y - \int_\mathbb{R} \dfrac{f(y)}{m}\, dy \\
+		& = \int_{\mathbb{R}} g(y)\, d y - \int_{\mathbb{R}} \dfrac{f(y)}{m}\, dy \\
 		& = 1 - \dfrac{1}{m}\,.
-	\end{align*}
-$$
+\end{align*}
 Le deuxième terme se calcule de manière analogue :
-$$
+
 \begin{align*}
     \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
         & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy       \\
-        & = \int_\mathbb{R} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y\,,
+        & = \int_{\mathbb{R}} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y\,,
 \end{align*}
-$$
 c'est-à-dire
-$$
+
 \begin{align*}
         \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-		& = \int_\mathbb{R} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y \\
+		& = \int_{\mathbb{R}} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y \\
 		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, d y \\
 		& = \dfrac{F(x)}{m}\,,
 \end{align*}
-$$
 où $F$ est la fonction de répartition de la loi de densité $f$. On peut ainsi conclure que
 $$
     \mathbb{P}(X \leq x, T=n)
@@ -665,40 +656,36 @@ $$
     = \lim_{q \to \infty} \mathbb{P}(X \in ]-\infty, q], T=n)\,,
 $$
 ce qui donne
-$$
+
 \begin{align*}
     \mathbb{P}(T=n)
     & = \lim_{q \to \infty} \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(q)}{m}\\
     & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{1}{m}\,.
 \end{align*}
-$$
 On en déduit que $T$ suit une loi géométrique de paramètre $1/m$. D'autre part, par $\sigma$-additivité,
-$$
+
 \begin{align*}
     \mathbb{P}(X \leq x)
     & = \mathbb{P}(X \leq x, T \in \mathbb{N}^*)\\
     & = \sum_{n=1}^\infty \mathbb{P}(X \leq x, T=n)\,,
 \end{align*}
-$$
 ce qui donne
-$$
+
 \begin{align*}
     \mathbb{P}(X \leq x)
     & = \sum_{n=1}^\infty \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}\\
     & = \dfrac{1}{1-(1-1/m)} \dfrac{F(x)}{m}\\
     & = F(x)\,,
 \end{align*}
-$$
 ce qui prouve que $X$ a pour loi $F$.
 
 Enfin, la loi du couple $(X,T)$ est égale au produit des lois
-$$
+
 \begin{align*}
     \mathbb{P}(X \leq x, T=n)
     & = \bigg(1 - \dfrac{1}{m}\bigg)^{n-1} \dfrac{F(x)}{m}\\
     & = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
 \end{align*}
-$$
 :::
 
 
@@ -1097,7 +1084,7 @@ $$
 
 On montre le résultat pour $n=2$. La généralisation à $k$ quelconque se fait par récurrence. 
 Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
-$$
+
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
         & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
@@ -1105,19 +1092,17 @@ $$
         & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
         & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2\bigg)  d x_1\,.
 \end{align*}
-$$
 La première intégrale se calcule alors facilement :
 $$
     \int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2 = 1 - e^{-\lambda(t-x_1)}\,.
 $$
 On obtient alors
-$$
+
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
    & = \int_0^t \lambda e^{-\lambda x_1}dx_1 -  \int_0^t e^{-\lambda t} d x_1\\
    & = 1 - e^{-\lambda t} - \lambda t e^{-\lambda t}\,.
 \end{align*}
-$$
 Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve $\mathbb{P}(E_1 + E_2 \leq t) = 0$. Ceci prouve le résultat pour $n=2$.
 
 :::
@@ -1127,13 +1112,12 @@ On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 ::: {.proof}
 
 Pour $n \in \mathbb{N}$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
-$$
+
 \begin{align*}
     \mathbb{P}(S_n \leq 1 < S_{n+1})
     & = \mathbb{P}(\{S_n \leq 1\} \setminus \{S_{n+1} \leq 1\})\\
     & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
 \end{align*}
-$$
 Le lemme précédent donne
 $$
     \mathbb{P}(S_n \leq 1) = 1 - \sum_{k=0}^{n-1} e^{-\lambda} \dfrac{\lambda^k}{k!}

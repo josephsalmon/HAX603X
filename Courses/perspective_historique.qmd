@@ -1,9 +1,6 @@
 ---
 title: "Perspectives historiques"
 bibliography: references.bib
-format:
-  html:
-      out.width: 50%
 ---
 
 
@@ -38,6 +35,7 @@ Il s'agit alors de tirer aléatoire la position du centre de l'aiguille, puis de
 
 Cette méthode est donnée ci-dessous, avec un exemple interactif généré en Python.
 
+::: {.content-visible when-format="html"}
 
 ```{python}
 #| layout-ncol: 1
@@ -249,6 +247,7 @@ fig.update_layout(legend=dict(x=0.5, y=0.31, xanchor='center', yanchor='bottom')
 fig.update_layout(sliders=[slider])
 fig.show()
 ```
+:::
 
 On va fournir ici le calcul de la probabilité $P$. Pour cela on aura besoin de quelques éléments décrits dans le dessin ci-dessous.
 
@@ -278,7 +277,7 @@ Les lois de générations des variables aléatoires $X$ et $\Theta$ sont les sui
 De plus on suppose que $X$ et $\Theta$ sont indépendantes.
 
 Maintenant pour calculer la probabilité $P$ on procède comme suit:
-$$
+
 \begin{align*}
 P
 & = \mathbb{P}\left(\frac{1}{2}\sin(\Theta) \geq X\right) \\
@@ -286,11 +285,11 @@ P
 & = \int_{\mathbb{R}} \int_{\mathbb{R}}
 {1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x) d\theta dx \\
 & = \int_{0}^{\frac{\pi}{2}} \int_{0}^{\frac{1}{2}\sin(\theta)} \frac{4}{\pi} dx  d\theta \\
-& = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\  
+& = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\
 & = \frac{2}{\pi} \Big[ -\cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
 & = \frac{2}{\pi} \enspace.
 \end{align*}
-$$
+
 
 ::: {.callout-important appearance='default' icon="false"}
 ##  Exercice: rendre le jeu équilibré?

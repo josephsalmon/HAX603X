@@ -1,9 +1,8 @@
 ---
 title: "Méthode de Monte Carlo"
-format:
-  html:
-      out.width: 50%
 ---
+
+::: {.content-visible when-format="html"}
 
 ::: {.hidden}
 {{
@@ -13,6 +12,8 @@ format:
 }}
 :::
 
+:::
+
 De manière générale, ce qu'on appelle une méthode de **Monte-Carlo**^[Le nom viendrait du *casino de Monte-Carlo* inspiré par la passion pour le jeu de l'oncle du physicien Stanislaw Ulam... Source [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method).] est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
 
 Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières.
@@ -20,7 +21,7 @@ Ainsi une intégration par Monte Carlo pour le cas de la grande dimension sera b
 
 ## Principe de la méthode
 
-<br>
+
 
 L'idée de la Méthode de Monte Carlo est d'exprimer l'intégrale qu'on cherche à approcher comme l'espérance d'une variable aléatoire, puis d'approcher cette espérance par une moyenne empirique. Si on veut calculer une intégrale de la forme
 $$
@@ -325,7 +326,6 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 ::: {.proof}
 
 Calculons la variance $V=\var\big(g(X)+g(h(X))\big)$:
-$$
 \begin{align*}
   V &= \var\big(g(X)+g(h(X))\big)\\
 	&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
@@ -333,25 +333,20 @@ $$
 	&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
 	&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
 \end{align*}
-$$
 
 En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a
-$$
 \begin{align*}
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)
 	& \leq \frac{ \var (g(X))+\var(g(h(X))}{4}\\
 	& =\frac{\var (g(X))}{2},
 \end{align*}
-$$
 
 car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a quand toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
-$$
 \begin{align*}
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)
 	& \leq 2\frac{\var (g(X))+\var(g(h(X)))}{4}\\
 	& = \var (g(X)),
 \end{align*}
-$$
 
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
 On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
@@ -404,12 +399,10 @@ L'idée derrière l'échantillonnage préférentiel est similaire à celle des v
 
 
 Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
-$$
 \begin{align*}
 I&=\mathbb E[g(X)]=\int g(x)f(x)dx 
 \\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
 \end{align*}
-$$
 
 On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$.
 

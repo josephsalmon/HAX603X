@@ -1,3 +1,47 @@
+# ################################################################################
+# # Book
+# ################################################################################
+# project:
+#   type: book
+
+# book:
+#   title: "Modélisation stochastique (HAX603X)"
+#   chapters:
+#     - index.qmd
+#     - Courses/marche_aleatoire.qmd
+#     - Courses/perspective_historique.qmd
+#     - Courses/notations.qmd
+#     - Courses/th_asymptotique.qmd
+#     - Courses/simulation.qmd
+#     - Courses/loi_normale1D.qmd
+#     - Courses/loi_normale_multi.qmd
+#     - Courses/monte_carlo.qmds
+# format:
+#   html:
+#     theme:
+#       spacelab
+#     css: [custom.css]
+#     html-math-method: katex
+#   pdf:
+#     documentclass: scrreport
+#     include-in-header:
+#             text: |
+#                 \usepackage{stmaryrd}
+#                 \usepackage{amsmath}
+#                 \usepackage{bm}
+#                 \providecommand{\N}{\mathbb{N}}
+#                 \providecommand{\Z}{\mathbb{Z}}
+#                 \providecommand{\E}{\mathbb{E}}
+#                 \providecommand{\R}{\mathbb{R}}
+#                 \renewcommand{\P}{\mathbb{P}}
+#                 \DeclareMathOperator{\var}{Var} % variance
+#                 \DeclareMathOperator{\cov}{Cov} % covariance
+#                 \newcommand{\wt}[1]{\widetilde{#1}}
+
+###############################################################################
+# Website
+################################################################################
+
 lang: fr
 project:
   type: website

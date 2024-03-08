@@ -1,10 +1,9 @@
 ---
 title: "Théorèmes asymptotiques"
-format:
-  html:
-    out.width: 50%
+bibliography: references.bib
 filters:
   - shinylive
+format: pdf
 ---
 
 
@@ -20,10 +19,6 @@ quand on observe $n$ variables aléatoires i.i.d $X_1,\dots,X_n$, ayant une esp�
 :::: {#thm-lfgn}
 
 ## Loi forte des grands nombres
-
-<br>
-
-
 
 Soit $(X_n)_{n \geq 1}$ une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans $L^1(\Omega, \mathcal{F}, \mathbb{P})$. Notons $\mu = \mathbb{E}[X_1]$. Alors $\bar X_n$ converge vers $\mu$ presque sûrement :
 $$
@@ -43,6 +38,7 @@ Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droi
 
 **Remarque**: Bien qu'assez intuitif, ce théorème est difficile à démontrer, cf.[@Ouvrard08;@Barbe_Ledoux06] ou encore [@Williams91] pour une version de preuve avec des martingales.
 
+::: {.content-visible when-format="html"}
 
 ```{shinylive-python}
 #| standalone: true
@@ -211,6 +207,8 @@ app = App(app_ui, server)
 
 ```
 
+:::
+
 
 [Pour aller plus loin]{.underline}:
 
@@ -227,7 +225,7 @@ Le théorème suivant répond à cette question, en donnant une convergence en l
 :::: {#thm-tcl}
 
 ## Théorème central limite
-Soit $X_1, \ldots, X_n$ une suite de variables aléatoires i.i.d de variance $\sigma^2 = {\rm var}(X_1) \in ]0, \infty[$. On note $\mu = \mathbb{E}[X_1]$ leur espérance. Alors
+Soit $X_1, \ldots, X_n$ une suite de variables aléatoires i.i.d de variance $\sigma^2 = {\mathrm var}(X_1) \in ]0, \infty[$. On note $\mu = \mathbb{E}[X_1]$ leur espérance. Alors
 $$
 \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 $$
@@ -254,10 +252,7 @@ Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une
 
 On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout $a < b$,
 notons $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$.
-Ainsi
-
-$$
-\mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma}\in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}] \right)\\
+Ainsi,
 \begin{align}
     1-\alpha_n& = \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\nonumber\\
     & =
@@ -266,7 +261,6 @@ $$
 	\mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
     & \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
 \end{align}
-$$
 où l'on note $\varphi$ (resp. $\Phi$) la densité (resp. la fonction de répartition) d'une loi normale centrée réduite, définie pour tout $x\in\mathbb{R}$ par $\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}$ (resp. $\Phi(x)= \int_{-\infty}^{x}\varphi(u) du$).
 
 Dans le cas classique d'un intervalle de confiance à 95\%, c'est-à-dire quand $\alpha_n=0.05$, et en prenant un intervalle de confiance symétrique (alors $a=-t$ et $b=q$) on obtient $1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}$ et $q$ est donc le quantile de niveau $1-\tfrac{\alpha_n}{2}$ de la loi normale centrée réduite. Numériquement on peut facilement évaluer $q$ et vérifier que $q\approx 1.96$ avec `scipy`:
@@ -291,6 +285,7 @@ Cette convergence est illustrée dans le widget ci-dessous.
 Le contexte est le suivant. On répète $t$ fois le processus, qui consiste à afficher $(\bar{X}_k)_{k \in [n]}$, où les $n$ variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre $p$.
 ::::
 
+::: {.content-visible when-format="html"}
 
 ```{shinylive-python}
 #| standalone: true
@@ -473,7 +468,7 @@ def server(input, output, session):
 app = App(app_ui, server)
 
 ```
-
+:::
 
 Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l'analyse.
 Pour cela supposons que l'on ait une suite de variables aléatoires réelles $X_1, \dots, X_n$, i.i.d. dont la fonction de densité commune est notée par $f$.
@@ -482,13 +477,10 @@ On rappelle quelques éléments de probabilités concernant les densités.
 Pour cela on rappelle la définition de la convolution deux fonctions.
 Pour cela prenons deux fonctions $f$ et $g$ définies sur $\mathbb{R}$ et qui sont intégrables au sens de Lebesgue.
 La **convolution** de $f$ par $g$ est alors la fonction $f*g$ suivante:
-
-$$
-\begin{align}
+\begin{align*}
 \mathbb{R} &\mapsto \mathbb{R} \nonumber\\
 x &\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
-\end{align}
-$$
+\end{align*}
 
 ::: {.callout-note}
 
@@ -517,8 +509,11 @@ la densité de $\bar{X}_n$ est donnée par la fonction $x \mapsto n \cdot [f*\do
 
 Dessous, pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la densité de la loi de $\bar{X}_n$.
 
+::: {.content-visible when-format="html"}
+
 ```{shinylive-python}
 #| standalone: true
+#| echo: false
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -671,6 +666,7 @@ def server(input, output, session):
 
 app = App(app_ui, server)
 ```
+:::
 
+Pour aller plus loin sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: [Convolutions | Why X+Y in probability is a beautiful mess](https://m.youtube.com/watch?v=IaSGqQa5O-M)
 
-Pour aller plus loin sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M)

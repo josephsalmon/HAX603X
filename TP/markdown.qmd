@@ -1,11 +1,6 @@
 ---
 title: "Démarrage en Markdown"
 bibliography: ../Courses/references.bib
-format:
-  html:
-    out.width: 50%
-filters:
-  - shinylive
 from: markdown+emoji
 ---
 
