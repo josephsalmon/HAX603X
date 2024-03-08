@@ -3,7 +3,6 @@ title: "Théorèmes asymptotiques"
 bibliography: references.bib
 filters:
   - shinylive
-format: pdf
 ---
 
 
