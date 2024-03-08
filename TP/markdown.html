@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.549">
+<meta name="generator" content="quarto-1.4.550">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -453,19 +453,18 @@ window.Quarto = {
 <h2 class="anchored" data-anchor-id="pourquoi-utiliser-markdown">Pourquoi utiliser Markdown ?</h2>
 <p>Il existe de nombreuses situations où vous souhaiterez utiliser markdown :</p>
 <ul>
-<li>pour créer des sites web, des rapports et des présentations ; voir Combinaison de code et de texte dans Quarto Markdown pour plus d’informations</li>
-<li>pour les répertoires de logiciels ou de réplications d’articles de recherche</li>
-<li>en tant que format de base que des outils comme pandoc et Quarto peuvent convertir en d’autres types de documents</li>
+<li>pour créer des sites web, des rapports, des présentations</li>
+<li>en tant que format de base que des outils comme Pandoc et Quarto peuvent convertir en d’autres types de documents</li>
 <li>dans les cellules de texte des Jupyter Notebooks</li>
 <li>dans des emails.</li>
 <li>pour écrire … ce cours!</li>
 </ul>
 <p>Certains des avantages de markdown sont :</p>
 <ul>
-<li>Les fichiers markdown peuvent être ouverts à l’aide de n’importe quel éditeur de texte brut</li>
+<li>Les fichiers markdown s’ouverent avec n’importe quel éditeur de texte brut</li>
 <li>Markdown est indépendant du système d’exploitation</li>
 <li>Markdown est très lisible, même lorsqu’il n’est pas rendu</li>
-<li>De nombreux sites web prennent en charge la syntaxe markdown, par exemple GitHub (appelé GitHub-flavoured markdown) et Reddit.</li>
+<li>De nombreux sites web prennent en charge la syntaxe markdown, par exemple GitHub et Reddit.</li>
 </ul>
 </section>
 <section id="la-syntaxe-markdown" class="level2 page-columns page-full">
@@ -597,13 +596,13 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<p>mais vous ne voudrez presque jamais les écrire vous-même ! En pratique, il est plus facile d’exporter un fichier markdown à partir d’un dataframe <strong>pandas</strong> en utilisant <code>df.to_markdown()</code> ou d’utiliser le site web pratique, <a href="https://www.tablesgenerator.com/markdown_tables">générateur de tableaux markdown</a>.</p>
+<p>Vous ne voudrez (presque) jamais écrire de tels tableaux vous-même ! En pratique, il est plus facile d’exporter un fichier markdown à partir d’un dataframe <strong>pandas</strong> (sous Python) en utilisant <code>df.to_markdown()</code> ou d’utiliser le site web suivant: <a href="https://www.tablesgenerator.com/markdown_tables">générateur de tableaux markdown</a>.</p>
 </section>
 <section id="images" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="images">Images</h3>
 <p>Pour insérer des images, utilisez la structure <code>![texte alternatif](url ou chemin de fichier)</code>, par exemple :</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="al">![Image à insérer](https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg)</span>{width=60%}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>produit :</p>
+<p>Cela produit alors l’affichage suivant:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg" class="img-fluid figure-img" style="width:60.0%"></p>
@@ -611,19 +610,18 @@ window.Quarto = {
 </figure>
 </div>
 <p>Vous pouvez également produire des listes de tâches, par exemple :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[x]</span> Terminer le chapitre 1</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Éditer le chapitre 2</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Lancer le livre :rocket:</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[x]</span> Faire le TP 1</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[x]</span> Faire le TP 2</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span><span class="va">[ ]</span> Créer un premier document markdown :rocket:</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>produit :</p>
 <ul class="task-list">
-<li><label><input type="checkbox" checked="">Terminer le chapitre 1</label></li>
-<li><label><input type="checkbox">Éditer le chapitre 2</label></li>
-<li><label><input type="checkbox">Lancer le livre <span class="emoji" data-emoji="rocket">🚀</span></label></li>
+<li><label><input type="checkbox" checked="">Faire le TP 1</label></li>
+<li><label><input type="checkbox" checked="">Faire le TP 2</label></li>
+<li><label><input type="checkbox">Créer un premier document markdown <span class="emoji" data-emoji="rocket">🚀</span></label></li>
 </ul>
-<p>Des notes de bas de page peuvent être créées en utilisant <code>[^1]</code> suivi de <code>[^2]</code>, et ainsi de suite, ou en utilisant des notes de bas de page liées au contenu comme <code>[^note]</code>. Voici ces trois utilisations : un exemple<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, et un autre<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, tandis que le troisième se trouve ici<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> et a une étiquette à la place d’un numéro (que vous ne pouvez pas voir lorsqu’elle est rendue). Vous devrez faire défiler jusqu’au bas de la page pour voir les informations associées à ces notes de bas de page, mais la syntaxe pour remplir leurs informations est :</p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Première note de bas de page.</p><p><sup>3</sup>&nbsp;Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.<br>
-Cela vous permet d’avoir une note de bas de page avec plusieurs lignes.</p><p><sup>4</sup>&nbsp;Les notes de bas de page nommées s’afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.</p></div><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[^1]: </span>Première note de bas de page.</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: </span>Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.</span>
+<p>Des notes de bas de page peuvent être créées en utilisant <code>[^1]</code> suivi de <code>[^2]</code>, et ainsi de suite, ou en utilisant des notes de bas de page liées au contenu comme <code>[^note]</code>. Voici un exemple<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>, et un autre<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, tandis que le troisième se trouve ici<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> et a une étiquette à la place d’un numéro (que vous ne pouvez pas voir lorsqu’elle est rendue). La syntaxe pour remplir leurs informations est :</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Première note de bas de page.</p><p><sup>3</sup>&nbsp;Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces. Cela vous permet d’avoir une note de bas de page avec plusieurs lignes.</p><p><sup>4</sup>&nbsp;Les notes de bas de page nommées s’afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.</p></div><div class="sourceCode" id="cb11"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">[^2]: </span>Première note de bas de page.</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ot">[^3]: </span>Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.</span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  Cela vous permet d'avoir une note de bas de page avec plusieurs lignes.</span>
 <span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ot">[^note]: </span>Les notes de bas de page nommées s'afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Enfin, pour insérer un saut de ligne, utilisez :</p>
@@ -1077,7 +1075,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../TP/TP3.html" class="pagination-link  aria-label=" tp3:="" simulation="" de="" variables="" aléatoires"="">
+      <a href="../TP/TP3.html" class="pagination-link" aria-label="TP3: Simulation de variables aléatoires">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP3: Simulation de variables aléatoires</span>
       </a>          
   </div>
