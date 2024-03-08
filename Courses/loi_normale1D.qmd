@@ -1,7 +1,6 @@
 ---
 title: "Loi normale: cas univarié"
-bibliography: references.bib
-format: pdf
+bibliography: references.bibs
 filters:
   - shinylive
 ---
