@@ -82,19 +82,18 @@ Une description complète peut être trouvée ici : <https://www.markdownguide.o
 
 Il existe de nombreuses situations où vous souhaiterez utiliser markdown :
 
-* pour créer des sites web, des rapports et des présentations ; voir Combinaison de code et de texte dans Quarto Markdown pour plus d'informations
-* pour les répertoires de logiciels ou de réplications d'articles de recherche
-* en tant que format de base que des outils comme pandoc et Quarto peuvent convertir en d'autres types de documents
-* dans les cellules de texte des Jupyter Notebooks 
+* pour créer des sites web, des rapports, des présentations
+* en tant que format de base que des outils comme Pandoc et Quarto peuvent convertir en d'autres types de documents
+* dans les cellules de texte des Jupyter Notebooks
 * dans des emails.
 * pour écrire ... ce cours!
 
 Certains des avantages de markdown sont :
 
-* Les fichiers markdown peuvent être ouverts à l'aide de n'importe quel éditeur de texte brut
+* Les fichiers markdown s'ouverent avec n'importe quel éditeur de texte brut
 * Markdown est indépendant du système d'exploitation
 * Markdown est très lisible, même lorsqu'il n'est pas rendu
-* De nombreux sites web prennent en charge la syntaxe markdown, par exemple GitHub (appelé GitHub-flavoured markdown) et Reddit.
+* De nombreux sites web prennent en charge la syntaxe markdown, par exemple GitHub et Reddit.
 
 
 ## La syntaxe Markdown
@@ -226,7 +225,8 @@ qui devient
 | A Clockwork Orange    | 1971          | 136         |
 | Barry Lyndon          | 1975          | 185         |
 
-mais vous ne voudrez presque jamais les écrire vous-même ! En pratique, il est plus facile d'exporter un fichier markdown à partir d'un dataframe **pandas** en utilisant `df.to_markdown()` ou d'utiliser le site web pratique, [générateur de tableaux markdown](https://www.tablesgenerator.com/markdown_tables).
+Vous ne voudrez (presque) jamais écrire de tels tableaux vous-même !
+En pratique, il est plus facile d'exporter un fichier markdown à partir d'un dataframe **pandas** (sous Python) en utilisant `df.to_markdown()` ou d'utiliser le site web suivant: [générateur de tableaux markdown](https://www.tablesgenerator.com/markdown_tables).
 
 ### Images
 
@@ -235,36 +235,35 @@ Pour insérer des images, utilisez la structure `![texte alternatif](url ou chem
 ```markdown
 ![Image à insérer](https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg){width=60%}
 ```
-
-produit :
+Cela produit alors l'affichage suivant:
 
 ![Image à insérer](https://raw.githubusercontent.com/josephsalmon/Tweets/61c3110a15a9dbcaac1698ffe11521b028c4524a/IslamicArt/svg/Sultan_Uljaytu_Frontispiece_colored.svg){width=60%}
 
 Vous pouvez également produire des listes de tâches, par exemple :
 
 ```markdown
-- [x] Terminer le chapitre 1
-- [ ] Éditer le chapitre 2
-- [ ] Lancer le livre :rocket:
+- [x] Faire le TP 1
+- [x] Faire le TP 2
+- [ ] Créer un premier document markdown :rocket:
 ```
 
 produit :
 
-* [x] Terminer le chapitre 1
-* [ ] Éditer le chapitre 2
-* [ ] Lancer le livre :rocket:
+- [x] Faire le TP 1
+- [x] Faire le TP 2
+- [ ] Créer un premier document markdown :rocket:
 
-Des notes de bas de page peuvent être créées en utilisant `[^1]` suivi de `[^2]`, et ainsi de suite, ou en utilisant des notes de bas de page liées au contenu comme `[^note]`. Voici ces trois utilisations : un exemple[^1], et un autre[^2], tandis que le troisième se trouve ici[^note] et a une étiquette à la place d'un numéro (que vous ne pouvez pas voir lorsqu'elle est rendue). Vous devrez faire défiler jusqu'au bas de la page pour voir les informations associées à ces notes de bas de page, mais la syntaxe pour remplir leurs informations est :
+Des notes de bas de page peuvent être créées en utilisant `[^1]` suivi de `[^2]`, et ainsi de suite, ou en utilisant des notes de bas de page liées au contenu comme `[^note]`. Voici un exemple[^2], et un autre[^3], tandis que le troisième se trouve ici[^note] et a une étiquette à la place d'un numéro (que vous ne pouvez pas voir lorsqu'elle est rendue). La syntaxe pour remplir leurs informations est :
 
 ```markdown
-[^1]: Première note de bas de page.
-[^2]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.
+[^2]: Première note de bas de page.
+[^3]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.
   Cela vous permet d'avoir une note de bas de page avec plusieurs lignes.
 [^note]: Les notes de bas de page nommées s'afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.
 ```
 
-[^1]: Première note de bas de page.
-[^2]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.  
+[^2]: Première note de bas de page.
+[^3]: Chaque nouvelle ligne dans une note de bas de page doit être préfixée par 2 espaces.
   Cela vous permet d'avoir une note de bas de page avec plusieurs lignes.
 [^note]: Les notes de bas de page nommées s'afficheront toujours avec des numéros au lieu du texte, mais permettent une identification et une liaison plus faciles.
 

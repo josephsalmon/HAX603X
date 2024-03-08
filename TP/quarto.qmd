@@ -16,22 +16,24 @@ Vous pouvez également inclure des équations mathématiques (avec $\LaTeX$), de
 
 Pour générer un document avec Quarto, vous devez écrire le contenu dans un fichier d'extension `.qmd`, qui est un format de texte simple qui sera converti en d'autres formats, tels que HTML ou PDF. Dans le fichier `.qmd`, vous pouvez inclure des blocs de code, qui seront exécutés ou non lorsque vous générez le document final. Vous pouvez décider de masquer ou d'afficher les parties de code dans les sorties finales. 
 
-Référence : le cours d'Arthur Turrell pour les économistes [](https://aeturrell.github.io/coding-for-economists/intro.html).
+[Référence]{.underline} : le cours d'informatique  d'Arthur Turrell pour les économistes [https://aeturrell.github.io/coding-for-economists/intro.html]().
 
 
 ## Mise en route
 
 ### Sur les machine de la faculté des Sciences
 
-<span style="color:red;">Quarto est déjà installé sur les machines de l'université!</span> Il n'y a qu'à installer l'extension pour Visual Studio, voir @sec-vscode_quarto.
+<span style="color:red;">Quarto est déjà installé sur les machines de l'université!</span> Il n'y a qu'à installer l'extension pour Visual Studio Code, voir @sec-vscode_quarto.
 
-### Installation
+### Installation sur votre machine personnelle
 
-Sur votre machine personnelle, vous devez vous rendre sur le site web de [**Quarto**](https://quarto.org/) et suivre les [instructions d'installation](https://quarto.org/docs/getting-started/installation.html) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
+Sur votre machine, vous devez vous rendre sur le site web de [**Quarto**](https://quarto.org/) et suivre les [instructions d'installation](https://quarto.org/docs/getting-started/installation.html) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
 
-### Visual studio {#sec-vscode_quarto}
+### Visual Studio Code {#sec-vscode_quarto}
 
-Vous trouverez l'[extension Quarto pour Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto). Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview".
+Vous trouverez l'[extension Quarto pour Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto).
+Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview" (ou avec `Ctrl + Shift + k`). Vous pouvez aussi utiliser le raccourci clavier `Ctrl + Shift + p` puis sélectionner "Quarto preview" par exemple.
+
 
 
 ## Rapports automatisés avec **Quarto**
@@ -85,9 +87,11 @@ Cet exemple contient des types contenu importants :
 
 Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-le sous `rapport_tp.qmd` et exécutez ensuite la commande suivante sur la ligne de commande et dans le même répertoire que le fichier :
 
-```bash
+:::{.highlight-style="none"}
+```{.bash}
 quarto render rapport_tp.qmd
 ```
+:::
 
 N'oubliez pas que si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}).
 
@@ -108,7 +112,7 @@ La syntaxe de base consiste à écrire `--to outputformat` à la fin de la comma
 
 :::{#exr-html}
 
-Réussissez à créer un rapport HTML en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`, en modifiant l'entête et en exécutant ensuite la commande quarto render avec l'option `--to html`.
+Créer un rapport HTML en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`, en modifiant l'entête et en exécutant ensuite la commande quarto render avec l'option `--to html`.
 
 Que se passe-t-il avec le menu sur le côté droit lorsque vous ajoutez des en-têtes supplémentaires en utilisant la syntaxe markdown `##` ?
 
@@ -123,6 +127,7 @@ Pour un exemple de sortie de code où l'entrée n'est pas affichée, le code ci-
 ````markdown
 ```{{python}}
 #| echo: false
+#| layout-ncol: 1
 import numpy as np
 import matplotlib.pyplot as plt
 rng = np.random.RandomState(44)
@@ -134,6 +139,22 @@ ax.hist(uniform_data, bins=30)
 plt.show()
 ```
 ````
+
+En mettant l'option `echo: true` on affiche le code source dans la sortie, et l'on aurait alors l'effet suivant:
+
+```{python}
+#| echo: true
+#| layout-ncol: 1
+import numpy as np
+import matplotlib.pyplot as plt
+rng = np.random.RandomState(44)
+
+uniform_data = rng.uniform(-1, 1, 100)
+
+fig, ax = plt.subplots()
+ax.hist(uniform_data, bins=30)
+plt.show()
+```
 
 Voici quelques options pour les blocs de code:
 
