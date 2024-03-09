@@ -387,6 +387,7 @@ window.Quarto = {
   <li><a href="#loi-de-student" id="toc-loi-de-student" class="nav-link" data-scroll-target="#loi-de-student">Loi de Student</a></li>
   <li><a href="#loi-de-cauchy" id="toc-loi-de-cauchy" class="nav-link" data-scroll-target="#loi-de-cauchy">Loi de Cauchy</a></li>
   </ul></li>
+  <li><a href="#bibliographie" id="toc-bibliographie" class="nav-link" data-scroll-target="#bibliographie">Bibliographie</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/loi_normale1D.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
@@ -514,7 +515,7 @@ window.Quarto = {
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center">
+<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -587,23 +588,21 @@ window.Quarto = {
 </ul>
 <p>Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n’importe quelle loi normale.</p>
 <div id="prp-caract" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale)</strong></span> La fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par <span class="math display">
-\begin{align*}
+<p><span class="theorem-title"><strong>Proposition 1 (Fonction caractéristique de la loi normale)</strong></span> La fonction caractéristique d’une variable aléatoire <span class="math inline">X \sim \mathcal{N}(\mu, \nu)</span> est donnée pour tout <span class="math inline">t \in \mathbb{R}</span> par</p>
+<p><span class="math display">\begin{align*}
 \phi_{\mu,\nu}(t) &amp; \triangleq \mathbb{E}(e^{i t X})  \\
 &amp; = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
-\end{align*}
-</span></p>
+\end{align*}</span></p>
 </div>
 <div class="proof page-columns page-full">
 <p><span class="proof-title"><em>Preuve</em>. </span>on remarque d’abord que si <span class="math inline">X \sim \mathcal{N}(0,1)</span> alors pour tout <span class="math inline">z \in \mathbb{R}</span>, on a</p>
-<p><span class="math display">
-\begin{align*}
+<p><span class="math display">\begin{align*}
 \mathbb{E}[e^{zX}]&amp;=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx\\
 &amp;= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
 &amp;=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy\\
 &amp;=e^{\frac12z^2}.
-\end{align*}
-</span> En utilisant le théorème de prolongement analytique (voir par exemple <span class="citation" data-cites="Queffelec_Zuily13">(Théorème I.10., <a href="#ref-Queffelec_Zuily13" role="doc-biblioref">Queffélec et Zuily 2013</a>)</span> on peut donc étendre cette formule à tout <span class="math inline">z \in \mathbb{C}</span>, et particulier au cas <span class="math inline">z=it</span> pour <span class="math inline">t \in \mathbb{R}</span>. On obtient alors <span class="math inline">\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}</span>. Enfin, on utilise la linéarité de l’espérance pour obtenir le résultat pour <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>. En effet, si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">X=\mu+\sqrt{\nu}Z</span> avec <span class="math inline">Z \sim \mathcal{N}(0,1)</span>, et donc <span class="math inline">\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}</span>.</p>
+\end{align*}</span></p>
+<p>En utilisant le théorème de prolongement analytique (voir par exemple <span class="citation" data-cites="Queffelec_Zuily13">(Théorème I.10., <a href="#ref-Queffelec_Zuily13" role="doc-biblioref">Queffélec et Zuily 2013</a>)</span> on peut donc étendre cette formule à tout <span class="math inline">z \in \mathbb{C}</span>, et particulier au cas <span class="math inline">z=it</span> pour <span class="math inline">t \in \mathbb{R}</span>. On obtient alors <span class="math inline">\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}</span>. Enfin, on utilise la linéarité de l’espérance pour obtenir le résultat pour <span class="math inline">X \sim \mathcal{N}(\mu,\nu)</span>. En effet, si <span class="math inline">X \sim \mathcal{N}(0,1)</span>, alors <span class="math inline">X=\mu+\sqrt{\nu}Z</span> avec <span class="math inline">Z \sim \mathcal{N}(0,1)</span>, et donc <span class="math inline">\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}</span>.</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Queffelec_Zuily13" class="csl-entry" role="listitem">
 Queffélec, H., et C. Zuily. 2013. <em>Analyse pour l’agrégation</em>. Dunod.
 </div></div></div>
@@ -627,54 +626,51 @@ Une mauvaise piste pour simuler une loi normale
 <section id="changement-de-variables" class="level4">
 <h4 class="anchored" data-anchor-id="changement-de-variables">Changement de variables</h4>
 <p>Le théorème suivant permet de passer de la loi d’un couple <span class="math inline">(X,Y)</span> à celle de <span class="math inline">(U,V) = \phi(X,Y)</span>, où <span class="math inline">\phi</span> est un <span class="math inline">C^1</span>-difféomorphisme, c’est-à-dire une application bijective dont la réciproque est également de classe <span class="math inline">C^1</span>.</p>
-<p>Pour cela rappelons que la <strong>jacobienne</strong> de <span class="math inline">\phi^{-1}</span> correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si <span class="math inline">\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)</span>, alors <span class="math display">
-\begin{align*}
-{\rm{J}}_{\phi^{-1}}: (u,v) &amp; \mapsto
+<p>Pour cela rappelons que la <strong>jacobienne</strong> de <span class="math inline">\phi^{-1}</span> correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si <span class="math inline">\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)</span>, alors</p>
+<p><span class="math display">\begin{align*}
+{\mathrm{J}}_{\phi^{-1}}: (u,v) &amp; \mapsto
 \begin{pmatrix}
   \frac{\partial x}{\partial u} &amp; \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} &amp; \frac{\partial y}{\partial v}
 \end{pmatrix} \enspace.
-\end{align*}
-</span></p>
+\end{align*}</span></p>
 <div id="thm-changement-variables" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle)</strong></span> Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par <span class="math display">
-\begin{align*}
+<p><span class="theorem-title"><strong>Théorème 1 (Caractérisation de la loi d’une variable aléatoire réelle)</strong></span> Soit <span class="math inline">(X,Y)</span> un vecteur aléatoire de densité <span class="math inline">f_{(X,Y)}</span> définie sur l’ouvert <span class="math inline">A \subset \mathbb{R}^2</span> et <span class="math inline">\phi : A \to B \subset \mathbb{R}^2</span> un <span class="math inline">C^1</span>-difféomorphisme. Le vecteur aléatoire <span class="math inline">(U,V)=\phi(X,Y)</span> admet alors pour densité <span class="math inline">f_{(U,V)}</span> définie sur <span class="math inline">B</span> pour tout <span class="math inline">(u,v) \in \mathbb{R}^2</span> par</p>
+<p><span class="math display">\begin{align*}
     (u,v) &amp; \mapsto
-    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
-\end{align*}
-</span></p>
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+\end{align*}</span></p>
 </div>
 <p>On a énoncé le résultat en dimension <span class="math inline">2</span> par simplicité. Il s’étend bien évidemment à une dimension <span class="math inline">d</span> quelconque. En particulier, pour <span class="math inline">d=1</span>, on retrouve le changement de variable classique dans le cas de l’intégration d’une fonction à valeurs réelles.</p>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>On rappelle que la loi de <span class="math inline">(U,V)</span> est caractérisée par les quantités <span class="math inline">\mathbb{E}[h(U,V)]</span> pour tout <span class="math inline">h : \mathbb{R}^2 \to \mathbb{R}</span> mesurable bornée. On considère donc une telle fonction <span class="math inline">h</span> et on applique la formule de transfert : <span class="math display">
-\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>On rappelle que la loi de <span class="math inline">(U,V)</span> est caractérisée par les quantités <span class="math inline">\mathbb{E}[h(U,V)]</span> pour tout <span class="math inline">h : \mathbb{R}^2 \to \mathbb{R}</span> mesurable bornée. On considère donc une telle fonction <span class="math inline">h</span> et on applique la formule de transfert :</p>
+<p><span class="math display">\begin{align*}
   \mathbb{E}[h(U,V)] &amp;
   =\mathbb{E}[h(\phi(X,Y))]\\
 &amp; = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
 &amp; = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
-\end{align*}
-</span> On applique alors la formule du changement de variables vu en théorie de l’intégration avec <span class="math inline">(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)</span> : <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>On applique alors la formule du changement de variables vu en théorie de l’intégration avec <span class="math inline">(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)</span> :</p>
+<p><span class="math display">\begin{align*}
   &amp; \mathbb{E}[h(U,V)]\\
-  &amp; = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
-  &amp; = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
-\end{align*}
-</span> <!-- On conclut alors que
+  &amp; = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
+  &amp; = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
+\end{align*}</span></p>
+<!-- On conclut alors que
 $$
 \mathbb{E}[h(U,V)]
-= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
-$$ --> ce qui donne le résultat voulu.</p>
+= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
+$$ -->
+<p>ce qui donne le résultat voulu.</p>
 </div>
-<p><br></p>
 <div id="exm-cos" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de <span class="math inline">\cos(X)</span>, avec <span class="math inline">X \sim \mathcal{U}(]0,\pi[)</span>)</strong></span> Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
-<p>On applique le théorème précédent avec la fonction <span class="math inline">\phi^{-1}(u) = \arccos(u)</span> sur <span class="math inline">]-1,1[</span>. La densité de <span class="math inline">U</span> est alors donnée pour tout <span class="math inline">u \in \mathbb{R}</span> par <span class="math display">
-\begin{align*}
+<p><span class="theorem-title"><strong>Exemple 1 (Exemple : loi de de cos(X))</strong></span> Donnons un exemple dans le cas réel. On considère une variable aléatoire <span class="math inline">X</span> de loi uniforme sur <span class="math inline">]0,\pi[</span>. Sa densité est donnée par <span class="math inline">f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi</span>. On pose <span class="math inline">U = \cos(X)</span> et on souhaite déterminer la loi de <span class="math inline">U</span>.</p>
+<p>On applique le théorème précédent avec la fonction <span class="math inline">\phi^{-1}(u) = \arccos(u)</span> sur <span class="math inline">]-1,1[</span>. La densité de <span class="math inline">U</span> est alors donnée pour tout <span class="math inline">u \in \mathbb{R}</span> par</p>
+<p><span class="math display">\begin{align*}
   f_U(u)
 &amp; = \frac{{1\hspace{-3.8pt} 1}_{]0,\pi[}(\arccos(u))}{\pi} \Big| \frac{-1}{\sqrt{1-u^2}} \Big| {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\\
 &amp; = \frac{1}{\pi \sqrt{1-u^2}} {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\enspace.
-\end{align*}
-</span></p>
+\end{align*}</span></p>
 </div>
 </section>
 </section>
@@ -694,13 +690,13 @@ $$ --> ce qui donne le résultat voulu.</p>
     \end{array}
 </span></p>
 <p>Ici, le jacobien de <span class="math inline">\phi^{-1}</span> est la matrice <span class="math display">
-    {\rm{J}}_{\phi^{-1}} (r,\theta)
+    {\mathrm{J}}_{\phi^{-1}} (r,\theta)
     =
     \begin{pmatrix}
         \cos(\theta) &amp; -r \sin(\theta) \\
         \sin(\theta) &amp; r \cos(\theta)
     \end{pmatrix}\,,
-</span> qui vérifie <span class="math inline">|\det({\rm{J}}_{\phi^{-1}} (r, \theta))| = r</span>. Ainsi, si <span class="math inline">(X,Y)</span> a pour densité <span class="math inline">f_{(X,Y)}</span>, alors <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
+</span> qui vérifie <span class="math inline">|\det({\mathrm{J}}_{\phi^{-1}} (r, \theta))| = r</span>. Ainsi, si <span class="math inline">(X,Y)</span> a pour densité <span class="math inline">f_{(X,Y)}</span>, alors <span class="math inline">(R, \Theta) = \phi(X,Y)</span> a pour densité <span class="math display">
   f_{(R, \Theta)} (r, \theta)
   = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta).
 </span></p>
@@ -716,13 +712,13 @@ $$ --> ce qui donne le résultat voulu.</p>
 <div class="proof">
 <p><span class="proof-title"><em>Preuve</em>. </span>La densité du couple <span class="math inline">(X,Y)</span> est donnée par <span class="math display">
   f_{(X,Y)}(x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
-</span> Le théorème précédent donne alors la densité de <span class="math inline">(R, \Theta)</span> : <span class="math display">
-\begin{align*}
+</span> Le théorème précédent donne alors la densité de <span class="math inline">(R, \Theta)</span> :</p>
+<p><span class="math display">\begin{align*}
   f_{(R, \Theta)} (r, \theta) &amp;
   = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
   &amp;= r \cdot\frac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
-\end{align*}
-</span> ce qui conclut la preuve.</p>
+\end{align*}</span></p>
+<p>ce qui conclut la preuve.</p>
 </div>
 <p>Si <span class="math inline">R</span> suit une loi de Rayleigh alors <span class="math inline">\sqrt{-2 \log(U)}</span> a la même loi que <span class="math inline">R</span>, où <span class="math inline">U</span> est une variable aléatoire de loi uniforme sur <span class="math inline">]0,1[</span>: Pour cela il suffit de remarquer que pour tout <span class="math inline">x &gt; 0</span>, <span class="math inline">F_R(x)=\mathbb{P}(R\leq x) = 1-\exp(-\tfrac{x^2}{2})</span>, et donc que pour tout <span class="math inline">q \in ]0,1[, F_R^{^\leftarrow}(q)=\sqrt{-2\log(1-q)}</span> et donc <span class="math inline">\sqrt{-2\log(1-U)}</span>, puis <span class="math inline">\sqrt{-2\log(U)}</span> on donc la même loi que <span class="math inline">R</span>.</p>
 <p>L’algorithme de Box-Müller s’en suit: si <span class="math inline">U</span> et <span class="math inline">V</span> sont des v.a. indépendantes de loi uniforme sur <span class="math inline">[0,1]</span> et qu’on définit <span class="math inline">X</span> et <span class="math inline">Y</span> par <span class="math display">
@@ -762,14 +758,14 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 <p><span class="proof-title"><em>Preuve</em>. </span>Montrons pour <span class="math inline">k=1</span> que la densité est bien de la forme précédente, c’est-à-dire <span class="math display">
     f(x) = \frac{1}{\sqrt{2\pi}} \frac{e^{-x/2}}{\sqrt x}\,, \quad x \geq 0\,,
 </span> où on a utilisé la relation <span class="math inline">\Gamma(1/2) = \sqrt \pi</span> (intégrale de Gauss).</p>
-<p>Soit <span class="math inline">h : \mathbb{R} \to \mathbb{R}</span> une fonction mesurable bornée. On a <span class="math display">
-\begin{align*}
+<p>Soit <span class="math inline">h : \mathbb{R} \to \mathbb{R}</span> une fonction mesurable bornée. On a</p>
+<p><span class="math display">\begin{align*}
     \mathbb{E}[h(X_1^2)]
-    &amp; = \int_\mathbb{R} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
+    &amp; = \int_{\mathbb{R}} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
     &amp; = \int_{-\infty}^0 h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx
     + \int_0^{\infty} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\,.
-\end{align*}
-</span> En effectuant le changement de variable <span class="math inline">x=-\sqrt u</span> dans la première intégrale et <span class="math inline">x=\sqrt u</span> dans la deuxième, on obtient <span class="math display">
+\end{align*}</span></p>
+<p>En effectuant le changement de variable <span class="math inline">x=-\sqrt u</span> dans la première intégrale et <span class="math inline">x=\sqrt u</span> dans la deuxième, on obtient <span class="math display">
     \mathbb{E}[h(X_1^2)]
     = \int_{\infty}^0 h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}} \frac{ du}{2 \sqrt u}
     + \int_0^{\infty} h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}} \frac {du}{2 \sqrt u}\,.
@@ -777,46 +773,43 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
     \mathbb{E}[h(X_1^2)] = \int_0^{\infty} h(u) \frac{e^{-u/2}}{\sqrt{2 \pi}\sqrt u}\, du\,,
 </span> ce qui prouve le résultat pour <span class="math inline">k=1</span>.</p>
 <p>La généralisation à <span class="math inline">k</span> quelconque se fait par récurrence: on utilise la formule de convolution des la loi pour obtenir la loi pour <span class="math inline">k+1</span>:</p>
-<p><span class="math display">
-\begin{align*}
+<p><span class="math display">\begin{align*}
     X_1^2 + \dots + X_k^2 + X_{k+1}^2
     &amp; = (X_1^2 + \dots + X_k^2) + X_{k+1}^2\\
     &amp; = \chi^2(k) + X_{k+1}^2\,.
-\end{align*}
-</span> Ainsi, <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Ainsi,</p>
+<p><span class="math display">\begin{align*}
     f_{\chi^2(k+1)}(x)
     &amp; = \int_0^{\infty} f_{\chi^2(k)}(x-y) f_{X_{k+1}^2}(y) \, dy\\
     &amp; = \int_0^x \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} (x-y)^{\frac{k}{2}-1} e^{-\frac{x-y}{2}} \tfrac{e^{-\frac{y}{2}}}{\sqrt{2\pi y}} \, dy\\
     &amp; = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}\int_0^x  (x-y)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{ y}} \, dy\\
     &amp; = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})} x \int_0^1  (x-ux)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{xu}} \, du\\
-\end{align*}
-</span> avec le changement de variable <span class="math inline">y=ux</span>. Ensuite, <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>avec le changement de variable <span class="math inline">y=ux</span>. Ensuite,</p>
+<p><span class="math display">\begin{align*}
     f_{\chi^2(k+1)}(x)
     &amp; = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{\frac{k}{2}-1}  u^{1/2-1} du\enspace.
-\end{align*}
-</span> Or rappelons que si <span class="math inline">\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du</span>, alors pour tout <span class="math inline">a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En effet, en faisant le changement de variable dans l’intégrale double qui suit: <span class="math display">
+\end{align*}</span></p>
+<p>Or rappelons que si <span class="math inline">\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du</span>, alors pour tout <span class="math inline">a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En effet, en faisant le changement de variable dans l’intégrale double qui suit: <span class="math display">
 \begin{array}{ccccc}
     \psi &amp; : &amp; \mathbb{R}^+ \times \mathbb{R}^+ &amp; \to     &amp; \mathbb{R}^+\times ]0,1[                 \\
             &amp;   &amp; (s,t)                          &amp; \mapsto &amp; \Big(s+t, \frac{t}{s+t}\Big)\,,
 \end{array}
-</span> c’est-à-dire <span class="math inline">\psi^{-1}(r,w) = (r(1-w), rw)</span>, et le jacobien est donné par <span class="math inline">J_{\psi^{-1}}(r,w) = \begin{pmatrix} 1-w &amp; -r \\ w &amp; r \end{pmatrix}</span>, et donc <span class="math inline">J_{\psi^{-1}}(r,w)=r</span>, on obtient: <span class="math display">
-\begin{align*}
+</span> c’est-à-dire <span class="math inline">\psi^{-1}(r,w) = (r(1-w), rw)</span>, et le jacobien est donné par <span class="math inline">J_{\psi^{-1}}(r,w) = \begin{pmatrix} 1-w &amp; -r \\ w &amp; r \end{pmatrix}</span>, et donc <span class="math inline">J_{\psi^{-1}}(r,w)=r</span>, on obtient:</p>
+<p><span class="math display">\begin{align*}
 \Gamma(a)\Gamma(b) &amp; = \int_0^{\infty} t^{a-1} e^{-t} \, dt \int_0^{\infty} s^{b-1} e^{-s} \, ds\\
 &amp; = \int_0^{\infty} \int_0^{\infty} e^{-t-s} t^{a-1} s^{b-1} \, dt \, ds\\
 &amp; = \int_0^{1} \int_0^{\infty} e^{-r} (rw)^{a-1} (r(1-w))^{b-1} r \, dr \, dw\\
 &amp; = \int_0^1 w^{a-1} (1-w)^{b-1} \int_0^{\infty} e^{-r} r^{a+b-1} \, dr \, dw\\
-\end{align*}
-</span> et donc <span class="math inline">\Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En appliquant cette relation pour <span class="math inline">a=\frac{k}{2}</span> et <span class="math inline">b=1/2</span>, on obtient</p>
-<p><span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>et donc <span class="math inline">\Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}</span>. En appliquant cette relation pour <span class="math inline">a=\frac{k}{2}</span> et <span class="math inline">b=1/2</span>, on obtient</p>
+<p><span class="math display">\begin{align*}
     f_{\chi^2(k+1)}(x)
     &amp; = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k+1}{2})} \enspace.
-\end{align*}
-</span> Le résultat est donc prouvé par récurrence.</p>
+\end{align*}</span></p>
+<p>Le résultat est donc prouvé par récurrence.</p>
 </div>
-<p><br></p>
 </section>
 <section id="loi-de-student" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="loi-de-student">Loi de Student</h3>
@@ -852,36 +845,35 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
     f_{(U,V)}(u,v)
     = \dfrac{e^{-\frac{u^2}{2}}}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k u^2}{v^2}\bigg)^{\frac{k}{2}-1} e^{-\frac{1}{2} \frac{k u^2}{v^2}} \dfrac{2 k u^2}{(v^2)^{\frac{3}{2}}} {1\hspace{-3.8pt} 1}_{\mathbb{R}^*}(v)\,.
 </span> Il suffit alors de marginaliser pour obtenir la densité de <span class="math inline">V</span>, ce qui s’effectue en calculant l’intégrale <span class="math display">
-    \int_\mathbb{R} f_{(U,V)} (u,v) \, du\,.
-</span> Les termes en <span class="math inline">u</span> de l’expression précédente s’intègre en <span class="math display">
-\begin{align*}
+    \int_{\mathbb{R}} f_{(U,V)} (u,v) \, du\,.
+</span> Les termes en <span class="math inline">u</span> de l’expression précédente s’intègre en</p>
+<p><span class="math display">\begin{align*}
     \int_{-\infty}^\infty e^{-\frac{u^2}{2}(1+\frac{k}{v^2})} (u^2)^{\frac{k}{2}} \, d u
      &amp; = \int_0^\infty e^{-s} \bigg( \dfrac{2 s}{1+\frac{k}{v^2}} \bigg)^{\frac{k}{2}} \sqrt{\dfrac{2}{1+\frac{k}{v^2}}} \dfrac{ds}{2\sqrt{s}} \\
      &amp; = \frac{2^{\frac{k+1}{2}}}{2} \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}} \!\!\! \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
-\end{align*}
-</span> où la première égalité résulte du changement de variable <span class="math display">
+\end{align*}</span></p>
+<p>où la première égalité résulte du changement de variable <span class="math display">
     s = \dfrac{u^2}{2} \left( 1 + \dfrac{k}{v^2} \right) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
 </span> On reconnaît dans l’intégrale la valeur de <span class="math inline">\Gamma(\frac{k+1}{2})</span> ce qui conduit à <span class="math display">
     f_V(v)
     =
     \dfrac{1}{\sqrt{2 \pi}} \dfrac{1}{2^{\frac{k}{2}} \Gamma(\frac{k}{2})} \bigg(\dfrac{k}{v^2}\bigg)^{\frac{k}{2}-1} \dfrac{2 k}{(v^2)^{\frac{3}{2}}}
     \frac{2^{\frac{k+1}{2}}}{2} \frac{\Gamma\left(\tfrac{k+1}{2}\right)}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\,.
-</span> On réécrit alors les termes en <span class="math inline">k/v^2</span> via <span class="math display">
-\begin{align*}
+</span> On réécrit alors les termes en <span class="math inline">k/v^2</span> via</p>
+<p><span class="math display">\begin{align*}
 \left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{k}{(v^2)^{\frac{3}{2}}}
     \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}
     &amp; =
     \left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{1}{\sqrt{k}} \left(\tfrac{k}{v^2}\right)^{\frac{3}{2}}
     \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\\
     &amp; = \tfrac{1}{\sqrt{k}}\left(1+\tfrac{v^2}{k}\right)^{- \frac{k+1}{2}}\,,
-\end{align*}
-</span> ce qui permet de conclure : <span class="math display">
+\end{align*}</span></p>
+<p>ce qui permet de conclure : <span class="math display">
     f_V(v)
     =
     \dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
 </span></p>
 </div>
-<p><br></p>
 </section>
 <section id="loi-de-cauchy" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="loi-de-cauchy">Loi de Cauchy</h3>
@@ -898,11 +890,11 @@ f(x) = \frac{1}{2^{\frac{k}{2}}\Gamma(\frac{k}{2})} x^{\frac{k}{2}-1} e^{-x/2}\,
 </span> Or <span class="math inline">\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi x}</span> quand <span class="math inline">|x|\to \infty</span>, et <span class="math inline">x\mapsto \frac{|x|}{\pi(1+x^2)}</span> n’est donc pas intégrable sur <span class="math inline">\mathbb{R}</span> au sens de Lebesgue. C’est donc un exemple de loi pour laquelle la loi des grands nombres et le théorème central limite ne s’appliquent pas.</p>
 <section id="fonction-caractéristique" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="fonction-caractéristique">Fonction caractéristique</h4>
-<p>La fonction caractéristique de la loi de Cauchy standard est donnée par <span class="math display">
-\begin{align*}
+<p>La fonction caractéristique de la loi de Cauchy standard est donnée par</p>
+<p><span class="math display">\begin{align*}
 \varphi_X(t) &amp; \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
-\end{align*}
-</span> et donc si <span class="math inline">X\sim \mathcal{C}(\mu,\sigma)</span>, alors pour tout <span class="math inline">t \in \mathbb{R}</span>, <span class="math inline">\varphi_X(t) = e^{i\mu t - \sigma |t|}</span>. Pour la preuve voir par exemple <span class="citation" data-cites="Barbe_Ledoux06">(Exemple III.5.5., <a href="#ref-Barbe_Ledoux06" role="doc-biblioref">Barbe et Ledoux 2006</a>)</span> Une conséquence directe est que la somme de deux variables aléatoires indépendantes de loi de Cauchy reste une loi de Cauchy: Si <span class="math inline">X_1 \sim \mathcal{C}(\mu_1,\sigma_2)</span> et <span class="math inline">X_2 \sim \mathcal{C}(\mu_2,\sigma_2)</span> sont indépendantes, alors <span class="math inline">X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)</span> (car elles ont la même fonction caractéristique).</p>
+\end{align*}</span></p>
+<p>et donc si <span class="math inline">X\sim \mathcal{C}(\mu,\sigma)</span>, alors pour tout <span class="math inline">t \in \mathbb{R}</span>, <span class="math inline">\varphi_X(t) = e^{i\mu t - \sigma |t|}</span>. Pour la preuve voir par exemple <span class="citation" data-cites="Barbe_Ledoux06">(Exemple III.5.5., <a href="#ref-Barbe_Ledoux06" role="doc-biblioref">Barbe et Ledoux 2006</a>)</span> Une conséquence directe est que la somme de deux variables aléatoires indépendantes de loi de Cauchy reste une loi de Cauchy: Si <span class="math inline">X_1 \sim \mathcal{C}(\mu_1,\sigma_2)</span> et <span class="math inline">X_2 \sim \mathcal{C}(\mu_2,\sigma_2)</span> sont indépendantes, alors <span class="math inline">X_1+X_2 \sim \mathcal{C}(\mu_1+\mu_2,\sigma_1+\sigma_2)</span> (car elles ont la même fonction caractéristique).</p>
 <div class="no-row-height column-margin column-container"><div id="ref-Barbe_Ledoux06" class="csl-entry" role="listitem">
 Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
 </div></div><p>On en déduit que la moyenne de variables de Cauchy standard i.i.d suit la loi de Cauchy standard. En effet, si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d de loi de Cauchy standard, alors pour tout <span class="math inline">t \in \mathbb{R}</span>, <span class="math inline">\varphi_{\frac{1}{n}\sum_{i=1}^n X_i}(t) = e^{-|t|}</span>, et donc <span class="math inline">\frac{1}{n}\sum_{i=1}^n X_i \sim \mathcal{C}(0,1)</span>. Ainsi la moyenne empirique ne converge pas en probabilité vers une constante!</p>
@@ -934,22 +926,24 @@ Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
 </span> La formule du changement de variables donne alors la densité de <span class="math inline">f_{(U,V)}</span> : <span class="math display">
     f_{(U,V)}
     = \dfrac{1}{2 \pi} e^{- \frac{u^2 + u^2v^2}{2}} |u|\,.
-</span> On obtient alors la densité de <span class="math inline">V</span> en intégrant par rapport à <span class="math inline">u</span> : <span class="math display">
-\begin{align*}
+</span> On obtient alors la densité de <span class="math inline">V</span> en intégrant par rapport à <span class="math inline">u</span> :</p>
+<p><span class="math display">\begin{align*}
     f_V(v)
-    &amp; = \dfrac{1}{2 \pi} \int_\mathbb{R} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
+    &amp; = \dfrac{1}{2 \pi} \int_{\mathbb{R}} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
     &amp; = \dfrac{1}{\pi} \int_0^\infty e^{- \frac{u^2(1 + v^2)}{2}} u \, \mathrm du\\
     &amp; = \dfrac{1}{\pi} \bigg[ -\dfrac{e^{- \frac{u^2(1 + v^2)}{2}}}{1+v^2} \bigg]_0^\infty\\
-    &amp; = \dfrac{1}{\pi(1+v^2)}\,.
-\end{align*}
-</span></p>
+    &amp; = \dfrac{1}{\pi(1+v^2)}\enspace.
+\end{align*}</span></p>
 </div>
 <p>On obtient ainsi une autre manière de simuler une loi de Cauchy, en prenant le ratio de deux gaussiennes indépendantes. Cependant, la simulation via la méthode d’inversion peut-être moins coûteuse puisqu’elle ne fait appel qu’à une variable aléatoire uniforme et à la fonction tangente.</p>
-
-
-
 </section>
 </section>
+</section>
+<section id="bibliographie" class="level2">
+<h2 class="anchored" data-anchor-id="bibliographie">Bibliographie</h2>
+
+
+
 </section>
 
 

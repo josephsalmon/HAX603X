@@ -54,7 +54,27 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-</style>
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -155,7 +175,7 @@ window.Quarto = {
 <link rel="stylesheet" href="../custom.css">
 </head>
 
-<body class="nav-sidebar floating nav-fixed">
+<body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -365,7 +385,7 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/th_asymptotique.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -386,22 +406,23 @@ window.Quarto = {
 </header>
 
 
-<section id="loi-des-grands-nombres" class="level2">
+<section id="loi-des-grands-nombres" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="loi-des-grands-nombres">Loi des grands nombres</h2>
 <p>Le premier résultat fondamental en probabilités concerne le comportement asymptotique de la moyenne empirique: <span class="math display">
 \bar X_n = \dfrac{X_1 + \cdots + X_n}{n} \enspace.
 </span> quand on observe <span class="math inline">n</span> variables aléatoires i.i.d <span class="math inline">X_1,\dots,X_n</span>, ayant une espérance finie.</p>
 <div id="thm-lfgn" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres)</strong></span> <br></p>
-<p>Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 1 (Loi forte des grands nombres)</strong></span> Soit <span class="math inline">(X_n)_{n \geq 1}</span> une suite de variables aléatoires indépendantes et identiquement distribuées (i.i.d.) dans <span class="math inline">L^1(\Omega, \mathcal{F}, \mathbb{P})</span>. Notons <span class="math inline">\mu = \mathbb{E}[X_1]</span>. Alors <span class="math inline">\bar X_n</span> converge vers <span class="math inline">\mu</span> presque sûrement : <span class="math display">
 \mathbb{P}\bigg( \dfrac{X_1 + \cdots + X_n}{n} \underset{n \to \infty}{\longrightarrow} \mu \bigg) = 1\,.
 </span></p>
 </div>
 <p><strong>Interprétation</strong>: Intuitivement, la probabilité d’un événement <span class="math inline">A</span> correspond à la fréquence d’apparition de <span class="math inline">A</span> quand on répète une expérience qui fait intervenir cet événement. Par exemple, si on dispose une pièce truquée, on estimera la probabilité d’apparition du côté pile en lançant la pièce un grand nombre de fois et en comptant le nombre de pile obtenu. La loi des grands nombres justifie a posteriori cette intuition : si <span class="math inline">X_1, \ldots, X_n</span> sont i.i.d. de loi de Bernoulli de paramètre <span class="math inline">p</span>, alors <span class="math display">
     \dfrac{X_1 + \cdots + X_n}{n} \xrightarrow[n \to \infty]{p.s.} p \enspace.
 </span> Le membre de gauche correspond au nombre empirique de pile obtenu, celui de droite à la valeur théorique.</p>
-<p><strong>Remarque</strong>: Bien qu’assez intuitif, ce théorème est difficile à démontrer, cf.<span class="citation" data-cites="Ouvrard08 Barbe_Ledoux06">[@Ouvrard08;@Barbe_Ledoux06]</span> ou encore <span class="citation" data-cites="Williams91">[@Williams91]</span> pour une version de preuve avec des martingales.</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<p><strong>Remarque</strong>: Bien qu’assez intuitif, ce théorème est difficile à démontrer, cf.<span class="citation" data-cites="Ouvrard08 Barbe_Ledoux06">(<a href="#ref-Ouvrard08" role="doc-biblioref">Ouvrard 2008</a>; <a href="#ref-Barbe_Ledoux06" role="doc-biblioref">Barbe et Ledoux 2006</a>)</span> ou encore <span class="citation" data-cites="Williams91">(<a href="#ref-Williams91" role="doc-biblioref">Williams 1991</a>)</span> pour une version de preuve avec des martingales.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Williams91" class="csl-entry" role="listitem">
+Williams, D. 1991. <em>Probability with martingales</em>. Cambridge Mathematical Textbooks. Cambridge: Cambridge University Press.
+</div></div><pre class="shinylive-python" data-engine="python"><code>#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -568,16 +589,20 @@ app = App(app_ui, server)
 <p><u>Pour aller plus loin</u>:</p>
 <p>Quant <span class="math inline">p</span> varie, à <span class="math inline">n</span> fixé…les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L’aléa est imparfait!</p>
 </section>
-<section id="théorème-central-limite-tcl" class="level2">
+<section id="théorème-central-limite-tcl" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="théorème-central-limite-tcl">Théorème central limite (TCL)</h2>
 <p>Une fois la loi des grands nombres établie, on peut se demander quel est l’ordre suivant dans le développement asymptotique de <span class="math inline">\bar X_n - \mu</span>, ou de manière équivalente de <span class="math inline">S_n - n \mu</span>, où <span class="math inline">S_n = X_1 + \cdots + X_n</span>. Le théorème suivant répond à cette question, en donnant une convergence en loi d’une transformation affine de la moyenne empirique:</p>
 <div id="thm-tcl" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite)</strong></span> Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\rm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 2 (Théorème central limite)</strong></span> Soit <span class="math inline">X_1, \ldots, X_n</span> une suite de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2 = {\mathrm var}(X_1) \in ]0, \infty[</span>. On note <span class="math inline">\mu = \mathbb{E}[X_1]</span> leur espérance. Alors <span class="math display">
 \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\enspace,
 </span> où <span class="math inline">N</span> suit une loi normale centrée réduite : <span class="math inline">N \sim\mathcal{N}(0,1)</span>.</p>
 </div>
-<p>Preuve: cf.<span class="citation" data-cites="Ouvrard08 Barbe_Ledoux06">[@Ouvrard08;@Barbe_Ledoux06]</span>.</p>
-<p>On peut interpréter ce théorème grossièrement de la façon suivante: la moyenne empirique de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2</span> se comporte asymptotiquement comme une loi normale <span class="math inline">\mathcal{N}(\mu, \tfrac{\sigma^2}{n})</span>, ce que l’on écrit avec un abus de notation:</p>
+<p>Preuve: cf.<span class="citation" data-cites="Ouvrard08 Barbe_Ledoux06">(<a href="#ref-Ouvrard08" role="doc-biblioref">Ouvrard 2008</a>; <a href="#ref-Barbe_Ledoux06" role="doc-biblioref">Barbe et Ledoux 2006</a>)</span>.</p>
+<div class="no-row-height column-margin column-container"><div id="ref-Ouvrard08" class="csl-entry" role="listitem">
+Ouvrard, J.-Y. 2008. <em>Probabilit<span>és</span> : Tome 1, Licence - CAPES</em>. 2ᵉ éd. Enseignement des math<span>é</span>matiques. Cassini.
+</div><div id="ref-Barbe_Ledoux06" class="csl-entry" role="listitem">
+Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
+</div></div><p>On peut interpréter ce théorème grossièrement de la façon suivante: la moyenne empirique de variables aléatoires i.i.d de variance <span class="math inline">\sigma^2</span> se comporte asymptotiquement comme une loi normale <span class="math inline">\mathcal{N}(\mu, \tfrac{\sigma^2}{n})</span>, ce que l’on écrit avec un abus de notation:</p>
 <p><span class="math display">
 \bar X_n \approx \mathcal{N}(\mu, \frac{\sigma^2}{n}) \enspace.
 </span></p>
@@ -586,20 +611,16 @@ app = App(app_ui, server)
     \tfrac{S_n - n \mu}{\sqrt n \sigma} \xrightarrow[n \to +\infty]{\mathcal{L}} N \enspace.
 </span></p>
 <p>Les hypothèses de ce théorème sont plutôt faibles (il suffit de supposer une variance finie). Pourtant, le résultat est universel : la loi de départ peut être aussi farfelue que l’on veut, elle se rapprochera toujours asymptotiquement d’une loi normale.</p>
-<p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>, notons <span class="math inline">\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)</span>. Ainsi</p>
-<p><span class="math display">
-\mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma}\in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}] \right)\\
-\begin{align}
+<p>On rappelle que la convergence en loi est équivalente à la convergence des fonctions de répartition en tout point de continuité de la limite. Ainsi, le théorème central limite se réécrit de la manière suivante : pour tout <span class="math inline">a &lt; b</span>, notons <span class="math inline">\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)</span>. Ainsi, <span class="math display">\begin{align}
     1-\alpha_n&amp; = \mathbb{P} \left(\bar X_n \in [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\nonumber\\
     &amp; =
     \mathbb{P} \left(\tfrac{\bar X_n - \mu}{\sigma} \in [ \tfrac{a}{\sqrt{n}},\tfrac{b}{\sqrt{n}}]\right) \nonumber\\
     &amp; =
     \mathbb{P} \bigg( a \leq \sqrt n \left(\tfrac{\bar X_n - \mu}{\sigma} \right) \leq b\bigg) \nonumber\\
     &amp; \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
-\end{align}
-</span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
+\end{align}</span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
 <p>Dans le cas classique d’un intervalle de confiance à 95%, c’est-à-dire quand <span class="math inline">\alpha_n=0.05</span>, et en prenant un intervalle de confiance symétrique (alors <span class="math inline">a=-t</span> et <span class="math inline">b=q</span>) on obtient <span class="math inline">1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}</span> et <span class="math inline">q</span> est donc le quantile de niveau <span class="math inline">1-\tfrac{\alpha_n}{2}</span> de la loi normale centrée réduite. Numériquement on peut facilement évaluer <span class="math inline">q</span> et vérifier que <span class="math inline">q\approx 1.96</span> avec <code>scipy</code>:</p>
-<div id="d9b1f608" class="cell" data-execution_count="1">
+<div id="5a89cfdc" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf(<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussienne centrée réduite,</span><span class="ch">\n</span><span class="ss">Quantile de niveau (1-α/2):</span><span class="ch">\n</span><span class="ss">q = </span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -794,13 +815,10 @@ def server(input, output, session):
 app = App(app_ui, server)
 </code></pre>
 <p>Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l’analyse. Pour cela supposons que l’on ait une suite de variables aléatoires réelles <span class="math inline">X_1, \dots, X_n</span>, i.i.d. dont la fonction de densité commune est notée par <span class="math inline">f</span>.</p>
-<p>On rappelle quelques éléments de probabilités concernant les densités. Pour cela on rappelle la définition de la convolution deux fonctions. Pour cela prenons deux fonctions <span class="math inline">f</span> et <span class="math inline">g</span> définies sur <span class="math inline">\mathbb{R}</span> et qui sont intégrables au sens de Lebesgue. La <strong>convolution</strong> de <span class="math inline">f</span> par <span class="math inline">g</span> est alors la fonction <span class="math inline">f*g</span> suivante:</p>
-<p><span class="math display">
-\begin{align}
+<p>On rappelle quelques éléments de probabilités concernant les densités. Pour cela on rappelle la définition de la convolution deux fonctions. Pour cela prenons deux fonctions <span class="math inline">f</span> et <span class="math inline">g</span> définies sur <span class="math inline">\mathbb{R}</span> et qui sont intégrables au sens de Lebesgue. La <strong>convolution</strong> de <span class="math inline">f</span> par <span class="math inline">g</span> est alors la fonction <span class="math inline">f*g</span> suivante: <span class="math display">\begin{align*}
 \mathbb{R} &amp;\mapsto \mathbb{R} \nonumber\\
 x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
-\end{align}
-</span></p>
+\end{align*}</span></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -823,6 +841,7 @@ Note
 </div>
 <p>Dessous, pour <span class="math inline">X_1, \dots, X_n</span>, i.i.d., de densité <span class="math inline">f</span>, on affiche la densité de la loi de <span class="math inline">\bar{X}_n</span>.</p>
 <pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+#| echo: false
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive
@@ -975,6 +994,7 @@ def server(input, output, session):
 
 app = App(app_ui, server)</code></pre>
 <p>Pour aller plus loin sur les convolutions, voir la vidéo de 3Blue1Brown à ce sujet: <a href="https://m.youtube.com/watch?v=IaSGqQa5O-M">Convolutions | Why X+Y in probability is a beautiful mess</a></p>
+
 
 
 </section>
