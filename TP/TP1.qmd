@@ -137,10 +137,6 @@ On pourra consulter [https://0.30000000000000004.com/](https://0.300000000000000
 :::
 
 
-::: {.content-hidden unless-meta="correction"}
-#### Solution
-:::
-
 ### Aide en Python
 
 On peut utiliser l'aide de base de `python` avec les commandes `help(la-fonction)` ou `?la-fonction`. L'aide en ligne est aussi conseillée, surtout pour la création de graphiques avec `matplotlib` pour avoir plus de détails et des galleries de visualisation.
@@ -174,6 +170,18 @@ Pour créer des objets, il suffit d'utiliser la commande `=`.
 
 Créer une variable `x` qui contient la valeur $12$. Effectuer des calculs du type `x+3`, `x**4`, `4*x` pour vérifier que tout se passe comme prévu.
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+x = 12
+print(x+3)
+print(x**4)
+print(4*x)
+```
+:::
+
+
 En pratique on donnera des noms d'objets pertinents, par exemple
 ```{python}
 distance = 105  # en km
@@ -205,17 +213,56 @@ Créez un vecteur `v1` composé des réels $7, 8, 3$, un vecteur `v2` composé d
 Testez les commandes suivantes :
 `v1-7`, `v2**4`, `10*v3`,  `v1+v2`, `v1*v2`, `v1/v2`, `v1+v3`.
 
+
+
 Il existe un grand nombre de fonctions mathématiques qui s'appliquent directement sur un vecteur :
 `np.sum()`, `np.prod()`, `len()`, `np.min()`, `np.max()`, `np.nanmax()`, `np.argmax()`, `np.mean()`, `np.median()`, `np.var()`, `np.std()`.
 
 
 Enfin on peut aussi utiliser des fonctions de tri, partiel ou non:
-`np.sort()`, `np.argsort()`, `np.partition()`, `np.argpartition()` on pourra consulter l'aide en ligne pour plus de détails: [https://numpy.org/doc/stable/reference/routines.sort.html](https://numpy.org/doc/stable/reference/routines.sort.html), et les teser sur le vecteur `v2` par exemple.
+`np.sort()`, `np.argsort()`, `np.partition()`, `np.argpartition()` on pourra consulter l'aide en ligne pour plus de détails: [https://numpy.org/doc/stable/reference/routines.sort.html](https://numpy.org/doc/stable/reference/routines.sort.html), et les tester sur le vecteur `v2` par exemple.
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| error: true
+v1 = np.array([7, 8, 3])
+v2 = np.array([-0.5, 120, -12])
+v3 = np.array([0, 1, 0, 1])
+print(v1-7)
+print(v2**4)
+print(10*v3)
+print(v1+v2)
+print(v1*v2)
+print(v1/v2)
+print(v1+v3)
+```
+
+
+
+```{python}
+v2.sort()
+print(v2)
+```
+:::
 
 #### Question : Opérations sur les vecteurs
 
 Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie (utiliser l'aide avec `?` ou la documentation en ligne).
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| error: true
+v4 = np.array([1, 12, 3, 8, 4, 5])
+
+print(np.sort(v4))
+print(np.argsort(v4))
+print(np.partition(v4, 3))
+print(np.argpartition(v4, 3))
+```
+:::
 
 
 ::: {.callout-note}
@@ -255,9 +302,6 @@ Plus généralement, pour extraire les valeurs associées aux indices $3$, $4$ e
 On peut aussi extraire des sous parties de vecteurs, par exemple `x[3:7]` pour extraire les valeurs d'indice $3$, $4$, $5$ et $6$, ou bien `x[3:]` pour extraire les valeurs d'indice $3$, $4$, $5$, etc. jusqu'à la fin. 
 
 
-
-### Matrices en `numpy`
-
 La fonction `np.shape` permet de connaître la taille d'un vecteur ou d'une matrice. On regardera son comportement sur les vecteurs notamment.
 
 
@@ -289,13 +333,35 @@ np.testing.assert_allclose(np.array([1.0, 4, 9]), A ** 2)
 print("it worked: even for powers")
 ```
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| error: true
+# Somme de deux vecteurs
+A = np.array([1.0, 2, 3])
+B = np.array([-1, -2, -3.0])
+
+sum_A_B = A + B
+np.testing.assert_allclose(np.zeros((3,)), sum_A_B)
+print("it worked")
+
+# Le produit terme à terme avec *
+prod_A_B = A * B
+
+np.testing.assert_allclose(np.array([-1.0, -4, -9]), prod_A_B)
+print("it worked")
+
+```
+:::
+
+
 Le produit scalaire (ou matriciel) est l'opérateur `@`. Vérifiez que pour la matrice $J$ ci-dessous $J^3 = Id$ de deux façons. Pour cela on pourra aussi utiliser la puissance matricielle avec `np.linalg.matrix_power`:
 
 
 ```{python}
 #| eval: false
 J = np.array([[0, 0, 1.0], [1.0, 0, 0], [0, 1.0, 0]])
-
 I3 = np.eye(3)
 
 np.testing.assert_allclose(I3, ...)  # XXX TODO
@@ -303,6 +369,19 @@ print("it worked: method 1")
 np.testing.assert_allclose(I3, ...)  # XXX TODO
 print("it worked: method 2")
 ```
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+J = np.array([[0, 0, 1.0], [1.0, 0, 0], [0, 1.0, 0]])
+I3 = np.eye(3)
+np.testing.assert_allclose(I3, J @ J @ J)
+print("it worked: method 1")
+np.testing.assert_allclose(I3, np.linalg.matrix_power(J, 3))
+print("it worked: method 2")
+```
+:::
 
 #### Question : résolution de systèmes linéaires
 
@@ -329,7 +408,9 @@ print(Jbig.T)
 print(np.transpose(Jbig))
 ```
 
-Comparons niveau temps d'execution l'inversion explicite vs. l'utilisation d'un solveur de système linéaire tel que `np.linalg.solve`:
+
+Comparons niveau temps d'execution l'inversion explicite vs. l'utilisation d'un solveur de système linéaire tel que `np.linalg.solve`, pour la matrice $J$ et le vecteur $b$ ci-dessus.
+
 
 ```{python}
 #| eval: false
@@ -354,6 +435,37 @@ np.testing.assert_allclose(y1, y2)
 print("Les deux méthodes trouvent le même résultat")
 ```
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+import time
+n = 20 
+Jbig = np.roll(np.eye(n), -1, axis=1)  # matrice de permutation de taille n
+b = np.arange(n)
+
+# Résolution de système par une méthode naive: inversion de matrice
+t0 = time.perf_counter()
+y1 = np.linalg.inv(Jbig) @ b
+timing_naive = time.perf_counter() - t0
+print(
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive:.4f} s."
+)
+
+# Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``
+t0 = time.perf_counter()
+y2 = np.linalg.solve(Jbig, b)
+timing_optimized = time.perf_counter() - t0
+print(
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_optimized:.4f} s.\nC'est donc {timing_naive / timing_optimized} fois plus rapide d'utiliser la seconde formulation"
+)
+
+np.testing.assert_allclose(y1, y2)
+print("Les deux méthodes trouvent le même résultat")
+```
+:::
+
+
 ::: {.callout-tip}
 Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser le package `timeit`^[[lien vers la documentation de timeit](https://docs.python.org/3/library/timeit.html)] ou voir la discussion ici: [https://superfastpython.com/time-time-vs-time-perf_counter/](https://superfastpython.com/time-time-vs-time-perf_counter/).
 :::
@@ -374,13 +486,30 @@ print(f"The first column is {J[:, 0]}")
 print(f"The second row is {...}")  # XXX TODO
 ```
 
-Mettre à zéro une ligne sur 2 de la matrice identité de taille $5\times 5$
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+print(f"The second row is {J[1, :]}")
+```
+:::
+
+
+
+Mettre à zéro une ligne sur 2 de la matrice constante remplie de 1, de taille $5\times 5$:
 
 ```{python}
 #| eval: false
-C = np.eye(5, 5)
+C = np.ones((5, 5))
 C[...,...] = 0  # mettre à zéro une ligne sur deux. # XXX TODO
 ```
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+C = np.ones((5, 5))
+C[1::2, :] = 0  # mettre à zéro une ligne sur deux.
+print(C)
+```
+:::
 
 ## Visualisation d'une figure
 Pour lancer une figure on peut utiliser la package `matplotlib`.
@@ -417,15 +546,26 @@ generateur.normal()
 
 #### Question : Matrices aléatoires
 
-Créer une matrice de taille $4\times 5$ dont les entrées sont $i.i.d$ de loi de Laplace d'espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s'aider [de l'aide en ligne](https://numpy.org/doc/stable/reference/random/generator.html) si besoin.
+Créer une matrice de taille $5 \times 7$ dont les entrées sont $i.i.d$ de loi de Laplace d'espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s'aider [de l'aide en ligne](https://numpy.org/doc/stable/reference/random/generator.html) si besoin.
 
 ```{python}
 #| eval: false
 
-generateur = np.random.default_rng()
+rng = np.random.default_rng()
 M = ...  # XXX TODO
 print(M)
 ```
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+rng = np.random.default_rng()
+M = rng.laplace(scale=1, size=(5, 7))
+print(np.round(M, 2))
+print(np.var(M))
+```
+:::
+
 
 #### Question : Reproduire des résultats
 
@@ -453,7 +593,7 @@ On utilisera les mêmes paramètres de centrage et d'échelle pour les trois loi
 ```{python}
 #| eval: false
 
-n_samples = 10000
+n_samples = 100
 X = np.empty([n_samples, 3])
 X[:, 0] = ...
 X[:, 1] = ...
@@ -461,7 +601,7 @@ X[:, 2] = ...
 
 lois = ["Loi de Gauss", "Loi de Laplace", "Loi de Cauchy"]
 
-fig_hist, ax = plt.subplots(3, 1, figsize=(3, 3))
+fig_hist, ax = plt.subplots(3, 1, figsize=(6, 3))
 
 for i, name in enumerate(lois):
     ax[i].hist(..., bins=100, density=True)
@@ -471,6 +611,29 @@ plt.tight_layout()
 plt.show()
 ```
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+
+n_samples = 100
+X = np.empty([n_samples, 3])
+X[:, 0] = rng.normal(size=n_samples)
+X[:, 1] = rng.laplace(size=n_samples)
+X[:, 2] = rng.standard_cauchy(size=n_samples)
+
+lois = ["Loi de Gauss", "Loi de Laplace", "Loi de Cauchy"]
+
+fig_hist, ax = plt.subplots(3, 1, figsize=(6, 3))
+
+for i, name in enumerate(lois):
+    ax[i].hist(X[:, i], bins=100, density=True)
+    ax[i].set_title(name)
+
+plt.tight_layout()
+```
+:::
 
 De manière complémentaire le module `scipy.stats` permet d'utiliser des lois usuelles, et de faire des tests statistiques. On pourra consulter la documentation en ligne pour plus de détails: [https://docs.scipy.org/doc/scipy/reference/stats.html](https://docs.scipy.org/doc/scipy/reference/stats.html).
 
