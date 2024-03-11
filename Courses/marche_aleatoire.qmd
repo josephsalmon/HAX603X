@@ -46,7 +46,7 @@ $$
 \P(X_1=-1)=\P(X_1=1)=\frac{1}{2}.
 $$
 :::
-:::
+
 On parle de *marche* car ce processus peut représenter la position d'une personne qui se déplace en ligne droite par pas d'une unité avec équiprobabilité d'aller vers l'avant ($+1$) ou vers l'arrière ($-1$). Cette marche est dite *simple* car on ne fait que des pas d'amplitude $1$ et *symétrique* car il y a la même probabilité de tirer $1$ et $-1$ pour chaque incrément.
 
 Ce processus peut également servir à modéliser la richesse d'une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d'une richesse initiale $S_0=x>0$, à chaque pas de temps elle perd ou gagne $1$\euro{} en fonction du tirage obtenu. Les variables $X_n$ représentent alors le gain du $n$-ème jeu, et $S_n$ la richesse totale de la joueuse après le $n$-ème tirage.
@@ -54,8 +54,10 @@ Ce processus peut également servir à modéliser la richesse d'une joueuse qui 
 ::: {.content-visible when-format="html"}
 
 ::: {#fig-marche}
+
 ```{ojs}
 //| layout-ncol: 1
+//| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
@@ -311,6 +313,7 @@ Il n'existe pas de chemin de $(0,0)$ à $(2,4)$.
 ```{ojs}
 //| layout-ncol: 1
 //| figalign: "center"
+//| echo: false
 
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
