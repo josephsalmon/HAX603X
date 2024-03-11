@@ -4,6 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
+correction: true
 filters:
   - shinylive
 ---
@@ -48,16 +49,40 @@ import matplotlib.pylab as plt
 from scipy import stats
 ```
 
-À l'aide de la fonction `plt.hist`, représentez l'histogramme de cet échantillon:
+À l'aide de la fonction `plt.hist`, représentez l'histogramme de cet échantillon.
 
 ```{python}
+#| echo: false
 #| layout-ncol: 1
 fig, ax = plt.subplots()
 vect = rng.uniform(-1, 1, 1000)
-ax.hist(vect, label="Histogramme")
+ax.hist(vect, label="Histogramme", bins=30, density=True)
+plt.title("Histogramme: tirage uniforme sur [-1, -1]")
 plt.legend()
+ax.set_xlim((-1.5,1.5))
+ax.set_xlabel('Abscisse')
+ax.set_ylabel('Ordonnée')
 plt.show()
 ```
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| echo: true
+#| layout-ncol: 1
+fig, ax = plt.subplots()
+vect = rng.uniform(-1, 1, 1000)
+ax.hist(vect, label="Histogramme", bins=30, density=True)
+plt.title("Histogramme: tirage uniforme sur [-1, -1]")
+plt.legend()
+ax.set_xlim((-1.5,1.5))
+ax.set_xlabel('Abscisse')
+ax.set_ylabel('Ordonnée')
+plt.show()
+```
+:::
+
 
 On utilisera l'aide de  [hist](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html) de `matplotlib`s pour préciser les options graphiques suivantes:
 
@@ -91,7 +116,6 @@ ax.plot(x, stats.uniform.pdf(x, loc=-1,scale=2),'--', color='k', label="Loi thé
 ax.hist(vect10000, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
 ax.hist(vect1000, histtype='step', density=True, bins=30, label="Histogramme 5000", fill=False, color=colors[1])
 ax.hist(vect100, histtype='step', density=True, bins=30, label="Histogramme 1000", fill=False, color=colors[2])
-# plot density
 
 plt.title('Histogramme: tirage uniforme sur [-1, -1]')
 plt.xlabel('Abscisse')
@@ -108,12 +132,52 @@ custom_lines = [Line2D([0], [0], color=colors[0], lw=2),
 ax.legend(custom_lines, ['10000 tirages', '1000 tirages', '100 tirages'], loc='upper right')
 
 plt.show()
-
 ```
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+cmap = plt.cm.coolwarm
+vect100 = rng.uniform(-1, 1, 1000)
+vect1000 = rng.uniform(-1, 1, 5000)
+vect10000 = rng.uniform(-1, 1, 10000)
+x = np.linspace(-2, 2, num=300)
+
+fig, ax = plt.subplots()
+colors=[cmap(0.99), cmap(0.7), cmap(0.5)]
+
+ax.plot(x, stats.uniform.pdf(x, loc=-1,scale=2),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vect10000, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+ax.hist(vect1000, histtype='step', density=True, bins=30, label="Histogramme 5000", fill=False, color=colors[1])
+ax.hist(vect100, histtype='step', density=True, bins=30, label="Histogramme 1000", fill=False, color=colors[2])
+
+plt.title('Histogramme: tirage uniforme sur [-1, -1]')
+plt.xlabel('Abscisse')
+plt.ylabel('Ordonnée')
+
+ax.set_xlim((-2,2))
+
+from matplotlib.lines import Line2D
+
+custom_lines = [Line2D([0], [0], color=colors[0], lw=2),
+                Line2D([0], [0], color=colors[1], lw=2),
+                Line2D([0], [0], color=colors[2], lw=2)]
+
+ax.legend(custom_lines, ['10000 tirages', '1000 tirages', '100 tirages'], loc='upper right')
+
+plt.show()
+```
+:::
+
+
 Attention quand vous tracez des histogrammes pour des réalisation de la v.a. non bornées: pour la gaussienne, les histogrammes sont bons
 
 ```{python}
-#| code-fold: true
+#| echo: false
 #| layout-ncol: 1
 
 vectGauss = np.random.randn(1000)
@@ -129,10 +193,35 @@ ax.hist(vectGauss, histtype='step', density=True, bins=30, label="Histogramme 10
 plt.title('Histogramme: tirage Gaussien')
 plt.show()
 ```
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+
+```{python}
+#| echo: true
+#| layout-ncol: 1
+
+vectGauss = np.random.randn(1000)
+
+fig, ax = plt.subplots()
+
+xx = np.linspace(vectGauss.min() - 1, vectGauss.max() + 1, 100)
+ax.plot(xx, stats.norm.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectGauss, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+# plot density
+
+plt.title('Histogramme: tirage Gaussien')
+plt.show()
+```
+:::
+
+
 Pour la Cauchy, les histogrammes se comportent mal
 
 ```{python}
-#| code-fold: true
+#| echo: false
 #| layout-ncol: 1
 
 vectCauchy = np.random.standard_cauchy(10000)
@@ -145,13 +234,32 @@ ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi th�
 ax.hist(vectCauchy, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
 plt.title('Histogramme naïf: tirage Cauchy...')
 plt.show()
-# plot density
 ```
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| echo: true
+#| layout-ncol: 1
+
+vectCauchy = np.random.standard_cauchy(10000)
+
+fig, ax = plt.subplots()
+
+xx = np.linspace(vectCauchy.min() - 1, vectCauchy.max() + 1, 100)
+ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectCauchy, histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+plt.title('Histogramme naïf: tirage Cauchy...')
+plt.show()
+```
+:::
+
 Il faut tronquer pour retrouver une représentation fidèle:
 
 ```{python}
 #| layout-ncol: 1
-#| code-fold: true
+#| echo: false
 
 xmax = 11
 fig, ax = plt.subplots()
@@ -160,13 +268,35 @@ xx = np.linspace(-xmax - 1, xmax + 1, 100)
 ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
 
 ax.hist(vectCauchy[np.abs(vectCauchy) < xmax], histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
-# plot density
 
 ax.set_xlim((-xmax - 1, xmax + 1))
 
 plt.title('Histogramme : tirage Cauchy tronquée...')
 plt.show()
 ```
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+xmax = 11
+fig, ax = plt.subplots()
+
+xx = np.linspace(-xmax - 1, xmax + 1, 100)
+ax.plot(xx, stats.cauchy.pdf(xx, loc=0, scale=1),'--', color='k', label="Loi théorique", alpha=0.5)
+
+ax.hist(vectCauchy[np.abs(vectCauchy) < xmax], histtype='step', density=True, bins=30, label="Histogramme 10000", fill=False, color=colors[0])
+
+ax.set_xlim((-xmax - 1, xmax + 1))
+
+plt.title('Histogramme : tirage Cauchy tronquée...')
+plt.show()
+```
+:::
+
 
 ## Exercice 2: Fonction de répartition de la loi uniforme
 
@@ -191,7 +321,7 @@ ax.plot(x, stats.uniform.cdf(x, loc=-0.5,scale=1), color=colors[2], label="[-0.5
 ax.set_xlim([-1.5,1.5])
 plt.legend()
 ```
-²
+
 :::{.callout-note}
 
 ## Pour aller plus loin
@@ -212,9 +342,26 @@ plt.legend()
 plt.title("Fonctions de répartition de diverses loi uniformes")
 plt.show()
 ```
-
 :::
 
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+
+fig, ax = plt.subplots()
+lines = np.linspace(0, 1, 9)
+
+for i, vali in enumerate(lines):
+    ax.plot(x, stats.uniform.cdf(x, loc=-vali,scale=2*vali), color=cmap(0.2+0.8*i/len(lines)), label=f"[-{-vali},{-vali+2*vali}]", lw=2)
+
+ax.set_xlim([-1.5,1.5])
+plt.legend()
+plt.title("Fonctions de répartition de diverses loi uniformes")
+plt.show()
+```
+:::
 
 
 ## Exercice 3: Étude de la moyenne empirique
@@ -241,6 +388,22 @@ ax.axhline(0.5, linestyle="--", color='red', lw=2, label="Espérance de la loi")
 ax.set_title("Convergence de la moyenne empirique")
 plt.legend()
 ```
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| warning: false
+
+vect = rng.uniform(0, 1, 1000)
+
+fig, ax = plt.subplots()
+ax.plot(np.cumsum(vect) / np.arange(1, len(vect)+1), label="Moyenne empirique")
+ax.axhline(0.5, linestyle="--", color='red', lw=2, label="Espérance de la loi")
+ax.set_title("Convergence de la moyenne empirique")
+plt.legend()
+```
+:::
 
 
 ## Exercice 4: Méthode d'inversion, loi exponentielle et loi de Cauchy
@@ -284,6 +447,44 @@ ax.legend(custom_lines,
           ], loc='lower right')
 
 ```
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| output: false
+#| warning: false
+fig, ax = plt.subplots()
+x = np.linspace(0, 8, num=300)
+ax.plot(x, stats.expon.cdf(x, scale=1), color='k', label="Fonction de répartition", lw=2)
+
+
+def dzexpo(n, lbd):
+    U = rng.uniform(size=n)
+    return - np.log(U) / lbd
+
+ax.hist(dzexpo(100, 1), density=True,  cumulative=True, histtype='step',bins=30, label="Estimation de la fonction de répartition", color=colors[0])
+ax.hist(dzexpo(1000, 1), density=True,  cumulative=True, histtype='step',bins=30, label="Estimation de la fonction de répartition", color=colors[1])
+ax.hist(dzexpo(10000, 1), density=True,  cumulative=True, histtype='step',bins=30, label="Estimation de la fonction de répartition", color=colors[2])
+ax.set_title("Loi exponentielle")
+
+custom_lines = [Line2D([0], [0], color='k', lw=2),
+                Line2D([0], [0], color=colors[0], lw=2),
+                Line2D([0], [0], color=colors[1], lw=2),
+                Line2D([0], [0], color=colors[2], lw=2),
+                ]
+
+ax.legend(custom_lines,
+          ['Fonction de répartition (théorique)',
+          'Fonction de répartition (estimée, n=100)',
+          'Fonction de répartition (estimée, n=1000)',
+          'Fonction de répartition (estimée, n=10000)',
+          ], loc='lower right')
+
+```
+
+:::
 
 ```{python}
 #| layout-ncol: 1
@@ -348,6 +549,8 @@ ax.legend(custom_lines,
 plt.show()
 ```
 
+
+
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -361,6 +564,24 @@ ax.set_title("Convergence de la moyenne empirique pour une loi de Cauchy?")
 plt.legend()
 
 ```
+
+
+::: {.content-hidden unless-meta="correction"}
+#### Solution
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| output: false
+#| warning: false
+
+vect = dzcauchy(1000, 1)
+fig, ax = plt.subplots()
+ax.plot(np.cumsum(vect) / np.arange(1, len(vect)+1), label="Moyenne empirique")
+ax.axhline(1, linestyle="--", color='red', lw=2, label="Médiane de la loi")
+ax.set_title("Convergence de la moyenne empirique pour une loi de Cauchy?")
+plt.legend()
+```
+:::
 
 
 
