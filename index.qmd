@@ -26,7 +26,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 ## Prérequis
 
 - Bases de probabilités (en particulier "HAX506X- Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
-- Programmation élémentaire (en Python): if ... then... else ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
+- Programmation élémentaire (en Python): `if` ... `then`... `else` ..., `for`, `while`, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
 
 
 ##  Description du cours
