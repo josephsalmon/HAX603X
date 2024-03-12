@@ -291,6 +291,19 @@ P
 \end{align*}
 
 
+
+Une démonstration alternative est donnée dans le livre de
+@Borel_Deltheil23, inspirée de celle @Barbier60
+Elle utilise l'approche suivante.
+Au lieu de calculer la probabilité d'intersection entre une aiguille et les rainures d'un parquet, nous allons déterminer le nombre moyen d'intersections entre une courbe et les rainures du parquet. Nous démontrerons que ce nombre moyen est directement proportionnel à la longueur de la courbe et inversement proportionnel à la distance moyenne entre les rainures du parquet (nous prendrons cette distance égale à 1 pour simplifier).
+
+Pour ce faire, nous allons d'abord considérer des lignes polygonales, pour lesquelles l'espérance d'intersection se calcule en sommant les espérances sur chaque segment. Nous étendrons ensuite ce résultat par continuité aux courbes régulières. La constante de proportionnalité de cette relation sera notée $\alpha$.
+
+Nous allons maintenant montrer que $\alpha = \frac{2}{\pi}$. Pour cela, prenons un cercle de rayon 2, donc de longueur $4\pi$. Si ce cercle est tangent aux lattes du parquet, il y a deux points d'intersection. Sinon, il y a également deux points d'intersection. Ainsi, le nombre moyen d'intersection est de 2, ce qui nous donne l'équation $2 = \alpha \times 4\pi$. En résolvant cette équation, nous trouvons $\alpha = \frac{2}{\pi}$.
+
+Ce résultat nous donne la probabilité d'intersection entre une aiguille et les lattes du parquet lorsque la taille de l'aiguille est inférieure à l'écartement des lattes.
+
+
 ::: {.callout-important appearance='default' icon="false"}
 ##  Exercice: rendre le jeu équilibré?
 En reprenant le même type de raisonnement que ci-dessus, trouver la distance entre les lattes du parquet qui rend le jeu équilibrer entre les deux joueurs introduit par Buffon (l'un pariant sur le fait que l'aiguille croise une ligne de la trame du parquet, l'autre pariant sur le fait que l'aiguille ne croise pas une ligne de la trame du parquet).

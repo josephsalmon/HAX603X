@@ -104,7 +104,7 @@ website:
   site-url: https://josephsalmon.github.io/HAX603X/
   repo-url: https://github.com/josephsalmon/HAX603X
   repo-actions: [source, issue]
-  navbar:
+  navbar: 
     title: HAX603X
     background: primary
     search: true
