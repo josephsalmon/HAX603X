@@ -8,8 +8,26 @@ website:
 # HAX603X: Modélisation stochastique {.unnumbered}
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
-Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd).
+Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd). Une version pdf est également disponible sur [ici](srcimages/Modélisation-stochastique--HAX603X-.pdf).
 
+
+<center>
+
+```{=html}
+<!-- <object data="1-Simulation/td1_generer_alea.pdf#zoom=Fit&navpanes=0&toolbar=0&pagemode=none" type="application/pdf" width="360" height="490">
+  <p>It appears you don't have a PDF viewer for this browser.
+  No biggie... you can <a href="1-Simulation/td1_generer_alea.pdf">click here to
+  download the PDF file.</a></p>
+</object> -->
+
+<embed
+  src="srcimages/Modélisation-stochastique--HAX603X-.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
+  width="400" height="540" />
+
+```
+
+
+</center>
 
 ## Enseignants
 
