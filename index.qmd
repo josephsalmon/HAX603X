@@ -10,9 +10,6 @@ website:
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
 Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd).
 
-:::{.callout-warning}
-Site en construction...(un peu de patience donc)
-:::
 
 ## Enseignants
 

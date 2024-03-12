@@ -109,9 +109,11 @@ website:
     background: primary
     search: true
     left:
-      - sidebar:Cours      
+      - sidebar:Cours
       - sidebar:Slides
       - sidebar:TP
+      - sidebar:TD
+
 
     tools:
       - icon: github
