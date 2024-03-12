@@ -172,7 +172,7 @@ Créer une variable `x` qui contient la valeur $12$. Effectuer des calculs du ty
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 x = 12
 print(x+3)
@@ -180,6 +180,7 @@ print(x**4)
 print(4*x)
 ```
 :::
+
 
 
 En pratique on donnera des noms d'objets pertinents, par exemple
@@ -224,7 +225,7 @@ Enfin on peut aussi utiliser des fonctions de tri, partiel ou non:
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| error: true
 v1 = np.array([7, 8, 3])
@@ -252,7 +253,7 @@ print(v2)
 Créez un vecteur de taille 5 et appliquez-lui les fonctions précédentes. Si vous ne comprenez pas la sortie (utiliser l'aide avec `?` ou la documentation en ligne).
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| error: true
 v4 = np.array([1, 12, 3, 8, 4, 5])
@@ -335,7 +336,7 @@ print("it worked: even for powers")
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| error: true
 # Somme de deux vecteurs
@@ -372,7 +373,7 @@ print("it worked: method 2")
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 J = np.array([[0, 0, 1.0], [1.0, 0, 0], [0, 1.0, 0]])
 I3 = np.eye(3)
@@ -437,7 +438,7 @@ print("Les deux méthodes trouvent le même résultat")
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 import time
 n = 20 
@@ -487,7 +488,7 @@ print(f"The second row is {...}")  # XXX TODO
 ```
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 print(f"The second row is {J[1, :]}")
 ```
@@ -503,7 +504,7 @@ C = np.ones((5, 5))
 C[...,...] = 0  # mettre à zéro une ligne sur deux. # XXX TODO
 ```
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 C = np.ones((5, 5))
 C[1::2, :] = 0  # mettre à zéro une ligne sur deux.
@@ -557,7 +558,7 @@ print(M)
 ```
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 rng = np.random.default_rng()
 M = rng.laplace(scale=1, size=(5, 7))
@@ -613,7 +614,7 @@ plt.show()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 

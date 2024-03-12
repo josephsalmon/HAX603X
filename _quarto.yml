@@ -95,6 +95,10 @@ website:
             - TP/markdown.qmd
             - TP/quarto.qmd
 
+    - id: TD
+      collapse-level: 2
+      contents:
+          - TD/TD.qmd
 
   title: "HAX603X: Modélisation stochastique"
   site-url: https://josephsalmon.github.io/HAX603X/

@@ -1,0 +1,26 @@
+---
+title: "Travaux Dirigés (TD)"
+format:
+  html:
+    out.width: 50%
+filters:
+  - shinylive
+---
+
+
+
+Vous trouverez ici les TD du cours et leur corrections.
+
+[TD1](1-Simulation/td1_generer_alea.pdf)
+
+<center>
+```{=html}
+<object data="1-Simulation/td1_generer_alea.pdf?#zoom=Fit&scrollbar=0&toolbar=0&navpanes=0" type="application/pdf"  width="360" height="450">
+  <p>It appears you don't have a PDF viewer for this browser.
+  No biggie... you can <a href="path/to/your.pdf">click here to
+  download the PDF file.</a></p>
+</object>s
+```
+
+
+</center>

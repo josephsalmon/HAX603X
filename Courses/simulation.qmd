@@ -528,6 +528,7 @@ L'expression précédente s'étend directement au cas où $X$ prend un nombre (i
 
 La méthode est illustré ci-dessous pour quelques lois intéressantes:
 
+::: {.content-visible when-format="html"}
 
 ```{ojs}
 //| echo: false
@@ -562,7 +563,7 @@ invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd
   return html`${galton.canvas}`
 }
 ```
-
+:::
 
 ## Méthode de rejet
 
@@ -880,12 +881,14 @@ fig.add_trace(
 fig.update_layout(template="simple_white", showlegend=True)
 ```
 
+::: {.content-visible when-format="html"}
+
 ```{ojs}
 //| echo: false
 md`Dans cet example, le taux d'acceptation est ici de **${ratio}**.`
 ```
 :::
-
+:::
 
 
 ### Cas mutlidimensionnel

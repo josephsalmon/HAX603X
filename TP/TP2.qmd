@@ -67,7 +67,7 @@ plt.show()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| echo: true
 #| layout-ncol: 1
@@ -135,7 +135,7 @@ plt.show()
 ```
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -196,7 +196,7 @@ plt.show()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 
 ```{python}
 #| echo: true
@@ -237,7 +237,7 @@ plt.show()
 ```
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| echo: true
 #| layout-ncol: 1
@@ -277,7 +277,7 @@ plt.show()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -346,7 +346,7 @@ plt.show()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 
@@ -389,7 +389,7 @@ ax.set_title("Convergence de la moyenne empirique")
 plt.legend()
 ```
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -449,7 +449,7 @@ ax.legend(custom_lines,
 ```
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -567,7 +567,7 @@ plt.legend()
 
 
 ::: {.content-hidden unless-meta="correction"}
-#### Solution
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: true
