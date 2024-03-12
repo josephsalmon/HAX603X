@@ -1,0 +1,501 @@
+\documentclass[11pt]{td_um}
+
+%------------------------------
+\def\version{cor}
+%\def\version{eno}
+%------------------------------
+
+\input{../../common/header.tex}
+
+\newcommand{\va}{variable aléatoire\xspace}
+\newcommand{\vas}{variables aléatoires\xspace}
+\newcommand{\evs}{événements\xspace}
+\newcommand{\ev}{événement\xspace}
+\newcommand{\fdr}{fonction de répartition\xspace}
+\usepackage{xspace} % gestion des espaces apres les macros
+\usepackage[ruled]{algorithm2e} % to write algorithms
+
+\title{TD 1 - Simulation de variables aléatoires}
+
+\begin{document}
+
+\maketitle
+
+
+\bigskip
+
+\bigskip
+
+
+
+\begin{exo}{}
+	On dispose d'un dé à 6 faces. Proposer une méthode pour simuler le résultat d'un Pile ou Face. On détaillera la \va utilisée.
+
+	\cor{Il suffit d'associer Pile aux résultats pairs et Face aux résultats impairs. Précisons ceci.
+
+	Soit $\Omega = \{1, 2, 3, 4, 5, 6\}$ l'ensemble des résultats du dé que l'on munit de la tribu pleine $\mathcal{F} = \mathcal{P}(\Omega)$ et de la probabilité uniforme $\P$. On dispose alors d'un espace probabilisé $(\Omega, \mathcal{F}, \P)$. On considère également l'ensemble $\Omega' = \{\text{Pile}, \text{Face}\}$ que l'on munit de la tribu pleine $\mathcal{F}' = \mathcal{P}(\Omega')$. On définit alors la \va $X: \Omega \to \Omega'$ par
+	\[
+	X(k) =
+	\bigg\{ \begin{array}{ll}
+		\text{Pile} & \mbox{si $k$ est pair,} \\
+		\text{Face} & \mbox{si $k$ est impair.}
+	\end{array}
+	\]
+	La loi de $X$ est alors la mesure image de $\P$ par la \va $X$. Cette mesure est définie par
+	\[
+	\P(X = \text{Pile}) = \P(\{2,4,6\}) = \dfrac{1}{2}
+	\quad \text{et} \quad
+	\P(X = \text{Face}) = \P(\{1,3,5\}) = \dfrac{1}{2}\,.
+	\]
+	La mesure image correspond encore à la probabilité uniforme, cette fois sur $\Omega'$. On obtient bien la résultat d'un Pile ou Face.
+	}
+\end{exo}
+
+
+\begin{exo}{}
+	On dit qu'une \va $X$ suit une loi de Cauchy si $X$ admet une densité $f$ par rapport à la mesure de Lebesgue sur $\R$ définie par
+	\[
+	f(x) = \dfrac{1}{\pi(1+x^2)}\,, \quad x \in \R\,.
+	\]
+	\begin{enumerate}
+		\item Montrer que cela définit bien une loi de probabilité.
+
+		\cor{La fonction $f$ est mesurable, positive et vérifie
+		\[
+		\int_\R f(x)\, \mathrm d x
+		= \int_{-\infty}^{+\infty} \dfrac{1}{\pi(1+x^2)} \, \mathrm dx
+		= \dfrac{1}{\pi} \big[\arctan(x)\big]_{-\infty}^{+\infty}
+		= \dfrac{1}{\pi} \Big[\dfrac{\pi}{2} - \Big(-\dfrac{\pi}{2}\Big)\Big]
+		= 1\,.
+		\]
+		C'est donc bien une densité.}
+		\item En utilisant la méthode d'inversion, donner un moyen de simuler cette loi.
+
+		\cor{Un calcul similaire donne la \fdr $F_X$ de $X$:
+		\[
+		F_X(x)
+		= \int_{-\infty}^x \dfrac{1}{\pi(1+t^2)} \, \mathrm dt
+		= \dfrac{\arctan(x)}{\pi} + \dfrac{1}{2}\,, \quad x \in \R\,.
+		\]
+		La fonction $F_X$ est donc bijective d'inverse
+		\[
+		F_X^{-1}(u) = \tan\Big(\pi\Big(u - \frac{1}{2}\Big)\Big)\,.
+		\]
+		Ainsi, si $U$ suit une loi uniforme sur $[0,1]$, alors $\tan(\pi(U- 1/2))$ suit une loi de Cauchy. Cela donne une interprétation géométrique de la loi de Cauchy: c'est la tangente d'une angle tiré uniformément entre $-\pi/2$ et $\pi/2$.
+		}
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	On considère une \va $X$ suivant une loi géométrique de paramètre $p \in ]0,1[$.
+	\begin{enumerate}
+		\item Rappeler la loi de $X$ et son interprétation en terme de temps d'attente.
+
+		\cor{La loi de $X$ correspond à la mesure de probabilité
+		\[
+		\P_X = \sum_{n=1}^\infty p(1-p)^{n-1} \delta_n\,.
+		\]
+		Autrement dit, $\P(X=n) = p(1-p)^{n-1}$ pour tout $n \in \N^*$. Cette loi modélise le temps d'attente avant le premier succès lorsque l'on répète de manière indépendante une expérience de Bernoulli ayant une probabilité de succès $p$.}
+
+    \item Comment obtenir une loi géométrique à partir d'une suite $(B_n)_{n \geq 1}$ de \vas \textit{i.i.d.} de loi de Bernoulli de paramètre $p$ ?
+
+		\cor{En suivant l'interprétation en terme de temps d'attente, on définit
+		\[
+		T = \inf \{n \in \N^*: B_n =1\}\,.
+		\]
+		Montrons que $T$ suit une loi géométrique de paramètre $p$. Pour $n \in \N^*$, l'\ev $\{T=n\}$ est réalisé si et seulement si $B_1 = \cdots = B_{n-1} = 0$ et $B_n =1$. On en déduit alors par indépendance des $B_k$ que
+		\begin{align*}
+		\P(T=n)
+		&= \P(B_1 = \cdots = B_{n-1} = 0, B_n =1)\\
+		&= \P(B_1 = 0) \cdots \P(B_{n-1} = 0) \P(B_n =1)\\
+		&= (1-p)^{n-1} p\,,
+		\end{align*}
+		ce qui prouve que $T$ suit une loi géométrique de paramètre $p$.}
+		\item En déduire une méthode pour simuler une loi géométrique à partir d'une suite $(U_n)_{n \geq 1}$ de \vas uniformes.
+
+		\cor{On rappelle que si $U$ suit une loi uniforme sur $[0,1]$, alors la \va $B = \one_{\{U \leq p\}}$ suit une loi de Bernoulli de paramètre $p$. Par suite, la \va
+		\[
+		T
+		= \inf \{n \in \N^*: \one_{\{U_n \leq p\}} =1\}
+		= \inf \{n \in \N^*: U_n \leq p\}
+		\]
+		suit une loi géométrique de paramètre $p$.}
+		\item Soit $E$ une \va de loi exponentielle de paramètre $\lambda > 0$. On considère la partie entière supérieure $Y = \lceil E \rceil$. Déterminer la loi de $Y$. En déduire un autre moyen de simuler une loi géométrique de paramètre $p$ à partir d'une \va uniforme $U$.
+
+		\cor{La \va $E$ prend ses valeurs dans $]0,\infty[$ donc $Y$ prend ses valeurs dans $\N^*$. De plus,
+		\[
+		\P(Y = n)
+		= \P(n-1 < E \leq n)
+		= \int_{n-1}^n \lambda e^{-\lambda t} \, \mathrm dt
+		= e^{-\lambda(n-1)} - e^{-\lambda n}
+		= (e^{-\lambda})^{n-1} (1- e^{-\lambda})\,.
+		\]
+		Ainsi, $Y$ suit une loi géométrique de paramètre $p = 1-e^{-\lambda}$.
+
+		On simule alors une loi exponentielle de paramètre $\lambda = -\ln(1-p)$ avec la méthode d'inversion: $E = - \ln(U)/\lambda$. Par suite, la \va $\lceil E \rceil$ suit une loi géométrique de paramètre $p$.
+	}
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	La loi Beta de paramètres $\alpha > 1$, $\beta > 1$, notée $\text{Beta}(\alpha, \beta)$, est donnée par la densité
+	\[
+	f_{\alpha, \beta}(x)
+	= \dfrac{1}{B(\alpha,\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
+	\quad x \in [0,1]\,,
+	\]
+	où $B$ désigne la fonction beta définie par
+	\[
+	B (x,y) = \int_0^1 t^{x-1} (1-t)^{y-1} dt\,.
+	\]
+	À l'aide de la méthode de rejet, construisez une algorithme permettant de simuler $n$ \vas de loi $\text{Beta}(\alpha,\beta)$.
+
+	% \cor{On remarque que la densité vérifie $f_{\alpha, \beta}(x) \leq m \one_{[0,1]}(x)$, où $m = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}$. On peut donc appliquer la méthode de rejet avec $m$ et la densité uniforme. L'algorithme est alors le suivant
+
+	% 	\begin{algorithm}[H]
+	% 		\SetAlgoLined
+	% 		\textbf{Entrée:} une taille d'échantillon $n$
+
+	% 		$k \leftarrow 1$
+
+	% 		\textbf{Tant que} $k \leq n$:
+	% 		\begin{enumerate}
+	% 			\item Générer $U,\, Y \sim \mathcal{U}([0,1])$ indépendantes
+	% 			\item
+	% 			\begin{itemize}[label=$\bullet$]
+	% 				\item Si $U \leq Y^{\alpha-1}(1-Y)^{\beta-1}$, alors $X_k \leftarrow Y$ et $k \leftarrow k+1$,
+	% 				\item Sinon rejeter et revenir en 1.
+	% 			\end{itemize}
+	% 		\end{enumerate}
+	% 		\textbf{Sortie:} $X_1, \ldots, X_n$
+	% 		\caption{Simulation de $n$ \vas de loi Beta.}
+	% 	\end{algorithm}
+
+    %             \begin{center}
+    %                 \begin{tikzpicture}[scale=1]
+    %                     \begin{axis}[,xlabel=$Y$,
+    %                             ylabel={$U$},
+    %                             width=6cm,
+    %                             height=6cm,
+    %                             ymin=0,
+    %                             xmin=0,
+    %                             ymax=1,
+    %                             xmax=1,
+    %                             grid=major,
+    %                             legend style={
+    %                                 cells={anchor=east},
+    %                                 legend pos=outer north east,
+    %                         }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
+    %                         \addplot[color=astral, samples=500, domain=0:1, very thick] {x * sqrt(1 - x )};
+    %                         \addlegendentry{$(\alpha, \beta)=(2,3/2)$}
+    %                     \end{axis}
+    %                 \end{tikzpicture}
+    %             \end{center}
+	% }
+\end{exo}
+
+
+\begin{exo}{}
+	Soit $X$ et $Y$ deux \vas indépendantes de fonction de répartition respective $F_X$ et $F_Y$. On pose $Z = \max(X,Y)$.
+	\begin{enumerate}
+		\item Déterminer la \fdr $F_Z$ de $Z$.
+
+		\cor{La \fdr de $Z$ s'écrit
+		\[
+		F_Z(t) = \P(Z \leq t) = \P(X \leq t, Y \leq t)\,, \quad t \in \R\,.
+		\]
+		L'indépendance de $X$ et $Y$ donne alors
+		\[
+		F_Z(t) = \P(X \leq t) \P(Y \leq t) = F_X(t) F_Y(t)\,, \quad t \in \R\,.
+		\]}
+
+		\item En déduire une méthode pour simuler une \va de fonction de répartition
+		\[
+		F(t) = \min(t,1) (1-e^{-t}) \one_{]0, \infty[}(t)\,.
+		\]
+
+		\cor{Il suffit de reconnaître la \fdr de $\max(X,Y)$ où $X \sim \mathcal{U}([0,1])$ et $Y \sim \mathcal{E}(1)$ sont indépendantes. On part donc d'une \va $X$ de loi uniforme et d'une \va $Y$ de loi exponentielle (obtenue par exemple via la méthode d'inversion). On définit alors $Z = \max(X,Y)$ qui suit la loi donnée par $F$.}
+
+		\item Déterminer la densité de cette \va.
+
+		% {La densité $f$ de $Z$ correspond à la dérivée de la \fdr $F$ en tout point où celle-ci est dérivable. Ici, $F$ est dérivable pour tout $t \in \R \setminus \{0,1\}$. Si $t < 0$, alors $F'(t) = 0$. Si $t \in ]0,1[$, alors $F'(t) = 1 - e^{-t} + t e^{-t}$. Enfin, si $t > 1$, alors $F'(t) = e^{-t}$.
+        %         \begin{center}
+        %             \begin{tikzpicture}[scale=1]
+        %                 \begin{axis}[,xlabel=$t$,
+        %                         ylabel={$f_Z(t)$},
+        %                         width=13cm,
+        %                         height=6cm,
+        %                         ymin=0,
+        %                         xmin=-5,
+        %                         ymax=1.2,
+        %                         xmax=5,
+        %                         grid=major,
+        %                         legend style={
+        %                             cells={anchor=east},
+        %                             legend pos=outer north east,
+        %                     }]%,xtick=\empty,ytick=\empty,ztick=\empty ]
+        %                     \addplot[color=astral, samples=5, domain=-5:0, very thick] {0};
+        %                     \addplot[color=astral, samples=500, domain=0:1, very thick] {1 - exp(-x) + x * exp(-x)};
+        %                     \addplot[color=astral, samples=500, domain=1:5, very thick] { exp(-x)};
+        %                     %\addlegendentry{$(\alpha, \beta)=(2,3/2)$}
+        %                 \end{axis}
+        %             \end{tikzpicture}
+        %         \end{center}
+		% }
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	Soit $\lambda \in ]0,1[$ fixé.
+	\begin{enumerate}
+		\item On considère une \va discrète $Y$ de loi
+		\[
+		\P(Y=n) = (1-\lambda) \lambda^n\,, \quad n \in \N\,.
+		\]
+		Exprimer cette loi en fonction d'une loi connue.
+
+		\cor{On pose $Z = Y+1$ et alors $Z$ est à valeurs dans $\N^*$ de loi
+		\[
+		\P(Z=n) = \P(Y=n-1) = (1-\lambda) \lambda^{n-1}\,, \quad n \geq 1\,.
+		\]
+		Ainsi, $Z$ suit une loi géométrique de paramètre $1-\lambda$ et $Y=Z-1$.}
+		\item En se basant sur la méthode de rejet vue dans le cadre de loi à densité, proposer une méthode pour simuler une \va $X$ de loi de Poisson de paramètre $\lambda$ à partir de $Y$.
+
+		\cor{Il suffit d'adapter ce qui a été vu en cours pour des \vas à densité, sauf qu'ici les densités sont calculées par rapport à la mesure de comptage sur $\N$. On remarque que pour tout entier $n$,
+			\[
+			p_n:= \P(X=n)
+			= \dfrac{e^{-\lambda} \lambda^n}{n!}
+			= \dfrac{e^{-\lambda}}{(1-\lambda) n!} \P(Y=n)
+			=: \dfrac{e^{-\lambda}}{(1-\lambda) n!} q_n\,,
+			\]
+		Il suffit alors de choisir $m$ tel que $m \geq \frac{e^{-\lambda}}{(1-\lambda) n!}$, par exemple
+		\[
+		m = \dfrac{e^{-\lambda}}{1-\lambda}\,.
+		\]
+		On a alors bien $p_n \leq m q_n$ et le rapport d'acceptation est la suite $(r_n)$ donnée par
+		\[
+		r_n = \frac{p_n}{mq_n} = \frac{1}{n!}\,.
+		\]
+		La méthode de rejet consiste alors à simuler $U \sim \mathcal{U}([0,1])$ et $Y$ de loi donnée à la question 1, puis de tester si $U \leq r_Y = 1/(Y!)$.
+		}
+		\item Quelle est la probabilité de rejet ?
+
+		\cor{On refait le calcul vu en cours. La probabilité de rejet vaut
+		\begin{align*}
+			\P(U > r_Y)
+			&= \P((U,Y) \in \{(u,n) \in [0,1] \times \N: u > r_n\})\\
+			&= \int_{\R \times \N} \one_{\{u > r_n\}} \, \mathrm d \P_{(U,Y)}(u,n)\\
+			&= \sum_{n=0}^\infty \int_\R \one_{\{u > r_n\}} (1-\lambda) \lambda^n \one_{[0,1]}(u) \, \mathrm d u\,.
+		\end{align*}
+		On obtient alors
+		\[
+		\P(U > r_Y)
+		= \sum_{n=0}^\infty  (1-\lambda) \lambda^n \int_{r_n}^1\, \mathrm d u
+		= \sum_{n=0}^\infty  (1-\lambda) \lambda^n (1-r_n)\,.
+		\]
+		Par définition du rapport d'acceptation $r_n$, on en déduit que
+		\[
+		\P(U > r_Y)
+		= \sum_{n=0}^\infty  p_n +  \sum_{n=0}^\infty \frac{q_n}{m}
+		= 1 - \frac{1}{m}
+		= 1 - (1-\lambda)e^\lambda\,.
+		\]
+		Plus $\lambda$ est proche de $0$, plus cette probabilité est petite.}
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	Vous disposez d'une pièce équilibrée. Proposez une méthode pour simuler le résultat d'un dé à 6 faces.
+
+	\cor{On reprend le principe du rejet discret énoncé dans l'exercice précédent. On considère trois lancers consécutifs dont on note $\{0,\ldots,7\}$ les 8 résultats possibles (Pile-Pile-Pile, Face-Pile-Pile, Face-Face-Pile, etc.), par exemple sous forme binaire avec $0=$ Face et $1=$ Pile. On note $Y$ la \va prenant ces valeurs: elle suit une loi uniforme sur $\{0, \ldots, 7\}$. Le lancer d'un dé correspond à une loi uniforme sur $\{1, \ldots, 6\}$, on en déduit que si $X$ est la \va donnant le résultat du lancer d'un dé, on a l'inégalité
+	\[
+	\P(X = n) = \dfrac{1}{6} = \dfrac{8}{6} \times \P(Y = n)\,, \quad n =0,\ldots,7\,.
+	\]
+	On choisit donc $m=8/6$. La simulation s'effectue alors de la manière suivante: on lance trois fois notre pièce et on note le résultat obtenu (sous forme binaire). Si ce résultat est compris entre $1$ et $6$, on a obtenu une réalisation d'un lancer de dé, sinon on répète l'opération.
+
+	Notons que la probabilité de rejet vaut $2/8 = 1/4$, ce qui est plutôt faible.
+	}
+\end{exo}
+
+
+
+\begin{exo}{}
+	On considère deux \vas $U$ et $V$ indépendantes de loi uniforme sur $[0,1]$.
+	\begin{enumerate}
+		\item Proposer une méthode pour simuler une \va $X$ de loi uniforme sur $[a,b]$, avec $a < b$.
+
+		\cor{La \va $X = (b-a)U+a$ suit une loi uniforme sur $[a,b]$. En effet, la fonction de répartition de $X$ vaut
+		\begin{align*}
+		F_X(x)
+		&= \P(X \leq x)
+		= \P((b-a)U+a \leq x)
+		= \P \Big(U \leq \frac{x-a}{b-a} \Big)\\
+		&= \frac{x-a}{b-a} \one_{[0,1]}\Big(\frac{x-a}{b-a}\Big) + \one_{\{\frac{x-a}{b-a} > 1\}}
+		= \frac{x-a}{b-a} \one_{[a,b]}(x) + \one_{\{x > b\}}\,.
+		\end{align*}
+		On reconnaît la fonction de répartition d'une loi uniforme sur $[a,b]$.}
+		\item Proposer une méthode pour simuler un couple de \vas $(X,Y)$ de loi uniforme sur le pavé $[a,b]\times [c,d]$, avec $a < b$ et $c<d$.
+
+		\cor{On pose $X = (b-a)U+a$ et $Y = (d-c)V+c$. La question précédente assure que $X \sim \mathcal{U}([a,b])$ et $Y \sim \mathcal{U}([c,d])$. Par ailleurs, les \vas $U$ et $V$ étant indépendantes, $X$ et $Y$ le sont également. Ainsi, $(X,Y)$ suit bien une loi uniforme sur la pavé $[a,b]\times [c,d]$.}
+
+		\item Sans utiliser la méthode d'inversion, proposez une méthode pour simuler une \va de loi uniforme discrète sur $\{1, \ldots, n\}$.
+
+		\cor{On pose $X = \lceil n U \rceil$. Comme $U$ suit une loi uniforme sur $[0,1]$, la \va $X$ prend les valeurs $1, \ldots, n$ avec, pour tout $k=1, \ldots, n$,
+		\[
+		\P(X=k)
+		= \P( \lceil n U \rceil = k)
+		= \P\Big( \frac{k-1}{n} < U \leq \frac{k}{n}\Big)
+		= \frac{k}{n} - \frac{k-1}{n}
+		= \frac{1}{n}\,.
+		\]
+		Ainsi, $X$ suit bien une loi uniforme sur $\{1, \ldots, n\}$.}
+
+		\item Proposer une méthode de rejet pour simuler une \va uniforme sur le disque unité à partir de $U$ et $V$. Quelle est la probabilité de rejet ?
+
+		\cor{À partir de $U$ et $V$ on obtient une \va uniforme sur le pavé $[-1,1]^2$ en considérant $X = 2U-1$ et $Y = 2V-1$. On considère les densités $f$ et $g$ des lois uniformes sur le disque $\mathcal{D}$ et sur le pavé $[-1,1]^2$:
+		\[
+		g(x,y) = \dfrac{\one_{\mathcal{D}}(x,y)}{\pi}
+		\quad \text{et} \quad
+		f(x,y) = \dfrac{\one_{[-1,1]^2}(x,y)}{4}\,.
+		\]
+		L'inégalité $g \leq \frac{4}{\pi} f$ incite à poser $m=\frac{4}{\pi}$ et à considérer le rapport d'acceptation $r(x,y) = \one_{\mathcal{D}}(x,y)$. La méthode de rejet revient alors à tester si une \va uniforme $A$ sur $[0,1]$ vérifie $A \leq\one_{\mathcal{D}}(X,Y)$: l'inégalité est vraie si $(X,Y)$ est dans $\mathcal{D}$ et fausse sinon (en fait $A$ ne sert à rien). Bref, il suffit de simuler $(X,Y)$ dans le pavé et de garder ce point s'il tombe dans le disque. La probabilité de rejet correspond alors à la probabilité de tomber hors du disque, soit $1-\pi/4 \approx 0.21$.
+		}
+		\item Montrer que le couple de \vas $(X,Y) = (\sqrt U \cos(2\pi V), \sqrt U \sin(2\pi V))$ suit également une loi uniforme sur le disque unité. On pourra utiliser la technique de la fonction muette.
+
+		\cor{Soit $h: \R^2 \to \R$ une fonction mesurable bornée. Alors
+		\[
+		\E[h(X,Y)]
+		= \int_{\R^2} h(\sqrt{u} \cos(2 \pi v), \sqrt{u} \sin(2 \pi v)) \one_{[0,1]}(u) \one_{[0,1]}(v)\, \mathrm du \mathrm dv\,.
+		\]
+		Le changement de variables $(r, \theta) = (\sqrt{u}, 2 \pi v) \iff (r^2, \frac{\theta}{2\pi}) = (u,v)$ donne alors
+		\[
+		\int_{[0,1]^2} h(\sqrt{u} \cos(2 \pi v), \sqrt{u} \sin(2 \pi v)) \, \mathrm du \mathrm dv
+		= \int_0^1 \int_0^{2 \pi}  h(r \cos(\theta), r \sin(\theta)) \dfrac{r}{\pi}\, \mathrm dr \mathrm d\theta\,.
+		\]
+		Dans cette dernière expression, on reconnaît la transformation polaire vue en cours, ici restreinte au rayon $r \leq 1$. On obtient ainsi l'égalité
+		\[
+		\E[h(X,Y)]
+		= \int_0^1 \int_0^{2 \pi}  h(r \cos(\theta), r \sin(\theta) \dfrac{r}{\pi}\, \mathrm dr \mathrm d\theta
+		= \dfrac{1}{\pi} \int_{\mathcal{D}} h(x,y) \, \mathrm dx \mathrm dy\,.
+		\]
+		Ceci prouve que la densité de $(X,Y)$ est $ \frac{\one_{\mathcal{D}}(x,y)}{\pi}$, donc que ce vecteur suit une loi uniforme sur le disque.
+		}
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	Soit $X$ une \va de densité $f: x \mapsto \max(0, 1-|x|)$. Construire une méthode de simulation de $X$ à l'aide de
+	\begin{enumerate}
+		\item la méthode d'inversion,
+	\cor{ Le calcul de la fonction de répartition ne pose pas de problème:
+	\[
+	F_X(x)
+	=
+	\left\{ \begin{array}{llll}
+		0 & \mbox{si } x < -1, \\
+		\frac{1}{2}+ x + \frac{x^2}{2} & \mbox{si } -1 \leq x < 0,\\
+		\frac{1}{2} + x - \frac{x^2}{2} & \mbox{si } 0 \leq x \leq 1,\\
+		1 & \mbox{si } x > 1.
+	\end{array}
+	\right.
+	\]
+
+	Si $u \in ]0,1/2[$, alors l'équation $F_X(x)=u$ se réécrit
+	\[
+	x^2 + 2x +1-2u = 0\,.
+	\]
+	Le discriminant de ce trinôme est $8u$ et l'unique solution dans $]-1,0[$ est alors $F_X^\leftarrow(u) = \sqrt{2u} -1$. De manière analogue, on trouve pour le cas $u \in ]1/2,1[$ la solution $F_X^\leftarrow(u) = 1-\sqrt{2(1-u)}$.
+
+    La méthode d'inversion consiste alors à simuler une \va uniforme $U$ sur $[0,1]$ et à poser $X = F_X^\leftarrow(U)$.}
+		\item la méthode de rejet.
+
+    \cor{
+
+	 Pour la méthode de rejet, on choisit une densité uniforme $g$ sur $[-1,1]$ qui vérifie
+	\[
+	f(x) = \max(0, 1-|x|) \leq 2 \dfrac{\one_{[-1,1]}(x)}{2} = 2 g(x)\,, \quad x \in \R\,.
+	\]
+	On peut donc choisir ici $m=2$. La méthode de rejet consiste alors à simuler une loi uniforme $U$ sur $[0,1]$ et une loi uniforme $Y$ sur $[-1,1]$, et à tester si $U \leq 1-|Y|$. Si oui on garde $Y$, sinon on répète l'opération.}
+	\end{enumerate}
+\end{exo}
+
+
+\begin{exo}{}
+	Soit $X$ un vecteur aléatoire sur $\R^d$ et $B \in \mathcal{B}(\R^d)$ un borélien de $\R^d$. On suppose que $p = \P(X \in B) > 0$. On rappelle que la loi de $X$ sachant $B$ est définie via
+	\[
+	\P_{X \mid B}(A) = \P(X \in A \mid X \in B) = \dfrac{\P(X \in A \cap B)}{p}\,, \quad A \in \mathcal{B}(\R^d)\,.
+	\]
+	On suppose que l'on sait générer suivant la loi de $X$ et on souhaite générer suivant la loi $\P_{X \mid B}$.
+
+	\begin{enumerate}
+		\item Soit $(X_n)_{n \geq 1}$ des \vas suivant la loi de $X$. Déterminer la loi de
+		\[
+		N = \min\{n \geq 1: X_n \in B\}\,.
+		\]
+
+		\cor{Soit $n \geq 1$. L'\ev $\{N=n\}$ est réalisé si et seulement si les $n-1$ premières \vas $X_i$ ne sont pas dans $B$ et que $X_n$ l'est. Ainsi, pour tout $n \geq 1$,
+		\[
+		\P(N=n)
+		= \P(X_1 \notin B, \ldots, X_{n-1} \notin B, X_n \in B)
+		\]
+		Par indépendance des $X_k$, on obtient alors
+		\[
+		\P(N=n)
+		= \P(X_1 \notin B) \cdots \P(X_{n-1} \notin B) \P(X_n \in B)
+		= (1-p)^{n-1} p\,,
+		\]
+		ce qui prouve que $N$ suit une loi géométrique de paramètre $p$.}
+		\item Montrer que $X_N$ suit la loi $\P_{X \mid B}$. En déduire une méthode pour simuler une \va de loi $\P_{X \mid B}$.
+
+		\cor{En reprenant mutatis mutandis le calcul précédent, on obtient la relation
+		\[
+		\P(N=n, X_n \in A)
+		=  \P(X_1 \notin B) \cdots \P(X_{n-1} \notin B) \P(X_n \in A \cap B)
+		= (1-p)^{n-1} \P(X \in A \cap B)\,.
+		\]
+		On conclut alors par $\sigma$-additivité:
+		\[
+		\P(X_N \in A)
+		= \sum_{n=1}^\infty \P(X_N \in A, N = n)
+		=\sum_{n=1}^\infty (1-p)^{n-1} \P(X \in A \cap B)\,.
+		\]
+		On reconnaît la somme d'une série géométrique:
+		\[
+		\P(X_N \in A)
+		= \dfrac{\P(X \in A \cap B)}{p}
+		= \P_B(X \in A)\,.
+		\]
+		En pratique, on simule $X$ et si $X \in B$ on le garde, sinon on simule une nouvelle réalisation de $X$ et on répète la procédure.}
+	\end{enumerate}
+\end{exo}
+
+\begin{exo}{}
+    Soit $F$ une fonction de répartition continue.
+	\begin{enumerate}
+		\item Montrer l'égalité $F\circ F^\leftarrow (u) = u$ pour tout $u \in ]0,1]$.
+
+		\cor{Rappelons l'équivalence prouvée en cours. Pour $u \in ]0,1[$ et $x \in \R$, on a
+		\[
+		F^\leftarrow(u) \leq x \iff u \leq F(x)\,.
+		\]
+		En prenant $x=F^\leftarrow(u)$ on obtient alors $u \leq F(F^\leftarrow(u))$. De même, en prenant $x=F^\leftarrow(u) - \epsilon$, pour $\epsilon > 0$, on obtient $u > F(F^\leftarrow(u)-\epsilon)$. Comme $F$ est supposée continue en $F^\leftarrow(u) > 0$, on obtient, en faisant tendre $\epsilon$ vers $0$, l'inégalité $u \geq F(F^\leftarrow(u))$. On conclut alors que $F(F^\leftarrow (u)) = u$.
+
+		Si $u=1$, alors soit $F^\leftarrow(u) = \infty$ et l'égalité $F(F^\leftarrow (u)) = u$ est bien vérifiée, soit $F^\leftarrow(u) < \infty$ et on reprend la démonstration précédente.
+		}
+
+		\item Soit $X$ une \va ayant une \fdr $F_X$ continue. Montrer que la \va $F_X(X)$ suit une loi uniforme sur $[0,1]$.
+
+		\cor{On considère une \va $U$ uniforme sur $[0,1]$. On sait d'après le cours que $X \stackrel{\mathcal{L}}{=} F_X^\leftarrow(U)$. La question précédente assure alors que $F_X(X) \stackrel{\mathcal{L}}{=} F_X(F_X^\leftarrow(U)) = U$, ce qui prouve que $F_X(X)$ suit une loi uniforme sur $[0,1]$.}
+
+		\item Que se passe-t-il si on enlève l'hypothèse de continuité de $F_X$ ?
+
+		\cor{Supposons que $F_X$ présente une discontinuité en $x_0$. Alors $X$ ne prend aucune valeur comprise entre $F_X(x_0-)$ et $F(x_0)$, donc la variable $F_X(X)$ non plus: elle ne peut alors pas suivre une loi uniforme. Par exemple, si $X$ suit une loi de Bernoulli de paramètre $1/2$, alors $F_X(X)$ ne prend que les valeurs $1/2$ et $1$, et ce de manière équiprobable.}
+	\end{enumerate}
+\end{exo}
+
+\end{document}
