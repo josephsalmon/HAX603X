@@ -1,144 +1,159 @@
 # ################################################################################
 # # Book
 # ################################################################################
-# project:
-#   type: book
+project:
+  type: book
 
-# book:
-#   title: "Modélisation stochastique (HAX603X)"
-#   chapters:
-#     - index.qmd
-#     - Courses/marche_aleatoire.qmd
-#     - Courses/perspective_historique.qmd
-#     - Courses/notations.qmd
-#     - Courses/th_asymptotique.qmd
-#     - Courses/simulation.qmd
-#     - Courses/loi_normale1D.qmd
-#     - Courses/loi_normale_multi.qmd
-#     - Courses/monte_carlo.qmds
+book:
+  title: "Modélisation stochastique (HAX603X)"
+  chapters:
+    - index.qmd
+    - Courses/perspective_historique.qmd
+    - Courses/notations.qmd
+    - Courses/th_asymptotique.qmd
+    - Courses/simulation.qmd
+    - Courses/loi_normale1D.qmd
+    - Courses/loi_normale_multi.qmd
+    - Courses/monte_carlo.qmd
+    - Courses/marche_aleatoire.qmd
+format: pdf
+from: markdown+emoji
+pdf-engine: lualatex
+keep-tex: true
+mainfont: "TeX Gyre Termes Math"
+
+# header-includes:
+#   - \setmainfont{Noto Color Emoji}
+  # html:
+  #   theme:
+  #     spacelab
+  #   css: [custom.css]
+  #   html-math-method: katex
+include-in-header:
+        text: |
+            \usepackage{stmaryrd}
+            \usepackage{amsmath}
+            \usepackage{fontspec}
+            \directlua{luaotfload.add_fallback
+            ("emojifallback",
+                { "DejaVu Sans:mode=harf;script=grek",
+                "NotoColorEmoji:mode=harf"}
+            )}
+
+            \setmainfont{Liberation Sans}[RawFeature={fallback=emojifallback}]
+
+            \usepackage{emoji}
+            \usepackage{bm}
+            \providecommand{\N}{\mathbb{N}}
+            \providecommand{\Z}{\mathbb{Z}}
+            \providecommand{\E}{\mathbb{E}}
+            \providecommand{\R}{\mathbb{R}}
+            \renewcommand{\P}{\mathbb{P}}
+            \DeclareMathOperator{\var}{Var} % variance
+            \DeclareMathOperator{\cov}{Cov} % covariance
+            \newcommand{\wt}[1]{\widetilde{#1}}
+
+# ###############################################################################
+# # Website
+# ################################################################################
+
+# lang: fr
+# project:
+#   type: website
+#   render:
+#   - "*.qmd"
+
+# website:
+#   page-navigation: true
+#   back-to-top-navigation: true
+#   sidebar:
+#     - id: introduction
+#       title: "Présentation"
+#       style: "floating"
+#       collapse-level: 1
+#       align: left
+#       contents:
+#         - index.qmd
+#     - id: Cours
+#       collapse-level: 2
+#       contents:
+#           - Courses/perspective_historique.qmd
+#           - Courses/notations.qmd
+#           - Courses/th_asymptotique.qmd
+#           - Courses/simulation.qmd
+#           - Courses/loi_normale1D.qmd
+#           - Courses/loi_normale_multi.qmd
+#           - Courses/monte_carlo.qmd
+#           - Courses/marche_aleatoire.qmd
+
+#     - id: Slides
+#       collapse-level: 2
+#       contents:
+#           - Courses/slides.qmd
+#           - Slides/slides_intro.qmd
+#           - Slides/slides_notations_premiers_pas.qmd
+#           - Slides/slides_th_asymptotique.qmd
+#           - Slides/slides_simulation.qmd
+#           - Slides/slides_loi_normale1D.qmd
+#           - Slides/slides_loi_normale_multi.qmd
+
+#     - id: TP
+#       collapse-level: 2
+#       contents:
+#         - section: "TP"
+#           contents:
+#             - TP/TP1.qmd
+#             - TP/TP2.qmd
+#             - TP/TP3.qmd
+#         - section: "Quarto"
+#           contents:
+#             - TP/markdown.qmd
+#             - TP/quarto.qmd
+
+#     - id: TD
+#       collapse-level: 2
+#       contents:
+#           - TD/TD.qmd
+
+#   title: "HAX603X: Modélisation stochastique"
+#   site-url: https://josephsalmon.github.io/HAX603X/
+#   repo-url: https://github.com/josephsalmon/HAX603X
+#   repo-actions: [source, issue]
+#   navbar:
+#     title: HAX603X
+#     background: primary
+#     search: true
+#     left:
+#       - sidebar:Cours
+#       - sidebar:Slides
+#       - sidebar:TP
+#       - sidebar:TD
+
+
+#     tools:
+#       - icon: github
+#         href: https://github.com/josephsalmon/HAX603X
+#         text: GitHub
+#       - icon: bicycle
+#         href: https://moodle.umontpellier.fr/course/view.php?id=25763
+#         text: Moodle
+
 # format:
 #   html:
 #     theme:
 #       spacelab
 #     css: [custom.css]
 #     html-math-method: katex
-#   pdf:
-#     documentclass: scrreport
-#     include-in-header:
-#             text: |
-#                 \usepackage{stmaryrd}
-#                 \usepackage{amsmath}
-#                 \usepackage{bm}
-#                 \providecommand{\N}{\mathbb{N}}
-#                 \providecommand{\Z}{\mathbb{Z}}
-#                 \providecommand{\E}{\mathbb{E}}
-#                 \providecommand{\R}{\mathbb{R}}
-#                 \renewcommand{\P}{\mathbb{P}}
-#                 \DeclareMathOperator{\var}{Var} % variance
-#                 \DeclareMathOperator{\cov}{Cov} % covariance
-#                 \newcommand{\wt}[1]{\widetilde{#1}}
-
-###############################################################################
-# Website
-################################################################################
-
-lang: fr
-project:
-  type: website
-  render:
-  - "*.qmd"
-
-website:
-  page-navigation: true
-  back-to-top-navigation: true
-  sidebar:
-    - id: introduction
-      title: "Présentation"
-      style: "floating"
-      collapse-level: 1
-      align: left
-      contents:
-        - index.qmd
-    - id: Cours
-      collapse-level: 2
-      contents:
-          - Courses/perspective_historique.qmd
-          - Courses/notations.qmd
-          - Courses/th_asymptotique.qmd
-          - Courses/simulation.qmd
-          - Courses/loi_normale1D.qmd
-          - Courses/loi_normale_multi.qmd
-          - Courses/monte_carlo.qmd
-          - Courses/marche_aleatoire.qmd
-
-    - id: Slides
-      collapse-level: 2
-      contents:
-          - Courses/slides.qmd
-          - Slides/slides_intro.qmd
-          - Slides/slides_notations_premiers_pas.qmd
-          - Slides/slides_th_asymptotique.qmd
-          - Slides/slides_simulation.qmd
-          - Slides/slides_loi_normale1D.qmd
-          - Slides/slides_loi_normale_multi.qmd
-
-    - id: TP
-      collapse-level: 2
-      contents:
-        - section: "TP"
-          contents:
-            - TP/TP1.qmd
-            - TP/TP2.qmd
-            - TP/TP3.qmd
-        - section: "Quarto"
-          contents:
-            - TP/markdown.qmd
-            - TP/quarto.qmd
-
-    - id: TD
-      collapse-level: 2
-      contents:
-          - TD/TD.qmd
-
-  title: "HAX603X: Modélisation stochastique"
-  site-url: https://josephsalmon.github.io/HAX603X/
-  repo-url: https://github.com/josephsalmon/HAX603X
-  repo-actions: [source, issue]
-  navbar: 
-    title: HAX603X
-    background: primary
-    search: true
-    left:
-      - sidebar:Cours
-      - sidebar:Slides
-      - sidebar:TP
-      - sidebar:TD
-
-
-    tools:
-      - icon: github
-        href: https://github.com/josephsalmon/HAX603X
-        text: GitHub
-      - icon: bicycle
-        href: https://moodle.umontpellier.fr/course/view.php?id=25763
-        text: Moodle
-
-format:
-  html:
-    theme:
-      spacelab
-    css: [custom.css]
-    html-math-method: katex
-    toc-location: right
-    toc: true
-    toc-depth: 3
-    code-fold: false
-    code-tools:
-      toggle: false
-      source: false
-    code-overflow: wrap
-    highlight-style: github
-    fig-responsive: true
-    fig.align: center
-    reference-location: margin
-    citation-location: margin
+#     toc-location: right
+#     toc: true
+#     toc-depth: 3
+#     code-fold: false
+#     code-tools:
+#       toggle: false
+#       source: false
+#     code-overflow: wrap
+#     highlight-style: github
+#     fig-responsive: true
+#     fig.align: center
+#     reference-location: margin
+#     citation-location: margin
