@@ -18,7 +18,7 @@ Les sections en haut de page regroupe le contenus pédagogique : les [slides](Co
 
 <embed
   src="srcimages/Modélisation-stochastique--HAX603X-.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
-  width="400" height="540" />
+  width="420" height="540" />
 
 ```
 
