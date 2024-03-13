@@ -20,17 +20,38 @@ F_U(x)
 \end{cases}
 $$
 
+
+
 ```{python}
 #| echo: false
-#| label: fig-repartition-uniforme
-#| fig-cap:
-#|       - Fonction de répartition de la loi uniforme
 import numpy as np
 import scipy
 import plotly.graph_objects as go
 import plotly.io as pio
+```
 
+::: {.content-visible when-format="html"}
+```{python}
+#| echo: false
 pio.renderers.default = "notebook"
+```
+:::
+
+::: {.content-visible when-format="pdf"}
+```{python}
+#| echo: false
+pio.renderers.default = "pdf"
+pio.kaleido.scope.mathjax = None
+```
+:::
+
+
+```{python}
+#| echo: false
+#| layout-ncol: 1
+#| label: fig-repartition-uniforme
+#| fig-cap:
+#|       - Fonction de répartition de la loi uniforme
 
 x = np.linspace(-3, 4, num=300)
 
@@ -47,10 +68,12 @@ fig.add_trace(
 )
 
 fig.update_layout(
+    width=800, height=400,
     template="simple_white",
     showlegend=True,
 )
 
+fig.show()
 # XXX known bug with plotly and latex labels.
 ```
 
@@ -257,7 +280,11 @@ Ces considérations sont illustrées en Figure @fig-3-quantiles.
 
 ```{python}
 #| echo: false
+#| layout-ncol: 1
 #| label: fig-3-quantiles
+#| fig-cap:
+#|       - "Fonction de répartition et quantiles: solution de F(x) = u"
+
 from scipy import stats
 from plotly.subplots import make_subplots
 
@@ -322,7 +349,7 @@ fig = make_subplots(
     ),
 )
 
-fig.update_layout(title=go.layout.Title(text="Cas F(x)=u : ", x=0))
+fig.update_layout()
 # Quantile plot
 color_blue = "rgb(66, 139, 202)"
 fig.update_layout(

@@ -18,17 +18,10 @@
 #     - Courses/marche_aleatoire.qmd
 # format: pdf
 # from: markdown+emoji
+# plotly-connected: true
 # pdf-engine: lualatex
 # keep-tex: true
 # mainfont: "TeX Gyre Termes Math"
-
-# # header-includes:
-# #   - \setmainfont{Noto Color Emoji}
-#   # html:
-#   #   theme:
-#   #     spacelab
-#   #   css: [custom.css]
-#   #   html-math-method: katex
 # include-in-header:
 #         text: |
 #             \usepackage{stmaryrd}
