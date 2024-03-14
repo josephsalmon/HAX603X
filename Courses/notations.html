@@ -485,7 +485,7 @@ f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\mathrm det}(\Sigma)} e^{-\frac{1}{2}(x
 <p>La notion de variable aléatoire n’est pas facile à manipuler puisqu’elle part d’un espace <span class="math inline">\Omega</span> dont on ne sait rien. On souhaite donc caractériser la loi d’une variable aléatoire en ne considérant que l’espace d’arrivée <span class="math inline">(E, \mathcal{E})</span> .</p>
 <p>Plusieurs outils existent : la fonction de répartition (pour des variables aléatoires réelles), la fonction caractéristique (pour des variables aléatoires dans <span class="math inline">\mathbb{R}^d</span>), la fonction génératrice des moments (pour des variables aléatoires discrètes), etc. On se contente ici de la fonction de répartition qui nous sera utile pour simuler des variables aléatoires, ainsi que son inverse au sens de Levy.</p>
 <div id="def-cdf" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition 🇬🇧: <em>cumulative distribution function</em>)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition <span class="emoji" data-emoji="gb">🇬🇧</span>: <em>cumulative distribution function</em>)</strong></span> <br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. La fonction de répartition de <span class="math inline">X</span> est la fonction <span class="math inline">F_X</span> définie sur <span class="math inline">\mathbb{R}</span> par <span class="math display">\begin{align*}
     F_X(x) &amp; = \mathbb{P}(X \leq x)\\
            &amp; = \mathbb{P}(X \in ]-\infty, x]) \enspace.
@@ -538,7 +538,7 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 <h2 class="anchored" data-anchor-id="fonction-quantile-inverse-généralisée-à-gauche">Fonction quantile, inverse généralisée à gauche</h2>
 <p>La fonction de répartition étant une fonction croissante on peut donner un sens à son inverse généralisée de la manière suivante.</p>
 <div id="def-quantile" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée 🇬🇧: <em>quantile distribution function</em>)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée <span class="emoji" data-emoji="gb">🇬🇧</span>: <em>quantile distribution function</em>)</strong></span> <br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span> et <span class="math inline">F_X</span> sa fonction de répartition. La fonction quantile associée <span class="math inline">F_X^\leftarrow:  ]0,1[ \rightarrow \mathbb{R}</span> est définie par <span class="math display">
   F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
 </span></p>
