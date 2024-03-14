@@ -307,7 +307,7 @@ Ce résultat nous donne la probabilité d'intersection entre une aiguille et les
 
 <!-- insert figure -->
 
-::: {#fig-Borel_book layout-nrow=2}
+::: {#fig-Borel_book layout-ncol=2}
 ![Début de la preuve](../srcimages/Borel_1.jpg){width=90%}
 
 ![Fin de la preuve](../srcimages/Borel_2.jpg){width=90%}
