@@ -252,7 +252,7 @@ Les lois normales sont omniprésente grâce au théorème central limite.
 
 ::: {#def-cdf}
 
-##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
+##  Fonction de répartition :gb:: *cumulative distribution function*
 
 <br>
 
@@ -357,7 +357,7 @@ $$
 $$
 :::
 
-[Vocabulaire]{.underline}: densité  (&#127468;&#127463;: probability density function)
+[Vocabulaire]{.underline}: densité  (:gb:: probability density function)
 
 
 ## Loi normale
@@ -384,7 +384,7 @@ $$
 
 ::: {#def-quantile}
 
-##  Fonction quantile/ inverse généralisée &#127468;&#127463;: *quantile distribution function*
+##  Fonction quantile/ inverse généralisée :gb:: *quantile distribution function*
 
 <br>
 

@@ -718,5 +718,5 @@ app = App(app_ui, server)
 :::{.callout-note}
 
 ## Pour aller plus loin
-Pour plus d'info sur les convolutions, voir la vidéo de 3Blue1Brown : [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M), &#127468;&#127463;
+Pour plus d'info sur les convolutions, voir la vidéo de 3Blue1Brown : [ Convolutions | Why X+Y in probability is a beautiful mess ](https://m.youtube.com/watch?v=IaSGqQa5O-M), :gb:
 :::

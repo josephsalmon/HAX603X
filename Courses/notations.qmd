@@ -167,7 +167,7 @@ On se contente ici de la fonction de répartition qui nous sera utile pour simul
 
 ::: {#def-cdf}
 
-##  Fonction de répartition &#127468;&#127463;: *cumulative distribution function*
+##  Fonction de répartition :gb:: *cumulative distribution function*
 
 <br>
 
@@ -276,7 +276,7 @@ La fonction de répartition étant une fonction croissante on peut donner un sen
 
 ::: {#def-quantile}
 
-##  Fonction quantile/ inverse généralisée &#127468;&#127463;: *quantile distribution function*
+##  Fonction quantile/ inverse généralisée :gb:: *quantile distribution function*
 
 <br>
 

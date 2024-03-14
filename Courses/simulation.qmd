@@ -88,8 +88,8 @@ L'objectif est de simuler sur machine une suite $U_1, \ldots, U_n$  de variables
 
 <br>
 
-Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
-Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+Un **générateur de nombres pseudo-aléatoires** (:gb:: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
+Pour être plus rigoureux, ces nombres sont en fait des nombres entiers générés uniformément sur un certain interval. Dans un second temps, une transformation simple (normalisation) permet d'obtenir des nombres flottants (:gb:: *floats*) entre 0 et 1.
 :::
 
 
@@ -102,7 +102,7 @@ Parfois il est utile d'aller chercher dans le code source certaines information 
 
 Un tel algorithme se construit de la manière suivante :
 
-1. On part d'une graine (&#127468;&#127463;: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
+1. On part d'une graine (:gb:: *seed*) $U_0$ qui détermine la première valeur de manière la plus arbitraire possible.
 2. La procédure récursive s'écrit $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, de sorte que $U_{n+1}$ est le plus indépendant possible de $U_1, \dots, U_n$.
 
 
@@ -118,7 +118,7 @@ Reprendre les widgets du chapitre [Théorèmes asymptotiques](th_asymptotique.qm
 
 ### Générateur congruentiel linéaire
 
-La plupart des PRNG s'appuient sur des résultats arithmétiques. Un des plus connus est celui appelé Générateur congruentiel linéaire (&#127468;&#127463; Linear congruential generator, LCG).
+La plupart des PRNG s'appuient sur des résultats arithmétiques. Un des plus connus est celui appelé Générateur congruentiel linéaire (:gb: Linear congruential generator, LCG).
 Il est défini comme suit: on construit récursivement une suite d'entiers $X_i$ via la congruence
 $$
   X_{n+1} = a X_n + b \quad \text{mod } m \enspace,

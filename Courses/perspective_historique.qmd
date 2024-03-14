@@ -290,10 +290,10 @@ P
 & = \frac{2}{\pi} \enspace.
 \end{align*}
 
-
+## Les spaghettis de Buffon
 
 Une démonstration alternative est donnée dans le livre de
-@Borel_Deltheil23, inspirée de celle @Barbier60
+@Borel_Deltheil23, inspirée de celle @Barbier60, et utilise concept de **spaghettis de Buffon** (:gb: *Buffon's noodle*, cf. [https://en.wikipedia.org/wiki/Buffon%27s_noodle](https://en.wikipedia.org/wiki/Buffon%27s_noodle)).
 Elle utilise l'approche suivante.
 Au lieu de calculer la probabilité d'intersection entre une aiguille et les rainures d'un parquet, nous allons déterminer le nombre moyen d'intersections entre une courbe et les rainures du parquet. Nous démontrerons que ce nombre moyen est directement proportionnel à la longueur de la courbe et inversement proportionnel à la distance moyenne entre les rainures du parquet (nous prendrons cette distance égale à 1 pour simplifier).
 
@@ -302,6 +302,20 @@ Pour ce faire, nous allons d'abord considérer des lignes polygonales, pour lesq
 Nous allons maintenant montrer que $\alpha = \frac{2}{\pi}$. Pour cela, prenons un cercle de rayon 2, donc de longueur $4\pi$. Si ce cercle est tangent aux lattes du parquet, il y a deux points d'intersection. Sinon, il y a également deux points d'intersection. Ainsi, le nombre moyen d'intersection est de 2, ce qui nous donne l'équation $2 = \alpha \times 4\pi$. En résolvant cette équation, nous trouvons $\alpha = \frac{2}{\pi}$.
 
 Ce résultat nous donne la probabilité d'intersection entre une aiguille et les lattes du parquet lorsque la taille de l'aiguille est inférieure à l'écartement des lattes.
+
+
+
+<!-- insert figure -->
+
+::: {#fig-Borel_book layout-nrow=2}
+![Début de la preuve](../srcimages/Borel_1.jpg){width=90%}
+
+![Fin de la preuve](../srcimages/Borel_2.jpg){width=90%}
+
+Extrait du Libre de Borel et Deltheil (Probatilités et Erreurs).
+
+:::
+
 
 
 ::: {.callout-important appearance='default' icon="false"}
@@ -332,7 +346,7 @@ Dans le cadre du projet Manhattan, il s'agissait de calculer des intégrales de 
 
 ### Méthode d'Hasting-Metropolis
 
-L'algorithme de Hasting-Metropolis est une méthode MCMC (&#127468;&#127463;: *Monte Carlo Markov Chains*) dont le but est d'obtenir un échantillonnage aléatoire d'une distribution de probabilité quand l'échantillonnage direct en est difficile (en particulier en grande dimension)
+L'algorithme de Hasting-Metropolis est une méthode MCMC (:gb:: *Monte Carlo Markov Chains*) dont le but est d'obtenir un échantillonnage aléatoire d'une distribution de probabilité quand l'échantillonnage direct en est difficile (en particulier en grande dimension)
 
 Un avantage est qu'il ne requiert la connaissance de loi de densité qu'à constante multiplicative près.
 

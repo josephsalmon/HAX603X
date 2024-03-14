@@ -139,19 +139,19 @@ fig.update_layout(
 
 <br>
 
-Un **générateur de nombres pseudo-aléatoires** (&#127468;&#127463;: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
+Un **générateur de nombres pseudo-aléatoires** (:gb:: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
 :::
 
 <br>
 
-[Remarque]{.underline}: ces nombres sont obtenus depuis des **nombres entiers** générés aléatoirement et uniformément sur grand interval, puis une transformation simple (normalisation) permet d'obtenir des nombres flottants (&#127468;&#127463;: *floats*) entre 0 et 1.
+[Remarque]{.underline}: ces nombres sont obtenus depuis des **nombres entiers** générés aléatoirement et uniformément sur grand interval, puis une transformation simple (normalisation) permet d'obtenir des nombres flottants (:gb:: *floats*) entre 0 et 1.
 
 
 ## Détails techniques
 
 Un PRNG se construit ainsi :
 
-1. Initialisation: une graine (&#127468;&#127463;: *seed*) $U_0$, détermine la première valeur (choix arbitraire)
+1. Initialisation: une graine (:gb:: *seed*) $U_0$, détermine la première valeur (choix arbitraire)
 2. On calcule $U_{n+1} = f(U_n)$, où $f$ est une transformation déterministe, telle que $U_{n+1}$ est "le plus indépendant possible" de $U_1, \dots, U_n$.
 
 . . .
@@ -166,7 +166,7 @@ La plupart des PRNG s'appuient sur des résultats arithmétiques.
 
 :::{.incremental}
 
-- Le plus célèbre: Générateur Congruentiel Linéaire (&#127468;&#127463; Linear Congruential Generator, LCG).
+- Le plus célèbre: Générateur Congruentiel Linéaire (:gb: Linear Congruential Generator, LCG).
 
 - Récurrence:
 $$

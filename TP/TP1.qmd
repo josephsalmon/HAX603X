@@ -29,9 +29,9 @@ Dans ce premier TP, on présente les bases de Python.
 Pour plus de détails on pourra consulter les ouvrages:
 
 
-- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
-- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) &#127467;&#127479;
-- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] &#127467;&#127479;
+- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) :fr:
+- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) :fr:
+- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] :fr:
 
 ### Installation de Python
 
@@ -144,7 +144,7 @@ On peut utiliser l'aide de base de `python` avec les commandes `help(la-fonction
 
 
 ### Répertoire de travail
-Le répertoire de travail (&#127468;&#127463;: **working directory**) est le répertoire par défaut, c'est-à-dire le répertoire qui s'ouvre quand vous cliquez sur le bouton pour enregistrer un fichier.
+Le répertoire de travail (:gb:: **working directory**) est le répertoire par défaut, c'est-à-dire le répertoire qui s'ouvre quand vous cliquez sur le bouton pour enregistrer un fichier.
 La commande pour connaître le répertoire de travail actuel est `getcwd` du package `os`:
 
 ```{python}
@@ -471,7 +471,7 @@ print("Les deux méthodes trouvent le même résultat")
 Pour des comparaisons d'efficacité temporelle plus poussées on pourra utiliser le package `timeit`^[[lien vers la documentation de timeit](https://docs.python.org/3/library/timeit.html)] ou voir la discussion ici: [https://superfastpython.com/time-time-vs-time-perf_counter/](https://superfastpython.com/time-time-vs-time-perf_counter/).
 :::
 
-#### Question découpage (&#127468;&#127463;: *slicing*)
+#### Question découpage (:gb:: *slicing*)
 
 Le découpage permet d'extraire des éléments selon un critère (position, condition, etc.).
 La notation `:` signifie "tout le monde", et l'indexation commence en $0$.
@@ -570,7 +570,7 @@ print(np.var(M))
 
 #### Question : Reproduire des résultats
 
-Pour reproduire des résultats ou débugger un code, il est utile de "figer" l'aléatoire. On utilise pour cela une graine (&#127467;&#127479; *seed*) dans la création du générateur. Fixez la graine à 0 dans `default_rng()` et lancez une génération aléatoire. Commenter.
+Pour reproduire des résultats ou débugger un code, il est utile de "figer" l'aléatoire. On utilise pour cela une graine (:fr: *seed*) dans la création du générateur. Fixez la graine à 0 dans `default_rng()` et lancez une génération aléatoire. Commenter.
 
 ```{python}
 #| eval: false

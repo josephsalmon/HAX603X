@@ -135,6 +135,7 @@
       theme:
         spacelab
       css: [custom.css]
+      from: markdown+emoji
       html-math-method: katex
       toc-location: right
       toc: true
