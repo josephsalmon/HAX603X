@@ -312,7 +312,7 @@ Ce résultat nous donne la probabilité d'intersection entre une aiguille et les
 
 ![Fin de la preuve](../srcimages/Borel_2.jpg){width=90%}
 
-Extrait du Libre de Borel et Deltheil (Probatilités et Erreurs).
+Extrait du Livre de Borel et Deltheil (Probatilités et Erreurs).
 
 :::
 
