@@ -423,47 +423,154 @@ Objectifs de ce TP
 <ol type="1">
 <li>Représenter graphiquement la fonction de répartition d’une loi exponentielle (on pourra se restreindre aux réels positifs).</li>
 </ol>
-<div>
-
-</div>
-<div id="a2c422a0" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+<section id="solution" class="level4">
+<h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">44</span>)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">100</span>)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>ax.plot(t, <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)<span class="op">*</span>t), color<span class="op">=</span><span class="st">"green"</span>, label<span class="op">=</span><span class="st">"lambda = 1/2"</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>ax.plot(t, <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span>t), color<span class="op">=</span><span class="st">"red"</span>, label<span class="op">=</span><span class="st">"lambda = 1"</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>ax.plot(t, <span class="dv">1</span> <span class="op">-</span> np.exp(<span class="op">-</span><span class="dv">2</span><span class="op">*</span>t), color<span class="op">=</span><span class="st">"blue"</span>, label<span class="op">=</span><span class="st">"lambda = 2"</span>)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"t"</span>)</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"F(t)"</span>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Fonction de répartition de lois exponentielle"</span>)</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="34890533" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP3_files/figure-html/cell-2-output-1.png" width="589" height="450"></p>
 </div>
 </div>
 </div>
-<ol type="1">
-<li><p>Écrire une fonction <code>expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">\lambda &gt; 0</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{E}(\lambda)</span>. On utilisera la méthode d’inversion vue en cours.</p></li>
-<li><p>Représenter graphiquement l’histogramme d’un tel échantillon pour <span class="math inline">n=10^2</span>, <span class="math inline">n=10^3</span>, puis <span class="math inline">n=10^4</span>, et pour <span class="math inline">\lambda = 1/2, 1, 4</span>. Superposer à chaque fois le graphe de la densité de <span class="math inline">\mathcal{E}(\lambda)</span>.</p></li>
+<ol start="2" type="1">
+<li>Écrire une fonction <code>expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">\lambda &gt; 0</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{E}(\lambda)</span>. On utilisera la méthode d’inversion vue en cours.</li>
 </ol>
-<div>
+</section>
+<section id="solution-1" class="level4">
+<h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expo(n, lam, rng):</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generates random samples from an exponential distribution.</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="co">        n (int): Number of samples to generate.</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co">        lam (float): Rate parameter lambda of the exponential distribution.</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="co">        numpy.ndarray: Random samples from the exponential distribution.</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span>np.log(rng.uniform(size<span class="op">=</span>n)) <span class="op">/</span> lam</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="21fce304" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
 
 </div>
-<div id="162396f3" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+<ol start="3" type="1">
+<li>Représenter graphiquement l’histogramme d’un tel échantillon pour <span class="math inline">n=10^2</span>, <span class="math inline">n=10^3</span>, et pour <span class="math inline">\lambda = 1/2, 1, 4</span>. Superposer à chaque fois le graphe de la densité de <span class="math inline">\mathcal{E}(\lambda)</span>.</li>
+</ol>
+</section>
+<section id="solution-2" class="level4">
+<h4 class="anchored" data-anchor-id="solution-2"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>lambs <span class="op">=</span> [<span class="dv">1</span> <span class="op">/</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>]</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>ns <span class="op">=</span> [<span class="dv">10</span><span class="op">**</span><span class="dv">2</span>, <span class="dv">10</span><span class="op">**</span><span class="dv">3</span>]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">"skyblue"</span>, <span class="st">"green"</span>]</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot histogram</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(lambs):</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>    ax[i].plot(</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>        t,</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>        stats.expon.pdf(t, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span> <span class="op">/</span> lam),</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">"--"</span>,</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>        color<span class="op">=</span><span class="st">"k"</span>,</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        label<span class="op">=</span><span class="ss">f"Loi théorique $\lambda$=</span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss">"</span>,</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        alpha<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, n <span class="kw">in</span> <span class="bu">enumerate</span>(ns):</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Generate exponential random variables</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>        va_expo <span class="op">=</span> expo(n, lam, rng)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        ax[i].hist(</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>            va_expo, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>            color<span class="op">=</span>colors[j],</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>            alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f"n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">"</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>        <span class="co"># Generate exponential random variables</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>        ax[i].set_title(<span class="ss">f"Loi exponentielle de paramètre $\lambda$=</span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>        ax[i].set_ylim(<span class="dv">0</span>, <span class="dv">2</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>        ax[i].set_xlim(<span class="dv">0</span>, <span class="dv">6</span>)</span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>].legend(loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="79d8cffe" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP3_files/figure-html/cell-4-output-1.png" width="571" height="432"></p>
+<p><img src="TP3_files/figure-html/cell-4-output-1.png" width="457" height="469"></p>
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+Attention
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Attention! les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours…</p>
+<p>les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours dans <code>scipy.stats</code>…</p>
 </div>
 </div>
 <ol start="4" type="1">
 <li>Illustrer graphiquement la loi des grands nombres avec <span class="math inline">\lambda = 1/2, 1, 4</span>. On tracera en particulier la droite d’équation <span class="math inline">y=\mathbb E[X]</span>, où <span class="math inline">X \sim \mathcal{E}(\lambda)</span>.</li>
+</ol>
+</section>
+<section id="solution-3" class="level4">
+<h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">200</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>lambs <span class="op">=</span> [<span class="dv">1</span> <span class="op">/</span> <span class="dv">2</span>, <span class="dv">1</span>, <span class="dv">4</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span><span class="dv">3</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la moyenne empirique</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>X_av <span class="op">=</span> np.zeros((<span class="bu">len</span>(lambs), n))</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(lambs):</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>    va_expo <span class="op">=</span> expo(n, lam, rng)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>    X_av[i] <span class="op">=</span> np.cumsum(va_expo)<span class="op">/</span>np.arange(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, lam <span class="kw">in</span> <span class="bu">enumerate</span>(lambs):</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    ax[i].plot(X_av[i], label<span class="op">=</span><span class="ss">f"moyenne empirique"</span>)</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    ax[i].plot([<span class="dv">0</span>, n], [<span class="dv">1</span><span class="op">/</span>lam, <span class="dv">1</span><span class="op">/</span>lam], <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">"Espérance"</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(<span class="ss">f"Loi exponentielle de paramètre $\lambda$=</span><span class="sc">{</span>lam<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].legend(loc<span class="op">=</span><span class="st">"lower right"</span>)</span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="fefc9de6" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP3_files/figure-html/cell-5-output-1.png" width="462" height="469"></p>
+</div>
+</div>
+</div>
+<ol start="5" type="1">
 <li> Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?</li>
 </ol>
+</section>
 </section>
 <section id="lois-discrètes" class="level2">
 <h2 class="anchored" data-anchor-id="lois-discrètes">Lois discrètes</h2>
@@ -472,19 +579,53 @@ Note
 <ol type="1">
 <li>Écrire une fonction <code>bernou</code> qui prend en argument un entier <span class="math inline">n</span> et un paramètre <span class="math inline">p \in ]0,1[</span> et un générateur aléatoire (e.g., <code>rng</code>), et qui donne en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{B}(p)</span>.</li>
 </ol>
+<section id="solution-4" class="level4">
+<h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
 <div>
 
 </div>
-<div id="d11c4920" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="6767fac8" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0 0 0 0 0 1 0 0 0 1]</code></pre>
+<pre><code>Echantillon de taille n=10 de loi Bernoulli(p=0.5) :
+[0 0 0 1 0 1 0 0 0 0]</code></pre>
 </div>
 </div>
 </div>
 <ol start="2" type="1">
-<li>Illustrer graphiquement la loi des grands nombres pour un échantillon de taille <span class="math inline">n=10^3</span> et différentes valeurs de <span class="math inline">p</span> (on pourra superposer les graphes).</li>
+<li>Illustrer graphiquement la loi des grands nombres pour un échantillon de taille <span class="math inline">n=10^3</span> et différentes valeurs de <span class="math inline">p</span>.</li>
 </ol>
+</section>
+<section id="solution-5" class="level4">
+<h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>ps <span class="op">=</span> [<span class="fl">0.2</span>, <span class="fl">0.5</span>, <span class="fl">0.8</span>]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span> <span class="op">**</span><span class="dv">3</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Calcul de la moyenne empirique</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>X_av <span class="op">=</span> np.zeros((<span class="bu">len</span>(ps), n))</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, p <span class="kw">in</span> <span class="bu">enumerate</span>(ps):</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    va_bernou <span class="op">=</span> bernou(n, p, rng)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    X_av[i] <span class="op">=</span> np.cumsum(va_bernou)<span class="op">/</span>np.arange(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">5</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, p <span class="kw">in</span> <span class="bu">enumerate</span>(ps):</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    ax[i].plot(X_av[i], label<span class="op">=</span><span class="ss">f"moyenne empirique"</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    ax[i].plot([<span class="dv">0</span>, n], [p, p], <span class="st">'r--'</span>, label<span class="op">=</span><span class="st">"Espérance"</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(<span class="ss">f"Loi de Bernoulli de paramètre p=</span><span class="sc">{</span>p<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">2</span>].legend(loc<span class="op">=</span><span class="st">"upper right"</span>)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="05716a9c" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP3_files/figure-html/cell-7-output-1.png" width="479" height="470"></p>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="loi-géométrique" class="level3">
 <h3 class="anchored" data-anchor-id="loi-géométrique">Loi géométrique</h3>
@@ -492,35 +633,95 @@ Note
 <li><p>Rappeler les deux méthodes vues en TD pour simuler une loi géométrique.</p></li>
 <li><p>Écrire une fonction <code>geo_bernou</code> qui prend en argument un entier <span class="math inline">n</span>, un réal <span class="math inline">p \in ]0,1[</span>, un générateur aléatoire (e.g., <code>rng</code>) et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>bernou</code>.</p></li>
 </ol>
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p, rng)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="34e62837" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<section id="solution-6" class="level4">
+<h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> geo_bernou(n, p, rng):</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generates random samples from a geometric distribution based on Bernoulli trials.</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co">        n (int): Number of samples to generate.</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a><span class="co">        p (float): Probability of success for each Bernoulli trial.</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co">        rng (numpy.random.Generator): Random number generator.</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co">        numpy.ndarray: Random samples from the geometric distribution.</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    geo <span class="op">=</span> np.zeros(n)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>        i <span class="op">=</span> <span class="dv">1</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>        <span class="cf">while</span> bernou(<span class="dv">1</span>, p, rng)[<span class="dv">0</span>] <span class="op">==</span> <span class="dv">0</span>:  <span class="co"># Simulate until a Bernoulli trial yields 1</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>            i <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>        geo[j] <span class="op">=</span> i</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> geo</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ed29abbb" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> <span class="fl">0.3</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p, rng)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(geometric_samples)</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Moyenne:</span><span class="sc">{</span>np<span class="sc">.</span>mean(geometric_samples)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="6ca7afaf" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[2. 3. 7. 2. 7. 4. 2. 3. 1. 7. 3. 8.]</code></pre>
+<pre><code>[1. 2. 2. 3. 6. 1. 1. 1. 3. 6.]
+Moyenne:2.6</code></pre>
 </div>
 </div>
 </div>
-<ol type="1">
-<li><p>Écrire une fonction <code>geo_expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">p \in ]0,1[</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>expo</code>.</p></li>
-<li><p>Le module <code>time</code> contient la fonction <code>process_time()</code> qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer</p></li>
+<ol start="3" type="1">
+<li>Écrire une fonction <code>geo_expo</code> qui prend en argument un entier <span class="math inline">n</span>, un paramètre <span class="math inline">p \in ]0,1[</span>, et un générateur aléatoire (e.g., <code>rng</code>) et qui renvoie en sortie un échantillon de taille <span class="math inline">n</span> de loi <span class="math inline">\mathcal{G}(p)</span> en se basant sur la fonction <code>expo</code>.</li>
 </ol>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.process_time()</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">""" code chunck to be timed """</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elaped  when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="07fd6309" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+</section>
+<section id="solution-7" class="level4">
+<h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
+<div>
+
+</div>
+<div id="6d6c788f" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[ 4.  1.  1.  1.  2. 13.  1.  6.  1.  7.]
+Moyenne:3.7</code></pre>
+</div>
+</div>
+</div>
+<ol start="4" type="1">
+<li>Le module <code>time</code> contient la fonction <code>process_time()</code> qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer</li>
+</ol>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.process_time()</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="co">""" code chunck to be timed """</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elapsed when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7db148c1" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 
 </div>
 <p>Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.</p>
+</section>
+<section id="solution-8" class="level4">
+<h4 class="anchored" data-anchor-id="solution-8"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.process_time()</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_bernou(n, p, rng)</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elapsed when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.process_time()</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>geometric_samples <span class="op">=</span> geo_expo(n, p, rng)</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>t1 <span class="op">=</span> time.process_time()</span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Time elapsed when running code chunk:"</span>, t1 <span class="op">-</span> t0)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="ada18f31" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -536,6 +737,7 @@ Note
 </div>
 </section>
 </section>
+</section>
 <section id="méthode-de-rejet-et-loi-beta" class="level2">
 <h2 class="anchored" data-anchor-id="méthode-de-rejet-et-loi-beta">Méthode de rejet et loi Beta</h2>
 <p>On rappelle que la loi de Beta de paramètres <span class="math inline">\alpha, \beta &gt; 0</span>, notée <span class="math inline">\text{Beta}(\alpha, \beta)</span>, est donnée par la densité <span class="math display">
@@ -546,88 +748,203 @@ Note
 <ol type="1">
 <li>Représenter la densité pour différentes valeurs de <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> pour visualiser cette loi.</li>
 </ol>
+<section id="solution-9" class="level4">
+<h4 class="anchored" data-anchor-id="solution-9"><span style="color:red;">Solution</span></h4>
 <div>
 
 </div>
-<div id="2a00427c" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="ac2eaae8" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP3_files/figure-html/cell-9-output-1.png" width="589" height="449"></p>
+<p><img src="TP3_files/figure-html/cell-13-output-1.png" width="589" height="449"></p>
 </div>
 </div>
 </div>
-<ol type="1">
+<ol start="2" type="1">
 <li>À l’aide de la méthode de rejet vue en TD, construire une fonction <code>loi_beta</code> qui génère <span class="math inline">n</span> variables aléatoires de loi <span class="math inline">\text{Beta}(\alpha,\beta)</span>. La fonction prendre donc en paramètre, <span class="math inline">n</span>, <span class="math inline">\alpha</span>, <span class="math inline">\beta</span>, et un générateur aléatoire (e.g., <code>rng</code>).</li>
 </ol>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta, rng)</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="35896a70" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+</section>
+<section id="solution-10" class="level4">
+<h4 class="anchored" data-anchor-id="solution-10"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> loi_beta(n, alpha, beta, rng):</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generates random samples from a Beta distribution.</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co">        n (int): Number of samples to generate.</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="co">        alpha (float): Shape parameter alpha of the Beta distribution.</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="co">        beta (float): Shape parameter beta of the Beta distribution.</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co">        rng (numpy.random.Generator): Random number generator.</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co">        numpy.ndarray: Random samples from the Beta distribution.</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.zeros(n)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&lt;</span> n:</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> rng.uniform()  <span class="co"># Uniform distribution</span></span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>        Y <span class="op">=</span> rng.uniform()  <span class="co"># Uniform distribution</span></span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> U <span class="op">&lt;=</span> Y<span class="op">**</span>(alpha <span class="op">-</span> <span class="dv">1</span>) <span class="op">*</span> (<span class="dv">1</span> <span class="op">-</span> Y)<span class="op">**</span>(beta <span class="op">-</span> <span class="dv">1</span>):</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>            X[k] <span class="op">=</span> Y</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="f1535864" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">12</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>beta_samples <span class="op">=</span> loi_beta(n, alpha, beta, rng)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(beta_samples)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="3b855489" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[0.27558592 0.38507158 0.68837848 0.60839046 0.34287937 0.32886319
- 0.45669064 0.60648049 0.09872267 0.13860872 0.66006806 0.48943829]</code></pre>
+<pre><code>[0.58991158 0.34556909 0.75997128 0.28782709 0.32675436 0.27534582
+ 0.30186169 0.43321003 0.49512578 0.1580382  0.09452729 0.33500066]</code></pre>
 </div>
 </div>
 </div>
 <ol start="3" type="1">
 <li>Illustrer graphiquement votre résultat en représentant l’histogramme pour <span class="math inline">n=10^3</span> et différentes valeurs de <span class="math inline">\alpha, \beta</span>. On superposera à chaque fois la densité adéquate.</li>
 </ol>
-<div>
-
-</div>
-<div id="98819c38" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
+</section>
+<section id="solution-11" class="level4">
+<h4 class="anchored" data-anchor-id="solution-11"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>t <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">200</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>alpha, beta <span class="op">=</span> <span class="dv">2</span>, <span class="dv">3</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate exponential random variables</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>n_values <span class="op">=</span> [<span class="dv">10</span><span class="op">**</span><span class="dv">2</span>, <span class="dv">10</span><span class="op">**</span><span class="dv">3</span>]</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>colors <span class="op">=</span> [<span class="st">'skyblue'</span>, <span class="st">'green'</span>]</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>bins <span class="op">=</span> [<span class="dv">30</span>, <span class="dv">60</span>]</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>alpha_betas <span class="op">=</span>[(<span class="dv">2</span>, <span class="dv">5</span>), (<span class="dv">1</span>, <span class="dv">3</span>), (<span class="dv">3</span>, <span class="dv">1</span>), (<span class="dv">2</span>, <span class="dv">2</span>)]</span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>fig, axs <span class="op">=</span> plt.subplots(<span class="bu">len</span>(n_values), <span class="bu">len</span>(alpha_betas), figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">4</span>))</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-13"><a href="#cb16-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, n, color, <span class="bu">bin</span> <span class="kw">in</span> <span class="bu">zip</span>(np.arange(<span class="dv">2</span>), n_values, colors, bins):</span>
+<span id="cb16-14"><a href="#cb16-14" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, alpha_beta <span class="kw">in</span> <span class="bu">enumerate</span>(alpha_betas):</span>
+<span id="cb16-15"><a href="#cb16-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-16"><a href="#cb16-16" aria-hidden="true" tabindex="-1"></a>        alpha, beta <span class="op">=</span> alpha_beta</span>
+<span id="cb16-17"><a href="#cb16-17" aria-hidden="true" tabindex="-1"></a>        va_beta <span class="op">=</span> loi_beta(n, alpha, beta, rng)</span>
+<span id="cb16-18"><a href="#cb16-18" aria-hidden="true" tabindex="-1"></a>        axs[i, j].plot(t, stats.beta.pdf(t, a<span class="op">=</span>alpha, b<span class="op">=</span>beta),<span class="st">'--'</span>, color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Loi théorique"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
+<span id="cb16-19"><a href="#cb16-19" aria-hidden="true" tabindex="-1"></a>        axs[i, j].hist(va_beta, bins<span class="op">=</span><span class="bu">bin</span>, density<span class="op">=</span><span class="va">True</span>, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="fl">0.8</span>, label<span class="op">=</span><span class="ss">f'n=</span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb16-20"><a href="#cb16-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>:</span>
+<span id="cb16-21"><a href="#cb16-21" aria-hidden="true" tabindex="-1"></a>            axs[i, j].set_title(<span class="ss">f"Loi Beta de paramètres alpha=</span><span class="sc">{</span>alpha<span class="sc">}</span><span class="ss">, beta=</span><span class="sc">{</span>beta<span class="sc">}</span><span class="ss">"</span>, fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb16-22"><a href="#cb16-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-23"><a href="#cb16-23" aria-hidden="true" tabindex="-1"></a>        axs[i, j].legend(fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb16-24"><a href="#cb16-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-25"><a href="#cb16-25" aria-hidden="true" tabindex="-1"></a>plt.suptitle(<span class="ss">f"Histogramme variables aléatoires Beta(alpha=</span><span class="sc">{</span>alpha<span class="sc">}</span><span class="ss">, beta=</span><span class="sc">{</span>beta<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb16-26"><a href="#cb16-26" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="bee2cdeb" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP3_files/figure-html/cell-12-output-1.png" width="571" height="432"></p>
+<p><img src="TP3_files/figure-html/cell-16-output-1.png" width="761" height="381"></p>
 </div>
 </div>
 </div>
 </section>
+</section>
 <section id="loi-sur-le-disque" class="level2">
 <h2 class="anchored" data-anchor-id="loi-sur-le-disque">Loi sur le disque</h2>
 <ol type="1">
-<li>Écrire une fonction <code>unif_disque</code> basée sur une méthode de rejet qui génère <span class="math inline">n</span> variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur <span class="math inline">[0,1]</span>, et prend comme second argument un générateur aléatoire (e.g., <code>rng</code>).</li>
+<li>Écrire une fonction <code>unif_disque</code> basée sur une méthode de rejet qui génère <span class="math inline">n</span> variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur <span class="math inline">[0,1]</span>, et prend comme second argument un générateur aléatoire (<em>e.g.</em>, <code>rng</code>).</li>
+</ol>
+<section id="solution-12" class="level4">
+<h4 class="anchored" data-anchor-id="solution-12"><span style="color:red;">Solution</span></h4>
+<ol start="2" type="1">
 <li>Utiliser cette fonction pour représenter graphiquement un échantillon de <span class="math inline">n=100</span> variables aléatoires uniformes sur le disque.</li>
 </ol>
-<div>
-
-</div>
-<div id="631caf27" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
+</section>
+<section id="solution-13" class="level4">
+<h4 class="anchored" data-anchor-id="solution-13"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random points</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> unif_disque(<span class="dv">100</span>, rng)</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>ax.scatter(</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    x[:, <span class="dv">0</span>], x[:, <span class="dv">1</span>], marker<span class="op">=</span><span class="st">"^"</span>, color<span class="op">=</span><span class="st">'blue'</span>, label<span class="op">=</span><span class="st">"Points dans le disque"</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Un échantillon de 100 réalisations de loi uniforme sur le disque"</span>)</span>
+<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"X"</span>)</span>
+<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Y"</span>)</span>
+<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>plt.xlim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot a circle</span></span>
+<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>circle <span class="op">=</span> plt.Circle((<span class="dv">0</span>, <span class="dv">0</span>), <span class="dv">1</span>, color<span class="op">=</span><span class="st">"black"</span>, fill<span class="op">=</span><span class="va">False</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, label<span class="op">=</span><span class="st">"Disque unité"</span>)</span>
+<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a>ax.add_artist(circle)</span>
+<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a>ax.set_aspect(<span class="st">"equal"</span>, adjustable<span class="op">=</span><span class="st">"box"</span>)</span>
+<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a>plt.legend(bbox_to_anchor<span class="op">=</span>(<span class="fl">1.05</span>, <span class="fl">0.95</span>), fancybox<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb17-22"><a href="#cb17-22" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="372d1cc6" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP3_files/figure-html/cell-14-output-1.png" width="526" height="450"></p>
+<p><img src="TP3_files/figure-html/cell-18-output-1.png" width="671" height="450"></p>
 </div>
 </div>
 </div>
-<ol start="2" type="1">
+<ol start="3" type="1">
 <li>Écrire une fonction <code>unif_disque2</code>, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés (et dont les entrées sont similaires à celle de <code>unif_disque</code>). Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l’extérieur).</li>
 </ol>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>, rng)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="f0e7be1a" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+</section>
+<section id="solution-14" class="level4">
+<h4 class="anchored" data-anchor-id="solution-14"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> unif_disque2(n, rng):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Generates random samples uniformly distributed within a unit disk.</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="co">        n (int): Number of samples to generate.</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="co">        rng (numpy.random.Generator): Random number generator.</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a><span class="co">        tuple: A tuple containing two numpy arrays:</span></span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a><span class="co">            - The first array contains the accepted samples within the unit disk.</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a><span class="co">            - The second array contains the rejected samples.</span></span>
+<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.zeros((n, <span class="dv">2</span>))  <span class="co"># Matrix to hold the accepted samples</span></span>
+<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>    rejet <span class="op">=</span> np.zeros((<span class="dv">0</span>, <span class="dv">2</span>))  <span class="co"># Matrix to hold the rejected samples</span></span>
+<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>    k <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb18-17"><a href="#cb18-17" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> k <span class="op">&lt;</span> n:</span>
+<span id="cb18-18"><a href="#cb18-18" aria-hidden="true" tabindex="-1"></a>        U <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> rng.uniform() <span class="op">-</span> <span class="dv">1</span>  <span class="co"># Uniform distribution on [-1, 1]</span></span>
+<span id="cb18-19"><a href="#cb18-19" aria-hidden="true" tabindex="-1"></a>        V <span class="op">=</span> <span class="dv">2</span> <span class="op">*</span> rng.uniform() <span class="op">-</span> <span class="dv">1</span>  <span class="co"># Uniform distribution on [-1, 1]</span></span>
+<span id="cb18-20"><a href="#cb18-20" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> U<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> V<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>:  <span class="co"># If the point (U, V) falls within the unit disk</span></span>
+<span id="cb18-21"><a href="#cb18-21" aria-hidden="true" tabindex="-1"></a>            X[k, :] <span class="op">=</span> [U, V]  <span class="co"># Assign (U, V) to the k-th row of matrix X</span></span>
+<span id="cb18-22"><a href="#cb18-22" aria-hidden="true" tabindex="-1"></a>            k <span class="op">+=</span> <span class="dv">1</span></span>
+<span id="cb18-23"><a href="#cb18-23" aria-hidden="true" tabindex="-1"></a>        <span class="cf">else</span>:</span>
+<span id="cb18-24"><a href="#cb18-24" aria-hidden="true" tabindex="-1"></a>            rejet <span class="op">=</span> np.vstack((rejet, [U, V]))  <span class="co"># Add the rejected point to the matrix rejet</span></span>
+<span id="cb18-25"><a href="#cb18-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> X, rejet</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1cae823e" class="cell quarto-layout-panel" data-execution_count="18" data-layout-ncol="1">
+
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Example usage</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>x_accepted, x_rejected <span class="op">=</span> unif_disque2(<span class="dv">100</span>, rng)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Reject ratio :"</span>, <span class="bu">len</span>(x_rejected) <span class="op">/</span> (<span class="bu">len</span>(x_rejected) <span class="op">+</span> <span class="bu">len</span>(x_accepted)))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="337a95dd" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Reject ratio : 0.25925925925925924</code></pre>
+<pre><code>Reject ratio : 0.24812030075187969</code></pre>
 </div>
 </div>
 </div>
 <div>
 
 </div>
-<div id="6200c42a" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
+<div id="f7e48eff" class="cell quarto-layout-panel" data-execution_count="20" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP3_files/figure-html/cell-17-output-1.png" width="526" height="450"></p>
+<p><img src="TP3_files/figure-html/cell-21-output-1.png" width="681" height="450"></p>
 </div>
 </div>
 </div>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->

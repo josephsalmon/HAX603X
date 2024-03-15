@@ -442,9 +442,9 @@ window.Quarto = {
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">## Histogramme</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Pour une démonstration d'un tracé d'*histogramme* avec <span class="in">`matplotlib`</span>, voir @fig-hist. On peut aussi inclure des formules </span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>Pour une démonstration d'un tracé d'*histogramme* avec <span class="in">`matplotlib`</span>, voir @fig-hist. On peut aussi inclure des formules</span>
 <span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>\frac 1 \pi \int_0^1 f(x) dx.</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>\frac 1 \pi \int_{0}^{1} f(x) dx.</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>$$</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="in">```{python}</span></span>
@@ -468,16 +468,16 @@ window.Quarto = {
 </section>
 <section id="rendu-dans-des-documents-de-sortie" class="level3">
 <h3 class="anchored" data-anchor-id="rendu-dans-des-documents-de-sortie">Rendu dans des documents de sortie</h3>
-<p>Pour convertir le rapport ci-dessus en un fichier <code>.pdf</code> de sortie, enregistrez-le sous <code>rapport_tp.qmd</code> et exécutez ensuite la commande suivante sur la ligne de commande et dans le même répertoire que le fichier :</p>
+<p>Pour convertir le rapport ci-dessus en un fichier <code>.pdf</code> de sortie, enregistrez-le sous <code>rapport_tp.qmd</code>. Si vous utilisez l’<a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">extension Visual Studio Code quarto</a> (recommandée), vous pouvez appuyer sur le bouton <code>Preview</code> (<kbd aria-hidden="true">Ctrl+Shift+K</kbd><span class="visually-hidden">Ctrl+Shift+K</span>) ou sur le bouton <code>Quarto Render Project</code> (<kbd aria-hidden="true">Ctrl+Shift+p</kbd><span class="visually-hidden">Ctrl+Shift+p</span> et chercher la commande dans la liste).</p>
+<p>Une alternative est d’exécuter la commande suivante dans un terminal (dans le même répertoire que le fichier) :</p>
 <div class="{.highlight-style=&quot;none&quot;}">
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render rapport_tp.qmd</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>N’oubliez pas que si vous utilisez l’<a href="https://marketplace.visualstudio.com/items?itemName=quarto.quarto">extension Visual Studio Code quarto</a> (recommandée), vous pouvez appuyer sur le bouton <code>Preview</code> (<kbd aria-hidden="true">Ctrl+Shift+K</kbd><span class="visually-hidden">Ctrl+Shift+K</span>).</p>
 <div id="exr-pdf" class="theorem exercise">
 <p><span class="theorem-title"><strong>Exercice 1</strong></span> Créer un PDF en enregistrant le markdown ci-dessus dans un fichier appelé <code>rapport_tp.qmd</code>.</p>
-<p>Attention: si vous obtenez une erreur indiquant que le noyau Jupyter n’a pas été trouvé, vérifiez d’abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant <code>jupyter kernelspec list</code> sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l’en-tête du document (dans l’exemple ci-dessus, il est appelé ‘python3’, qui est le noyau par défaut).</p>
+<p><u>Attention</u>: si vous obtenez une erreur indiquant que le noyau Jupyter n’a pas été trouvé, vérifiez d’abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant <code>jupyter kernelspec list</code> sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l’en-tête du document (dans l’exemple ci-dessus, il est appelé ‘python3’, qui est le noyau par défaut).</p>
 </div>
-<p>Maintenant, puisque nous avons spécifié <code>pdf</code> dans l’en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML :</p>
+<p>Maintenant, puisque nous avons spécifié <code>pdf</code> dans l’en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">quarto</span> render rapport_tp.qmd <span class="at">--to</span> html</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La syntaxe de base consiste à écrire <code>--to outputformat</code> à la fin de la commande render.</p>
 <div id="exr-html" class="theorem exercise">
@@ -512,7 +512,7 @@ window.Quarto = {
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.hist(uniform_data, bins<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="7c2914f2" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+<div id="1a6ab30b" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="quarto_files/figure-html/cell-2-output-1.png" width="558" height="411"></p>
@@ -542,7 +542,7 @@ window.Quarto = {
 </tr>
 <tr class="odd">
 <td><code>output</code></td>
-<td>Inclure les résultats de l’exécution du code dans la sortie (vrai, faux ou asis pour indiquer que la sortie est du markdown brut et ne doit pas avoir de markdown d’encadrement standard de Quarto).</td>
+<td>Inclure les résultats de l’exécution du code dans la sortie (<code>true</code>, <code>false</code>).</td>
 </tr>
 <tr class="even">
 <td><code>warning</code></td>
