@@ -142,7 +142,7 @@ Voici quelques autres fonctionnalités de syntaxe courantes dont vous aurez beso
 * le code en ligne est affiché à l'aide d'accents graves, comme ceci \`code\`
 * `~~barré~~` ressemble à ceci ~~barré~~
 * `^(exposant)` crée ^(exposant)
-* Les mathématiques sont prises en charge en ligne via des signes dollar encadrants, par exemple `$\int_{-\infty}^{+infty} e^{-x^2/2}dx = \sqrt{2\pi}$`, qui s'affiche comme $\int_{-\infty}^{+\infty} e^{-x^2/2}dx = \sqrt{2\pi}$.
+* Les mathématiques sont prises en charge en ligne via des signes dollar encadrants, par exemple `$\int_{-\infty}^{+\infty} e^{-x^2/2}dx = \sqrt{2\pi}$`, qui s'affiche comme $\int_{-\infty}^{+\infty} e^{-x^2/2}dx = \sqrt{2\pi}$.
 * Unicode est pris en charge, vous pouvez donc écrire des symboles comme ∰, ainsi que des émojis ; la syntaxe comme `:tada:` crée :tada: (mais il faut rajouter `from: markdown+emoji` dans le préambule pour que cela fonctionne).
 
 ### Syntaxe de bloc de texte

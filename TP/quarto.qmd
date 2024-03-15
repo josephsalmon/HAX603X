@@ -11,7 +11,7 @@ L'écriture d'un rapport de TP, d'un compte rendu de projet ou même de diaposit
 Vous pouvez également inclure des équations mathématiques (avec $\LaTeX$), des images (`svg`, `png`, `jpg`, etc.), des tableaux, listes, etc.
 
 
-Pour générer un document avec Quarto, vous devez écrire le contenu dans un fichier d'extension `.qmd`, qui est un format de texte simple qui sera converti en d'autres formats, tels que HTML ou PDF. Dans le fichier `.qmd`, vous pouvez inclure des blocs de code, qui seront exécutés ou non lorsque vous générez le document final. Vous pouvez décider de masquer ou d'afficher les parties de code dans les sorties finales. 
+Pour générer un document avec Quarto, vous devez écrire le contenu dans un fichier d'extension `.qmd`, qui est un format de texte simple qui sera converti en d'autres formats, tels que HTML ou PDF. Dans le fichier `.qmd`, vous pouvez inclure des blocs de code, qui seront exécutés ou non lorsque vous générez le document final. Vous pouvez décider de masquer ou d'afficher les parties de code dans les sorties finales.
 
 [Référence]{.underline} : le cours d'informatique  d'Arthur Turrell pour les économistes [https://aeturrell.github.io/coding-for-economists/intro.html]().
 
@@ -54,9 +54,9 @@ number-sections: true
 
 ## Histogramme
 
-Pour une démonstration d'un tracé d'*histogramme* avec `matplotlib`, voir @fig-hist. On peut aussi inclure des formules 
+Pour une démonstration d'un tracé d'*histogramme* avec `matplotlib`, voir @fig-hist. On peut aussi inclure des formules
 $$
-\frac 1 \pi \int_0^1 f(x) dx.
+\frac 1 \pi \int_{0}^{1} f(x) dx.
 $$
 
 ```{{python}}
@@ -82,7 +82,10 @@ Cet exemple contient des types contenu importants :
 
 ### Rendu dans des documents de sortie
 
-Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-le sous `rapport_tp.qmd` et exécutez ensuite la commande suivante sur la ligne de commande et dans le même répertoire que le fichier :
+Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-le sous `rapport_tp.qmd`.
+Si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}) ou sur le bouton `Quarto Render Project` ({{<kbd Ctrl+Shift+p>}} et chercher la commande dans la liste).
+
+Une alternative est d'exécuter la commande suivante dans un terminal (dans le même répertoire que le fichier) :
 
 :::{.highlight-style="none"}
 ```{.bash}
@@ -90,16 +93,14 @@ quarto render rapport_tp.qmd
 ```
 :::
 
-N'oubliez pas que si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}).
-
 :::{#exr-pdf}
 Créer un PDF en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`.
 
-Attention: si vous obtenez une erreur indiquant que le noyau Jupyter n'a pas été trouvé, vérifiez d'abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant `jupyter kernelspec list` sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l'en-tête du document (dans l'exemple ci-dessus, il est appelé 'python3', qui est le noyau par défaut).
+[Attention]{.underline}: si vous obtenez une erreur indiquant que le noyau Jupyter n'a pas été trouvé, vérifiez d'abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant `jupyter kernelspec list` sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l'en-tête du document (dans l'exemple ci-dessus, il est appelé 'python3', qui est le noyau par défaut).
 
 :::
 
-Maintenant, puisque nous avons spécifié `pdf` dans l'en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML :
+Maintenant, puisque nous avons spécifié `pdf` dans l'en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML
 
 ```bash
 quarto render rapport_tp.qmd --to html
@@ -159,7 +160,7 @@ Voici quelques options pour les blocs de code:
 | --- | --- |
 | `eval` | Évaluer le bloc de code (si faux, affiche simplement le code dans la sortie). |
 | `echo` | Inclure le code source dans la sortie. |
-| `output` | Inclure les résultats de l'exécution du code dans la sortie (vrai, faux ou asis pour indiquer que la sortie est du markdown brut et ne doit pas avoir de markdown d'encadrement standard de Quarto). |
+| `output` | Inclure les résultats de l'exécution du code dans la sortie (`true`, `false`). |
 | `warning` | Inclure les avertissements dans la sortie. |
 | `error` | Inclure les erreurs dans la sortie (notez que cela implique que les erreurs d'exécution du code ne bloqueront pas le traitement du document). |
 | `include` | Option générale pour empêcher toute sortie (code ou résultats) d'être incluse (par exemple, include: false supprime toute sortie du bloc de code). |
