@@ -4,6 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
+correction: true
 filters:
   - shinylive
 ---
@@ -19,11 +20,13 @@ filters:
 
 ## Méthode d'inversion : loi exponentielle et loi de Cauchy
 
-1. Représenter graphiquement la fonction de répartition d'une loi exponentielle (on pourra se restreindre aux réels positifs).
+(@) Représenter graphiquement la fonction de répartition d'une loi exponentielle (on pourra se restreindre aux réels positifs).
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -42,10 +45,16 @@ plt.title("Fonction de répartition de lois exponentielle")
 plt.legend()
 plt.show()
 ```
-1. Écrire une fonction `expo` qui prend en argument un entier $n$, un paramètre $\lambda > 0$, et un générateur aléatoire (e.g., `rng`) et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+
+::::
+
+(@) Écrire une fonction `expo` qui prend en argument un entier $n$, un paramètre $\lambda > 0$, et un générateur aléatoire (e.g., `rng`) et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 def expo(n, lam, rng):
     """
@@ -60,58 +69,107 @@ def expo(n, lam, rng):
     """
     return -np.log(rng.uniform(size=n)) / lam
 ```
+:::
+
+(@) Représenter graphiquement l'histogramme d'un tel échantillon pour $n=10^2$, $n=10^3$, et pour $\lambda = 1/2, 1, 4$. Superposer à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
 
 
-3. Représenter graphiquement l'histogramme d'un tel échantillon pour $n=10^2$, $n=10^3$, puis $n=10^4$, et pour $\lambda = 1/2, 1, 4$. Superposer à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
-
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
-
+#| echo: true
 from scipy import stats
 
 # Define parameters
 t = np.linspace(0, 10, 200)
-lam = 1/2
+lambs = [1 / 2, 1, 4]
+ns = [10**2, 10**3]
+colors = ["skyblue", "green"]
 
 
 # Plot histogram
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
 
-ax.plot(t, stats.expon.pdf(t, loc=0, scale=1/lam),'--', color='k', label=f"Loi théorique lam={lam}", alpha=0.5)
+for i, lam in enumerate(lambs):
+    ax[i].plot(
+        t,
+        stats.expon.pdf(t, loc=0, scale=1 / lam),
+        "--",
+        color="k",
+        label=f"Loi théorique $\lambda$={lam}",
+        alpha=0.5,
+    )
+    for j, n in enumerate(ns):
+        # Generate exponential random variables
+        va_expo = expo(n, lam, rng)
+        ax[i].hist(
+            va_expo, bins=30, density=True,
+            color=colors[j],
+            alpha=0.8, label=f"n={n}"
+        )
+        # Generate exponential random variables
+        ax[i].set_title(f"Loi exponentielle de paramètre $\lambda$={lam}")
+        ax[i].set_ylim(0, 2)
+        ax[i].set_xlim(0, 6)
 
-# Generate exponential random variables
-n = 10**2
-va_expo = expo(n, lam, rng)
-ax.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
-# Generate exponential random variables
-n = 10**3
-va_expo = expo(n, lam, rng)
-ax.hist(va_expo, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
-# Generate exponential random variables
-#n = 10**4
-#va_expo = expo(n, lam)
-#ax.hist(va_expo, bins=120, density=True, color='red', alpha=0.2, label=f'n={n}')
-
-plt.title("Histogramme de variables aléatoires exponentielles")
-plt.ylim(0, 0.5)
-
-plt.legend()
+ax[0].legend(loc="upper right")
+plt.tight_layout()
 plt.show()
-```
 
-::: {.callout-note}
-Attention! les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours...
+```
 :::
 
-4. Illustrer graphiquement la loi des grands nombres avec $\lambda = 1/2, 1, 4$. On tracera en particulier la droite d'équation $y=\mathbb E[X]$, où $X \sim \mathcal{E}(\lambda)$.
-5. \emph{À faire chez soi pour s'entraîner.} Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?
+::: {.callout-warning}
+
+## Attention
+les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours dans `scipy.stats`...
+:::
+
+(@) Illustrer graphiquement la loi des grands nombres avec $\lambda = 1/2, 1, 4$. On tracera en particulier la droite d'équation $y=\mathbb E[X]$, où $X \sim \mathcal{E}(\lambda)$.
+
+
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Define parameters
+t = np.linspace(0, 10, 200)
+lambs = [1 / 2, 1, 4]
+n = 10 **3
+
+# Calcul de la moyenne empirique
+X_av = np.zeros((len(lambs), n))
+
+for i, lam in enumerate(lambs):
+    va_expo = expo(n, lam, rng)
+    X_av[i] = np.cumsum(va_expo)/np.arange(1, n+1)
+
+
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
+
+for i, lam in enumerate(lambs):
+    ax[i].plot(X_av[i], label=f"moyenne empirique")
+    ax[i].plot([0, n], [1/lam, 1/lam], 'r--', label="Espérance")
+    ax[i].set_title(f"Loi exponentielle de paramètre $\lambda$={lam}")
+ax[2].legend(loc="lower right")
+plt.tight_layout()
+```
+:::
+
+(@) \emph{À faire chez soi pour s'entraîner.} Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?
 
 ## Lois discrètes
 
 ### Loi de Bernoulli
 
 1. Écrire une fonction `bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et un générateur aléatoire (e.g., `rng`), et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{B}(p)$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -136,9 +194,44 @@ n = 10
 
 # Generate Bernoulli random variables
 b = bernou(n, p, rng)
-print(b)
+print(f"Echantillon de taille n={n} de loi Bernoulli(p={p}) :\n{b}")
 ```
-2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$ (on pourra superposer les graphes).
+
+:::
+
+
+1. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Define parameters
+ps = [0.2, 0.5, 0.8]
+n = 10 **3
+
+# Calcul de la moyenne empirique
+X_av = np.zeros((len(ps), n))
+
+for i, p in enumerate(ps):
+    va_bernou = bernou(n, p, rng)
+    X_av[i] = np.cumsum(va_bernou)/np.arange(1, n+1)
+
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
+
+for i, p in enumerate(ps):
+    ax[i].plot(X_av[i], label=f"moyenne empirique")
+    ax[i].plot([0, n], [p, p], 'r--', label="Espérance")
+    ax[i].set_title(f"Loi de Bernoulli de paramètre p={p}")
+
+ax[2].legend(loc="upper right")
+plt.tight_layout()
+
+```
+:::
 
 ### Loi géométrique
 
@@ -146,6 +239,9 @@ print(b)
 
 2. Écrire une fonction `geo_bernou` qui prend en argument un entier $n$, un réal $p \in ]0,1[$, un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `bernou`.
 
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -170,20 +266,52 @@ def geo_bernou(n, p, rng):
         geo[j] = i
     return geo
 ```
+:::
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: true
 
 # Example usage
-n = 12
+n = 50
 p = 0.3
 geometric_samples = geo_bernou(n, p, rng)
 print(geometric_samples)
-
+print(np.mean(geometric_samples))
 ```
+:::
+
 
 1. Écrire une fonction `geo_expo` qui prend en argument un entier $n$, un paramètre $p \in ]0,1[$, et un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
+
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+def geo_expo(n, p, rng):
+    """
+    Generates random samples from a geometric distribution based on Bernoulli trials.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        p (float): Probability of success for each Bernoulli trial.
+        rng (numpy.random.Generator): Random number generator.
+    Returns:
+        numpy.ndarray: Random samples from the geometric distribution.
+    """
+    expo_samples = expo(n, -np.log(1-p), rng)
+    return np.floor(expo_samples) + 1
+
+geometric_samples = geo_expo(n, p, rng)
+print(geometric_samples)
+print(np.mean(geometric_samples))
+```
+:::
 
 2. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
 ```{python}
@@ -199,9 +327,32 @@ t0 = time.process_time()
 
 t1 = time.process_time()
 
-print("Time elaped  when running code chunk:", t1 - t0)
+print("Time elapsed when running code chunk:", t1 - t0)
 ```
 Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| eval: false
+
+import time
+
+t0 = time.process_time()
+geometric_samples = geo_bernou(n, p, rng)
+t1 = time.process_time()
+
+print("Time elapsed when running code chunk:", t1 - t0)
+
+t0 = time.process_time()
+geometric_samples = geo_expo(n, p, rng)
+t1 = time.process_time()
+
+print("Time elapsed when running code chunk:", t1 - t0)
+```
+:::
 
 ::: {.callout-note}
 En pratique, les temps d'exécution peuvent varier suivant la charge d'utilisation de la machine (c'est un phénomène aléatoire).
@@ -221,6 +372,9 @@ La fonction $\Gamma$ s'obtient sur `Python` avec `scipy.special.gamma`.
 
 1. Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi.
 
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -246,11 +400,17 @@ plt.legend()
 plt.show()
 
 ```
+:::
+
+
 1. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
 
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 
 def loi_beta(n, alpha, beta, rng):
@@ -289,36 +449,32 @@ beta_samples = loi_beta(n, alpha, beta, rng)
 print(beta_samples)
 
 ```
-3. Illustrer graphiquement votre résultat en représentant l'histogramme pour $n=10^3$ et différentes valeurs de $\alpha, \beta$. On superposera à chaque fois la densité adéquate.
+:::
+
+1. Illustrer graphiquement votre résultat en représentant l'histogramme pour $n=10^3$ et différentes valeurs de $\alpha, \beta$. On superposera à chaque fois la densité adéquate.
 
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-from scipy import stats
-
 # Define parameters
 t = np.linspace(0, 1, 200)
 alpha, beta = 2, 3
 
-
-# Plot histogram
-fig, ax = plt.subplots()
-
-ax.plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théorique", alpha=0.5)
-
 # Generate exponential random variables
-n = 10**2
-va_beta = loi_beta(n, alpha, beta, rng)
-ax.hist(va_beta, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
-# Generate exponential random variables
-n = 10**3
-va_beta = loi_beta(n, alpha, beta, rng)
-ax.hist(va_beta, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
+n_values = [10**2, 10**3]
+colors = ['skyblue', 'green']
+bins = [30, 60]
 
-plt.title(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
+fig, axs = plt.subplots(len(n_values))
 
-plt.legend()
+for ax, n, color, bin in zip(axs, n_values, colors, bins):
+    va_beta = loi_beta(n, alpha, beta, rng)
+    ax.plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théorique", alpha=0.5)
+    ax.hist(va_beta, bins=bin, density=True, color=color, alpha=0.8, label=f'n={n}')
+    ax.legend()
+
+plt.suptitle(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
 plt.show()
 ```
 
