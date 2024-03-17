@@ -505,7 +505,7 @@ Exercice: bug ou feature?
 <section id="usage-en-numpy" class="level3">
 <h3 class="anchored" data-anchor-id="usage-en-numpy">Usage en <code>numpy</code></h3>
 <p>On suppose désormais disposer d’un générateur pseudo-aléatoire sur <span class="math inline">[0,1]</span>. En <code>numpy</code> depuis la version 1.17, une bonne manière d’utiliser des éléments aléatoires est d’utiliser un générateur que l’on définit soi-même:</p>
-<div id="64d7fda5" class="cell" data-execution_count="5">
+<div id="0473046e" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>seed <span class="op">=</span> <span class="dv">12345</span>  <span class="co"># Toujours être conscient qu'une graine existe</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed)  <span class="co">#</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.random())  <span class="co">##  un tirage uniforme sur [0,1]</span></span>
@@ -793,7 +793,7 @@ Figure&nbsp;2: Fonction de répartition et quantiles: solution de F(x) = u
     &amp; = \mathbb{P}(T=n) \mathbb{P}(X \leq x)\,,
 \end{align*}</span></p>
 </div>
-<div id="6dc11d0d" class="cell" data-execution_count="7">
+<div id="c3aac3c1" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> accept_reject(n, f, g, g_sampler, m):</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co">    n: nombre de simulations</span></span>
@@ -857,12 +857,12 @@ Figure&nbsp;4: Visualisation des zones d’acceptations/rejet (g triangulaire)
 </figure>
 </div>
 </div>
-<div id="e0c9f8e3" class="cell" data-execution_count="11">
+<div id="e4493594" class="cell" data-execution_count="11">
 <div class="cell-output cell-output-display">
-<script type="ojs-define">{"contents": [{"name": "ratio1", "value": 0.252}]}</script>
+<script type="ojs-define">{"contents": [{"name": "ratio1", "value": 0.24}]}</script>
 </div>
 <div class="cell-output cell-output-display">
-<script type="ojs-define">{"contents": [{"name": "ratio2", "value": 0.514}]}</script>
+<script type="ojs-define">{"contents": [{"name": "ratio2", "value": 0.523}]}</script>
 </div>
 </div>
 <div class="cell">
@@ -878,7 +878,7 @@ Figure&nbsp;4: Visualisation des zones d’acceptations/rejet (g triangulaire)
 <p><br></p>
 <div id="exm-rejet_andrews" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 5 (Rejet d’une loi de densité d’Andrews)</strong></span> Considérons la densité d’Andrews définie par <span class="math inline">f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)</span>, avec <span class="math inline">S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx</span>. Dans ce contexte, on ne connait pas la valeur exacte de <span class="math inline">S</span>, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi <span class="math inline">f</span> sans cette information. On peut l’adapter le test de la manière suivante: si l’on prend <span class="math inline">m=2/S</span> et <span class="math inline">g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)</span>, on observe que tester <span class="math inline">u\leq \frac{f(x)}{m \cdot g(x)}</span> est équivalent à tester <span class="math inline">u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}</span>, ce qui peut se faire sans connaissance de <span class="math inline">S</span>. De plus on peut vérifier que <span class="math inline">g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)</span> définit une densité et que <span class="math inline">f(x) \leq m \cdot g(x)</span> pour tout <span class="math inline">x\in \mathbb{R}</span>.</p>
-<div id="d9542f2c" class="cell" data-execution_count="12">
+<div id="7e77e35b" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>g <span class="op">=</span> <span class="kw">lambda</span> x: np.ones_like(x) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>g_sampler <span class="op">=</span> <span class="kw">lambda</span>: <span class="dv">2</span> <span class="op">*</span> np.random.uniform() <span class="op">-</span> <span class="dv">1</span></span>
@@ -888,13 +888,13 @@ Figure&nbsp;4: Visualisation des zones d’acceptations/rejet (g triangulaire)
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>ratio <span class="op">=</span> np.<span class="bu">sum</span>(accepted) <span class="op">/</span> n</span>
 <span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div id="dc812173" class="cell" data-execution_count="13">
+<div id="2b344bf4" class="cell" data-execution_count="13">
 <div class="cell-output cell-output-display">
-<script type="ojs-define">{"contents": [{"name": "ratio", "value": 0.5885}]}</script>
+<script type="ojs-define">{"contents": [{"name": "ratio", "value": 0.5915}]}</script>
 </div>
 </div>
 <p>On peut approcher numériquement la valeur exacte de <span class="math inline">S</span> en utilisant une méthode de calcul approchée, ce qui permet de comparer ici notre méthode de rejet avec la densité sous-jacente:</p>
-<div id="aab2e21e" class="cell" data-execution_count="14">
+<div id="e3a24c97" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> integrate</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> integrate.quad(np.sinc, <span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>)[<span class="dv">0</span>]</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"En utilisant la méthode de rejet, on trouve que S = </span><span class="sc">{</span>S<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -941,7 +941,7 @@ Figure&nbsp;6: Méthode de rejet pour simuler une loi uniforme sur un disque uni
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Aire estimée: 3.1666666666666665</code></pre>
+<pre><code>Aire estimée: 3.1613333333333333</code></pre>
 </div>
 </div>
 <div id="cell-fig-rejet-cardioide" class="cell" data-execution_count="19">
@@ -956,7 +956,7 @@ Figure&nbsp;7: Méthode de rejet pour simuler une loi uniforme sur une surface d
 </figure>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Aire estimée: 4.67</code></pre>
+<pre><code>Aire estimée: 4.909999999999999</code></pre>
 </div>
 </div>
 <div class="callout callout-style-default callout-important no-icon callout-titled">
