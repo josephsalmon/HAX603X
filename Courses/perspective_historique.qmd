@@ -30,8 +30,8 @@ Une preuve de ce résultat sera donnée ci-dessous.
 L'idée sous-jacente de Buffon est que si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
 Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
 
-On peut faire cette expérience dans le monde réelle (c'est un peu long pour $n$ grand!), mais on peut aussi utiliser une méthode numérique pour cela.
-Il s'agit alors de tirer aléatoire la position du centre de l'aiguille, puis de tirer aussi de manière aléatoire son angle de chute. On teste à la fin si l'aiguille croise une ligne de la trame du parquet ou non, et on recommence l'expérience un grand nombre de fois.
+On peut faire cette expérience dans le monde réel (c'est un peu long pour $n$ grand!), mais on peut aussi utiliser une méthode numérique pour cela.
+Il s'agit alors de tirer aléatoirement la position du centre de l'aiguille, puis de tirer aussi de manière aléatoire son angle de chute. On teste à la fin si l'aiguille croise une ligne de la trame du parquet ou non, et on recommence l'expérience un grand nombre de fois.
 
 Cette méthode est donnée ci-dessous, avec un exemple interactif généré en Python.
 
@@ -312,7 +312,7 @@ Ce résultat nous donne la probabilité d'intersection entre une aiguille et les
 
 ![Fin de la preuve](../srcimages/Borel_2.jpg){width=90%}
 
-Extrait du Livre de Borel et Deltheil (Probatilités et Erreurs).
+Extrait du Livre de Borel et Deltheil (Probabilités et Erreurs).
 
 :::
 
