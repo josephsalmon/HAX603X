@@ -26,6 +26,7 @@ $$
 #| echo: false
 import numpy as np
 import scipy
+from plotly.subplots import make_subplots
 import plotly.graph_objects as go
 import plotly.io as pio
 ```
@@ -48,7 +49,6 @@ pio.renderers.default = "notebook"
 
 ```{python}
 #| echo: false
-#| fig-align: "center"
 #| layout-ncol: 1
 #| label: fig-repartition-uniforme
 #| fig-cap:
@@ -59,7 +59,10 @@ pio.renderers.default = "notebook"
 
 x = np.linspace(-3, 4, num=300)
 
-fig = go.Figure()
+fig = make_subplots(
+    rows=1,
+    cols=1,
+)
 
 fig.add_trace(
     go.Scatter(
@@ -72,9 +75,10 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    width=500, height=300,
-    template="simple_white",
+    autosize=True,
+    height=340,
     showlegend=True,
+    template="simple_white",
 )
 
 fig.show()
