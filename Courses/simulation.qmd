@@ -30,13 +30,6 @@ import plotly.graph_objects as go
 import plotly.io as pio
 ```
 
-::: {.content-visible when-format="html"}
-```{python}
-#| echo: false
-pio.renderers.default = "notebook"
-```
-:::
-
 ::: {.content-visible when-format="pdf"}
 ```{python}
 #| echo: false
@@ -45,13 +38,24 @@ pio.kaleido.scope.mathjax = None
 ```
 :::
 
+::: {.content-visible when-format="html"}
+```{python}
+#| echo: false
+pio.renderers.default = "notebook"
+```
+:::
+
 
 ```{python}
 #| echo: false
+#| fig-align: "center"
 #| layout-ncol: 1
 #| label: fig-repartition-uniforme
 #| fig-cap:
 #|       - Fonction de répartition de la loi uniforme
+
+
+
 
 x = np.linspace(-3, 4, num=300)
 
@@ -68,7 +72,7 @@ fig.add_trace(
 )
 
 fig.update_layout(
-    width=800, height=400,
+    width=500, height=300,
     template="simple_white",
     showlegend=True,
 )
