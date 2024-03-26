@@ -4,6 +4,19 @@ filters:
   - shinylive
 ---
 
+::: {.content-visible when-format="html"}
+
+::: {.hidden}
+{{
+
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+:::
+
+
 On considère un espace probabilisé $(\Omega, {\mathcal{F}}, \mathbb{P})$, composé d’un ensemble $\Omega$, d’une tribu $\mathcal{F}$, et d’une mesure de probabilité $\mathbb{P}$.
 
 
@@ -108,12 +121,12 @@ Les propriétés de l'intégrale de Lebesgue assure que cette formule définit b
 ## Loi uniforme
 La loi uniforme sur un ensemble $B \in \mathcal{B}(\mathbb{R})$, s'obtient avec la densité définie par
 $$
-f(x) = {1\hspace{-3.8pt} 1}_B(x) / \lambda (B) \enspace,
+f(x) = \1_B(x) / \lambda (B) \enspace,
 $$
 où $\lambda (B)$ représente la mesure de Lebesgue de l'ensemble $B$.
 En particulier pour la loi uniforme sur le segment $[0,1]$ on obtient la fonction suivante:
 $$
-f(x) = {1\hspace{-3.8pt} 1}_{[0,1]}(x)\enspace.
+f(x) = \1_{[0,1]}(x)\enspace.
 $$
 Si une variable aléatoire $U$ suit une telle loi on note $U \sim \mathcal{U}([0,1])$.
 :::
@@ -124,7 +137,7 @@ Si une variable aléatoire $U$ suit une telle loi on note $U \sim \mathcal{U}([0
 La loi exponentielle de paramètre $\gamma > 0$ est obtenue avec la densité
 donnée par
 $$
-f(x) = \gamma e^{-\gamma x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+f(x) = \gamma e^{-\gamma x} \1_{\mathbb{R}_+}(x)\enspace.
 $$
 Si une variable aléatoire $X$ suit cette loi on note $X \sim \mathcal{Exp}(\gamma)$.
 :::
@@ -189,7 +202,7 @@ La fonction de répartition de $X$ est la fonction $F_X$ définie sur $\mathbb{R
 Soit $(x_i)_{i \in I}$ une suite ordonnée de réels, avec $I \subset \mathbb{N}$.
 Si $X$ est une variable aléatoire discrète prenant les valeurs $(x_i)_{i \in I}$ et de loi $(p_i = \mathbb{P}(X=x_i))_{i \in I}$, alors
 $$
-    F_X(x) = \sum_{i \in I} p_i {1\hspace{-3.8pt} 1}_{[x_i, \infty[}(x) \enspace.
+    F_X(x) = \sum_{i \in I} p_i \1_{[x_i, \infty[}(x) \enspace.
 $$
 
 :::

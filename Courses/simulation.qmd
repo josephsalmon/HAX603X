@@ -3,6 +3,18 @@ title: "Simulation"
 jupyter: python3
 ---
 
+::: {.content-visible when-format="html"}
+
+::: {.hidden}
+{{
+
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+:::
+
 
 Dans ce chapitre on se demande comment simuler en pratique des variables aléatoires i.i.d. L'idée est de commencer par le cas de variables aléatoires de loi uniforme et d'en déduire les autres lois.
 
@@ -239,11 +251,11 @@ On en déduit donc que la loi de $F_X^{-1}(U)$ est la même que celle de $X$, ca
 
 On rappelle que la loi exponentielle de paramètre $\lambda > 0$ a pour densité
 $$
-f_{\lambda}(x) = \lambda e^{-\lambda x} {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+f_{\lambda}(x) = \lambda e^{-\lambda x} \1_{\mathbb{R}_+}(x)\enspace.
 $$
 et donc pour fonction de répartition
 $$
-F_{\lambda}(x) = (1 - e^{-\lambda x}) {1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)\enspace.
+F_{\lambda}(x) = (1 - e^{-\lambda x}) \1_{\mathbb{R}_+}(x)\enspace.
 $$
 On vérifie que $F_{\lambda}$ est bijective de $\mathbb{R}_+$ dans $]0,1[$ et que son inverse est donnée pour tout $u \in ]0,1[$ par
 $$
@@ -258,7 +270,7 @@ $$
 ## Simulation d'une loi de Weibull
 La loi de Weibull de paramètre $\lambda > 0$ et $k >0$ est caractérisée par la fonction de répartition
 $$
-F(x) = (1 - e^{-(x/\lambda)^k}){1\hspace{-3.8pt} 1}_{\mathbb{R}_+}(x)
+F(x) = (1 - e^{-(x/\lambda)^k})\1_{\mathbb{R}_+}(x)
 $$
 C'est une loi utilisée dans différents domaines, notamment en gestion des risques (hydrologie, finance, assurance, etc.). Le calcul de l'inverse généralisée $F^\leftarrow$ est immédiat car $F$ est bijective sur $]0, \infty[$ :
 $$
@@ -524,10 +536,10 @@ $$
         1 & \text{ si } 1-p < u \leq 1\,.
     \end{array}
 $$
-ce qui se réécrit plus simplement $F^\leftarrow(u) = {1\hspace{-3.8pt} 1}_{\{1-p < u\}}$.
+ce qui se réécrit plus simplement $F^\leftarrow(u) = \1_{\{1-p < u\}}$.
 
-Ainsi, si $U$ suit une loi uniforme sur $[0,1]$ alors ${1\hspace{-3.8pt} 1}_{\{1-p < U\}}$ suit une loi de Bernoulli de paramètre $p$.
-Comme $1-U$ suit aussi une loi uniforme sur $[0,1]$, on en déduit que ${1\hspace{-3.8pt} 1}_{\{U < p\}}$ suit une loi de Bernoulli de paramètre $p$.
+Ainsi, si $U$ suit une loi uniforme sur $[0,1]$ alors $\1_{\{1-p < U\}}$ suit une loi de Bernoulli de paramètre $p$.
+Comme $1-U$ suit aussi une loi uniforme sur $[0,1]$, on en déduit que $\1_{\{U < p\}}$ suit une loi de Bernoulli de paramètre $p$.
 Notons que l'on peut remplacer l'inégalité stricte par une inégalité large.
 :::
 
@@ -554,7 +566,7 @@ $$
 Sur cet exemple, on peut prolonger la définition de $F^\leftarrow$ à $u=1$ en posant $F^\leftarrow(1) = x_r$.
 L'inverse généralisée se réécrit alors sous la forme
 $$
-		F^\leftarrow(u) = \sum_{k=1}^r x_k {1\hspace{-3.8pt} 1}_{ \{  \sum_{i=1}^{k-1}p_i < u \leq \sum_{i=1}^{k}p_i \} }\enspace,
+		F^\leftarrow(u) = \sum_{k=1}^r x_k \1_{ \{  \sum_{i=1}^{k-1}p_i < u \leq \sum_{i=1}^{k}p_i \} }\enspace,
 $$
 où on a posé $p_0=0$.
 :::
@@ -654,8 +666,8 @@ Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indé
 \begin{align*}
 		\mathbb{P}(U_1 > r(Y_1))
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
-		 & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy  \\
-		 & = \int_{\mathbb{R}} \bigg( \int_0^1 {1\hspace{-3.8pt} 1}_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
+		 & = \int_{\mathbb{R}^2} \1_{\{u > r(y)\}} (\1_{[0,1]}(u) g(y)) \, du dy  \\
+		 & = \int_{\mathbb{R}} \bigg( \int_0^1 \1_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
 		 & =  \int_{\mathbb{R}} (1-r(y)) \, g(y)\, d y\,,
 \end{align*}
 ce qui se réécrit, comme $f$ et $g$ sont des densités et que $r(y) = f(y)/(m \cdot g(y))$:
@@ -668,14 +680,14 @@ Le deuxième terme se calcule de manière analogue :
 
 \begin{align*}
     \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} {1\hspace{-3.8pt} 1}_{\{y \leq x\}} ({1\hspace{-3.8pt} 1}_{[0,1]}(u) g(y)) \, du dy       \\
-        & = \int_{\mathbb{R}} \bigg( \int_0^1  {1\hspace{-3.8pt} 1}_{\{u \leq r(y)\}} \, du\bigg) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y\,,
+        & = \int_{\mathbb{R}^2} \1_{\{u \leq r(y)\}} \1_{\{y \leq x\}} (\1_{[0,1]}(u) g(y)) \, du dy       \\
+        & = \int_{\mathbb{R}} \bigg( \int_0^1  \1_{\{u \leq r(y)\}} \, du\bigg) \1_{\{y \leq x\}}  g(y)\, d y\,,
 \end{align*}
 c'est-à-dire
 
 \begin{align*}
         \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
-		& = \int_{\mathbb{R}} r(y) {1\hspace{-3.8pt} 1}_{\{y \leq x\}}  g(y)\, d y \\
+		& = \int_{\mathbb{R}} r(y) \1_{\{y \leq x\}}  g(y)\, d y \\
 		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, d y \\
 		& = \dfrac{F(x)}{m}\,,
 \end{align*}
@@ -760,7 +772,7 @@ On simule $U_1$ et $Y_1$. Si $U_1 \leq r(Y_1)$ c'est gagné, on pose $X=Y_1$. Si
 ::: {#exm-rejet_polynome}
 
 ## Rejet d'une loi polynomiale
-Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité $f(x) = 4x^3 {1\hspace{-3.8pt} 1}_{[0,1]}(x)$. Comme $f$ est majorée par $4$, on peut choisir pour $g$ la densité de la loi uniforme sur $[0,1]$ et $m=4$. Alors, $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $U_1 \leq Y_1^3$, etc.
+Donnons un exemple jouet (on étudiera des exemples plus pertinents en TD). On considère la densité $f(x) = 4x^3 \1_{[0,1]}(x)$. Comme $f$ est majorée par $4$, on peut choisir pour $g$ la densité de la loi uniforme sur $[0,1]$ et $m=4$. Alors, $r(x) =f(x) / (mg(x)) = x^3$, pour $x \in [0,1]$. On simule donc $(Y_1, U_1)$ et on teste si $U_1 \leq Y_1^3$, etc.
 
 Bien évidemment, on privilégiera ici une simulation via $F^\leftarrow$ qui permet de générer des variables aléatoires de loi $f$ plus rapidement.
 
@@ -821,7 +833,7 @@ m = 4
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
 fig1.show()
 ```
-Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = 2x {1\hspace{-3.8pt} 1}_{[0, 1]}(x)$, et $m=2$.
+Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = 2x \1_{[0, 1]}(x)$, et $m=2$.
 
 ```{python}
 #| echo: false
@@ -855,11 +867,11 @@ md`Le taux d'acceptation est passé de **${ratio1}** à
 ::: {#exm-rejet_andrews}
 
 ## Rejet d'une loi de densité d'Andrews
-Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
+Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \1_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
 Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
 On peut l'adapter le test de la manière suivante:
-si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
-De plus on peut vérifier que $g(x) = \frac{1}{2} {1\hspace{-3.8pt} 1}_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
+si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} \1_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
+De plus on peut vérifier que $g(x) = \frac{1}{2} \1_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
 
 ```{python}
 
@@ -1073,7 +1085,7 @@ $$
 
 Pour simuler des variables aléatoires de Bernoulli, on utilise la méthode d'inversion (voir Exemple \ref{ex:bernoulli}). Ainsi, si $U_1, \ldots, U_n$ sont des variables aléatoires iid de loi uniforme sur $[0,1]$, alors
 $$
-	\sum_{i=1}^n {1\hspace{-3.8pt} 1}_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)\,.
+	\sum_{i=1}^n \1_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)\,.
 $$
 
 ### Loi de Poisson
@@ -1121,13 +1133,13 @@ $$
 ::: {.proof}
 
 On montre le résultat pour $n=2$. La généralisation à $k$ quelconque se fait par récurrence. 
-Soit $t > 0$, et $f_{\lambda}(x)={1\hspace{-3.8pt} 1}_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
+Soit $t > 0$, et $f_{\lambda}(x)=\1_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
 
 \begin{align*}
     \mathbb{P}(E_1+E_2 \leq t)
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} {1\hspace{-3.8pt} 1}_{\{x_1 \geq 0\}} {1\hspace{-3.8pt} 1}_{\{x_2 \geq 0\}}\, d x_1 d x_2 \\
-        & = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{0 \leq x_1 \leq t\}} {1\hspace{-3.8pt} 1}_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
+        & = \int_{\mathbb{R}^2} \1_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} \1_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} \1_{\{x_1 \geq 0\}} \1_{\{x_2 \geq 0\}}\, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} \1_{\{0 \leq x_1 \leq t\}} \1_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
         & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2\bigg)  d x_1\,.
 \end{align*}
 La première intégrale se calcule alors facilement :

@@ -2,7 +2,17 @@
 title: "Perspectives historiques"
 bibliography: references.bib
 ---
+::: {.content-visible when-format="html"}
 
+::: {.hidden}
+{{
+
+\newcommand{\1}{{1\hspace{-3.8pt} 1}}
+
+}}
+:::
+
+:::
 
 Nous allons présenter ici quelques éléments historiques sur les méthodes de Monte-Carlo, dont les prémisses remontent au XVIIIème siècle.
 
@@ -271,8 +281,8 @@ $\frac{1}{2}\sin(\theta) \geq x$.
 Maintenant par des arguments de symétrie on voit qu'on peut se restreindre à $\theta \in [0, \frac{\pi}{2}]$, et à $x \in [0, \frac{1}{2}]$.
 Les lois de générations des variables aléatoires $X$ et $\Theta$ sont les suivantes:
 
-- $X \sim \mathcal{U}([0, \frac{1}{2}])$, de densité $f_X(x) = 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x)$
-- $\Theta \sim \mathcal{U}([0, \frac{\pi}{2}])$ de densité $f_\Theta(\theta) = \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta)$
+- $X \sim \mathcal{U}([0, \frac{1}{2}])$, de densité $f_X(x) = 2 \1_{[0, \frac{1}{2}]}(x)$
+- $\Theta \sim \mathcal{U}([0, \frac{\pi}{2}])$ de densité $f_\Theta(\theta) = \frac{2}{\pi} \1_{[0, \frac{\pi}{2}]}(\theta)$
 
 De plus on suppose que $X$ et $\Theta$ sont indépendantes.
 
@@ -281,9 +291,9 @@ Maintenant pour calculer la probabilité $P$ on procède comme suit:
 \begin{align*}
 P
 & = \mathbb{P}\left(\frac{1}{2}\sin(\Theta) \geq X\right) \\
-& = \int_{\mathbb{R}^2} {1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} f_{\Theta}(\theta) f_X(x) d\theta dx  \quad (\text{par indépendance})\\
+& = \int_{\mathbb{R}^2} \1_{\{\frac{1}{2}\sin(\theta) \geq x\}} f_{\Theta}(\theta) f_X(x) d\theta dx  \quad (\text{par indépendance})\\
 & = \int_{\mathbb{R}} \int_{\mathbb{R}}
-{1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x) d\theta dx \\
+\1_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} \1_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 \1_{[0, \frac{1}{2}]}(x) d\theta dx \\
 & = \int_{0}^{\frac{\pi}{2}} \int_{0}^{\frac{1}{2}\sin(\theta)} \frac{4}{\pi} dx  d\theta \\
 & = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\
 & = \frac{2}{\pi} \Big[ -\cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
