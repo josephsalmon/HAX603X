@@ -106,7 +106,7 @@ converge presque presque sûrement vers $I=\mathbb E[g(X)]$ lorsque $n$ tend ver
 Comme $g(X)$ est intégrable, et que les variables sont indépendantes et de même loi, il s'agit d'une application directe de la loi forte des grands nombres.
 :::
 
-En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1$, \ldots, $X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand. 
+En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1, \dots, X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand. 
 
 
 ::: {#exm-ex-p}
