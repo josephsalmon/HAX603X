@@ -276,3 +276,114 @@ np.var(Y) / np.var(B)
 
 Celle qui a la plus petite variance, donc la dernière.
 :::
+
+
+## Aiguilles de Buffon
+
+Implémentez l'estimateur Monte Carlo de $\pi$ de la méthode de Buffon :
+$$
+		\pi^{-1} = \frac{1}{2 }\bbE[\1_{\cos\Theta \geq 2 X}],
+$$
+avec $(X,\Theta)\sim U([0,1/2]\times[-\pi/2,\pi/2])	$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+
+```{python}
+import numpy as np
+
+def calculate_statistics(n):
+    # Generate samples for x and th
+    x = np.random.uniform(0, 0.5, n)
+    th = np.random.uniform(-np.pi/2, np.pi/2, n)
+
+    # Calculate y based on the given condition
+    y = (np.cos(th) >= 2 * x) / 2
+
+    # Calculate the mean of y
+    in_ = np.mean(y)
+
+    # Calculate the confidence interval (ic) for in_
+    ic = (in_ - 1.96 * np.sqrt(np.var(y) / n), in_ + 1.96 * np.sqrt(np.var(y) / n))
+
+    # Calculate pichap
+    pichap = 1 / in_
+
+    # Calculate icchap
+    icchap = (1 / ic[1], 1 / ic[0])
+
+    return in_, ic, pichap, icchap
+
+N = 10000
+IN, IC, pichap, ICchap = calculate_statistics(N)
+
+print("IN:", IN)
+print("Confidence Interval (IC) for IN:", IC)
+print("pichap:", pichap)
+print("Confidence Interval (IC) for pichap:", ICchap)
+
+
+```
+:::
+
+2. Combien de tirages sont nécessaire pour obtenir une précision de $10^{-2}$ avec $95\%$ decertitude ?
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+
+```{python}
+# Generate n values logarithmically spaced from 1e5 to 1e8
+n_values = np.logspace(5, 8, num=10, dtype=int)
+
+# Evaluate the function for each value of n
+results = [calculate_statistics(n) for n in n_values]
+
+# Print the results
+for n, (IN, IC, pichap, ICchap) in zip(n_values, results):
+    print(f"n: {n}, IN: {IN:.3f}, IC: ({IC[0]:.3f}, {IC[1]:.3f}), pichap: {pichap:.3f}, ICchap: ({ICchap[0]:.3f}, {ICchap[1]:.3f})")
+```
+Il faut de l’ordre d'un peu moins de $10^8$ tirages.
+:::
+
+## Probabilités de dépassement d'une Normale
+
+Soit $Z \sim N(0,1)$. Nous souhaitons évaluer la probabilité $I = \mathbb P(Z >4.5)$.
+
+1. Implémentez la méthode de Monte Carlo standard pour ce calcul. Que constatez-vous ? Pourquoi ?
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+Commençons avec un petit nombre de simulations
+
+```{python}
+import numpy as np
+
+# Define the number of samples
+N = 10000
+
+# Generate samples from the normal distribution with mean 0 and standard deviation 1
+X = np.random.normal(0, 1, N)
+
+# Calculate Y based on the condition (X > 4.5)
+Y = (X > 4.5)
+
+# Calculate the mean of Y
+IN = np.mean(Y)
+
+# Calculate the confidence interval (IC) for IN
+IC = (IN - 1.96 * np.sqrt(np.var(Y) / N), IN + 1.96 * np.sqrt(np.var(Y) / N))
+
+print("IN:", IN)
+print("Confidence Interval (IC) for IN:", IC)
+```
+
+On obtient une estimation à 0, ce qui n’est pas surprenant car on cherche la probabilité d’un événement rare
+```{python}
+from scipy.stats import norm
+
+# Compute 1 - pnorm(4.5)
+result = 1 - norm.cdf(4.5)
+print("1 - pnorm(4.5):", result)
+```
+:::
+
