@@ -30,7 +30,7 @@ filters:
 - Calculer des intervales de confiances pour évaluer la précision des estimateurs
 :::
 
-## Approxiamtion de $\pi$
+## Approximation de $\pi$
 
 Implémenter la méthode de Monte Carlo pour le calcul approché de $\pi$ via les deux intégrales suivantes :
 
