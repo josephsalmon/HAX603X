@@ -83,7 +83,7 @@ $$
 1. Calculer avec \verb+R+ la valeur exacte de l'intégrale.
 
 ```{python}
-print(-np.atan(2) / np.pi + 1/2)
+print(-np.arctan(2) / np.pi + 1/2)
 
 ```
 2. Implémenter l’estimateur de Monte Carlo simple à base de loi de Cauchy pour cette intégrale.
