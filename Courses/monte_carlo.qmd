@@ -170,13 +170,13 @@ On souhaiterait maintenant savoir quand on peut considérer que $n$ est assez gr
 
 Si $g(X)$ est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance $1-\alpha$ pour l'intégrale $I$ est
 $$
-	\left(I_n-F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
+	\left(I_n-F^{-1}_{\cN(0,1)}\big(1 - \frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\cN(0,1)}\big(1 - \frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
 $$
 où $F^{-1}_{\cN(0,1)}$ est la fonction quantile de la loi normale centrée réduite et
 $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
-est l'estimateur sans biais\footnote{Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$} de la variance empirique.
+est l'estimateur sans biais^[Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$] de la variance empirique.
 :::
 
 ::: {.proof}
@@ -189,7 +189,7 @@ ce qui se traduit dans notre contexte par
 $$
 	\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1).
 $$
-En général, on ne connaît pas non plus $\var(g(X))$, donc on la remplace par un estimateur de la variance $S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2$. D'après la loi des grands nombres, cet estimateur converge ps, donc en probabilité (donc en loi) vers $\var(g(X))$ qui est une constante. D'après le lemme de Slutsky, le couple $(\frac{I_n-I}{\sqrt{n\var(g(X))}},S^2_n)$ converge en loi vers le couple $(\mathcal N(0,1), \delta_{\var(g(X))})$. En particulier, on a encore la convergence en loi du produit
+En général, on ne connaît pas non plus $\var(g(X))$, donc on la remplace par un estimateur de la variance $S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2$. D'après la loi des grands nombres, cet estimateur converge presque sûrement, donc en probabilité (donc en loi) vers $\var(g(X))$ qui est une constante. D'après le lemme de Slutsky^[Voir [https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky)], le couple $(\frac{I_n-I}{\sqrt{n\var(g(X))}},S^2_n)$ converge en loi vers le couple $(\mathcal N(0,1), \delta_{\var(g(X))})$. En particulier, on a encore la convergence en loi du produit
 $$
 	\frac{I_n-I}{\sqrt{\frac{S^2_n}{n}}}=\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\times \frac{\sqrt{\var(g(X))}}{\sqrt{S^2_n}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1) \times 1.
 $$
@@ -221,7 +221,7 @@ for i in range(n):
 
 I = np.array(I)
 m = np.mean(I)
-s = np.var(I)
+s = np.var(I, ddf=1)
 
 print(f"[{m - 1.96 * np.sqrt(s / n):.3f}, {m:.3f}, {m + 1.96 * np.sqrt(s / n):.3f}]")
 ```
@@ -256,7 +256,7 @@ Une première façon très simple de décomposer $I$ est la suivante
 $$
 	I=\mathbb{E}[g(X)]=\mathbb{E}[g(X)-h(X)]+\mathbb{E}[h(X)].
 $$
-Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h(X)]$ et si la variance diminue : $\var\big(g(X)-h(X)\big)<\var\big(g(X)\big)$. Idéalement, on voudrait que la variance de $g(X)-h(X)$ soit très petite. Or rappelons qu'une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en oeuvre cette méthode, on va donc chercher une fonction $h$ qui soit une bonne approximation de $g$ sur l'intervalle d'intégration pour que la différence $g-h$ soit presque constante.
+Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h(X)]$ et si la variance diminue : $\var\big(g(X)-h(X)\big)<\var\big(g(X)\big)$. Idéalement, on voudrait que la variance de $g(X)-h(X)$ soit très petite. Or rappelons qu'une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en œuvre cette méthode, on va donc chercher une fonction $h$ qui soit une bonne approximation de $g$ sur l'intervalle d'intégration pour que la différence $g-h$ soit presque constante.
 
 ::: {#exm-carre}
 
@@ -280,7 +280,7 @@ X = np.random.uniform(0, 1, n)
 # Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
-s1 = np.var(gX)
+s1 = np.var(gX, ddf=1)
 
 print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
 print(f"Variance {s1:.3f}")
@@ -291,7 +291,7 @@ print(f"Variance {s1:.3f}")
 # Control variable
 ghX = np.exp(X**2) - 1 - X**2
 m2 = np.mean(ghX) + 4/3
-s2 = np.var(ghX)
+s2 = np.var(ghX, ddf=1)
 
 print(f"Control variable confidence interval: [{m2 - 1.96 * np.sqrt(s2 / n):.3f}, {m2:.3f}, {m2 + 1.96 * np.sqrt(s2 / n):.3f}]")
 print(f"Variance {s2:.3f}")
@@ -306,7 +306,7 @@ S'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi, on peut  
 $$
 I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 $$
-On a en fait décomposé l'intégrale $I$ comme somme de deux espérance. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les **mêmes tirages**. En fait on a introduit une certaine forme de dépendance puisqu'on utilise $g(X_i)$ et $g(h(X_i))$ dans l'estimateur.
+On a en fait décomposé l'intégrale $I$ comme somme de deux espérances. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les **mêmes tirages**. En fait on a introduit une certaine forme de dépendance puisqu'on utilise $g(X_i)$ et $g(h(X_i))$ dans l'estimateur.
 
 Examinons l'effet de cette décomposition sur la variance.
 
@@ -344,7 +344,7 @@ $$
 \end{align*}
 $$
 
-car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a quand toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
+car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
 $$
 \begin{align*}
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)
@@ -358,7 +358,7 @@ On peut faire des calculs plus précis en faisant intervenir la covariance de $g
 
 :::
 
-Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie
+Cette méthode est particulièrement simple à mettre en œuvre pour les lois qui ont des propriétés de symétrie
 
 ::: {#exm-carre2}
 
@@ -378,7 +378,7 @@ X = np.random.uniform(0, 1, n)
 # Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
-s1 = np.var(gX)
+s1 = np.var(gX, ddf=1)
 
 print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
 print(f"Variance {s1:.3f}")
@@ -388,7 +388,7 @@ print(f"Variance {s1:.3f}")
 # Antithetic variable method
 gaX = (np.exp(X**2) + np.exp((1 - X)**2)) / 2
 m3 = np.mean(gaX)
-s3 = np.var(gaX)
+s3 = np.var(gaX, ddf=1)
 
 print(f"Antithetic variable method confidence interval:, [{m3 - 1.96 * np.sqrt(s3 / n):.3f}, {m3:.3f}, {m3 + 1.96 * np.sqrt(s3 / n):.3f}]")
 print(f"Variance {s3:.3f}")
@@ -442,7 +442,7 @@ X = np.random.uniform(0, 1, n)
 # Direct method
 gX = np.exp(X**2)
 m1 = np.mean(gX)
-s1 = np.var(gX)
+s1 = np.var(gX, ddf=1)
 
 print(f"Direct method confidence interval: [{m1 - 1.96 * np.sqrt(s1 / n):.3f}, {m1:.3f}, {m1 + 1.96 * np.sqrt(s1 / n):.3f}]")
 print(f"Variance {s1:.3f}")
@@ -453,7 +453,7 @@ print(f"Variance {s1:.3f}")
 Y = (2*X + np.sqrt(1 + 4*X**2))**(1/3) - (np.sqrt(1 + 4*X**2) - 2*X)**(1/3)
 gpX = np.exp(Y**2) / (3 * (1 + Y**2) / 4)
 m4 = np.mean(gpX)
-s4 = np.var(gpX)
+s4 = np.var(gpX, ddf=1)
 
 print(f"Importance sampling confidence interval: [{m4 - 1.96 * np.sqrt(s4 / n):.3f}, {m4:.3f}, {m4 + 1.96 * np.sqrt(s4 / n):.3f}]")
 print(f"Variance {s4:.3f}")
