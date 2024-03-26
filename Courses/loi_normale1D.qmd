@@ -1,12 +1,11 @@
 ---
 title: "Loi normale: cas univarié"
-bibliography: references.bib
-format:
-  html:
-      out.width: 50%
+bibliography: ../Courses/references.bib
 filters:
   - shinylive
 ---
+
+
 
 ## Définitions et propriétés de la loi normale
 
@@ -17,6 +16,7 @@ $$
 
 On note $X \sim \mathcal{N}(\mu, \nu)$, si $X$ est une variable aléatoire ayant pour densité $\varphi_{\mu, \nu}$. Notons que si $X \sim \mathcal{N}(\mu,\nu)$, alors $X$ a pour **espérance** $\mu$ et pour **variance** $\nu$. Le cas particulier $\mu=0$ et $\nu=1$ correspond à une variable aléatoire dite **centrée réduite**.
 
+::: {.content-visible when-format="html"}
 
 ```{ojs}
 //| echo: false
@@ -121,12 +121,12 @@ var layout = {
 	}
 }
 ```
-
-
+:::
 
 On parle aussi souvent de loi gaussienne, en hommage au mathématicien [Carl Friedrich Gauss, *le prince des mathématiciens*](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss)^[[Carl Friedrich Gauss](https://fr.wikipedia.org/wiki/Carl_Friedrich_Gauss): (1777-1855)
 mathématicien, astronome et physicien né à Brunswick, directeur de l'observatoire de [Göttingen](https://www.youtube.com/watch?v=t0sNy1xOhRc) de 1807 jusqu'à sa mort en 1855
-<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>].
+<img src="https://upload.wikimedia.org/wikipedia/commons/9/9b/Carl_Friedrich_Gauss.jpg" width="65%" style="display: block; margin-right: auto; margin-left: auto;" alt="Portrait de Carl Friedrich Gauss" title="Tableau de Christian Albrecht Jensen (Moscou, Musée des Beaux-Arts Pouchkine)."></img>
+].
 
 
 
@@ -141,26 +141,26 @@ Ainsi, savoir simuler une loi normale centrée réduite, permet de simuler n'imp
 
 ## Fonction caractéristique de la loi normale
 La fonction caractéristique d'une variable aléatoire $X \sim \mathcal{N}(\mu, \nu)$ est donnée pour tout $t \in \mathbb{R}$ par
-$$
+
 \begin{align*}
 \phi_{\mu,\nu}(t) & \triangleq \mathbb{E}(e^{i t X})  \\
 & = \exp\Big( i \mu t - \frac{\nu t^2}{2}\Big)\enspace.
 \end{align*}
-$$
+
 :::
 
 
 ::: {.proof}
 on remarque d'abord que si $X \sim \mathcal{N}(0,1)$ alors pour tout $z \in \mathbb{R}$, on a
 
-$$
+
 \begin{align*}
 \mathbb{E}[e^{zX}]&=\frac{1}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12x^2}e^{zx}\,dx\\
 &= \frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12(x-z)^2}\,dx\\
 &=\frac{e^{\frac12z^2}}{\sqrt{2\pi}}\int_{-\infty}^\infty e^{-\frac12y^2}\,dy\\
 &=e^{\frac12z^2}.
 \end{align*}
-$$
+
 En utilisant le théorème de prolongement analytique (voir par exemple [Théorème I.10., @Queffelec_Zuily13] on peut donc étendre cette formule à tout $z \in \mathbb{C}$, et particulier au cas $z=it$ pour $t \in \mathbb{R}$. On obtient alors $\phi_{\mu,\nu}(t)=e^{-\frac{t^2}{2}}$.
 Enfin, on utilise la linéarité de l'espérance pour obtenir le résultat pour $X \sim \mathcal{N}(\mu,\nu)$. En effet, si $X \sim \mathcal{N}(0,1)$, alors $X=\mu+\sqrt{\nu}Z$ avec $Z \sim \mathcal{N}(0,1)$, et donc $\phi_{\mu,\nu}(t)=e^{i\mu t}\phi_{0,1}(\sqrt{\nu}t)=e^{i\mu t-\frac{\nu t^2}{2}}$.
 :::
@@ -185,15 +185,15 @@ Cependant, cette méthode ne donne qu'une approximation d'une loi normale. Par a
 Le théorème suivant permet de passer de la loi d'un couple $(X,Y)$ à celle de $(U,V) = \phi(X,Y)$, où $\phi$ est un $C^1$-difféomorphisme, c'est-à-dire une application bijective dont la réciproque est également de classe $C^1$.
 
 Pour cela rappelons que la **jacobienne** de $\phi^{-1}$ correspond à la matrice (application linéaire) des dérivées partielles. Ainsi, si $\phi(x,y) = (u,v) \iff (x,y) = \phi^{-1}(u,v)$, alors
-$$
+
 \begin{align*}
-{\rm{J}}_{\phi^{-1}}: (u,v) & \mapsto
+{\mathrm{J}}_{\phi^{-1}}: (u,v) & \mapsto
 \begin{pmatrix}
   \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v}    \\
   \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
 \end{pmatrix} \enspace.
 \end{align*}
-$$
+
 
 ::: {#thm-changement-variables}
 
@@ -201,12 +201,12 @@ $$
 ## Caractérisation de la loi d'une variable aléatoire réelle
 
 Soit $(X,Y)$ un vecteur aléatoire de densité $f_{(X,Y)}$ définie sur l'ouvert $A \subset \mathbb{R}^2$ et $\phi : A \to B \subset \mathbb{R}^2$ un $C^1$-difféomorphisme. Le vecteur aléatoire $(U,V)=\phi(X,Y)$ admet alors pour densité $f_{(U,V)}$ définie sur $B$ pour tout $(u,v) \in \mathbb{R}^2$ par
-$$
+
 \begin{align*}
     (u,v) & \mapsto
-    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
+    f_{(X,Y)} (\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\enspace.
 \end{align*}
-$$
+
 
 :::
 
@@ -215,48 +215,45 @@ On a énoncé le résultat en dimension $2$ par simplicité. Il s'étend bien é
 ::: {.proof}
 
 On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb{E}[h(U,V)]$ pour tout $h : \mathbb{R}^2 \to \mathbb{R}$ mesurable bornée. On considère donc une telle fonction $h$ et on applique la formule de transfert :
-$$
+
 \begin{align*}
   \mathbb{E}[h(U,V)] &
   =\mathbb{E}[h(\phi(X,Y))]\\
  & = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
  & = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
 \end{align*}
-$$
+
 On applique alors la formule du changement de variables vu en théorie de l'intégration avec $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
-$$
+
 \begin{align*}
   & \mathbb{E}[h(U,V)]\\
-  & = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
-  & = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
+  & = \!\int_{B}  \!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| \, d u d v\\
+  & = \!\int_{\mathbb{R}^2} \!\!\!\! h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v .
 \end{align*}
-$$
+
 <!-- On conclut alors que
 $$
 \mathbb{E}[h(U,V)]
-= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\rm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
+= \int_{\mathbb{R}^2} h(u,v) f_{(X,Y)}(\phi^{-1}(u,v)) |\det ({\mathrm{J}}_{\phi^{-1}} (u,v))| {1\hspace{-3.8pt} 1}_B(u,v)\, d u d v\,,
 $$ -->
 ce qui donne le résultat voulu.
 :::
 
-<br>
 
 :::{#exm-cos}
 
-## Exemple : loi de $\cos(X)$, avec $X \sim \mathcal{U}(]0,\pi[)$
+## Exemple : loi de de cos(X)
 Donnons un exemple dans le cas réel. On considère une variable aléatoire $X$ de loi uniforme sur $]0,\pi[$.
 Sa densité est donnée par $f_X(x) = {1\hspace{-3.8pt} 1}_{]0,\pi[}(x)/\pi$.
 On pose $U = \cos(X)$ et on souhaite déterminer la loi de $U$.
 
 On applique le théorème précédent avec la fonction $\phi^{-1}(u) = \arccos(u)$ sur $]-1,1[$. La densité de $U$ est alors donnée pour tout $u \in \mathbb{R}$ par
-$$
+
 \begin{align*}
   f_U(u)
  & = \frac{{1\hspace{-3.8pt} 1}_{]0,\pi[}(\arccos(u))}{\pi} \Big| \frac{-1}{\sqrt{1-u^2}} \Big| {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\\
  & = \frac{1}{\pi \sqrt{1-u^2}} {1\hspace{-3.8pt} 1}_{]-1,1[}(u)\enspace.
 \end{align*}
-$$
-
 
 :::
 
@@ -281,14 +278,14 @@ $$
 
 Ici, le jacobien de $\phi^{-1}$ est la matrice
 $$
-	{\rm{J}}_{\phi^{-1}} (r,\theta)
+	{\mathrm{J}}_{\phi^{-1}} (r,\theta)
 	=
 	\begin{pmatrix}
 		\cos(\theta) & -r \sin(\theta) \\
 		\sin(\theta) & r \cos(\theta)
 	\end{pmatrix}\,,
 $$
-qui vérifie $|\det({\rm{J}}_{\phi^{-1}} (r, \theta))| = r$. Ainsi, si $(X,Y)$ a pour densité $f_{(X,Y)}$, alors $(R, \Theta) = \phi(X,Y)$ a pour densité
+qui vérifie $|\det({\mathrm{J}}_{\phi^{-1}} (r, \theta))| = r$. Ainsi, si $(X,Y)$ a pour densité $f_{(X,Y)}$, alors $(R, \Theta) = \phi(X,Y)$ a pour densité
 $$
   f_{(R, \Theta)} (r, \theta)
   = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta).
@@ -318,13 +315,13 @@ $$
   f_{(X,Y)}(x,y) = \frac{1}{2\pi} e^{-\frac{x^2+y^2}{2}}\,, \quad x,y \in \mathbb{R}\,.
 $$
 Le théorème précédent donne alors la densité de $(R, \Theta)$ :
-$$
+
 \begin{align*}
   f_{(R, \Theta)} (r, \theta) &
   = r\cdot f_{(X,Y)}(r \cos(\theta), r \sin(\theta)) \!\cdot\! {1\hspace{-3.8pt} 1}_{]0, \infty[}(r)  {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\\
   &= r \cdot\frac{1}{2\pi} e^{-\frac{r^2}{2}} \cdot  {1\hspace{-3.8pt} 1}_{]0, \infty[}(r) {1\hspace{-3.8pt} 1}_{]0, 2 \pi[}(\theta)\,,
 \end{align*}
-$$
+
 ce qui conclut la preuve.
 :::
 
@@ -384,14 +381,14 @@ $$
 où on a utilisé la relation $\Gamma(1/2) = \sqrt \pi$ (intégrale de Gauss).
 
 Soit $h : \mathbb{R} \to \mathbb{R}$ une fonction mesurable bornée. On a
-$$
+
 \begin{align*}
 	\mathbb{E}[h(X_1^2)]
-	& = \int_\mathbb{R} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
+	& = \int_{\mathbb{R}} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\\
 	& = \int_{-\infty}^0 h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx
 	+ \int_0^{\infty} h(x^2) \frac{e^{-\frac{x^2}{2}}}{\sqrt{2 \pi}} \, dx\,.
 \end{align*}
-$$
+
 En effectuant le changement de variable $x=-\sqrt u$ dans la première intégrale et $x=\sqrt u$ dans la deuxième, on obtient
 $$
 	\mathbb{E}[h(X_1^2)]
@@ -406,15 +403,15 @@ ce qui prouve le résultat pour $k=1$.
 
 La généralisation à $k$ quelconque se fait par récurrence: on utilise la formule de convolution des la loi pour obtenir la loi pour $k+1$:
 
-$$
+
 \begin{align*}
 	X_1^2 + \dots + X_k^2 + X_{k+1}^2
 	& = (X_1^2 + \dots + X_k^2) + X_{k+1}^2\\
 	& = \chi^2(k) + X_{k+1}^2\,.
 \end{align*}
-$$
+
 Ainsi,
-$$
+
 \begin{align*}
 	f_{\chi^2(k+1)}(x)
 	& = \int_0^{\infty} f_{\chi^2(k)}(x-y) f_{X_{k+1}^2}(y) \, dy\\
@@ -422,14 +419,14 @@ $$
 	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}\int_0^x  (x-y)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{ y}} \, dy\\
 	& = \frac{e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})} x \int_0^1  (x-ux)^{\frac{k}{2}-1}  \tfrac{1}{\sqrt{xu}} \, du\\
 \end{align*}
-$$
+
 avec le changement de variable $y=ux$. Ensuite,
-$$
+
 \begin{align*}
 	f_{\chi^2(k+1)}(x)
 	& = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k}{2})  \Gamma(\frac{1}{2})}  \int_0^1  (1-u)^{\frac{k}{2}-1}  u^{1/2-1} du\enspace.
 \end{align*}
-$$
+
 Or rappelons que si $\Beta(a,b) =  \int_0^1  (1-u)^{a-1}  u^{b-1} \, du$, alors pour tout $a,b \in [0,+\infty[, \Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$. En effet, en faisant le changement de variable dans l'intégrale double qui suit:
 $$
 \begin{array}{ccccc}
@@ -438,27 +435,25 @@ $$
 \end{array}
 $$
 c'est-à-dire $\psi^{-1}(r,w) = (r(1-w), rw)$, et le jacobien est donné par $J_{\psi^{-1}}(r,w) = \begin{pmatrix} 1-w & -r \\ w & r \end{pmatrix}$, et donc $J_{\psi^{-1}}(r,w)=r$, on obtient:
-$$
+
 \begin{align*}
 \Gamma(a)\Gamma(b) & = \int_0^{\infty} t^{a-1} e^{-t} \, dt \int_0^{\infty} s^{b-1} e^{-s} \, ds\\
 & = \int_0^{\infty} \int_0^{\infty} e^{-t-s} t^{a-1} s^{b-1} \, dt \, ds\\
 & = \int_0^{1} \int_0^{\infty} e^{-r} (rw)^{a-1} (r(1-w))^{b-1} r \, dr \, dw\\
 & = \int_0^1 w^{a-1} (1-w)^{b-1} \int_0^{\infty} e^{-r} r^{a+b-1} \, dr \, dw\\
 \end{align*}
-$$
+
 et donc  $\Beta(a,b)=\frac{\Gamma(a)\Gamma(b)}{\Gamma(a+b)}$.
 En appliquant cette relation pour $a=\frac{k}{2}$ et $b=1/2$, on obtient
 
-$$
+
 \begin{align*}
 	f_{\chi^2(k+1)}(x)
 	& = \frac{x^{\frac{k+1}{2}} e^{-\frac{x}{2}}}{2^{\frac{k+1}{2}} \Gamma(\frac{k+1}{2})} \enspace.
 \end{align*}
-$$
+
 Le résultat est donc prouvé par récurrence.
 :::
-
-<br>
 
 
 ### Loi de Student
@@ -524,16 +519,16 @@ $$
 $$
 Il suffit alors de marginaliser pour obtenir la densité de $V$, ce qui s'effectue en calculant l'intégrale
 $$
-	\int_\mathbb{R} f_{(U,V)} (u,v) \, du\,.
+	\int_{\mathbb{R}} f_{(U,V)} (u,v) \, du\,.
 $$
 Les termes en $u$ de l'expression précédente s'intègre en
-$$
+
 \begin{align*}
 	\int_{-\infty}^\infty e^{-\frac{u^2}{2}(1+\frac{k}{v^2})} (u^2)^{\frac{k}{2}} \, d u
 	 & = \int_0^\infty e^{-s} \bigg( \dfrac{2 s}{1+\frac{k}{v^2}} \bigg)^{\frac{k}{2}} \sqrt{\dfrac{2}{1+\frac{k}{v^2}}} \dfrac{ds}{2\sqrt{s}} \\
 	 & = \frac{2^{\frac{k+1}{2}}}{2} \frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}} \!\!\! \int_0^\infty e^{-s} s^{\frac{k}{2} - \frac{1}{2}} \, ds\,,
 \end{align*}
-$$
+
 où la première égalité résulte du changement de variable
 $$
 	s = \dfrac{u^2}{2} \left( 1 + \dfrac{k}{v^2} \right) \iff \sqrt{\dfrac{2s }{1+\frac{k}{v^2}}} = u\,.
@@ -546,7 +541,7 @@ $$
 	\frac{2^{\frac{k+1}{2}}}{2} \frac{\Gamma\left(\tfrac{k+1}{2}\right)}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\,.
 $$
 On réécrit alors les termes en $k/v^2$ via
-$$
+
 \begin{align*}
 \left(\tfrac{k}{v^2}\right)^{\frac{k}{2}-1} \tfrac{k}{(v^2)^{\frac{3}{2}}}
 	\frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}
@@ -555,7 +550,7 @@ $$
 	\frac{1}{\left(1+\tfrac{k}{v^2}\right)^{ \frac{k+1}{2}}}\\
 	& = \tfrac{1}{\sqrt{k}}\left(1+\tfrac{v^2}{k}\right)^{- \frac{k+1}{2}}\,,
 \end{align*}
-$$
+
 ce qui permet de conclure :
 $$
 	f_V(v)
@@ -563,8 +558,6 @@ $$
 	\dfrac{1}{\sqrt{k \pi}} \dfrac{\Gamma(\frac{k+1}{2})}{\Gamma(\frac{k}{2})} \Big(  1+\dfrac{v^2}{k}\Big)^{-\frac{k+1}{2}}\,.
 $$
 :::
-
-<br>
 
 ### Loi de Cauchy
 
@@ -596,11 +589,11 @@ Or $\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi x}$ quand $|x|\to \infty$, et $x\map
 
 
 La fonction caractéristique de la loi de Cauchy standard est donnée par
-$$
+
 \begin{align*}
 \varphi_X(t) & \triangleq \int_{\mathbb{R}} e^{itx} f_X(x) \, dx = e^{-|t|}\,.
 \end{align*}
-$$
+
 et donc si $X\sim \mathcal{C}(\mu,\sigma)$, alors pour tout $t \in \mathbb{R}$, $\varphi_X(t) = e^{i\mu t - \sigma |t|}$.
 Pour la preuve voir par exemple [Exemple III.5.5., @Barbe_Ledoux06]
 Une conséquence directe est que la somme de deux variables aléatoires indépendantes de loi de Cauchy reste une loi de Cauchy:
@@ -660,16 +653,22 @@ $$
 	= \dfrac{1}{2 \pi} e^{- \frac{u^2 + u^2v^2}{2}} |u|\,.
 $$
 On obtient alors la densité de $V$ en intégrant par rapport à $u$ :
-$$
+
 \begin{align*}
 	f_V(v)
-	& = \dfrac{1}{2 \pi} \int_\mathbb{R} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
+	& = \dfrac{1}{2 \pi} \int_{\mathbb{R}} e^{- \frac{u^2 + u^2v^2}{2}} |u| \, \mathrm du \\
 	& = \dfrac{1}{\pi} \int_0^\infty e^{- \frac{u^2(1 + v^2)}{2}} u \, \mathrm du\\
 	& = \dfrac{1}{\pi} \bigg[ -\dfrac{e^{- \frac{u^2(1 + v^2)}{2}}}{1+v^2} \bigg]_0^\infty\\
-	& = \dfrac{1}{\pi(1+v^2)}\,.
+	& = \dfrac{1}{\pi(1+v^2)}\enspace.
 \end{align*}
-$$
+
 :::
 
 On obtient ainsi une autre manière de simuler une loi de Cauchy, en prenant le ratio de deux  gaussiennes indépendantes.
 Cependant, la simulation via la méthode d'inversion peut-être moins coûteuse puisqu'elle ne fait appel qu'à une variable aléatoire uniforme et à la fonction tangente.
+
+
+## Bibliographie
+
+::: {#refs}
+:::

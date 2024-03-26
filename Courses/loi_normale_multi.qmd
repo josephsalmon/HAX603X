@@ -1,11 +1,6 @@
 ---
 title: "Loi normale: cas multivarié"
 bibliography: references.bib
-format:
-  html:
-      out.width: 50%
-filters:
-  - shinylive
 ---
 
 On considère ici $\mathbb{R}^d$ muni du produit scalaire euclidien $\langle \cdot, \cdot \rangle$ et de la norme euclidienne $\|\cdot\|$ associée.
@@ -44,9 +39,9 @@ Si $(X,Y)$ est un vecteur aléatoire, il ne suffit pas de connaître les margina
 :::{#def-gaussian-vector}
 
 ## Vecteur gaussien
-Un vecteur aléatoire $\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d$ est un *vecteur gaussien* si pour tout $\bm{\alpha} = (\alpha_1, \dots, \alpha_d)^\top$, la variable aléatoire réelle
+Un vecteur aléatoire $\mathbf{X} = (X_1, \dots, X_d)^\top \in \mathbb{R}^d$ est un *vecteur gaussien* si pour tout ${\alpha} = (\alpha_1, \dots, \alpha_d)^\top$, la variable aléatoire réelle
 $$
-  \langle \bm{\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
+  \langle {\alpha}, \mathbf{X} \rangle = \alpha_1 X_1 + \cdots + \alpha_d X_d \enspace,
 $$
 suit une loi normale.
 :::
@@ -57,59 +52,59 @@ En particulier chaque (loi marginale) $X_j$ suit alors une loi gaussienne (chois
 
 Cependant, il ne suffit pas que les $X_j$ soient des gaussiennes pour que le vecteur $X$ soit un vecteur gaussien.
 Par exemple, si $X$ suit une loi normale centrée réduite et $\varepsilon$ une loi uniforme (discrète) sur $\{-1,1\}$, alors on peut montrer que $\varepsilon X$ suit encore une loi normale centrée réduite. En effet, pour tout $t \in \mathbb{R}$, on a
-$$
+
 \begin{align*}
   \mathbb{P}(\varepsilon X \leq t)
   & =  \mathbb{P}(X \leq t) \mathbb{P}(\varepsilon = 1) + \mathbb{P}(-X \leq t) \mathbb{P}(\varepsilon = -1)\\
   & = \tfrac{1}{2} \mathbb{P}(X \leq t) + \tfrac{1}{2} \mathbb{P}(-X \leq t) = \mathbb{P}(X \leq t) \enspace.
 \end{align*}
-$$
+
 Cependant, $X + \varepsilon X$ prend la valeur $0$ avec probabilité $1/2$ donc ne suit pas une loi normale.
 Ainsi le vecteur $(X, \varepsilon X)^{\top}$ n'est pas un vecteur gaussien bi-dimensionnel.
 
 
-Soit $\mathbf{X}$ un vecteur gaussien. Notons $\bm{\mu}$ son espérance et $\Sigma$ sa matrice de variance-covariance.
-En reprenant les notations de la définition, la variable aléatoire $\langle \bm{\alpha}, \mathbf{X} \rangle$ vérifie
-$$
+Soit $\mathbf{X}$ un vecteur gaussien. Notons ${\mu}$ son espérance et $\Sigma$ sa matrice de variance-covariance.
+En reprenant les notations de la définition, la variable aléatoire $\langle {\alpha}, \mathbf{X} \rangle$ vérifie
+
 \begin{align*}
-  \mathbb{E}[\langle \bm{\alpha}, \mathbf{X} \rangle]
+  \mathbb{E}[\langle {\alpha}, \mathbf{X} \rangle]
   & = \mathbb{E}[\alpha_1 X_1 + \cdots + \alpha_d X_d] \\
   & =  \alpha_1 \mathbb{E}[X_1] + \cdots + \alpha_d \mathbb{E}[X_d]
-  & = \langle \bm{\alpha}, \bm{\mu} \rangle\,,
+  & = \langle {\alpha}, {\mu} \rangle\,,
 \end{align*}
-$$
+
 et
-$$
+
 \begin{align*}
-  \mathrm{var}(\langle \bm{\alpha}, \mathbf{X} \rangle)
+  \mathrm{var}(\langle {\alpha}, \mathbf{X} \rangle)
     & = \mathrm{var}(\alpha_1 X_1 + \cdots + \alpha_d X_d)\\
     & = \mathrm{cov}(\alpha_1 X_1 + \cdots + \alpha_d X_d, \alpha_1 X_1 + \cdots + \alpha_d X_d) \\
     & = \sum_{1 \leq i,j \leq d} \alpha_i \mathrm{cov}(X_i, X_j) \alpha_j
-  = \bm{\alpha}^\top \Sigma \bm{\alpha}
+  = {\alpha}^\top \Sigma {\alpha}
 \end{align*}
-$$
-Ainsi, $\langle \bm{\alpha}, \mathbf{X} \rangle \sim \mathcal{N}\left(\langle \bm{\alpha}, \bm{\mu} \rangle, \bm{\alpha}^\top \Sigma \bm{\alpha}\right)$.
+
+Ainsi, $\langle {\alpha}, \mathbf{X} \rangle \sim \mathcal{N}\left(\langle {\alpha}, {\mu} \rangle, {\alpha}^\top \Sigma {\alpha}\right)$.
 
 
 ### Fonction caractéristique d'un vecteur gaussien
 
-La fonction caractéristique d'un vecteur gaussien d'espérance $\bm{\mu}$ et de matrice de variance-covariance $\Sigma$ est donnée par
+La fonction caractéristique d'un vecteur gaussien d'espérance ${\mu}$ et de matrice de variance-covariance $\Sigma$ est donnée par
 $$
-	\phi_\mathbf{X}(\bm{\alpha})
-	= \mathbb{E}[e^{i \langle \bm{\alpha}, \mathbf{X} \rangle}]
-	= \exp\Big(i \langle \bm{\alpha}, \bm{\mu} \rangle - \frac{\bm{\alpha}^\top \Sigma \bm{\alpha}}{2}\Big)\,,
-	\quad \bm{\alpha} \in \mathbb{R}^d\,.
+	\phi_\mathbf{X}({\alpha})
+	= \mathbb{E}[e^{i \langle {\alpha}, \mathbf{X} \rangle}]
+	= \exp\Big(i \langle {\alpha}, {\mu} \rangle - \frac{{\alpha}^\top \Sigma {\alpha}}{2}\Big)\,,
+	\quad {\alpha} \in \mathbb{R}^d\,.
 $$
-où on a utilisé l'expression de la fonction caractéristique d'une variable aléatoire de loi normale $\mathcal{N}(\langle \bm{\alpha}, \bm{\mu} \rangle, \bm{\alpha}^\top \Sigma \bm{\alpha})$.
-Ainsi, $\phi_\mathbf{X}$ est entièrement déterminée par les quantités $\bm{\mu}$ et $\Sigma$. Comme cette fonction caractérise la loi de $\mathbf{X}$, on en déduit que la loi d'un vecteur gaussien est entièrement caractérisée par son espérance et sa matrice de variance-covariance. On note alors
+où on a utilisé l'expression de la fonction caractéristique d'une variable aléatoire de loi normale $\mathcal{N}(\langle {\alpha}, {\mu} \rangle, {\alpha}^\top \Sigma {\alpha})$.
+Ainsi, $\phi_\mathbf{X}$ est entièrement déterminée par les quantités ${\mu}$ et $\Sigma$. Comme cette fonction caractérise la loi de $\mathbf{X}$, on en déduit que la loi d'un vecteur gaussien est entièrement caractérisée par son espérance et sa matrice de variance-covariance. On note alors
 $$
-	\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)\,.
+	\mathbf{X} \sim \mathcal{N}({\mu}, \Sigma)\,.
 $$
-En particulier, si les variables aléatoires $X_1, \dots, X_d$ sont indépendantes de loi $\mathcal{N}(0,1)$, alors $\bm{\mu} = (0,\ldots,0)^\top$ et $\Sigma = \mathrm{Id}_d$.
+En particulier, si les variables aléatoires $X_1, \dots, X_d$ sont indépendantes de loi $\mathcal{N}(0,1)$, alors ${\mu} = (0,\ldots,0)^\top$ et $\Sigma = \mathrm{Id}_d$.
 
 
 ### Densité de probabilité
-Commençons par le cas $\bm{\mu}=0$ et $\Sigma = \mathrm{Id}_d$ correspond à la loi gaussienne centrée réduite $\mathcal{N}(0, \mathrm{Id}_d)$.
+Commençons par le cas ${\mu}=0$ et $\Sigma = \mathrm{Id}_d$ correspond à la loi gaussienne centrée réduite $\mathcal{N}(0, \mathrm{Id}_d)$.
 La loi de $(X_1,\dots,X_n)^\top$ correspond alors à la loi produit de $n$ lois gaussiennes centrées réduites indépendantes (pour les gaussiennes la décorrélation implique l'indépendance).
 Sa densité est donc donnée par
 $$
@@ -121,39 +116,39 @@ $$
 
 ## Densité de la loi gaussienne multivariée
 
-Soient $\bm{\mu} \in \mathbb{R}^d$ et $\Sigma \in \mathbb{R}^{d \times d}$ (symétrique et définie positive) et supposons que $X \sim \mathcal{N}(\bm{\mu},\Sigma)$.
+Soient ${\mu} \in \mathbb{R}^d$ et $\Sigma \in \mathbb{R}^{d \times d}$ (symétrique et définie positive) et supposons que $X \sim \mathcal{N}({\mu},\Sigma)$.
 Alors la densité de probabilité de $X$ est donnée pour tout $x \in \mathbb{R}^d$ par
 
 $$
-\varphi_{\bm{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-\bm{\mu})^\top\Sigma^{-1}(x - \bm{\mu})   \Big) \enspace.
+\varphi_{{\mu},\Sigma}(x) = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(x-{\mu})^\top\Sigma^{-1}(x - {\mu})   \Big) \enspace.
 $$
 :::
 
 
 ::: {.proof}
 Prenons une matrice $L\in \mathbb{R}^{d \times d}$ telle que $LL^\top = \Sigma$ (par exemple, la décomposition de Cholesky, que nous reverrons ci-dessous).
-Calculons alors la loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + \bm{\mu}$, pour $X\sim \mathcal{N}(0,\mathrm{Id_d})$.
+Calculons alors la loi de $\mathbf{Y} = \psi(X) \triangleq L \mathbf{X} + {\mu}$, pour $X\sim \mathcal{N}(0,\mathrm{Id_d})$.
 Pour appliquer la formule du changement de variable nous donne, on calcule  $\psi^{-1}$ et son jacobien:
-$\psi^{-1}(y) = L^{-1}(y-\bm{\mu})$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\det(\Sigma)|^{-1/2}$.
+$\psi^{-1}(y) = L^{-1}(y-{\mu})$, et $\det(J_{\psi^{-1}}) = \det(L^{-1}) = \det(L)^{-1} = |\det(\Sigma)|^{-1/2}$.
 
 En notant que $LL^\top \left(L^{-1}\right)^\top L^{-1}=\mathrm{Id}_d$, et donc que $\left(L^{-1}\right)^\top L^{-1}=\Sigma^{-1}$, on en déduit que la densité de $\mathbf{Y}$ est donnée par
-$$
+
 \begin{align*}
-\varphi_{\bm{\mu},\Sigma}(y)
+\varphi_{{\mu},\Sigma}(y)
 & = \varphi_{0,\mathrm{Id}_d}(\psi^{-1}(y)) |\det(J_{\psi^{-1}})| \\
-& = \frac{|\det(\Sigma)|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-\bm{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - \bm{\mu})\right)\\
-& = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(y-\bm{\mu})^\top\Sigma^{-1}(y - \bm{\mu})   \Big) \enspace.
+& = \frac{|\det(\Sigma)|^{-1/2}}{ \sqrt{(2\pi)^d }}  \exp\left( -\tfrac{1}{2}(y-{\mu})^\top \left(L^{-1}\right)^\top L^{-1}(y - {\mu})\right)\\
+& = \frac{1}{ \sqrt{(2\pi)^d |\det(\Sigma)|}}  \exp\Big( -\tfrac{1}{2}(y-{\mu})^\top\Sigma^{-1}(y - {\mu})   \Big) \enspace.
 \end{align*}
-$$
+
 :::
 
 :::{#prp-affine-gauss}
 
 ## Transformation affine de vecteurs gaussiens
-Soit $\mathbf{X} \sim \mathcal{N}(\bm{\mu}, \Sigma)$ un vecteur gaussien sur $\mathbb{R}^d$, $\Omega \in \mathbb{R}^{d' \times d}$ et $\bm{\nu}\in \mathbb{R}^{d'}$.
-Alors, le vecteur aléatoire $\mathbf{Y} = \Omega \mathbf{X} + \bm{\nu}$ est un vecteur gaussien vérifiant
+Soit $\mathbf{X} \sim \mathcal{N}({\mu}, \Sigma)$ un vecteur gaussien sur $\mathbb{R}^d$, $\Omega \in \mathbb{R}^{d' \times d}$ et ${\nu}\in \mathbb{R}^{d'}$.
+Alors, le vecteur aléatoire $\mathbf{Y} = \Omega \mathbf{X} + {\nu}$ est un vecteur gaussien vérifiant
 $$
-  \mathbf{Y} \sim \mathcal{N}(\Omega \bm{\bm{\mu}} + \bm{\nu}, \Omega \Sigma \Omega^\top)\,.
+  \mathbf{Y} \sim \mathcal{N}(\Omega {{\mu}} + {\nu}, \Omega \Sigma \Omega^\top)\,.
 $$
 :::
 
@@ -187,16 +182,16 @@ La factorisation de Cholesky est une conséquence directe de la méthode du pivo
 ## Simulation de vecteurs gaussiens
 
 
-La simulation d'un vecteur gaussien de paramètres $\bm{\mu} = (0,\ldots,0)^\top$ et $\Sigma = \mathrm{Id}_d$ ne pose pas de problème : il suffit de simuler $X_1,\dots, X_d$, $d$ variables aléatoires indépendantes de loi normale centrée réduite. En effet, le vecteur $\mathbf{X} = (X_1,\dots, X_d)^\top$ est alors un vecteur gaussien de loi $\mathcal{N}(0, \mathrm{Id}_d)$.
+La simulation d'un vecteur gaussien de paramètres ${\mu} = (0,\ldots,0)^\top$ et $\Sigma = \mathrm{Id}_d$ ne pose pas de problème : il suffit de simuler $X_1,\dots, X_d$, $d$ variables aléatoires indépendantes de loi normale centrée réduite. En effet, le vecteur $\mathbf{X} = (X_1,\dots, X_d)^\top$ est alors un vecteur gaussien de loi $\mathcal{N}(0, \mathrm{Id}_d)$.
 
-Supposons maintenant que l'on veuille simuler un vecteur gaussien de loi $\mathcal{N}(\bm{\mu}, \Sigma)$ dans $\mathbb{R}^d$, $\bm{\mu}$ et $\Sigma$ symétrique définie positive donnés.
+Supposons maintenant que l'on veuille simuler un vecteur gaussien de loi $\mathcal{N}({\mu}, \Sigma)$ dans $\mathbb{R}^d$, ${\mu}$ et $\Sigma$ symétrique définie positive donnés.
 
 
 
 ### Approche par la factorisation de Cholesky
 
 La matrice $\Sigma$ étant symétrique, elle peut s'écrire comme $\Sigma = LL^\top$ où $L$ est une matrice triangulaire inférieure de taille $d \times d$.
-Grâce à la décomposition de Cholevsky et en reprenant les éléments de la preuve de la @prp-densite-mutli, on peut écrire $\mathbf{Y} = L \mathbf{X} + \bm{\mu}$ où $\mathbf{X} \sim \mathcal{N}(0, \mathrm{Id}_d)$ et vérifier que $\mathbf{Y} \sim \mathcal{N}(\bm{\mu}, \Sigma)$.
+Grâce à la décomposition de Cholevsky et en reprenant les éléments de la preuve de la @prp-densite-mutli, on peut écrire $\mathbf{Y} = L \mathbf{X} + {\mu}$ où $\mathbf{X} \sim \mathcal{N}(0, \mathrm{Id}_d)$ et vérifier que $\mathbf{Y} \sim \mathcal{N}({\mu}, \Sigma)$.
 
 
 
@@ -211,7 +206,7 @@ $$
 où $\lambda_1, \ldots, \lambda_d \geq 0$ sont les valeurs propres de $\Sigma$ qui est semi-définie positive.
 On pose alors $R = P \mathrm{diag}(\sqrt \lambda_1 \ldots, \sqrt \lambda_d)$ qui est une racine carrée matricielle de $\Sigma$ au sens où $\Sigma = R R ^\top$.
 On part alors d'un vecteur gaussien centrée réduit $\mathbf{X}_0 \sim \mathcal{N}(0, \mathrm{Id}_d)$ que l'on sait simuler (par exemple avec la méthode de Box-Müller).
-La proposition @prp-affine-gauss assure alors que le vecteur $\mathbf{X} = R \mathbf{X}_0 + \bm{\mu}$ est un vecteur gaussien de loi $\mathcal{N}(\bm{\mu}, \Sigma)$.
+La proposition @prp-affine-gauss assure alors que le vecteur $\mathbf{X} = R \mathbf{X}_0 + {\mu}$ est un vecteur gaussien de loi $\mathcal{N}({\mu}, \Sigma)$.
 
 
 
@@ -231,6 +226,8 @@ $$
 $$
 où $\theta$ est l'angle de rotation et $\sigma_1$ et $\sigma_2$ les écarts-types des marginales (dans le repère orthonormal après rotation).
 
+
+::: {.content-visible when-format="html"}
 
 ```{ojs}
 //| echo: false
@@ -407,4 +404,4 @@ var data = [
 }
 
 ```
-
+:::

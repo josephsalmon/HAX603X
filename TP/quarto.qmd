@@ -1,9 +1,6 @@
 ---
 title: "Démarrage en Quarto"
 bibliography: ../Courses/references.bib
-format:
-  html:
-    out.width: 50%
 filters:
   - shinylive
 ---
@@ -14,24 +11,26 @@ L'écriture d'un rapport de TP, d'un compte rendu de projet ou même de diaposit
 Vous pouvez également inclure des équations mathématiques (avec $\LaTeX$), des images (`svg`, `png`, `jpg`, etc.), des tableaux, listes, etc.
 
 
-Pour générer un document avec Quarto, vous devez écrire le contenu dans un fichier d'extension `.qmd`, qui est un format de texte simple qui sera converti en d'autres formats, tels que HTML ou PDF. Dans le fichier `.qmd`, vous pouvez inclure des blocs de code, qui seront exécutés ou non lorsque vous générez le document final. Vous pouvez décider de masquer ou d'afficher les parties de code dans les sorties finales. 
+Pour générer un document avec Quarto, vous devez écrire le contenu dans un fichier d'extension `.qmd`, qui est un format de texte simple qui sera converti en d'autres formats, tels que HTML ou PDF. Dans le fichier `.qmd`, vous pouvez inclure des blocs de code, qui seront exécutés ou non lorsque vous générez le document final. Vous pouvez décider de masquer ou d'afficher les parties de code dans les sorties finales.
 
-Référence : le cours d'Arthur Turrell pour les économistes [](https://aeturrell.github.io/coding-for-economists/intro.html).
+[Référence]{.underline} : le cours d'informatique  d'Arthur Turrell pour les économistes [https://aeturrell.github.io/coding-for-economists/intro.html]().
 
 
 ## Mise en route
 
 ### Sur les machine de la faculté des Sciences
 
-<span style="color:red;">Quarto est déjà installé sur les machines de l'université!</span> Il n'y a qu'à installer l'extension pour Visual Studio, voir @sec-vscode_quarto.
+<span style="color:red;">Quarto est déjà installé sur les machines de l'université!</span> Il n'y a qu'à installer l'extension pour Visual Studio Code, voir @sec-vscode_quarto.
 
-### Installation
+### Installation sur votre machine personnelle
 
-Sur votre machine personnelle, vous devez vous rendre sur le site web de [**Quarto**](https://quarto.org/) et suivre les [instructions d'installation](https://quarto.org/docs/getting-started/installation.html) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
+Sur votre machine, vous devez vous rendre sur le site web de [**Quarto**](https://quarto.org/) et suivre les [instructions d'installation](https://quarto.org/docs/getting-started/installation.html) avant de commencer. Vous pouvez vérifier que vous avez correctement installé Quarto en utilisant la commande `quarto check install` sur la ligne de commande.
 
-### Visual studio {#sec-vscode_quarto}
+### Visual Studio Code {#sec-vscode_quarto}
 
-Vous trouverez l'[extension Quarto pour Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto). Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview".
+Vous trouverez l'[extension Quarto pour Visual Studio Code](https://marketplace.visualstudio.com/items?itemName=quarto.quarto).
+Cette extension crée un bouton spécial dans Visual Studio Code appelé "render" qui vous montre à quoi ressemblera la sortie côte à côte avec l'entrée, ou encore "preview" (ou avec `Ctrl + Shift + k`). Vous pouvez aussi utiliser le raccourci clavier `Ctrl + Shift + p` puis sélectionner "Quarto preview" par exemple.
+
 
 
 ## Rapports automatisés avec **Quarto**
@@ -55,9 +54,9 @@ number-sections: true
 
 ## Histogramme
 
-Pour une démonstration d'un tracé d'*histogramme* avec `matplotlib`, voir @fig-hist. On peut aussi inclure des formules 
+Pour une démonstration d'un tracé d'*histogramme* avec `matplotlib`, voir @fig-hist. On peut aussi inclure des formules
 $$
-\frac 1 \pi \int_0^1 f(x) dx.
+\frac 1 \pi \int_{0}^{1} f(x) dx.
 $$
 
 ```{{python}}
@@ -83,22 +82,25 @@ Cet exemple contient des types contenu importants :
 
 ### Rendu dans des documents de sortie
 
-Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-le sous `rapport_tp.qmd` et exécutez ensuite la commande suivante sur la ligne de commande et dans le même répertoire que le fichier :
+Pour convertir le rapport ci-dessus en un fichier `.pdf` de sortie, enregistrez-le sous `rapport_tp.qmd`.
+Si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}) ou sur le bouton `Quarto Render Project` ({{<kbd Ctrl+Shift+p>}} et chercher la commande dans la liste).
 
-```bash
+Une alternative est d'exécuter la commande suivante dans un terminal (dans le même répertoire que le fichier) :
+
+:::{.highlight-style="none"}
+```{.bash}
 quarto render rapport_tp.qmd
 ```
-
-N'oubliez pas que si vous utilisez l'[extension Visual Studio Code quarto](https://marketplace.visualstudio.com/items?itemName=quarto.quarto) (recommandée), vous pouvez appuyer sur le bouton `Preview` ({{<kbd Ctrl+Shift+K>}}).
+:::
 
 :::{#exr-pdf}
 Créer un PDF en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`.
 
-Attention: si vous obtenez une erreur indiquant que le noyau Jupyter n'a pas été trouvé, vérifiez d'abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant `jupyter kernelspec list` sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l'en-tête du document (dans l'exemple ci-dessus, il est appelé 'python3', qui est le noyau par défaut).
+[Attention]{.underline}: si vous obtenez une erreur indiquant que le noyau Jupyter n'a pas été trouvé, vérifiez d'abord que vous avez installé Jupyter Lab, puis vérifiez le nom de votre noyau Jupyter en utilisant `jupyter kernelspec list` sur la ligne de commande. Vous devez spécifier correctement le nom de votre noyau Jupyter dans l'en-tête du document (dans l'exemple ci-dessus, il est appelé 'python3', qui est le noyau par défaut).
 
 :::
 
-Maintenant, puisque nous avons spécifié `pdf` dans l'en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML :
+Maintenant, puisque nous avons spécifié `pdf` dans l'en-tête de notre fichier, nous avons automatiquement obtenu un PDF. Cependant, une grande variété de formats de sortie sont disponibles. Par exemple, HTML
 
 ```bash
 quarto render rapport_tp.qmd --to html
@@ -108,7 +110,7 @@ La syntaxe de base consiste à écrire `--to outputformat` à la fin de la comma
 
 :::{#exr-html}
 
-Réussissez à créer un rapport HTML en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`, en modifiant l'entête et en exécutant ensuite la commande quarto render avec l'option `--to html`.
+Créer un rapport HTML en enregistrant le markdown ci-dessus dans un fichier appelé `rapport_tp.qmd`, en modifiant l'entête et en exécutant ensuite la commande quarto render avec l'option `--to html`.
 
 Que se passe-t-il avec le menu sur le côté droit lorsque vous ajoutez des en-têtes supplémentaires en utilisant la syntaxe markdown `##` ?
 
@@ -123,6 +125,7 @@ Pour un exemple de sortie de code où l'entrée n'est pas affichée, le code ci-
 ````markdown
 ```{{python}}
 #| echo: false
+#| layout-ncol: 1
 import numpy as np
 import matplotlib.pyplot as plt
 rng = np.random.RandomState(44)
@@ -135,13 +138,29 @@ plt.show()
 ```
 ````
 
+En mettant l'option `echo: true` on affiche le code source dans la sortie, et l'on aurait alors l'effet suivant:
+
+```{python}
+#| echo: true
+#| layout-ncol: 1
+import numpy as np
+import matplotlib.pyplot as plt
+rng = np.random.RandomState(44)
+
+uniform_data = rng.uniform(-1, 1, 100)
+
+fig, ax = plt.subplots()
+ax.hist(uniform_data, bins=30)
+plt.show()
+```
+
 Voici quelques options pour les blocs de code:
 
 | Option | Description |
 | --- | --- |
 | `eval` | Évaluer le bloc de code (si faux, affiche simplement le code dans la sortie). |
 | `echo` | Inclure le code source dans la sortie. |
-| `output` | Inclure les résultats de l'exécution du code dans la sortie (vrai, faux ou asis pour indiquer que la sortie est du markdown brut et ne doit pas avoir de markdown d'encadrement standard de Quarto). |
+| `output` | Inclure les résultats de l'exécution du code dans la sortie (`true`, `false`). |
 | `warning` | Inclure les avertissements dans la sortie. |
 | `error` | Inclure les erreurs dans la sortie (notez que cela implique que les erreurs d'exécution du code ne bloqueront pas le traitement du document). |
 | `include` | Option générale pour empêcher toute sortie (code ou résultats) d'être incluse (par exemple, include: false supprime toute sortie du bloc de code). |

@@ -8,11 +8,22 @@ website:
 # HAX603X: Modélisation stochastique {.unnumbered}
 
 Aspects numériques de la modélisation aléatoire et statistiques (cours de Licence 3).
-Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd).
+Les sections en haut de page regroupe le contenus pédagogique : les [slides](Courses/slides.qmd) seront présentés en cours, et pour aller un peu plus loin le "poly" est disponible en format "html" sur la page [Cours](Courses/perspective_historique.qmd). Une version pdf est également disponible sur [ici](srcimages/Modélisation-stochastique--HAX603X-.pdf).
 
-:::{.callout-warning}
-Site en construction...(un peu de patience donc)
-:::
+
+<center>
+
+```{=html}
+
+
+<embed
+  src="srcimages/Modélisation-stochastique--HAX603X-.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
+  width="420" height="540" />
+
+```
+
+
+</center>
 
 ## Enseignants
 
@@ -29,7 +40,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 ## Prérequis
 
 - Bases de probabilités (en particulier "HAX506X- Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
-- Programmation élémentaire (en Python): if ... then... else ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
+- Programmation élémentaire (en Python): `if` ... `then`... `else` ..., `for`, `while`, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
 
 
 ##  Description du cours
@@ -65,18 +76,18 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ### Niveau débutant
 
-- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) &#127467;&#127479;
-- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) &#127467;&#127479;
-- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] &#127467;&#127479;
-- Data Science: [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016; &#127468;&#127463; <br>
+- Introduction à Python [Cours de Python](https://python.sdv.univ-paris-diderot.fr/) :fr:
+- [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html) :fr:
+- Manuel d'algorithmique en Python [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13] :fr:
+- Data Science: [Python Data Science Handbook, With Application to Understanding Data](https://jakevdp.github.io/PythonDataScienceHandbook/) by J. Van DerPlas, 2016; :gb: <br>
  **videos**: [Reproducible Data Analysis in Jupyter](http://jakevdp.github.io/blog/2017/03/03/reproducible-data-analysis-in-jupyter/)
-- [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists) by  Naël Shiab &#127468;&#127463;
+- [Math for journalists](https://observablehq.com/@nshiab/math-for-journalists) by  Naël Shiab :gb:
 
 
 ### Niveau avancé
-- [Software Dev. for datascience](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier, &#127468;&#127463;
-- [Monte Carlo Methods and Applications](https://geometrycollective.github.io/monte-carlo/) by Keenan Crane &#127468;&#127463;
-- Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly &#127468;&#127463;
-- [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi;  &#127468;&#127463;
-- [Maximum likelihood by numerical optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html)  &#127468;&#127463;
-- Conditionnement, martingales et autres preuves de la loi des grands nombres:  [@Williams91] &#127468;&#127463;
+- [Software Dev. for datascience](https://josephsalmon.github.io/HAX712X/) by J. Salmon and B. Charlier :gb:
+- [Monte Carlo Methods and Applications](https://geometrycollective.github.io/monte-carlo/) by Keenan Crane :gb:
+- Chaîne de Markov: [Markov Chains](https://www.ethanepperly.com/index.php/2023/06/29/markov-musings-1-the-fundamental-theorem/) by Ethan N. Epperly :gb:
+- [Advanced Data Analysis from an Elementary Point of View](https://www.stat.cmu.edu/~cshalizi/ADAfaEPoV/ADAfaEPoV.pdf) by Cosma Shalizi; :gb:
+- [Maximum likelihood by numerical optimization](https://statisticssu.github.io/STM/tutorial/numericalML/numericalML.html) :gb:
+- Conditionnement, martingales et autres preuves de la loi des grands nombres:  [@Williams91] :gb:

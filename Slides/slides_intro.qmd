@@ -628,7 +628,7 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
 :::{.fragment fragment-index=5}
 
-Recherche arborescente Monte-Carlo (&#127468;&#127463;: *Monte Carlo tree search*): analyse des scénarios les plus prometteurs, en élargissant l'arbre de recherche sur la base d'un échantillonnage aléatoire de l'espace entier (ingrédient important d'AlphaGo)
+Recherche arborescente Monte-Carlo (:gb:: *Monte Carlo tree search*): analyse des scénarios les plus prometteurs, en élargissant l'arbre de recherche sur la base d'un échantillonnage aléatoire de l'espace entier (ingrédient important d'AlphaGo)
 
 :::
 

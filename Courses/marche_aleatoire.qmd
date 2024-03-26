@@ -1,20 +1,23 @@
 ---
 title: "Marches aléatoires"
-format:
-  html:
-      out.width: 50%
 ---
 
+
+
+::: {.content-visible when-format="html"}
 ::: {.hidden}
 {{
+\usepackage{stmaryrd}
 \providecommand{\N}{\mathbb{N}}
+\providecommand{\Z}{\mathbb{Z}}
 \providecommand{\E}{\mathbb{E}}
+\providecommand{\R}{\mathbb{R}}
 \renewcommand{\P}{\mathbb{P}}
-\newcommand{\cN}{\mathcal{N}}
 \DeclareMathOperator{\var}{Var} % variance
 \DeclareMathOperator{\cov}{Cov} % covariance
 \newcommand{\wt}[1]{\widetilde{#1}}
 }}
+:::
 :::
 
 L'objet de ce chapitre est de faire une première introduction à  un exemple intéressant de processus stochastique, soit la marche aléatoire simple symétrique, et ce  avec un minimum de formalisme.
@@ -48,10 +51,13 @@ On parle de *marche* car ce processus peut représenter la position d'une person
 
 Ce processus peut également servir à modéliser la richesse d'une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d'une richesse initiale $S_0=x>0$, à chaque pas de temps elle perd ou gagne $1$\euro{} en fonction du tirage obtenu. Les variables $X_n$ représentent alors le gain du $n$-ème jeu, et $S_n$ la richesse totale de la joueuse après le $n$-ème tirage.
 
+::: {.content-visible when-format="html"}
+
 ::: {#fig-marche}
+
 ```{ojs}
-//| echo: false
 //| layout-ncol: 1
+//| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 Plotly = require('plotly.js-dist');
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
@@ -177,11 +183,13 @@ var layout = {
 	}
 }
 ```
+
 Marche aléatoire simple symétrique et son chemin, initialisée en $(0,x)$.
 :::
 
+:::
 
-A partir de la définition, on obtient très facilement le comportement moyen de la marche.
+À partir de la définition, on obtient très facilement le comportement moyen de la marche.
 
 ::: {#prp-ma}
 Pour tout $n\in\N$, on a
@@ -193,12 +201,10 @@ $$
 ::: {.proof}
 
 Remarquons d'abord que
-$$
 \begin{align*}
 \E[X_1]&=(-1)\times \frac{1}{2}+1\times  \frac{1}{2}=0,\\
 \var(X_1)&=\E[X_1^2]=(-1)^2\times \frac{1}{2}+1^2\times  \frac{1}{2}=1,
 \end{align*}
-$$
 les incréments sont donc centrés et réduits. Par linéarité de l'espérance, on obtient
 $$
 \E[S_n]=\E[S_0+\sum_{k=1}^n X_k]=S_0+\sum_{k=1}^n \E[X_k]=S_0,
@@ -232,14 +238,8 @@ Soit $n>m$ deux entiers naturels et $(a,b)\in\Z^2$ deux entiers relatifs. On app
 
 ::: {#exm-traj2} 
 
-La figure \ref{fig:chap03-chemins} présente deux chemins de $(1,1)$ à $(5,3)$.
-<!-- %=========================
-\begin{figure}[htp]
-\centering
-\includegraphics[height=5cm]{figures/chap03-chemins.pdf}
-\caption{Deux chemins de $(1,1)$ à $(5,3)$.\label{fig:chap03-chemins}}
-\end{figure}
-%========================= -->
+La figure XXX présente deux chemins de $(1,1)$ à $(5,3)$.
+
 :::
 
 On peut maintenant se poser la question de savoir s'il existe toujours un chemin qui relie deux points quelconques, et s'il en existe, combien on peut construire de chemins différents reliant ces deux points. On peut facilement montrer que certains chemins sont impossibles en regardant la parité de la marche aléatoire et son amplitude maximale.
@@ -306,12 +306,14 @@ On a donc nécessairement $|b-a|\leq n-m$.
 Il n'existe pas de chemin de $(0,0)$ à $(2,4)$.
 :::
 
+::: {.content-visible when-format="html"}
+
 ::: {#fig-pont}
 
 ```{ojs}
-//| echo: false
 //| layout-ncol: 1
 //| figalign: "center"
+//| echo: false
 
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
@@ -446,6 +448,8 @@ var layout = {
 Marche aléatoire simple symétrique passant en $(0,0)$ et en  $(100,0)$.
 :::
 
+:::
+
 
 Une fois les conditions de parité et d'amplitude satisfaites, il existe toujours des chemins reliant deux points, et on peut les dénombrer explicitement.
 
@@ -458,7 +462,7 @@ Si $|b-a|\leq n-m$ et $n-m$ et $b-a$ ont la même parité, alors le nombre de ch
 ::: {.proof}
 
 Un chemin de $(m,a)$ à $(n,b)$ correspond à $n-m$ pas de la marche aléatoire en partant de $a$ et en arrivant en $b$. Supposons sans perte de généralité que $b>a$. Alors on peut décomposer les pas de la marche entre $x$ pas vers le haut (tirages de $+1$) et $y$ pas vers le bas (tirages de $-1$). On doit avoir un nombre total de pas de $x+y=n-m$, et une différence des ordonnées de $x-y=b-a$, ce qui donne le système
-$$
+
 \begin{align*}
 \left\{\begin{array}{rcl}
 x+y&=&n-m\\
@@ -470,9 +474,9 @@ x-y&=&b-a
 x&=&\frac{n-m}{2}+\frac{b-a}{2}\\
 y&=&\frac{n-m}{2}-\frac{b-a}{2}
 \end{array}
-\right..
+\right. \enspace.
 \end{align*}
-$$
+
 Pour dénombrer le nombre total de chemins de longueur $x+y$ avec $x$ montées et 
 $y$ descentes, il suffit de choisir les emplacements de $x$ montées parmi les $x+y$ pas. On obtient donc $\binom{x+y}{x}=\binom{n-m}{\frac{n-m}{2}+\frac{b-a}{2}}$ chemins.
 :::
@@ -491,15 +495,8 @@ Soit $a$ et $b$ deux entiers naturels non nuls et $n,m$ deux entiers naturels te
 :::
 
 ::: {.proof}
-Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu'ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure 
-\ref{fig:chap03-reflex}.
-%=========================
-\begin{figure}[htp]
-\centering
-\includegraphics[height=5cm]{figures/chap03-reflex.pdf}
-\caption{Un chemin de $(0,2)$ à $(11,1)$ passant par $0$ (en trait plein bleu) et son image (en pointillé rouge) par la symétrie de premier passage en $0$.\label{fig:chap03-reflex}}
-\end{figure}
-%=========================
+Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu'ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure XXX.
+
 Considérons un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ pour la première fois en $p$. On a alors $m<p<n$. On construit un chemin  $(\wt S_m,\ldots,\wt S_n)$de $(m,a)$ à $(n,-b)$ en gardant la première partie du chemin initial de $(m,a)$ à $(p,0)$, puis en prenant ensuite le symétrique du chemin initial par rapport à l'axe des abscisses de $(p,0)$ à $(n,-b)$ :
 \begin{align*}
 \wt S_k=\left\{
@@ -509,7 +506,7 @@ S_k &\text{ si }& m\leq k\leq p,\\
 \end{array}
 \right.
 \end{align*}
-Cette application définit une bijection entre les deux ensembles de chemins. En effet, si on prend maintenant un chemin $(\wt S_m,\ldots,\wt S_n)$ de $(m,a)$ à $(n,-b)$, comme il fait des pas de $1$, que $a>0$ et $-b<0$, ce chemin passe nécéssairement par $0$. Soit $p$ le premier instant où le chemin est en $0$. On construit alors un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ en posant
+Cette application définit une bijection entre les deux ensembles de chemins. En effet, si on prend maintenant un chemin $(\wt S_m,\ldots,\wt S_n)$ de $(m,a)$ à $(n,-b)$, comme il fait des pas de $1$, que $a>0$ et $-b<0$, ce chemin passe nécessairement par $0$. Soit $p$ le premier instant où le chemin est en $0$. On construit alors un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ en posant
 \begin{align*}
 S_k=\left\{
 \begin{array}{lcl}
@@ -522,7 +519,7 @@ Il y a donc le même nombre de chemins des deux types.
 :::
 
 A nouveau, nous n'avons pas utilisé le fait que $\mathbb P(X=1)=\mathbb P(X=-1)$, mais uniquement le fait que $X$ ne peut prendre que les valeurs $-1$ et $1$ qui sont symétriques l'une de l'autre. Le résultat ci-dessus est donc également valable pour les marches asymétriques où $p=\mathbb P(X=1)=1-\mathbb P(X=-1)\neq \frac{1}{2}$.
-Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème su scrutin*.
+Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème du scrutin*.
 
 ::: {#thm-election}
 Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
@@ -538,12 +535,12 @@ Tous les dépouillement étant équiprobables, $p$ s'obtient comme le rapport du
 Il y a en tout $a+b$ bulletins et à la fin $a-b$ voix d'avance de $A$ sur $B$, donc le nombre total de dépouillements est le nombre de chemins de $(0,0)$ à $(a+b,a-b)$ et vaut $\binom{a+b}{a}$.
 
 Le nombre de dépouillements avec $A$ en tête tout le long correspond 
-\begin{itemize}
-\item au nombre de chemins de  $(0,0)$ à $(a+b,a-b)$ ne prenant aucune valeur strictement négative, autrement dit le nombre de chemins de $(0,0)$ à $(a+b,a-b)$ ne touchant pas $-1$;
-\item au nombre de chemins de $(0,1)$ à $(a+b,a-b+1)$ ne touchant pas $0$, en décalant d'un cran les ordonnées;
-\item au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,a-b+1)$ touchant $0$;
-\item au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,-(a-b+1))$ par le principe de réflexion.
-\end{itemize}
+
+- au nombre de chemins de  $(0,0)$ à $(a+b,a-b)$ ne prenant aucune valeur strictement négative, autrement dit le nombre de chemins de $(0,0)$ à $(a+b,a-b)$ ne touchant pas $-1$;
+- au nombre de chemins de $(0,1)$ à $(a+b,a-b+1)$ ne touchant pas $0$, en décalant d'un cran les ordonnées;
+- au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,a-b+1)$ touchant $0$;
+- au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,-(a-b+1))$ par le principe de réflexion.
+
 Il vaut donc $\binom{a+b}{a}-\binom{a+b}{b-1}$. Ainsi
 \begin{align*}
 p=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
@@ -810,14 +807,14 @@ $$
 On suit les mêmes étapes que ce qu'on a fait pour $T_0$. Les contraintes de parité et de longueur de chemin ont déjà été vues. Si $n$ et $a$ ont la même parité et que $|a|>n$, alors
 l'événement $(T_a= n)$ correspond à $(S_1\neq a, \ldots,S_{n-1}\neq a,S_{n}=a)$ puisqu'alors $n$ est le premier temps où la marche atteint $a$. Supposons sans perte de généralité que $a>0$. Donc la probabilité $\P(T_a= n)$ est égale 
  au nombre de chemins de $(0,0)$ à $(n,a)$ ne touchant pas $a$ avant $n$ divisée par le nombre total de chemins de longueur $n$. 0r, ce nombre de chemin est égal
-\begin{itemize}
-\item au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ ne touchant pas $a$
-\item au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,0)$ à $(n-1,a-1)$ touchant $a$
-\item au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,-a)$ à $(n-1,-1)$ touchant $0$
-\item au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,-a)$ à $(n-1,1)$
-\item au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,0)$ à $(n-1,a+1)$
-\end{itemize}
-Ainsi, on a  
+
+- au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ ne touchant pas $a$
+- au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,0)$ à $(n-1,a-1)$ touchant $a$
+- au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,-a)$ à $(n-1,-1)$ touchant $0$
+- au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,-a)$ à $(n-1,1)$
+- au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ - le nombre de chemins de $(0,0)$ à $(n-1,a+1)$
+
+Ainsi, on a
 \begin{align*}
 \P(T_a=n)
 &=\frac{\binom{n-1}{\frac{n-1}{2}+\frac{a-1}{2}}-\binom{n-1}{\frac{n-1}{2}+\frac{1+a}{2}}}{2^{n}}\\

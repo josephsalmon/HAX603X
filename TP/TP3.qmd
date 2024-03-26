@@ -4,6 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
+correction: true
 filters:
   - shinylive
 ---
@@ -21,9 +22,11 @@ filters:
 
 1. Représenter graphiquement la fonction de répartition d'une loi exponentielle (on pourra se restreindre aux réels positifs).
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 import numpy as np
 import matplotlib.pyplot as plt
 
@@ -42,10 +45,16 @@ plt.title("Fonction de répartition de lois exponentielle")
 plt.legend()
 plt.show()
 ```
-1. Écrire une fonction `expo` qui prend en argument un entier $n$, un paramètre $\lambda > 0$, et un générateur aléatoire (e.g., `rng`) et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+
+::::
+
+2. Écrire une fonction `expo` qui prend en argument un entier $n$, un paramètre $\lambda > 0$, et un générateur aléatoire (e.g., `rng`) et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{E}(\lambda)$. On utilisera la méthode d'inversion vue en cours.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 def expo(n, lam, rng):
     """
@@ -60,58 +69,105 @@ def expo(n, lam, rng):
     """
     return -np.log(rng.uniform(size=n)) / lam
 ```
+:::
 
+3. Représenter graphiquement l'histogramme d'un tel échantillon pour $n=10^2$, $n=10^3$, et pour $\lambda = 1/2, 1, 4$. Superposer à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
 
-3. Représenter graphiquement l'histogramme d'un tel échantillon pour $n=10^2$, $n=10^3$, puis $n=10^4$, et pour $\lambda = 1/2, 1, 4$. Superposer à chaque fois le graphe de la densité de $\mathcal{E}(\lambda)$.
-
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
-
+#| echo: true
 from scipy import stats
 
 # Define parameters
 t = np.linspace(0, 10, 200)
-lam = 1/2
+lambs = [1 / 2, 1, 4]
+ns = [10**2, 10**3]
+colors = ["skyblue", "green"]
 
 
 # Plot histogram
-fig, ax = plt.subplots()
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
 
-ax.plot(t, stats.expon.pdf(t, loc=0, scale=1/lam),'--', color='k', label=f"Loi théorique lam={lam}", alpha=0.5)
+for i, lam in enumerate(lambs):
+    ax[i].plot(
+        t,
+        stats.expon.pdf(t, loc=0, scale=1 / lam),
+        "--",
+        color="k",
+        label=f"Loi théorique $\lambda$={lam}",
+        alpha=0.5,
+    )
+    for j, n in enumerate(ns):
+        # Generate exponential random variables
+        va_expo = expo(n, lam, rng)
+        ax[i].hist(
+            va_expo, bins=30, density=True,
+            color=colors[j],
+            alpha=0.8, label=f"n={n}"
+        )
+        # Generate exponential random variables
+        ax[i].set_title(f"Loi exponentielle de paramètre $\lambda$={lam}")
+        ax[i].set_ylim(0, 2)
+        ax[i].set_xlim(0, 6)
 
-# Generate exponential random variables
-n = 10**2
-va_expo = expo(n, lam, rng)
-ax.hist(va_expo, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
-# Generate exponential random variables
-n = 10**3
-va_expo = expo(n, lam, rng)
-ax.hist(va_expo, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
-# Generate exponential random variables
-#n = 10**4
-#va_expo = expo(n, lam)
-#ax.hist(va_expo, bins=120, density=True, color='red', alpha=0.2, label=f'n={n}')
-
-plt.title("Histogramme de variables aléatoires exponentielles")
-plt.ylim(0, 0.5)
-
-plt.legend()
+ax[0].legend(loc="upper right")
+plt.tight_layout()
 plt.show()
-```
 
-::: {.callout-note}
-Attention! les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours...
+```
+:::
+
+::: {.callout-warning}
+
+## Attention
+les conventions pour le paramètre de la loi exponentielle ne sont pas les même que dans votre cours dans `scipy.stats`...
 :::
 
 4. Illustrer graphiquement la loi des grands nombres avec $\lambda = 1/2, 1, 4$. On tracera en particulier la droite d'équation $y=\mathbb E[X]$, où $X \sim \mathcal{E}(\lambda)$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Define parameters
+t = np.linspace(0, 10, 200)
+lambs = [1 / 2, 1, 4]
+n = 10 **3
+
+# Calcul de la moyenne empirique
+X_av = np.zeros((len(lambs), n))
+
+for i, lam in enumerate(lambs):
+    va_expo = expo(n, lam, rng)
+    X_av[i] = np.cumsum(va_expo)/np.arange(1, n+1)
+
+
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
+
+for i, lam in enumerate(lambs):
+    ax[i].plot(X_av[i], label=f"moyenne empirique")
+    ax[i].plot([0, n], [1/lam, 1/lam], 'r--', label="Espérance")
+    ax[i].set_title(f"Loi exponentielle de paramètre $\lambda$={lam}")
+ax[2].legend(loc="lower right")
+plt.tight_layout()
+```
+:::
+
 5. \emph{À faire chez soi pour s'entraîner.} Même exercice avec la loi de Cauchy. Que remarque-t-on à la question 4 ?
+
 
 ## Lois discrètes
 
 ### Loi de Bernoulli
 
 1. Écrire une fonction `bernou` qui prend en argument un entier $n$ et un paramètre $p \in ]0,1[$ et un générateur aléatoire (e.g., `rng`), et qui donne en sortie un échantillon de taille $n$ de loi $\mathcal{B}(p)$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -136,9 +192,42 @@ n = 10
 
 # Generate Bernoulli random variables
 b = bernou(n, p, rng)
-print(b)
+print(f"Echantillon de taille n={n} de loi Bernoulli(p={p}) :\n{b}")
 ```
-2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$ (on pourra superposer les graphes).
+:::
+
+2. Illustrer graphiquement la loi des grands nombres pour un échantillon de taille $n=10^3$ et différentes valeurs de $p$.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+# Define parameters
+ps = [0.2, 0.5, 0.8]
+n = 10 **3
+
+# Calcul de la moyenne empirique
+X_av = np.zeros((len(ps), n))
+
+for i, p in enumerate(ps):
+    va_bernou = bernou(n, p, rng)
+    X_av[i] = np.cumsum(va_bernou)/np.arange(1, n+1)
+
+fig, ax = plt.subplots(3, 1, figsize=(5, 5))
+
+for i, p in enumerate(ps):
+    ax[i].plot(X_av[i], label=f"moyenne empirique")
+    ax[i].plot([0, n], [p, p], 'r--', label="Espérance")
+    ax[i].set_title(f"Loi de Bernoulli de paramètre p={p}")
+
+ax[2].legend(loc="upper right")
+plt.tight_layout()
+
+```
+:::
 
 ### Loi géométrique
 
@@ -146,9 +235,12 @@ print(b)
 
 2. Écrire une fonction `geo_bernou` qui prend en argument un entier $n$, un réal $p \in ]0,1[$, un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `bernou`.
 
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 
 def geo_bernou(n, p, rng):
@@ -170,22 +262,49 @@ def geo_bernou(n, p, rng):
         geo[j] = i
     return geo
 ```
-
 ```{python}
 #| layout-ncol: 1
 #| echo: true
 
 # Example usage
-n = 12
+n = 10
 p = 0.3
 geometric_samples = geo_bernou(n, p, rng)
 print(geometric_samples)
+print(f"Moyenne:{np.mean(geometric_samples)}")
 
 ```
+:::
 
-1. Écrire une fonction `geo_expo` qui prend en argument un entier $n$, un paramètre $p \in ]0,1[$, et un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
+3. Écrire une fonction `geo_expo` qui prend en argument un entier $n$, un paramètre $p \in ]0,1[$, et un générateur aléatoire (e.g., `rng`) et qui renvoie en sortie un échantillon de taille $n$ de loi $\mathcal{G}(p)$ en se basant sur la fonction `expo`.
 
-2. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: false
+
+def geo_expo(n, p, rng):
+    """
+    Generates random samples from a geometric distribution based on Bernoulli trials.
+
+    Parameters:
+        n (int): Number of samples to generate.
+        p (float): Probability of success for each Bernoulli trial.
+        rng (numpy.random.Generator): Random number generator.
+    Returns:
+        numpy.ndarray: Random samples from the geometric distribution.
+    """
+    expo_samples = expo(n, -np.log(1-p), rng)
+    return np.floor(expo_samples) + 1
+
+geometric_samples = geo_expo(n, p, rng)
+print(geometric_samples)
+print(f"Moyenne:{np.mean(geometric_samples)}")
+```
+:::
+
+4. Le module `time` contient la fonction `process_time()` qui permet de mesurer le temps écoulé entre deux appels. Le code suivant affiche le temps passé à évaluer
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -199,15 +318,37 @@ t0 = time.process_time()
 
 t1 = time.process_time()
 
-print("Time elaped  when running code chunk:", t1 - t0)
+print("Time elapsed when running code chunk:", t1 - t0)
 ```
 Utiliser cette fonction pour comparer la durée de simulation des deux méthodes.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+```{python}
+#| layout-ncol: 1
+#| echo: true
+#| eval: false
+
+import time
+
+t0 = time.process_time()
+geometric_samples = geo_bernou(n, p, rng)
+t1 = time.process_time()
+
+print("Time elapsed when running code chunk:", t1 - t0)
+
+t0 = time.process_time()
+geometric_samples = geo_expo(n, p, rng)
+t1 = time.process_time()
+
+print("Time elapsed when running code chunk:", t1 - t0)
+```
+:::
 
 ::: {.callout-note}
 En pratique, les temps d'exécution peuvent varier suivant la charge d'utilisation de la machine (c'est un phénomène aléatoire).
 Pour donner une meilleur approximation de temps réel d'exécution, on répète plusieurs fois la mesure et on affiche le temps moyen.
 :::
-
 
 ## Méthode de rejet et loi Beta
 
@@ -221,6 +362,8 @@ La fonction $\Gamma$ s'obtient sur `Python` avec `scipy.special.gamma`.
 
 1. Représenter la densité pour différentes valeurs de $\alpha$ et $\beta$ pour visualiser cette loi.
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -232,10 +375,8 @@ def f_beta(x, alpha, beta):
 
 t = np.linspace(0, 1, 100)
 
-plt.plot(t, f_beta(t, alpha=2, beta=5), color="red", label="alpha = 2, beta = 5")
-plt.plot(t, f_beta(t, alpha=1, beta=3), color="blue", label="alpha = 1, beta = 3")
-plt.plot(t, f_beta(t, alpha=3, beta=1), color="green", label="alpha = 3, beta = 1")
-plt.plot(t, f_beta(t, alpha=2, beta=2), color="black", label="alpha = 2, beta = 2")
+for alpha, beta in [(2, 5), (1, 3), (3, 1), (2, 2)]:
+    plt.plot(t, f_beta(t, alpha, beta), label=f"$\\alpha$ = {alpha}, $\\beta$ = {beta}")
 
 plt.xlabel("t")
 plt.ylabel("f(t)")
@@ -246,11 +387,15 @@ plt.legend()
 plt.show()
 
 ```
-1. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
+:::
 
+2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 
 def loi_beta(n, alpha, beta, rng):
@@ -289,44 +434,52 @@ beta_samples = loi_beta(n, alpha, beta, rng)
 print(beta_samples)
 
 ```
+:::
+
 3. Illustrer graphiquement votre résultat en représentant l'histogramme pour $n=10^3$ et différentes valeurs de $\alpha, \beta$. On superposera à chaque fois la densité adéquate.
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
-
-from scipy import stats
+#| echo: true
 
 # Define parameters
 t = np.linspace(0, 1, 200)
 alpha, beta = 2, 3
 
-
-# Plot histogram
-fig, ax = plt.subplots()
-
-ax.plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théorique", alpha=0.5)
-
 # Generate exponential random variables
-n = 10**2
-va_beta = loi_beta(n, alpha, beta, rng)
-ax.hist(va_beta, bins=30, density=True, color='skyblue', alpha=0.8, label=f'n={n}')
-# Generate exponential random variables
-n = 10**3
-va_beta = loi_beta(n, alpha, beta, rng)
-ax.hist(va_beta, bins=60, density=True, color='green', alpha=0.5, label=f'n={n}')
+n_values = [10**2, 10**3]
+colors = ['skyblue', 'green']
+bins = [30, 60]
+alpha_betas =[(2, 5), (1, 3), (3, 1), (2, 2)]
 
-plt.title(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
+fig, axs = plt.subplots(len(n_values), len(alpha_betas), figsize=(8, 4))
 
-plt.legend()
+for i, n, color, bin in zip(np.arange(2), n_values, colors, bins):
+    for j, alpha_beta in enumerate(alpha_betas):
+
+        alpha, beta = alpha_beta
+        va_beta = loi_beta(n, alpha, beta, rng)
+        axs[i, j].plot(t, stats.beta.pdf(t, a=alpha, b=beta),'--', color='k', label="Loi théorique", alpha=0.5)
+        axs[i, j].hist(va_beta, bins=bin, density=True, color=color, alpha=0.8, label=f'n={n}')
+        if i == 0:
+            axs[i, j].set_title(f"Loi Beta de paramètres alpha={alpha}, beta={beta}", fontsize=6)
+
+        axs[i, j].legend(fontsize=6)
+
+plt.suptitle(f"Histogramme variables aléatoires Beta(alpha={alpha}, beta={beta})")
+plt.tight_layout()
 plt.show()
 ```
+:::
 
 ## Loi sur le disque
 
-1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$, et prend comme second argument un générateur aléatoire (e.g., `rng`).
-2. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ variables aléatoires uniformes sur le disque.
+1. Écrire une fonction `unif_disque` basée sur une méthode de rejet qui génère $n$ variables aléatoires uniformes sur le disque unité à partir de variables aléatoires uniformes indépendantes sur $[0,1]$, et prend comme second argument un générateur aléatoire (*e.g.*, `rng`).
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
 #| echo: false
@@ -354,16 +507,26 @@ def unif_disque(n, rng):
     return X
 
 ```
+:::
+
+2. Utiliser cette fonction pour représenter graphiquement un échantillon de $n=100$ variables aléatoires uniformes sur le disque.
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
+
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 # Generate random points
 x = unif_disque(100, rng)
 
-# Plot the points
-plt.figure()
-plt.scatter(x[:, 0], x[:, 1], color='red', marker='^')
+fig, ax = plt.subplots()
+
+ax.scatter(
+    x[:, 0], x[:, 1], marker="^", color='blue', label="Points dans le disque"
+)
+
 plt.title("Un échantillon de 100 réalisations de loi uniforme sur le disque")
 plt.xlabel("X")
 plt.ylabel("Y")
@@ -371,18 +534,25 @@ plt.xlim(-1, 1)
 plt.ylim(-1, 1)
 
 # Plot a circle
-circle = plt.Circle((0, 0), 1, color='blue', fill=False, linestyle='--')
-plt.gca().add_artist(circle)
+circle = plt.Circle((0, 0), 1, color="black", fill=False, linestyle="--", label="Disque unité")
+ax.add_artist(circle)
 
-plt.gca().set_aspect('equal', adjustable='box')
+ax.set_aspect("equal", adjustable="box")
+plt.legend(bbox_to_anchor=(1.05, 0.95), fancybox=True)
 plt.show()
+
+
 ```
+:::
 
-2. Écrire une fonction `unif_disque2`, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés (et dont les entrées sont similaires à celle de `unif_disque`). Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l'extérieur).
+3. Écrire une fonction `unif_disque2`, basée sur la fonction précédente, qui donne en sortie à la fois les points dans le disque mais également, dans une matrice séparée, les points rejetés (et dont les entrées sont similaires à celle de `unif_disque`). Représenter graphiquement un échantillon en utilisant une couleur pour les points acceptés (dans le disque) et une autre pour les points rejetés (à l'extérieur).
 
+
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 def unif_disque2(n, rng):
     """
@@ -403,8 +573,8 @@ def unif_disque2(n, rng):
     while k < n:
         U = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
         V = 2 * rng.uniform() - 1  # Uniform distribution on [-1, 1]
-        if U**2 + V**2 <= 1:  # If the point (U,V) falls within the unit disk
-            X[k, :] = [U, V]  # Assign (U,V) to the k-th row of matrix X
+        if U**2 + V**2 <= 1:  # If the point (U, V) falls within the unit disk
+            X[k, :] = [U, V]  # Assign (U, V) to the k-th row of matrix X
             k += 1
         else:
             rejet = np.vstack((rejet, [U, V]))  # Add the rejected point to the matrix rejet
@@ -412,6 +582,7 @@ def unif_disque2(n, rng):
 
 
 ```
+
 ```{python}
 #| layout-ncol: 1
 #| echo: true
@@ -421,15 +592,20 @@ x_accepted, x_rejected = unif_disque2(100, rng)
 print("Reject ratio :", len(x_rejected) / (len(x_rejected) + len(x_accepted)))
 ```
 
-
 ```{python}
 #| layout-ncol: 1
 #| echo: false
 
-# Plot the points
-plt.figure()
-plt.scatter(x_accepted[:, 0], x_accepted[:, 1], color='red', marker='^', label='Points in the disk')
-plt.scatter(x_rejected[:, 0], x_rejected[:, 1], color='blue', marker='^', label='Points outside the disk')
+fig, ax = plt.subplots()
+
+labels = ["Points in the disk", "Points outside the disk"]
+colors = ["blue", "red"]
+
+for i, points in enumerate([x_accepted, x_rejected]):
+    ax.scatter(
+        points[:, 0], points[:, 1], marker="^", label=labels[i], color=colors[i]
+    )
+
 plt.title("Un échantillon de 100 réalisations de loi uniforme sur le disque")
 plt.xlabel("X")
 plt.ylabel("Y")
@@ -437,10 +613,12 @@ plt.xlim(-1, 1)
 plt.ylim(-1, 1)
 
 # Plot a circle
-circle = plt.Circle((0, 0), 1, color='blue', fill=False, linestyle='--')
-plt.gca().add_artist(circle)
+circle = plt.Circle((0, 0), 1, color="black", fill=False, linestyle="--")
+ax.add_artist(circle)
 
-plt.gca().set_aspect('equal', adjustable='box')
-plt.legend()
+ax.set_aspect("equal", adjustable="box")
+plt.legend(bbox_to_anchor=(1.05, 0.95), fancybox=True)
 plt.show()
+
 ```
+:::

@@ -1,9 +1,6 @@
 ---
 title: "Perspectives historiques"
 bibliography: references.bib
-format:
-  html:
-      out.width: 50%
 ---
 
 
@@ -33,11 +30,12 @@ Une preuve de ce résultat sera donnée ci-dessous.
 L'idée sous-jacente de Buffon est que si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
 Pour estimer $\pi$, il ne restera donc plus qu'à évaluer $\frac{2}{\hat{P}_n}$.
 
-On peut faire cette expérience dans le monde réelle (c'est un peu long pour $n$ grand!), mais on peut aussi utiliser une méthode numérique pour cela.
-Il s'agit alors de tirer aléatoire la position du centre de l'aiguille, puis de tirer aussi de manière aléatoire son angle de chute. On teste à la fin si l'aiguille croise une ligne de la trame du parquet ou non, et on recommence l'expérience un grand nombre de fois.
+On peut faire cette expérience dans le monde réel (c'est un peu long pour $n$ grand!), mais on peut aussi utiliser une méthode numérique pour cela.
+Il s'agit alors de tirer aléatoirement la position du centre de l'aiguille, puis de tirer aussi de manière aléatoire son angle de chute. On teste à la fin si l'aiguille croise une ligne de la trame du parquet ou non, et on recommence l'expérience un grand nombre de fois.
 
 Cette méthode est donnée ci-dessous, avec un exemple interactif généré en Python.
 
+::: {.content-visible when-format="html"}
 
 ```{python}
 #| layout-ncol: 1
@@ -249,6 +247,7 @@ fig.update_layout(legend=dict(x=0.5, y=0.31, xanchor='center', yanchor='bottom')
 fig.update_layout(sliders=[slider])
 fig.show()
 ```
+:::
 
 On va fournir ici le calcul de la probabilité $P$. Pour cela on aura besoin de quelques éléments décrits dans le dessin ci-dessous.
 
@@ -278,7 +277,7 @@ Les lois de générations des variables aléatoires $X$ et $\Theta$ sont les sui
 De plus on suppose que $X$ et $\Theta$ sont indépendantes.
 
 Maintenant pour calculer la probabilité $P$ on procède comme suit:
-$$
+
 \begin{align*}
 P
 & = \mathbb{P}\left(\frac{1}{2}\sin(\Theta) \geq X\right) \\
@@ -286,11 +285,38 @@ P
 & = \int_{\mathbb{R}} \int_{\mathbb{R}}
 {1\hspace{-3.8pt} 1}_{\{\frac{1}{2}\sin(\theta) \geq x\}} \frac{2}{\pi} {1\hspace{-3.8pt} 1}_{[0, \frac{\pi}{2}]}(\theta) \cdot 2 {1\hspace{-3.8pt} 1}_{[0, \frac{1}{2}]}(x) d\theta dx \\
 & = \int_{0}^{\frac{\pi}{2}} \int_{0}^{\frac{1}{2}\sin(\theta)} \frac{4}{\pi} dx  d\theta \\
-& = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\  
+& = \frac{4}{\pi} \int_{0}^{\frac{\pi}{2}} {\frac{1}{2}\sin(\theta)}  d\theta\\
 & = \frac{2}{\pi} \Big[ -\cos(\theta)\Big]_{0}^{\frac{\pi}{2}} \\
 & = \frac{2}{\pi} \enspace.
 \end{align*}
-$$
+
+## Les spaghettis de Buffon
+
+Une démonstration alternative est donnée dans le livre de
+@Borel_Deltheil23, inspirée de celle @Barbier60, et utilise concept de **spaghettis de Buffon** (:gb: *Buffon's noodle*, cf. [https://en.wikipedia.org/wiki/Buffon%27s_noodle](https://en.wikipedia.org/wiki/Buffon%27s_noodle)).
+Elle utilise l'approche suivante.
+Au lieu de calculer la probabilité d'intersection entre une aiguille et les rainures d'un parquet, nous allons déterminer le nombre moyen d'intersections entre une courbe et les rainures du parquet. Nous démontrerons que ce nombre moyen est directement proportionnel à la longueur de la courbe et inversement proportionnel à la distance moyenne entre les rainures du parquet (nous prendrons cette distance égale à 1 pour simplifier).
+
+Pour ce faire, nous allons d'abord considérer des lignes polygonales, pour lesquelles l'espérance d'intersection se calcule en sommant les espérances sur chaque segment. Nous étendrons ensuite ce résultat par continuité aux courbes régulières. La constante de proportionnalité de cette relation sera notée $\alpha$.
+
+Nous allons maintenant montrer que $\alpha = \frac{2}{\pi}$. Pour cela, prenons un cercle de rayon 2, donc de longueur $4\pi$. Si ce cercle est tangent aux lattes du parquet, il y a deux points d'intersection. Sinon, il y a également deux points d'intersection. Ainsi, le nombre moyen d'intersection est de 2, ce qui nous donne l'équation $2 = \alpha \times 4\pi$. En résolvant cette équation, nous trouvons $\alpha = \frac{2}{\pi}$.
+
+Ce résultat nous donne la probabilité d'intersection entre une aiguille et les lattes du parquet lorsque la taille de l'aiguille est inférieure à l'écartement des lattes.
+
+
+
+<!-- insert figure -->
+
+::: {#fig-Borel_book layout-ncol=2}
+![Début de la preuve](../srcimages/Borel_1.jpg){width=90%}
+
+![Fin de la preuve](../srcimages/Borel_2.jpg){width=90%}
+
+Extrait du Livre de Borel et Deltheil (Probabilités et Erreurs).
+
+:::
+
+
 
 ::: {.callout-important appearance='default' icon="false"}
 ##  Exercice: rendre le jeu équilibré?
@@ -320,13 +346,13 @@ Dans le cadre du projet Manhattan, il s'agissait de calculer des intégrales de 
 
 ### Méthode d'Hasting-Metropolis
 
-L'algorithme de Hasting-Metropolis est une méthode MCMC (&#127468;&#127463;: *Monte Carlo Markov Chains*) dont le but est d'obtenir un échantillonnage aléatoire d'une distribution de probabilité quand l'échantillonnage direct en est difficile (en particulier en grande dimension)
+L'algorithme de Hasting-Metropolis est une méthode MCMC (:gb:: *Monte Carlo Markov Chains*) dont le but est d'obtenir un échantillonnage aléatoire d'une distribution de probabilité quand l'échantillonnage direct en est difficile (en particulier en grande dimension)
 
 Un avantage est qu'il ne requiert la connaissance de loi de densité qu'à constante multiplicative près.
 
 
-###  &#127468;&#127463;: *Recuit simulé*
+### Recuit simulé
 
-Le recuit simulé est une méthode (empirique) d'optimisation, inspirée d'un processus, le recuit, utilisé en métallurgie.
+Le recuit simulé ( :gb: *simulated annealing*) est une méthode (empirique) d'optimisation, inspirée d'un processus, le recuit, utilisé en métallurgie.
 On alterne dans cette dernière des cycles de refroidissement lent et de réchauffage (recuit) qui ont pour effet de minimiser l'énergie du matériau. Cette méthode est transposée en optimisation pour trouver les extrema d'une fonction.
 

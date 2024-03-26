@@ -1,9 +1,8 @@
 ---
 title: "Méthode de Monte Carlo"
-format:
-  html:
-      out.width: 50%
 ---
+
+::: {.content-visible when-format="html"}
 
 ::: {.hidden}
 {{
@@ -13,6 +12,8 @@ format:
 }}
 :::
 
+:::
+
 De manière générale, ce qu'on appelle une méthode de **Monte-Carlo**^[Le nom viendrait du *casino de Monte-Carlo* inspiré par la passion pour le jeu de l'oncle du physicien Stanislaw Ulam... Source [Wikipedia](https://en.wikipedia.org/wiki/Monte_Carlo_method).] est une technique visant à calculer une quantité déterministe par le biais d'un procédé aléatoire. Une application très usuelle des méthodes Monte-Carlo est l'approximation numérique d'intégrales ou d'espérance, c'est ce que nous allons beaucoup développer dans ce chapitre.
 
 Il existe également de nombreuses méthodes pour l'intégration numérique déterministe (méthodes des rectangles, trapèzes,...). Ces méthodes sont très rapides et efficaces en petite dimension, mais elles ne le sont plus du tout pour des dimensions plus grandes ou pour l'intégration de fonction peu régulières.
@@ -20,7 +21,7 @@ Ainsi une intégration par Monte Carlo pour le cas de la grande dimension sera b
 
 ## Principe de la méthode
 
-<br>
+
 
 L'idée de la Méthode de Monte Carlo est d'exprimer l'intégrale qu'on cherche à approcher comme l'espérance d'une variable aléatoire, puis d'approcher cette espérance par une moyenne empirique. Si on veut calculer une intégrale de la forme
 $$
@@ -57,7 +58,7 @@ w[-1] /= 2
 m0 = np.sum(w * np.exp(t**2))
 print(f"La méthode des trapèzes donne {m0:.6f}...")
 ```
-La question est alors d'avoir une borne sur l'erreur commise^[qui dépendra de $n$ et de la régularité de la fonction $g$, voir par exemple [Wikipedia](https://en.wikipedia.org/wiki/Trapezoidal_rule)].
+La question est alors d'avoir une borne sur l'erreur commise (qui dépendra de $n$ et de la régularité de la fonction $g$, voir par exemple [Wikipedia](https://en.wikipedia.org/wiki/Trapezoidal_rule)).
 
 Pour une méthode de Monte Carlo, on interprète l'intégrale comme $\mathbb E[g(X)]$ où $X$ est une variable aléatoire de loi uniforme sur $[0,1]$. Alors les $w_i$ valent $\frac{1}{n+1}$ et les $x_i$ sont tirés selon la loi uniforme sur $[0,1]$.
 ```{python}
@@ -327,14 +328,13 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 Calculons la variance $V=\var\big(g(X)+g(h(X))\big)$:
 $$
 \begin{align*}
-  V &= \var\big(g(X)+g(h(X))\big)\\
-	&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
-	&= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
-	&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
-	&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
+	V &= \var\big(g(X)+g(h(X))\big)\\
+		&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
+		&= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
+		&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
+		&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
 \end{align*}
 $$
-
 En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a
 $$
 \begin{align*}
@@ -352,7 +352,6 @@ $$
 	& = \var (g(X)),
 \end{align*}
 $$
-
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
 On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
 
@@ -404,12 +403,10 @@ L'idée derrière l'échantillonnage préférentiel est similaire à celle des v
 
 
 Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
-$$
 \begin{align*}
 I&=\mathbb E[g(X)]=\int g(x)f(x)dx 
 \\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
 \end{align*}
-$$
 
 On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$.
 
@@ -426,7 +423,7 @@ $$
 	F(t)=u \Leftrightarrow u = \frac{4}{3}(t+\frac{t^3}{3}) \Leftrightarrow t^3+3t-4u=0
 $$
 
-On trouve alors par la **méthode de Cardan**^[voir par exemple la page [*Equation du troisième degré / Méthode de Cardan*](https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan)]
+On trouve alors par la **méthode de Cardan** (voir par exemple la page [*Equation du troisième degré / Méthode de Cardan*](https://fr.wikiversity.org/wiki/%C3%89quation_du_troisi%C3%A8me_degr%C3%A9/M%C3%A9thode_de_Cardan))
 $$
 	F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
 $$

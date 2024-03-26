@@ -1,8 +1,5 @@
 ---
 title: "Slides: menu principal"
-format:
-  html:
-      out.width: 50%
 ---
 
 Vous trouverez ci-dessous la listes des slides associés:
