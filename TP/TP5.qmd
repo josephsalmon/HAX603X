@@ -302,9 +302,10 @@ def calculate_statistics(n):
 
     # Calculate the mean of y
     in_ = np.mean(y)
-
+    q = stats.norm.ppf(0.975)
     # Calculate the confidence interval (ic) for in_
-    ic = (in_ - 1.96 * np.sqrt(np.var(y) / n), in_ + 1.96 * np.sqrt(np.var(y) / n))
+    delta = q * np.sqrt(np.var(y) / n)
+    ic = (in_ - delta, in_ + delta)
 
     # Calculate pichap
     pichap = 1 / in_
@@ -326,7 +327,7 @@ print("Confidence Interval (IC) for pichap:", ICchap)
 ```
 :::
 
-2. Combien de tirages sont nécessaire pour obtenir une précision de $10^{-2}$ avec $95\%$ decertitude ?
+2. Combien de tirages sont nécessaire pour obtenir une précision de $10^{-2}$ avec $95\%$ de certitude ?
 
 ::: {.content-hidden unless-meta="correction"}
 #### [Solution]{style="color:red;"}
@@ -340,7 +341,7 @@ results = [calculate_statistics(n) for n in n_values]
 
 # Print the results
 for n, (IN, IC, pichap, ICchap) in zip(n_values, results):
-    print(f"n: {n}, IN: {IN:.3f}, IC: ({IC[0]:.3f}, {IC[1]:.3f}), pichap: {pichap:.3f}, ICchap: ({ICchap[0]:.3f}, {ICchap[1]:.3f})")
+    print(f"n: {n:09d}, IN: {IN:.3f}, IC: ({IC[0]:.3f}, {IC[1]:.3f}), pichap: {pichap:.3f}, ICchap: ({ICchap[0]:.3f}, {ICchap[1]:.3f})")
 ```
 Il faut de l’ordre d'un peu moins de $10^8$ tirages.
 :::
@@ -368,13 +369,16 @@ X = np.random.normal(0, 1, N)
 Y = (X > 4.5)
 
 # Calculate the mean of Y
-IN = np.mean(Y)
+in_ = np.mean(Y)
 
-# Calculate the confidence interval (IC) for IN
-IC = (IN - 1.96 * np.sqrt(np.var(Y) / N), IN + 1.96 * np.sqrt(np.var(Y) / N))
+# Calculate the confidence interval (ic) for in_
+q = stats.norm.ppf(0.975)
+delta = q * np.sqrt(np.var(Y) / n)
+ic = (in_ - delta, in_ + delta)
 
-print("IN:", IN)
-print("Confidence Interval (IC) for IN:", IC)
+
+print("IC:", in_)
+print("Confidence Interval (IC) for IN:", ic)
 ```
 
 On obtient une estimation à 0, ce qui n’est pas surprenant car on cherche la probabilité d’un événement rare
@@ -386,4 +390,3 @@ result = 1 - norm.cdf(4.5)
 print("1 - pnorm(4.5):", result)
 ```
 :::
-
