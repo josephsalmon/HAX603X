@@ -278,7 +278,7 @@ Celle qui a la plus petite variance, donc la dernière.
 :::
 
 
-## Aiguilles de Buffon
+## Aiguilles de Buffonc
 
 Implémentez l'estimateur Monte Carlo de $\pi$ de la méthode de Buffon :
 $$
@@ -390,3 +390,98 @@ result = 1 - norm.cdf(4.5)
 print("1 - pnorm(4.5):", result)
 ```
 :::
+
+
+## Pour aller plus loin: volume de la boule unité
+
+
+On note $B_d$ la boule unité en dimension $d$ et $V_d$ son volume.
+Ainsi $B_d=\{x\in \mathbb R^d, \sum_{i=1}^d x_i^2 \leq 1\}$.
+En notant $f(\cdot) = \1_{B_d}(\cdot)$ on peut donc écrire $V_d = \int_{\mathbb{R}^d} f(x)dx$.
+
+On souhaite estimer $V_d$ pour de grande valeurs de $d$.
+
+Pour rappel un calcul exact donne $V_d = \frac{\pi^{d/2}}{\Gamma(d/2+1)}$.
+
+1. Implémentez la méthode de Riemann pour calculer $V_d$ pour $d=1,\dots, 100$.
+
+
+```{python}
+import numpy as np
+from scipy import stats
+
+
+def f(x):
+    return np.sum(x**2) <= 1
+
+
+def rieman(n, d): 
+    n_discr =int(np.ceil(np.exp((np.log(n) /d))))
+    n_eff = (n_discr**d)
+    X = np.linspace(-1, 1, n_discr)
+    X = np.meshgrid(*[X]*d)  # Create a grid of points in the range [-1, 1]
+    X = np.array([x.flatten() for x in X]).T
+    Y = np.array([f(x) for x in X])* 1.
+    dx = (2 / (n_discr))**d
+    return np.sum(Y) * dx, n_eff
+```
+
+
+
+1. Implémentez la méthode de Monte Carlo standard pour ce même calcul. Que constatez-vous ? Pourquoi ?
+
+
+```{python}
+import numpy as np
+from scipy import stats
+
+
+def montecarlo(n):
+    X = np.random.uniform(-1, 1, (n, d))
+    Y = (np.sum(X**2, axis=1) <= 1) * 2**d
+    in_ = np.mean(Y)
+    q = stats.norm.ppf(0.975)
+    delta = q * np.sqrt(np.var(Y) / n)
+    ic = (in_ - delta, in_ + delta)
+    return in_, ic
+
+
+def true_volume(d):
+    return np.pi**(d/2) / np.math.gamma(d/2 + 1)
+
+```
+
+```{python}
+import matplotlib.pyplot as plt
+n = 10000
+
+rel_err_mcs = []
+rel_err_rs = []
+d_max = 10
+
+for d in range(2, d_max):
+
+    in_r, n_eff = rieman(n, d)
+    # use same number of evaluations for both methods
+    # to make a fair comparison, at least > n
+    in_mc, ic_mc = montecarlo(n_eff)
+    # print(d, n_eff)
+
+    # print("Riemann:     ", in_r)
+    # print("Monte Carlo: ", in_mc)
+    # print("True Volume: ", true_volume(d))
+    rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
+    rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
+    rel_err_mcs.append(rel_err_mc)
+    rel_err_rs.append(rel_err_r)
+
+fig, ax = plt.subplots()
+ax.plot(range(2, d_max), rel_err_mcs, label="Monte Carlo")
+ax.plot(range(2, d_max), rel_err_rs, label="Riemann")
+ax.set_xlabel("Dimension")
+ax.set_ylabel("Erreur relative")
+ax.set_title(f"Erreur relative en fonction de la dimension\npour un nombre identique d'evaluation (> {n})")
+ax.legend()
+plt.show()
+```
+
