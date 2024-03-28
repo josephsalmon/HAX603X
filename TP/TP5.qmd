@@ -423,7 +423,6 @@ def rieman(n, d):
     X = np.array([x.flatten() for x in X]).T
     Y = np.array([f(x) for x in X])* 1.
     dx = (2 / (n_discr))**d
-    print(np.sum(Y)/n_eff)
     return np.sum(Y) * dx, n_eff, X
 
 
@@ -460,7 +459,7 @@ n = 10000
 
 rel_err_mcs = []
 rel_err_rs = []
-d_max = 11
+d_max = 7
 
 for d in range(2, d_max):
 
@@ -497,7 +496,7 @@ n = 10000
 
 rel_err_mcs = []
 rel_err_rs = []
-d_max = 11
+d_max = 7
 
 for d in range(2, d_max):
 
@@ -509,8 +508,8 @@ for d in range(2, d_max):
     rel_err_rs.append(rel_err_r)
 
 fig, ax = plt.subplots()
-ax.plot(range(2, d_max), rel_err_mcs, marker="s", label="Monte-Carlo")
-ax.plot(range(2, d_max), rel_err_rs, marker="o", label="Riemann")
+ax.plot(range(2, d_max), rel_err_mcs, marker="s", label="Monte-Carlo",color='peru')
+ax.plot(range(2, d_max), rel_err_rs, marker="o", label="Riemann", color='dodgerblue')
 ax.set_xlabel("Dimension")
 ax.set_ylabel("Erreur relative")
 ax.set_title(f"Erreur relative en fonction de la dimension\npour un nombre identique d'evaluations (> {n})")
@@ -521,30 +520,35 @@ plt.show()
 
 :::
 
+
+3. Quelle méthode est la plus précise ? Pourquoi ? On pourra visualiser la norme des échantillons de la méthode de Monte-Carlo pour différentes dimensions de ceux de la méthode de Riemann.
+
 ```{python}
+#| layout-ncol: 1
 #| echo: true
-import seaborn as sns
-d_max=9
-fig, ax = plt.subplots(d_max-1, 4, figsize=(10, 5), sharey=True)
-for i, d in enumerate(np.arange(2, d_max+1)):
+d_max=7
+d_min=2
+n=10000
+fig, ax = plt.subplots(d_max-d_min+1, 2, figsize=(14, 10), sharey='row')
+for i, d in enumerate(np.arange(d_min, d_max+1)):
     in_, n_eff, X = rieman(n, d)
     norms_r = np.sum(X**2, axis=1)
     in_mc, ic_mc, norms_mc = montecarlo(n_eff)  # même nombre d'évaluations
-    ax[i, 0].plot(np.arange(n_eff), norms_r, label=f"Tirages réguliers")
+    ax[i, 0].scatter(np.arange(n_eff), norms_r, label=f"Tirages réguliers", color='dodgerblue', alpha=1, s=0.8)
     ax[i, 0].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
-    ax[i, 0].set_title(f"Dimension {d}")
+    ax[i, 0].set_ylabel("Carré de la norme ")
 
-    sns.kdeplot(y=norms_r, ax=ax[i,1], bw_method=0.15)
-    # plot vertical line y=1
-    ax[i, 1].axhline(y=1, color='red',)
+    ax[i, 1].scatter(np.arange(n_eff), norms_mc, label=f"Tirages MC", color='peru', alpha=1, s=0.8)
+    ax[i, 1].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
 
-    ax[i, 2].plot(np.arange(n_eff), norms_mc, label=f"Tirages MC")
-    ax[i, 2].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
-    ax[i, 2].set_title(f"Dimension {d}")
+    ax[i, 1].text(1.1, 0.5, f"d={d}", transform=ax[i, 1].transAxes, fontsize=12, verticalalignment='center')
 
-    sns.kdeplot(y=norms_mc, ax=ax[i,3], bw_method=0.15)
-    # plot vertical line y=1
-    ax[i, 3].axhline(y=1, color='red',)
 
-# plt.tight_layout()
+ax[0, 0].set_title("Échantillon Rriiemann")
+ax[0, 1].set_title("Échantillon Monte-Carlo")
+
+ax[-1, 0].set_xlabel("Index")
+ax[-1, 1].set_xlabel("Index")
+plt.tight_layout()
 ```
+
