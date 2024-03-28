@@ -421,7 +421,7 @@ window.Quarto = {
 <p><span class="math display">
     I=\int_0^1 g(x)dx \simeq  \sum_{i=0}^nw_ig(x_i),
 </span> où les <span class="math inline">w_i</span> sont des nombres entre <span class="math inline">0</span> et <span class="math inline">1</span> dont la somme vaut <span class="math inline">1</span>, et les <span class="math inline">x_i</span> sont des points de l’intervalle <span class="math inline">[0,1]</span>. Par exemple, pour la méthode des trapèzes, on prend <span class="math inline">w_0=w_n=\frac{1}{2n}</span> et <span class="math inline">w_i=\frac 1 n</span> sinon et les <span class="math inline">x_i=\frac i  n</span> sont régulièrement répartis. Si on considère la fonction <span class="math inline">g(x) = e^{x^2}</span> on approche <span class="math inline">I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots</span></p>
-<div id="efabb2a7" class="cell" data-execution_count="1">
+<div id="cd96443b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span> <span class="dv">10000</span></span>
@@ -437,7 +437,7 @@ window.Quarto = {
 </div>
 <p>La question est alors d’avoir une borne sur l’erreur commise (qui dépendra de <span class="math inline">n</span> et de la régularité de la fonction <span class="math inline">g</span>, voir par exemple <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">Wikipedia</a>).</p>
 <p>Pour une méthode de Monte Carlo, on interprète l’intégrale comme <span class="math inline">\mathbb E[g(X)]</span> où <span class="math inline">X</span> est une variable aléatoire de loi uniforme sur <span class="math inline">[0,1]</span>. Alors les <span class="math inline">w_i</span> valent <span class="math inline">\frac{1}{n+1}</span> et les <span class="math inline">x_i</span> sont tirés selon la loi uniforme sur <span class="math inline">[0,1]</span>.</p>
-<div id="6906e5a6" class="cell" data-execution_count="2">
+<div id="37a0da42" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
@@ -445,11 +445,11 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La méthode naïve de Monte-Carlo </span><span class="sc">{</span>m1<span class="sc">:.6f}</span><span class="ss">..."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>La méthode naïve de Monte-Carlo 1.458991...</code></pre>
+<pre><code>La méthode naïve de Monte-Carlo 1.456098...</code></pre>
 </div>
 </div>
 <p>Contrairement aux méthodes déterministes, la valeur de l’approximation change si on relance le calcul puisque les tirages sont aléatoires:</p>
-<div id="80cc16fa" class="cell" data-execution_count="3">
+<div id="95b8a6f1" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
@@ -457,13 +457,13 @@ window.Quarto = {
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La méthode naïve de Monte-Carlo donne mainenant </span><span class="sc">{</span>m1<span class="sc">:.6f}</span><span class="ss">..."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>La méthode naïve de Monte-Carlo donne mainenant 1.464469...</code></pre>
+<pre><code>La méthode naïve de Monte-Carlo donne mainenant 1.455597...</code></pre>
 </div>
 </div>
 </div>
 <p>La question est alors de déterminer un intervalle de confiance contenant la vraie valeur <span class="math inline">I</span>. La méthode de Monte Carlo est très facile à programmer si on dispose d’un simulateur de la loi de <span class="math inline">X</span>, et n’impose aucune régularité sur <span class="math inline">g</span> à part de la mesurabilité.</p>
 </section>
-<section id="théorèmes-de-convergence" class="level2">
+<section id="théorèmes-de-convergence" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="théorèmes-de-convergence">Théorèmes de convergence</h2>
 <p>On s’intéresse maintenant à la convergence de cet algorithme : sous quelles conditions est-ce que <span class="math inline">I_n</span> converge vers <span class="math inline">I</span>, en quel sens, et à la vitesse de cette convergence : combien de tirages faut-il faire pour atteindre une précision souhaitée.</p>
 <section id="convergence-de-la-méthode" class="level3">
@@ -477,7 +477,7 @@ window.Quarto = {
 <div class="proof">
 <p><span class="proof-title"><em>Preuve</em>. </span>Comme <span class="math inline">g(X)</span> est intégrable, et que les variables sont indépendantes et de même loi, il s’agit d’une application directe de la loi forte des grands nombres.</p>
 </div>
-<p>En particulier, si on sait simuler <span class="math inline">X</span>, on peut en faire des tirages <span class="math inline">X_1</span>, , <span class="math inline">X_n</span> et ainsi calculer <span class="math inline">I_n</span> qui est une valeur approchée de <span class="math inline">I</span> pour <span class="math inline">n</span> assez grand.</p>
+<p>En particulier, si on sait simuler <span class="math inline">X</span>, on peut en faire des tirages <span class="math inline">X_1, \dots, X_n</span> et ainsi calculer <span class="math inline">I_n</span> qui est une valeur approchée de <span class="math inline">I</span> pour <span class="math inline">n</span> assez grand.</p>
 <div id="exm-ex-p" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 2</strong></span> Par exemple, si l’on répète un très grand nombre de fois <span class="math inline">n</span> une expérience aléatoire et que l’on s’intéresse à la réalisation de l’événement <span class="math inline">A</span> alors la loi des grands nombres nous garantit que : <span class="math display">
 f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrightarrow[n \to \infty]{ps}\mathbb P(A).
@@ -493,7 +493,7 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 </ol>
 <p>Quelle est la meilleure stratégie pour le candidat ? Garder son premier choix ou changer de porte ?</p>
 <p>Un raisonnement probabiliste peut fournir la solution. Mais vous pouvez vous aider en faisant des expériences pour faire une conjecture ! On peut par exemple lancer le programme ci-dessous en demandant de reproduire dix mille fois l’expérience (<span class="math inline">n= 10 000</span>).</p>
-<div id="f8f04e9d" class="cell" data-execution_count="4">
+<div id="53f9bbea" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>portes <span class="op">=</span> np.array([<span class="st">"chevre"</span>, <span class="st">"chevre"</span>, <span class="st">"voiture"</span>])</span>
@@ -512,37 +512,37 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gagne en changeant : </span><span class="sc">{</span>gagne_avec_change <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span><span class="sc">:.3f}</span><span class="ss"> %"</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gagne sans changer : </span><span class="sc">{</span>gagne_avec_conserve <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span><span class="sc">:.3f}</span><span class="ss"> %"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gagne en changeant : 67.210 %
-Gagne sans changer : 32.790 %</code></pre>
+<pre><code>Gagne en changeant : 67.490 %
+Gagne sans changer : 32.510 %</code></pre>
 </div>
 </div>
 <p>On peut alors conjecturer que la probabilité de gagner en changeant de porte est égale à <span class="math inline">2/3</span> alors que si le candidat reste sur son premier choix la probabilité de gagner ne sera que de <span class="math inline">1/3</span>.</p>
 </div>
 </section>
-<section id="précision-de-la-méthode" class="level3">
+<section id="précision-de-la-méthode" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="précision-de-la-méthode">Précision de la méthode</h3>
 <p>On souhaiterait maintenant savoir quand on peut considérer que <span class="math inline">n</span> est assez grand pour que l’approximation soit satisfaisante.</p>
-<div id="prp-tcl2" class="theorem proposition">
+<div id="prp-tcl2" class="theorem proposition page-columns page-full">
 <p><span class="theorem-title"><strong>Proposition 2</strong></span> Si <span class="math inline">g(X)</span> est de carré intégrable, alors un intervalle de confiance asymptotique de niveau de confiance <span class="math inline">1-\alpha</span> pour l’intégrale <span class="math inline">I</span> est <span class="math display">
-    \left(I_n-F^{-1}_{\mathcal{N}(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\mathcal{N}(0,1)}\big(\frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
+    \left(I_n-F^{-1}_{\mathcal{N}(0,1)}\big(1 - \frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\leq I\leq I_n+F^{-1}_{\mathcal{N}(0,1)}\big(1 - \frac{\alpha}{2}\big)\sqrt{\frac{S_n^2}{n}}\right),
 </span> où <span class="math inline">F^{-1}_{\mathcal{N}(0,1)}</span> est la fonction quantile de la loi normale centrée réduite et <span class="math display">
     S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
-</span> est l’estimateur sans biais de la variance empirique.</p>
-</div>
-<div class="proof">
+</span> est l’estimateur sans biais<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> de la variance empirique.</p>
+<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Ceci signifie que <span class="math inline">\mathbb E[S_n^2]=\mathop{\mathrm{Var}}(g(X))</span></p></div></div>
+<div class="proof page-columns page-full">
 <p><span class="proof-title"><em>Preuve</em>. </span>Comme <span class="math inline">g(X)</span> est de carré intégrable, et que les <span class="math inline">X_i</span> sont iid, on peut appliquer le théorème central limite à la suite <span class="math inline">(g(X_i))</span>, ce qui donne <span class="math display">
     \frac{\frac{1}{n}\sum_{i=1}^n g(X_i)-\mathbb E[g(X)]}{\sqrt{\frac{\mathop{\mathrm{Var}}(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1),
 </span> ce qui se traduit dans notre contexte par <span class="math display">
     \frac{I_n-I}{\sqrt{\frac{\mathop{\mathrm{Var}}(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1).
-</span> En général, on ne connaît pas non plus <span class="math inline">\mathop{\mathrm{Var}}(g(X))</span>, donc on la remplace par un estimateur de la variance <span class="math inline">S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2</span>. D’après la loi des grands nombres, cet estimateur converge ps, donc en probabilité (donc en loi) vers <span class="math inline">\mathop{\mathrm{Var}}(g(X))</span> qui est une constante. D’après le lemme de Slutsky, le couple <span class="math inline">(\frac{I_n-I}{\sqrt{n\mathop{\mathrm{Var}}(g(X))}},S^2_n)</span> converge en loi vers le couple <span class="math inline">(\mathcal N(0,1), \delta_{\mathop{\mathrm{Var}}(g(X))})</span>. En particulier, on a encore la convergence en loi du produit <span class="math display">
+</span> En général, on ne connaît pas non plus <span class="math inline">\mathop{\mathrm{Var}}(g(X))</span>, donc on la remplace par un estimateur de la variance <span class="math inline">S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2</span>. D’après la loi des grands nombres, cet estimateur converge presque sûrement, donc en probabilité (donc en loi) vers <span class="math inline">\mathop{\mathrm{Var}}(g(X))</span> qui est une constante. D’après le lemme de Slutsky<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a>, le couple <span class="math inline">(\frac{I_n-I}{\sqrt{n\mathop{\mathrm{Var}}(g(X))}},S^2_n)</span> converge en loi vers le couple <span class="math inline">(\mathcal N(0,1), \delta_{\mathop{\mathrm{Var}}(g(X))})</span>. En particulier, on a encore la convergence en loi du produit <span class="math display">
     \frac{I_n-I}{\sqrt{\frac{S^2_n}{n}}}=\frac{I_n-I}{\sqrt{\frac{\mathop{\mathrm{Var}}(g(X))}{n}}}\times \frac{\sqrt{\mathop{\mathrm{Var}}(g(X))}}{\sqrt{S^2_n}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1) \times 1.
 </span> On peut en déduire facilement la construction de l’intervalle de confiance asymptotique de l’énoncé.</p>
-</div>
+<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;Voir <a href="https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky">https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky</a></p></div></div>
 <p>Ce résultat a deux conséquences importantes. D’une part, la vitesse de convergence est en <span class="math inline">n^{-1/2}</span>, ce qui est relativement lent, mais indépendant à la fois de la dimension de <span class="math inline">X</span> et de la régularité de <span class="math inline">g</span>. D’autre part, on peut calculer <span class="math inline">S_n^2</span> donc estimer l’erreur commise sans tirages aléatoires supplémentaires, avec le même échantillon qui sert pour estimer <span class="math inline">I</span>. <strong>Il est fortement recommandé de toujours faire une estimation de la précision en même temps que l’estimation Monte Carlo de l’espérance.</strong></p>
 <div id="exm-actif" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 4</strong></span> En finance, certains contrats (dont le coût est <span class="math inline">C&gt;0</span> et que l’on peut voir comme une assurance) permettent de vendre un actif acheté <span class="math inline">K&gt;0</span> à une date future <span class="math inline">N</span> fixée par le contrat s’il dépasse à ce moment là une certaine valeur cible <span class="math inline">K</span> également fixée dans le contrat. Si le prix de l’actif est plus bas que <span class="math inline">K</span>, on récupère tout de même sa mise <span class="math inline">K</span>. Considérons un modèle simplifié pour le cours de l’actif <span class="math inline">(S_n)_{n\geq 1}</span> : pour <span class="math inline">n\geq 1</span>, on pose <span class="math inline">S_n=\sum_{i=1}^nX_i</span> où les <span class="math inline">X_i</span> sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc <span class="math inline">\mathbb E[\max(S_N-K,0)]</span>. Le contrat n’est pas gratuit… Ainsi, l’enjeu est de comparer le coût <span class="math inline">C</span> et l’espérance <span class="math inline">\mathbb E[\max(S_N-K,0)]</span>.</p>
 <p>Estimons cette quantité par la méthode de Monte Carlo.</p>
-<div id="49b59bb1" class="cell" data-execution_count="5">
+<div id="57168841" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
@@ -557,11 +557,11 @@ Gagne sans changer : 32.790 %</code></pre>
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>I <span class="op">=</span> np.array(I)</span>
 <span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a>m <span class="op">=</span> np.mean(I)</span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.var(I)</span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a>s <span class="op">=</span> np.var(I, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>m <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[2.575, 2.601, 2.627]</code></pre>
+<pre><code>[2.600, 2.626, 2.652]</code></pre>
 </div>
 </div>
 </div>
@@ -585,14 +585,14 @@ Gagne sans changer : 32.790 %</code></pre>
 <h3 class="anchored" data-anchor-id="variable-de-contrôle">Variable de contrôle</h3>
 <p>Une première façon très simple de décomposer <span class="math inline">I</span> est la suivante <span class="math display">
     I=\mathbb{E}[g(X)]=\mathbb{E}[g(X)-h(X)]+\mathbb{E}[h(X)].
-</span> Cette méthode est intéressante si on sait calculer explicitement <span class="math inline">\mathbb{E}[h(X)]</span> et si la variance diminue : <span class="math inline">\mathop{\mathrm{Var}}\big(g(X)-h(X)\big)&lt;\mathop{\mathrm{Var}}\big(g(X)\big)</span>. Idéalement, on voudrait que la variance de <span class="math inline">g(X)-h(X)</span> soit très petite. Or rappelons qu’une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en oeuvre cette méthode, on va donc chercher une fonction <span class="math inline">h</span> qui soit une bonne approximation de <span class="math inline">g</span> sur l’intervalle d’intégration pour que la différence <span class="math inline">g-h</span> soit presque constante.</p>
+</span> Cette méthode est intéressante si on sait calculer explicitement <span class="math inline">\mathbb{E}[h(X)]</span> et si la variance diminue : <span class="math inline">\mathop{\mathrm{Var}}\big(g(X)-h(X)\big)&lt;\mathop{\mathrm{Var}}\big(g(X)\big)</span>. Idéalement, on voudrait que la variance de <span class="math inline">g(X)-h(X)</span> soit très petite. Or rappelons qu’une variable aléatoire est de variance nulle si et seulement si elle est constante. Pour mettre en œuvre cette méthode, on va donc chercher une fonction <span class="math inline">h</span> qui soit une bonne approximation de <span class="math inline">g</span> sur l’intervalle d’intégration pour que la différence <span class="math inline">g-h</span> soit presque constante.</p>
 <div id="exm-carre" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 6</strong></span> Supposons que l’on veuille calculer <span class="math inline">I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots</span> comme dans l’exemple <a href="#exm-unif" class="quarto-xref">Exemple&nbsp;1</a> à l’aide de la loi uniforme sur <span class="math inline">[0,1]</span>. Comme au voisinage de <span class="math inline">0</span>, on a <span class="math inline">e^{x^2}\simeq 1+x^2</span>, on propose de prendre <span class="math inline">h(x)=1+x^2</span>. On a alors <span class="math display">
     \mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
 </span> On peut donc approcher <span class="math inline">I</span> par <span class="math display">
     I_n^{c}=\frac{1}{n}\sum_{i=1}^n\big(e^{X_i^2}-1-X_i^2\big)+\frac{4}{3},
 </span> où les <span class="math inline">X_i</span> sont iid de loi uniforme sur <span class="math inline">[0,1]</span>. Regardons ce que ça donne numériquement.</p>
-<div id="090e2945" class="cell" data-execution_count="6">
+<div id="3b0a4b74" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -601,26 +601,26 @@ Gagne sans changer : 32.790 %</code></pre>
 <span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
 <span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>gX <span class="op">=</span> np.exp(X<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.461, 1.471, 1.480]
-Variance 0.232</code></pre>
+<pre><code>Direct method confidence interval: [1.452, 1.461, 1.470]
+Variance 0.219</code></pre>
 </div>
 </div>
-<div id="4cba4e95" class="cell" data-execution_count="7">
+<div id="63a26de4" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Control variable</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ghX <span class="op">=</span> np.exp(X<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> X<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> np.mean(ghX) <span class="op">+</span> <span class="dv">4</span><span class="op">/</span><span class="dv">3</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> np.var(ghX)</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>s2 <span class="op">=</span> np.var(ghX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Control variable confidence interval: [</span><span class="sc">{</span>m2 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s2 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m2<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m2 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s2 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s2<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Control variable confidence interval: [1.463, 1.466, 1.470]
-Variance 0.035</code></pre>
+<pre><code>Control variable confidence interval: [1.457, 1.461, 1.465]
+Variance 0.032</code></pre>
 </div>
 </div>
 <p>On constate que l’intervalle de confiance est plus étroit donc la précision meilleure avec la variable de contrôle. On a divisé la variance (empirique) par <span class="math inline">6.7</span>. Pour obtenir le même gain en augmentant le nombre de simulations, il aurait fallu <span class="math inline">6.7^2\simeq45</span> fois plus de simulations.</p>
@@ -630,7 +630,7 @@ Variance 0.035</code></pre>
 <h3 class="anchored" data-anchor-id="variables-antithétiques">Variables antithétiques</h3>
 <p>S’il existe une fonction <span class="math inline">h</span> telle que <span class="math inline">X</span> et <span class="math inline">h(X)</span> ont la même loi, on peut écrire <span class="math inline">I</span> comme <span class="math display">
 I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
-</span> On a en fait décomposé l’intégrale <span class="math inline">I</span> comme somme de deux espérance. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les <strong>mêmes tirages</strong>. En fait on a introduit une certaine forme de dépendance puisqu’on utilise <span class="math inline">g(X_i)</span> et <span class="math inline">g(h(X_i))</span> dans l’estimateur.</p>
+</span> On a en fait décomposé l’intégrale <span class="math inline">I</span> comme somme de deux espérances. Notons que ces deux intégrales font apparaître la même variable aléatoire, donc on peut estimer les deux espérances avec les <strong>mêmes tirages</strong>. En fait on a introduit une certaine forme de dépendance puisqu’on utilise <span class="math inline">g(X_i)</span> et <span class="math inline">g(h(X_i))</span> dans l’estimateur.</p>
 <p>Examinons l’effet de cette décomposition sur la variance.</p>
 <div id="lem-redvar" class="theorem lemma">
 <p><span class="theorem-title"><strong>Lemme 1</strong></span> Supposons qu’il existe une fonction <span class="math inline">h</span> telle que <span class="math inline">X</span> et <span class="math inline">h(X)</span> ont la même loi de carré intégrable. Si <span class="math inline">\mathop{\mathrm{Cov}}(g(X),g(h(X))\leq 0</span> alors <span class="math display">
@@ -639,32 +639,36 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 <p>Autrement dit la méthode des variables antithétiques permet de réduire la variance au moins de moitié si <span class="math inline">g(X)</span> et <span class="math inline">g(h(X))</span> sont négativement corrélées.</p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Calculons la variance <span class="math inline">V=\mathop{\mathrm{Var}}\big(g(X)+g(h(X))\big)</span>: <span class="math display">\begin{align*}
-  V &amp;= \mathop{\mathrm{Var}}\big(g(X)+g(h(X))\big)\\
-    &amp;=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
-    &amp;= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
-    &amp;\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
-    &amp;= \mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X)) + 2 \mathop{\mathrm{Cov}}(g(X),g(h(X)).
-\end{align*}</span></p>
-<p>En particulier, si <span class="math inline">\mathop{\mathrm{Cov}}(g(X),g(h(X))\leq 0</span>, on a <span class="math display">\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Calculons la variance <span class="math inline">V=\mathop{\mathrm{Var}}\big(g(X)+g(h(X))\big)</span>: <span class="math display">
+\begin{align*}
+    V &amp;= \mathop{\mathrm{Var}}\big(g(X)+g(h(X))\big)\\
+        &amp;=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
+        &amp;= \mathbb E[(g(X)-\mathbb E[g(X)])^2]+\mathbb E[(g(h(X))-\mathbb E[g(h(X))])^2]\\
+        &amp;\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
+        &amp;= \mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X)) + 2 \mathop{\mathrm{Cov}}(g(X),g(h(X)).
+\end{align*}
+</span> En particulier, si <span class="math inline">\mathop{\mathrm{Cov}}(g(X),g(h(X))\leq 0</span>, on a <span class="math display">
+\begin{align*}
     \mathop{\mathrm{Var}}\left(\frac{g(X)+g(h(X))}{2}\right)
     &amp; \leq \frac{ \mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X))}{4}\\
     &amp; =\frac{\mathop{\mathrm{Var}}(g(X))}{2},
-\end{align*}</span></p>
-<p>car <span class="math inline">g(X)</span> et <span class="math inline">g(h(X))</span> ont la même loi donc la même variance. Dans le cas général, on a quand toujours <span class="math inline">2\mathop{\mathrm{Cov}}(g(X),g(h(X))\leq \mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X))</span> par l’inégalité de Cauchy-Schwartz, ce qui implique <span class="math display">\begin{align*}
+\end{align*}
+</span></p>
+<p>car <span class="math inline">g(X)</span> et <span class="math inline">g(h(X))</span> ont la même loi donc la même variance. Dans le cas général, on a toujours <span class="math inline">2\mathop{\mathrm{Cov}}(g(X),g(h(X))\leq \mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X))</span> par l’inégalité de Cauchy-Schwartz, ce qui implique <span class="math display">
+\begin{align*}
     \mathop{\mathrm{Var}}\left(\frac{g(X)+g(h(X))}{2}\right)
     &amp; \leq 2\frac{\mathop{\mathrm{Var}}(g(X))+\mathop{\mathrm{Var}}(g(h(X)))}{4}\\
     &amp; = \mathop{\mathrm{Var}}(g(X)),
-\end{align*}</span></p>
-<p>donc même si on ne réduit pas effectivement la variance, on ne peut pas l’augmenter par cette méthode. On peut faire des calculs plus précis en faisant intervenir la covariance de <span class="math inline">g(X)</span> et <span class="math inline">g(h(X))</span> dans certains cas particuliers si on spécifie les lois.</p>
+\end{align*}
+</span> donc même si on ne réduit pas effectivement la variance, on ne peut pas l’augmenter par cette méthode. On peut faire des calculs plus précis en faisant intervenir la covariance de <span class="math inline">g(X)</span> et <span class="math inline">g(h(X))</span> dans certains cas particuliers si on spécifie les lois.</p>
 </div>
-<p>Cette méthode est particulièrement simple à mettre en oeuvre pour les lois qui ont des propriétés de symétrie</p>
+<p>Cette méthode est particulièrement simple à mettre en œuvre pour les lois qui ont des propriétés de symétrie</p>
 <div id="exm-carre2" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 7</strong></span> Revenons sur l’exemple <a href="#exm-carre" class="quarto-xref">Exemple&nbsp;6</a> où on cherche à approcher <span class="math inline">I=\int_0^1 e^{x^2} dx</span> à l’aide de la loi uniforme sur <span class="math inline">[0,1]</span>. Cette loi a une propriété de symétrie : <span class="math inline">X</span> et <span class="math inline">1-X</span> ont la même loi. On a donc une approximation de <span class="math inline">I</span> de qualité identique ou meilleure en prenant <span class="math display">
     I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
 </span></p>
 <p>Regardons ce que cela donne numériquement.</p>
-<div id="5656002b" class="cell" data-execution_count="8">
+<div id="5538a56a" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -673,25 +677,25 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 <span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
 <span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>gX <span class="op">=</span> np.exp(X<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.453, 1.462, 1.472]
-Variance 0.225</code></pre>
+<pre><code>Direct method confidence interval: [1.446, 1.455, 1.464]
+Variance 0.219</code></pre>
 </div>
 </div>
-<div id="e0529a53" class="cell" data-execution_count="9">
+<div id="6535cb58" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Antithetic variable method</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gaX <span class="op">=</span> (np.exp(X<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.exp((<span class="dv">1</span> <span class="op">-</span> X)<span class="op">**</span><span class="dv">2</span>)) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="op">=</span> np.mean(gaX)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> np.var(gaX)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>s3 <span class="op">=</span> np.var(gaX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Antithetic variable method confidence interval:, [</span><span class="sc">{</span>m3 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s3 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m3<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m3 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s3 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s3<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Antithetic variable method confidence interval:, [1.459, 1.463, 1.466]
+<pre><code>Antithetic variable method confidence interval:, [1.457, 1.461, 1.464]
 Variance 0.028</code></pre>
 </div>
 </div>
@@ -717,7 +721,7 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
     F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
 </span></p>
 <p>Regardons ce que ça donne numériquement.</p>
-<div id="81e89439" class="cell" data-execution_count="10">
+<div id="6341c3c2" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -726,21 +730,21 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
 <span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
 <span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>gX <span class="op">=</span> np.exp(X<span class="op">**</span><span class="dv">2</span>)</span>
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>s1 <span class="op">=</span> np.var(gX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.452, 1.462, 1.471]
-Variance 0.228</code></pre>
+<pre><code>Direct method confidence interval: [1.453, 1.462, 1.471]
+Variance 0.224</code></pre>
 </div>
 </div>
-<div id="5ab0919b" class="cell" data-execution_count="11">
+<div id="b1589939" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importance sampling</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>X <span class="op">+</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>X<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">-</span> (np.sqrt(<span class="dv">1</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>X<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>X)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>gpX <span class="op">=</span> np.exp(Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">3</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">4</span>)</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>m4 <span class="op">=</span> np.mean(gpX)</span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>s4 <span class="op">=</span> np.var(gpX)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>s4 <span class="op">=</span> np.var(gpX, ddof<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Importance sampling confidence interval: [</span><span class="sc">{</span>m4 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s4 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m4<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m4 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s4 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s4<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
