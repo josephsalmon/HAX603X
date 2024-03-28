@@ -97,6 +97,8 @@
               - TP/TP1.qmd
               - TP/TP2.qmd
               - TP/TP3.qmd
+              - TP/TP5.qmd
+
           - section: "Quarto"
             contents:
               - TP/markdown.qmd
