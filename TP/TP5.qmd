@@ -417,37 +417,34 @@ def f(x):
 def true_volume(d):
     return np.pi**(d/2) / np.math.gamma(d/2 + 1)
 
-def riemann(n, d):
-    n_discr =int(np.ceil(np.exp((np.log(n) /d))))
-    n_eff = (n_discr**d)
-    X = np.linspace(-1, 1, n_discr)
-    X = np.meshgrid(*[X]*d)  # Grille regulière sur  [-1, 1]^d
-    X = np.array([x.flatten() for x in X]).T
-    Y = np.array([f(x) for x in X])* 1.
-    dx = (2 / (n_discr))**d
-    return np.sum(Y) * dx, n_eff, X
 
+def riemann(n, d):
+    n_discr = int(n**(1/d))
+    n_eff = n_discr**d
+    x = np.linspace(-1, 1, n_discr)
+    # Grille regulière sur  [-1, 1]^d:
+    X = np.array(np.meshgrid(*[x]*d)).reshape(d, -1).T
+    Y = np.array([f(x) for x in X]) * 1.0
+    d_vol = (2 / n_discr)**d
+    return np.sum(Y) * d_vol, n_eff, X
 
 ```
 
-2. Implémentez la méthode de Monte-Carlo standard pour ce même calcul pour approcher $V_d$ par $\widehat{V}_d^{\mathrm{Monte-Carlo}}$. Visualizer l'erreur relative des deux méthodes en fonction de $d$ (pour un nombre d'évaluation de $f$ identique, et supérieur à 10000. Que constatez-vous ? Pourquoi ? Pour rappel l'erreur relative d'un esimtateur $\widehat{V}_d$ de $V_d$ est donnée par $|\widehat{V}_d - V_d|/V_d$.
+1. Implémentez la méthode de Monte-Carlo standard pour ce même calcul pour approcher $V_d$ par $\widehat{V}_d^{\mathrm{Monte-Carlo}}$. Visualizer l'erreur relative des deux méthodes en fonction de $d$ (pour un nombre d'évaluation de $f$ identique, et supérieur à 10000. Que constatez-vous ? Pourquoi ? Pour rappel l'erreur relative d'un esimtateur $\widehat{V}_d$ de $V_d$ est donnée par $|\widehat{V}_d - V_d|/V_d$.
 ```{python}
 #| echo: false
 #| layout-ncol: 1
-
-import numpy as np
-from scipy import stats
 
 
 def montecarlo(n, d):
     X = np.random.uniform(-1, 1, (n, d))
     norms = np.sum(X**2, axis=1)
-    Y = (norms <= 1) *2**d
-    in_ = np.mean(Y)
+    Y = (norms <= 1) * 2**d
+    estimate = np.mean(Y)
     q = stats.norm.ppf(0.975)
     delta = q * np.sqrt(np.var(Y) / n)
-    ic = (in_ - delta, in_ + delta)
-    return in_, ic, norms
+    confidence_interval = (estimate - delta, estimate + delta)
+    return estimate, confidence_interval, norms
 
 ```
 
@@ -494,28 +491,27 @@ plt.show()
 #| layout-ncol: 1
 
 import matplotlib.pyplot as plt
+
 n = 10000
+d_max = 7
+dimensions = range(2, d_max)
 
 rel_err_mcs = []
 rel_err_rs = []
-d_max = 7
 
-for d in range(2, d_max):
+for d in dimensions:
+    in_r, n_eff, _  = riemann(n, d)
+    in_mc, _, _ = montecarlo(n_eff, d)
+    true_vol = true_volume(d)
+    rel_err_mcs.append(np.abs(in_mc - true_vol) / true_vol)
+    rel_err_rs.append(np.abs(in_r - true_vol) / true_vol)
 
-    in_r, n_eff, X  = riemann(n, d)
-    in_mc, ic_mc, norms_mc = montecarlo(n_eff, d)  # Même nombre d'évaluations
-    rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
-    rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
-    rel_err_mcs.append(rel_err_mc)
-    rel_err_rs.append(rel_err_r)
-
-fig, ax = plt.subplots()
-ax.plot(range(2, d_max), rel_err_mcs, marker="s", label="Monte-Carlo",color='peru')
-ax.plot(range(2, d_max), rel_err_rs, marker="o", label="Riemann", color='dodgerblue')
-ax.set_xlabel("Dimension")
-ax.set_ylabel("Erreur relative")
-ax.set_title(f"Erreur relative en fonction de la dimension\npour un nombre identique d'evaluations (> {n})")
-ax.legend()
+plt.plot(dimensions, rel_err_mcs, marker="s", label="Monte-Carlo", color='peru')
+plt.plot(dimensions, rel_err_rs, marker="o", label="Riemann", color='dodgerblue')
+plt.xlabel("Dimension")
+plt.ylabel("Erreur relative")
+plt.title(f"Erreur relative en fonction de la dimension\npour un nombre identique d'evaluations (> {n})")
+plt.legend()
 plt.show()
 
 ```
@@ -531,27 +527,28 @@ plt.show()
 d_max=7
 d_min=2
 n=10000
-fig, ax = plt.subplots(d_max-d_min+1, 2, figsize=(14, 10), sharey='row')
-for i, d in enumerate(np.arange(d_min, d_max+1)):
-    in_, n_eff, X = riemann(n, d)
-    norms_r = np.sum(X**2, axis=1)
-    in_mc, ic_mc, norms_mc = montecarlo(n_eff, d)  # même nombre d'évaluations
-    ax[i, 0].scatter(np.arange(n_eff), norms_r, label=f"Tirages réguliers", color='dodgerblue', alpha=1, s=0.8)
-    ax[i, 0].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
-    ax[i, 0].set_ylabel("Carré de la norme ")
+fig, ax = plt.subplots(d_max - d_min + 1, 2, figsize=(14, 10), sharey='row')
 
-    ax[i, 1].scatter(np.arange(n_eff), norms_mc, label=f"Tirages MC", color='peru', alpha=1, s=0.8)
-    ax[i, 1].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
+for i, d in enumerate(range(d_min, d_max + 1)):
+    _, n_eff, X = riemann(n, d)
+    norms_r = np.sum(X**2, axis=1)
+    _, _, norms_mc = montecarlo(n_eff, d)
+
+    for j, norms, title, color in zip(range(2), [norms_r, norms_mc], ["Tirages réguliers", "Tirages MC"], ['dodgerblue', 'peru']):
+        ax[i, j].scatter(range(n_eff), norms, label=title, color=color, alpha=1, s=0.8)
+        ax[i, j].plot(range(n_eff), [1]*n_eff, label="1", color='red')
+        ax[i, j].set_ylabel("Carré de la norme ")
 
     ax[i, 1].text(1.1, 0.5, f"d={d}", transform=ax[i, 1].transAxes, fontsize=12, verticalalignment='center')
-
 
 ax[0, 0].set_title("Échantillon Rriiemann")
 ax[0, 1].set_title("Échantillon Monte-Carlo")
 
 ax[-1, 0].set_xlabel("Index")
 ax[-1, 1].set_xlabel("Index")
+
 plt.tight_layout()
+plt.show()
 ```
 
 
@@ -640,45 +637,39 @@ On peut confirmer ces vitesses d'approximation en regardant les erreurs relative
 #| layout-ncol: 1
 #| echo: true
 
-d=4
+d = 4
+fig, ax = plt.subplots(figsize=(7, 5))
+n_list = np.logspace(2, 6, 15).astype(int)
+true_vol = true_volume(d)
 
-fig, ax = plt.subplots(1, 1, figsize=(7, 5))
-n_list = np.logspace(2, 6, 15)
+n_list_r = n_list**(1/d)
+n_list_r = (n_list_r**d).astype(int)
 
-n_init = int(n_list[0])
-in_mc, _, _ = montecarlo(n_init, d)
-rel_err_mc_init = np.abs(in_mc - true_volume(d)) / true_volume(d)
-in_r, _, _ = riemann(int(n_init**(1/d)), d)
-rel_err_r_init = np.abs(in_r - true_volume(d)) / true_volume(d)
+rel_err_mc = []
+rel_err_r = []
 
-n_list_r = np.zeros_like(n_list)
-n_list_r[0] = int(n_init**(1/d))**d
-
-for idx, i in enumerate(n_list[1::]):
-    n = int(i)
-    n_r = int(n**(1/d))
-    n_list_r[idx+1] = n_r ** d
-    in_r, n_eff, X  = riemann(n_list_r[idx+1], d)
+for n, n_r in zip(n_list, n_list_r):
     in_mc, _, _ = montecarlo(n, d)
-    rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
-    rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
+    in_r, _, _ = riemann(n_r, d)
+    rel_err_mc.append(np.abs(in_mc - true_vol) / true_vol)
+    rel_err_r.append(np.abs(in_r - true_vol) / true_vol)
 
-    ax.plot(n, rel_err_mc, marker="s",color='peru')
-    ax.plot(n, rel_err_r, marker="s",color='dodgerblue')
+ax.plot(n_list, rel_err_mc, marker="s", color='peru', linestyle='')
+ax.plot(n_list_r, rel_err_r, marker="s", color='dodgerblue', linestyle='')
 
 ax.set_yscale('log')
 ax.set_xscale('log')
 
-ax.plot(n_list, rel_err_mc_init * (n_init **(1/2))/(n_list**(1/2)), label=r"$\propto n^{-\frac{1}{2}}}$", color='peru', linestyle='--')
-
-ax.plot(n_list_r, rel_err_r_init * (n_list_r[0] **(1/d)) /(n_list_r**(1/d)), label=r"$\propto n^{-\frac{1}{d}}}$", color='dodgerblue', linestyle='--')
+ax.plot(n_list, rel_err_mc[0] * np.sqrt(n_list[0] / n_list), label=r"$\propto n^{-\frac{1}{2}}}$", color='peru', linestyle='--')
+ax.plot(n_list_r, rel_err_r[0] * (n_list_r[0] / n_list_r)**(1/d), label=r"$\propto n^{-\frac{1}{d}}}$", color='dodgerblue', linestyle='--')
 
 plt.title(f"Erreur relative en fonction du nombre d'évaluations pour $d={d}$")
 
-ax.plot(n_init, rel_err_mc_init, marker="s", label="Monte-Carlo", color='peru')
-ax.plot(int(n_init**(1/d))**d, rel_err_r_init, marker="s", label="Riemann", color='dodgerblue')
+plt.legend(["Monte-Carlo", "Riemann", r"$\propto n^{-\frac{1}{2}}$", r"$\propto n^{-\frac{1}{d}}$"], loc='lower left')
+plt.show()
+```
 
-plt.legend(loc='lower left')
+
 
 ```
 
