@@ -255,7 +255,7 @@ plt.show()
 ```
 :::
 
-Il faut tronquer pour retrouver une représentation fidèle:
+Il faut tronquer (ci-dessous entre -11 et 11) pour retrouver une représentation fidèle:
 
 ```{python}
 #| layout-ncol: 1
@@ -280,7 +280,7 @@ plt.show()
 #### [Solution]{style="color:red;"}
 ```{python}
 #| layout-ncol: 1
-#| echo: false
+#| echo: true
 
 xmax = 11
 fig, ax = plt.subplots()
