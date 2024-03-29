@@ -434,8 +434,8 @@ Objectifs de ce TP
 <p>Implémenter la méthode de Monte-Carlo pour le calcul approché de <span class="math inline">\pi</span> via les deux intégrales suivantes :</p>
 <ol type="1">
 <li>pour <span class="math inline">X</span> de loi uniforme sur <span class="math inline">[0,1]</span> <span class="math display">
-I_1= 4 \cdot \int_0^2 \sqrt{1-x^2} dx=\pi=4 \cdot \mathbb{E}\left[\sqrt{1-X^2} \right],
-</span></li>
+I_1= 4 \cdot \int_0^1 \sqrt{1-x^2} dx=\pi=4 \cdot \mathbb{E}\left[\sqrt{1-X^2} \right],
+</span> La formule précédent s’obtient en faisant le changement de variable <span class="math inline">x=\sin(t)</span>.</li>
 </ol>
 <ol type="1">
 <li>pour <span class="math inline">(X,Y)</span> de loi uniforme sur <span class="math inline">[-1,1]^2</span> <span class="math display">
@@ -505,7 +505,7 @@ I =
 <ol type="1">
 <li>Implémentez la méthode de Riemann pour approcher <span class="math inline">V_d</span> pour <span class="math inline">d=2,\dots, 10</span> par <span class="math inline">\widehat{V}_d^{\mathrm{Riemann}}</span>.</li>
 </ol>
-<div id="89d54d3d" class="cell" data-execution_count="15">
+<div id="351136f7" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -533,7 +533,7 @@ I =
 <div>
 
 </div>
-<div id="55518d4e" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
+<div id="e479bd52" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP5_files/figure-html/cell-18-output-1.png" width="589" height="467"></p>
@@ -567,13 +567,51 @@ I =
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Index"</span>)</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Index"</span>)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="3d4de641" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div id="903b9e42" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP5_files/figure-html/cell-20-output-1.png" width="1331" height="950"></p>
 </div>
 </div>
 </div>
+<p>Une limite des deux méthodes est la dimension. Regardons ce que donne la méthode de Riemann quand <span class="math inline">d</span> varie.</p>
+<p>Notont <span class="math inline">a=(a_1,\dots,a_d)^\top</span> et <span class="math inline">b=(b_1,\dots,b_d)^\top</span> deux points de <span class="math inline">\mathbb{R}^d</span>. Tout d’abord supposons que donnons nous une fonction <span class="math inline">f:\mathbb{R}^d \to \mathbb{R}</span>, et un hyper-rectangle <span class="math inline">\Omega=\prod_{j=1}^d [a_j, b_j]</span> (avec <span class="math inline">b_j&gt;a_j</span> pour tout <span class="math inline">j\in\llbracket 1, d\rrbracket</span>)sur lequel on veut calculer l’intégrale de <span class="math inline">f</span>. Ainsi l’objectif est de calculer <span class="math inline">\int_{\Omega} f(x)dx</span>.</p>
+<p>Nous rajoutons l’hypothèse suivante: <span class="math inline">f</span> est <strong>Lipschitzienne</strong> sur <span class="math inline">\Omega</span> de constante <span class="math inline">L_{f}</span> pour la norme <span class="math inline">\|\cdot\|_{\infty}</span> (le max des amplitudes des coefficients), ainsi il existe <span class="math inline">L_f</span> tel que pour</p>
+<p><span class="math display">
+\forall (x, y) \in \Omega^2, \quad |f(x) - f(y)| \leq L_f \|x-y\|_{\infty} \enspace.
+</span></p>
+<p>Pour cela on discrétise l’hyper-rectangle <span class="math inline">\Omega</span> en <span class="math inline">m</span> sous-intervalles de taille <span class="math inline">(b_i-a_i)/m</span> pour <span class="math inline">i=1,\dots,d</span>, ce qui forme une partition de <span class="math inline">n=m^d</span> hyper-rectangles de <span class="math inline">\Omega</span>: <span class="math display">
+\Omega_{i_1,\dots,i_d} = \prod_{j=1}^d \left[a_j + \tfrac{i_j-1}{m}(b_j-a_j), a_j + \tfrac{i_j}{m}(b_j-a_j)\right].
+</span> et on a alors la partition: <span class="math display">
+\Omega = \bigcup_{i_1=1}^m \cdots \bigcup_{i_d=1}^m \Omega_{i_1,\dots,i_d}.
+</span> Pour simplifier on note</p>
+<p><span class="math display">
+\mathrm{Vol}(\Omega_{i_1,\dots,i_d}) = \left(\tfrac{b_1-a_1}{m}\right) \cdots \left(\tfrac{b_d-a_d}{m}\right)= \frac{1}{m^d}\prod_{j=1}^d (b_{i_j}-a_{i_j}) \enspace.
+</span> Pour tout <span class="math inline">i_1,\dots,i_d</span>, on note <span class="math inline">\omega_{i_1,\dots,i_d}</span> un point de <span class="math inline">\Omega_{i_1,\dots,i_d}</span> (par exemple son centre, ou par simplicité le point “en bas à gauche de chaque hyper-rectangle”).</p>
+<p>L’estimateur de l’intégrale de <span class="math inline">f</span> sur <span class="math inline">\Omega</span> par la méthode de Riemann est alors:</p>
+<p><span class="math display">
+\widehat{I}^{\mathrm{R}} = \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \enspace,
+</span> qui requiert <span class="math inline">n=m^d</span> évaluations de <span class="math inline">f</span>.</p>
+<p>Notons <span class="math inline">E</span> l’erreur de la méthode de Riemann, est donnée par <span class="math inline">E = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|</span>, et on alors:</p>
+<p><span class="math display">\begin{align*}
+E
+&amp; = \left|\int_{\Omega} f(x)dx - \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \right| \\
+&amp; = \left|\sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left( f(x) - f(\omega_{i_1,\dots,i_d}) \right) dx \right| \\
+&amp; \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left| f(x) - f(\omega_{i_1,\dots,i_d}) \right| dx \\
+&amp; \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} L_f \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
+&amp; = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
+\end{align*}</span></p>
+<p>Pour <span class="math inline">x\in \Omega_{i_1,\dots,i_d}</span>, alors <span class="math inline">\|x-\omega_{i_1,\dots,i_d}\|\leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}</span>, et donc:</p>
+<p><span class="math display">\begin{align*}
+E
+&amp; = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \tfrac{1}{m}\|b-a\|_{\infty} dx \\
+&amp; \leq L_f\mathrm{Vol}(\Omega) \tfrac{1}{m}\|b-a\|_{\infty} \\
+&amp; \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \\
+\end{align*}</span></p>
+<p>Ainsi pour atteindre un niveau de précision <span class="math inline">\epsilon</span>, il faut <span class="math inline">n</span> tel que:</p>
+<p><span class="math display">
+n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \enspace.
+</span></p>
 
 
 </section>

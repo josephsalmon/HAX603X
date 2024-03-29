@@ -498,7 +498,7 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <li>Créer un nouveau fichier dans VSCodium intitulé <code>HAX603X_tp1.py</code>, et sauvegarder le dans un dossier <code>HAX603X</code>.</li>
 <li>Dans ce fichier, copier-coller le code de la boîte suivante. On pourra alors lancer des cellules de code en tapant sur <code>shift + enter</code> dans une cellule délimitée par les symboles <code>\# \%\%</code>. On peut aussi lancer la cellule en cliquant sur le bouton “run cell” dans VSCodium (ou clique droit puis une option de type “run cell” ou “run all cell”).</li>
 </ul>
-<div id="04c91610" class="cell" data-execution_count="1">
+<div id="29a3c200" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># %%</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Début de cellule</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">3</span>)  <span class="co"># commentaire en ligne</span></span>
@@ -533,7 +533,7 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.exp(<span class="dv">1</span>))</span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.log(<span class="dv">2</span>))</span>
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sin(np.pi))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="393d693b" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1">
+<div id="c974a46f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="2">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <pre><code>2.718281828459045
@@ -547,7 +547,7 @@ Courant, J., M. de Falco, S. Gonnord, J.-C. Filliâtre, S. Conchon, G. Dowek, et
 <p>Entrez quelques opérations de base pour vous familiariser avec les instructions sur Python. Faire de même avec les fonctions <code>np.exp</code>, <code>np.log</code>, <code>np.sin</code>, <code>np.cos</code>, <code>np.tan</code>, <code>np.sqrt</code>, <code>np.abs</code>,<code>np.round</code>. Entrer les instructions <code>1/0</code> et <code>np.sqrt(-2)</code>. Que constatez-vous ?</p>
 <p>On remarquera qu’on peut utiliser le symbole <code>np.inf</code> pour représenter l’infini. Par ailleurs, si un résultat n’est pas possible (par exemple en tapant <code>np.sqrt(-2)</code> ou <code>np.inf - np.inf</code>), alors on obtient <code>nan</code> qui signifie <strong>Not a Number</strong>.</p>
 <p>Il faut se souvenir que les calculs numériques ne sont pas toujours exacts du fait de la discrétisation des nombres sur machine. Taper par exemple <code>np.sin(0)</code>, <code>np.sin(2*np.pi)</code> et <code>np.sin(np.pi*10**16)</code>. Voir aussi les différences entre:</p>
-<div id="c415f658" class="cell" data-execution_count="3">
+<div id="6ff0dd61" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.3</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.1</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="fl">0.6</span>, <span class="fl">0.1</span> <span class="op">+</span> <span class="fl">0.2</span> <span class="op">+</span> <span class="fl">0.3</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -577,7 +577,7 @@ Pour aller plus loin
 <section id="répertoire-de-travail" class="level3">
 <h3 class="anchored" data-anchor-id="répertoire-de-travail">Répertoire de travail</h3>
 <p>Le répertoire de travail (<span class="emoji" data-emoji="gb">🇬🇧</span>: <strong>working directory</strong>) est le répertoire par défaut, c’est-à-dire le répertoire qui s’ouvre quand vous cliquez sur le bouton pour enregistrer un fichier. La commande pour connaître le répertoire de travail actuel est <code>getcwd</code> du package <code>os</code>:</p>
-<div id="31779ed1" class="cell" data-execution_count="4">
+<div id="81af0da9" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> os</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(os.getcwd())</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -585,7 +585,7 @@ Pour aller plus loin
 </div>
 </div>
 <p>Pour changer le répertoire de travail, on pourra utiliser la commande <code>os.chdir</code> avec un nom de répertoire (valide) entre guillemets, par exemple sous Linux la commande suivante permet de remonter d’un cran dans l’arborescence des répertoires:</p>
-<div id="0c98a2ae" class="cell" data-execution_count="5">
+<div id="a93f1ecf" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>os.chdir(<span class="st">'../'</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Si l’on ferme la fenêtre interactive (à droite), alors exécuter une cellule lancera une nouvelle fenêtre interactive dans le répertoire de travail qui correspond au fichier courant que l’on édite (ici le fichier <code>HAX603X_tp1.py</code>).</p>
@@ -599,7 +599,7 @@ Pour aller plus loin
 </section>
 <section id="solution" class="level4">
 <h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
-<div id="17040db4" class="cell" data-execution_count="6">
+<div id="30c46429" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> <span class="dv">12</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x<span class="op">+</span><span class="dv">3</span>)</span>
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x<span class="op">**</span><span class="dv">4</span>)</span>
@@ -611,7 +611,7 @@ Pour aller plus loin
 </div>
 </div>
 <p>En pratique on donnera des noms d’objets pertinents, par exemple</p>
-<div id="4d1f9ee7" class="cell" data-execution_count="7">
+<div id="95d9e625" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>distance <span class="op">=</span> <span class="dv">105</span>  <span class="co"># en km</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>temps <span class="op">=</span> <span class="dv">2</span>  <span class="co"># en heures</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>vitesse <span class="op">=</span> distance<span class="op">/</span>temps  <span class="co"># en km/h</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -626,7 +626,7 @@ Pour aller plus loin
 <section id="vecteurs-en-numpy" class="level3">
 <h3 class="anchored" data-anchor-id="vecteurs-en-numpy">Vecteurs en <code>numpy</code></h3>
 <p>Pour créer un vecteur, la commande de base est la fonction <code>np.array</code>:</p>
-<div id="371bdba8" class="cell" data-execution_count="8">
+<div id="b8dbf04d" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>v <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -642,7 +642,7 @@ Pour aller plus loin
 </section>
 <section id="solution-1" class="level4">
 <h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
-<div id="dccf2fc0" class="cell" data-execution_count="9">
+<div id="2f66bd37" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>v1 <span class="op">=</span> np.array([<span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">3</span>])</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>v2 <span class="op">=</span> np.array([<span class="op">-</span><span class="fl">0.5</span>, <span class="dv">120</span>, <span class="op">-</span><span class="dv">12</span>])</span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>v3 <span class="op">=</span> np.array([<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">1</span>])</span>
@@ -665,7 +665,7 @@ Pour aller plus loin
 <pre><code>ValueError: operands could not be broadcast together with shapes (3,) (4,) </code></pre>
 </div>
 </div>
-<div id="2d6c80f1" class="cell" data-execution_count="10">
+<div id="e5ade6e0" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>v2.sort()</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(v2)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -679,7 +679,7 @@ Pour aller plus loin
 </section>
 <section id="solution-2" class="level4">
 <h4 class="anchored" data-anchor-id="solution-2"><span style="color:red;">Solution</span></h4>
-<div id="906dcfcd" class="cell" data-execution_count="11">
+<div id="a211f394" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>v4 <span class="op">=</span> np.array([<span class="dv">1</span>, <span class="dv">12</span>, <span class="dv">3</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">5</span>])</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.sort(v4))</span>
@@ -713,7 +713,7 @@ Pour aller plus loin: vectorisation
 <p>Une autre manière de créer des vecteurs consiste à créer des suites régulières :</p>
 <ul>
 <li><p>La commande <code>np.arange(n1, n2)</code> crée un vecteur de réels partant de <code>n1</code> et croissant d’une unité pour arriver à <code>n2</code> (exclu). On peut changer le pas en ajoutant un argument optionnel <code>np.arange(n1, n2, step=pas)</code>. Ainsi,</p>
-<div id="3fede90b" class="cell" data-execution_count="12">
+<div id="bdb909c5" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">0</span>, <span class="dv">10</span>, step<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="12">
 <pre><code>array([0, 2, 4, 6, 8])</code></pre>
@@ -724,7 +724,7 @@ Pour aller plus loin: vectorisation
 <section id="question-arange-et-tile" class="level4">
 <h4 class="anchored" data-anchor-id="question-arange-et-tile">Question: <code>arange</code> et <code>tile</code></h4>
 <p>Exécutez les commandes suivantes et essayer d’analyser les sorties :</p>
-<div id="c66e3965" class="cell" data-execution_count="13">
+<div id="31d6ab97" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>)</span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">3</span>, <span class="op">-</span><span class="dv">8</span>, step<span class="op">=-</span><span class="dv">1</span>)</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>np.arange(<span class="dv">9</span>, <span class="dv">13</span>, step<span class="op">=</span><span class="dv">2</span>)</span>
@@ -744,7 +744,7 @@ Pour aller plus loin: vectorisation
 <h4 class="anchored" data-anchor-id="question-opérations-élémentaires">Question : opérations élémentaires</h4>
 <p>Manipulez les opérations classiques sur des matrices (<em>arrays</em>) de <code>numpy</code> (si vous êtes déjà habitué à <code>numpy</code> vous pouvez continuer)</p>
 <p>Opérations termes à termes:</p>
-<div id="a6d5f98e" class="cell" data-execution_count="14">
+<div id="d7b5eccc" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Somme de deux vecteurs</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">3.0</span>])</span>
@@ -768,7 +768,7 @@ Pour aller plus loin: vectorisation
 </section>
 <section id="solution-3" class="level4">
 <h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
-<div id="bc216975" class="cell" data-execution_count="15">
+<div id="8363ae4a" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Somme de deux vecteurs</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> np.array([<span class="fl">1.0</span>, <span class="dv">2</span>, <span class="dv">3</span>])</span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> np.array([<span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>, <span class="op">-</span><span class="fl">3.0</span>])</span>
@@ -788,7 +788,7 @@ it worked</code></pre>
 </div>
 </div>
 <p>Le produit scalaire (ou matriciel) est l’opérateur <code>@</code>. Vérifiez que pour la matrice <span class="math inline">J</span> ci-dessous <span class="math inline">J^3 = Id</span> de deux façons. Pour cela on pourra aussi utiliser la puissance matricielle avec <code>np.linalg.matrix_power</code>:</p>
-<div id="64bea5d0" class="cell" data-execution_count="16">
+<div id="78f9302c" class="cell" data-execution_count="16">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>I3 <span class="op">=</span> np.eye(<span class="dv">3</span>)</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -800,7 +800,7 @@ it worked</code></pre>
 </section>
 <section id="solution-4" class="level4">
 <h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
-<div id="31ea713f" class="cell" data-execution_count="17">
+<div id="56628d59" class="cell" data-execution_count="17">
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>J <span class="op">=</span> np.array([[<span class="dv">0</span>, <span class="dv">0</span>, <span class="fl">1.0</span>], [<span class="fl">1.0</span>, <span class="dv">0</span>, <span class="dv">0</span>], [<span class="dv">0</span>, <span class="fl">1.0</span>, <span class="dv">0</span>]])</span>
 <span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>I3 <span class="op">=</span> np.eye(<span class="dv">3</span>)</span>
 <span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(I3, J <span class="op">@</span> J <span class="op">@</span> J)</span>
@@ -829,7 +829,7 @@ Important
 <p>En pratique vous n’utiliserez (presque) jamais l’inversion de matrice ! En effet, on n’inverse <strong>JAMAIS JAMAIS (!)</strong> une matrice sans une très bonne raison. La plupart du temps il existe des méthodes plus rapides pour résoudre un système numériquement !</p>
 </div>
 </div>
-<div id="9dc0645e" class="cell" data-execution_count="18">
+<div id="0b6b6e58" class="cell" data-execution_count="18">
 <div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"L'inverse de la matrice: </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>J<span class="sc">}</span><span class="ss"> </span><span class="ch">\n</span><span class="ss"> est </span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>np<span class="sc">.</span>linalg<span class="sc">.</span>inv(J)<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span>  <span class="co"># XXX </span><span class="al">TODO</span><span class="co">: tester avec n=100</span></span>
@@ -845,7 +845,7 @@ Important
 <span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.transpose(Jbig))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Comparons niveau temps d’execution l’inversion explicite vs.&nbsp;l’utilisation d’un solveur de système linéaire tel que <code>np.linalg.solve</code>, pour la matrice <span class="math inline">J</span> et le vecteur <span class="math inline">b</span> ci-dessus.</p>
-<div id="51bc553b" class="cell" data-execution_count="19">
+<div id="0e8d4808" class="cell" data-execution_count="19">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Résolution de système par une méthode naive: inversion de matrice</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>t0 <span class="op">=</span> time.perf_counter()  <span class="co"># XXX </span><span class="al">TODO</span></span>
@@ -869,7 +869,7 @@ Important
 </section>
 <section id="solution-5" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
-<div id="132fca49" class="cell" data-execution_count="20">
+<div id="ad445510" class="cell" data-execution_count="20">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> time</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">20</span> </span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>Jbig <span class="op">=</span> np.roll(np.eye(n), <span class="op">-</span><span class="dv">1</span>, axis<span class="op">=</span><span class="dv">1</span>)  <span class="co"># matrice de permutation de taille n</span></span>
@@ -894,9 +894,9 @@ Important
 <span id="cb34-22"><a href="#cb34-22" aria-hidden="true" tabindex="-1"></a>np.testing.assert_allclose(y1, y2)</span>
 <span id="cb34-23"><a href="#cb34-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Les deux méthodes trouvent le même résultat"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Temps pour résoudre un système avec la formule mathématique: 0.0089 s.
-Temps pour résoudre un système avec la formule mathématique: 0.0002 s.
-C'est donc 45.02162736894884 fois plus rapide d'utiliser la seconde formulation
+<pre><code>Temps pour résoudre un système avec la formule mathématique: 0.0003 s.
+Temps pour résoudre un système avec la formule mathématique: 0.0001 s.
+C'est donc 2.1208110496840833 fois plus rapide d'utiliser la seconde formulation
 Les deux méthodes trouvent le même résultat</code></pre>
 </div>
 </div>
@@ -917,7 +917,7 @@ Astuce
 <section id="question-découpage-slicing" class="level4">
 <h4 class="anchored" data-anchor-id="question-découpage-slicing">Question découpage (<span class="emoji" data-emoji="gb">🇬🇧</span>: <em>slicing</em>)</h4>
 <p>Le découpage permet d’extraire des éléments selon un critère (position, condition, etc.). La notation <code>:</code> signifie “tout le monde”, et l’indexation commence en <span class="math inline">0</span>. Pour partir de la fin, il est possible de mettre le signe <code>-</code> devant le nombre: ainsi <span class="math inline">-1</span> renvoie donc au dernier élément. Enfin, on peut extraire des sous suites d’indices pair ou impair, par exemple <code>x[::2]</code> pour extraire les valeurs d’indice pair, ou bien <code>x[1::2]</code> pour extraire les valeurs d’indice impair de <code>x</code>. Enfin on peut aussi utiliser le signe <code>-</code> pour partir de la fin, par exemple <code>x[-1]</code> pour extraire la dernière valeur, ou bien <code>x[-2]</code> pour extraire l’avant-dernière valeur.</p>
-<div id="16bccbb2" class="cell" data-execution_count="21">
+<div id="336cb55d" class="cell" data-execution_count="21">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The first column is </span><span class="sc">{</span>J[:, <span class="dv">0</span>]<span class="sc">}</span><span class="ss">"</span>)</span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Afficher la deuxième ligne de J</span></span>
@@ -926,21 +926,21 @@ Astuce
 </section>
 <section id="solution-6" class="level4">
 <h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
-<div id="dacb92a5" class="cell" data-execution_count="22">
+<div id="de1316fd" class="cell" data-execution_count="22">
 <div class="sourceCode cell-code" id="cb37"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"The second row is </span><span class="sc">{</span>J[<span class="dv">1</span>, :]<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>The second row is [1. 0. 0.]</code></pre>
 </div>
 </div>
 <p>Mettre à zéro une ligne sur 2 de la matrice constante remplie de 1, de taille <span class="math inline">5\times 5</span>:</p>
-<div id="80cdbe43" class="cell" data-execution_count="23">
+<div id="5943cc88" class="cell" data-execution_count="23">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.ones((<span class="dv">5</span>, <span class="dv">5</span>))</span>
 <span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>C[...,...] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mettre à zéro une ligne sur deux. # XXX </span><span class="al">TODO</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="solution-7" class="level4">
 <h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
-<div id="82540b97" class="cell" data-execution_count="24">
+<div id="80e3abd4" class="cell" data-execution_count="24">
 <div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>C <span class="op">=</span> np.ones((<span class="dv">5</span>, <span class="dv">5</span>))</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>C[<span class="dv">1</span>::<span class="dv">2</span>, :] <span class="op">=</span> <span class="dv">0</span>  <span class="co"># mettre à zéro une ligne sur deux.</span></span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(C)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -967,7 +967,7 @@ Astuce
 <span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>ax.plot(r,theta)</span>
 <span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>ax.grid(<span class="va">True</span>)</span>
 <span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="cell-fig-cos" class="cell quarto-layout-panel" data-execution_count="25" data-layout-ncol="1">
+<div id="cell-fig-cos" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="25">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-display quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="fig-cos" class="quarto-figure quarto-figure-center quarto-float anchored">
@@ -987,20 +987,20 @@ Figure&nbsp;1: Une figure simple.
 <section id="aspects-aléatoires" class="level2">
 <h2 class="anchored" data-anchor-id="aspects-aléatoires">Aspects aléatoires</h2>
 <p>Le module <code>random</code> de <code>numpy</code> permet d’utiliser l’aléatoire et des lois usuelles en Python. On crée d’abord un générateur qui nous permettra ensuite d’appeler les lois voulues comme suite:</p>
-<div id="5293bbfb" class="cell" data-execution_count="26">
+<div id="e8fb1760" class="cell" data-execution_count="26">
 <div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np  <span class="co"># package de calcul scientifique</span></span>
 <span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt  <span class="co"># package graphique</span></span>
 <span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>generateur <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>generateur.normal()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="20">
-<pre><code>2.78721146354606</code></pre>
+<pre><code>-0.3270559755327779</code></pre>
 </div>
 </div>
 <section id="question-matrices-aléatoires" class="level4">
 <h4 class="anchored" data-anchor-id="question-matrices-aléatoires">Question : Matrices aléatoires</h4>
 <p>Créer une matrice de taille <span class="math inline">5 \times 7</span> dont les entrées sont <span class="math inline">i.i.d</span> de loi de Laplace d’espérance 0 et de variance 2. Lancer plusieurs fois le code et observez les changements. On pourra s’aider <a href="https://numpy.org/doc/stable/reference/random/generator.html">de l’aide en ligne</a> si besoin.</p>
-<div id="d3768e4b" class="cell" data-execution_count="27">
+<div id="ebebe6d3" class="cell" data-execution_count="27">
 <div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> ...  <span class="co"># XXX </span><span class="al">TODO</span></span>
 <span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(M)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1008,25 +1008,25 @@ Figure&nbsp;1: Une figure simple.
 </section>
 <section id="solution-8" class="level4">
 <h4 class="anchored" data-anchor-id="solution-8"><span style="color:red;">Solution</span></h4>
-<div id="a44fd45d" class="cell" data-execution_count="28">
+<div id="9cbfc3e8" class="cell" data-execution_count="28">
 <div class="sourceCode cell-code" id="cb46"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng()</span>
 <span id="cb46-2"><a href="#cb46-2" aria-hidden="true" tabindex="-1"></a>M <span class="op">=</span> rng.laplace(scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>(<span class="dv">5</span>, <span class="dv">7</span>))</span>
 <span id="cb46-3"><a href="#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.<span class="bu">round</span>(M, <span class="dv">2</span>))</span>
 <span id="cb46-4"><a href="#cb46-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(np.var(M))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[[-2.16  5.49  0.88 -1.55  0.49 -0.05  0.15]
- [-0.61  2.56  2.12 -0.76  1.05 -0.49 -4.01]
- [-0.04 -3.23  0.1   3.3   0.33  1.74  0.11]
- [ 2.39  0.57  1.33  0.08  1.39  1.63 -0.47]
- [-0.16  0.56 -0.14 -0.31  0.93 -1.4  -2.13]]
-3.1392737135571522</code></pre>
+<pre><code>[[ 0.19 -0.33 -1.62  3.75 -0.51  0.38 -0.11]
+ [-0.54  0.04  1.4   0.63 -0.7   0.12  0.75]
+ [ 0.15 -0.74  3.72 -0.48  0.03  0.33 -0.94]
+ [ 0.89  0.34  0.04 -1.36  1.13  2.6  -0.02]
+ [ 1.02 -0.19  0.94  0.28 -1.26  0.29 -0.77]]
+1.4019019176546148</code></pre>
 </div>
 </div>
 </section>
 <section id="question-reproduire-des-résultats" class="level4">
 <h4 class="anchored" data-anchor-id="question-reproduire-des-résultats">Question : Reproduire des résultats</h4>
 <p>Pour reproduire des résultats ou débugger un code, il est utile de “figer” l’aléatoire. On utilise pour cela une graine (<span class="emoji" data-emoji="fr">🇫🇷</span> <em>seed</em>) dans la création du générateur. Fixez la graine à 0 dans <code>default_rng()</code> et lancez une génération aléatoire. Commenter.</p>
-<div id="75ca5ed2" class="cell" data-execution_count="29">
+<div id="50df2a44" class="cell" data-execution_count="29">
 <div class="sourceCode cell-code" id="cb48"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">0</span>)</span>
 <span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a>rng.normal()</span>
 <span id="cb48-3"><a href="#cb48-3" aria-hidden="true" tabindex="-1"></a>rng2 <span class="op">=</span> np.random.default_rng(...)</span>
@@ -1042,7 +1042,7 @@ Figure&nbsp;1: Une figure simple.
 <li>loi de Laplace.</li>
 </ol>
 <p>On utilisera les mêmes paramètres de centrage et d’échelle pour les trois lois.</p>
-<div id="d248497a" class="cell" data-execution_count="30">
+<div id="ffef2824" class="cell" data-execution_count="30">
 <div class="sourceCode cell-code" id="cb49"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>n_samples <span class="op">=</span> <span class="dv">100</span></span>
 <span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.empty([n_samples, <span class="dv">3</span>])</span>
 <span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>X[:, <span class="dv">0</span>] <span class="op">=</span> ...</span>
@@ -1078,10 +1078,10 @@ Figure&nbsp;1: Une figure simple.
 <span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    ax[i].set_title(name)</span>
 <span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="05312b78" class="cell quarto-layout-panel" data-execution_count="31" data-layout-ncol="1">
+<div id="9efa2942" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="31">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP1_files/figure-html/cell-32-output-1.png" width="566" height="278"></p>
+<p><img src="TP1_files/figure-html/cell-32-output-1.png" width="565" height="278"></p>
 </div>
 </div>
 </div>
