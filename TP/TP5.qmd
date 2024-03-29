@@ -669,8 +669,4 @@ plt.legend(["Monte-Carlo", "Riemann", r"$\propto n^{-\frac{1}{2}}$", r"$\propto 
 plt.show()
 ```
 
-
-
-```
-
 Notons que la vitesse d'approximation prévue par la théorie est conforme à ce que l'on observe même si la fonction indicatrice de la boule unité n'est pas Lipschitzienne.
