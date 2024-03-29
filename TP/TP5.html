@@ -505,7 +505,7 @@ I =
 <ol type="1">
 <li>Implémentez la méthode de Riemann pour approcher <span class="math inline">V_d</span> pour <span class="math inline">d=2,\dots, 10</span> par <span class="math inline">\widehat{V}_d^{\mathrm{Riemann}}</span>.</li>
 </ol>
-<div id="351136f7" class="cell" data-execution_count="15">
+<div id="26b72fd5" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -517,7 +517,7 @@ I =
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_volume(d):</span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.pi<span class="op">**</span>(d<span class="op">/</span><span class="dv">2</span>) <span class="op">/</span> np.math.gamma(d<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)</span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> rieman(n, d):</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> riemann(n, d):</span>
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    n_discr <span class="op">=</span><span class="bu">int</span>(np.ceil(np.exp((np.log(n) <span class="op">/</span>d))))</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    n_eff <span class="op">=</span> (n_discr<span class="op">**</span>d)</span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_discr)</span>
@@ -533,7 +533,7 @@ I =
 <div>
 
 </div>
-<div id="e479bd52" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="17">
+<div id="40d8ece9" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP5_files/figure-html/cell-18-output-1.png" width="589" height="467"></p>
@@ -548,9 +548,9 @@ I =
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="dv">10000</span></span>
 <span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(d_max<span class="op">-</span>d_min<span class="op">+</span><span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">14</span>, <span class="dv">10</span>), sharey<span class="op">=</span><span class="st">'row'</span>)</span>
 <span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(np.arange(d_min, d_max<span class="op">+</span><span class="dv">1</span>)):</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    in_, n_eff, X <span class="op">=</span> rieman(n, d)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    in_, n_eff, X <span class="op">=</span> riemann(n, d)</span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    norms_r <span class="op">=</span> np.<span class="bu">sum</span>(X<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    in_mc, ic_mc, norms_mc <span class="op">=</span> montecarlo(n_eff)  <span class="co"># même nombre d'évaluations</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>    in_mc, ic_mc, norms_mc <span class="op">=</span> montecarlo(n_eff, d)  <span class="co"># même nombre d'évaluations</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    ax[i, <span class="dv">0</span>].scatter(np.arange(n_eff), norms_r, label<span class="op">=</span><span class="ss">f"Tirages réguliers"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, alpha<span class="op">=</span><span class="dv">1</span>, s<span class="op">=</span><span class="fl">0.8</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    ax[i, <span class="dv">0</span>].plot(np.arange(n_eff), np.ones(n_eff), label<span class="op">=</span><span class="ss">f"1"</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
 <span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    ax[i, <span class="dv">0</span>].set_ylabel(<span class="st">"Carré de la norme "</span>)</span>
@@ -567,7 +567,7 @@ I =
 <span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Index"</span>)</span>
 <span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Index"</span>)</span>
 <span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="903b9e42" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div id="cdefb844" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP5_files/figure-html/cell-20-output-1.png" width="1331" height="950"></p>
@@ -592,26 +592,83 @@ I =
 <p><span class="math display">
 \widehat{I}^{\mathrm{R}} = \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \enspace,
 </span> qui requiert <span class="math inline">n=m^d</span> évaluations de <span class="math inline">f</span>.</p>
-<p>Notons <span class="math inline">E</span> l’erreur de la méthode de Riemann, est donnée par <span class="math inline">E = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|</span>, et on alors:</p>
-<p><span class="math display">\begin{align*}
-E
+<p>Notons <span class="math inline">E</span> l’erreur de la méthode de Riemann, est donnée par <span class="math inline">E^R = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|</span>, et on alors:</p>
+<p><span class="math display">
+\begin{align*}
+E^R
 &amp; = \left|\int_{\Omega} f(x)dx - \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \right| \\
 &amp; = \left|\sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left( f(x) - f(\omega_{i_1,\dots,i_d}) \right) dx \right| \\
 &amp; \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left| f(x) - f(\omega_{i_1,\dots,i_d}) \right| dx \\
 &amp; \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} L_f \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
-&amp; = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
-\end{align*}</span></p>
-<p>Pour <span class="math inline">x\in \Omega_{i_1,\dots,i_d}</span>, alors <span class="math inline">\|x-\omega_{i_1,\dots,i_d}\|\leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}</span>, et donc:</p>
-<p><span class="math display">\begin{align*}
-E
+&amp; = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \enspace.
+\end{align*}
+</span></p>
+<p>Pour <span class="math inline">x\in \Omega_{i_1,\dots,i_d}</span>, alors <span class="math inline">\|x-\omega_{i_1,\dots,i_d}\|_{\infty} \leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}</span>, et donc:</p>
+<p><span class="math display">
+\begin{align*}
+E^R
 &amp; = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \tfrac{1}{m}\|b-a\|_{\infty} dx \\
 &amp; \leq L_f\mathrm{Vol}(\Omega) \tfrac{1}{m}\|b-a\|_{\infty} \\
-&amp; \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \\
-\end{align*}</span></p>
+&amp; \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \enspace.
+\end{align*}
+</span></p>
 <p>Ainsi pour atteindre un niveau de précision <span class="math inline">\epsilon</span>, il faut <span class="math inline">n</span> tel que:</p>
 <p><span class="math display">
 n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \enspace.
 </span></p>
+<p>Concernant la méthode de Monte-Carlo l’esimtateur est donnée par: <span class="math display">
+\widehat{I}^{\mathrm{MC}} = \frac{1}{n}\sum_{i=1}^n f(X_i) \enspace,
+</span> et le théorème centrale limite assure que <span class="math display">
+\sqrt{n}\left(\widehat{I}^{\mathrm{MC}} - \int_{\Omega} f(x)dx\right) \overset{d}{\longrightarrow} \mathcal{N}(0, \mathrm{Var}(f(X))) \enspace.
+</span> Cela donne donc une erreur de l’ordre de <span class="math inline">\frac{1}{\sqrt{n}}</span> pour la méthode de Monte-Carlo.</p>
+<p>On peut confirmer ces vitesses d’approximation en regardant les erreurs relatives en fonction du nombre d’évaluations pour <span class="math inline">d=4</span>, pour la fonction indicatrice de la boule unité:</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d<span class="op">=</span><span class="dv">4</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">1</span>, figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>n_list <span class="op">=</span> np.logspace(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">15</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>n_init <span class="op">=</span> <span class="bu">int</span>(n_list[<span class="dv">0</span>])</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>in_mc, _, _ <span class="op">=</span> montecarlo(n_init, d)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>rel_err_mc_init <span class="op">=</span> np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>in_r, _, _ <span class="op">=</span> riemann(<span class="bu">int</span>(n_init<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d)), d)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>rel_err_r_init <span class="op">=</span> np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>n_list_r <span class="op">=</span> np.zeros_like(n_list)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>n_list_r[<span class="dv">0</span>] <span class="op">=</span> <span class="bu">int</span>(n_init<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d))<span class="op">**</span>d</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> idx, i <span class="kw">in</span> <span class="bu">enumerate</span>(n_list[<span class="dv">1</span>::]):</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    n <span class="op">=</span> <span class="bu">int</span>(i)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    n_r <span class="op">=</span> <span class="bu">int</span>(n<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d))</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    n_list_r[idx<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> n_r <span class="op">**</span> d</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>    in_r, n_eff, X  <span class="op">=</span> riemann(n_list_r[idx<span class="op">+</span><span class="dv">1</span>], d)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>    in_mc, _, _ <span class="op">=</span> montecarlo(n, d)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>    rel_err_mc <span class="op">=</span> np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    rel_err_r <span class="op">=</span> np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    ax.plot(n, rel_err_mc, marker<span class="op">=</span><span class="st">"s"</span>,color<span class="op">=</span><span class="st">'peru'</span>)</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    ax.plot(n, rel_err_r, marker<span class="op">=</span><span class="st">"s"</span>,color<span class="op">=</span><span class="st">'dodgerblue'</span>)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">'log'</span>)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list, rel_err_mc_init <span class="op">*</span> (n_init <span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>))<span class="op">/</span>(n_list<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'peru'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list_r, rel_err_r_init <span class="op">*</span> (n_list_r[<span class="dv">0</span>] <span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d)) <span class="op">/</span>(n_list_r<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d)), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Erreur relative en fonction du nombre d'évaluations pour $d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">$"</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>ax.plot(n_init, rel_err_mc_init, marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"Monte-Carlo"</span>, color<span class="op">=</span><span class="st">'peru'</span>)</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="bu">int</span>(n_init<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d))<span class="op">**</span>d, rel_err_r_init, marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"Riemann"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower left'</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="0dd0fa0a" class="cell quarto-layout-panel" data-execution_count="20" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP5_files/figure-html/cell-21-output-1.png" width="581" height="434"></p>
+</div>
+</div>
+</div>
+<p>Notons que la vitesse d’approximation prévue par la théorie est conforme à ce que l’on observe même si la fonction indicatrice de la boule unité n’est pas Lipschitzienne.</p>
 
 
 </section>
