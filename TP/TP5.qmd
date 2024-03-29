@@ -4,7 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: true
+correction: false
 filters:
   - shinylive
 ---
@@ -24,10 +24,11 @@ filters:
 
 ::: {.callout-note}
 
-## Objectifs de ce TP
+# Objectifs de ce TP
 - Implémenter des méthode de Mont-Carlo simple pour calculer des intégrales
 - Calculer des intervales de confiances pour évaluer la précision des estimateurs
 :::
+
 
 ## Approximation de $\pi$
 
@@ -553,3 +554,66 @@ ax[-1, 1].set_xlabel("Index")
 plt.tight_layout()
 ```
 
+
+
+Une limite des deux méthodes est la dimension.
+Regardons ce que donne la méthode de Riemann quand $d$ varie.
+
+Notont $a=(a_1,\dots,a_d)^\top$ et $b=(b_1,\dots,b_d)^\top$ deux points de $\mathbb{R}^d$.
+Tout d'abord supposons que donnons nous une fonction $f:\mathbb{R}^d \to \mathbb{R}$, et un hyper-rectangle $\Omega=\prod_{j=1}^d [a_j, b_j]$ (avec $b_j>a_j$ pour tout $j\in\llbracket 1, d\rrbracket$)sur lequel on veut calculer l'intégrale de $f$.
+Ainsi l'objectif est de calculer $\int_{\Omega} f(x)dx$.
+
+Nous rajoutons l'hypothèse suivante: $f$ est **Lipschitzienne** sur $\Omega$ de constante $L_{f}$ pour la norme $\|\cdot\|_{\infty}$ (le max des amplitudes des coefficients), ainsi il existe $L_f$ tel que pour
+
+$$
+\forall (x, y) \in \Omega^2, \quad |f(x) - f(y)| \leq L_f \|x-y\|_{\infty} \enspace.
+$$
+
+Pour cela on discrétise l'hyper-rectangle $\Omega$ en $m$ sous-intervalles de taille $(b_i-a_i)/m$ pour $i=1,\dots,d$, ce qui forme une partition de $n=m^d$ hyper-rectangles de $\Omega$:
+$$
+\Omega_{i_1,\dots,i_d} = \prod_{j=1}^d \left[a_j + \tfrac{i_j-1}{m}(b_j-a_j), a_j + \tfrac{i_j}{m}(b_j-a_j)\right].
+$$
+et on a alors la partition:
+$$
+\Omega = \bigcup_{i_1=1}^m \cdots \bigcup_{i_d=1}^m \Omega_{i_1,\dots,i_d}.
+$$
+Pour simplifier on note
+
+$$
+\mathrm{Vol}(\Omega_{i_1,\dots,i_d}) = \left(\tfrac{b_1-a_1}{m}\right) \cdots \left(\tfrac{b_d-a_d}{m}\right)= \frac{1}{m^d}\prod_{j=1}^d (b_{i_j}-a_{i_j}) \enspace.
+$$
+Pour tout $i_1,\dots,i_d$, on note $\omega_{i_1,\dots,i_d}$ un point de $\Omega_{i_1,\dots,i_d}$ (par exemple son centre, ou par simplicité le point "en bas à gauche de chaque hyper-rectangle").
+
+L'estimateur de l'intégrale de $f$ sur $\Omega$ par la méthode de Riemann est alors:
+
+$$
+\widehat{I}^{\mathrm{R}} = \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \enspace,
+$$
+qui requiert $n=m^d$ évaluations de $f$.
+
+
+Notons $E$ l'erreur de la méthode de Riemann, est donnée par $E = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|$, et on alors:
+
+\begin{align*}
+E
+& = \left|\int_{\Omega} f(x)dx - \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \right| \\
+& = \left|\sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left( f(x) - f(\omega_{i_1,\dots,i_d}) \right) dx \right| \\
+& \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left| f(x) - f(\omega_{i_1,\dots,i_d}) \right| dx \\
+& \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} L_f \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
+& = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
+\end{align*}
+
+Pour $x\in \Omega_{i_1,\dots,i_d}$, alors $\|x-\omega_{i_1,\dots,i_d}\|\leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}$, et donc:
+
+\begin{align*}
+E
+& = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \tfrac{1}{m}\|b-a\|_{\infty} dx \\
+& \leq L_f\mathrm{Vol}(\Omega) \tfrac{1}{m}\|b-a\|_{\infty} \\
+& \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \\
+\end{align*}
+
+Ainsi pour atteindre un niveau de précision $\epsilon$, il faut $n$ tel que:
+
+$$
+n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \enspace.
+$$
