@@ -35,7 +35,7 @@ Implémenter la méthode de Monte-Carlo pour le calcul approché de $\pi$ via le
 
 1.  pour $X$ de loi uniforme sur $[0,1]$
 	$$
-	I_1= 4 \cdot \int_0^2 \sqrt{1-x^2} dx=\pi=4 \cdot \bbE\left[\sqrt{1-X^2} \right],
+	I_1= 4 \cdot \int_0^1 \sqrt{1-x^2} dx=\pi=4 \cdot \bbE\left[\sqrt{1-X^2} \right],
 	$$
 
 ::: {.content-hidden unless-meta="correction"}
