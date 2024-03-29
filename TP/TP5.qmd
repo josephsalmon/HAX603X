@@ -417,7 +417,7 @@ def f(x):
 def true_volume(d):
     return np.pi**(d/2) / np.math.gamma(d/2 + 1)
 
-def rieman(n, d):
+def riemann(n, d):
     n_discr =int(np.ceil(np.exp((np.log(n) /d))))
     n_eff = (n_discr**d)
     X = np.linspace(-1, 1, n_discr)
@@ -439,7 +439,7 @@ import numpy as np
 from scipy import stats
 
 
-def montecarlo(n):
+def montecarlo(n, d):
     X = np.random.uniform(-1, 1, (n, d))
     norms = np.sum(X**2, axis=1)
     Y = (norms <= 1) *2**d
@@ -465,8 +465,8 @@ d_max = 7
 
 for d in range(2, d_max):
 
-    in_r, n_eff, X  = rieman(n, d)
-    in_mc, ic_mc, norms_mc = montecarlo(n_eff)  # même nombre d'évaluations
+    in_r, n_eff, X  = riemann(n, d)
+    in_mc, ic_mc, norms_mc = montecarlo(n_eff, d)  # même nombre d'évaluations
 
     rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
     rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
@@ -474,8 +474,8 @@ for d in range(2, d_max):
     rel_err_rs.append(rel_err_r)
 
 fig, ax = plt.subplots()
-ax.plot(range(2, d_max), rel_err_mcs, label="Monte-Carlo")
-ax.plot(range(2, d_max), rel_err_rs, label="Riemann")
+ax.plot(range(2, d_max), rel_err_mcs, marker="s", label="Monte-Carlo",color='peru')
+ax.plot(range(2, d_max), rel_err_rs, marker="o", label="Riemann", color='dodgerblue')
 ax.set_xlabel("Dimension")
 ax.set_ylabel("Erreur relative")
 ax.set_title(f"Erreur relative en fonction de la dimension\npour un nombre identique d'evaluations (> {n})")
@@ -502,8 +502,8 @@ d_max = 7
 
 for d in range(2, d_max):
 
-    in_r, n_eff, X  = rieman(n, d)
-    in_mc, ic_mc, norms_mc = montecarlo(n_eff)  # même nombre d'évaluations
+    in_r, n_eff, X  = riemann(n, d)
+    in_mc, ic_mc, norms_mc = montecarlo(n_eff, d)  # Même nombre d'évaluations
     rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
     rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
     rel_err_mcs.append(rel_err_mc)
@@ -533,9 +533,9 @@ d_min=2
 n=10000
 fig, ax = plt.subplots(d_max-d_min+1, 2, figsize=(14, 10), sharey='row')
 for i, d in enumerate(np.arange(d_min, d_max+1)):
-    in_, n_eff, X = rieman(n, d)
+    in_, n_eff, X = riemann(n, d)
     norms_r = np.sum(X**2, axis=1)
-    in_mc, ic_mc, norms_mc = montecarlo(n_eff)  # même nombre d'évaluations
+    in_mc, ic_mc, norms_mc = montecarlo(n_eff, d)  # même nombre d'évaluations
     ax[i, 0].scatter(np.arange(n_eff), norms_r, label=f"Tirages réguliers", color='dodgerblue', alpha=1, s=0.8)
     ax[i, 0].plot(np.arange(n_eff), np.ones(n_eff), label=f"1", color='red')
     ax[i, 0].set_ylabel("Carré de la norme ")
@@ -592,28 +592,94 @@ $$
 qui requiert $n=m^d$ évaluations de $f$.
 
 
-Notons $E$ l'erreur de la méthode de Riemann, est donnée par $E = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|$, et on alors:
+Notons $E$ l'erreur de la méthode de Riemann, est donnée par $E^R = |\int_{\Omega} f(x)dx - \widehat{I}^{\mathrm{R}}|$, et on alors:
 
+
+$$
 \begin{align*}
-E
+E^R
 & = \left|\int_{\Omega} f(x)dx - \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m f(\omega_{i_1,\dots,i_d}) \mathrm{Vol}(\Omega_{i_1,\dots,i_d}) \right| \\
 & = \left|\sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left( f(x) - f(\omega_{i_1,\dots,i_d}) \right) dx \right| \\
 & \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \left| f(x) - f(\omega_{i_1,\dots,i_d}) \right| dx \\
 & \leq \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} L_f \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
-& = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \\
+& = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \|x - \omega_{i_1,\dots,i_d}\|_{\infty} dx \enspace.
 \end{align*}
+$$
 
-Pour $x\in \Omega_{i_1,\dots,i_d}$, alors $\|x-\omega_{i_1,\dots,i_d}\|\leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}$, et donc:
+Pour $x\in \Omega_{i_1,\dots,i_d}$, alors $\|x-\omega_{i_1,\dots,i_d}\|_{\infty} \leq \max_{j = 1,\dots, d}\tfrac{b_j-a_j}{m}=\tfrac{1}{m}\|b-a\|_{\infty}$, et donc:
 
+$$
 \begin{align*}
-E
+E^R
 & = L_f \sum_{i_1=1}^m \cdots \sum_{i_d=1}^m  \int_{{\Omega}_{i_1,\dots,i_d}} \tfrac{1}{m}\|b-a\|_{\infty} dx \\
 & \leq L_f\mathrm{Vol}(\Omega) \tfrac{1}{m}\|b-a\|_{\infty} \\
-& \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \\
+& \leq \frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{n^{\tfrac{1}{d}}} \enspace.
 \end{align*}
+$$
 
 Ainsi pour atteindre un niveau de précision $\epsilon$, il faut $n$ tel que:
 
 $$
 n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \enspace.
 $$
+
+Concernant la méthode de Monte-Carlo l'esimtateur est donnée par:
+$$
+\widehat{I}^{\mathrm{MC}} = \frac{1}{n}\sum_{i=1}^n f(X_i) \enspace,
+$$
+et le théorème centrale limite assure que
+$$
+\sqrt{n}\left(\widehat{I}^{\mathrm{MC}} - \int_{\Omega} f(x)dx\right) \overset{d}{\longrightarrow} \mathcal{N}(0, \mathrm{Var}(f(X))) \enspace.
+$$
+Cela donne donc une erreur de l'ordre de $\frac{1}{\sqrt{n}}$ pour la méthode de Monte-Carlo.
+
+On peut confirmer ces vitesses d'approximation en regardant les erreurs relatives en fonction du nombre d'évaluations pour $d=4$, pour la fonction indicatrice de la boule unité:
+
+
+```{python}
+#| layout-ncol: 1
+#| echo: true
+
+d=4
+
+fig, ax = plt.subplots(1, 1, figsize=(7, 5))
+n_list = np.logspace(2, 6, 15)
+
+n_init = int(n_list[0])
+in_mc, _, _ = montecarlo(n_init, d)
+rel_err_mc_init = np.abs(in_mc - true_volume(d)) / true_volume(d)
+in_r, _, _ = riemann(int(n_init**(1/d)), d)
+rel_err_r_init = np.abs(in_r - true_volume(d)) / true_volume(d)
+
+n_list_r = np.zeros_like(n_list)
+n_list_r[0] = int(n_init**(1/d))**d
+
+for idx, i in enumerate(n_list[1::]):
+    n = int(i)
+    n_r = int(n**(1/d))
+    n_list_r[idx+1] = n_r ** d
+    in_r, n_eff, X  = riemann(n_list_r[idx+1], d)
+    in_mc, _, _ = montecarlo(n, d)
+    rel_err_mc = np.abs(in_mc - true_volume(d)) / true_volume(d)
+    rel_err_r = np.abs(in_r - true_volume(d)) / true_volume(d)
+
+    ax.plot(n, rel_err_mc, marker="s",color='peru')
+    ax.plot(n, rel_err_r, marker="s",color='dodgerblue')
+
+ax.set_yscale('log')
+ax.set_xscale('log')
+
+ax.plot(n_list, rel_err_mc_init * (n_init **(1/2))/(n_list**(1/2)), label=r"$\propto n^{-\frac{1}{2}}}$", color='peru', linestyle='--')
+
+ax.plot(n_list_r, rel_err_r_init * (n_list_r[0] **(1/d)) /(n_list_r**(1/d)), label=r"$\propto n^{-\frac{1}{d}}}$", color='dodgerblue', linestyle='--')
+
+plt.title(f"Erreur relative en fonction du nombre d'évaluations pour $d={d}$")
+
+ax.plot(n_init, rel_err_mc_init, marker="s", label="Monte-Carlo", color='peru')
+ax.plot(int(n_init**(1/d))**d, rel_err_r_init, marker="s", label="Riemann", color='dodgerblue')
+
+plt.legend(loc='lower left')
+
+```
+
+Notons que la vitesse d'approximation prévue par la théorie est conforme à ce que l'on observe même si la fonction indicatrice de la boule unité n'est pas Lipschitzienne.
