@@ -549,9 +549,11 @@ Le nombre de dépouillements avec $A$ en tête tout le long correspond
 - au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,-(a-b+1))$ par le principe de réflexion.
 
 Il vaut donc $\binom{a+b}{a}-\binom{a+b}{b-1}$. Ainsi
+$$
 \begin{align*}
-p=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
+p &=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}} \\ &=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
 \end{align*}
+$$
 d'où le résultat.
 :::
 
