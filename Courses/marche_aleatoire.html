@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -669,8 +669,20 @@ La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4
 <div id="def-chemin" class="theorem definition">
 <p><span class="theorem-title"><strong>Définition 2</strong></span> Soit <span class="math inline">n&gt;m</span> deux entiers naturels et <span class="math inline">(a,b)\in\mathbb{Z}^2</span> deux entiers relatifs. On appelle <em>chemin</em> de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> la représentation graphique d’un tirage de la marche aléatoire telle que <span class="math inline">S_m=a</span> et <span class="math inline">S_n=b</span>.</p>
 </div>
-<div id="exm-traj2" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1</strong></span> La figure XXX présente deux chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(5,3)</span>.</p>
+<div id="fig-traj_rw" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-traj_rw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../srcimages/deux_chemins.svg" class="img-fluid figure-img" style="width:50.0%"></p>
+<figcaption>Deux trajectoires</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traj_rw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Voici deux chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(5,3)</span>.
+</figcaption>
+</figure>
 </div>
 <p>On peut maintenant se poser la question de savoir s’il existe toujours un chemin qui relie deux points quelconques, et s’il en existe, combien on peut construire de chemins différents reliant ces deux points. On peut facilement montrer que certains chemins sont impossibles en regardant la parité de la marche aléatoire et son amplitude maximale.</p>
 <div id="prp-parite" class="theorem proposition">
@@ -687,7 +699,7 @@ La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4
 <p><span class="proof-title"><em>Preuve</em>. </span>Supposons sans perte de généralité que <span class="math inline">n-m</span> est pair, et qu’il existe un chemin de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span>. Alors <span class="math inline">S_m=a</span> et <span class="math inline">S_n=b</span> ont nécessairement la même parité, donc <span class="math inline">S_n-S_m=b-a</span> est pair.</p>
 </div>
 <div id="exm-nnchemin" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 2</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,1)</span>.</p>
+<p><span class="theorem-title"><strong>Exemple 1</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,1)</span>.</p>
 </div>
 <div id="prp-amplitude" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 3 (Amplitude)</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span>, on a <span class="math inline">S_0-n\leq S_n\leq S_0+n</span>.</p>
@@ -710,135 +722,135 @@ S_0-n\leq S_n\leq S_0+n,
 \end{align*}</span> On a donc nécessairement <span class="math inline">|b-a|\leq n-m</span>.</p>
 </div>
 <div id="exm-nnchemin" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 3</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,4)</span>.</p>
+<p><span class="theorem-title"><strong>Exemple 2</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,4)</span>.</p>
 </div>
 <div id="fig-pont" class="quarto-figure quarto-figure-center quarto-float anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="323" data-source-offset="-161"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 322;"><span id="cb2-323"><a href="#cb2-323" aria-hidden="true" tabindex="-1"></a>viewof inputs2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
-<span id="cb2-324"><a href="#cb2-324" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
-<span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
-<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>n_samples2 <span class="op">=</span> inputs2[<span class="dv">0</span>]<span class="op">;</span></span>
-<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a>seed2 <span class="op">=</span> <span class="dv">44</span> <span class="op">+</span> inputs2[<span class="dv">1</span>]<span class="op">;</span></span>
-<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints2<span class="op">=</span>n_samples2</span>
-<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> rng <span class="op">=</span> <span class="fu">seedrandom</span>(seed2)</span>
-<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)</span>
-<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a><span class="co">// create a vector of size 100 whose first half is 1 and second half is -1</span></span>
-<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2 <span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a>  samples2[i] <span class="op">=</span> i <span class="op">&gt;=</span> npoints2<span class="op">/</span><span class="dv">2</span>  <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
-<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a><span class="co">// https://www.codemzy.com/blog/shuffle-array-javascript</span></span>
-<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">shuffleArray</span>(array) {</span>
-<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> length <span class="op">=</span> array<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
-<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shuffle <span class="op">=</span> array<span class="op">.</span><span class="fu">slice</span>()<span class="op">;</span> <span class="co">// copy of array</span></span>
-<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>  <span class="co">// loop over the array</span></span>
-<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> length <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">-=</span> <span class="dv">1</span>) {</span>
-<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> random <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(rng<span class="op">.</span><span class="fu">double</span>() <span class="op">*</span> (i <span class="op">+</span> <span class="dv">1</span>))<span class="op">;</span> <span class="co">// random card position</span></span>
-<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> current <span class="op">=</span> shuffle[i]<span class="op">;</span> <span class="co">// current card</span></span>
-<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a>    <span class="co">// swap the random card and the current card</span></span>
-<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>    shuffle[i] <span class="op">=</span> shuffle[random]<span class="op">;</span> <span class="co">// move the random card to the current position</span></span>
-<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>    shuffle[random] <span class="op">=</span> current<span class="op">;</span> <span class="co">// put the current card in the random position</span></span>
-<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shuffle<span class="op">;</span> <span class="co">// return shuffled array</span></span>
-<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
-<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a>samples2<span class="op">=</span><span class="fu">shuffleArray</span>(samples2)<span class="op">;</span></span>
+<div class="sourceCode cell-code hidden" id="cb2" data-startfrom="325" data-source-offset="-161"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 324;"><span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>viewof inputs2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
+<span id="cb2-326"><a href="#cb2-326" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">range</span>([<span class="dv">2</span><span class="op">,</span> <span class="dv">100</span>]<span class="op">,</span> {<span class="dt">label</span><span class="op">:</span> <span class="fu">tex</span><span class="vs">`n`</span><span class="op">,</span> <span class="dt">step</span><span class="op">:</span> <span class="dv">2</span>})<span class="op">,</span></span>
+<span id="cb2-327"><a href="#cb2-327" aria-hidden="true" tabindex="-1"></a>  Inputs<span class="op">.</span><span class="fu">button</span>(<span class="st">"Re-Tirage"</span>)</span>
+<span id="cb2-328"><a href="#cb2-328" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb2-329"><a href="#cb2-329" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-330"><a href="#cb2-330" aria-hidden="true" tabindex="-1"></a>n_samples2 <span class="op">=</span> inputs2[<span class="dv">0</span>]<span class="op">;</span></span>
+<span id="cb2-331"><a href="#cb2-331" aria-hidden="true" tabindex="-1"></a>seed2 <span class="op">=</span> <span class="dv">44</span> <span class="op">+</span> inputs2[<span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb2-332"><a href="#cb2-332" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-333"><a href="#cb2-333" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-334"><a href="#cb2-334" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> npoints2<span class="op">=</span>n_samples2</span>
+<span id="cb2-335"><a href="#cb2-335" aria-hidden="true" tabindex="-1"></a><span class="kw">const</span> rng <span class="op">=</span> <span class="fu">seedrandom</span>(seed2)</span>
+<span id="cb2-336"><a href="#cb2-336" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> samples2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)</span>
+<span id="cb2-337"><a href="#cb2-337" aria-hidden="true" tabindex="-1"></a><span class="co">// create a vector of size 100 whose first half is 1 and second half is -1</span></span>
+<span id="cb2-338"><a href="#cb2-338" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2 <span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-339"><a href="#cb2-339" aria-hidden="true" tabindex="-1"></a>  samples2[i] <span class="op">=</span> i <span class="op">&gt;=</span> npoints2<span class="op">/</span><span class="dv">2</span>  <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb2-340"><a href="#cb2-340" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-341"><a href="#cb2-341" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-342"><a href="#cb2-342" aria-hidden="true" tabindex="-1"></a><span class="co">// https://www.codemzy.com/blog/shuffle-array-javascript</span></span>
+<span id="cb2-343"><a href="#cb2-343" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">shuffleArray</span>(array) {</span>
+<span id="cb2-344"><a href="#cb2-344" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> length <span class="op">=</span> array<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
+<span id="cb2-345"><a href="#cb2-345" aria-hidden="true" tabindex="-1"></a>  <span class="kw">let</span> shuffle <span class="op">=</span> array<span class="op">.</span><span class="fu">slice</span>()<span class="op">;</span> <span class="co">// copy of array</span></span>
+<span id="cb2-346"><a href="#cb2-346" aria-hidden="true" tabindex="-1"></a>  <span class="co">// loop over the array</span></span>
+<span id="cb2-347"><a href="#cb2-347" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> length <span class="op">-</span> <span class="dv">1</span><span class="op">;</span> i <span class="op">&gt;</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">-=</span> <span class="dv">1</span>) {</span>
+<span id="cb2-348"><a href="#cb2-348" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> random <span class="op">=</span> <span class="bu">Math</span><span class="op">.</span><span class="fu">floor</span>(rng<span class="op">.</span><span class="fu">double</span>() <span class="op">*</span> (i <span class="op">+</span> <span class="dv">1</span>))<span class="op">;</span> <span class="co">// random card position</span></span>
+<span id="cb2-349"><a href="#cb2-349" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> current <span class="op">=</span> shuffle[i]<span class="op">;</span> <span class="co">// current card</span></span>
+<span id="cb2-350"><a href="#cb2-350" aria-hidden="true" tabindex="-1"></a>    <span class="co">// swap the random card and the current card</span></span>
+<span id="cb2-351"><a href="#cb2-351" aria-hidden="true" tabindex="-1"></a>    shuffle[i] <span class="op">=</span> shuffle[random]<span class="op">;</span> <span class="co">// move the random card to the current position</span></span>
+<span id="cb2-352"><a href="#cb2-352" aria-hidden="true" tabindex="-1"></a>    shuffle[random] <span class="op">=</span> current<span class="op">;</span> <span class="co">// put the current card in the random position</span></span>
+<span id="cb2-353"><a href="#cb2-353" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-354"><a href="#cb2-354" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> shuffle<span class="op">;</span> <span class="co">// return shuffled array</span></span>
+<span id="cb2-355"><a href="#cb2-355" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-356"><a href="#cb2-356" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-357"><a href="#cb2-357" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> x2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> walk2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> zeros2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb2-358"><a href="#cb2-358" aria-hidden="true" tabindex="-1"></a>samples2<span class="op">=</span><span class="fu">shuffleArray</span>(samples2)<span class="op">;</span></span>
 <span id="cb2-359"><a href="#cb2-359" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a><span class="co">// create a cumsum function:</span></span>
-<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cumsum</span>(array) {</span>
-<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> result <span class="op">=</span> []<span class="op">;</span></span>
-<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a>  array<span class="op">.</span><span class="fu">reduce</span>(<span class="kw">function</span>(a<span class="op">,</span>b<span class="op">,</span>i) { <span class="cf">return</span> result[i] <span class="op">=</span> a<span class="op">+</span>b<span class="op">;</span> }<span class="op">,</span><span class="dv">0</span>)<span class="op">;</span></span>
-<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">;</span></span>
-<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> walkint <span class="op">=</span> <span class="fu">cumsum</span>(samples2)<span class="op">;</span></span>
-<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a>walk2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a>walk2[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">0</span></span>
-<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2<span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>    walk2[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> walkint[i]<span class="op">;</span></span>
-<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
-<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2<span class="op">+</span><span class="dv">1</span><span class="op">;</span> i<span class="op">++</span>) {</span>
-<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a>    x2[i] <span class="op">=</span> i <span class="op">;</span></span>
-<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a>    zeros2[i] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a>    <span class="co">// points lower</span></span>
-<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
-<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> zeros2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> samples2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2)<span class="op">,</span></span>
-<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>        <span class="co">// mode: 'markers',</span></span>
-<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'heatmap'</span><span class="op">,</span></span>
-<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>            <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>        <span class="co">// marker: {</span></span>
-<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a>        <span class="co">//     color: samples2.slice(0, n_samples2).map((x) =&gt; x &gt; 0 ? 'blue' : 'red'),</span></span>
-<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>        <span class="co">//     size: 5,</span></span>
-<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>        <span class="co">// },</span></span>
-<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a>        <span class="dt">showscale</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> [[<span class="dv">0</span><span class="op">,</span> <span class="st">"rgb(66, 139, 202)"</span>]<span class="op">,</span> [<span class="dv">1</span><span class="op">,</span> <span class="st">"rgb(255,0,0)"</span>]]<span class="op">,</span></span>
-<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-360"><a href="#cb2-360" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> x2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> walk2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> zeros2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> z <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2)<span class="op">,</span> i<span class="op">,</span> j<span class="op">;</span></span>
+<span id="cb2-361"><a href="#cb2-361" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-362"><a href="#cb2-362" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-363"><a href="#cb2-363" aria-hidden="true" tabindex="-1"></a><span class="co">// create a cumsum function:</span></span>
+<span id="cb2-364"><a href="#cb2-364" aria-hidden="true" tabindex="-1"></a><span class="kw">function</span> <span class="fu">cumsum</span>(array) {</span>
+<span id="cb2-365"><a href="#cb2-365" aria-hidden="true" tabindex="-1"></a>  <span class="kw">var</span> result <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb2-366"><a href="#cb2-366" aria-hidden="true" tabindex="-1"></a>  array<span class="op">.</span><span class="fu">reduce</span>(<span class="kw">function</span>(a<span class="op">,</span>b<span class="op">,</span>i) { <span class="cf">return</span> result[i] <span class="op">=</span> a<span class="op">+</span>b<span class="op">;</span> }<span class="op">,</span><span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb2-367"><a href="#cb2-367" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> result<span class="op">;</span></span>
+<span id="cb2-368"><a href="#cb2-368" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-369"><a href="#cb2-369" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-370"><a href="#cb2-370" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> walkint <span class="op">=</span> <span class="fu">cumsum</span>(samples2)<span class="op">;</span></span>
+<span id="cb2-371"><a href="#cb2-371" aria-hidden="true" tabindex="-1"></a>walk2 <span class="op">=</span> <span class="kw">new</span> <span class="bu">Array</span>(npoints2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-372"><a href="#cb2-372" aria-hidden="true" tabindex="-1"></a>walk2[<span class="dv">0</span>] <span class="op">=</span> <span class="dv">0</span></span>
+<span id="cb2-373"><a href="#cb2-373" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2<span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-374"><a href="#cb2-374" aria-hidden="true" tabindex="-1"></a>    walk2[i<span class="op">+</span><span class="dv">1</span>] <span class="op">=</span> walkint[i]<span class="op">;</span></span>
+<span id="cb2-375"><a href="#cb2-375" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-376"><a href="#cb2-376" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-377"><a href="#cb2-377" aria-hidden="true" tabindex="-1"></a><span class="co">//  Densité:</span></span>
+<span id="cb2-378"><a href="#cb2-378" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span>(<span class="kw">var</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> npoints2<span class="op">+</span><span class="dv">1</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb2-379"><a href="#cb2-379" aria-hidden="true" tabindex="-1"></a>    x2[i] <span class="op">=</span> i <span class="op">;</span></span>
+<span id="cb2-380"><a href="#cb2-380" aria-hidden="true" tabindex="-1"></a>    zeros2[i] <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb2-381"><a href="#cb2-381" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-382"><a href="#cb2-382" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-383"><a href="#cb2-383" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb2-384"><a href="#cb2-384" aria-hidden="true" tabindex="-1"></a>    <span class="co">// points lower</span></span>
+<span id="cb2-385"><a href="#cb2-385" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace1 <span class="op">=</span> {</span>
+<span id="cb2-386"><a href="#cb2-386" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-387"><a href="#cb2-387" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> zeros2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">1</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-388"><a href="#cb2-388" aria-hidden="true" tabindex="-1"></a>        <span class="dt">z</span><span class="op">:</span> samples2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2)<span class="op">,</span></span>
+<span id="cb2-389"><a href="#cb2-389" aria-hidden="true" tabindex="-1"></a>        <span class="co">// mode: 'markers',</span></span>
+<span id="cb2-390"><a href="#cb2-390" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">'heatmap'</span><span class="op">,</span></span>
+<span id="cb2-391"><a href="#cb2-391" aria-hidden="true" tabindex="-1"></a>            <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb2-392"><a href="#cb2-392" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-393"><a href="#cb2-393" aria-hidden="true" tabindex="-1"></a>        <span class="co">// marker: {</span></span>
+<span id="cb2-394"><a href="#cb2-394" aria-hidden="true" tabindex="-1"></a>        <span class="co">//     color: samples2.slice(0, n_samples2).map((x) =&gt; x &gt; 0 ? 'blue' : 'red'),</span></span>
+<span id="cb2-395"><a href="#cb2-395" aria-hidden="true" tabindex="-1"></a>        <span class="co">//     size: 5,</span></span>
+<span id="cb2-396"><a href="#cb2-396" aria-hidden="true" tabindex="-1"></a>        <span class="co">// },</span></span>
+<span id="cb2-397"><a href="#cb2-397" aria-hidden="true" tabindex="-1"></a>        <span class="dt">showscale</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-398"><a href="#cb2-398" aria-hidden="true" tabindex="-1"></a>        <span class="dt">colorscale</span><span class="op">:</span> [[<span class="dv">0</span><span class="op">,</span> <span class="st">"rgb(66, 139, 202)"</span>]<span class="op">,</span> [<span class="dv">1</span><span class="op">,</span> <span class="st">"rgb(255,0,0)"</span>]]<span class="op">,</span></span>
 <span id="cb2-399"><a href="#cb2-399" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-400"><a href="#cb2-400" aria-hidden="true" tabindex="-1"></a>  }</span>
 <span id="cb2-401"><a href="#cb2-401" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
-<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> walk2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
-<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
-<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
-<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Marche aléatoire'</span><span class="op">,</span></span>
-<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
-<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
-<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
-<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a>        }</span>
-<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-402"><a href="#cb2-402" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-403"><a href="#cb2-403" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-404"><a href="#cb2-404" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> trace22 <span class="op">=</span> {</span>
+<span id="cb2-405"><a href="#cb2-405" aria-hidden="true" tabindex="-1"></a>        <span class="dt">x</span><span class="op">:</span> x2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-406"><a href="#cb2-406" aria-hidden="true" tabindex="-1"></a>        <span class="dt">y</span><span class="op">:</span> walk2<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>)<span class="op">,</span></span>
+<span id="cb2-407"><a href="#cb2-407" aria-hidden="true" tabindex="-1"></a>        <span class="dt">type</span><span class="op">:</span> <span class="st">"scatter"</span><span class="op">,</span></span>
+<span id="cb2-408"><a href="#cb2-408" aria-hidden="true" tabindex="-1"></a>        <span class="dt">mode</span><span class="op">:</span> <span class="st">"lines"</span><span class="op">,</span></span>
+<span id="cb2-409"><a href="#cb2-409" aria-hidden="true" tabindex="-1"></a>        <span class="dt">name</span><span class="op">:</span> <span class="st">'Marche aléatoire'</span><span class="op">,</span></span>
+<span id="cb2-410"><a href="#cb2-410" aria-hidden="true" tabindex="-1"></a>        <span class="dt">line</span><span class="op">:</span> {<span class="dt">color</span><span class="op">:</span> <span class="st">'black'</span>}<span class="op">,</span></span>
+<span id="cb2-411"><a href="#cb2-411" aria-hidden="true" tabindex="-1"></a>        <span class="dt">yaxis</span><span class="op">:</span> <span class="st">'y2'</span><span class="op">,</span></span>
+<span id="cb2-412"><a href="#cb2-412" aria-hidden="true" tabindex="-1"></a>        <span class="dt">xaxis</span><span class="op">:</span> <span class="st">'x2'</span><span class="op">,</span></span>
+<span id="cb2-413"><a href="#cb2-413" aria-hidden="true" tabindex="-1"></a>        }</span>
 <span id="cb2-414"><a href="#cb2-414" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
-<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
-<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
-<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
-<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
-<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
-<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xaxis</span><span class="op">:</span> {<span class="dt">range</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>]<span class="op">,</span></span>
-<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>          <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.08</span>]<span class="op">,</span></span>
-<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
-<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a>            <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span></span>
-<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a>            <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
-<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span><span class="op">,</span></span>
-<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>]<span class="op">,</span></span>
-<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
-<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]<span class="op">,</span></span>
-<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dv">14</span>]}<span class="op">,</span></span>
-<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-415"><a href="#cb2-415" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-416"><a href="#cb2-416" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-417"><a href="#cb2-417" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> data <span class="op">=</span> [</span>
+<span id="cb2-418"><a href="#cb2-418" aria-hidden="true" tabindex="-1"></a>  trace1<span class="op">,</span></span>
+<span id="cb2-419"><a href="#cb2-419" aria-hidden="true" tabindex="-1"></a>  trace22<span class="op">,</span></span>
+<span id="cb2-420"><a href="#cb2-420" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">;</span></span>
+<span id="cb2-421"><a href="#cb2-421" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-422"><a href="#cb2-422" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-423"><a href="#cb2-423" aria-hidden="true" tabindex="-1"></a><span class="kw">var</span> layout <span class="op">=</span> {</span>
+<span id="cb2-424"><a href="#cb2-424" aria-hidden="true" tabindex="-1"></a>    <span class="dt">width</span><span class="op">:</span> <span class="dv">600</span><span class="op">,</span></span>
+<span id="cb2-425"><a href="#cb2-425" aria-hidden="true" tabindex="-1"></a>  <span class="dt">xaxis</span><span class="op">:</span> {<span class="dt">range</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb2-426"><a href="#cb2-426" aria-hidden="true" tabindex="-1"></a>          <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-427"><a href="#cb2-427" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
+<span id="cb2-428"><a href="#cb2-428" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> <span class="fl">0.08</span>]<span class="op">,</span></span>
+<span id="cb2-429"><a href="#cb2-429" aria-hidden="true" tabindex="-1"></a>            <span class="dt">showticklabels</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb2-430"><a href="#cb2-430" aria-hidden="true" tabindex="-1"></a>      <span class="dt">ticks</span><span class="op">:</span><span class="st">""</span><span class="op">,</span></span>
+<span id="cb2-431"><a href="#cb2-431" aria-hidden="true" tabindex="-1"></a>            <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="fl">0.5</span><span class="op">,</span> <span class="fl">0.5</span>]<span class="op">,</span></span>
+<span id="cb2-432"><a href="#cb2-432" aria-hidden="true" tabindex="-1"></a>            <span class="dt">autorange</span><span class="op">:</span> <span class="kw">false</span>}<span class="op">,</span></span>
+<span id="cb2-433"><a href="#cb2-433" aria-hidden="true" tabindex="-1"></a>    <span class="dt">xaxis2</span><span class="op">:</span> {<span class="dt">matches</span><span class="op">:</span> <span class="st">'x'</span><span class="op">,</span></span>
+<span id="cb2-434"><a href="#cb2-434" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="dv">0</span><span class="op">,</span> n_samples2<span class="op">+</span><span class="dv">1</span>]<span class="op">,</span></span>
+<span id="cb2-435"><a href="#cb2-435" aria-hidden="true" tabindex="-1"></a>          <span class="dt">autorange</span><span class="op">:</span> <span class="kw">true</span>}<span class="op">,</span></span>
+<span id="cb2-436"><a href="#cb2-436" aria-hidden="true" tabindex="-1"></a>    <span class="dt">yaxis2</span><span class="op">:</span> {<span class="dt">domain</span><span class="op">:</span> [<span class="fl">0.29</span><span class="op">,</span> <span class="fl">0.99</span>]<span class="op">,</span></span>
+<span id="cb2-437"><a href="#cb2-437" aria-hidden="true" tabindex="-1"></a>              <span class="dt">range</span><span class="op">:</span> [<span class="op">-</span><span class="dv">14</span><span class="op">,</span> <span class="dv">14</span>]}<span class="op">,</span></span>
 <span id="cb2-438"><a href="#cb2-438" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-439"><a href="#cb2-439" aria-hidden="true" tabindex="-1"></a>  <span class="dt">showlegend</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
 <span id="cb2-440"><a href="#cb2-440" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
-<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
-<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">react</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
-<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
-<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-441"><a href="#cb2-441" aria-hidden="true" tabindex="-1"></a>}<span class="op">;</span></span>
+<span id="cb2-442"><a href="#cb2-442" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-443"><a href="#cb2-443" aria-hidden="true" tabindex="-1"></a>    <span class="kw">var</span> config <span class="op">=</span> {<span class="dt">responsive</span><span class="op">:</span> <span class="kw">true</span>}</span>
+<span id="cb2-444"><a href="#cb2-444" aria-hidden="true" tabindex="-1"></a>    <span class="kw">const</span> div <span class="op">=</span> DOM<span class="op">.</span><span class="fu">element</span>(<span class="st">'div'</span>)<span class="op">;</span></span>
+<span id="cb2-445"><a href="#cb2-445" aria-hidden="true" tabindex="-1"></a>    Plotly<span class="op">.</span><span class="fu">react</span>(div<span class="op">,</span> data<span class="op">,</span> layout<span class="op">,</span> config)<span class="op">;</span></span>
+<span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
+<span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
@@ -871,7 +883,7 @@ S_0-n\leq S_n\leq S_0+n,
 </div>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-pont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Marche aléatoire simple symétrique passant en <span class="math inline">(0,0)</span> et en <span class="math inline">(100,0)</span>.
+Figure&nbsp;3: Marche aléatoire simple symétrique passant en <span class="math inline">(0,0)</span> et en <span class="math inline">(100,0)</span>.
 </figcaption>
 </figure>
 </div>
@@ -904,9 +916,24 @@ y&amp;=&amp;\frac{n-m}{2}-\frac{b-a}{2}
 <div id="prp-reflexion" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 5 (Principe de réflexion)</strong></span> Soit <span class="math inline">a</span> et <span class="math inline">b</span> deux entiers naturels non nuls et <span class="math inline">n,m</span> deux entiers naturels tels que <span class="math inline">n&gt;m</span>, <span class="math inline">|b-a|\leq n-m</span> et <span class="math inline">b-a</span> et <span class="math inline">n-m</span> ont la même parité. Alors le nombre de chemins de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> passant par <span class="math inline">0</span> (<em>i.e.</em> touchant l’axe des abscisses) est égal au nombre de chemins de <span class="math inline">(m,a)</span> à <span class="math inline">(n,-b)</span>.</p>
 </div>
+<div id="fig-reflex" class="quarto-figure quarto-figure-center quarto-float anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-reflex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../srcimages/reflex.svg" class="img-fluid figure-img" style="width:80.0%"></p>
+<figcaption>Réflextion</figcaption>
+</figure>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reflex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;4: Un chemin de <span class="math inline">(0,2)</span> à <span class="math inline">(11,1)</span> passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
+</figcaption>
+</figure>
+</div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu’ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure XXX.</p>
-<p>Considérons un chemin <span class="math inline">(S_m,\ldots,S_n)</span> de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> passant par <span class="math inline">0</span> pour la première fois en <span class="math inline">p</span>. On a alors <span class="math inline">m&lt;p&lt;n</span>. On construit un chemin <span class="math inline">(\widetilde{S}_m,\ldots,\widetilde{S}_n)</span>de <span class="math inline">(m,a)</span> à <span class="math inline">(n,-b)</span> en gardant la première partie du chemin initial de <span class="math inline">(m,a)</span> à <span class="math inline">(p,0)</span>, puis en prenant ensuite le symétrique du chemin initial par rapport à l’axe des abscisses de <span class="math inline">(p,0)</span> à <span class="math inline">(n,-b)</span> : <span class="math display">\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu’ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure <a href="#fig-reflex" class="quarto-xref">Figure&nbsp;4</a>.</p>
+<p>Considérons un chemin <span class="math inline">(S_m,\ldots,S_n)</span> de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> passant par <span class="math inline">0</span> pour la première fois en <span class="math inline">p</span>. On a alors <span class="math inline">m&lt;p&lt;n</span>. On construit un chemin <span class="math inline">(\widetilde{S}_m,\ldots,\widetilde{S}_n)</span> de <span class="math inline">(m,a)</span> à <span class="math inline">(n,-b)</span> en gardant la première partie du chemin initial de <span class="math inline">(m,a)</span> à <span class="math inline">(p,0)</span>, puis en prenant ensuite le symétrique du chemin initial par rapport à l’axe des abscisses de <span class="math inline">(p,0)</span> à <span class="math inline">(n,-b)</span> : <span class="math display">\begin{align*}
 \widetilde{S}_k=\left\{
 \begin{array}{lcl}
 S_k &amp;\text{ si }&amp; m\leq k\leq p,\\
@@ -924,7 +951,7 @@ S_k=\left\{
 </div>
 <p>A nouveau, nous n’avons pas utilisé le fait que <span class="math inline">\mathbb P(X=1)=\mathbb P(X=-1)</span>, mais uniquement le fait que <span class="math inline">X</span> ne peut prendre que les valeurs <span class="math inline">-1</span> et <span class="math inline">1</span> qui sont symétriques l’une de l’autre. Le résultat ci-dessus est donc également valable pour les marches asymétriques où <span class="math inline">p=\mathbb P(X=1)=1-\mathbb P(X=-1)\neq \frac{1}{2}</span>. Une première application de cette propriété est le résultat suivant connu sous le nom de <em>théorème du scrutin</em>.</p>
 <div id="thm-election" class="theorem">
-<p><span class="theorem-title"><strong>Théorème 1</strong></span> Au cours d’une élection opposant deux candidates <span class="math inline">A</span> et <span class="math inline">B</span>, la candidate <span class="math inline">A</span> (resp. <span class="math inline">B</span>) a obtenu <span class="math inline">a</span> (resp. <span class="math inline">b</span>) voix, avec <span class="math inline">a&gt;b</span>. Alors la probabilité que <span class="math inline">A</span> ait été majoritaire (au sens large) tout au long du dépouillement est <span class="math display">
+<p><span class="theorem-title"><strong>Théorème 1 (du scrutin)</strong></span> Au cours d’une élection opposant deux candidates <span class="math inline">A</span> et <span class="math inline">B</span>, la candidate <span class="math inline">A</span> (resp. <span class="math inline">B</span>) a obtenu <span class="math inline">a</span> (resp. <span class="math inline">b</span>) voix, avec <span class="math inline">a&gt;b</span>. Alors la probabilité que <span class="math inline">A</span> ait été majoritaire (au sens large) tout au long du dépouillement est <span class="math display">
 p=1-\frac{b}{a+1}.
 </span></p>
 </div>
@@ -938,9 +965,11 @@ p=1-\frac{b}{a+1}.
 <li>au nombre total de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> moins le nombre de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> touchant <span class="math inline">0</span>;</li>
 <li>au nombre total de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> moins le nombre de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,-(a-b+1))</span> par le principe de réflexion.</li>
 </ul>
-<p>Il vaut donc <span class="math inline">\binom{a+b}{a}-\binom{a+b}{b-1}</span>. Ainsi <span class="math display">\begin{align*}
-p=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
-\end{align*}</span> d’où le résultat.</p>
+<p>Il vaut donc <span class="math inline">\binom{a+b}{a}-\binom{a+b}{b-1}</span>. Ainsi <span class="math display">
+\begin{align*}
+p &amp;=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}} \\ &amp;=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
+\end{align*}
+</span> d’où le résultat.</p>
 </div>
 </section>
 </section>
@@ -1701,7 +1730,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Courses/monte_carlo.html" class="pagination-link" aria-label="Méthode de Monte Carlo">
+      <a href="../Courses/monte_carlo.html" class="pagination-link  aria-label=" méthode="" de="" monte="" carlo"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Méthode de Monte Carlo</span>
       </a>          
   </div>
