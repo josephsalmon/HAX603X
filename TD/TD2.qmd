@@ -1,0 +1,19 @@
+---
+title: "Autour de la loi normale"
+format:
+  html:
+    out.width: 50%
+---
+
+
+[pdf](2-Gaussienne/td2_loi_normale.pdf)
+
+
+```{=html}
+
+<embed
+  src="2-Gaussienne/td2_loi_normale.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
+  width="100%" height="540" />
+
+```
+

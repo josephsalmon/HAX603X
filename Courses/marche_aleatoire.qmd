@@ -499,12 +499,14 @@ Soit $a$ et $b$ deux entiers naturels non nuls et $n,m$ deux entiers naturels te
 ::: {#fig-reflex}
 
 ![Réflextion](../srcimages/reflex.svg){width=80%}
+
+Un chemin de $(0,2)$ à $(11,1)$ passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
 :::
 
 ::: {.proof}
 Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu'ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure @fig-reflex.
 
-Considérons un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ pour la première fois en $p$. On a alors $m<p<n$. On construit un chemin  $(\wt S_m,\ldots,\wt S_n)$de $(m,a)$ à $(n,-b)$ en gardant la première partie du chemin initial de $(m,a)$ à $(p,0)$, puis en prenant ensuite le symétrique du chemin initial par rapport à l'axe des abscisses de $(p,0)$ à $(n,-b)$ :
+Considérons un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ pour la première fois en $p$. On a alors $m<p<n$. On construit un chemin $(\wt S_m,\ldots,\wt S_n)$ de $(m,a)$ à $(n,-b)$ en gardant la première partie du chemin initial de $(m,a)$ à $(p,0)$, puis en prenant ensuite le symétrique du chemin initial par rapport à l'axe des abscisses de $(p,0)$ à $(n,-b)$ :
 \begin{align*}
 \wt S_k=\left\{
 \begin{array}{lcl}
@@ -529,6 +531,9 @@ A nouveau, nous n'avons pas utilisé le fait que $\mathbb P(X=1)=\mathbb P(X=-1)
 Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème du scrutin*.
 
 ::: {#thm-election}
+
+## du scrutin
+
 Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
 $$
 p=1-\frac{b}{a+1}.

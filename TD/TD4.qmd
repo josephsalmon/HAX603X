@@ -1,0 +1,19 @@
+---
+title: "Marches aléatoires"
+format:
+  html:
+    out.width: 50%
+---
+
+[pdf](4-MarcheAleatoire/td4_marche_aleatoire.pdf)
+
+
+```{=html}
+
+<embed
+  src="4-MarcheAleatoire/td4_marche_aleatoire.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
+  width="399" height="540" />
+
+```
+
+</center>
