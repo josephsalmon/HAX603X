@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/index.html</loc>
-    <lastmod>2024-03-26T11:15:13.704Z</lastmod>
+    <lastmod>2024-04-05T13:01:40.508Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/TP/markdown.html</loc>
@@ -15,6 +15,14 @@
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/TP/TP1.html</loc>
     <lastmod>2024-03-26T11:15:13.704Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/TD/TD3.html</loc>
+    <lastmod>2024-04-05T13:01:17.981Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/TD/TD1.html</loc>
+    <lastmod>2024-04-05T13:00:30.881Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/Slides/slides_th_asymptotique.html</loc>
@@ -82,7 +90,15 @@
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/TD/TD.html</loc>
-    <lastmod>2024-03-26T11:15:13.701Z</lastmod>
+    <lastmod>2024-04-05T12:58:05.147Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/TD/TD2.html</loc>
+    <lastmod>2024-04-05T13:01:06.525Z</lastmod>
+  </url>
+  <url>
+    <loc>https://josephsalmon.github.io/HAX603X/TD/TD4.html</loc>
+    <lastmod>2024-04-05T12:57:48.577Z</lastmod>
   </url>
   <url>
     <loc>https://josephsalmon.github.io/HAX603X/TP/TP2.html</loc>
