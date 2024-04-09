@@ -60,7 +60,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Modalité de contrôle des connaissances
 
-- TP notés :  Rendu en Quarto `.qmd` et `.pdf`.
+- TP notés :  Rendu en Quarto `.qmd` et `.html`.
   - TP noté 1 : rendre en fin de session
   - TP noté 2 : rendre en fin de session
 - CC : devoir sur table d'une heure
