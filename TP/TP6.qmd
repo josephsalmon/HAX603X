@@ -191,7 +191,7 @@ La valeur théorique de $1/2$ est bien dans l'intervalle de confiance.
 #| layout-ncol: 1
 #| echo: true
 
-NMC = 10000
+NMC = 1000
 duree = np.zeros(NMC)
 for n in range(NMC):
     S = ruine(10, 20, 0)
@@ -358,8 +358,12 @@ plt.show()
 :::
 
 
-Quel est l'effet des changements de dérive et de volatilité sur l'aspect des trajectoires? Comment l'expliquer ?
+3. Quel est l'effet des changements de dérive et de volatilité sur l'aspect des trajectoires? Comment l'expliquer ?
 
+::: {.content-hidden unless-meta="correction"}
+#### [Solution]{style="color:red;"}
 
 On constate que la dérive correspond à la "pente" de la trajectoire : plus elle est élevée, plus la trajectoire monte, sans influencer les fluctuations.
 La volatilité correspond à l'intensité de fluctuations, plus elle est élevée, plus les fluctuations à la hausse où à la baisse sont importantes.
+
+:::
