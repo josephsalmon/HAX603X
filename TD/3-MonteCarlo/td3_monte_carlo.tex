@@ -138,7 +138,7 @@
                 et sa variance est
                 \begin{equation*}
                     \mbox{Var}(I_n) = \frac{\mbox{Var}(\one_{\{X > 2\}})}{n} =
-                    \frac{I_n (1 - I_n)}{n} \approx \frac{0.126}{n}
+                    \frac{I (1 - I)}{n} \approx \frac{0.126}{n}
                 \end{equation*}
             }
 %--------------------------------------------
@@ -215,7 +215,7 @@
                         + \frac{1}{4} \arctan 2 -
                         \left(\frac{\arctan 2}{2} \right)^2
                     \right\}\\
-                    &\approx \frac{0.029}{n}.
+                    &\approx \frac{0.0285}{n}.
                 \end{align*}
 
             }
@@ -244,7 +244,7 @@
                     &= \mathbb{E} \left\{\frac{1}{4 \pi^2 (1 + X^2)^2} \right\} - \psi^2\\
                     &= \frac{1}{4 \pi^2} \times 2 \left[\frac{x}{2 (1 +
                     x^2)} + \frac{1}{2} \arctan x \right]_0^{1/2} - I^2\\
-                    &= \frac{1}{4 \pi^2} \left( \frac{2}{5} + \arctan\frac{1}{2} \right) - I\\
+                    &= \frac{1}{4 \pi^2} \left( \frac{2}{5} + \arctan\frac{1}{2} \right) - I^2\\
                     &\approx 9.55 \times 10^{-5},
                 \end{align*}
                 et donc
@@ -332,10 +332,9 @@
             $\ell$ et $d$.
 %-----------------------
             \cor{
-                La variance se trouve très facilement
+                La variance se trouve en calculant
                 \begin{equation*}
-                    \mbox{Var}(I_n) = \frac{d^2}{4 \ell^2} \frac{I(1 -
-                    I)}{n},
+                    \mbox{Var}(I_n) = \frac{d^2}{4 \ell^2 n} \mbox{Var}(\one_{\{\ell \cos\theta_i \geq 2 X_i\}}) =  \frac{I}{n} \left ( \frac{d}{2 \ell} - I \right),
                 \end{equation*}
                 et le choix optimal pour $\ell$ et $d$, i.e., celui minimisant la
                 variance correspond au cas où $\ell = d$, puisque $\ell$ ne peut
@@ -345,11 +344,11 @@
         \item  Avec ce choix optimal, construisez un estimateur de $\pi$.
 %-----------------------
             \cor{
-                Lorsque $\ell = d$, un estimateur de $\pi$ est alors
+                Lorsque $\ell = d = 1$, un estimateur de $\pi$ est alors
                 \begin{equation*}
-                    \hat{\pi}_n = 2 n \left(\sum_{i=1}^n \one_{\{\cos \theta_i \geq
+                    \hat{\pi}_n = 2 n \left(\sum_{i=1}^n \one_{\{ \cos \theta_i \geq
                     2 X_i\}}\right)^{-1}, \qquad (X_1, \theta_1), \ldots, (X_n,
-                    \theta_n) \stackrel{\rm iid}{\sim} U[0, d/2] \times U[-\pi/2,
+                    \theta_n) \stackrel{\rm iid}{\sim} U[0, 1/2] \times U[-\pi/2,
                     \pi/2].
                 \end{equation*}
             }

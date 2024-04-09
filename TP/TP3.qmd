@@ -5,8 +5,6 @@ format:
   html:
     out.width: 50%
 correction: true
-filters:
-  - shinylive
 ---
 
 

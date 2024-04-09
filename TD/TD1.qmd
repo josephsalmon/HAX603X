@@ -1,0 +1,20 @@
+---
+title: "Simulation de variables aléatoires"
+format:
+  html:
+    out.width: 50%
+---
+
+
+[pdf](1-Simulation/td1_generer_alea.pdf)
+
+<center>
+
+```{=html}
+
+<embed
+  src="1-Simulation/td1_generer_alea.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
+  width="100%" height="540" />
+
+```
+

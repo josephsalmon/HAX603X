@@ -18,7 +18,7 @@ Les sections en haut de page regroupe le contenus pédagogique : les [slides](Co
 
 <embed
   src="srcimages/Modélisation-stochastique--HAX603X-.pdf#zoom=FitV&navpanes=0&toolbar=0&pagemode=none"
-  width="420" height="540" />
+  width="100%" height="540" />
 
 ```
 
@@ -60,7 +60,7 @@ et de l'aide de [François-David Collin](https://github.com/fradav).
 
 ## Modalité de contrôle des connaissances
 
-- TP notés :  Rendu en Quarto `.qmd` et `.pdf`.
+- TP notés :  Rendu en Quarto `.qmd` et `.html`.
   - TP noté 1 : rendre en fin de session
   - TP noté 2 : rendre en fin de session
 - CC : devoir sur table d'une heure

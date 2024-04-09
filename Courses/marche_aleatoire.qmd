@@ -236,11 +236,13 @@ On s'intéresse maintenant aux représentations graphiques qui peuvent correspon
 Soit $n>m$ deux entiers naturels et $(a,b)\in\Z^2$ deux entiers relatifs. On appelle *chemin* de $(m,a)$ à $(n,b)$ la représentation graphique d'un tirage de la marche aléatoire telle que $S_m=a$ et $S_n=b$.
 :::
 
-::: {#exm-traj2} 
+::: {#fig-traj_rw}
 
-La figure XXX présente deux chemins de $(1,1)$ à $(5,3)$.
+![Deux trajectoires](../srcimages/deux_chemins.svg){width=50%}
 
+Voici deux chemins de $(1,1)$ à $(5,3)$.
 :::
+
 
 On peut maintenant se poser la question de savoir s'il existe toujours un chemin qui relie deux points quelconques, et s'il en existe, combien on peut construire de chemins différents reliant ces deux points. On peut facilement montrer que certains chemins sont impossibles en regardant la parité de la marche aléatoire et son amplitude maximale.
 
@@ -494,10 +496,17 @@ On souhaite maintenant dénombrer les chemins qui ont une propriété particuli�
 Soit $a$ et $b$ deux entiers naturels non nuls et $n,m$ deux entiers naturels tels que $n>m$, $|b-a|\leq n-m$ et $b-a$ et $n-m$ ont la même parité. Alors le nombre de chemins de $(m,a)$ à $(n,b)$ passant par $0$ (*i.e.* touchant l'axe des abscisses) est égal au nombre de chemins de $(m,a)$ à $(n,-b)$.
 :::
 
-::: {.proof}
-Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu'ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure XXX.
+::: {#fig-reflex}
 
-Considérons un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ pour la première fois en $p$. On a alors $m<p<n$. On construit un chemin  $(\wt S_m,\ldots,\wt S_n)$de $(m,a)$ à $(n,-b)$ en gardant la première partie du chemin initial de $(m,a)$ à $(p,0)$, puis en prenant ensuite le symétrique du chemin initial par rapport à l'axe des abscisses de $(p,0)$ à $(n,-b)$ :
+![Réflextion](../srcimages/reflex.svg){width=80%}
+
+Un chemin de $(0,2)$ à $(11,1)$ passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
+:::
+
+::: {.proof}
+Le principe est de construire une bijection entre les deux ensembles de chemins pour prouver qu'ils ont le même cardinal. Pour cela, on exploite la symétrie de la marche, comme illustré figure @fig-reflex.
+
+Considérons un chemin $(S_m,\ldots,S_n)$ de $(m,a)$ à $(n,b)$ passant par $0$ pour la première fois en $p$. On a alors $m<p<n$. On construit un chemin $(\wt S_m,\ldots,\wt S_n)$ de $(m,a)$ à $(n,-b)$ en gardant la première partie du chemin initial de $(m,a)$ à $(p,0)$, puis en prenant ensuite le symétrique du chemin initial par rapport à l'axe des abscisses de $(p,0)$ à $(n,-b)$ :
 \begin{align*}
 \wt S_k=\left\{
 \begin{array}{lcl}
@@ -522,6 +531,9 @@ A nouveau, nous n'avons pas utilisé le fait que $\mathbb P(X=1)=\mathbb P(X=-1)
 Une première application de cette propriété est le résultat suivant connu sous le nom de *théorème du scrutin*.
 
 ::: {#thm-election}
+
+## du scrutin
+
 Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
 $$
 p=1-\frac{b}{a+1}.
@@ -542,9 +554,11 @@ Le nombre de dépouillements avec $A$ en tête tout le long correspond
 - au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,-(a-b+1))$ par le principe de réflexion.
 
 Il vaut donc $\binom{a+b}{a}-\binom{a+b}{b-1}$. Ainsi
+$$
 \begin{align*}
-p=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
+p &=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}} \\ &=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
 \end{align*}
+$$
 d'où le résultat.
 :::
 

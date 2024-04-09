@@ -47,7 +47,7 @@ import plotly.io as pio
 ```{python}
 #| echo: false
 pio.renderers.default = "pdf"
-pio.kaleido.scope.mathjax = None
+# pio.kaleido.scope.mathjax = None
 ```
 :::
 

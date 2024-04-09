@@ -98,6 +98,8 @@
               - TP/TP2.qmd
               - TP/TP3.qmd
               - TP/TP5.qmd
+              - TP/TP6.qmd
+
 
           - section: "Quarto"
             contents:
@@ -107,7 +109,10 @@
       - id: TD
         collapse-level: 2
         contents:
-            - TD/TD.qmd
+            - TD/TD1.qmd
+            - TD/TD2.qmd
+            - TD/TD3.qmd
+            - TD/TD4.qmd
 
     title: "HAX603X: Modélisation stochastique"
     site-url: https://josephsalmon.github.io/HAX603X/
