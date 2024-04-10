@@ -729,7 +729,7 @@ expression_values = vectorized_expression(n_values)
 
 # Plotting
 plt.plot(n_values, expression_values, marker='o')
-plt.title(r'Probabilité de premier retour en 0$')
+plt.title(r'Probabilité de premier retour en $0$')
 plt.xlabel(r'$n$')
 plt.ylabel(r'$\mathbb{P}(T_0=2n)$')
 plt.grid(True)
