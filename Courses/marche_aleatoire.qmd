@@ -651,7 +651,7 @@ La seconde propriété dite de stationnarité signifie qu'on peut changer l'orig
 
 ::: {#prp-statio}
 
-## Sationnarité
+## Stationnarité
 
 Pour tout $n>m$ entiers positifs et $(a,b)\in\Z^2$, on a
 $$
