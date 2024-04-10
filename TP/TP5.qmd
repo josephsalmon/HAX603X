@@ -4,7 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: false
+correction: true
 filters:
   - shinylive
 ---
@@ -287,7 +287,7 @@ $$
 $$
 avec $(X,\Theta)\sim U([0,1/2]\times[-\pi/2,\pi/2])$.
 
-::: {.content-hidden unless-meta="correction"}
+::: {.content-hidden unless-meta="XXXXXXXXXXXXXXX"}
 #### [Solution]{style="color:red;"}
 
 ```{python}
@@ -330,7 +330,7 @@ print("Confidence Interval (IC) for pichap:", ICchap)
 
 2. Combien de tirages sont nécessaire pour obtenir une précision de $10^{-2}$ avec $95\%$ de certitude ?
 
-::: {.content-hidden unless-meta="correction"}
+::: {.content-hidden unless-meta="XXXXXXXXXXXXXXX"}
 #### [Solution]{style="color:red;"}
 
 ```{python}
@@ -353,7 +353,7 @@ Soit $Z \sim N(0,1)$. Nous souhaitons évaluer la probabilité $I = \mathbb P(Z 
 
 1. Implémentez la méthode de Monte-Carlo standard pour ce calcul. Que constatez-vous ? Pourquoi ?
 
-::: {.content-hidden unless-meta="correction"}
+::: {.content-hidden unless-meta="XXXXXXXXXXXXXXX"}
 #### [Solution]{style="color:red;"}
 Commençons avec un petit nombre de simulations
 
@@ -449,7 +449,7 @@ def montecarlo(n, d):
 
 ```
 
-::: {.content-visible unless-meta="correction"}
+::: {.content-visible unless-meta="XXXXXXXXXXXXXXX"}
 ```{python}
 #| layout-ncol: 1
 #| fig-align: center
@@ -485,7 +485,7 @@ plt.show()
 :::
 
 
-::: {.content-hidden unless-meta="correction"}
+::: {.content-hidden unless-meta="XXXXXXXXXXXXXXX"}
 #### [Solution]{style="color:red;"}
 
 
