@@ -702,6 +702,41 @@ $$
 $$
 :::
 
+```{python}
+#| layout-ncol: 1
+#| figalign: "center"
+#| echo: false
+
+import numpy as np
+import matplotlib.pyplot as plt
+import math
+
+# Function to calculate the expression
+def calculate_expression(n):
+    if n == 0:
+        return 1  # Special case for n = 0
+    else:
+        return math.factorial(2*n-2) / (2**(2*n-1) * math.factorial(n) * math.factorial(n-1))
+
+# Vectorized version of the function using NumPy
+vectorized_expression = np.vectorize(calculate_expression)
+
+# Values of n from 0 to 50
+n_values = np.arange(1, 51)
+
+# Calculate the expression for each value of n
+expression_values = vectorized_expression(n_values)
+
+# Plotting
+plt.plot(n_values, expression_values, marker='o')
+plt.title(r'Probabilité de premier retour en 0$')
+plt.xlabel(r'$n$')
+plt.ylabel(r'$\mathbb{P}(T_0=2n)$')
+plt.grid(True)
+plt.show()
+
+```
+
 ::: {.proof}
 
 L'événement $(T_0= 2n)$ correspond à $(S_2\neq 0, \ldots,S_{2n-2}\neq 0,S_{2n}=0)$ puisqu'alors $2n$ est le premier temps où la marche retourne en $0$. En particulier, entre l'instant $0$ et l'instant $2n$ la marche ne change pas de signe, et garde le signe de $S_1$. Ainsi, on a
@@ -747,44 +782,54 @@ $$
 ::: {.proof}
 On a $\P(T_0<+\infty)=\sum_{n=1}^\infty\P(T_0=2n)$, il s'agit donc d'identifier la somme de cette série. 
 Pour cela, on exprime différemment le probabilité de l'événement $(T_0=2n)$, en repartant de l'expression du nombre de chemins de $(1,1)$ à $(2n-1,1)$ ne touchant pas $0$ divisée par le nombre total de chemins de longueur $2n-1$. Ce nombre de chemins est égal à la différence entre le nombre de chemins de $(1,1)$ à $(2n-1,1)$ et le nombre de chemins de $(1,1)$ à $(2n-1,-1)$ d'après le principe de réflexion. On obtient ainsi :
+$$
 \begin{align*}
-{\P(T_0=2n)}\\
-&=\P(S_1=1, S_{2n-1}=1)-\P(S_1=1, S_{2n-1}=-1)\\
-&=\P(S_{2n-1}=1|S_1=1)\P(S_1=1)-\P(S_{2n-1}=-1|S_1=1)\P(S_1=1)\\
+{\P(T_0=2n)}
+&=\P(S_1=1, S_{2n-1}=1)\\ & \qquad -\P(S_1=1, S_{2n-1}=-1)\\
+&=\P(S_{2n-1}=1|S_1=1)\P(S_1=1)\\ & \qquad -\P(S_{2n-1}=-1|S_1=1)\P(S_1=1)\\
 &=\frac{1}{2}\P(S_{2n-2}=0|S_0=0)-\frac{1}{2}\P(S_{2n-2}=-2|S_0=0)\\
 &=\frac{1}{2}\P(S_{2n-2}=0)-\frac{1}{2}\P(S_{2n-2}=-2),
 \end{align*}
+$$
 par la propriété de stationnarité et puisque $S_0=0$. Par ailleurs, on a
+$$
 \begin{align*}
-{\P(S_{2n}=0)}  \\
- &=\P(S_{2n}=0, S_{2n-2} =-2)+\P(S_{2n}=0, S_{2n-2}=0) +\P(S_{2n}=0, S_{2n-2}=2)\\
+{\P(S_{2n}=0)}
+ &=\P(S_{2n}=0, S_{2n-2} =-2)\\ & \qquad +\P(S_{2n}=0, S_{2n-2}=0) +\P(S_{2n}=0, S_{2n-2}=2)\\
 &=2\P(S_{2n}=0, S_{2n-2}=-2)+\P(S_{2n}=0, S_{2n-2}=0),
 \end{align*}
+$$
 par symétrie. Il vient
+$$
 \begin{align*}
-{\P(S_{2n}=0)}\\
-&=2\P(S_{2n}=0|S_{2n-2}=-2)\P(S_{2n-2}=-2)+\P(S_{2n}=0|S_{2n-2}=0)\P(S_{2n-2}=0)\\
-&=2\P(S_2=2|S_0=0)\P(S_{2n-2}=-2)+\P(S_2=0|S_0=0)\P(S_{2n-2}=0)\\
+{\P(S_{2n}=0)} & =2\P(S_{2n}=0|S_{2n-2}=-2)\P(S_{2n-2}=-2)\\ & \qquad+\P(S_{2n}=0|S_{2n-2}=0)\P(S_{2n-2}=0)\\
+&=2\P(S_2=2|S_0=0)\P(S_{2n-2}=-2)\\ & \qquad+\P(S_2=0|S_0=0)\P(S_{2n-2}=0)\\
 &=2\frac{1}{4}\P(S_{2n-2}=-2)+\frac{1}{2}\P(S_{2n-2}=0)\\
 &=\frac{1}{2}\P(S_{2n-2}=-2)+\frac{1}{2}\P(S_{2n-2}=0),
 \end{align*}
+$$
 où on a utilisé le fait que
+$$
 \begin{align*}
- \P(S_2=2|S_0=0)& =   \P(X_1 + X_2 = 0) \\
-&= \P(X_1 = -1; X_2= 1)+ \P(X_1 = 1; X_2= -1)\\
+ \P(S_2=0|S_0=0)& =   \P(X_1 + X_2 = 0) \\
+&= \P(X_1 = -1, X_2= 1)+ \P(X_1 = 1, X_2= -1)\\
 &=\P(X_1 = -1) \P( X_2= 1)+ \P(X_1 = 1)\P( X_2= -1) \\
 &=\frac{1}{2}.
 \end{align*}
+$$
 Donc on a $\P(S_{2n-2}=-2)=2\P(S_{2n}=0)-\P(S_{2n-2}=0)$.
 
 Revenons maintenant à $T_0$. On obtient
+$$
 \begin{align*}
 \P(T_0=2n)
 &=\frac{1}{2}\P(S_{2n-2}=0)-\frac{1}{2}\P(S_{2n-2}=-2)\\
 &=\frac{1}{2}\P(S_{2n-2}=0)-\P(S_{2n}=0)+\frac{1}{2}\P(S_{2n-2}=0)\\
 &=\P(S_{2n-2}=0)-\P(S_{2n}=0).
 \end{align*}
+$$
 Ainsi, la probabilité de l'événement $(T_0= +\infty)$ peut s'écrire à l'aide d'une somme télescopique :
+$$
 \begin{align*}
 \P(T_0=+\infty)
 &=1-\sum_{n=1}^\infty\P(T_0=2n)\\
@@ -794,12 +839,15 @@ Ainsi, la probabilité de l'événement $(T_0= +\infty)$ peut s'écrire à l'aid
 &=\lim_{N\to\infty}\P(S_{2N}=0)\\
 &=\lim_{N\to\infty}\frac{1}{4^N}\binom{2N}{N}.
 \end{align*}
-En utilisant la formule de Stirling, on obtient l'équivalence
+$$
+En utilisant la formule de Stirling^[$n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n$ quand $n\to +\infty$], on obtient l'équivalence
+$$
 \begin{align*}
 \frac{1}{4^N}\binom{2N}{N} &= \frac{1}{4^N}\frac{(2N)!}{N!N!}
 \sim  \frac{1}{4^N}\frac{(2N)^{2N}\sqrt{4\pi N}e^{-2N}}{(N^{N}\sqrt{2\pi N}e^{-N})^2}
 = \frac{1}{\sqrt{\pi N}},
 \end{align*}
+$$
 donc on a bien $\P(T_0=+\infty)=0$.
 :::
 
@@ -859,11 +907,13 @@ $$
 On peut remarquer directement que $p_a=0$ et $p_b=1$ puisque dans ces deux situations, le jeu ne démarre pas, la ruine est impossible dans le premier cas, et certaine dans le second.
 
 Nous allons obtenir une formule de récurrence sur les $p_x$. Si $b<x<a$, on a par la formule des probabilités totales
+$$
 \begin{align*}
 p_x&=\P(R_x)\\
 &=\P(R_x|S_1=x+1)\P(S_1=x+1)+\P(R_x|S_1=x-1)\P(S_1=x-1)\\
 &=\P(R_{x+1})\frac{1}{2}+\P(R_{x-1})\frac{1}{2},
 \end{align*}
+$$
 en utilisant la stationnarité. On obtient ainsi que $(p_x)_{a<x< b}$ est une suite récurrente linéaire^[Une suite $(u_n)_{n \in {\mathbb N}}$ est dite **récurrente linéaire d'ordre $2$** s'il existe $(a,b)\in\mathbb{R}\times\mathbb{R}^*$ tel que, pour entier $n$, on a 
 $$
 u_{n+2} = a u_{n+1} + b u_n .
@@ -876,6 +926,7 @@ Si le polynôme caractéristique admet une racine double $r$, alors il existe de
 $$
 u_n = (\alpha  + \beta n) r^n.
 $$] d'ordre $2$, de polynôme caractéristique $X^2-2X+1=(X-1)^2$.  Ainsi $p_x=\alpha +\beta x$. On identifie $\alpha$ et $\beta$ avec les conditions extrémales $p_a=0$ et $p_b=1$
+$$
 \begin{align*}
 \left\{\begin{array}{rcl}
 p_a=0&=&\alpha+\beta a\\
@@ -889,6 +940,7 @@ p_b=1&=&\alpha+\beta b
 \end{array}
 \right.
 \end{align*}
+$$
 
 Ainsi la probabilité de ruine partant de $x$ vaut
 $$
@@ -914,6 +966,7 @@ En effet, il est clair que $d_a=d_b=0$, et si $a<x<b$, alors on a $d_x=\E(T_a\we
 &=\frac{1}{2}\P(T_a\wedge T_b=+\infty|S_0=x)
 \end{align*}
 par les propriétés de Markov et de stationnarité. Donc $\P(T_a\wedge T_b=+\infty|S_0=x+1)>0$. Ainsi, les membres de gauche et de droite de l'équation $d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1$ valent tous les deux $+\infty$, et l'égalité est vraie. On montrerait de même que $\P(T_a\wedge T_b=+\infty|S_0=x)>0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x-1)>0$, et par contraposée et décalage d'indices que $\P(T_a\wedge T_b=+\infty|S_0=x)=0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x+1)=\P(T_a\wedge T_b=+\infty|S_0=x-1)=0$. Plaçons nous dans ce dernier cas. On a donc
+$$
 \begin{align*}
 d_x&=\E(T_a\wedge T_b)\\
 &=\sum_{k=1}^\infty k \P(T_a\wedge T_b=k|S_0=x)\\
@@ -924,8 +977,9 @@ d_x&=\E(T_a\wedge T_b)\\
 &=1+\frac{1}{2}\E(T_a\wedge T_b|S_0=x+1)+\frac{1}{2}\E(T_a\wedge T_b|S_0=x-1)\\
 &=1+\frac{1}{2}(d_{x+1}+d_{x-1}).
 \end{align*}
-%
+$$
 Cherchons une solution particulière sous la forme $cn^2$ (puisque les constantes et les multiples de $n$ sont solutions de l'équation homogène) :
+$$
 \begin{align*}
 cn^2=\frac{1}{2}(c(n+1)^2+c(n-1)^2)+1
 &\Leftrightarrow
@@ -935,10 +989,11 @@ cn^2=cn^2+c+1\\
 &\Leftrightarrow
 c=-1.
 \end{align*}
-%
+$$
 Ansi, $d$ est la somme d'une solution homogène et d'une solution particulière, donc
 $$d_x=\alpha +\beta x-x^2.$$
 En utilisant $d_a=d_b=0$, on trouve $\alpha$ et $\beta$
+$$
 \begin{align*}
 \left\{\begin{array}{rcl}
 d_a=0&=&\alpha+\beta a-a^2\\
@@ -952,6 +1007,7 @@ d_b=0&=&\alpha+\beta b-b^2
 \end{array}
 \right.
 \end{align*}
+$$
 Finalement, on obtient que $d_x=-ab+x(a+b)-x^2$. 
 
 En particulier, si $x=0$ et $b$ tend vers $-\infty$, on obtient que $\E[T_a]=+\infty$. On sait que la marche partant de $0$ atteindra $a$ presque sûrement en temps fini, cependant ce temps est en moyenne infini.
