@@ -4,15 +4,15 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: true
+correction: false
 ---
 
-Le but de ce TP est de faire différentes simulations liées aux marches aléatoires. 
+Le but de ce TP est de faire différentes simulations liées aux marches aléatoires.
 
 
 ## Marche aléatoire simple symétrique
 
-On rappelle qu'une marche aléatoire simple symétrique est une suite $(S_n)$ telle que $S_0=x$ est déterministe et 
+On rappelle qu'une marche aléatoire simple symétrique est une suite $(S_n)$ telle que $S_0=x$ est déterministe et
 $$
 S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 $$
@@ -43,8 +43,8 @@ def marche(x, N):
     """
     # Generate random steps (-1 or 1) with equal probability
     X = np.random.choice([-1, 1], size=N, p=[0.5, 0.5])
-    
-    # Calculate the cumulative sum of steps and add to initial value
+
+    # Calculate the cumulative sum of steps and add it to the initial value
     S = x + np.cumsum(np.insert(X, 0, 0))
 
     return S
@@ -59,8 +59,10 @@ def marche(x, N):
 
 ```{python}
 #| layout-ncol: 1
+#| fig-align: center
+#| fig-width: 2
 #| echo: true
- 
+
 import matplotlib.pyplot as plt
 
 N = 100
@@ -68,10 +70,11 @@ N = 100
 S = [marche(0, N) for _ in range(4)]
 absc = np.arange(N + 1)
 
+colors= ['tomato', 'dodgerblue', 'seagreen', 'darkorange']
 # Plot the random walks
-plt.figure()
-for s in S:
-    plt.plot(absc, s, marker='o', markersize=3, linestyle='-')
+fig, ax = plt.subplots(figsize=(10, 5))
+for i, s in enumerate(S):
+    ax.plot(absc, s, marker='o', markersize=3, linestyle='-', linewidth=2, color=colors[i])
 
 plt.xlabel('Steps')
 plt.ylabel('Value')
@@ -90,7 +93,7 @@ plt.show()
 ```{python}
 #| layout-ncol: 1
 #| echo: true
- 
+
 import numpy as np
 
 def ruine(x, a, b):
@@ -121,31 +124,44 @@ Par exemple, pour simuler des trajectoires partant d'une fortune initiale de $S_
 ```{python}
 #| layout-ncol: 1
 #| echo: true
- 
+
 print(ruine(5, 10, 0))
 ```
 
 ::::
 
-4. Tracer quelques trajectoires du jeu pour $x=10$, $a=20$, $b=0$.
+1. Tracer quelques trajectoires du jeu pour $x=10$, $a=20$, $b=0$.
 
 ::: {.content-hidden unless-meta="correction"}
 #### [Solution]{style="color:red;"}
 
 ```{python}
 #| layout-ncol: 1
+#| fig-align: center
+#| fig-width: 2
 #| echo: true
- 
+
 # Number of trajectories
 num_trajectories = 4
 
-plt.figure()
+# Plot the random walks
+fig, ax = plt.subplots(figsize=(10, 5))
+
+colors= ['tomato', 'dodgerblue', 'seagreen', 'darkorange']
+
+a=0
+b=20
+
+ax.axhline(y=a, color='black', linestyle='--', linewidth=2)
+ax.axhline(y=b, color='black', linestyle='--', linewidth=2)
 
 # Generate and plot trajectories
 for i in range(num_trajectories):
     M = ruine(10, 20, 0)
-    plt.plot(np.arange(len(M)), M, marker='o', linestyle='-')
+    ax.plot(np.arange(len(M)), M, marker='o', markersize=3, linestyle='-', linewidth=2, color=colors[i])
+    ax.plot(len(M)-1, M[-1], marker='o', markersize=7, linestyle='-', linewidth=2, color=colors[i])
 
+ax.set_ylim(-5, 25)
 plt.xlabel('Steps')
 plt.ylabel('Value')
 plt.title('Random Walks until hitting 20 or 0')
@@ -165,7 +181,7 @@ plt.show()
 ```{python}
 #| layout-ncol: 1
 #| echo: true
- 
+
 NMC = 1000
 proba = np.zeros(NMC)
 for n in range(NMC):
@@ -208,7 +224,7 @@ La valeur théorique de $-ab+x(a+b)-x^2=100$ est bien dans l'intervalle de confi
 
 ## Mouvement brownien
 
-On rappelle que le mouvement Brownien $(B_t)_{t\in[0,1]}$ peut s'obtenir comme la limite de 
+On rappelle que le mouvement Brownien $(B_t)_{t\in[0,1]}$ peut s'obtenir comme la limite de
 $$
 B^N_t  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=1}^{\lfloor Nt \rfloor} X_k.
 $$
@@ -223,6 +239,8 @@ lorsque $N$ tend vers l'infini, où $(S_n)$ est une marche aléatoire simple sym
 
 ```{python}
 #| layout-ncol: 1
+#| fig-align: center
+#| fig-width: 2
 #| echo: true
 
 # Generate a random walk with 100,000 steps
@@ -252,14 +270,14 @@ plt.show()
 # Plot B
 B = S / np.sqrt(100000)
 plt.plot(np.linspace(0, 1, 100001), B)
-plt.title('B')
+plt.title('B100000')
 plt.axvspan(0, 0.001, color='gray', alpha=0.2)
 plt.axvspan(0, 0.01, color='gray', alpha=0.2)
 plt.axvspan(0, 0.1, color='gray', alpha=0.2)
 plt.show()
 ```
 
-On voit dans chaque graphique que les premiers $10\%$ de la trajectoire correspondent à la trajectoire précédente compressée (zones grisées). Le caractère discret est bien visible sur les deux premières trajectoires, puis on le le distingue plus à l'oeil sur les suivantes.
+On voit dans chaque graphique que les premiers $10\%$ de la trajectoire correspondent à la trajectoire précédente compressée (zones grisées). Le caractère discret est bien visible sur les deux premières trajectoires, puis on ne le distingue plus à l'œil sur les dernières.
 
 :::
 
@@ -275,9 +293,9 @@ Le paramètre $\mu$ s'appelle la *dérive* et le paramètre $\sigma$ la *volatil
 
 
 1. Simuler une trajectoire du mouvement Brownien avec un pas de discrétisation de $N=10\ 000$. En utilisant uniquement ce même tirage pour tous jeux de paramètres, tracer sur un même graphique les trajectoires d'un actif risqué $(S_t)_{0\leq t\leq 1}$ qui évolue suivant le modèle de Black et Scholes pour chacun des jeux de paramètres suivants:
+   - $\sigma=10\%$ et $\mu=0\%$, $\mu=1\%$, $\mu=5\%$, $\mu=10\%$, $\mu=20\%$, $\mu=50\%$.
 
-
-    - $\sigma=10\%$ et $\mu=0\%$, $\mu=1\%$, $\mu=5\%$, $\mu=10\%$, $\mu=20\%$, $\mu=50\%$.
+   - $\mu=20\%$ et $\sigma=1\%$, $\sigma=2\%$, $\sigma=5\%$, $\sigma=10\%$, $\sigma=15\%$, $\sigma=20\%$
 
 ::: {.content-hidden unless-meta="correction"}
 #### [Solution]{style="color:red;"}
@@ -319,10 +337,8 @@ plt.legend()
 plt.grid(True)
 plt.show()
 ```
-
 :::
 
-    - $\mu=20\%$ et $\sigma=1\%$, $\sigma=2\%$, $\sigma=5\%$, $\sigma=10\%$, $\sigma=15\%$, $\sigma=20\%$
 
 
 ::: {.content-hidden unless-meta="correction"}
