@@ -1,8 +1,8 @@
 \documentclass[11pt]{td_um}
 
 %------------------------------
-%\def\version{cor}
-\def\version{eno}
+\def\version{cor}
+%\def\version{eno}
 %------------------------------
 
 \input{../../common/header.tex}
@@ -27,7 +27,7 @@
 
 
 \begin{exo}{} % loi de S_n
-Soit $(S_n)$ une marche al\'eatoire issue de $S_0=0$. 
+Soit $(S_n)$ une marche aéatoire issue de $S_0=0$. 
 \begin{enumerate}
     \item  Calculer la loi de $S_1$, $S_2$ et $S_3$.
 %--------------------------------------------
@@ -59,10 +59,10 @@ Soit $(S_n)$ une marche al\'eatoire issue de $S_0=0$.
 
 
 \begin{exo}{} % Scrutin
-Cent personnes font la queue \`a un guichet de cin\'ema. La place co\^ute $5$~\euro{} et 60 personnes ont un billet de $5$~\euro{} tandis que les 40 autres ont des billets de $10$~\euro{}. Combien faut-il pr\'evoir de billets de $5$~\euro{} en caisse pour que toutes les spectatrices et les spectateurs soient servis dans leur ordre d'arriv\'ee avec une probabilit\'e d'au moins $95\%$?
+Cent personnes font la queue à un guichet de cinéma. La place coûte $5$~\euro{} et 60 personnes ont un billet de $5$~\euro{} tandis que les 40 autres ont des billets de $10$~\euro{}. Combien faut-il prévoir de billets de $5$~\euro{} en caisse pour que toutes les spectatrices et les spectateurs soient servis dans leur ordre d'arrivée avec une probabilité d'au moins $95\%$?
 %--------------------------------------------
 \cor{
-On modélise l'argent en caisse par une marche aléatoire. Soit $S_n$ le  nombre de billets de $5$\euro{} en caisse après le passage de la $n$-ème personne. On a $S_0=x$ inconnue et $S_{100}=60-40+x=20+x$ puisque $60$ personnes ont payé avec un billet de $5$\euro{} et qu'il a fallu rendre la monnaie au $40$ personnes payant avec un billet de $10$\euro{}. 
+On modélise l'argent en caisse par les chemins d'une marche aléatoire. Mais attention, ici la loi des incréments n'est pas i.i.d.: c'est un tirage sans remise dans une population de 60 $+1$ contre 40 $-1$. Soit donc $S_n$ le nombre de billets de $5$\euro{} en caisse après le passage de la $n$-ème personne. On a $S_0=x$ inconnue et $S_{100}=60-40+x=20+x$ puisque $60$ personnes ont payé avec un billet de $5$\euro{} et qu'il a fallu rendre la monnaie au $40$ personnes payant avec un billet de $10$\euro{}. 
 
 Un tirage où toutes les spectatrices et les spectateurs sont servis correspond à un chemin de $(0,x)$ à $(100,20+x)$ qui ne touche pas $-1$. Dénombrons ces chemins. Le nombre de chemins de  $(0,x)$ à $(100,20+x)$ qui ne touchent pas $-1$ est égal
 \begin{itemize}
@@ -70,7 +70,7 @@ Un tirage où toutes les spectatrices et les spectateurs sont servis correspond 
 \item au nombre total de chemins de $(0,x+1)$ à $(100,20+x+1)$ moins le nombre de chemins de $(0,x+1)$ à $(100,20+x+1)$ qui passent par $0$;
 \item au nombre total de chemins de $(0,x+1)$ à $(100,20+x+1)$ moins le nombre total de chemins de $(0,x+1)$ à $(100,-(21+x))$ par le principe de réflexion.
 \end{itemize}
-La probabilité de satisfaire tout le monde est alors le nombre de chemins ci-dessus divisé par le nombre total de chemins de  $(0,x)$ à $(100,20+x)$puisqu'ils sont tous équiprobables. On obtient ainsi que cette probabilité vaut
+La probabilité de satisfaire tout le monde est alors le nombre de chemins ci-dessus divisé par le nombre total de chemins de  $(0,x)$ à $(100,20+x)$ puisqu'ils sont tous équiprobables (cela revient à choisir une permutation de l'ordre de passage). On obtient ainsi que cette probabilité vaut
 \begin{align*}
 p&=\frac{\binom{100}{60}-\binom{100}{50+11+x}}{\binom{100}{60}}\\
 &=1-\frac{60!40!100!}{100!(61+x)!(39-x)!}\\
@@ -95,14 +95,14 @@ On constate qu'à partir de $x=5$ cette probabilité dépasse $95\%$.
 
 
 \begin{exo}{} %variantes de la réflexion
-Si $a$ et $b$ sont deux entiers strictement positifs, montrer qu'il y a autant de chemins de $0$ \`a $a+b$ que de chemins de m\^eme longueur de $0$ \`a $a-b$ passant par $a$.
+Si $a$ et $b$ sont deux entiers strictement positifs, montrer qu'il y a autant de chemins de $0$ à $a+b$ que de chemins de même longueur de $0$ à $a-b$ passant par $a$.
 %-----------------------
 \cor{
-Le nombre de chemins de $(0,0)$ \`a $(n,a+b)$  est égal
+Le nombre de chemins de $(0,0)$ à $(n,a+b)$  est égal
 \begin{itemize}
-\item au nombre de chemins de $(0,-a)$ \`a $(n,b)$ par translation verticale;
-\item au nombre de chemins de $(0,-a)$ \`a $(n,-b)$ passant par $0$ par le principe de réflexion, puisque $a$ et $b$ ont le même signe;
-\item au nombre de chemins de $(0,0)$ \`a $(n,a-b)$ passant par $a$ par translation verticale.
+\item au nombre de chemins de $(0,-a)$ à $(n,b)$ par translation verticale;
+\item au nombre de chemins de $(0,-a)$ à $(n,-b)$ passant par $0$ par le principe de réflexion, puisque $a$ et $b$ ont le même signe;
+\item au nombre de chemins de $(0,0)$ à $(n,a-b)$ passant par $a$ par translation verticale.
 \end{itemize}
 }
 %-----------------------
@@ -110,20 +110,20 @@ Le nombre de chemins de $(0,0)$ \`a $(n,a+b)$  est égal
 
 
 \begin{exo}{} %Jeux
- Une joueuse dispose de $10$~\euro{} pour jouer \`a une machine \`a sous. A chaque partie, elle met $1$~\euro{} dans la machine et celle-ci rend $2$~\euro{} ou rien avec \'equiprobabilit\'e.
+ Une joueuse dispose de $10$~\euro{} pour jouer à une machine à sous. A chaque partie, elle met $1$~\euro{} dans la machine et celle-ci rend $2$~\euro{} ou rien avec équiprobabilité.
  \begin{enumerate}
-     \item  Mod\'eliser la fortune de la  joueuse par une marche al\'eatoire.
+     \item  Modéliser la fortune de la  joueuse par une marche aéatoire.
 %--------------------------------------------
          \cor{
-             Mod\'elisons la fortune de la  joueuse par une marche al\'eatoire. Soit $S_n$ la fortune de la joueuse après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
+             Modélisons la fortune de la  joueuse par une marche aéatoire. Soit $S_n$ la fortune de la joueuse après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
              \begin{align*}
                  \bbP(X_1=-1+2)=\bbP(X_1=-1+0)=\frac{1}{2}.
              \end{align*}
              Donc $(S_n)_{n\geq 0}$ est bien une marche aléatoire simple symétrique.
          }
 %--------------------------------------------
-         Soit $N$ le nombre de parties jou\'ees jusqu'\`a la ruine de la joueuse.
-     \item  Quelle est la parit\'e de $N$? Quelle valeur minimale peut-il prendre? 
+         Soit $N$ le nombre de parties jouées jusqu'à la ruine de la joueuse.
+     \item  Quelle est la parité de $N$? Quelle valeur minimale peut-il prendre? 
 %--------------------------------------------
          \cor{
              Comme la richesse initiale est paire, la joueuse ne peut être ruinée qu'en un nombre pair de parties. De plus, comme elle perd au maximum $1$ à chaque partie, elle ne peut pas être ruinée avant la fin de la $10$-ème partie.
@@ -152,7 +152,7 @@ Le nombre de chemins de $(0,0)$ \`a $(n,a+b)$  est égal
                  &=\frac{1}{2^{2n}}\big(\binom{2n-1}{n-5}-\binom{2n-1}{n-6}\big)\\
                  &=\frac{1}{2^{2n}}\frac{(2n-1)!}{(n-6)!(n+4)!}(\frac{1}{n-5}-\frac{1}{n+5})\\
                  &=\frac{10}{2^{2n}}\frac{(2n-1)!}{(n-5)!(n+5)!}\\
-                 &=\frac{5}{n2^{2n}}C^{n+5}_{2n}.
+                 &=\frac{5}{n2^{2n}}\binom{n+5}{2n}.
              \end{align*}
          }
 %--------------------------------------------
@@ -173,22 +173,22 @@ Donc la probabilité que les marches se retrouvent au même endroit est exacteme
 
 
 \begin{exo}{} % 
-Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une pi\`ece \'equilibr\'ee. Avant chanque lancer, les deux joueurs posent chacun $1$~\euro{} sur la table; si le tirage donne pile, Thomas empoche les $2$~\euro{}, si c'est face, c'est Julie qui gagne les mises. Au d\'ebut du jeu, Thomas a $10$ pi\`eces de $1$~\euro{}. Il ignore la fortune $x$ de Julie. Le jeu s'arr\^ete d\`es que l'un des deux participants est ruin\'e.
+Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une pi\`ece équilibrée. Avant chaque lancer, les deux joueurs posent chacun $1$~\euro{} sur la table; si le tirage donne pile, Thomas empoche les $2$~\euro{}, si c'est face, c'est Julie qui gagne les mises. Au début du jeu, Thomas a $10$ pi\`eces de $1$~\euro{}. Il ignore la fortune $x$ de Julie. Le jeu s'arrête d\`es que l'un des deux participants est ruiné.
 \begin{enumerate}
-    \item  Mod\'eliser la richesse de Thomas et son \'evolution par une marche al\'eatoire $(S_n)$.
+    \item  Modéliser la richesse de Thomas et son évolution par une marche aéatoire $(S_n)$.
 %--------------------------------------------
         \cor{
-            Mod\'elisons la richesse de Thomas et son \'evolution par une marche al\'eatoire. Soit $S_n$ la richesse de Thomas après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
+            Modélisons la richesse de Thomas et son évolution par une marche aéatoire. Soit $S_n$ la richesse de Thomas après le $n$-ème jeu. On sait que $S_0=10$, et pour tout $n\geq 0$, $S_{n+1}=S_n+X_{n+1}$ où $X_{n}$ représente le gain du $n$-ème jeu. Les variables aléatoires $X_k$ sont indépendantes, de même loi donnée par 
             \begin{align*}
                 \bbP(X_1=-1)=\bbP(X_1=1)=\frac{1}{2}.
             \end{align*}
             Donc $(S_n)_{n\geq 0}$ est une marche aléatoire simple symétrique.
         }
 %--------------------------------------------
-    \item  Mod\'eliser la richesse de Julie et son \'evolution par une marche al\'eatoire $(R_n)$.
+    \item  Modéliser la richesse de Julie et son évolution par une marche aéatoire $(R_n)$.
 %--------------------------------------------
         \cor{
-            Mod\'elisons la richesse de Julie et son \'evolution par une marche al\'eatoire. Quand Thomas perd, Julie gagne, et vice-versa. Donc la richesse de Julie après le $n$-ème jeu vaut $R_n$ avec $R_0=x$ et $R_{n+1}=R_n-X_{n+1}$. Comme $-X_k$ a la même loi que $X_k$, c'est encore une marche aléatoire simple symétrique.
+            Modélisons la richesse de Julie et son évolution par une marche aéatoire. Quand Thomas perd, Julie gagne, et vice-versa. Donc la richesse de Julie après le $n$-ème jeu vaut $R_n$ avec $R_0=x$ et $R_{n+1}=R_n-X_{n+1}$. Comme $-X_k$ a la même loi que $X_k$, c'est encore une marche aléatoire simple symétrique.
         }
 %--------------------------------------------
     \item  Calculer $R_0+S_0$. Quelle est la relation entre $R_n$ et $S_n$ apr\`es $n$ parties?
@@ -197,20 +197,20 @@ Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une 
             A l'instant initial, $S_0+R_0=10+x$. Quand Thomas perd, Julie gagne, et vice-versa, donc pour tout entier $n$, on a encore $R_n+S_n=10+x$, car il n'y a pas d'apport extérieur d'argent ni de perte extérieure d'argent.
         }
 %--------------------------------------------
-        On suppose maintenant que la richesse de Julie est infinie, et que le jeu s'est arr\^et\'e par la ruine de Thomas apr\`es 26 lancers.
-    \item  D\'ecrire la partie par un chemin dont on pr\'ecisera les extr\'emit\'es et les sp\'ecificit\'es.
+        On suppose maintenant que la richesse de Julie est infinie, et que le jeu s'est arrêté par la ruine de Thomas apr\`es 26 lancers.
+    \item  Décrire la partie par un chemin dont on précisera les extrémités et les spécificités.
 %--------------------------------------------
     \cor{
         Une partie se terminant par la ruine de Thomas après $26$ lancers correspond à un chemin de $(0,10)$ à $(26,0)$ qui ne touche pas $0$ avant $26$.
     }
 %--------------------------------------------
-\item  Combien y a-t-il de chemins quelconques ayant les m\^emes extr\'emit\'es?
+\item  Combien y a-t-il de chemins quelconques ayant les mêmes extrémités?
 %--------------------------------------------
     \cor{
         Le nombre total de chemins de $(0,10)$ à $(26,0)$ est $\binom{26}{13-5}=\binom{26}{8}=1\ 562\ 275$.
     }
 %--------------------------------------------
-\item  Combien y a-t-il de chemins possibles correspondant \`a cette partie?
+\item  Combien y a-t-il de chemins possibles correspondant à cette partie?
 %--------------------------------------------
     \cor{
         Le nombre de chemins de $(0,10)$ à $(26,0)$ qui ne touchent pas $0$ avant $26$ est égal
@@ -222,7 +222,7 @@ Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une 
         Ce nombre vaut donc $\binom{25}{8}-\binom{25}{7}=600\ 875$.
     }
 %--------------------------------------------
-    On suppose \`a nouveau que la dur\'ee de jeu $T$ est inconnue
+    On suppose à nouveau que la durée de jeu $T$ est inconnue
 \item Calculer $\mathbb{P}(T=10)$ si la richesse initiale de Julie est $x=15$.
 %-----------------------
     \cor{
@@ -249,7 +249,7 @@ Deux joueurs, Julie et Thomas s'affrontent dans un jeu de pile ou face avec une 
         Donc finalement $\mathbb{P}(T=10)=2^{-10}+\frac{27}{2^{10}}=28\cdot 2^{-10}=0.02734.$
     }
 %-----------------------
-\item Si $x$ est impair que peut-on dire du perdant en fonction de la parit\'e de $T$ ?
+\item Si $x$ est impair que peut-on dire du perdant en fonction de la parité de $T$ ?
 %-----------------------
     \cor{
         Comme la richesse initiale de Thomas est paire, Thomas ne peut perdre qu'en un nombre pair de coups. Si la richesse de Julie est impaire, elle ne peut perdre qu'en un nombre impair de coups. Donc si $T$ est pair, Thomas a perdu, si $T$ est imapair, Julie a perdu.
