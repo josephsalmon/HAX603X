@@ -302,6 +302,8 @@ Le paramètre $\mu$ s'appelle la *dérive* et le paramètre $\sigma$ la *volatil
 
 ```{python}
 #| layout-ncol: 1
+#| fig-align: center
+#| fig-width: 2
 #| echo: true
 
 # Generate a random walk with 10,000 steps
@@ -347,6 +349,8 @@ plt.show()
 Deuxième jeux de paramètres
 ```{python}
 #| layout-ncol: 1
+#| fig-align: center
+#| fig-width: 2
 #| echo: true
 
 # Define parameters
