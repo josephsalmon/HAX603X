@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -406,21 +440,203 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <ol type="1">
 <li>Construire un simulateur de marche aléatoire prenant en entrée la valeur de <span class="math inline">S_0</span> et un horizon de temps <span class="math inline">N</span> et donnant en sortie la suite <span class="math inline">(S_n)_{0\leq n\leq N}</span></li>
 </ol>
+<section id="solution" class="level4">
+<h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> marche(x, N):</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Simulates a random walk.</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co">    x (float): Initial value.</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">    N (int): Number of steps.</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    numpy.ndarray: Array representing the random walk path.</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate random steps (-1 or 1) with equal probability</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.random.choice([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], size<span class="op">=</span>N, p<span class="op">=</span>[<span class="fl">0.5</span>, <span class="fl">0.5</span>])</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the cumulative sum of steps and add it to the initial value</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> x <span class="op">+</span> np.cumsum(np.insert(X, <span class="dv">0</span>, <span class="dv">0</span>))</span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8921d262" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+
+</div>
 <ol start="2" type="1">
 <li>Tracer quelques trajectoires de la marche pour <span class="math inline">x=0</span> et <span class="math inline">N=100</span>.</li>
 </ol>
+</section>
+<section id="solution-1" class="level4">
+<h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">100</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random walks</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> [marche(<span class="dv">0</span>, N) <span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">4</span>)]</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>absc <span class="op">=</span> np.arange(N <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>colors<span class="op">=</span> [<span class="st">'tomato'</span>, <span class="st">'dodgerblue'</span>, <span class="st">'seagreen'</span>, <span class="st">'darkorange'</span>]</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the random walks</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, s <span class="kw">in</span> <span class="bu">enumerate</span>(S):</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    ax.plot(absc, s, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span>colors[i])</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Steps'</span>)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Random Walks'</span>)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="81f978e8" class="cell quarto-layout-panel" data-execution_count="2" data-fig-width="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-3-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="819" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ol start="3" type="1">
 <li>Construire un simulateur du problème de la ruine de la joueuse prenant en entrée la valeur de <span class="math inline">S_0</span>, la plafond de gain <span class="math inline">a</span> et le plancher de perte <span class="math inline">b</span> et donnant en sortie la suite <span class="math inline">(S_n)</span> de l’instant <span class="math inline">n=0</span> au premier instant où la marche touche <span class="math inline">a</span> ou <span class="math inline">b</span>.</li>
 </ol>
+</section>
+<section id="solution-2" class="level4">
+<h4 class="anchored" data-anchor-id="solution-2"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> ruine(x, a, b):</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co">    Simulates a random walk until it hits either a or b.</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co">    Parameters:</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co">    x (float): Initial value.</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co">    a (float): Upper limit.</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co">    b (float): Lower limit.</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co">    Returns:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co">    numpy.ndarray: Array representing the random walk path until it hits a or b.</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>    <span class="cf">assert</span> (x <span class="op">&lt;</span> a) <span class="kw">and</span> (x <span class="op">&gt;</span> b)</span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> [x]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> S[<span class="op">-</span><span class="dv">1</span>] <span class="op">&gt;</span> b <span class="kw">and</span> S[<span class="op">-</span><span class="dv">1</span>] <span class="op">&lt;</span> a:</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>        step <span class="op">=</span> np.random.choice([<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>], p<span class="op">=</span>[<span class="fl">0.5</span>, <span class="fl">0.5</span>])</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>        S.append(S[<span class="op">-</span><span class="dv">1</span>] <span class="op">+</span> step)</span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(S)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="29ec26c7" class="cell quarto-layout-panel" data-execution_count="3" data-layout-ncol="1">
+
+</div>
+<p>Par exemple, pour simuler des trajectoires partant d’une fortune initiale de <span class="math inline">S_0 = 5</span> avec <span class="math inline">a=10</span> et <span class="math inline">b=0</span></p>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruine(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">0</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9ad76381" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>[5 4 3 2 1 2 1 0]</code></pre>
+</div>
+</div>
+</div>
 <ol type="1">
 <li>Tracer quelques trajectoires du jeu pour <span class="math inline">x=10</span>, <span class="math inline">a=20</span>, <span class="math inline">b=0</span>.</li>
 </ol>
+</section>
+<section id="solution-3" class="level4">
+<h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Number of trajectories</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>num_trajectories <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot the random walks</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">5</span>))</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>colors<span class="op">=</span> [<span class="st">'tomato'</span>, <span class="st">'dodgerblue'</span>, <span class="st">'seagreen'</span>, <span class="st">'darkorange'</span>]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>a<span class="op">=</span><span class="dv">0</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>b<span class="op">=</span><span class="dv">20</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>a, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>ax.axhline(y<span class="op">=</span>b, color<span class="op">=</span><span class="st">'black'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="dv">2</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate and plot trajectories</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(num_trajectories):</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    M <span class="op">=</span> ruine(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">0</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>    ax.plot(np.arange(<span class="bu">len</span>(M)), M, marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">3</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span>colors[i])</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>    ax.plot(<span class="bu">len</span>(M)<span class="op">-</span><span class="dv">1</span>, M[<span class="op">-</span><span class="dv">1</span>], marker<span class="op">=</span><span class="st">'o'</span>, markersize<span class="op">=</span><span class="dv">7</span>, linestyle<span class="op">=</span><span class="st">'-'</span>, linewidth<span class="op">=</span><span class="dv">2</span>, color<span class="op">=</span>colors[i])</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>ax.set_ylim(<span class="op">-</span><span class="dv">5</span>, <span class="dv">25</span>)</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Steps'</span>)</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Random Walks until hitting 20 or 0'</span>)</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="15447a3b" class="cell quarto-layout-panel" data-execution_count="5" data-fig-width="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-6-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="810" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ol start="5" type="1">
 <li>Estimer la probabilité de ruine par la méthode de Monte Carlo avec les mêmes paramètres <span class="math inline">x=10</span>, <span class="math inline">a=20</span>, <span class="math inline">b=0</span>.</li>
 </ol>
+</section>
+<section id="solution-4" class="level4">
+<h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>NMC <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>proba <span class="op">=</span> np.zeros(NMC)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(NMC):</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> ruine(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">0</span>)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    proba[n] <span class="op">=</span> (S[<span class="op">-</span><span class="dv">1</span>] <span class="op">==</span> <span class="dv">0</span>)</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>IN <span class="op">=</span> np.mean(proba)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> [IN <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(np.var(proba) <span class="op">/</span> NMC), IN <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(np.var(proba) <span class="op">/</span> NMC)]</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated Probability:"</span>, IN)</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"95% Confidence Interval:"</span>, IC)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="9b868c32" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>Estimated Probability: 0.523
+95% Confidence Interval: [0.4920424840531415, 0.5539575159468586]</code></pre>
+</div>
+</div>
+</div>
+<p>La valeur théorique de <span class="math inline">1/2</span> est bien dans l’intervalle de confiance.</p>
 <ol start="6" type="1">
 <li>Estimer la durée moyenne du jeu par la méthode de Monte Carlo avec les mêmes paramètres <span class="math inline">x=10</span>, <span class="math inline">a=20</span>, <span class="math inline">b=0</span>.</li>
 </ol>
+</section>
+<section id="solution-5" class="level4">
+<h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>NMC <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>duree <span class="op">=</span> np.zeros(NMC)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n <span class="kw">in</span> <span class="bu">range</span>(NMC):</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> ruine(<span class="dv">10</span>, <span class="dv">20</span>, <span class="dv">0</span>)</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>    duree[n] <span class="op">=</span> <span class="bu">len</span>(S) <span class="op">-</span> <span class="dv">1</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>IN <span class="op">=</span> np.mean(duree)</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>IC <span class="op">=</span> [IN <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(np.var(duree) <span class="op">/</span> NMC), IN <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np.sqrt(np.var(duree) <span class="op">/</span> NMC)]</span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated Duration:"</span>, IN)</span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"95% Confidence Interval:"</span>, IC)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="1c519915" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
+<pre><code>Estimated Duration: 101.5
+95% Confidence Interval: [96.41352923264077, 106.58647076735923]</code></pre>
+</div>
+</div>
+</div>
+<p>La valeur théorique de <span class="math inline">-ab+x(a+b)-x^2=100</span> est bien dans l’intervalle de confiance.</p>
+</section>
 </section>
 <section id="mouvement-brownien" class="level2">
 <h2 class="anchored" data-anchor-id="mouvement-brownien">Mouvement brownien</h2>
@@ -430,6 +646,80 @@ B^N_t  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=1
 <ol type="1">
 <li>Simuler une marche aléatoire <span class="math inline">(S_n)</span> à <span class="math inline">100\ 000</span>. En utilisant les <span class="math inline">N</span> premières coordonnées de cette marche, tracer une trajectoire de <span class="math inline">B^N</span> sur <span class="math inline">[0,1]</span> pour <span class="math inline">N=100</span>, <span class="math inline">N=1\ 000</span>, <span class="math inline">N=10\ 000</span> et <span class="math inline">N=100\ 000</span>. Commenter.</li>
 </ol>
+<section id="solution-6" class="level4">
+<h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random walk with 100,000 steps</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> marche(<span class="dv">0</span>, <span class="dv">100000</span>)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot B100</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>B100 <span class="op">=</span> S[:<span class="dv">101</span>] <span class="op">/</span> np.sqrt(<span class="dv">100</span>)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>plt.plot(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">101</span>), B100)</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'B100'</span>)</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot B1000</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>B1000 <span class="op">=</span> S[:<span class="dv">1001</span>] <span class="op">/</span> np.sqrt(<span class="dv">1000</span>)</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>plt.plot(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1001</span>), B1000)</span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'B1000'</span>)</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot B10000</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>B10000 <span class="op">=</span> S[:<span class="dv">10001</span>] <span class="op">/</span> np.sqrt(<span class="dv">10000</span>)</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>plt.plot(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10001</span>), B10000)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'B10000'</span>)</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.01</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span>
+<span id="cb11-24"><a href="#cb11-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-25"><a href="#cb11-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot B</span></span>
+<span id="cb11-26"><a href="#cb11-26" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> S <span class="op">/</span> np.sqrt(<span class="dv">100000</span>)</span>
+<span id="cb11-27"><a href="#cb11-27" aria-hidden="true" tabindex="-1"></a>plt.plot(np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">100001</span>), B)</span>
+<span id="cb11-28"><a href="#cb11-28" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'B100000'</span>)</span>
+<span id="cb11-29"><a href="#cb11-29" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.001</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.01</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
+<span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="70ae5e9c" class="cell quarto-layout-panel" data-execution_count="8" data-fig-width="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-9-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="582" height="431"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-9-output-2.png" class="quarto-figure quarto-figure-center figure-img" width="582" height="431"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-9-output-3.png" class="quarto-figure quarto-figure-center figure-img" width="590" height="431"></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-9-output-4.png" class="quarto-figure quarto-figure-center figure-img" width="582" height="431"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<p>On voit dans chaque graphique que les premiers <span class="math inline">10\%</span> de la trajectoire correspondent à la trajectoire précédente compressée (zones grisées). Le caractère discret est bien visible sur les deux premières trajectoires, puis on ne le distingue plus à l’œil sur les dernières.</p>
+</section>
 </section>
 <section id="un-modèle-de-processus-plus-avancé" class="level2">
 <h2 class="anchored" data-anchor-id="un-modèle-de-processus-plus-avancé">Un modèle de processus plus avancé</h2>
@@ -443,11 +733,90 @@ S_t=\exp\big(\mu t-\frac{\sigma^2}{2}t+\sigma B_t\big),\qquad 0\leq t\leq1.
 <li><p><span class="math inline">\mu=20\%</span> et <span class="math inline">\sigma=1\%</span>, <span class="math inline">\sigma=2\%</span>, <span class="math inline">\sigma=5\%</span>, <span class="math inline">\sigma=10\%</span>, <span class="math inline">\sigma=15\%</span>, <span class="math inline">\sigma=20\%</span></p></li>
 </ul></li>
 </ol>
+<section id="solution-7" class="level4">
+<h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate a random walk with 10,000 steps</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>S <span class="op">=</span> marche(<span class="dv">0</span>, <span class="dv">10000</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the scaled random walk</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> S <span class="op">/</span> np.sqrt(<span class="dv">10000</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="2dac35f4" class="cell quarto-layout-panel" data-execution_count="9" data-fig-width="2" data-layout-ncol="1">
+
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>sigma <span class="op">=</span> <span class="fl">0.1</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>mu_values <span class="op">=</span> [<span class="dv">0</span>, <span class="fl">0.01</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.5</span>]</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10001</span>)</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Brownian motion paths with different mu values</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>BS_m <span class="op">=</span> []</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> mu <span class="kw">in</span> mu_values:</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    BS_m.append(np.exp((mu <span class="op">-</span> sigma<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> time <span class="op">+</span> sigma <span class="op">*</span> B))</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Brownian motion paths</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, mu <span class="kw">in</span> <span class="bu">enumerate</span>(mu_values):</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(time, BS_m[i], label<span class="op">=</span><span class="ss">f'mu=</span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Brownian Motion Paths with sigma=</span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="60cdc527" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<p><img src="TP6_files/figure-html/cell-11-output-1.png" width="589" height="449"></p>
+</div>
+</div>
+</div>
+</section>
+<section id="solution-8" class="level4">
+<h4 class="anchored" data-anchor-id="solution-8"><span style="color:red;">Solution</span></h4>
+<p>Deuxième jeux de paramètres</p>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>mu <span class="op">=</span> <span class="fl">0.2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>sigma_values <span class="op">=</span> [<span class="fl">0.01</span>, <span class="fl">0.02</span>, <span class="fl">0.05</span>, <span class="fl">0.1</span>, <span class="fl">0.15</span>, <span class="fl">0.2</span>]</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>time <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">10001</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Brownian motion paths with different mu values</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>BS_s <span class="op">=</span> []</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> sigma <span class="kw">in</span> sigma_values:</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>    BS_s.append(np.exp((mu <span class="op">-</span> sigma<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> <span class="dv">2</span>) <span class="op">*</span> time <span class="op">+</span> sigma <span class="op">*</span> B))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot Brownian motion paths</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>plt.figure()</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, sigma <span class="kw">in</span> <span class="bu">enumerate</span>(sigma_values):</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>    plt.plot(time, BS_s[i], label<span class="op">=</span><span class="ss">f'sigma=</span><span class="sc">{</span>sigma<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f'Brownian Motion Paths with mu=</span><span class="sc">{</span>mu<span class="sc">}</span><span class="ss">'</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Time'</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Value'</span>)</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="db52504c" class="cell quarto-layout-panel" data-execution_count="11" data-fig-width="2" data-layout-ncol="1">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP6_files/figure-html/cell-12-output-1.png" class="quarto-figure quarto-figure-center figure-img" width="589" height="449"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
 <ol start="3" type="1">
 <li>Quel est l’effet des changements de dérive et de volatilité sur l’aspect des trajectoires? Comment l’expliquer ?</li>
 </ol>
+</section>
+<section id="solution-9" class="level4">
+<h4 class="anchored" data-anchor-id="solution-9"><span style="color:red;">Solution</span></h4>
+<p>On constate que la dérive correspond à la “pente” de la trajectoire : plus elle est élevée, plus la trajectoire monte, sans influencer les fluctuations. La volatilité correspond à l’intensité de fluctuations, plus elle est élevée, plus les fluctuations à la hausse où à la baisse sont importantes.</p>
 
 
+</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->
@@ -891,7 +1260,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../TP/TP5.html" class="pagination-link" aria-label="TP5: Méthode de Monte-Carlo">
+      <a href="../TP/TP5.html" class="pagination-link  aria-label=" tp5:="" méthode="" de="" monte-carlo"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">TP5: Méthode de Monte-Carlo</span>
       </a>          
   </div>

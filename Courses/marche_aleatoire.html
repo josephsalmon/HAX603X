@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.4.549">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -999,27 +999,35 @@ p &amp;=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+
 <h3 class="anchored" data-anchor-id="sec-chap03-markov">Propriété de Markov et stationnarité</h3>
 <p>Les deux propriétés suivantes sont des propriétés du processus et non plus seulement des trajectoires. Elles énoncent une certaine forme d’invariance de la marche au cours du temps. La première est une propriété d’absence de mémoire : la position future de la marche ne dépend que de sa position actuelle et pas de la trajectoire qui l’a amenée à cette position.</p>
 <div id="prp-markov" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 6 (Markov)</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span> et pour tous <span class="math inline">(a_0,a_1,\ldots,a_{n+1})\in\mathbb{Z}^{n+2}</span>, on a <span class="math display">\begin{align*}
+<p><span class="theorem-title"><strong>Proposition 6 (Markov)</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span> et pour tous <span class="math inline">(a_0,a_1,\ldots,a_{n+1})\in\mathbb{Z}^{n+2}</span>, on a <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1}&amp; | S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\mathbb{P}(S_{n+1}=a_{n+1}&amp; | S_n=a_n).
-\end{align*}</span></p>
+\end{align*}
+</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Par définition des probabilités conditionnelles, on a <span class="math display">\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Par définition des probabilités conditionnelles, on a <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} &amp;| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(S_{n+1}=a_{n+1}, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)},
-\end{align*}</span> puisque <span class="math inline">S_{n+1}=S_n+X_{n+1}</span>. Remarquons maintenant que <span class="math inline">X_{n+1}</span> est indépendante de <span class="math inline">X_1,\ldots, X_n</span>, donc de <span class="math inline">S_0,\ldots,S_n</span>. On obtient alors <span class="math display">\begin{align*}
+\end{align*}
+</span> puisque <span class="math inline">S_{n+1}=S_n+X_{n+1}</span>. Remarquons maintenant que <span class="math inline">X_{n+1}</span> est indépendante de <span class="math inline">X_1,\ldots, X_n</span>, donc de <span class="math inline">S_0,\ldots,S_n</span>. On obtient alors <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} &amp;| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n)\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\mathbb{P}(X_{n+1}=a_{n+1}-a_n).
-\end{align*}</span> Par ailleurs, par un raisonnement analogue on a <span class="math display">\begin{align*}
+\end{align*}
+</span> Par ailleurs, par un raisonnement analogue on a <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} | S_n=a_n)
 &amp;=\frac{\mathbb{P}(S_{n+1}=a_{n+1},S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n,S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n)\mathbb{P}(S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\mathbb{P}(X_{n+1}=a_{n+1}-a_n),
-\end{align*}</span> d’où le résultat.</p>
+\end{align*}
+</span> d’où le résultat.</p>
 </div>
 <div id="prp-inde" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 7</strong></span> Pour tout <span class="math inline">n &gt; m</span> entiers positifs <span class="math inline">S_n-S_m</span> est indépendant de <span class="math inline">(S_0,S_1,\ldots, S_m)</span>.</p>
@@ -1031,29 +1039,34 @@ S_n-S_m=\sum_{k=m+1}^nX_k,
 </div>
 <p>On a un résultat analogue à la propriété de Markov lorsqu’on regarde deux pas de temps plus éloignés.</p>
 <div id="cor-mark" class="theorem corollary">
-<p><span class="theorem-title"><strong>Corollaire 3</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et pour tous <span class="math inline">(a_0,a_1,\ldots,a_m,a_{n})\in\mathbb{Z}^{m+2}</span>, on a <span class="math display">\begin{align*}
+<p><span class="theorem-title"><strong>Corollaire 3</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et pour tous <span class="math inline">(a_0,a_1,\ldots,a_m,a_{n})\in\mathbb{Z}^{m+2}</span>, on a <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n}=a_{n}&amp; | S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\mathbb{P}(S_{n}=a_{n}&amp; | S_m=a_m).
-\end{align*}</span></p>
+\end{align*}
+</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient <span class="math display">\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient <span class="math display">
+\begin{align*}
 \mathbb{P}(S_{n}=a_{n}&amp;| S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(S_{n}=a_{n},S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(S_{n}-S_m=a_{n}-a_m,S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(S_{n}-S_m=a_{n}-a_m)\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\mathbb{P}(S_{n}-S_m=a_{n}-a_m)\\
 &amp;=\mathbb{P}(S_n=a_n|S_m=a_m),
-\end{align*}</span> en utilisant la propriété des accroissement indépendants.</p>
+\end{align*}
+</span> en utilisant la propriété des accroissement indépendants.</p>
 </div>
 <p>La seconde propriété dite de stationnarité signifie qu’on peut changer l’origine du repère sans influence sur le comportement futur de la marche.</p>
 <div id="prp-statio" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 8 (Sationnarité)</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et <span class="math inline">(a,b)\in\mathbb{Z}^2</span>, on a <span class="math display">
+<p><span class="theorem-title"><strong>Proposition 8 (Stationnarité)</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et <span class="math inline">(a,b)\in\mathbb{Z}^2</span>, on a <span class="math display">
 \mathbb{P}(S_n=b|S_m=a)=\mathbb{P}(S_{n-m}= b-a|S_0= 0).
 </span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>En utilisant l’indépendance des accroissements, on obtient <span class="math display">\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>En utilisant l’indépendance des accroissements, on obtient <span class="math display">
+\begin{align*}
 \mathbb{P}(S_n=b|S_m=a)
 &amp;=\frac{\mathbb{P}(S_n=b,S_m=a)}{\mathbb{P}(S_m=a)}\\
 &amp;=\frac{\mathbb{P}(S_n-S_m=b-a,S_m=a)}{\mathbb{P}(S_m=a)}\\
@@ -1062,7 +1075,8 @@ S_n-S_m=\sum_{k=m+1}^nX_k,
 &amp;=\mathbb{P}(\sum_{k=m+1}^nX_k=b-a)\\
 &amp;=\mathbb{P}(\sum_{k=1}^{n-m}X_k=b-a)\\
 &amp;=\mathbb{P}(S_{n-m}=b-a|S_0=0),
-\end{align*}</span> car les <span class="math inline">(X_n)</span> sont indépendantes et de même loi.</p>
+\end{align*}
+</span> car les <span class="math inline">(X_n)</span> sont indépendantes et de même loi.</p>
 </div>
 </section>
 <section id="sec-chap03-retour" class="level3 page-columns page-full">
@@ -1087,7 +1101,7 @@ T_0=\inf\{n\geq 1; S_n=0\},
 <div>
 
 </div>
-<div id="02460030" class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center" data-execution_count="1">
+<div id="d0b42484" class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center" data-execution_count="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="marche_aleatoire_files/figure-html/cell-2-output-1.png" width="590" height="450"></p>
@@ -1254,15 +1268,18 @@ d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1,
 </span> avec <span class="math inline">d_a=d_b=0</span>.</p>
 <div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span> avec second membre</strong> s’il existe <span class="math inline">(a,b) \in {\mathbb R} \times {\mathbb R}^*</span> et une fonction <span class="math inline">f</span> à valeurs dans <span class="math inline">{\mathbb R}</span> tels que, pour entier <span class="math inline">n</span>, on a <span class="math display">
 u_{n+2} = a u_{n+1} + b u_n  + f(n).
-</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a <span class="math display">\begin{align*}
-\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)&amp;\geq \mathbb{P}(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
+</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a <span class="math display">
+\begin{align*}
+\mathbb{P}(T_a\wedge T_b=+\infty &amp;|S_0=x+1)\\
+&amp; \geq \mathbb{P}(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
 &amp;= \mathbb{P}(T_a\wedge T_b=+\infty|S_1=x,S_0=x+1)\mathbb{P}(S_1=x|S_0=x+1)\\
 &amp;=\frac{1}{2}\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)
-\end{align*}</span> par les propriétés de Markov et de stationnarité. Donc <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)&gt;0</span>. Ainsi, les membres de gauche et de droite de l’équation <span class="math inline">d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1</span> valent tous les deux <span class="math inline">+\infty</span>, et l’égalité est vraie. On montrerait de même que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)&gt;0</span>, et par contraposée et décalage d’indices que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)=0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)=\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)=0</span>. Plaçons nous dans ce dernier cas. On a donc <span class="math display">
+\end{align*}
+</span> par les propriétés de Markov et de stationnarité. Donc <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)&gt;0</span>. Ainsi, les membres de gauche et de droite de l’équation <span class="math inline">d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1</span> valent tous les deux <span class="math inline">+\infty</span>, et l’égalité est vraie. On montrerait de même que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)&gt;0</span>, et par contraposée et décalage d’indices que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)=0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)=\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)=0</span>. Plaçons nous dans ce dernier cas. On a donc <span class="math display">
 \begin{align*}
 d_x&amp;=\mathbb{E}(T_a\wedge T_b)\\
 &amp;=\sum_{k=1}^\infty k \mathbb{P}(T_a\wedge T_b=k|S_0=x)\\
-&amp;=\sum_{k=1}^\infty k \big(\mathbb{P}(T_a\wedge T_b=k|S_1=x+1)\mathbb{P}(S_1=x+1)+\mathbb{P}(T_a\wedge T_b=k|S_1=x-1)\mathbb{P}(S_1=x-1)\big)\\
+&amp;=\sum_{k=1}^\infty k \big(\mathbb{P}(T_a\wedge T_b=k|S_1=x+1)\mathbb{P}(S_1=x+1) \\ &amp;\qquad\qquad +\mathbb{P}(T_a\wedge T_b=k|S_1=x-1)\mathbb{P}(S_1=x-1)\big)\\
 &amp;=\frac{1}{2}\sum_{k=1}^\infty k \mathbb{P}(T_a\wedge T_b=k-1|S_0=x+1)+\frac{1}{2}\sum_{k=1}^\infty k\mathbb{P}(T_a\wedge T_b=k-1|S_0=x-1)\\
 &amp;=\frac{1}{2}\sum_{j=0}^\infty (j+1) \mathbb{P}(T_a\wedge T_b=j|S_0=x+1)+\frac{1}{2}\sum_{j=0}^\infty (j+1)\mathbb{P}(T_a\wedge T_b=j|S_0=x-1)\\
 &amp;=\frac{1}{2}\sum_{j=0}^\infty j \mathbb{P}(T_a\wedge T_b=j|S_0=x+1)+\frac{1}{2}\sum_{j=0}^\infty j\mathbb{P}(T_a\wedge T_b=j|S_0=x-1)+1\\
@@ -1293,7 +1310,9 @@ d_b=0&amp;=&amp;\alpha+\beta b-b^2
 \end{array}
 \right.
 \end{align*}
-</span> Finalement, on obtient que <span class="math inline">d_x=-ab+x(a+b)-x^2</span>.</p>
+</span> Finalement, on obtient que <span class="math display">
+d_x=-ab+x(a+b)-x^2.
+</span></p>
 <p>En particulier, si <span class="math inline">x=0</span> et <span class="math inline">b</span> tend vers <span class="math inline">-\infty</span>, on obtient que <span class="math inline">\mathbb{E}[T_a]=+\infty</span>. On sait que la marche partant de <span class="math inline">0</span> atteindra <span class="math inline">a</span> presque sûrement en temps fini, cependant ce temps est en moyenne infini.</p>
 </section>
 <section id="sec-chap03-MB" class="level2">
@@ -1779,7 +1798,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../Courses/monte_carlo.html" class="pagination-link" aria-label="Méthode de Monte Carlo">
+      <a href="../Courses/monte_carlo.html" class="pagination-link  aria-label=" méthode="" de="" monte="" carlo"="">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Méthode de Monte Carlo</span>
       </a>          
   </div>
