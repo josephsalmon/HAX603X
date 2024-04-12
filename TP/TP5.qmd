@@ -4,7 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: false
+correction: true
 filters:
   - shinylive
 ---
