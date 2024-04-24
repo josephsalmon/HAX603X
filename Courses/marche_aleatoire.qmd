@@ -580,27 +580,34 @@ Les deux propriétés suivantes sont des propriétés du processus et non plus s
 ## Markov
 
 Pour tout $n\in\N$ et pour tous $(a_0,a_1,\ldots,a_{n+1})\in\Z^{n+2}$, on a 
+$$
 \begin{align*}
 \P(S_{n+1}=a_{n+1}& | S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\P(S_{n+1}=a_{n+1}& | S_n=a_n).
 \end{align*}
+$$
 :::
 
 ::: {.proof}
 
 Par définition des probabilités conditionnelles, on a
+$$
 \begin{align*}
 \P(S_{n+1}=a_{n+1} &| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(S_{n+1}=a_{n+1}, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)},
 \end{align*}
+$$
 puisque $S_{n+1}=S_n+X_{n+1}$. Remarquons maintenant que $X_{n+1}$ est indépendante de $X_1,\ldots, X_n$, donc de $S_0,\ldots,S_n$. On obtient alors
+$$
 \begin{align*}
 \P(S_{n+1}=a_{n+1} &| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n)\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &=\P(X_{n+1}=a_{n+1}-a_n).
 \end{align*}
+$$
 Par ailleurs, par un raisonnement analogue on a
+$$
 \begin{align*}
 \P(S_{n+1}=a_{n+1} | S_n=a_n)
 &=\frac{\P(S_{n+1}=a_{n+1},S_n=a_n)}{\P(S_n=a_n)}\\
@@ -608,6 +615,7 @@ Par ailleurs, par un raisonnement analogue on a
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n)\P(S_n=a_n)}{\P(S_n=a_n)}\\
 &=\P(X_{n+1}=a_{n+1}-a_n),
 \end{align*}
+$$
 d'où le résultat.
 :::
 
@@ -628,14 +636,17 @@ On a un résultat analogue à la propriété de Markov lorsqu'on regarde deux pa
 
 ::: {#cor-mark}
 Pour tout $n>m$ entiers positifs et pour tous $(a_0,a_1,\ldots,a_m,a_{n})\in\Z^{m+2}$, on a 
+$$
 \begin{align*}
 \P(S_{n}=a_{n}& | S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\P(S_{n}=a_{n}& | S_m=a_m).
 \end{align*}
+$$
 :::
 
 ::: {.proof}
 Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient
+$$
 \begin{align*}
 \P(S_{n}=a_{n}&| S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(S_{n}=a_{n},S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
@@ -644,6 +655,7 @@ Par un raisonnement analogue à la preuve de la propriété de Markov, on obtien
 &=\P(S_{n}-S_m=a_{n}-a_m)\\
 &=\P(S_n=a_n|S_m=a_m),
 \end{align*}
+$$
 en utilisant la propriété des accroissement indépendants.
 :::
 
@@ -661,6 +673,7 @@ $$
 
 ::: {.proof}
 En utilisant l'indépendance des accroissements, on obtient 
+$$
 \begin{align*}
 \P(S_n=b|S_m=a)
 &=\frac{\P(S_n=b,S_m=a)}{\P(S_m=a)}\\
@@ -671,6 +684,7 @@ En utilisant l'indépendance des accroissements, on obtient
 &=\P(\sum_{k=1}^{n-m}X_k=b-a)\\
 &=\P(S_{n-m}=b-a|S_0=0),
 \end{align*}
+$$
 car les $(X_n)$ sont indépendantes et de même loi.
 :::
 
@@ -960,17 +974,20 @@ $$
 avec $d_a=d_b=0$. 
 
 En effet, il est clair que $d_a=d_b=0$, et si $a<x<b$, alors on a $d_x=\E(T_a\wedge T_b)$. Attention, la variable aléatoire $T_a\wedge T_b$ est à valeurs dans $\N\cup\{+\infty\}$. Si $\P(T_a\wedge T_b=+\infty|S_0=x)>0$, alors $\E(T_a\wedge T_b)=+\infty$. Par ailleurs, partant de $x+1$, on a 
+$$
 \begin{align*}
-\P(T_a\wedge T_b=+\infty|S_0=x+1)&\geq \P(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
+\P(T_a\wedge T_b=+\infty &|S_0=x+1)\\
+& \geq \P(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
 &= \P(T_a\wedge T_b=+\infty|S_1=x,S_0=x+1)\P(S_1=x|S_0=x+1)\\
 &=\frac{1}{2}\P(T_a\wedge T_b=+\infty|S_0=x)
 \end{align*}
+$$
 par les propriétés de Markov et de stationnarité. Donc $\P(T_a\wedge T_b=+\infty|S_0=x+1)>0$. Ainsi, les membres de gauche et de droite de l'équation $d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1$ valent tous les deux $+\infty$, et l'égalité est vraie. On montrerait de même que $\P(T_a\wedge T_b=+\infty|S_0=x)>0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x-1)>0$, et par contraposée et décalage d'indices que $\P(T_a\wedge T_b=+\infty|S_0=x)=0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x+1)=\P(T_a\wedge T_b=+\infty|S_0=x-1)=0$. Plaçons nous dans ce dernier cas. On a donc
 $$
 \begin{align*}
 d_x&=\E(T_a\wedge T_b)\\
 &=\sum_{k=1}^\infty k \P(T_a\wedge T_b=k|S_0=x)\\
-&=\sum_{k=1}^\infty k \big(\P(T_a\wedge T_b=k|S_1=x+1)\P(S_1=x+1)+\P(T_a\wedge T_b=k|S_1=x-1)\P(S_1=x-1)\big)\\
+&=\sum_{k=1}^\infty k \big(\P(T_a\wedge T_b=k|S_1=x+1)\P(S_1=x+1) \\ &\qquad\qquad +\P(T_a\wedge T_b=k|S_1=x-1)\P(S_1=x-1)\big)\\
 &=\frac{1}{2}\sum_{k=1}^\infty k \P(T_a\wedge T_b=k-1|S_0=x+1)+\frac{1}{2}\sum_{k=1}^\infty k\P(T_a\wedge T_b=k-1|S_0=x-1)\\
 &=\frac{1}{2}\sum_{j=0}^\infty (j+1) \P(T_a\wedge T_b=j|S_0=x+1)+\frac{1}{2}\sum_{j=0}^\infty (j+1)\P(T_a\wedge T_b=j|S_0=x-1)\\
 &=\frac{1}{2}\sum_{j=0}^\infty j \P(T_a\wedge T_b=j|S_0=x+1)+\frac{1}{2}\sum_{j=0}^\infty j\P(T_a\wedge T_b=j|S_0=x-1)+1\\
@@ -1008,7 +1025,10 @@ d_b=0&=&\alpha+\beta b-b^2
 \right.
 \end{align*}
 $$
-Finalement, on obtient que $d_x=-ab+x(a+b)-x^2$. 
+Finalement, on obtient que 
+$$
+d_x=-ab+x(a+b)-x^2.
+$$ 
 
 En particulier, si $x=0$ et $b$ tend vers $-\infty$, on obtient que $\E[T_a]=+\infty$. On sait que la marche partant de $0$ atteindra $a$ presque sûrement en temps fini, cependant ce temps est en moyenne infini.
 
