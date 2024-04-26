@@ -4,7 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: false
+correction: true
 ---
 
 Le but de ce TP est de faire différentes simulations liées aux marches aléatoires.

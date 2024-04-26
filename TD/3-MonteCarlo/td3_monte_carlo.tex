@@ -418,12 +418,12 @@
 
 
 \begin{exo}{} %
-    On veut utiliser la m\'ethode de Monte Carlo pour calculer le prix $C$ d'une option européenne d'achat (call) au temps 0 dans le mod\`ele de Black et Scholes. Une option européenne est un actif financier caractérisé par un prix d'exercice $K$, une date échéance $T$ et un actif risqué de valeur initiale $x$ suivant le mod\`ele de Black et Scholes. Son prix s'exprime par la formule
+    On veut utiliser la méthode de Monte Carlo pour calculer le prix $C$ d'une option européenne d'achat (call) au temps 0 dans le mod\`ele de Black et Scholes. Une option européenne est un actif financier caractérisé par un prix d'exercice $K$, une date échéance $T$ et un actif risqué de valeur initiale $x$ suivant le mod\`ele de Black et Scholes. Son prix s'exprime par la formule
     \begin{eqnarray*}
         C&=&\mathbb{E}\left[\left(x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}}-K\mathrm{e}^{-rT}\right)_+\right],
 %&=&\mathbb{E}\left[(K\mathrm{e}^{-rT}-x\mathrm{e}^{\sigma\sqrt{T}X-\frac{\sigma^2T}{2}})\one_{\{X\leq -d_2\}}\right]
     \end{eqnarray*}
-    où $X$ est une variable al\'eatoire de loi normale centr\'ee r\'eduite et $(\cdot)_+$ désigne la partie positive,
+    où $X$ est une variable aéatoire de loi normale centrée réduite et $(\cdot)_+$ désigne la partie positive,
     $r$ est le taux d'intérêt sans risque, et $\sigma$ la volatilité du modèle de Black et Scholes.
     \begin{enumerate}
         \item Donner un estimateur basique de $C$.
@@ -447,7 +447,7 @@
             \begin{align*}
                 C=\frac{x\mathrm{e}^{-rT}}{\sqrt{2\pi}}\mathbb{E}\Big[\frac{\mathrm{e}^{\sigma\sqrt{2TU}}-1}{\sqrt{2U}}\Big],
             \end{align*}
-            o\`u $U$ est une variable al\'eatoire de loi exponentielle de param\`etre $1$.
+            o\`u $U$ est une variable aéatoire de loi exponentielle de param\`etre $1$.
 
 %-----------------------
             \cor{
@@ -466,7 +466,7 @@
                     &=&\frac{x\mathrm{e}^{-rT}}{\sqrt{2\pi}}\int_0^{+\infty}\frac{\mathrm{e}^{\sigma\sqrt{T}\sqrt{2u}}-1}{\sqrt{2u}}\mathrm{e}^{-u}du\\
                     &=&\frac{x\mathrm{e}^{-rT}}{\sqrt{2\pi}}\mathbb{E}\Big[\frac{\mathrm{e}^{\sigma\sqrt{2TU}}-1}{\sqrt{2U}}\Big]
                 \end{eqnarray*}
-                o\`u $U$ est une variable al\'eatoire de loi exponentielle de param\`etre $1$.
+                o\`u $U$ est une variable aéatoire de loi exponentielle de param\`etre $1$.
             }
 %-----------------------
         \item  En déduire un nouvel estimateur d'échantillonnage préférentiel de $C$.
