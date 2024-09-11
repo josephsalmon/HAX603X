@@ -3,11 +3,16 @@ title: "Introduction"
 subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
+    slide-number: true
+    # preview-links: true
+    code-link: true
+    highlight-style: a11y
     toc: true
     template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
 ---
+
 
 # Présentation, informations générales
 
@@ -21,14 +26,20 @@ format:
 
 PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
+---
 
-## Enseignants
+
+
+## {#enseignants data-menu-title="Enseignants"}
+
+[{{< fa graduation-cap title="graduation cap" >}} Enseignants]{.slide-title}
+
 
 ::: {.fragment fragment-index=1}
 - **Joseph Salmon** : CM et TP
     - Situation actuelle : Professeur à l'Université de Montpellier
     - Précédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington
-    - Spécialités : statistiques, optimisation, traitement des images, sciences participatives
+    - Spécialités : statistiques, optimisation, traitement des images, sciences participatives>
     - Bureau : 415, Bat. 9
 :::
 <div style="line-height:4%;">
@@ -44,12 +55,21 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 :::
 
 
+---
+
 ##
 ```{=html}
 <div id='toc'></div>
 ```
 
-## Ressources en ligne
+---
+
+
+## {#ressources data-menu-title="Ressources en ligne"}
+
+[{{< fa globe title="laptop code" >}} Ressources en ligne]{.slide-title}
+
+
 
 <br>
 
@@ -68,7 +88,15 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 :::
 
-## Validation
+
+--- 
+
+
+## {#validation data-menu-title="Validation"}
+
+[{{< fa globe title="laptop code" >}} Validation]{.slide-title}
+
+
 
 - TP notés : Rendu = fichier Python **.py** unique
 
@@ -89,8 +117,10 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 Le rendu est individuel pour le TP noté !!!
 :::
 
-## Notation pour les TPs
+---
 
+## Notation pour les TPs
+<hr>
 [Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
 dans le dossier adéquat.
 
@@ -492,9 +522,9 @@ slider = dict(
     steps=steps,
 )
 
-fig1.update_layout(legend=dict(x=0.5, y=1, xanchor='center', yanchor='bottom'))
+fig1.update_layout(legend=dict(x=0.5, y=0.91, xanchor='center', yanchor='bottom'))
 fig1.update_layout(sliders=[slider])
-fig1.update_layout(height=800, width=1480)
+# fig1.update_layout(height=800, width=1480)
 
 fig1.show()
 ```
