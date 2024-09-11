@@ -3,11 +3,9 @@ title: "Introduction"
 subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
-    slide-number: true
     # preview-links: true
     code-link: true
     highlight-style: a11y
-    toc: true
     template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
@@ -17,7 +15,7 @@ format:
 # Présentation, informations générales
 
 
-##
+## {#contact data-menu-title="Contact"}
 ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg)
 
 <br>
@@ -25,9 +23,6 @@ format:
 <br>
 
 PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
-
----
-
 
 
 ## {#enseignants data-menu-title="Enseignants"}
@@ -55,19 +50,14 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 :::
 
 
----
-
-##
+## {data-menu-title="Table of content"}
 ```{=html}
 <div id='toc'></div>
 ```
 
----
 
 
-## {#ressources data-menu-title="Ressources en ligne"}
-
-[{{< fa globe title="laptop code" >}} Ressources en ligne]{.slide-title}
+## {{< fa globe title="laptop code" >}} Ressources en ligne
 
 
 
@@ -89,12 +79,8 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 :::
 
 
---- 
+## {{< fa clipboard-list title="Clipboard list" >}} Validation Validation"
 
-
-## {#validation data-menu-title="Validation"}
-
-[{{< fa globe title="laptop code" >}} Validation]{.slide-title}
 
 
 
@@ -117,9 +103,9 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 Le rendu est individuel pour le TP noté !!!
 :::
 
----
 
-## Notation pour les TPs
+## {{< fa laptop title="Computer" >}} Notation pour les TPs
+
 <hr>
 [Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
 dans le dossier adéquat.
@@ -144,13 +130,16 @@ Détails de la notation des TPs :
 
 :::
 
+
+
+
 ## Prérequis - à revoir seul
 
 :::{.incremental}
 <br>
 <br>
 
-- Bases de probabilités (en particulier "HAX506X- Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
+- Bases de probabilités (en particulier "HAX506X - Théorie des Probabilités"): probabilité, densité, espérance, fonction de répartition, mesure, intégration, analyse numérique élémentaire, etc. [@Foata_Fuchs96;@Barbe_Ledoux06;@Ouvrard07;@Ouvrard08]
 
 <br>
 
@@ -162,7 +151,10 @@ Détails de la notation des TPs :
 
 :::
 
-## Description du cours
+
+
+
+## Description du cours HAX603X
 
 :::{.incremental}
 
@@ -176,10 +168,12 @@ Détails de la notation des TPs :
    - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2)
    - construction d'intervalles de confiance.
    - marche aléatoire simple, etc.
-
 :::
 
+
 # Perspectives historiques
+
+
 
 ## Buffon et les prémisses de la méthode de Monte-Carlo
 
@@ -545,7 +539,7 @@ Domaines d'applications:
  - l'apprentissage automatique
 
 
-## Contexte de la naissance de la méthode de Monte Carlo
+## {{< fa circle-radiation title="circle radiation" >}}  Contexte de la naissance de la méthode de Monte Carlo
 
 ::::{.columns}
 
@@ -662,7 +656,10 @@ Recherche arborescente Monte-Carlo (:gb:: *Monte Carlo tree search*): analyse de
 
 :::
 
-## Bibliographie
 
+# Bibliographie
+
+## Liste de livres
 ::: {#refs}
 :::
+

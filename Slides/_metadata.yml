@@ -18,21 +18,22 @@ authors:
 
 
 license: CC BY-SA
-
+from: markdown+emoji
 bibliography: ../Courses/references.bib
 # csl: ieee.csl
 
 # date: 2024-01-19
 
-history: false
+history: true
 # lang: fr-FR
-# toc: true
-# toc-depth: 1
+toc: true
+toc-depth: 1
 # tbl-colwidths: [60, 50, 40, 30, 30]
 code-line-numbers: false
 jupyter: python3
 format:
     revealjs:
+      citations-hover: true
       highlight-style: a11y
       # chalkboard: true
       # self-contained: true
