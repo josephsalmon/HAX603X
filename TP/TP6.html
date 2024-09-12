@@ -462,7 +462,7 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    S <span class="op">=</span> x <span class="op">+</span> np.cumsum(np.insert(X, <span class="dv">0</span>, <span class="dv">0</span>))</span>
 <span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> S</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="b6e33168" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
+<div id="a2bdedaa" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1">
 
 </div>
 <ol start="2" type="1">
@@ -489,7 +489,7 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Random Walks'</span>)</span>
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="568047fb" class="cell quarto-layout-panel" data-execution_count="2" data-layout-ncol="1" data-fig-width="2">
+<div id="1b168d34" class="cell quarto-layout-panel" data-execution_count="2" data-fig-width="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -529,16 +529,15 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.array(S)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="4e1a7315" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
+<div id="8e723da8" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="3">
 
 </div>
 <p>Par exemple, pour simuler des trajectoires partant d’une fortune initiale de <span class="math inline">S_0 = 5</span> avec <span class="math inline">a=10</span> et <span class="math inline">b=0</span></p>
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(ruine(<span class="dv">5</span>, <span class="dv">10</span>, <span class="dv">0</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="9c3a03e9" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
+<div id="0b3d4d0f" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="4">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>[5 6 5 6 5 6 7 6 7 8 9 8 7 6 5 4 5 6 5 6 7 6 7 6 7 8 7 6 5 4 5 4 3 4 3 2 3
- 2 1 0]</code></pre>
+<pre><code>[ 5  6  7  8  9 10]</code></pre>
 </div>
 </div>
 </div>
@@ -574,7 +573,7 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Random Walks until hitting 20 or 0'</span>)</span>
 <span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="d150d513" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1" data-fig-width="2">
+<div id="c8bcb67a" class="cell quarto-layout-panel" data-execution_count="5" data-fig-width="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -602,11 +601,11 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated Probability:"</span>, IN)</span>
 <span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"95% Confidence Interval:"</span>, IC)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="faae6980" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
+<div id="64f5e54b" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="6">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Estimated Probability: 0.514
-95% Confidence Interval: [0.4830218295181914, 0.5449781704818086]</code></pre>
+<pre><code>Estimated Probability: 0.487
+95% Confidence Interval: [0.4560201554296991, 0.5179798445703009]</code></pre>
 </div>
 </div>
 </div>
@@ -628,11 +627,11 @@ S_{n+1}=S_n+X_{n+1}=S_0+\sum_{k=1}^{n+1}X_k
 <span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Estimated Duration:"</span>, IN)</span>
 <span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"95% Confidence Interval:"</span>, IC)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="1e3b3352" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
+<div id="95bfd3c0" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="7">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
-<pre><code>Estimated Duration: 99.506
-95% Confidence Interval: [94.22328258388711, 104.78871741611289]</code></pre>
+<pre><code>Estimated Duration: 97.75
+95% Confidence Interval: [92.54290982732198, 102.95709017267802]</code></pre>
 </div>
 </div>
 </div>
@@ -681,12 +680,12 @@ B^N_t  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=1
 <span id="cb11-30"><a href="#cb11-30" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.01</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
 <span id="cb11-31"><a href="#cb11-31" aria-hidden="true" tabindex="-1"></a>plt.axvspan(<span class="dv">0</span>, <span class="fl">0.1</span>, color<span class="op">=</span><span class="st">'gray'</span>, alpha<span class="op">=</span><span class="fl">0.2</span>)</span>
 <span id="cb11-32"><a href="#cb11-32" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="b40e34cc" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1" data-fig-width="2">
+<div id="9c31ecd9" class="cell quarto-layout-panel" data-execution_count="8" data-fig-width="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP6_files/figure-html/cell-9-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="579"></p>
+<p><img src="TP6_files/figure-html/cell-9-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="582"></p>
 </figure>
 </div>
 </div>
@@ -695,7 +694,7 @@ B^N_t  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=1
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP6_files/figure-html/cell-9-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="571"></p>
+<p><img src="TP6_files/figure-html/cell-9-output-2.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="582"></p>
 </figure>
 </div>
 </div>
@@ -713,7 +712,7 @@ B^N_t  =\frac{1}{\sqrt{N}} S_{\lfloor Nt \rfloor} = \frac{1}{\sqrt{N}} \sum_{k=1
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP6_files/figure-html/cell-9-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="582"></p>
+<p><img src="TP6_files/figure-html/cell-9-output-4.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="590"></p>
 </figure>
 </div>
 </div>
@@ -741,7 +740,7 @@ S_t=\exp\big(\mu t-\frac{\sigma^2}{2}t+\sigma B_t\big),\qquad 0\leq t\leq1.
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the scaled random walk</span></span>
 <span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> S <span class="op">/</span> np.sqrt(<span class="dv">10000</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="5525039a" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1" data-fig-width="2">
+<div id="835ca06e" class="cell quarto-layout-panel" data-execution_count="9" data-fig-width="2" data-layout-ncol="1">
 
 </div>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Define parameters</span></span>
@@ -765,7 +764,7 @@ S_t=\exp\big(\mu t-\frac{\sigma^2}{2}t+\sigma B_t\big),\qquad 0\leq t\leq1.
 <span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="348b81c2" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
+<div id="235746f4" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="10">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP6_files/figure-html/cell-11-output-1.png" class="img-fluid" width="589"></p>
@@ -797,12 +796,12 @@ S_t=\exp\big(\mu t-\frac{\sigma^2}{2}t+\sigma B_t\big),\qquad 0\leq t\leq1.
 <span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>plt.grid(<span class="va">True</span>)</span>
 <span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="a65ceda4" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1" data-fig-width="2">
+<div id="7fb68860" class="cell quarto-layout-panel" data-execution_count="11" data-fig-width="2" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP6_files/figure-html/cell-12-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="597"></p>
+<p><img src="TP6_files/figure-html/cell-12-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="589"></p>
 </figure>
 </div>
 </div>
