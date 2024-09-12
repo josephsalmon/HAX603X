@@ -6,15 +6,14 @@ format:
     # preview-links: true
     code-link: true
     highlight-style: a11y
-    template-partials:
-        - toc-slide.html
-    include-after-body: toc-add.html
+
 ---
 
 
 # Présentation, informations générales
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## {#contact data-menu-title="Contact"}
 ![](https://raw.githubusercontent.com/josephsalmon/OrganizationFiles/master/inkscape/images/contact_js.svg)
 
@@ -23,11 +22,12 @@ format:
 <br>
 
 PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
+<!-- ----------------------------------------------------------------------- -->
 
 
-## {#enseignants data-menu-title="Enseignants"}
-
-[{{< fa graduation-cap title="graduation cap" >}} Enseignants]{.slide-title}
+<!-- ----------------------------------------------------------------------- -->
+## {{< fa graduation-cap title="graduation cap" >}} Enseignants
+<hr>
 
 
 ::: {.fragment fragment-index=1}
@@ -48,17 +48,13 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
   - Spécialités : traitement des images, statistiques, différentiation automatique
   - Bureau : 423, Bat. 9
 :::
-
-
-## {data-menu-title="Table of content"}
-```{=html}
-<div id='toc'></div>
-```
+<!-- ----------------------------------------------------------------------- -->
 
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## {{< fa globe title="laptop code" >}} Ressources en ligne
-
+<hr>
 
 
 <br>
@@ -77,12 +73,13 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 - Rendu TP : Moodle de l'université (https://moodle.umontpellier.fr/course/view.php?id=5558)
 
 :::
-
-
-## {{< fa clipboard-list title="Clipboard list" >}} Validation Validation"
+<!-- ----------------------------------------------------------------------- -->
 
 
 
+<!-- ----------------------------------------------------------------------- -->
+## {{< fa clipboard-list title="Clipboard list" >}} Validation
+<hr>
 
 - TP notés : Rendu = fichier Python **.py** unique
 
@@ -102,11 +99,13 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 Le rendu est individuel pour le TP noté !!!
 :::
+<!-- ----------------------------------------------------------------------- -->
 
 
 ## {{< fa laptop title="Computer" >}} Notation pour les TPs
-
 <hr>
+
+
 [Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
 dans le dossier adéquat.
 
@@ -129,11 +128,14 @@ Détails de la notation des TPs :
 - Retard : zéro (uploader avant la fin, fermeture automatique de moodle)
 
 :::
+<!-- ----------------------------------------------------------------------- -->
 
 
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## Prérequis - à revoir seul
+<hr>
 
 :::{.incremental}
 <br>
@@ -150,11 +152,14 @@ Détails de la notation des TPs :
 - Pour aller plus loin: conditionnement, martingales [@Williams91]
 
 :::
+<!-- ----------------------------------------------------------------------- -->
 
 
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## Description du cours HAX603X
+<hr>
 
 :::{.incremental}
 
@@ -169,13 +174,16 @@ Détails de la notation des TPs :
    - construction d'intervalles de confiance.
    - marche aléatoire simple, etc.
 :::
+<!-- ----------------------------------------------------------------------- -->
 
 
 # Perspectives historiques
 
 
 
-## Buffon et les prémisses de la méthode de Monte-Carlo
+<!-- ----------------------------------------------------------------------- -->
+## L'aiguille de Buffon
+<hr>
 
 ::::{.columns}
 
@@ -325,9 +333,13 @@ Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
 :::
 
 ::::
+<!-- ----------------------------------------------------------------------- -->
 
 
-## L'aiguille de Buffon (suite)
+
+<!-- ----------------------------------------------------------------------- -->
+## L'aiguille de Buffon (II)
+<hr>
 
 ::: {.fragment}
 
@@ -343,9 +355,12 @@ P = \frac{2}{\pi} \approx 0.6366 \enspace.
 $$
 Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX603X/perspective_historique.html).
 :::
+<!-- ----------------------------------------------------------------------- -->
 
 
-## Principe de Monte Carlo et estimation 
+<!-- ----------------------------------------------------------------------- -->
+## Principe de Monte Carlo et estimation
+<hr>
 
 Idée sous-jacente de Buffon :
 
@@ -357,9 +372,12 @@ Estimation de $\pi$:
 $$
 \pi \approx \frac{2}{\hat{P}_n}
 $$
+<!-- ----------------------------------------------------------------------- -->
 
 
-## Principe de Monte Carlo pour l'estimation (suite)
+<!-- ----------------------------------------------------------------------- -->
+## Principe de Monte Carlo et estimation  (II)
+<hr>
 
 <br>
 
@@ -522,9 +540,12 @@ fig1.update_layout(sliders=[slider])
 
 fig1.show()
 ```
+<!-- ----------------------------------------------------------------------- -->
 
 
+<!-- ----------------------------------------------------------------------- -->
 ##  Méthode de Monte-Carlo
+<hr>
 
 Méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.
 
@@ -537,9 +558,12 @@ Domaines d'applications:
  - la biologie
  - la finance
  - l'apprentissage automatique
+<!-- ----------------------------------------------------------------------- -->
 
 
-## {{< fa circle-radiation title="circle radiation" >}}  Contexte de la naissance de la méthode de Monte Carlo
+<!-- ----------------------------------------------------------------------- -->
+## {{< fa circle-radiation title="circle radiation" >}}  Naissance de la méthode
+<hr>
 
 ::::{.columns}
 
@@ -553,8 +577,6 @@ Domaines d'applications:
 - Besoins: modéliser les réactions nucléaires en chaîne (combinatoires)
 
 :::
-
-
 
 
 ::: {layout-ncol=3}
@@ -585,10 +607,13 @@ Domaines d'applications:
 :::
 
 ::::
+<!-- ----------------------------------------------------------------------- -->
 
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## L'origine du nom "Monte-Carlo"
+<hr>
 
 Initialement: besoin de confidentialité du projet Manhattan
 
@@ -601,10 +626,13 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
 
 *It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”.*
+<!-- ----------------------------------------------------------------------- -->
 
 
 
+<!-- ----------------------------------------------------------------------- -->
 ## Essor de la méthode de Monte Carlo
+<hr>
 
 
 ::::{.columns}
@@ -659,7 +687,12 @@ Recherche arborescente Monte-Carlo (:gb: : *Monte Carlo tree search*): analyse d
 
 # Bibliographie
 
+
+<!-- ----------------------------------------------------------------------- -->
 ## Liste de livres
+<hr>
+
 ::: {#refs}
 :::
+<!-- ----------------------------------------------------------------------- -->
 

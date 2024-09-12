@@ -362,9 +362,14 @@ h3{
   text-decoration: underline; /* Adds underline to the hyperlink text on hover */
 }
 
+[role="doc-toc"] a {
+  color: black; /* Ensures hyperlinks are black */
+}
 
-
-
+[role="doc-toc"] a:hover {
+  color: #555; /* Changes the hyperlink text color on hover */
+  text-decoration: underline; /* Adds underline to the hyperlink text on hover */
+}
 
 
 @media (max-width: 600px) {
