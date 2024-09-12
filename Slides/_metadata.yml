@@ -24,7 +24,7 @@ bibliography: ../Courses/references.bib
 
 # date: 2024-01-19
 
-history: true
+history: false
 lang: fr-FR
 toc: true
 toc-depth: 1
