@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.550">
+<meta name="generator" content="quarto-1.5.45">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>HAX603X: Modélisation stochastique - Marches aléatoires</title>
+<title>Marches aléatoires – HAX603X: Modélisation stochastique</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -33,7 +33,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -104,7 +104,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.js"></script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
  var mathElements = document.getElementsByClassName("math");
  var macros = [];
@@ -119,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
    });
 }}});
   </script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.min.css">
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
 
 <script type="text/javascript">
 const typesetMath = (el) => {
@@ -163,13 +163,13 @@ window.Quarto = {
     </a>
   </div>
             <div id="quarto-search" class="" title="Recherche"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Basculer la navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-cours" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Cours</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-cours">    
@@ -208,7 +208,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-slides" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">Slides</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-slides">    
@@ -243,7 +243,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tp" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-tp" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">TP</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
@@ -281,7 +281,7 @@ window.Quarto = {
     </ul>
   </li>
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-td" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-td" role="link" data-bs-toggle="dropdown" aria-expanded="false">
  <span class="menu-text">TD</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-td">    
@@ -305,7 +305,7 @@ window.Quarto = {
   </li>
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <a href="https://github.com/josephsalmon/HAX603X" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
     <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
 </div>
@@ -313,11 +313,11 @@ window.Quarto = {
     </nav>
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
         <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/marche_aleatoire.html">Marches aléatoires</a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
@@ -451,7 +451,7 @@ window.Quarto = {
 </div>
 <p>On parle de <em>marche</em> car ce processus peut représenter la position d’une personne qui se déplace en ligne droite par pas d’une unité avec équiprobabilité d’aller vers l’avant (<span class="math inline">+1</span>) ou vers l’arrière (<span class="math inline">-1</span>). Cette marche est dite <em>simple</em> car on ne fait que des pas d’amplitude <span class="math inline">1</span> et <em>symétrique</em> car il y a la même probabilité de tirer <span class="math inline">1</span> et <span class="math inline">-1</span> pour chaque incrément.</p>
 <p>Ce processus peut également servir à modéliser la richesse d’une joueuse qui joue à pile ou face avec une pièce équilibrée. Partant d’une richesse initiale <span class="math inline">S_0=x&gt;0</span>, à chaque pas de temps elle perd ou gagne <span class="math inline">1</span> en fonction du tirage obtenu. Les variables <span class="math inline">X_n</span> représentent alors le gain du <span class="math inline">n</span>-ème jeu, et <span class="math inline">S_n</span> la richesse totale de la joueuse après le <span class="math inline">n</span>-ème tirage.</p>
-<div id="fig-marche" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-marche" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-marche-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code hidden" id="cb1" data-startfrom="62" data-source-offset="-64"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 61;"><span id="cb1-62"><a href="#cb1-62" aria-hidden="true" tabindex="-1"></a>Plotly <span class="op">=</span> <span class="pp">require</span>(<span class="st">'plotly.js-dist'</span>)<span class="op">;</span></span>
@@ -685,7 +685,7 @@ La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4
 <div id="def-chemin" class="theorem definition">
 <p><span class="theorem-title"><strong>Définition 2</strong></span> Soit <span class="math inline">n&gt;m</span> deux entiers naturels et <span class="math inline">(a,b)\in\mathbb{Z}^2</span> deux entiers relatifs. On appelle <em>chemin</em> de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> la représentation graphique d’un tirage de la marche aléatoire telle que <span class="math inline">S_m=a</span> et <span class="math inline">S_n=b</span>.</p>
 </div>
-<div id="fig-traj_rw" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-traj_rw" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-traj_rw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
@@ -740,7 +740,7 @@ S_0-n\leq S_n\leq S_0+n,
 <div id="exm-nnchemin" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 2</strong></span> Il n’existe pas de chemin de <span class="math inline">(0,0)</span> à <span class="math inline">(2,4)</span>.</p>
 </div>
-<div id="fig-pont" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-pont" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-pont-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="sourceCode cell-code hidden" id="cb2" data-startfrom="325" data-source-offset="-161"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 324;"><span id="cb2-325"><a href="#cb2-325" aria-hidden="true" tabindex="-1"></a>viewof inputs2 <span class="op">=</span> Inputs<span class="op">.</span><span class="fu">form</span>([</span>
@@ -932,7 +932,7 @@ y&amp;=&amp;\frac{n-m}{2}-\frac{b-a}{2}
 <div id="prp-reflexion" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 5 (Principe de réflexion)</strong></span> Soit <span class="math inline">a</span> et <span class="math inline">b</span> deux entiers naturels non nuls et <span class="math inline">n,m</span> deux entiers naturels tels que <span class="math inline">n&gt;m</span>, <span class="math inline">|b-a|\leq n-m</span> et <span class="math inline">b-a</span> et <span class="math inline">n-m</span> ont la même parité. Alors le nombre de chemins de <span class="math inline">(m,a)</span> à <span class="math inline">(n,b)</span> passant par <span class="math inline">0</span> (<em>i.e.</em> touchant l’axe des abscisses) est égal au nombre de chemins de <span class="math inline">(m,a)</span> à <span class="math inline">(n,-b)</span>.</p>
 </div>
-<div id="fig-reflex" class="quarto-figure quarto-figure-center quarto-float anchored">
+<div id="fig-reflex" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reflex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="quarto-figure quarto-figure-center">
@@ -1101,10 +1101,10 @@ T_0=\inf\{n\geq 1; S_n=0\},
 <div>
 
 </div>
-<div id="6f1b9a04" class="cell quarto-layout-panel" data-figalign="center" data-execution_count="1" data-layout-ncol="1">
+<div id="9be068ba" class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1" data-execution_count="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="marche_aleatoire_files/figure-html/cell-2-output-1.png" width="590" height="450"></p>
+<p><img src="marche_aleatoire_files/figure-html/cell-2-output-1.png" class="img-fluid" width="590"></p>
 </div>
 </div>
 </div>
@@ -1190,7 +1190,7 @@ T_0=\inf\{n\geq 1; S_n=0\},
 = \frac{1}{\sqrt{\pi N}},
 \end{align*}
 </span> donc on a bien <span class="math inline">\mathbb{P}(T_0=+\infty)=0</span>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>1</sup>&nbsp;<span class="math inline">n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n</span> quand <span class="math inline">n\to +\infty</span></p></div></div>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<span class="math inline">n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n</span> quand <span class="math inline">n\to +\infty</span></p></div></div></div>
 </section>
 <section id="sec-chap03-passage" class="level3">
 <h3 class="anchored" data-anchor-id="sec-chap03-passage">Premier passage en <span class="math inline">a\neq 0</span></h3>
@@ -1253,22 +1253,22 @@ p_b=1&amp;=&amp;\alpha+\beta b
 \right.
 \end{align*}
 </span></p>
-<div class="no-row-height column-margin column-container"><p><sup>2</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span></strong> s’il existe <span class="math inline">(a,b)\in\mathbb{R}\times\mathbb{R}^*</span> tel que, pour entier <span class="math inline">n</span>, on a <span class="math display">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span></strong> s’il existe <span class="math inline">(a,b)\in\mathbb{R}\times\mathbb{R}^*</span> tel que, pour entier <span class="math inline">n</span>, on a <span class="math display">
 u_{n+2} = a u_{n+1} + b u_n .
 </span> Le polynôme <span class="math inline">X^2 - a X + b</span> est appelé le <strong>polynôme caractéristique</strong> de la suite. Si le polynôme caractéristique admet deux racines simples <span class="math inline">r_1</span> et <span class="math inline">r_2</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
 u_n = \alpha r_1^n  + \beta  r_2^n.
 </span> Si le polynôme caractéristique admet une racine double <span class="math inline">r</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
 u_n = (\alpha  + \beta n) r^n.
-</span></p></div><p>Ainsi la probabilité de ruine partant de <span class="math inline">x</span> vaut <span class="math display">
+</span></p></div></div><p>Ainsi la probabilité de ruine partant de <span class="math inline">x</span> vaut <span class="math display">
 p_x=\frac{a-x}{a-b}.
 </span></p>
 <p>Un calcul analogue en cherchant la probabilité <span class="math inline">q_x</span> de faire fortune partant d’une richesse <span class="math inline">x</span> conduit à <span class="math inline">q_x=\frac{x-b}{a-b}=1-p_x</span>, autrement dit il n’y a pas d’autre issue possible : le jeu va s’arrêter avec probabilité <span class="math inline">1</span>. Si on fait tendre <span class="math inline">b</span> vers <span class="math inline">-\infty</span>, on trouve que <span class="math inline">\mathbb{P}(T_a&lt;\infty |x_0=a)=1</span>. Donc partant de n’importe quel point, la marche atteindra n’importe quel autre point avec probabilité <span class="math inline">1</span>.</p>
 <p>On peut montrer avec un raisonnement analogue que la durée du jeu <span class="math inline">d_x</span> partant de <span class="math inline">x</span> est solution de l’équation récurrente linéaire avec second membre<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="math display">
 d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1,
 </span> avec <span class="math inline">d_a=d_b=0</span>.</p>
-<div class="no-row-height column-margin column-container"><p><sup>3</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span> avec second membre</strong> s’il existe <span class="math inline">(a,b) \in {\mathbb R} \times {\mathbb R}^*</span> et une fonction <span class="math inline">f</span> à valeurs dans <span class="math inline">{\mathbb R}</span> tels que, pour entier <span class="math inline">n</span>, on a <span class="math display">
+<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span> avec second membre</strong> s’il existe <span class="math inline">(a,b) \in {\mathbb R} \times {\mathbb R}^*</span> et une fonction <span class="math inline">f</span> à valeurs dans <span class="math inline">{\mathbb R}</span> tels que, pour entier <span class="math inline">n</span>, on a <span class="math display">
 u_{n+2} = a u_{n+1} + b u_n  + f(n).
-</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a <span class="math display">
+</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a <span class="math display">
 \begin{align*}
 \mathbb{P}(T_a\wedge T_b=+\infty &amp;|S_0=x+1)\\
 &amp; \geq \mathbb{P}(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
@@ -1393,18 +1393,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
     return false;
   }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
+  const onCopySuccess = function(e) {
     // button target
     const button = e.trigger;
     // don't keep focus
@@ -1436,7 +1425,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }, 1000);
     // clear code selection
     e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
   });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
   const viewSource = window.document.getElementById('quarto-view-source') ||
                      window.document.getElementById('quarto-code-tools-source');
   if (viewSource) {
@@ -1488,6 +1499,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   if (showAllCode) {
     showAllCode.addEventListener("click", toggleCodeHandler(true));
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/josephsalmon\.github\.io\/HAX603X\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -1522,7 +1551,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
     });
   }
   const xrefs = window.document.querySelectorAll('a.quarto-xref');
