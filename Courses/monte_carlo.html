@@ -75,19 +75,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/all.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-1.2.0/latex-fontsize.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 3,
   "panel-placement": "end",
-  "type": "overlay",
+  "type": "textbox",
   "limit": 50,
   "keyboard-shortcut": [
     "f",
     "/",
     "s"
   ],
-  "show-item-context": false,
   "language": {
     "search-no-results-text": "Pas de résultats",
     "search-matching-documents-text": "documents trouvés",
@@ -154,7 +156,7 @@ window.Quarto = {
 };
 </script>
 
-<link rel="stylesheet" href="../custom.css">
+<link rel="stylesheet" href="../custom.scss">
 </head>
 
 <body class="nav-sidebar floating nav-fixed slimcontent">
@@ -164,6 +166,9 @@ window.Quarto = {
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="https://josephsalmon.eu/img/Flag_of_Occitania.svg" alt="" class="navbar-logo">
+    </a>
     <a class="navbar-brand" href="../index.html">
     <span class="navbar-title">HAX603X</span>
     </a>
@@ -314,10 +319,18 @@ window.Quarto = {
     </ul>
   </li>
 </ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://moodle.umontpellier.fr/course/view.php?id=25763"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:moodle" aria-label="Icon moodle from simple-icons Iconify.design set." title="Moodle"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/josephsalmon/HAX712X"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="simple-icons:github" aria-label="Icon github from simple-icons Iconify.design set." title="GitHub"></iconify-icon></span></a>
+  </li>  
+</ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
-    <a href="https://github.com/josephsalmon/HAX603X" title="GitHub" class="quarto-navigation-tool px-1" aria-label="GitHub"><i class="bi bi-github"></i></a>
-    <a href="https://moodle.umontpellier.fr/course/view.php?id=25763" title="Moodle" class="quarto-navigation-tool px-1" aria-label="Moodle"><i class="bi bi-bicycle"></i></a>
 </div>
       </div> <!-- /container-fluid -->
     </nav>
@@ -326,9 +339,9 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../Courses/monte_carlo.html">Méthode de Monte Carlo</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title">Méthode de Monte Carlo</h1>
+        </a>     
     </div>
   </nav>
 </header>
@@ -336,7 +349,7 @@ window.Quarto = {
 <header id="title-block-header" class="quarto-title-block default page-columns page-full">
   <div class="quarto-title-banner page-columns page-full">
     <div class="quarto-title column-body">
-      <h1 class="title">Méthode de Monte Carlo</h1>
+      <h1 class="title d-none d-lg-block">Méthode de Monte Carlo</h1>
                       </div>
   </div>
     
@@ -453,7 +466,7 @@ window.Quarto = {
 <p><span class="math display">
     I=\int_0^1 g(x)dx \simeq  \sum_{i=0}^nw_ig(x_i),
 </span> où les <span class="math inline">w_i</span> sont des nombres entre <span class="math inline">0</span> et <span class="math inline">1</span> dont la somme vaut <span class="math inline">1</span>, et les <span class="math inline">x_i</span> sont des points de l’intervalle <span class="math inline">[0,1]</span>. Par exemple, pour la méthode des trapèzes, on prend <span class="math inline">w_0=w_n=\frac{1}{2n}</span> et <span class="math inline">w_i=\frac 1 n</span> sinon et les <span class="math inline">x_i=\frac i  n</span> sont régulièrement répartis. Si on considère la fonction <span class="math inline">g(x) = e^{x^2}</span> on approche <span class="math inline">I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots</span></p>
-<div id="95e1968c" class="cell" data-execution_count="1">
+<div id="739603e7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span> <span class="dv">10000</span></span>
@@ -469,7 +482,7 @@ window.Quarto = {
 </div>
 <p>La question est alors d’avoir une borne sur l’erreur commise (qui dépendra de <span class="math inline">n</span> et de la régularité de la fonction <span class="math inline">g</span>, voir par exemple <a href="https://en.wikipedia.org/wiki/Trapezoidal_rule">Wikipedia</a>).</p>
 <p>Pour une méthode de Monte Carlo, on interprète l’intégrale comme <span class="math inline">\mathbb E[g(X)]</span> où <span class="math inline">X</span> est une variable aléatoire de loi uniforme sur <span class="math inline">[0,1]</span>. Alors les <span class="math inline">w_i</span> valent <span class="math inline">\frac{1}{n+1}</span> et les <span class="math inline">x_i</span> sont tirés selon la loi uniforme sur <span class="math inline">[0,1]</span>.</p>
-<div id="63e16ae0" class="cell" data-execution_count="2">
+<div id="e0e331bd" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
@@ -477,11 +490,11 @@ window.Quarto = {
 <span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
 <span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La méthode naïve de Monte-Carlo </span><span class="sc">{</span>m1<span class="sc">:.6f}</span><span class="ss">..."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>La méthode naïve de Monte-Carlo 1.460447...</code></pre>
+<pre><code>La méthode naïve de Monte-Carlo 1.461211...</code></pre>
 </div>
 </div>
 <p>Contrairement aux méthodes déterministes, la valeur de l’approximation change si on relance le calcul puisque les tirages sont aléatoires:</p>
-<div id="7694442f" class="cell" data-execution_count="3">
+<div id="74acda72" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Direct method</span></span>
@@ -489,7 +502,7 @@ window.Quarto = {
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m1 <span class="op">=</span> np.mean(gX)</span>
 <span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"La méthode naïve de Monte-Carlo donne mainenant </span><span class="sc">{</span>m1<span class="sc">:.6f}</span><span class="ss">..."</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>La méthode naïve de Monte-Carlo donne mainenant 1.457543...</code></pre>
+<pre><code>La méthode naïve de Monte-Carlo donne mainenant 1.462263...</code></pre>
 </div>
 </div>
 </div>
@@ -525,7 +538,7 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 </ol>
 <p>Quelle est la meilleure stratégie pour le candidat ? Garder son premier choix ou changer de porte ?</p>
 <p>Un raisonnement probabiliste peut fournir la solution. Mais vous pouvez vous aider en faisant des expériences pour faire une conjecture ! On peut par exemple lancer le programme ci-dessous en demandant de reproduire dix mille fois l’expérience (<span class="math inline">n= 10 000</span>).</p>
-<div id="79628ced" class="cell" data-execution_count="4">
+<div id="805c8fe5" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>portes <span class="op">=</span> np.array([<span class="st">"chevre"</span>, <span class="st">"chevre"</span>, <span class="st">"voiture"</span>])</span>
@@ -544,8 +557,8 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 <span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gagne en changeant : </span><span class="sc">{</span>gagne_avec_change <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span><span class="sc">:.3f}</span><span class="ss"> %"</span>)</span>
 <span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gagne sans changer : </span><span class="sc">{</span>gagne_avec_conserve <span class="op">/</span> NbSimulations <span class="op">*</span> <span class="dv">100</span><span class="sc">:.3f}</span><span class="ss"> %"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Gagne en changeant : 66.870 %
-Gagne sans changer : 33.130 %</code></pre>
+<pre><code>Gagne en changeant : 66.760 %
+Gagne sans changer : 33.240 %</code></pre>
 </div>
 </div>
 <p>On peut alors conjecturer que la probabilité de gagner en changeant de porte est égale à <span class="math inline">2/3</span> alors que si le candidat reste sur son premier choix la probabilité de gagner ne sera que de <span class="math inline">1/3</span>.</p>
@@ -574,7 +587,7 @@ Gagne sans changer : 33.130 %</code></pre>
 <div id="exm-actif" class="theorem example">
 <p><span class="theorem-title"><strong>Exemple 4</strong></span> En finance, certains contrats (dont le coût est <span class="math inline">C&gt;0</span> et que l’on peut voir comme une assurance) permettent de vendre un actif acheté <span class="math inline">K&gt;0</span> à une date future <span class="math inline">N</span> fixée par le contrat s’il dépasse à ce moment là une certaine valeur cible <span class="math inline">K</span> également fixée dans le contrat. Si le prix de l’actif est plus bas que <span class="math inline">K</span>, on récupère tout de même sa mise <span class="math inline">K</span>. Considérons un modèle simplifié pour le cours de l’actif <span class="math inline">(S_n)_{n\geq 1}</span> : pour <span class="math inline">n\geq 1</span>, on pose <span class="math inline">S_n=\sum_{i=1}^nX_i</span> où les <span class="math inline">X_i</span> sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc <span class="math inline">\mathbb E[\max(S_N-K,0)]</span>. Le contrat n’est pas gratuit… Ainsi, l’enjeu est de comparer le coût <span class="math inline">C</span> et l’espérance <span class="math inline">\mathbb E[\max(S_N-K,0)]</span>.</p>
 <p>Estimons cette quantité par la méthode de Monte Carlo.</p>
-<div id="1e3ea834" class="cell" data-execution_count="5">
+<div id="0d33076a" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">100000</span></span>
@@ -593,7 +606,7 @@ Gagne sans changer : 33.130 %</code></pre>
 <span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"[</span><span class="sc">{</span>m <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[2.600, 2.626, 2.652]</code></pre>
+<pre><code>[2.592, 2.618, 2.644]</code></pre>
 </div>
 </div>
 </div>
@@ -624,7 +637,7 @@ Gagne sans changer : 33.130 %</code></pre>
 </span> On peut donc approcher <span class="math inline">I</span> par <span class="math display">
     I_n^{c}=\frac{1}{n}\sum_{i=1}^n\big(e^{X_i^2}-1-X_i^2\big)+\frac{4}{3},
 </span> où les <span class="math inline">X_i</span> sont iid de loi uniforme sur <span class="math inline">[0,1]</span>. Regardons ce que ça donne numériquement.</p>
-<div id="e2395a25" class="cell" data-execution_count="6">
+<div id="1b0ebb18" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -638,11 +651,11 @@ Gagne sans changer : 33.130 %</code></pre>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.452, 1.462, 1.471]
+<pre><code>Direct method confidence interval: [1.453, 1.463, 1.472]
 Variance 0.224</code></pre>
 </div>
 </div>
-<div id="f625e700" class="cell" data-execution_count="7">
+<div id="159c5966" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Control variable</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>ghX <span class="op">=</span> np.exp(X<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">1</span> <span class="op">-</span> X<span class="op">**</span><span class="dv">2</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>m2 <span class="op">=</span> np.mean(ghX) <span class="op">+</span> <span class="dv">4</span><span class="op">/</span><span class="dv">3</span></span>
@@ -700,7 +713,7 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
     I_n^{a}=\frac{1}{2n}\sum_{i=1}^{n}\big(e^{X_i^2}+e^{(1-X_i)^2}\big).
 </span></p>
 <p>Regardons ce que cela donne numériquement.</p>
-<div id="386ef788" class="cell" data-execution_count="8">
+<div id="91facd10" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -714,11 +727,11 @@ I=\mathbb{E}\left[\frac{g(X)+g(h(X))}{2}\right].
 <span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.455, 1.464, 1.473]
-Variance 0.226</code></pre>
+<pre><code>Direct method confidence interval: [1.445, 1.454, 1.463]
+Variance 0.221</code></pre>
 </div>
 </div>
-<div id="a9244c78" class="cell" data-execution_count="9">
+<div id="1b691636" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Antithetic variable method</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>gaX <span class="op">=</span> (np.exp(X<span class="op">**</span><span class="dv">2</span>) <span class="op">+</span> np.exp((<span class="dv">1</span> <span class="op">-</span> X)<span class="op">**</span><span class="dv">2</span>)) <span class="op">/</span> <span class="dv">2</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>m3 <span class="op">=</span> np.mean(gaX)</span>
@@ -727,7 +740,7 @@ Variance 0.226</code></pre>
 <span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Antithetic variable method confidence interval:, [</span><span class="sc">{</span>m3 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s3 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m3<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m3 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s3 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s3<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Antithetic variable method confidence interval:, [1.459, 1.463, 1.466]
+<pre><code>Antithetic variable method confidence interval:, [1.458, 1.461, 1.465]
 Variance 0.028</code></pre>
 </div>
 </div>
@@ -753,7 +766,7 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
     F(t)=u \Leftrightarrow t=(\sqrt{1+4u^2}+2u)^{1/3}-(\sqrt{1+4u^2}-2u)^{1/3}.
 </span></p>
 <p>Regardons ce que ça donne numériquement.</p>
-<div id="f5abdaf6" class="cell" data-execution_count="10">
+<div id="efcc87b3" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
@@ -767,11 +780,11 @@ I&amp;=\mathbb E[g(X)]=\int g(x)f(x)dx
 <span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Direct method confidence interval: [</span><span class="sc">{</span>m1 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m1 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s1 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s1<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Direct method confidence interval: [1.449, 1.458, 1.467]
-Variance 0.222</code></pre>
+<pre><code>Direct method confidence interval: [1.454, 1.463, 1.472]
+Variance 0.226</code></pre>
 </div>
 </div>
-<div id="abb987e7" class="cell" data-execution_count="11">
+<div id="1c44f38f" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importance sampling</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> (<span class="dv">2</span><span class="op">*</span>X <span class="op">+</span> np.sqrt(<span class="dv">1</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>X<span class="op">**</span><span class="dv">2</span>))<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>) <span class="op">-</span> (np.sqrt(<span class="dv">1</span> <span class="op">+</span> <span class="dv">4</span><span class="op">*</span>X<span class="op">**</span><span class="dv">2</span>) <span class="op">-</span> <span class="dv">2</span><span class="op">*</span>X)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span><span class="dv">3</span>)</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>gpX <span class="op">=</span> np.exp(Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> (<span class="dv">3</span> <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> Y<span class="op">**</span><span class="dv">2</span>) <span class="op">/</span> <span class="dv">4</span>)</span>
@@ -781,7 +794,7 @@ Variance 0.222</code></pre>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Importance sampling confidence interval: [</span><span class="sc">{</span>m4 <span class="op">-</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s4 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m4<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>m4 <span class="op">+</span> <span class="fl">1.96</span> <span class="op">*</span> np<span class="sc">.</span>sqrt(s4 <span class="op">/</span> n)<span class="sc">:.3f}</span><span class="ss">]"</span>)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Variance </span><span class="sc">{</span>s4<span class="sc">:.3f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Importance sampling confidence interval: [1.459, 1.461, 1.464]
+<pre><code>Importance sampling confidence interval: [1.460, 1.463, 1.465]
 Variance 0.020</code></pre>
 </div>
 </div>
@@ -1279,8 +1292,21 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   </div>
 </nav>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p><span class="faux-block"><i class="fa-brands fa-creative-commons" aria-label="creative-commons"></i> 2024 Joseph Salmon &amp; Benjamin Charlier</span> <span class="faux-block"><a href="https://github.com/josephsalmon/HAX603X"><i class="fa-brands fa-github" aria-label="github"></i> Source Code</a></span></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/monte_carlo.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p><span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span></p>
+</div>
+  </div>
+</footer>
 
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/monte_carlo.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></div></div></footer></body></html>
+</body></html>
