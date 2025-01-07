@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -102,6 +102,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Recherche"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -153,7 +160,7 @@ window.Quarto = {
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -246,7 +253,6 @@ window.Quarto = {
  <span class="menu-text">TP</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
-        <li class="dropdown-header">TP</li>
         <li>
     <a class="dropdown-item" href="../TP/TP1.html">
  <span class="dropdown-text">TP1: Prise en main de Python</span></a>
@@ -266,16 +272,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../TP/TP6.html">
  <span class="dropdown-text">TP6: Marches Aléatoires</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Quarto</li>
-        <li>
-    <a class="dropdown-item" href="../TP/markdown.html">
- <span class="dropdown-text">Démarrage en Markdown</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../TP/quarto.html">
- <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -302,6 +298,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-quarto" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Quarto</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-quarto">    
+        <li>
+    <a class="dropdown-item" href="../TP/markdown.html">
+ <span class="dropdown-text">Démarrage en Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -315,82 +326,64 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP5.html">TP5: Méthode de Monte-Carlo</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP5.html">TP5: Méthode de Monte-Carlo</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">TP5: Méthode de Monte-Carlo</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">TP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP1: Prise en main de Python</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP2.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP3: Simulation de variables aléatoires</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP5.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">TP5: Méthode de Monte-Carlo</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP6: Marches Aléatoires</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Quarto</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Démarrage en Markdown</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Démarrage en Quarto</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -410,25 +403,10 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP5.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP5.html">TP5: Méthode de Monte-Carlo</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">TP5: Méthode de Monte-Carlo</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <div class="hidden">
@@ -459,74 +437,14 @@ Objectifs de ce TP
 I_1= 4 \cdot \int_0^1 \sqrt{1-x^2} dx=\pi=4 \cdot \mathbb{E}\left[\sqrt{1-X^2} \right],
 </span> La formule précédent s’obtient en faisant le changement de variable <span class="math inline">x=\sin(t)</span>.</li>
 </ol>
-<section id="solution" class="level4">
-<h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
-<div id="ec7f5624" class="cell" data-execution_count="1">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">1</span>, n)</span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> np.sqrt(<span class="dv">1</span> <span class="op">-</span> x<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(y)</span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(y) <span class="op">/</span> n)</span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 3.160274616172659
-Confidence Interval (IC): (3.1428625430543535, 3.1776866892909643)</code></pre>
-</div>
-</div>
 <ol type="1">
 <li>pour <span class="math inline">(X,Y)</span> de loi uniforme sur <span class="math inline">[-1,1]^2</span> <span class="math display">
 I_2= \int_{\mathbb R^2} {1\hspace{-3.8pt} 1}_{\{ x^2+ y^2 \leq 1\}} dx dy=\pi=\mathbb{E}[4{1\hspace{-3.8pt} 1}_{\{X^2+Y^2\leq 1\}}].
 </span></li>
 </ol>
-</section>
-<section id="solution-1" class="level4">
-<h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
-<div id="3b922b5e" class="cell" data-execution_count="2">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of points</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate random numbers for X and Y in the range [-1, 1]</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n)</span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> np.random.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n)</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Z based on the condition (X^2 + Y^2 &lt;= 1)</span></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>z <span class="op">=</span> <span class="dv">4</span> <span class="op">*</span> (x<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> y<span class="op">**</span><span class="dv">2</span> <span class="op">&lt;=</span> <span class="dv">1</span>)</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of Z</span></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(z)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (IC)</span></span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(z) <span class="op">/</span> n)</span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 3.1652
-Confidence Interval (IC): (3.13334043148222, 3.19705956851778)</code></pre>
-</div>
-</div>
 <ol start="3" type="1">
 <li>Quelle méthode donne la meilleure précision ?</li>
 </ol>
-</section>
-<section id="solution-2" class="level4">
-<h4 class="anchored" data-anchor-id="solution-2"><span style="color:red;">Solution</span></h4>
-<p>La première méthode donne une meilleure précision. Mais est-ce si concluant. Il faut regarder plus en détail les variance pour conclure.</p>
-</section>
 </section>
 <section id="loi-de-cauchy" class="level2">
 <h2 class="anchored" data-anchor-id="loi-de-cauchy">Loi de Cauchy</h2>
@@ -537,87 +455,12 @@ Confidence Interval (IC): (3.13334043148222, 3.19705956851778)</code></pre>
 <ol type="1">
 <li>Évaluer avec <code>Python</code> la valeur exacte de l’intégrale.</li>
 </ol>
-<section id="solution-3" class="level4">
-<h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
-<div id="ca267216" class="cell" data-execution_count="3">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span>np.arctan(<span class="dv">2</span>) <span class="op">/</span> np.pi <span class="op">+</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>0.14758361765043326</code></pre>
-</div>
-</div>
 <ol start="2" type="1">
 <li>Implémenter l’estimateur de Monte-Carlo simple à base de loi de Cauchy pour cette intégrale.</li>
 </ol>
-</section>
-<section id="solution-4" class="level4">
-<h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
-<div id="0128607e" class="cell" data-execution_count="4">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate samples from the Cauchy distribution</span></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.standard_cauchy(N)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Y based on the condition (X &gt;= 2)</span></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> (X <span class="op">&gt;=</span> <span class="dv">2</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of Y</span></span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(Y)</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (IC)</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(Y) <span class="op">/</span> n)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.1498
-Confidence Interval (IC): (0.14280537319261954, 0.15679462680738043)</code></pre>
-</div>
-</div>
 <ol start="3" type="1">
 <li>Implémenter l’estimateur de Monte-Carlo antithétique basé sur la symétrie de la loi de Cauchy.</li>
 </ol>
-</section>
-<section id="solution-5" class="level4">
-<h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
-<div id="94dc5d64" class="cell" data-execution_count="5">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate samples from the Cauchy distribution</span></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.standard_cauchy(N)</span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Z based on the condition ((X &gt;= 2) + (-X &gt;= 2)) / 2</span></span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>Z <span class="op">=</span> ((X <span class="op">&gt;=</span> <span class="dv">2</span>) <span class="op">+</span> (<span class="op">-</span>X <span class="op">&gt;=</span> <span class="dv">2</span>)) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb9-11"><a href="#cb9-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of Z</span></span>
-<span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(Z)</span>
-<span id="cb9-14"><a href="#cb9-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-15"><a href="#cb9-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (IC)</span></span>
-<span id="cb9-16"><a href="#cb9-16" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(Z) <span class="op">/</span> n)</span>
-<span id="cb9-17"><a href="#cb9-17" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb9-18"><a href="#cb9-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.14695
-Confidence Interval (IC): (0.14248572443687513, 0.15141427556312487)</code></pre>
-</div>
-</div>
-<p>L’intervalle de confiance est un peu plus resserré. La variance a été divisée par</p>
-<div id="b0312d2b" class="cell" data-execution_count="6">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(Z)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>2.4548621382740667</code></pre>
-</div>
-</div>
 <ol start="4" type="1">
 <li>Implémenter l’estimateur de Monte-Carlo à base de loi uniforme sur <span class="math inline">[0,2]</span> en utilisant la relation <span class="math display">
   I =
@@ -625,43 +468,6 @@ Confidence Interval (IC): (0.14248572443687513, 0.15141427556312487)</code></pre
   \quad Y {\sim} U[0,2].
 </span></li>
 </ol>
-</section>
-<section id="solution-6" class="level4">
-<h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
-<div id="ccb6ffd1" class="cell" data-execution_count="7">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate samples from the uniform distribution in the range [0, 2]</span></span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="dv">2</span>, N)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate A based on the given formula</span></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>A <span class="op">=</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span> <span class="op">-</span> <span class="dv">2</span> <span class="op">/</span> (np.pi <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> U<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of A</span></span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(A)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (IC)</span></span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(A) <span class="op">/</span> n)</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.15010259271793902
-Confidence Interval (IC): (0.1468169952185975, 0.15338819021728053)</code></pre>
-</div>
-</div>
-<p>L’intervalle de confiance est encore plus resserré. Par rapport à la méthode initiale, la variance a été divisée par</p>
-<div id="8a650eb2" class="cell" data-execution_count="8">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(A)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>4.532109324111443</code></pre>
-</div>
-</div>
 <ol start="5" type="1">
 <li>Implémenter l’estimateur de Monte-Carlo à base de loi uniforme sur <span class="math inline">[0,1/2]</span> en utilisant la relation <span class="math display">
 I =
@@ -669,51 +475,9 @@ I =
 \quad Z {\sim} U[0,1/2].
 </span></li>
 </ol>
-</section>
-<section id="solution-7" class="level4">
-<h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
-<div id="ab2be5de" class="cell" data-execution_count="9">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate samples from the uniform distribution in the range [0, 1/2]</span></span>
-<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>U <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="fl">0.5</span>, N)</span>
-<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate B based on the given formula</span></span>
-<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>B <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> (<span class="dv">2</span> <span class="op">*</span> np.pi <span class="op">*</span> (<span class="dv">1</span> <span class="op">+</span> U<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb17-11"><a href="#cb17-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-12"><a href="#cb17-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of B</span></span>
-<span id="cb17-13"><a href="#cb17-13" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(B)</span>
-<span id="cb17-14"><a href="#cb17-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-15"><a href="#cb17-15" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb17-16"><a href="#cb17-16" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(B) <span class="op">/</span> n)</span>
-<span id="cb17-17"><a href="#cb17-17" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb17-18"><a href="#cb17-18" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (IC)</span></span>
-<span id="cb17-19"><a href="#cb17-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
-<span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.14743690036502757
-Confidence Interval (IC): (0.14724447793775403, 0.14762932279230112)</code></pre>
-</div>
-</div>
-<p>L’intervalle de confiance est encore plus resserré, on arrive presque à une précision de <span class="math inline">10^{-3}</span>. Par rapport à la méthode initiale, la variance a été divisée par</p>
-<div id="182f5e5f" class="cell" data-execution_count="10">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(B)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>1321.3495425905346</code></pre>
-</div>
-</div>
 <ol start="6" type="1">
 <li>Quelle méthode d’estimation est la plus précise ?</li>
 </ol>
-</section>
-<section id="solution-8" class="level4">
-<h4 class="anchored" data-anchor-id="solution-8"><span style="color:red;">Solution</span></h4>
-<p>Celle qui a la plus petite variance, donc la dernière.</p>
-</section>
 </section>
 <section id="aiguilles-de-buffon" class="level2">
 <h2 class="anchored" data-anchor-id="aiguilles-de-buffon">Aiguilles de Buffon</h2>
@@ -722,79 +486,9 @@ Confidence Interval (IC): (0.14724447793775403, 0.14762932279230112)</code></pre
 \pi^{-1} = \frac{1}{2 }\mathbb{E}[{1\hspace{-3.8pt} 1}_{\cos\Theta \geq 2 X}],
 </span> avec <span class="math inline">(X,\Theta)\sim U([0,1/2]\times[-\pi/2,\pi/2])</span>.</li>
 </ol>
-<section id="solution-9" class="level4">
-<h4 class="anchored" data-anchor-id="solution-9"><span style="color:red;">Solution</span></h4>
-<div id="430e8df7" class="cell" data-execution_count="11">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_statistics(n):</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Generate samples for x and th</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.random.uniform(<span class="dv">0</span>, <span class="fl">0.5</span>, n)</span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    th <span class="op">=</span> np.random.uniform(<span class="op">-</span>np.pi<span class="op">/</span><span class="dv">2</span>, np.pi<span class="op">/</span><span class="dv">2</span>, n)</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate y based on the given condition</span></span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    y <span class="op">=</span> (np.cos(th) <span class="op">&gt;=</span> <span class="dv">2</span> <span class="op">*</span> x) <span class="op">/</span> <span class="dv">2</span></span>
-<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the mean of y</span></span>
-<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    in_ <span class="op">=</span> np.mean(y)</span>
-<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>    q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb21-14"><a href="#cb21-14" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate the confidence interval (ic) for in_</span></span>
-<span id="cb21-15"><a href="#cb21-15" aria-hidden="true" tabindex="-1"></a>    delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(y) <span class="op">/</span> n)</span>
-<span id="cb21-16"><a href="#cb21-16" aria-hidden="true" tabindex="-1"></a>    ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb21-17"><a href="#cb21-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-18"><a href="#cb21-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate pichap</span></span>
-<span id="cb21-19"><a href="#cb21-19" aria-hidden="true" tabindex="-1"></a>    pichap <span class="op">=</span> <span class="dv">1</span> <span class="op">/</span> in_</span>
-<span id="cb21-20"><a href="#cb21-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-21"><a href="#cb21-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Calculate icchap</span></span>
-<span id="cb21-22"><a href="#cb21-22" aria-hidden="true" tabindex="-1"></a>    icchap <span class="op">=</span> (<span class="dv">1</span> <span class="op">/</span> ic[<span class="dv">1</span>], <span class="dv">1</span> <span class="op">/</span> ic[<span class="dv">0</span>])</span>
-<span id="cb21-23"><a href="#cb21-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-24"><a href="#cb21-24" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> in_, ic, pichap, icchap</span>
-<span id="cb21-25"><a href="#cb21-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-26"><a href="#cb21-26" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb21-27"><a href="#cb21-27" aria-hidden="true" tabindex="-1"></a>IN, IC, pichap, ICchap <span class="op">=</span> calculate_statistics(N)</span>
-<span id="cb21-28"><a href="#cb21-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb21-29"><a href="#cb21-29" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, IN)</span>
-<span id="cb21-30"><a href="#cb21-30" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC) for IN:"</span>, IC)</span>
-<span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pichap:"</span>, pichap)</span>
-<span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC) for pichap:"</span>, ICchap)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.31985
-Confidence Interval (IC) for IN: (0.3151452299495683, 0.32455477005043176)
-pichap: 3.1264655307175238
-Confidence Interval (IC) for pichap: (3.081144054190337, 3.1731402063741436)</code></pre>
-</div>
-</div>
 <ol start="2" type="1">
 <li>Combien de tirages sont nécessaire pour obtenir une précision de <span class="math inline">10^{-2}</span> avec <span class="math inline">95\%</span> de certitude ?</li>
 </ol>
-</section>
-<section id="solution-10" class="level4">
-<h4 class="anchored" data-anchor-id="solution-10"><span style="color:red;">Solution</span></h4>
-<div id="7e211359" class="cell" data-execution_count="12">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate n values logarithmically spaced from 1e5 to 1e8</span></span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>n_values <span class="op">=</span> np.logspace(<span class="dv">5</span>, <span class="dv">8</span>, num<span class="op">=</span><span class="dv">10</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Evaluate the function for each value of n</span></span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>results <span class="op">=</span> [calculate_statistics(n) <span class="cf">for</span> n <span class="kw">in</span> n_values]</span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Print the results</span></span>
-<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n, (IN, IC, pichap, ICchap) <span class="kw">in</span> <span class="bu">zip</span>(n_values, results):</span>
-<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"n: </span><span class="sc">{</span>n<span class="sc">:09d}</span><span class="ss">, IN: </span><span class="sc">{</span>IN<span class="sc">:.3f}</span><span class="ss">, IC: (</span><span class="sc">{</span>IC[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>IC[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">), pichap: </span><span class="sc">{</span>pichap<span class="sc">:.3f}</span><span class="ss">, ICchap: (</span><span class="sc">{</span>ICchap[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ICchap[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>n: 000100000, IN: 0.317, IC: (0.315, 0.318), pichap: 3.155, ICchap: (3.141, 3.170)
-n: 000215443, IN: 0.318, IC: (0.317, 0.319), pichap: 3.148, ICchap: (3.138, 3.158)
-n: 000464158, IN: 0.319, IC: (0.318, 0.320), pichap: 3.134, ICchap: (3.127, 3.141)
-n: 001000000, IN: 0.319, IC: (0.318, 0.319), pichap: 3.139, ICchap: (3.135, 3.144)
-n: 002154434, IN: 0.318, IC: (0.318, 0.319), pichap: 3.141, ICchap: (3.138, 3.144)
-n: 004641588, IN: 0.318, IC: (0.318, 0.319), pichap: 3.141, ICchap: (3.139, 3.143)
-n: 010000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.143, ICchap: (3.141, 3.144)
-n: 021544346, IN: 0.318, IC: (0.318, 0.318), pichap: 3.141, ICchap: (3.140, 3.142)
-n: 046415888, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.143)
-n: 100000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.142)</code></pre>
-</div>
-</div>
-<p>Il faut de l’ordre d’un peu moins de <span class="math inline">10^8</span> tirages.</p>
-</section>
 </section>
 <section id="probabilités-de-dépassement-dune-loi-normale" class="level2">
 <h2 class="anchored" data-anchor-id="probabilités-de-dépassement-dune-loi-normale">Probabilités de dépassement d’une loi normale</h2>
@@ -802,49 +496,6 @@ n: 100000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.14
 <ol type="1">
 <li>Implémentez la méthode de Monte-Carlo standard pour ce calcul. Que constatez-vous ? Pourquoi ?</li>
 </ol>
-<section id="solution-11" class="level4">
-<h4 class="anchored" data-anchor-id="solution-11"><span style="color:red;">Solution</span></h4>
-<p>Commençons avec un petit nombre de simulations</p>
-<div id="83ace257" class="cell" data-execution_count="13">
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>N <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate samples from the normal distribution with mean 0 and standard deviation 1</span></span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> np.random.normal(<span class="dv">0</span>, <span class="dv">1</span>, N)</span>
-<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate Y based on the condition (X &gt; 4.5)</span></span>
-<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>Y <span class="op">=</span> (X <span class="op">&gt;</span> <span class="fl">4.5</span>)</span>
-<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the mean of Y</span></span>
-<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>in_ <span class="op">=</span> np.mean(Y)</span>
-<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-15"><a href="#cb25-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Calculate the confidence interval (ic) for in_</span></span>
-<span id="cb25-16"><a href="#cb25-16" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> stats.norm.ppf(<span class="fl">0.975</span>)</span>
-<span id="cb25-17"><a href="#cb25-17" aria-hidden="true" tabindex="-1"></a>delta <span class="op">=</span> q <span class="op">*</span> np.sqrt(np.var(Y) <span class="op">/</span> n)</span>
-<span id="cb25-18"><a href="#cb25-18" aria-hidden="true" tabindex="-1"></a>ic <span class="op">=</span> (in_ <span class="op">-</span> delta, in_ <span class="op">+</span> delta)</span>
-<span id="cb25-19"><a href="#cb25-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-20"><a href="#cb25-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb25-21"><a href="#cb25-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IC:"</span>, in_)</span>
-<span id="cb25-22"><a href="#cb25-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC) for IN:"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>IC: 0.0
-Confidence Interval (IC) for IN: (0.0, 0.0)</code></pre>
-</div>
-</div>
-<p>On obtient une estimation à 0, ce qui n’est pas surprenant car on cherche la probabilité d’un événement rare</p>
-<div id="01756398" class="cell" data-execution_count="14">
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute 1 - pnorm(4.5)</span></span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> <span class="dv">1</span> <span class="op">-</span> norm.cdf(<span class="fl">4.5</span>)</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"1 - pnorm(4.5):"</span>, result)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>1 - pnorm(4.5): 3.3976731247387093e-06</code></pre>
-</div>
-</div>
-</section>
 </section>
 <section id="pour-aller-plus-loin-volume-de-la-boule-unité" class="level2">
 <h2 class="anchored" data-anchor-id="pour-aller-plus-loin-volume-de-la-boule-unité">Pour aller plus loin: volume de la boule unité</h2>
@@ -854,64 +505,64 @@ Confidence Interval (IC) for IN: (0.0, 0.0)</code></pre>
 <ol type="1">
 <li>Implémentez la méthode de Riemann pour approcher <span class="math inline">V_d</span> pour <span class="math inline">d=2,\dots, 10</span> par <span class="math inline">\widehat{V}_d^{\mathrm{Riemann}}</span>.</li>
 </ol>
-<div id="f1f62712" class="cell" data-execution_count="15">
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(x<span class="op">**</span><span class="dv">2</span>) <span class="op">&lt;=</span> <span class="dv">1</span></span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_volume(d):</span>
-<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.pi<span class="op">**</span>(d<span class="op">/</span><span class="dv">2</span>) <span class="op">/</span> gamma(d<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)</span>
-<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> riemann(n, d):</span>
-<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>    n_discr <span class="op">=</span> <span class="bu">int</span>(n<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d))</span>
-<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>    n_eff <span class="op">=</span> n_discr<span class="op">**</span>d</span>
-<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_discr)</span>
-<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Grille regulière sur  [-1, 1]^d:</span></span>
-<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.array(np.meshgrid(<span class="op">*</span>[x]<span class="op">*</span>d)).reshape(d, <span class="op">-</span><span class="dv">1</span>).T</span>
-<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.array([f(x) <span class="cf">for</span> x <span class="kw">in</span> X]) <span class="op">*</span> <span class="fl">1.0</span></span>
-<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>    d_vol <span class="op">=</span> (<span class="dv">2</span> <span class="op">/</span> n_discr)<span class="op">**</span>d</span>
-<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y) <span class="op">*</span> d_vol, n_eff, X</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="4453ab38" class="cell" data-execution_count="15">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> f(x):</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(x<span class="op">**</span><span class="dv">2</span>) <span class="op">&lt;=</span> <span class="dv">1</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> true_volume(d):</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.pi<span class="op">**</span>(d<span class="op">/</span><span class="dv">2</span>) <span class="op">/</span> gamma(d<span class="op">/</span><span class="dv">2</span> <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> riemann(n, d):</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>    n_discr <span class="op">=</span> <span class="bu">int</span>(n<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d))</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>    n_eff <span class="op">=</span> n_discr<span class="op">**</span>d</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>    x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, n_discr)</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Grille regulière sur  [-1, 1]^d:</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>    X <span class="op">=</span> np.array(np.meshgrid(<span class="op">*</span>[x]<span class="op">*</span>d)).reshape(d, <span class="op">-</span><span class="dv">1</span>).T</span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>    Y <span class="op">=</span> np.array([f(x) <span class="cf">for</span> x <span class="kw">in</span> X]) <span class="op">*</span> <span class="fl">1.0</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>    d_vol <span class="op">=</span> (<span class="dv">2</span> <span class="op">/</span> n_discr)<span class="op">**</span>d</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(Y) <span class="op">*</span> d_vol, n_eff, X</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol type="1">
 <li>Implémentez la méthode de Monte-Carlo standard pour ce même calcul pour approcher <span class="math inline">V_d</span> par <span class="math inline">\widehat{V}_d^{\mathrm{Monte-Carlo}}</span>. Visualizer l’erreur relative des deux méthodes en fonction de <span class="math inline">d</span> (pour un nombre d’évaluation de <span class="math inline">f</span> identique, et supérieur à 10000. Que constatez-vous ? Pourquoi ? Pour rappel l’erreur relative d’un esimtateur <span class="math inline">\widehat{V}_d</span> de <span class="math inline">V_d</span> est donnée par <span class="math inline">|\widehat{V}_d - V_d|/V_d</span>.</li>
 </ol>
-<section id="solution-12" class="level4">
-<h4 class="anchored" data-anchor-id="solution-12"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
-<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
-<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>d_max <span class="op">=</span> <span class="dv">7</span></span>
-<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>dimensions <span class="op">=</span> <span class="bu">range</span>(<span class="dv">2</span>, d_max)</span>
-<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>rel_err_mcs <span class="op">=</span> []</span>
-<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>rel_err_rs <span class="op">=</span> []</span>
-<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> dimensions:</span>
-<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>    in_r, n_eff, _  <span class="op">=</span> riemann(n, d)</span>
-<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>    in_mc, _, _ <span class="op">=</span> montecarlo(n_eff, d)</span>
-<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>    true_vol <span class="op">=</span> true_volume(d)</span>
-<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>    rel_err_mcs.append(np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
-<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a>    rel_err_rs.append(np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
-<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>plt.plot(dimensions, rel_err_mcs, marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"Monte-Carlo"</span>, color<span class="op">=</span><span class="st">'peru'</span>)</span>
-<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>plt.plot(dimensions, rel_err_rs, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Riemann"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>)</span>
-<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">"Dimension"</span>)</span>
-<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">"Erreur relative"</span>)</span>
-<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Erreur relative en fonction de la dimension</span><span class="ch">\n</span><span class="ss">pour un nombre identique d'evaluations (&gt; </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
-<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="48d3e26d" class="cell quarto-layout-panel" data-layout-ncol="1" data-fig-width="2" data-execution_count="18">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="dv">10000</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>rel_err_mcs <span class="op">=</span> []</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>rel_err_rs <span class="op">=</span> []</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>d_max <span class="op">=</span> <span class="dv">7</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> d <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">2</span>, d_max):</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>    in_r, n_eff, X  <span class="op">=</span> riemann(n, d)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>    in_mc, ic_mc, norms_mc <span class="op">=</span> montecarlo(n_eff, d)  <span class="co"># même nombre d'évaluations</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>    rel_err_mc <span class="op">=</span> np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    rel_err_r <span class="op">=</span> np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_volume(d)) <span class="op">/</span> true_volume(d)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>    rel_err_mcs.append(rel_err_mc)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>    rel_err_rs.append(rel_err_r)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="bu">range</span>(<span class="dv">2</span>, d_max), rel_err_mcs, marker<span class="op">=</span><span class="st">"s"</span>, label<span class="op">=</span><span class="st">"Monte-Carlo"</span>,color<span class="op">=</span><span class="st">'peru'</span>)</span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>ax.plot(<span class="bu">range</span>(<span class="dv">2</span>, d_max), rel_err_rs, marker<span class="op">=</span><span class="st">"o"</span>, label<span class="op">=</span><span class="st">"Riemann"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>)</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">"Dimension"</span>)</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">"Erreur relative"</span>)</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="ss">f"Erreur relative en fonction de la dimension</span><span class="ch">\n</span><span class="ss">pour un nombre identique d'evaluations (&gt; </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>ax.legend()</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="8c432b5b" class="cell quarto-layout-panel" data-fig-width="2" data-layout-ncol="1" data-execution_count="17">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP5_files/figure-html/cell-19-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="589"></p>
+<p><img src="TP5_files/figure-html/cell-18-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="589"></p>
 </figure>
 </div>
 </div>
@@ -920,37 +571,37 @@ Confidence Interval (IC) for IN: (0.0, 0.0)</code></pre>
 <ol start="3" type="1">
 <li>Quelle méthode est la plus précise ? Pourquoi ? On pourra visualiser la norme des échantillons de la méthode de Monte-Carlo pour différentes dimensions de ceux de la méthode de Riemann.</li>
 </ol>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>d_max<span class="op">=</span><span class="dv">7</span></span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>d_min<span class="op">=</span><span class="dv">2</span></span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="dv">10000</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(d_max <span class="op">-</span> d_min <span class="op">+</span> <span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>), sharey<span class="op">=</span><span class="st">'row'</span>)</span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">range</span>(d_min, d_max <span class="op">+</span> <span class="dv">1</span>)):</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    _, n_eff, X <span class="op">=</span> riemann(n, d)</span>
-<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    norms_r <span class="op">=</span> np.<span class="bu">sum</span>(X<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>    _, _, norms_mc <span class="op">=</span> montecarlo(n_eff, d)</span>
-<span id="cb31-10"><a href="#cb31-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-11"><a href="#cb31-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, norms, title, color <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">range</span>(<span class="dv">2</span>), [norms_r, norms_mc], [<span class="st">"Tirages réguliers"</span>, <span class="st">"Tirages MC"</span>], [<span class="st">'dodgerblue'</span>, <span class="st">'peru'</span>]):</span>
-<span id="cb31-12"><a href="#cb31-12" aria-hidden="true" tabindex="-1"></a>        ax[i, j].scatter(<span class="bu">range</span>(n_eff), norms, label<span class="op">=</span>title, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="dv">1</span>, s<span class="op">=</span><span class="fl">0.8</span>)</span>
-<span id="cb31-13"><a href="#cb31-13" aria-hidden="true" tabindex="-1"></a>        ax[i, j].plot(<span class="bu">range</span>(n_eff), [<span class="dv">1</span>]<span class="op">*</span>n_eff, label<span class="op">=</span><span class="st">"1"</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
-<span id="cb31-14"><a href="#cb31-14" aria-hidden="true" tabindex="-1"></a>        ax[i, j].set_ylabel(<span class="st">"Carré de la norme "</span>)</span>
-<span id="cb31-15"><a href="#cb31-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-16"><a href="#cb31-16" aria-hidden="true" tabindex="-1"></a>    ax[i, <span class="dv">1</span>].text(<span class="fl">1.1</span>, <span class="fl">0.5</span>, <span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>, transform<span class="op">=</span>ax[i, <span class="dv">1</span>].transAxes, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'center'</span>)</span>
-<span id="cb31-17"><a href="#cb31-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-18"><a href="#cb31-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">"Échantillon Riemann"</span>)</span>
-<span id="cb31-19"><a href="#cb31-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">"Échantillon Monte-Carlo"</span>)</span>
-<span id="cb31-20"><a href="#cb31-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-21"><a href="#cb31-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Index"</span>)</span>
-<span id="cb31-22"><a href="#cb31-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Index"</span>)</span>
-<span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
-<span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="2e79c8c5" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d_max<span class="op">=</span><span class="dv">7</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_min<span class="op">=</span><span class="dv">2</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>n<span class="op">=</span><span class="dv">10000</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(d_max <span class="op">-</span> d_min <span class="op">+</span> <span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">12</span>), sharey<span class="op">=</span><span class="st">'row'</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, d <span class="kw">in</span> <span class="bu">enumerate</span>(<span class="bu">range</span>(d_min, d_max <span class="op">+</span> <span class="dv">1</span>)):</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    _, n_eff, X <span class="op">=</span> riemann(n, d)</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>    norms_r <span class="op">=</span> np.<span class="bu">sum</span>(X<span class="op">**</span><span class="dv">2</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>    _, _, norms_mc <span class="op">=</span> montecarlo(n_eff, d)</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j, norms, title, color <span class="kw">in</span> <span class="bu">zip</span>(<span class="bu">range</span>(<span class="dv">2</span>), [norms_r, norms_mc], [<span class="st">"Tirages réguliers"</span>, <span class="st">"Tirages MC"</span>], [<span class="st">'dodgerblue'</span>, <span class="st">'peru'</span>]):</span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>        ax[i, j].scatter(<span class="bu">range</span>(n_eff), norms, label<span class="op">=</span>title, color<span class="op">=</span>color, alpha<span class="op">=</span><span class="dv">1</span>, s<span class="op">=</span><span class="fl">0.8</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        ax[i, j].plot(<span class="bu">range</span>(n_eff), [<span class="dv">1</span>]<span class="op">*</span>n_eff, label<span class="op">=</span><span class="st">"1"</span>, color<span class="op">=</span><span class="st">'red'</span>)</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        ax[i, j].set_ylabel(<span class="st">"Carré de la norme "</span>)</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>    ax[i, <span class="dv">1</span>].text(<span class="fl">1.1</span>, <span class="fl">0.5</span>, <span class="ss">f"d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">"</span>, transform<span class="op">=</span>ax[i, <span class="dv">1</span>].transAxes, fontsize<span class="op">=</span><span class="dv">12</span>, verticalalignment<span class="op">=</span><span class="st">'center'</span>)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">"Échantillon Riemann"</span>)</span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>ax[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">"Échantillon Monte-Carlo"</span>)</span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">0</span>].set_xlabel(<span class="st">"Index"</span>)</span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>ax[<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>].set_xlabel(<span class="st">"Index"</span>)</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="7eba1928" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP5_files/figure-html/cell-20-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="772"></p>
+<p><img src="TP5_files/figure-html/cell-20-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="773"></p>
 </figure>
 </div>
 </div>
@@ -1004,42 +655,42 @@ n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \
 \sqrt{n}\left(\widehat{I}^{\mathrm{MC}} - \int_{\Omega} f(x)dx\right) \overset{d}{\longrightarrow} \mathcal{N}(0, \mathrm{Var}(f(X))) \enspace.
 </span> Cela donne donc une erreur de l’ordre de <span class="math inline">\frac{1}{\sqrt{n}}</span> pour la méthode de Monte-Carlo.</p>
 <p>On peut confirmer ces vitesses d’approximation en regardant les erreurs relatives en fonction du nombre d’évaluations pour <span class="math inline">d=4</span>, pour la fonction indicatrice de la boule unité:</p>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">4</span></span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>n_list <span class="op">=</span> np.logspace(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">15</span>).astype(<span class="bu">int</span>)</span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>true_vol <span class="op">=</span> true_volume(d)</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>n_list_r <span class="op">=</span> n_list<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d)</span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>n_list_r <span class="op">=</span> (n_list_r<span class="op">**</span>d).astype(<span class="bu">int</span>)</span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>rel_err_mc <span class="op">=</span> []</span>
-<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>rel_err_r <span class="op">=</span> []</span>
-<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n, n_r <span class="kw">in</span> <span class="bu">zip</span>(n_list, n_list_r):</span>
-<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    in_mc, _, _ <span class="op">=</span> montecarlo(n, d)</span>
-<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    in_r, _, _ <span class="op">=</span> riemann(n_r, d)</span>
-<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    rel_err_mc.append(np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
-<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>    rel_err_r.append(np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
-<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list, rel_err_mc, marker<span class="op">=</span><span class="st">"s"</span>, color<span class="op">=</span><span class="st">'peru'</span>, linestyle<span class="op">=</span><span class="st">''</span>)</span>
-<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list_r, rel_err_r, marker<span class="op">=</span><span class="st">"s"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, linestyle<span class="op">=</span><span class="st">''</span>)</span>
-<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">'log'</span>)</span>
-<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">'log'</span>)</span>
-<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list, rel_err_mc[<span class="dv">0</span>] <span class="op">*</span> np.sqrt(n_list[<span class="dv">0</span>] <span class="op">/</span> n_list), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'peru'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list_r, rel_err_r[<span class="dv">0</span>] <span class="op">*</span> (n_list_r[<span class="dv">0</span>] <span class="op">/</span> n_list_r)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
-<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Erreur relative en fonction du nombre d'évaluations pour $d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">$"</span>)</span>
-<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"Monte-Carlo"</span>, <span class="st">"Riemann"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}</span><span class="vs">}$"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}</span><span class="vs">}$"</span>], loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
-<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="2b780c82" class="cell quarto-layout-panel" data-layout-ncol="1" data-fig-width="2" data-execution_count="20">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d <span class="op">=</span> <span class="dv">4</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">7</span>, <span class="dv">5</span>))</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>n_list <span class="op">=</span> np.logspace(<span class="dv">2</span>, <span class="dv">6</span>, <span class="dv">15</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>true_vol <span class="op">=</span> true_volume(d)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>n_list_r <span class="op">=</span> n_list<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>n_list_r <span class="op">=</span> (n_list_r<span class="op">**</span>d).astype(<span class="bu">int</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>rel_err_mc <span class="op">=</span> []</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>rel_err_r <span class="op">=</span> []</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n, n_r <span class="kw">in</span> <span class="bu">zip</span>(n_list, n_list_r):</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>    in_mc, _, _ <span class="op">=</span> montecarlo(n, d)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>    in_r, _, _ <span class="op">=</span> riemann(n_r, d)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    rel_err_mc.append(np.<span class="bu">abs</span>(in_mc <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    rel_err_r.append(np.<span class="bu">abs</span>(in_r <span class="op">-</span> true_vol) <span class="op">/</span> true_vol)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list, rel_err_mc, marker<span class="op">=</span><span class="st">"s"</span>, color<span class="op">=</span><span class="st">'peru'</span>, linestyle<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list_r, rel_err_r, marker<span class="op">=</span><span class="st">"s"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, linestyle<span class="op">=</span><span class="st">''</span>)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a>ax.set_yscale(<span class="st">'log'</span>)</span>
+<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a>ax.set_xscale(<span class="st">'log'</span>)</span>
+<span id="cb4-23"><a href="#cb4-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-24"><a href="#cb4-24" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list, rel_err_mc[<span class="dv">0</span>] <span class="op">*</span> np.sqrt(n_list[<span class="dv">0</span>] <span class="op">/</span> n_list), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'peru'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-25"><a href="#cb4-25" aria-hidden="true" tabindex="-1"></a>ax.plot(n_list_r, rel_err_r[<span class="dv">0</span>] <span class="op">*</span> (n_list_r[<span class="dv">0</span>] <span class="op">/</span> n_list_r)<span class="op">**</span>(<span class="dv">1</span><span class="op">/</span>d), label<span class="op">=</span><span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}}}</span><span class="vs">$"</span>, color<span class="op">=</span><span class="st">'dodgerblue'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb4-26"><a href="#cb4-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-27"><a href="#cb4-27" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Erreur relative en fonction du nombre d'évaluations pour $d=</span><span class="sc">{</span>d<span class="sc">}</span><span class="ss">$"</span>)</span>
+<span id="cb4-28"><a href="#cb4-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-29"><a href="#cb4-29" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"Monte-Carlo"</span>, <span class="st">"Riemann"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}</span><span class="vs">}$"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}</span><span class="vs">}$"</span>], loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
+<span id="cb4-30"><a href="#cb4-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="cd8a9379" class="cell quarto-layout-panel" data-fig-width="2" data-layout-ncol="1" data-execution_count="20">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="TP5_files/figure-html/cell-21-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="580"></p>
+<p><img src="TP5_files/figure-html/cell-21-output-1.png" class="img-fluid quarto-figure quarto-figure-center figure-img" width="581"></p>
 </figure>
 </div>
 </div>
@@ -1048,7 +699,6 @@ n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \
 <p>Notons que la vitesse d’approximation prévue par la théorie est conforme à ce que l’on observe même si la fonction indicatrice de la boule unité n’est pas Lipschitzienne.</p>
 
 
-</section>
 </section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Retour au sommet</a></main> <!-- /main -->

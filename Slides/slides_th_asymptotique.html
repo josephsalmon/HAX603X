@@ -9,11 +9,11 @@
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.45">
+  <meta name="generator" content="quarto-1.5.57">
 
   <title>HAX603X: Modélisation stochastique – Théorèmes asymptotiques</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -494,7 +494,10 @@ Benjamin Charlier
 </section>
 <section id="visualisation-de-lexemple-du-pile-ou-face" class="slide level2">
 <h2>Visualisation de l’exemple du pile ou face</h2>
-<pre class="shinylive-python" data-engine="python"><code>#| echo: false
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| echo: false
 #| standalone: true
 #| viewerHeight: 550
 import numpy as np
@@ -736,7 +739,7 @@ app = App(app_ui, server)
 </ul>
 </div>
 <div class="fragment">
-<div id="d6fc3976" class="cell" data-execution_count="1">
+<div id="4a8025c7" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Calcul du quantile (en: Percent point function) de niveau 1-0.05/2</span></span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -748,7 +751,10 @@ app = App(app_ui, server)
 </section>
 <section id="visualization-du-tcl" class="slide level2">
 <h2>Visualization du TCL</h2>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
 #| viewerHeight: 600
 import numpy as np
 from scipy.stats import norm
@@ -970,7 +976,10 @@ x &amp;\to \int_{-\infty}^{+\infty} f(x-y)g(y) dy \enspace.\nonumber
 <section id="convolution-et-tcl" class="slide level2">
 <h2>Convolution et TCL</h2>
 <p>Pour <span class="math inline">\(X_1, \dots, X_n\)</span>, i.i.d., de densité <span class="math inline">\(f\)</span>, on affiche la loi de <span class="math inline">\(\bar{X}_n\)</span> (à une constante près)</p>
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
 #| viewerHeight: 550
 import numpy as np
 from shiny import ui, render, App, reactive

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -76,9 +76,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.7.0/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
@@ -107,6 +107,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Recherche"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
 <script type="module" src="../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
@@ -160,7 +167,7 @@ window.Quarto = {
 <body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -253,7 +260,6 @@ window.Quarto = {
  <span class="menu-text">TP</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
-        <li class="dropdown-header">TP</li>
         <li>
     <a class="dropdown-item" href="../TP/TP1.html">
  <span class="dropdown-text">TP1: Prise en main de Python</span></a>
@@ -273,16 +279,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../TP/TP6.html">
  <span class="dropdown-text">TP6: Marches Aléatoires</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Quarto</li>
-        <li>
-    <a class="dropdown-item" href="../TP/markdown.html">
- <span class="dropdown-text">Démarrage en Markdown</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../TP/quarto.html">
- <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -309,6 +305,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-quarto" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Quarto</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-quarto">    
+        <li>
+    <a class="dropdown-item" href="../TP/markdown.html">
+ <span class="dropdown-text">Démarrage en Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -329,7 +340,23 @@ window.Quarto = {
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Notations et rappels</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
@@ -405,25 +432,10 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/Courses/notations.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">Notations et rappels</h1>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <div class="hidden">
@@ -509,7 +521,7 @@ f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\mathrm det}(\Sigma)} e^{-\frac{1}{2}(x
 <p>La notion de variable aléatoire n’est pas facile à manipuler puisqu’elle part d’un espace <span class="math inline">\Omega</span> dont on ne sait rien. On souhaite donc caractériser la loi d’une variable aléatoire en ne considérant que l’espace d’arrivée <span class="math inline">(E, \mathcal{E})</span> .</p>
 <p>Plusieurs outils existent : la fonction de répartition (pour des variables aléatoires réelles), la fonction caractéristique (pour des variables aléatoires dans <span class="math inline">\mathbb{R}^d</span>), la fonction génératrice des moments (pour des variables aléatoires discrètes), etc. On se contente ici de la fonction de répartition qui nous sera utile pour simuler des variables aléatoires, ainsi que son inverse au sens de Levy.</p>
 <div id="def-cdf" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition <span class="emoji" data-emoji="gb">🇬🇧</span>: <em>cumulative distribution function</em>)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Définition 3 (Fonction de répartition :gb:: <em>cumulative distribution function</em>)</strong></span> <br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span>. La fonction de répartition de <span class="math inline">X</span> est la fonction <span class="math inline">F_X</span> définie sur <span class="math inline">\mathbb{R}</span> par <span class="math display">\begin{align*}
     F_X(x) &amp; = \mathbb{P}(X \leq x)\\
            &amp; = \mathbb{P}(X \in ]-\infty, x]) \enspace.
@@ -562,7 +574,7 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 <h2 class="anchored" data-anchor-id="fonction-quantile-inverse-généralisée-à-gauche">Fonction quantile, inverse généralisée à gauche</h2>
 <p>La fonction de répartition étant une fonction croissante on peut donner un sens à son inverse généralisée de la manière suivante.</p>
 <div id="def-quantile" class="theorem definition">
-<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée <span class="emoji" data-emoji="gb">🇬🇧</span>: <em>quantile distribution function</em>)</strong></span> <br></p>
+<p><span class="theorem-title"><strong>Définition 4 (Fonction quantile/ inverse généralisée :gb:: <em>quantile distribution function</em>)</strong></span> <br></p>
 <p>Soit <span class="math inline">X</span> une variable aléatoire sur <span class="math inline">(\mathbb{R}, \mathcal{B}(\mathbb{R}))</span> et <span class="math inline">F_X</span> sa fonction de répartition. La fonction quantile associée <span class="math inline">F_X^\leftarrow:  ]0,1[ \rightarrow \mathbb{R}</span> est définie par <span class="math display">
   F_X^\leftarrow(p)=  \inf\{ x \in \mathbb{R} \colon F_X(x)\geq p\} \enspace.
 </span></p>
@@ -1046,7 +1058,10 @@ F_X(x) = &amp; \mathbb{P}(X \leq x) \\
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
 #| viewerHeight: 830
 import numpy as np
 from scipy import stats
@@ -1732,7 +1747,10 @@ app = App(app_ui, server)
 </div>
 </div>
 <div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
-<pre class="shinylive-python" data-engine="python"><code>#| standalone: true
+<pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
+#|   shinylive does not work in self-contained HTML documents.
+#|   Please set `embed-resources: false` in your metadata.
+#| standalone: true
 #| viewerHeight: 830
 import numpy as np
 from scipy import stats

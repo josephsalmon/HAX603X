@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -102,6 +102,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Recherche"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -153,7 +160,7 @@ window.Quarto = {
 <body class="nav-sidebar floating nav-fixed">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -246,7 +253,6 @@ window.Quarto = {
  <span class="menu-text">TP</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
-        <li class="dropdown-header">TP</li>
         <li>
     <a class="dropdown-item" href="../TP/TP1.html">
  <span class="dropdown-text">TP1: Prise en main de Python</span></a>
@@ -266,16 +272,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../TP/TP6.html">
  <span class="dropdown-text">TP6: Marches Aléatoires</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Quarto</li>
-        <li>
-    <a class="dropdown-item" href="../TP/markdown.html">
- <span class="dropdown-text">Démarrage en Markdown</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../TP/quarto.html">
- <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -302,6 +298,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-quarto" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Quarto</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-quarto">    
+        <li>
+    <a class="dropdown-item" href="../TP/markdown.html">
+ <span class="dropdown-text">Démarrage en Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -315,82 +326,64 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP2.html">TP2: Simulation de lois élémentaires</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP2.html">TP2: Simulation de lois élémentaires</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">TP2: Simulation de lois élémentaires</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">TP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP1: Prise en main de Python</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP3: Simulation de variables aléatoires</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP5.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP5: Méthode de Monte-Carlo</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/TP6.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">TP6: Marches Aléatoires</span></a>
   </div>
 </li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Quarto</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/markdown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Démarrage en Markdown</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/quarto.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Démarrage en Quarto</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -401,7 +394,7 @@ window.Quarto = {
     <h2 id="toc-title">Sur cette page</h2>
    
   <ul>
-  <li><a href="#loi-uniforme-et-graine." id="toc-loi-uniforme-et-graine." class="nav-link active" data-scroll-target="#loi-uniforme-et-graine.">Loi uniforme et graine.</a></li>
+  <li><a href="#loi-uniforme-et-graine" id="toc-loi-uniforme-et-graine" class="nav-link active" data-scroll-target="#loi-uniforme-et-graine">Loi uniforme et graine</a></li>
   <li><a href="#exercice-1-simulation-de-loi-uniforme-et-histogramme" id="toc-exercice-1-simulation-de-loi-uniforme-et-histogramme" class="nav-link" data-scroll-target="#exercice-1-simulation-de-loi-uniforme-et-histogramme">Exercice 1: Simulation de loi uniforme et histogramme</a></li>
   <li><a href="#exercice-2-fonction-de-répartition-de-la-loi-uniforme" id="toc-exercice-2-fonction-de-répartition-de-la-loi-uniforme" class="nav-link" data-scroll-target="#exercice-2-fonction-de-répartition-de-la-loi-uniforme">Exercice 2: Fonction de répartition de la loi uniforme</a></li>
   <li><a href="#exercice-3-étude-de-la-moyenne-empirique" id="toc-exercice-3-étude-de-la-moyenne-empirique" class="nav-link" data-scroll-target="#exercice-3-étude-de-la-moyenne-empirique">Exercice 3: Étude de la moyenne empirique</a></li>
@@ -411,25 +404,10 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/TP2.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/TP1.html">TP</a></li><li class="breadcrumb-item"><a href="../TP/TP2.html">TP2: Simulation de lois élémentaires</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">TP2: Simulation de lois élémentaires</h1>
-</div>
+<main class="content quarto-banner-title-block" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <div class="callout callout-style-default callout-note callout-titled">
@@ -448,19 +426,19 @@ Objectifs de ce TP
 </ul>
 </div>
 </div>
-<section id="loi-uniforme-et-graine." class="level2">
-<h2 class="anchored" data-anchor-id="loi-uniforme-et-graine.">Loi uniforme et graine.</h2>
+<section id="loi-uniforme-et-graine" class="level2">
+<h2 class="anchored" data-anchor-id="loi-uniforme-et-graine">Loi uniforme et graine</h2>
 <p>Avec <code>numpy</code>, la fonction <code>numpy.random.uniform</code> permet la génération de réalisations <em>pseudo-aléatoires</em> de la loi uniforme sur <span class="math inline">[0,1]</span>.</p>
 <p>On peut modifier la taille de l’échantillon généré en modifiant l’argument de la fonction. Pour obtenir <span class="math inline">n=4</span> réalisations i.i.d. de loi uniforme, essayez par exemple</p>
-<div id="dc860aae" class="cell" data-execution_count="1">
+<div id="453b1161" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>np.random.uniform(size<span class="op">=</span><span class="dv">4</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="1">
-<pre><code>array([0.70682855, 0.19816833, 0.50696264, 0.83819303])</code></pre>
+<pre><code>array([0.7720502 , 0.21634918, 0.8241984 , 0.51455879])</code></pre>
 </div>
 </div>
 <p>Pour rappel, l’algorithme de génération de v.a. est récursif et s’appuie sur une graine. La graine peut être modifiée avec la création d’un générateur, et il suffit d’entrer un nombre en argument pour fixer cette graine.</p>
-<div id="677371f4" class="cell" data-execution_count="2">
+<div id="b47b056c" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(seed<span class="op">=</span><span class="dv">34</span>)</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(rng.uniform())</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>rng <span class="op">=</span> np.random.default_rng(<span class="dv">34</span>)</span>
@@ -475,7 +453,7 @@ Objectifs de ce TP
 <section id="exercice-1-simulation-de-loi-uniforme-et-histogramme" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-1-simulation-de-loi-uniforme-et-histogramme">Exercice 1: Simulation de loi uniforme et histogramme</h2>
 <p>Créez un vecteur de taille <span class="math inline">1000</span> composé de réalisations i.i.d. de v.a.uniformes sur <span class="math inline">[-1,1]</span>. Dans la suite on supposera que l’on a chargé <code>matplotlib</code> pour l’affichage graphique avec la commande:</p>
-<div id="a0adbdf7" class="cell" data-execution_count="3">
+<div id="161e5f00" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pylab <span class="im">as</span> plt</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -483,28 +461,10 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="445f1aa0" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
+<div id="bf4b4218" class="cell quarto-layout-panel" data-execution_count="4" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-5-output-1.png" class="img-fluid" width="600"></p>
-</div>
-</div>
-</div>
-<section id="solution" class="level4">
-<h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>vect <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>ax.hist(vect, label<span class="op">=</span><span class="st">"Histogramme"</span>, bins<span class="op">=</span><span class="dv">30</span>, density<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Histogramme: tirage uniforme sur [-1, -1]"</span>)</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>ax.set_xlim((<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>))</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlabel(<span class="st">'Abscisse'</span>)</span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>ax.set_ylabel(<span class="st">'Ordonnée'</span>)</span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="726ed9f2" class="cell quarto-layout-panel" data-execution_count="5" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-6-output-1.png" class="img-fluid" width="600"></p>
+<p><img src="TP2_files/figure-html/cell-5-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -521,50 +481,10 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="e35392c8" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
+<div id="ad61afb3" class="cell quarto-layout-panel" data-execution_count="6" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-7-output-1.png" class="img-fluid" width="600"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="solution-1" class="level4">
-<h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>cmap <span class="op">=</span> plt.cm.coolwarm</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>vect100 <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>vect1000 <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">5000</span>)</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>vect10000 <span class="op">=</span> rng.uniform(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>, <span class="dv">10000</span>)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">2</span>, num<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>colors<span class="op">=</span>[cmap(<span class="fl">0.99</span>), cmap(<span class="fl">0.7</span>), cmap(<span class="fl">0.5</span>)]</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>ax.plot(x, stats.uniform.pdf(x, loc<span class="op">=-</span><span class="dv">1</span>,scale<span class="op">=</span><span class="dv">2</span>),<span class="st">'--'</span>, color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Loi théorique"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>ax.hist(vect10000, histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 10000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>ax.hist(vect1000, histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 5000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">1</span>])</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>ax.hist(vect100, histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 1000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">2</span>])</span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme: tirage uniforme sur [-1, -1]'</span>)</span>
-<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Abscisse'</span>)</span>
-<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Ordonnée'</span>)</span>
-<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>ax.set_xlim((<span class="op">-</span><span class="dv">2</span>,<span class="dv">2</span>))</span>
-<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> matplotlib.lines <span class="im">import</span> Line2D</span>
-<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>custom_lines <span class="op">=</span> [Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">0</span>], lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>                Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">1</span>], lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>                Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">2</span>], lw<span class="op">=</span><span class="dv">2</span>)]</span>
-<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>ax.legend(custom_lines, [<span class="st">'10000 tirages'</span>, <span class="st">'1000 tirages'</span>, <span class="st">'100 tirages'</span>], loc<span class="op">=</span><span class="st">'upper right'</span>)</span>
-<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="941c126f" class="cell quarto-layout-panel" data-execution_count="7" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-8-output-1.png" class="img-fluid" width="600"></p>
+<p><img src="TP2_files/figure-html/cell-7-output-1.png" class="img-fluid" width="599"></p>
 </div>
 </div>
 </div>
@@ -572,32 +492,10 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="bb9d4658" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
+<div id="cc83c264" class="cell quarto-layout-panel" data-execution_count="8" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-9-output-1.png" class="img-fluid" width="571"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="solution-2" class="level4">
-<h4 class="anchored" data-anchor-id="solution-2"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>vectGauss <span class="op">=</span> np.random.randn(<span class="dv">1000</span>)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.linspace(vectGauss.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, vectGauss.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>ax.plot(xx, stats.norm.pdf(xx, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>),<span class="st">'--'</span>, color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Loi théorique"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>ax.hist(vectGauss, histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 10000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># plot density</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme: tirage Gaussien'</span>)</span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="dabd2084" class="cell quarto-layout-panel" data-execution_count="9" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-10-output-1.png" class="img-fluid" width="571"></p>
+<p><img src="TP2_files/figure-html/cell-9-output-1.png" class="img-fluid" width="579"></p>
 </div>
 </div>
 </div>
@@ -605,30 +503,10 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="74b1f6cb" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
+<div id="a7aa5757" class="cell quarto-layout-panel" data-execution_count="10" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-11-output-1.png" class="img-fluid" width="596"></p>
-</div>
-</div>
-</div>
-</section>
-<section id="solution-3" class="level4">
-<h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>vectCauchy <span class="op">=</span> np.random.standard_cauchy(<span class="dv">10000</span>)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.linspace(vectCauchy.<span class="bu">min</span>() <span class="op">-</span> <span class="dv">1</span>, vectCauchy.<span class="bu">max</span>() <span class="op">+</span> <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>ax.plot(xx, stats.cauchy.pdf(xx, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>),<span class="st">'--'</span>, color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Loi théorique"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>ax.hist(vectCauchy, histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 10000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
-<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme naïf: tirage Cauchy...'</span>)</span>
-<span id="cb9-10"><a href="#cb9-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="e7d82761" class="cell quarto-layout-panel" data-execution_count="11" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-12-output-1.png" class="img-fluid" width="596"></p>
+<p><img src="TP2_files/figure-html/cell-11-output-1.png" class="img-fluid" width="587"></p>
 </div>
 </div>
 </div>
@@ -636,36 +514,13 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="0a544821" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
+<div id="98ad6346" class="cell quarto-layout-panel" data-execution_count="12" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-13-output-1.png" class="img-fluid" width="579"></p>
 </div>
 </div>
 </div>
-</section>
-<section id="solution-4" class="level4">
-<h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>xmax <span class="op">=</span> <span class="dv">11</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>xx <span class="op">=</span> np.linspace(<span class="op">-</span>xmax <span class="op">-</span> <span class="dv">1</span>, xmax <span class="op">+</span> <span class="dv">1</span>, <span class="dv">100</span>)</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>ax.plot(xx, stats.cauchy.pdf(xx, loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>),<span class="st">'--'</span>, color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Loi théorique"</span>, alpha<span class="op">=</span><span class="fl">0.5</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>ax.hist(vectCauchy[np.<span class="bu">abs</span>(vectCauchy) <span class="op">&lt;</span> xmax], histtype<span class="op">=</span><span class="st">'step'</span>, density<span class="op">=</span><span class="va">True</span>, bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Histogramme 10000"</span>, fill<span class="op">=</span><span class="va">False</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>ax.set_xlim((<span class="op">-</span>xmax <span class="op">-</span> <span class="dv">1</span>, xmax <span class="op">+</span> <span class="dv">1</span>))</span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Histogramme : tirage Cauchy tronquée...'</span>)</span>
-<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="949e5834" class="cell quarto-layout-panel" data-execution_count="13" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-14-output-1.png" class="img-fluid" width="579"></p>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="exercice-2-fonction-de-répartition-de-la-loi-uniforme" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-2-fonction-de-répartition-de-la-loi-uniforme">Exercice 2: Fonction de répartition de la loi uniforme</h2>
@@ -679,7 +534,7 @@ Objectifs de ce TP
 <div>
 
 </div>
-<div id="0921a741" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
+<div id="bd4edacd" class="cell quarto-layout-panel" data-execution_count="14" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-15-output-1.png" class="img-fluid" width="581"></p>
@@ -700,7 +555,7 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="79b8381e" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
+<div id="5915b550" class="cell quarto-layout-panel" data-execution_count="15" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-16-output-1.png" class="img-fluid" width="581"></p>
@@ -709,26 +564,6 @@ Pour aller plus loin
 </div>
 </div>
 </div>
-<section id="solution-5" class="level4">
-<h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>lines <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">9</span>)</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i, vali <span class="kw">in</span> <span class="bu">enumerate</span>(lines):</span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    ax.plot(x, stats.uniform.cdf(x, loc<span class="op">=-</span>vali,scale<span class="op">=</span><span class="dv">2</span><span class="op">*</span>vali), color<span class="op">=</span>cmap(<span class="fl">0.2</span><span class="op">+</span><span class="fl">0.8</span><span class="op">*</span>i<span class="op">/</span><span class="bu">len</span>(lines)), label<span class="op">=</span><span class="ss">f"[-</span><span class="sc">{</span><span class="op">-</span>vali<span class="sc">}</span><span class="ss">,</span><span class="sc">{</span><span class="op">-</span>vali<span class="op">+</span><span class="dv">2</span><span class="op">*</span>vali<span class="sc">}</span><span class="ss">]"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>ax.set_xlim([<span class="op">-</span><span class="fl">1.5</span>,<span class="fl">1.5</span>])</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Fonctions de répartition de diverses loi uniformes"</span>)</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="5dc66478" class="cell quarto-layout-panel" data-execution_count="16" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-17-output-1.png" class="img-fluid" width="581"></p>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="exercice-3-étude-de-la-moyenne-empirique" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-3-étude-de-la-moyenne-empirique">Exercice 3: Étude de la moyenne empirique</h2>
@@ -737,30 +572,13 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="1c3a0c41" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
+<div id="c60b3063" class="cell quarto-layout-panel" data-execution_count="17" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-18-output-1.png" class="img-fluid" width="579"></p>
 </div>
 </div>
 </div>
-<section id="solution-6" class="level4">
-<h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>vect <span class="op">=</span> rng.uniform(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">1000</span>)</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>ax.plot(np.cumsum(vect) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(vect)<span class="op">+</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">"Moyenne empirique"</span>)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="fl">0.5</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Espérance de la loi"</span>)</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Convergence de la moyenne empirique"</span>)</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="98ea0c9f" class="cell quarto-layout-panel" data-execution_count="18" data-layout-ncol="1">
-<div class="quarto-layout-row">
-<div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
-<p><img src="TP2_files/figure-html/cell-19-output-1.png" class="img-fluid" width="579"></p>
-</div>
-</div>
-</div>
-</section>
 </section>
 <section id="exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-4-méthode-dinversion-loi-exponentielle-et-loi-de-cauchy">Exercice 4: Méthode d’inversion, loi exponentielle et loi de Cauchy</h2>
@@ -774,48 +592,17 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="6d767b20" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
+<div id="1cb2936b" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-20-output-1.png" class="img-fluid" width="571"></p>
 </div>
 </div>
 </div>
-<section id="solution-7" class="level4">
-<h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="dv">0</span>, <span class="dv">8</span>, num<span class="op">=</span><span class="dv">300</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>ax.plot(x, stats.expon.cdf(x, scale<span class="op">=</span><span class="dv">1</span>), color<span class="op">=</span><span class="st">'k'</span>, label<span class="op">=</span><span class="st">"Fonction de répartition"</span>, lw<span class="op">=</span><span class="dv">2</span>)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> dzexpo(n, lbd):</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>    U <span class="op">=</span> rng.uniform(size<span class="op">=</span>n)</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> <span class="op">-</span> np.log(U) <span class="op">/</span> lbd</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>ax.hist(dzexpo(<span class="dv">100</span>, <span class="dv">1</span>), density<span class="op">=</span><span class="va">True</span>,  cumulative<span class="op">=</span><span class="va">True</span>, histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Estimation de la fonction de répartition"</span>, color<span class="op">=</span>colors[<span class="dv">0</span>])</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>ax.hist(dzexpo(<span class="dv">1000</span>, <span class="dv">1</span>), density<span class="op">=</span><span class="va">True</span>,  cumulative<span class="op">=</span><span class="va">True</span>, histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Estimation de la fonction de répartition"</span>, color<span class="op">=</span>colors[<span class="dv">1</span>])</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>ax.hist(dzexpo(<span class="dv">10000</span>, <span class="dv">1</span>), density<span class="op">=</span><span class="va">True</span>,  cumulative<span class="op">=</span><span class="va">True</span>, histtype<span class="op">=</span><span class="st">'step'</span>,bins<span class="op">=</span><span class="dv">30</span>, label<span class="op">=</span><span class="st">"Estimation de la fonction de répartition"</span>, color<span class="op">=</span>colors[<span class="dv">2</span>])</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Loi exponentielle"</span>)</span>
-<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>custom_lines <span class="op">=</span> [Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span><span class="st">'k'</span>, lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>                Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">0</span>], lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>                Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">1</span>], lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>                Line2D([<span class="dv">0</span>], [<span class="dv">0</span>], color<span class="op">=</span>colors[<span class="dv">2</span>], lw<span class="op">=</span><span class="dv">2</span>),</span>
-<span id="cb13-19"><a href="#cb13-19" aria-hidden="true" tabindex="-1"></a>                ]</span>
-<span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a>ax.legend(custom_lines,</span>
-<span id="cb13-22"><a href="#cb13-22" aria-hidden="true" tabindex="-1"></a>          [<span class="st">'Fonction de répartition (théorique)'</span>,</span>
-<span id="cb13-23"><a href="#cb13-23" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Fonction de répartition (estimée, n=100)'</span>,</span>
-<span id="cb13-24"><a href="#cb13-24" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Fonction de répartition (estimée, n=1000)'</span>,</span>
-<span id="cb13-25"><a href="#cb13-25" aria-hidden="true" tabindex="-1"></a>          <span class="st">'Fonction de répartition (estimée, n=10000)'</span>,</span>
-<span id="cb13-26"><a href="#cb13-26" aria-hidden="true" tabindex="-1"></a>          ], loc<span class="op">=</span><span class="st">'lower right'</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="b276e3ce" class="cell quarto-layout-panel" data-execution_count="20" data-layout-ncol="1">
-
-</div>
 <div>
 
 </div>
-<div id="10c5bbb6" class="cell quarto-layout-panel" data-execution_count="21" data-layout-ncol="1">
+<div id="e6c63ee8" class="cell quarto-layout-panel" data-execution_count="21" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-22-output-1.png" class="img-fluid" width="571"></p>
@@ -825,7 +612,7 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="e70cb568" class="cell quarto-layout-panel" data-execution_count="22" data-layout-ncol="1">
+<div id="9b6e431c" class="cell quarto-layout-panel" data-execution_count="22" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-23-output-1.png" class="img-fluid" width="571"></p>
@@ -836,7 +623,7 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="659f8888" class="cell quarto-layout-panel" data-execution_count="23" data-layout-ncol="1">
+<div id="c26dc746" class="cell quarto-layout-panel" data-execution_count="23" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-24-output-1.png" class="img-fluid" width="579"></p>
@@ -846,7 +633,7 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="09884008" class="cell quarto-layout-panel" data-execution_count="24" data-layout-ncol="1">
+<div id="764735cf" class="cell quarto-layout-panel" data-execution_count="24" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="TP2_files/figure-html/cell-25-output-1.png" class="img-fluid" width="569"></p>
@@ -854,44 +641,31 @@ Pour aller plus loin
 </div>
 </div>
 </section>
-<section id="solution-8" class="level4">
-<h4 class="anchored" data-anchor-id="solution-8"><span style="color:red;">Solution</span></h4>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>vect <span class="op">=</span> dzcauchy(<span class="dv">1000</span>, <span class="dv">1</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>ax.plot(np.cumsum(vect) <span class="op">/</span> np.arange(<span class="dv">1</span>, <span class="bu">len</span>(vect)<span class="op">+</span><span class="dv">1</span>), label<span class="op">=</span><span class="st">"Moyenne empirique"</span>)</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>ax.axhline(<span class="dv">1</span>, linestyle<span class="op">=</span><span class="st">"--"</span>, color<span class="op">=</span><span class="st">'red'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="st">"Médiane de la loi"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>ax.set_title(<span class="st">"Convergence de la moyenne empirique pour une loi de Cauchy?"</span>)</span>
-<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>plt.legend()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="8ad88bed" class="cell quarto-layout-panel" data-execution_count="25" data-layout-ncol="1">
-
-</div>
-</section>
-</section>
 <section id="pour-aller-plus-loin-les-méthodes-à-noyaux-kde" class="level2">
 <h2 class="anchored" data-anchor-id="pour-aller-plus-loin-les-méthodes-à-noyaux-kde">Pour aller plus loin: les méthodes à noyaux (KDE)</h2>
 <p>Le phénomène qui apparaît avec la loi de Cauchy est les suivant: les queues de la loi de Cauchy sont tellement épaisses que la moyenne empirique que l’écart entre <span class="math inline">\min_i(X_i)</span> et le <span class="math inline">\max_i(X_i)</span> (les <span class="math inline">X_i</span> étant les tirages effectués) est du même ordre de grandeur que le nombre de tirages, <span class="math inline">n</span>. Comme la fonction <code>hist</code> discrétise l’intervalle <span class="math inline">[\min(X_i), \max(X_i)]</span> en le nombre de boîtes (<code>bins</code>) on observe peu de points dans chaque boîte ce qui rend l’estimation de la densité trop petite.</p>
 <p>Ce point n’est pas un problème pour les lois gaussiennes, car la largeur de l’intervalle <span class="math inline">[\min(X_i), \max(X_i)]</span> est de l’ordre de <span class="math inline">\sqrt{\log(n)}</span>, et comme on a <span class="math inline">n</span> points à placer dans cet intervalle, il y a assez de points dans chaque boîte pour obtenir une bonne estimation.</p>
 <p>Notons que les méthodes à noyaux (KDE) ne souffrent pas de ce défaut, car les “boîtes” sont en fait fixé autour des données et non sur une grille discrétisée comme c’est le cas pour l’histogramme. Voir par exemple l’aide de <a href="https://scikit-learn.org/stable/modules/density.html#kernel-density">scikit learn</a> ou encore <a href="https://fr.wikipedia.org/wiki/Estimation_par_noyau">wikipedia, méthode à noyau</a>.</p>
-<div id="17fb2e0e" class="cell" data-execution_count="26">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>n_sample <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">10</span>, num<span class="op">=</span><span class="dv">10000</span>)</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>dzcauchy(n_sample, <span class="dv">1</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>kde <span class="op">=</span> KernelDensity(kernel<span class="op">=</span><span class="st">"tophat"</span>, bandwidth<span class="op">=</span><span class="fl">0.1</span>).fit(X.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>log_dens <span class="op">=</span> kde.score_samples(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>go.Figure()</span>
-<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(x<span class="op">=</span>x, y<span class="op">=</span>np.exp(log_dens), mode<span class="op">=</span><span class="st">'lines'</span>, line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'blue'</span>, width<span class="op">=</span><span class="dv">2</span>), name<span class="op">=</span><span class="st">"Estimation de la densité"</span>))</span>
-<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(x<span class="op">=</span>x, y<span class="op">=</span>stats.cauchy.pdf(x, scale<span class="op">=</span><span class="dv">1</span>, loc<span class="op">=</span><span class="dv">0</span>), mode<span class="op">=</span><span class="st">'lines'</span>, opacity<span class="op">=</span><span class="fl">0.6</span>, line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'black'</span>, width<span class="op">=</span><span class="dv">2</span>), name<span class="op">=</span><span class="st">"Densité de Cauchy"</span>))</span>
-<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
-<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">"simple_white"</span>,</span>
-<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    showlegend<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taille de l'échantillon: </span><span class="sc">{</span>n_sample<span class="sc">}</span><span class="ss">"</span>)</span>
-<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Étendue: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(X)<span class="op">-</span>np<span class="sc">.</span><span class="bu">min</span>(X)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div id="93222afa" class="cell" data-execution_count="26">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> plotly.graph_objects <span class="im">as</span> go</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KernelDensity</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>n_sample <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> np.linspace(<span class="op">-</span><span class="dv">2</span>, <span class="dv">10</span>, num<span class="op">=</span><span class="dv">10000</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>dzcauchy(n_sample, <span class="dv">1</span>)</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>kde <span class="op">=</span> KernelDensity(kernel<span class="op">=</span><span class="st">"tophat"</span>, bandwidth<span class="op">=</span><span class="fl">0.1</span>).fit(X.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>log_dens <span class="op">=</span> kde.score_samples(x.reshape(<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>fig<span class="op">=</span>go.Figure()</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(x<span class="op">=</span>x, y<span class="op">=</span>np.exp(log_dens), mode<span class="op">=</span><span class="st">'lines'</span>, line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'blue'</span>, width<span class="op">=</span><span class="dv">2</span>), name<span class="op">=</span><span class="st">"Estimation de la densité"</span>))</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>fig.add_trace(go.Scatter(x<span class="op">=</span>x, y<span class="op">=</span>stats.cauchy.pdf(x, scale<span class="op">=</span><span class="dv">1</span>, loc<span class="op">=</span><span class="dv">0</span>), mode<span class="op">=</span><span class="st">'lines'</span>, opacity<span class="op">=</span><span class="fl">0.6</span>, line<span class="op">=</span><span class="bu">dict</span>(color<span class="op">=</span><span class="st">'black'</span>, width<span class="op">=</span><span class="dv">2</span>), name<span class="op">=</span><span class="st">"Densité de Cauchy"</span>))</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>fig.update_layout(</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    template<span class="op">=</span><span class="st">"simple_white"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    showlegend<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Taille de l'échantillon: </span><span class="sc">{</span>n_sample<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Étendue: </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">max</span>(X)<span class="op">-</span>np<span class="sc">.</span><span class="bu">min</span>(X)<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Taille de l'échantillon: 1000
 Étendue: 1488.6440039526083</code></pre>
@@ -901,7 +675,7 @@ Pour aller plus loin
 <div>
 
 </div>
-<div id="923d0f72" class="cell quarto-layout-panel" data-execution_count="27" data-layout-ncol="1">
+<div id="705adfea" class="cell quarto-layout-panel" data-execution_count="27" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="cell-output cell-output-stdout quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <pre><code>Taille de l'échantillon: 1000

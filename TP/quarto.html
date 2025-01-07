@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="fr" xml:lang="fr"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.45">
+<meta name="generator" content="quarto-1.5.57">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -103,6 +103,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Recherche"
   }
 }</script>
+<style>
+
+      .quarto-title-block .quarto-title-banner {
+        background-image: url(../bg_pine_trees.jpg);
+background-size: cover;
+      }
+</style>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -154,7 +161,7 @@ window.Quarto = {
 <body class="nav-sidebar floating nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
+  <header id="quarto-header" class="headroom fixed-top quarto-banner">
     <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
@@ -247,7 +254,6 @@ window.Quarto = {
  <span class="menu-text">TP</span>
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-tp">    
-        <li class="dropdown-header">TP</li>
         <li>
     <a class="dropdown-item" href="../TP/TP1.html">
  <span class="dropdown-text">TP1: Prise en main de Python</span></a>
@@ -267,16 +273,6 @@ window.Quarto = {
         <li>
     <a class="dropdown-item" href="../TP/TP6.html">
  <span class="dropdown-text">TP6: Marches Aléatoires</span></a>
-  </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li class="dropdown-header">Quarto</li>
-        <li>
-    <a class="dropdown-item" href="../TP/markdown.html">
- <span class="dropdown-text">Démarrage en Markdown</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../TP/quarto.html">
- <span class="dropdown-text">Démarrage en Quarto</span></a>
   </li>  
     </ul>
   </li>
@@ -303,6 +299,21 @@ window.Quarto = {
   </li>  
     </ul>
   </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-quarto" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">Quarto</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-quarto">    
+        <li>
+    <a class="dropdown-item" href="../TP/markdown.html">
+ <span class="dropdown-text">Démarrage en Markdown</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../TP/quarto.html">
+ <span class="dropdown-text">Démarrage en Quarto</span></a>
+  </li>  
+    </ul>
+  </li>
 </ul>
           </div> <!-- /navcollapse -->
             <div class="quarto-navbar-tools">
@@ -316,82 +327,46 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/markdown.html">Quarto</a></li><li class="breadcrumb-item"><a href="../TP/quarto.html">Démarrage en Quarto</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/quarto.html">Démarrage en Quarto</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Basculer la barre latérale" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
   </nav>
 </header>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">Démarrage en Quarto</h1>
+                      </div>
+  </div>
+    
+  
+  <div class="quarto-title-meta">
+
+      
+    
+      
+    </div>
+    
+  
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">TP</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/TP1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP1: Prise en main de Python</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/TP2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP2: Simulation de lois élémentaires</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/TP3.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP3: Simulation de variables aléatoires</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/TP5.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP5: Méthode de Monte-Carlo</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../TP/TP6.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">TP6: Marches Aléatoires</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Quarto</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Basculer la section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/markdown.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Démarrage en Markdown</span></a>
   </div>
 </li>
-          <li class="sidebar-item">
+        <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../TP/quarto.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Démarrage en Quarto</span></a>
   </div>
 </li>
-      </ul>
-  </li>
     </ul>
     </div>
 </nav>
@@ -418,25 +393,10 @@ window.Quarto = {
 <div class="toc-actions"><ul><li><a href="https://github.com/josephsalmon/HAX603X/blob/main/TP/quarto.qmd" class="toc-action"><i class="bi bi-github"></i>Voir la source</a></li><li><a href="https://github.com/josephsalmon/HAX603X/issues/new" class="toc-action"><i class="bi empty"></i>Faire part d'un problème</a></li></ul></div></nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../TP/markdown.html">Quarto</a></li><li class="breadcrumb-item"><a href="../TP/quarto.html">Démarrage en Quarto</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title">Démarrage en Quarto</h1>
-</div>
+<main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta">
-
-    
-  
-    
-  </div>
-  
-
-
-</header>
 
 
 <p><a href="https://quarto.org/"><strong>Quarto</strong></a> est un cadre d’édition unifié pour la science des données, qui combine votre code, ses résultats et vos commentaires. L’écriture d’un rapport de TP, d’un compte rendu de projet ou même de diapositives pour une présentation peut se faire facilement sous Quarto, avec un export en <code>.pdf</code> (ou en <code>.html</code>). Dans Quarto, vous pouvez écrire du code dans différents langages de programmation, tels que <code>Python</code>, <code>R</code>, <code>Julia</code> et bien d’autres. Vous pouvez également inclure des équations mathématiques (avec <span class="math inline">\LaTeX</span>), des images (<code>svg</code>, <code>png</code>, <code>jpg</code>, etc.), des tableaux, listes, etc.</p>
@@ -544,7 +504,7 @@ window.Quarto = {
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
 <span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>ax.hist(uniform_data, bins<span class="op">=</span><span class="dv">30</span>)</span>
 <span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="33524905" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
+<div id="816abe07" class="cell quarto-layout-panel" data-execution_count="1" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="quarto_files/figure-html/cell-2-output-1.png" class="img-fluid" width="558"></p>
