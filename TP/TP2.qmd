@@ -591,12 +591,12 @@ plt.legend()
 
 
 
-Le phénomène qui apparaît avec la loi de Cauchy est les suivant: les queues de la loi de Cauchy sont tellement épaisses que la moyenne empirique que l'écart entre  $\min_i(X_i)$ et le $\max_i(X_i)$ (les $X_i$ étant les tirages effectués) est du même ordre de grandeur que le nombre de tirages, $n$.
+Le phénomène qui apparaît avec la loi de Cauchy est le suivant: les queues de la loi de Cauchy sont tellement épaisses que l'écart entre $\min_i(X_i)$ et le $\max_i(X_i)$ (les $X_i$ étant les tirages effectués) est du même ordre de grandeur que le nombre de tirages, $n$.
 Comme la fonction `hist` discrétise l'intervalle $[\min(X_i), \max(X_i)]$ en le nombre de boîtes (`bins`) on observe peu de points dans chaque boîte ce qui rend l'estimation de la densité trop petite.
 
 Ce point n'est pas un problème pour les lois gaussiennes, car la largeur de l'intervalle $[\min(X_i), \max(X_i)]$ est de l'ordre de $\sqrt{\log(n)}$, et comme on a $n$ points à placer dans cet intervalle, il y a assez de points dans chaque boîte pour obtenir une bonne estimation.
 
-Notons que les méthodes à noyaux (KDE) ne souffrent pas de ce défaut, car les "boîtes" sont en fait fixé autour des données et non sur une grille discrétisée comme c'est le cas pour l'histogramme.
+Notons que les méthodes à noyaux (KDE) ne souffrent pas de ce défaut, car les "boîtes" sont en fait centrées autour des données et non sur une grille préalablement fixée comme c'est le cas pour l'histogramme.
 Voir par exemple l'aide de [scikit learn](https://scikit-learn.org/stable/modules/density.html#kernel-density) ou encore [wikipedia, méthode à noyau](https://fr.wikipedia.org/wiki/Estimation_par_noyau).
 
 
@@ -625,7 +625,7 @@ print(f"Étendue: {np.max(X)-np.min(X)}")
 ```
 
 
-Notons qu'un phénomène similaire apparaît aussi avec la loi de Pareto, qui est une loi à queue lourde quand son paramètre $\alpha$ est plus petit que 1.
+Notons qu'un phénomène similaire apparaît aussi avec la loi de Pareto, qui est aussi une loi à queue lourde quand son paramètre $\alpha$ est plus petit que 1.
 
 
 ```{python}
