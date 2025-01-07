@@ -50,24 +50,51 @@
   ################################################################################
 
 lang: fr
+from: markdown+emoji
 project:
   type: website
   render:
   - "*.qmd"
 
 website:
-  page-navigation: true
+  bread-crumbs: false
   back-to-top-navigation: true
+  page-navigation: true # true not working in website
+  title: "HAX603X: Modélisation stochastique"
+  site-url: https://josephsalmon.github.io/HAX603X/
+  repo-url: https://github.com/josephsalmon/HAX603X
+  repo-actions: [source, issue]
+  search:
+    location: navbar
+    type: textbox
+  navbar:
+    title: HAX603X
+    logo: https://josephsalmon.eu/img/Flag_of_Occitania.svg
+    favicon: https://josephsalmon.eu/img/Flag_of_Occitania.svg
+    left:
+      - sidebar:Cours
+      - sidebar:Slides
+      - sidebar:TP
+      - sidebar:TD
+      - sidebar:Quarto
+    right:
+      - text: "{{<iconify simple-icons:moodle title='Moodle'>}}"
+      # - text: "{{< ai moodle size=xl >}}"
+        href: https://moodle.umontpellier.fr/course/view.php?id=25763
+        aria-label: Moodle
+      - text: "{{< iconify simple-icons:github title='GitHub'>}}"
+        href: https://github.com/josephsalmon/HAX712X
+        aria-label: GitHub
   sidebar:
-    - id: introduction
-      title: "Présentation"
-      style: "floating"
-      collapse-level: 1
-      align: left
-      contents:
-        - index.qmd
+    # - id: introduction
+    #   title: "Présentation"
+    #   style: "floating"
+    #   collapse-level: 1
+    #   align: left
+    #   contents:
+    #     - index.qmd
     - id: Cours
-      collapse-level: 2
+      collapse-level: 3
       contents:
           - Courses/perspective_historique.qmd
           - Courses/notations.qmd
@@ -79,7 +106,7 @@ website:
           - Courses/marche_aleatoire.qmd
 
     - id: Slides
-      collapse-level: 2
+      collapse-level: 3
       contents:
           - Courses/slides.qmd
           - Slides/slides_intro.qmd
@@ -90,7 +117,7 @@ website:
           - Slides/slides_loi_normale_multi.qmd
 
     - id: TP
-      collapse-level: 2
+      collapse-level: 3
       contents:
           - TP/TP1.qmd
           - TP/TP2.qmd
@@ -98,7 +125,7 @@ website:
           - TP/TP5.qmd
           - TP/TP6.qmd
     - id: TD
-      collapse-level: 2
+      collapse-level: 3
       contents:
           - TD/TD1.qmd
           - TD/TD2.qmd
@@ -111,30 +138,16 @@ website:
           - TP/markdown.qmd
           - TP/quarto.qmd
 
-  title: "HAX603X: Modélisation stochastique"
-  site-url: https://josephsalmon.github.io/HAX603X/
-  repo-url: https://github.com/josephsalmon/HAX603X
-  repo-actions: [source, issue]
-  navbar:
-    title: HAX603X
-    background: primary
-    search: true
-    left:
-      - sidebar:Cours
-      - sidebar:Slides
-      - sidebar:TP
-      - sidebar:TD
-      - sidebar:Quarto
+  page-footer:
+    left: |
+      <span class="faux-block">{{< fa brands creative-commons >}} 2024 Joseph Salmon & Benjamin Charlier</span>
+      <span class="faux-block"><a href="https://github.com/josephsalmon/HAX603X">{{< fa brands github >}} Source Code</a></span>
+    # center: |
+    #   <span class="faux-block"><a href="/impressum/index.html">Impressum</a></span>
+    right: |
+      <span class="faux-block"> Built with <a href="https://quarto.org/">Quarto</a></span>
 
 
-
-    tools:
-      - icon: github
-        href: https://github.com/josephsalmon/HAX603X
-        text: GitHub
-      - icon: bicycle
-        href: https://moodle.umontpellier.fr/course/view.php?id=25763
-        text: Moodle
 
 title-block-banner: "bg_pine_trees.jpg"
 format:
@@ -162,4 +175,4 @@ format:
     footnotes-hover: true
     # self-contained: true
     # fig-format: svg
-    css: custom.css
+    css: custom.scss
