@@ -483,7 +483,7 @@ for i, name_distrib in enumerate(["norm", "poisson", "geom"]):
 
     fig.add_trace(
         go.Scatter(
-            x=[x[0] + x.ptp() / 12],
+            x=[x[0] + np.ptp(x) / 12],
             y=[alpha + 0.05],
             text="u",
             mode="text",

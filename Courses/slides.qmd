@@ -54,7 +54,7 @@ Vous trouverez ci-dessous la listes des slides associés:
 
 <br>
 
-[Cours: Loi normale multivariée](../Slides/slides_loi_normale_multi.qmd.qmd)
+[Cours: Loi normale multivariée](../Slides/slides_loi_normale_multi.qmd)
 
 ```{=html}
 <iframe class="slide-deck" src="
