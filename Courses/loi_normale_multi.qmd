@@ -174,7 +174,7 @@ La décomposition est unique si l'on impose que les éléments diagonaux de $L$ 
 :::
 
 ::: {.proof}
-La factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans [Th. 4.4.1, @Ciarlet06].
+La factorisation de Cholesky est une conséquence directe de la méthode du pivot de Gauss. Le détail est donné par exemple dans le livre d'analyse nuémrique [Th. 4.4.1, @Ciarlet06].
 :::
 
 
@@ -229,6 +229,8 @@ où $\theta$ est l'angle de rotation et $\sigma_1$ et $\sigma_2$ les écarts-typ
 
 ::: {.content-visible when-format="html"}
 
+
+
 ```{ojs}
 //| echo: false
 //| layout-ncol: 1
@@ -241,6 +243,7 @@ math = require("mathjs");
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
 // continuous case
 
+
 viewof inputs = Inputs.form([
   Inputs.range([-1, 1], {label: tex`\mu_1`, step: 0.1}, {value: 0}),
   Inputs.range([-1, 1], {label: tex`\mu_2`, step: 0.1}, {value: 0}),
@@ -249,7 +252,7 @@ viewof inputs = Inputs.form([
   Inputs.range([0, 6.29], {label: tex`\theta`, step: 0.01, value: 0}),
   Inputs.range([0, 1000], {label: tex`n`, step: 1, value: 10}),
   Inputs.button("Re-Tirage")
-])
+  ])
 
 
 mu1 = inputs[0];
@@ -288,7 +291,7 @@ function normal_rng(mu, Sigma, n=100) {
         var transformedX = mu[0] + cholesky[0][0] * x + cholesky[0][1] * y;
         var transformedY = mu[1] + cholesky[1][0] * x + cholesky[1][1] * y;
         return [transformedX, transformedY];
-    });   
+    });
 
     return samples;
 }

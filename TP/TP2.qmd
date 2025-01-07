@@ -4,7 +4,7 @@ bibliography: ../Courses/references.bib
 format:
   html:
     out.width: 50%
-correction: true
+correction: false
 filters:
   - shinylive
 ---
@@ -18,7 +18,7 @@ filters:
 :::
 
 
-## Loi uniforme et graine.
+## Loi uniforme et graine
 Avec `numpy`, la fonction `numpy.random.uniform` permet la génération de réalisations *pseudo-aléatoires* de la loi uniforme sur $[0,1]$.
 
 On peut modifier la taille de l'échantillon généré en modifiant l'argument de la fonction. Pour obtenir $n=4$ réalisations i.i.d. de loi uniforme, essayez par exemple
