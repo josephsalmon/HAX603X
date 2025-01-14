@@ -1,17 +1,17 @@
 \documentclass[11pt]{td_um}
 
 %------------------------------
-\def\version{cor}
-%\def\version{eno}
+% \def\version{cor}
+\def\version{eno}
 %------------------------------
 
 \input{../../common/header.tex}
 
-\newcommand{\va}{variable aléatoire\xspace} 
+\newcommand{\va}{variable aléatoire\xspace}
 \newcommand{\vas}{variables aléatoires\xspace}
 \newcommand{\evs}{événements\xspace}
 \newcommand{\ev}{événement\xspace}
-\newcommand{\fdr}{fonction de répartition\xspace} 
+\newcommand{\fdr}{fonction de répartition\xspace}
 \usepackage{xspace} % gestion des espaces apres les macros
 
 \title{TD 2 - Autour de la loi normale}
@@ -34,7 +34,7 @@
 	On dit alors que $X$ suit une loi normale tronquée ou loi demi-normale.
 	\begin{enumerate}
 		\item Proposer une méthode de simulation de $X$ à l'aide de la méthode de rejet avec $Y \sim \mathcal{E}(1)$.
-		
+
 		\cor{Notons tout d'abord que $f$ est bien une densité. On note $g$ la densité de la loi exponentielle de paramètre $1$:
 		\[
 		g(x) = e^{-x} \one_{[0, \infty[}(x)\,.
@@ -49,11 +49,11 @@
 		On pose donc $m = \sqrt{\frac{2e}{\pi}} \approx 1.32$ et $r(x) = e^{-\frac{(x-1)^2}{2}}$. L'algorithme de rejet consiste alors à simuler $Y \sim \mathcal{E}(1)$ et $U \sim \mathcal{U}([0,1])$ et à garder $Y$ si $U \leq e^{-\frac{(Y-1)^2}{2}}$.
 		}
 		\item En déduire une méthode de simulation d'une loi normale.
-		
+
 		\cor{La question précédente permet de simuler une loi normale sur l'axe des réels positifs. Il reste à attribuer un signe à une telle réalisation. L'idée est de choisir aléatoirement et indépendamment le signe.
-			
+
 			On considère une \va $B$ de loi de Bernoulli de paramètre $1/2$ indépendante de $X$ simulée selon $f$ avec la question précédente. On pose alors $N = B X - (1-B) X$ qui vaut donc $X$ si $B$ vaut $1$ et $-X$ si $B$ vaut $0$. Montrons que $N$ suit une loi normale.
-		
+
 			Pour $x \in \R$, la formule des probabilités totales donne
 			\begin{align*}
 			\P(N \leq x)
@@ -92,7 +92,7 @@
 	\]
 	\begin{enumerate}
 		\item Vérifier que cela définit bien une loi de probabilité.
-		
+
 		\cor{La fonction $g$ est mesurable, positive et vérifie
 			\[
 			\int_{\R} g(x) \, \mathrm dx
@@ -107,7 +107,7 @@
 			Ainsi, $g$ est bien une densité.
 		}
 		\item À l'aide de la méthode de rejet, proposer une méthode pour simuler une loi normale centrée réduite à partir de $g$. Pour quelle valeur de $\lambda$ la probabilité de rejet est-elle minimale ?
-		
+
 		\cor{On procède comme dans l'exercice précédent, avec cette fois-ci
 		\[
 		f(x) = \dfrac{1}{\sqrt{2 \pi}} e^{-\frac{x^2}{2}}\,, \quad x \in \R\,.
@@ -121,9 +121,9 @@
 		=: m(\lambda)\,.
 		\]
 		Il reste à minimiser $m(\lambda)$ ce qui revient à minimiser son logarithme. La dérivée de $\lambda \mapsto \ln (m(\lambda))$ vaut $-\frac{1}{\lambda} + \lambda$ donc s'annule en $\lambda = 1$. Le minimum vaut alors $m(1) = \sqrt{\dfrac{2 e}{\pi}}$. On retrouve la borne de l'exercice précédent.
-		
+
 		L'algorithme de rejet consiste alors à simuler une \va $U \sim \mathcal{U}([0,1])$ et $Y$ selon $g$, puis à conserver $Y$ si $U \leq e^{-\frac{(|Y| - 1)^2}{2}}$. Remarquons que $Y$ se simule sans problème avec la méthode d'inversion (sa fonction de répartition est bijective).
-		
+
 		D'après le cours, la probabilité de rejet est donnée par
 		\[
 		1 - \dfrac{1}{m} = 1 - \sqrt{\dfrac{\pi}{2 e}} \approx 0.24\,.
@@ -137,21 +137,21 @@
 	On considère deux \vas $U$ et $V$ indépendantes de loi uniforme sur $[0,1]$.
 	\begin{enumerate}
 		\item Rappeler le principe de la méthode de Box-Müller.
-		
+
 		\cor{La méthode de Box-Müller consiste à poser
 		\[
 		N_1 = \sqrt{-2 \ln(U)} \cos(2\pi V) \quad \text{et} \quad  N_2 = \sqrt{-2 \ln(U)} \sin(2\pi V)\,.
 		\]
 		Le théorème de changement de variables en coordonnées polaires assure alors que $N_1$ et $N_2$ sont deux \vas indépendantes de loi normale centrée réduite.}
-	
+
 		\item Rappeler comment simuler un couple $(X,Y)$ de loi uniforme sur le disque unité.
-		
+
 		\cor{Il suffit de considérer le couple $(2U-1, 2V-1)$ qui suit une loi uniforme sur le pavé $[-1,1]^2$. Ensuite, on pose $(X,Y) = (2U-1, 2V-1)$ si le vecteur appartient au disque, sinon on répète l'opération. Voir l'exercice 8 du TD 1 pour davantage de détails.}
-		
+
 		\item On pose $T = X^2+Y^2$. Montrer que le couple $\big(X \sqrt{-2 \ln(T)/T}, Y \sqrt{-2\ln(T)/T}\big)$ est formée de deux \vas indépendantes de loi normales centrées réduites. On pourra étudier la loi des composantes radiale et angulaire de $(X,Y)$.
-		
+
 		\emph{Remarque: cette méthode de simulation est due à Marsaglia.}
-		
+
 		\cor{La composante radiale de $(X,Y)$ est la \va $T = X^2+Y^2$ qui vérifie
 		\[
 		\P(T \leq t)
@@ -166,7 +166,7 @@
 		= t\,.
 		\]
 		Ainsi, $T$ suit une loi uniforme sur $[0,1]$.
-	
+
 		D'autre part, notons $\Theta$ la \va aléatoire donnant l'angle du vecteur $(X,Y)$, c'est-à-dire
 		\[
 		\cos(\Theta) = \dfrac{X}{X^2+Y^2} \quad \text{et} \quad \sin(\Theta) = \dfrac{Y}{X^2+Y^2}\,.
@@ -184,7 +184,7 @@
 		=  \dfrac{\alpha}{2 \pi}\,.
 		\]
 		On a utilisé la formule $\text{Aire}(\mathcal{A}_{\alpha, R}) = \frac{\alpha}{2} R^2$, où $\mathcal{A}_{\alpha, R}$ désigne l'ensemble des points du disque de rayon $R$ d'angle inférieur à $\alpha$.
-	
+
 		Bref, le couple proposé s'écrit
 		\[
 		\Big(X \sqrt{ \frac{-2\ln(T)}{T}}, Y \sqrt{\frac{-2 \ln(T)}{T}} \Big)
@@ -192,7 +192,7 @@
 		\]
 		et a donc la même loi que celui proposé par l'algorithme de Box-Müller. Les deux marginales suivent ainsi une loi normale centrée réduite.}
 		\item Comparer cette approche avec la méthode de Box-Müller.
-		
+
 		\cor{Cette approche a l'avantage de ne pas faire intervenir de fonctions trigonométriques (coûteuses en temps de calcul), mais s'appuie sur une procédure de rejet. Rappelons que la probabilité de rejet pour simuler des \vas sur le disque est de $21\%$ (voir l'exercice 8 du TD 1), ce qui est assez faible.}
 	\end{enumerate}
 \end{exo}
@@ -203,7 +203,7 @@
 %	Cet exercice sera utile pour traiter les convergences en loi de l'exercice 5.
 %	\begin{enumerate}
 %		\item Soit $(X_n)_{n \geq 1}$ une suite de \vas réelles qui converge en loi vers une \va $X$. Soit $f: \R \to \R$ une fonction continue. Montrer que $(f(X_n))_{n \geq 1}$ converge en loi vers $f(X)$.
-%		
+%
 %		\cor{Rappelons que $X_n \to X$ en loi quand $n \to \infty$ si pour toute fonction $h: \R \to \R$ continue bornée,
 %		\[
 %		\E[h(X_n)] \to \E[h(X)]\,, \quad n \to \infty\,.
@@ -219,13 +219,13 @@
 %		Y_n \xrightarrow[n \to \infty]{\mathcal{L}} c\,.
 %		\]
 %		On admet le lemme de Slutsky qui assure que sous ces hypothèses le couple $(X_n,Y_n)$ converge en loi vers $(X,c)$ (attention le résultat n'est plus vrai si $c$ n'est pas une constante).
-%		
+%
 %		Montrer que
 %		\[
 %		X_n Y_n \xrightarrow[n \to \infty]{\mathcal{L}} c X\quad \text{et} \quad
 %		X_n + Y_n \xrightarrow[n \to \infty]{\mathcal{L}} X + c\,.
 %		\]
-%		
+%
 %		\cor{On utilise le résultat de la question 1. en dimension $2$ (la généralisation ne pose pas de problème) avec $f_1(x,y) = xy$ et $f_2(x,y) = x+y$ qui sont des fonctions continues. Comme $(X_n, Y_n)$ converge en loi vers $(X,c)$, la question 1. assure que
 %		\[
 %		f_1(X_n, Y_n) \xrightarrow[n \to \infty]{\mathcal{L}} f_1(X,c)
@@ -240,14 +240,14 @@
 
 \begin{exo}{}
 	Soit $X_1, \ldots, X_n$ des \vas iid de loi $\mathcal{N}(\mu, \sigma^2)$. Un estimateur de $\mu$ (resp. $\sigma^2$) est une quantité aléatoire basée sur l'échantillon $X_1, \ldots, X_n$ qui permet d'approcher $\mu$ (resp. $\sigma^2$). Le but de l'exercice est de proposer des estimateurs naturels de $\mu$ et $\sigma^2$ et d'étudier leurs propriétés.
-	
+
 	\begin{enumerate}
 		\item \emph{Cas 1: $\mu$ inconnue et $\sigma$ connu}
-		
+
 		On suppose que la valeur de $\mu$ est inconnue mais que celle de $\sigma$ est connue.
 		\begin{enumerate}
 			\item Proposer un estimateur $\bar X_n$, basé sur l'échantillon $X_1, \ldots, X_n$, permettant d'approcher $\mu$. Calculer l'espérance de cet estimateur et donner sa limite (en un sens à préciser) quand $n \to \infty$.
-	
+
 			\cor{Un estimateur "naturel" de l'espérance $\mu$ est la moyenne empirique
 			\[
 			\bar X_n = \dfrac{X_1 + \cdots +X_n}{n}\,.
@@ -259,7 +259,7 @@
 			Par ailleurs, la loi des grands nombres assure la convergence presque sûre de $\bar X_n$ vers $\mu$. Notons qu'ici on n'a pas utilisé le caractère gaussien des $X_i$.
 		}
 			\item Donner la loi de $\bar X_n$.
-	
+
 			\cor{Les \vas $X_1, \ldots, X_n$ sont indépendantes et de loi normale donc leur somme suit encore une loi normale. De plus, la variance de $\bar X_n$ est donnée par
 			\[
 			\var(\bar X_n)
@@ -272,9 +272,9 @@
 			\bar X_n \sim \mathcal{N} \Big(\mu, \frac{\sigma^2}{n} \Big)\,.
 			\]
 			}
-		
+
 			\item Déterminer un intervalle $I_1(X_1, \ldots, X_n)$ qui contient $\mu$ avec probabilité $1-\alpha$, pour $\alpha > 0$.
-		
+
 			\cor{À partir de la question précédente, on en déduit que $\sqrt n (\bar X_n - \mu) / \sigma$ suit une loi normale centrée réduite. Notons $q_z$ le quantile d'ordre $z$ de la loi normale, c'est-à-dire vérifiant $\P(N \leq q_z) = z$, avec $N \sim \mathcal{N}(0,1)$. On obtient alors par symétrie de la loi normale que
 			\[
 			\P(-q_{1- \frac{\alpha}{2}} \leq \sqrt n (\bar X_n - \mu) / \sigma \leq q_{1- \frac{\alpha}{2}}) = 1 - \alpha\,.
@@ -290,16 +290,16 @@
 			\]
 			contient $\mu$ avec une probabilité de $1-\alpha$.}
 		\end{enumerate}
-		
+
 		\item \emph{Cas 2: $\sigma$ inconnu et $\mu$ connu}
-		
+
 		On suppose que la valeur de $\sigma$ est inconnue mais que celle de $\mu$ est connue. On rappelle que pour une \va de loi normale centrée réduite $X$, les moments sont donnés par
 		\[
 		\E[X^{2p+1}] = 0\ \quad \text{et} \quad \E[X^{2p}] = \dfrac{(2p)!}{2^p p!}\,, \quad p \in \N\,.
-		\]		
+		\]
 		\begin{enumerate}
 			\item Proposer un estimateur $\hat \sigma_n^2$, basé sur l'échantillon $X_1, \ldots, X_n$, permettant d'approcher $\sigma^2$. Calculer l'espérance et la variance de cet estimateur.
-			
+
 			\cor{Rappelons que $\sigma^2 = \var(X_1) = \E[(X_1 - \mu)^2]$. Un estimateur "naturel" de $\sigma^2$ est alors
 			\[
 			\hat \sigma_n^2 = \dfrac{1}{n} \sum_{k=1}^n (X_k - \mu)^2\,.
@@ -319,7 +319,7 @@
 			\]
 			à partir de la la formule donnée dans l'énoncé on obtient
 			\[
-			\E[(X_1-\mu)^4] 
+			\E[(X_1-\mu)^4]
 			= \sigma^4 \E\Big[ \Big(\frac{X_1-\mu}{\sigma}\Big)^4 \Big]
 			= \sigma^4 \E[N^4]
 			=  \sigma^4 \dfrac{4!}{2^2\,2!}
@@ -330,16 +330,16 @@
 			\var( \hat \sigma_n^2) = \dfrac{2 \sigma^4}{n}\,.
 			\]
 		}
-			
+
 			\item Quelle est la loi de $\frac{n \hat \sigma_n^2}{\sigma^2}$ ? En déduire un intervalle $I_2(X_1, \ldots, X_n)$ qui contient $\sigma$ avec probabilité $1-\alpha$, pour $\alpha > 0$.
-			
+
 			\cor{On remarque que la \va
 			\[
 			\dfrac{n \hat \sigma_n^2}{\sigma^2}
 			= \sum_{j=1}^n \Big(\dfrac{X_j - \mu}{\sigma}\Big)^2
 			\]
-			est une somme de $n$ \vas indépendantes de loi normale centrée réduite. Ainsi, $\frac{n \hat \sigma_n^2}{\sigma^2}$ suit une loi du chi-deux à $n$ degrés de liberté.	
-			
+			est une somme de $n$ \vas indépendantes de loi normale centrée réduite. Ainsi, $\frac{n \hat \sigma_n^2}{\sigma^2}$ suit une loi du chi-deux à $n$ degrés de liberté.
+
 			Notons que la loi du chi-deux n'est pas symétrique: elle prend ses valeurs dans $[0, \infty[$ (ce qui est rassurant car $\hat \sigma_n^2$ est positif). Notons $q'_{\frac{\alpha}{2}}$ (resp. $q'_{1-\frac{\alpha}{2}}$) le quantile d'ordre $\frac{\alpha}{2}$ (resp. $1-\frac{\alpha}{2}$) de la loi du chi-deux à $n$ degrés de liberté. Alors,
 			\[
 			\P \Big(q'_{\frac{\alpha}{2}} \leq \dfrac{n \hat \sigma_n^2}{\sigma^2} \leq q'_{1-\frac{\alpha}{2}} \Big)
@@ -352,35 +352,35 @@
 			\]
 		}
 		\end{enumerate}
-		
+
 		\item \emph{Cas 3: $\mu$ et $\sigma$ inconnus}
-		
+
 		On suppose que l'espérance $\mu$ et l'écart-type $\sigma$ sont tous les deux inconnus.
-		
+
 		\begin{enumerate}
 			\item Peut-on toujours utiliser $\bar X_n$ comme estimateur de $\mu$ ? Et $\hat \sigma_n^2$ comme estimateur de $\sigma^2$ ?
-			
+
 			\cor{La quantité $\bar X_n$ ne dépend que des $X_i$ donc peut toujours être utilisée comme estimateur de $\mu$. Par contre, $\sigma_n^2$ dépend de $\mu$ qui est inconnu, donc on ne peut plus utiliser cette quantité pour estimer $\sigma^2$.}
-			
+
 			\item On choisit comme estimateur de $\sigma^2$ la quantité
 			\[
 			S_n^2 = \dfrac{1}{n} \sum_{k=1}^n(X_k - \bar X_n)^2\,.
 			\]
 			On peut montrer que la \va $\frac{n S_n^2}{\sigma^2}$ suit une loi du chi-deux à $n-1$ degrés de liberté (on notera le perte d'un degré de liberté par rapport au cas précédent) et que cette \va est indépendante de $\bar X_n$ (cela semble étonnant mais ce résultat peut se montrer grâce au théorème de Cochran vu en M1).
-			
+
 			Donner la loi de
 			\[
 			\sqrt{n-1} \dfrac{\bar X_n -\mu}{S_n}\,.
 			\]
 			En déduire un intervalle $I_3(X_1, \ldots, X_n)$ qui contient $\mu$ avec probabilité $1-\alpha$, pour $\alpha > 0$.
-			
+
 			\cor{On part de l'égalité
 				\[
 				\sqrt{n-1} \dfrac{\bar X_n -\mu}{S_n}
 				= \dfrac{\sqrt{n} \frac{\bar X_n -\mu}{\sigma}}{\sqrt{\frac{n S_n^2}{\sigma^2}} \times \frac{1}{\sqrt{n-1}}}\,.
 				\]
 				Cette quantité correspond au ratio d'une loi normale par une loi du chi-deux à $n-1$ degrés de liberté, les deux \vas étant indépendantes d'après l'énoncé. Le cours assure alors que $\sqrt{n-1} \frac{\bar X_n -\mu}{S_n}$ suit une loi de Student à $n-1$ degrés de liberté.
-				
+
 				En notant $\tilde q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ d'une loi de Student (qui est symétrique), on en déduit l'intervalle de confiance demandé:
 				\[
 				I_3(X_1, \ldots, X_n)
@@ -388,11 +388,11 @@
 				\]
 			}
 		\end{enumerate}
-		
-		 
-		
+
+
+
 	\end{enumerate}
-	
+
 \end{exo}
 
 
@@ -434,14 +434,14 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 
 \begin{exo}{}
 	Soit $X_1, \ldots, X_n$ des \vas iid de variance $\sigma^2 < \infty$. On note $\mu$ l'espérance des $X_i$. Un estimateur de $\mu$ (resp. $\sigma^2$) est une quantité aléatoire basée sur l'échantillon $X_1, \ldots, X_n$ qui permet d'approcher $\mu$ (resp. $\sigma^2$). Le but de l'exercice est de proposer des estimateurs naturels de $\mu$ et $\sigma^2$ et d'étudier leurs propriétés.
-	
-	\begin{enumerate}		
+
+	\begin{enumerate}
 		\item \emph{Cas 1: $\mu$ inconnue et $\sigma$ connu}
-		
+
 		On suppose que la valeur de $\mu$ est inconnue mais que celle de $\sigma$ est connue.
 		\begin{enumerate}
 			\item Proposer un estimateur $\bar X_n$, basé sur l'échantillon $X_1, \ldots, X_n$, permettant approcher $\mu$ ? Calculer l'espérance de cet estimateur et donner sa limite (en un sens à préciser) quand $n \to \infty$.
-			
+
 			\cor{Un estimateur "naturel" de l'espérance $\mu$ est la moyenne empirique
 			\[
 			\bar X_n = \dfrac{X_1 + \cdots +X_n}{n}\,.
@@ -453,7 +453,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			Par ailleurs, la loi des grands nombres assure la convergence presque sûre de $\bar X_n$ vers $\mu$.
 			}
 			\item On souhaite préciser l'approximation précédente. Donner la loi limite de $\bar X_n$.
-			
+
 			\cor{La théorème central limite donne la convergence en loi
 			\[
 			\sqrt{n} \dfrac{\bar X_n - \mu}{\sigma} \xrightarrow[n \to \infty]{\mathcal{L}} N\,,
@@ -464,7 +464,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\[
 			\P(\mu \in I_1(X_1, \ldots, X_n)) \to 1- \alpha\,, \quad n \to \infty\,.
 			\]
-			
+
 			\cor{Notons $q_{1-\frac{\alpha}{2}}$ le quantile d'ordre $1-\frac{\alpha}{2}$ de $N$: $\P(N \leq q_{1-\frac{\alpha}{2}}) = 1 - \frac{\alpha}{2}$. Par symétrie de la loi normale, on obtient
 			\[
 			\P( -q_{1-\frac{\alpha}{2}} \leq N \leq q_{1-\frac{\alpha}{2}}) = 1 - \alpha
@@ -487,13 +487,13 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\]
 			}
 		\end{enumerate}
-	
+
 		\item \emph{Cas 2: $\sigma$ inconnu et $\mu$ connue}
-		
+
 		On suppose que la valeur de $\sigma$ est inconnue, mais que celle de $\mu$ est connue.
 		\begin{enumerate}
 			\item Proposer un estimateur $\hat \sigma_n^2$, basé sur l'échantillon $X_1, \ldots, X_n$, permettant approcher $\sigma^2$ ? Calculer l'espérance de cet estimateur et donner sa limite (en un sens à préciser) quand $n \to \infty$.
-			
+
 			\cor{Rappelons que $\sigma^2 = \var(X_1) = \E[(X_1 - \mu)^2]$. Un estimateur "naturel" de $\sigma^2$ est alors
 			\[
 			\hat \sigma_n^2 = \dfrac{1}{n} \sum_{k=1}^n (X_k - \mu)^2\,.
@@ -515,7 +515,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\]
 		}
 			\item On souhaite préciser l'approximation précédente. Donner la loi limite de $\hat \sigma_n^2$. On fera les hypothèses nécessaires sur la loi des $X_i$.
-			
+
 			\cor{Déterminons la variance de $\hat \sigma_n$. L'indépendance des $X_k$ assure que
 			\[
 			\var(\hat \sigma_n)
@@ -533,7 +533,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			= \dfrac{\mu_4 - \sigma^4}{n}\,.
 			\]
 			Notons que cette quantité existe sous réserve de l'existence du moment $\mu_4$.
-			
+
 			Le théorème central-limite assure alors que
 			\[
 			\dfrac{\hat \sigma_n^2 - \E[\hat \sigma_n^2]}{\sqrt{\var(\hat \sigma_n^2)}}
@@ -546,7 +546,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\[
 			\P(\sigma \in I_2(X_1, \ldots, X_n)) \to 1- \alpha\,, \quad n \to \infty\,.
 			\]
-			
+
 			\cor{La même méthode qu'à la question 1. (c) donne alors l'intervalle de confiance
 			\[
 			I_2
@@ -555,9 +555,9 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 			\]
 			où $q_{1-\frac{\alpha}{2}}$ désigne encore le quantile d'ordre $1-\frac{\alpha}{2}$ d'une loi normale centrée réduite.}
 		\end{enumerate}
-	
+
 		\item \emph{Cas 3: $\mu$ et $\sigma$ inconnus}
-		
+
 		On suppose que l'espérance $\mu$ et l'écart-type $\sigma$ sont tous les deux inconnus. On pose
 		\[
 		\bar X_n = \dfrac{X_1+\cdots+X_n}{n}\,,
@@ -566,7 +566,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 		\]
 		\begin{enumerate}
 		\item Étudier la convergence presque sûre de $\bar X_n$ et $S_n^2$.
-		
+
 		\cor{La convergence presque sûre de $\bar X_n$ vers $\mu$ est une conséquence directe de la loi des grands nombres. Concernent $S_n^2$, on décompose cette quantité via
 		\[
 		S_n^2
@@ -581,7 +581,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 		\]
 		Il suffit alors de reamrquer que $\E[X_1^2] - \mu^2 = \var(X_1)	= \sigma^2$. Ainsi, $S_n^2$ convergence presque sûrement vers $\sigma^2$ quand $n \to \infty$.}
 		\item Calculer $\E[S_n^2]$. En déduire un estimateur $s_n^2$ qui vérifie à la fois $s_n^2 \to \sigma^2$ p.s. et $\E[s_n^2] = \sigma^2$.
-		
+
 		\cor{En reprenant le calcul de la question précédente, on a l'égalité
 		\[
 		S_n^2
@@ -616,7 +616,7 @@ où $N \sim \mathcal{N}(0,1)$. La loi limite de $\bar X_n$ est donc une loi norm
 		\[
 		\P(\mu \in I_3(X_1, \ldots, X_n)) \to 1- \alpha\,, \quad n \to \infty\,.
 		\]
-		
+
 		\cor{La question 1. (b) donnait la convergence en loi
 		\[
 		\sqrt{n} \dfrac{\bar X_n - \mu}{\sigma} \xrightarrow[n \to \infty]{\mathcal{L}} N\,,

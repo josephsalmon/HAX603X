@@ -1,8 +1,8 @@
 \documentclass[11pt]{td_um}
 
 %------------------------------
-\def\version{cor}
-%\def\version{eno}
+% \def\version{cor}
+\def\version{eno}
 %------------------------------
 
 \input{../../common/header.tex}
@@ -146,10 +146,8 @@
 	= \dfrac{1}{B(\alpha,\beta)} x^{\alpha-1} (1-x)^{\beta-1}\,,
 	\quad x \in [0,1]\,,
 	\]
-	où $B$ désigne la fonction beta définie par
-	\[
-	B (x,y) = \int_0^1 t^{x-1} (1-t)^{y-1} dt\,.
-	\]
+	où $B$ désigne la fonction beta définie par $
+	B (x,y) = \int_0^1 t^{x-1} (1-t)^{y-1} dt$.
 	À l'aide de la méthode de rejet, construisez une algorithme permettant de simuler $n$ \vas de loi $\text{Beta}(\alpha,\beta)$.
 
 	% \cor{On remarque que la densité vérifie $f_{\alpha, \beta}(x) \leq m \one_{[0,1]}(x)$, où $m = \frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha) \Gamma(\beta)}$. On peut donc appliquer la méthode de rejet avec $m$ et la densité uniforme. L'algorithme est alors le suivant
@@ -262,7 +260,7 @@
 		\P(Z=n) = \P(Y=n-1) = (1-\lambda) \lambda^{n-1}\,, \quad n \geq 1\,.
 		\]
 		Ainsi, $Z$ suit une loi géométrique de paramètre $1-\lambda$ et $Y=Z-1$.}
-		\item En se basant sur la méthode de rejet vue dans le cadre de loi à densité, proposer une méthode pour simuler une \va $X$ de loi de Poisson de paramètre $\lambda$ à partir de $Y$.
+		\item En se basant sur la méthode de rejet, proposer une méthode pour simuler une \va $X$ de loi de Poisson de paramètre $\lambda$ à partir de $Y$.
 
 		\cor{Il suffit d'adapter ce qui a été vu en cours pour des \vas à densité, sauf qu'ici les densités sont calculées par rapport à la mesure de comptage sur $\N$. On remarque que pour tout entier $n$,
 			\[
