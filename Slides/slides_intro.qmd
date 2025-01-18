@@ -32,22 +32,47 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 ::: {.fragment fragment-index=1}
 - **Joseph Salmon** : CM et TP
-    - Situation actuelle : Professeur à l'Université de Montpellier
-    - Précédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington
-    - Spécialités : statistiques, optimisation, traitement des images, sciences participatives>
+    - Directeur de recherche, Inria
+    - Précédemment : Paris Diderot-Paris 7, Duke Univ., Télécom ParisTech, Univ. Washington, Univ. Montpellier
+    - Spécialités : statistiques, optimisation, traitement des images, sciences participatives, apprentissage automatique
     - Bureau : 415, Bat. 9
 :::
 <div style="line-height:4%;">
 <br>
 </div>
 
+
+<!-- column -->
+
+::::{.columns}
+
+:::{.column width="50%"}
+
 ::: {.fragment fragment-index=2}
-- **Benjamin Charlier** : CM, TD et TP
-  - Situation actuelle : Maître de conférences à l'Université de Montpellier
-  - Précédemment : Université Paul Sabatier, ENS Paris-Saclay
-  - Spécialités : traitement des images, statistiques, différentiation automatique
-  - Bureau : 423, Bat. 9
+- **Jean Baptiste Fermanian** : CM, TD
+  - Post-doctorant, Univ. Montpellier
+  - Précédemment : ENS Paris-Saclay
+  - Spécialités : statistiques
+  - Bureau : 121, Bat. 9
 :::
+
+:::
+
+:::{.column width="50%"}
+
+
+::: {.fragment fragment-index=2}
+- **Julien Patras** :  Tp
+  - Doctorant, IRD
+  - Précédemment : Ecole Polytechnique
+  - Spécialités : Statistiques, écologie
+  - Bureau : LIRMM et IRD Sète
+:::
+
+:::
+
+::::
+
 <!-- ----------------------------------------------------------------------- -->
 
 
@@ -83,10 +108,10 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 - TP notés : Rendu = fichier Python **.py** unique
 
-   - TP noté 1 : rendre en fin de session (en S11)
-   - TP noté 2 : rendre en fin de session (en S17)
+   - TP noté 1 : rendre en fin de session (en S7)
+   - TP noté 2 : rendre en fin de session (en S15)
 
-- CC : devoir sur table d'une heure (S18)
+- CC : devoir sur table d'une heure (S16)
 
 <br>
 
@@ -125,7 +150,7 @@ Détails de la notation des TPs :
 
 
 - Envoi par mail : zéro
-- Retard : zéro (uploader avant la fin, fermeture automatique de moodle)
+- Retard : zéro (uploader avant la fin, fermeture automatique de Moodle)
 
 :::
 <!-- ----------------------------------------------------------------------- -->
@@ -170,7 +195,7 @@ Détails de la notation des TPs :
    - méthode de Monte-Carlo pour le calcul approché d’une intégrale
    - réduction de la variance : variables antithétiques, variables de contrôle, etc.
 3. Compléments
-   - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2)
+   - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2 ou $\chi^2$)
    - construction d'intervalles de confiance.
    - marche aléatoire simple, etc.
 :::
@@ -182,7 +207,8 @@ Détails de la notation des TPs :
 
 
 <!-- ----------------------------------------------------------------------- -->
-## L'aiguille de Buffon
+
+##  L'aiguille de Buffon {{< iconify ph:needle >}}
 <hr>
 
 ::::{.columns}
@@ -193,7 +219,7 @@ Détails de la notation des TPs :
 - 1733:  **l'aiguille de Buffon**, méthode d'estimation de la valeur de $\pi$. 
 :::
 :::{.fragment fragment-index=2}
-- **Problème initial**: une aiguille de taille 1 tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
+- **Problème initial**: une aiguille de taille $1$ tombe sur un parquet composé de lattes de largeur $1$: quelle est alors la probabilité $P$ que l'aiguille croise une ligne de la trame du parquet ?
 :::
 
 :::{.fragment fragment-index=3}
@@ -338,7 +364,7 @@ Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
 
 
 <!-- ----------------------------------------------------------------------- -->
-## L'aiguille de Buffon (II)
+## L'aiguille de Buffon {{< iconify ph:needle >}}{{< iconify ph:needle >}}
 <hr>
 
 ::: {.fragment}
@@ -359,7 +385,7 @@ Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX60
 
 
 <!-- ----------------------------------------------------------------------- -->
-## Principe de Monte Carlo et estimation
+## Principe de Monte Carlo et estimation (I)
 <hr>
 
 Idée sous-jacente de Buffon :
@@ -474,15 +500,15 @@ fig1.add_annotation(
 )
 
 fig1.add_annotation(
-    dict(x=1., y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
+    dict(x=0.99, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
 )
 
 fig1.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
 
 fig1.update_layout(
     template="none",
-    xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, n_samples]),
-    yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=1, range=[0, 6]),
+    xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=3, range=[-0.001, n_samples]),
+    yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=2, range=[0., 6]),
 )
 # plot a dash line at y=pi
 fig1.add_shape(
@@ -507,7 +533,7 @@ fig1.data[11 * 3 + 2].visible = True
 
 
 steps = []
-for ii in range(len(fig1.data) // 3):
+for ii in range(len(fig1.data) // 3 ):
     step = dict(
         label=str(ii + 4),
         method="update",
@@ -544,7 +570,8 @@ fig1.show()
 
 
 <!-- ----------------------------------------------------------------------- -->
-##  Méthode de Monte-Carlo
+
+## Méthode de Monte-Carlo
 <hr>
 
 Méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.
@@ -573,7 +600,7 @@ Domaines d'applications:
 
 - Lieu: Los Alamos
 - Époque: seconde guerre mondial
-- Contexte: **Projet Manathan**, produire une bombe atomique
+- Contexte: **Projet Manhattan**, produire une bombe atomique
 - Besoins: modéliser les réactions nucléaires en chaîne (combinatoires)
 
 :::
@@ -581,7 +608,7 @@ Domaines d'applications:
 
 ::: {layout-ncol=3}
 :::{.fragment fragment-index=3}
-![[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann) (1903-1957), mathématicien et physicien américano-hongrois, un des pères de l'informatique.](https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg){height=200}
+![[John von Neumann](https://fr.wikipedia.org/wiki/John_von_Neumann) (1903-1957), mathématicien et physicien américano-hongrois, un des pères de l'informatique](https://upload.wikimedia.org/wikipedia/commons/d/d6/JohnvonNeumann-LosAlamos.jpg){height=200}
 :::
 
 :::{.fragment fragment-index=4}
@@ -589,7 +616,7 @@ Domaines d'applications:
 :::
 
 :::{.fragment fragment-index=5}
-![[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam) (1909-1984),  mathématicien polono-américainm, un des initiateurs de la méthode de Monte Carlo et de la propulsion nucléaire pulsée](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg){height=200}
+![[Stanisław Ulam](https://fr.wikipedia.org/wiki/Stanislaw_Ulam) (1909-1984),  mathématicien polono-américain, un des initiateurs de la méthode de Monte Carlo et de la propulsion nucléaire pulsée](https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Stanislaw_Ulam.tif/lossy-page1-413px-Stanislaw_Ulam.tif.jpg){height=200}
 :::
 
 :::
@@ -612,7 +639,7 @@ Domaines d'applications:
 
 
 <!-- ----------------------------------------------------------------------- -->
-## L'origine du nom "Monte-Carlo"
+## {{< iconify game-icons:rolling-dices >}} Origine du nom "Monte-Carlo"
 <hr>
 
 Initialement: besoin de confidentialité du projet Manhattan
@@ -631,7 +658,7 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
 
 <!-- ----------------------------------------------------------------------- -->
-## Essor de la méthode de Monte Carlo
+## {{< iconify fluent:arrow-growth-24-filled >}} Essor de la méthode de Monte Carlo
 <hr>
 
 
@@ -650,12 +677,12 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 
 :::{.fragment fragment-index=2}
 
-- Domaine principaux impactés:
+- Domaines principaux impactés:
 
-  - finance : évaluation des prix de produits dérivés
-  - apprentissage automatique: utilisation de l'aléatoire pour généré des scénarios
+  - Finance : évaluation des prix de produits dérivés
+  - Apprentissage automatique: utilisation de l'aléatoire pour générer des scénarios
 
-    [Exemples: Alphago (2016)]{.fragment fragment-index=3}[, AlphaGeometry (2024)]{.fragment fragment-index=4}
+    [[Exemples]{.underline}: Alphago (2016)]{.fragment fragment-index=3}[, AlphaGeometry (2024)]{.fragment fragment-index=4}
 :::
 
 :::
@@ -689,7 +716,7 @@ Recherche arborescente Monte-Carlo (:gb: : *Monte Carlo tree search*): analyse d
 
 
 <!-- ----------------------------------------------------------------------- -->
-## Liste de livres
+## {{< iconify emojione-monotone:books >}} Références
 <hr>
 
 ::: {#refs}

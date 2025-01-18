@@ -4,7 +4,7 @@ title: "Slides: menu principal"
 
 Vous trouverez ci-dessous la listes des slides associés:
 
-[Cours introduction, plein écran](../Slides/slides_intro.qmd)
+[Cours introduction (plein écran)](../Slides/slides_intro.qmd)
 
 ```{=html}
 <iframe class="slide-deck" src="
