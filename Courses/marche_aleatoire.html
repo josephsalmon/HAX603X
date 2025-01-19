@@ -713,12 +713,7 @@ La trajectoire correspondant au tirage $S_0=0$, $X_1=1$, $X_2=1$, $X_3=-1$, $X_4
 <div id="fig-traj_rw" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-traj_rw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../srcimages/deux_chemins.svg" class="img-fluid figure-img" style="width:50.0%"></p>
-<figcaption>Deux trajectoires</figcaption>
-</figure>
-</div>
+<img src="../srcimages/deux_chemins.svg" class="img-fluid figure-img" style="width:50.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-traj_rw-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Voici deux chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(5,3)</span>.
@@ -892,7 +887,7 @@ S_0-n\leq S_n\leq S_0+n,
 <span id="cb2-446"><a href="#cb2-446" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
 <span id="cb2-447"><a href="#cb2-447" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb2-448"><a href="#cb2-448" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center">
+<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-2-1" data-nodetype="declaration">
@@ -960,15 +955,10 @@ y&amp;=&amp;\frac{n-m}{2}-\frac{b-a}{2}
 <div id="fig-reflex" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-reflex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../srcimages/reflex.svg" class="img-fluid figure-img" style="width:80.0%"></p>
-<figcaption>Réflextion</figcaption>
-</figure>
-</div>
+<img src="../srcimages/reflex.svg" class="img-fluid figure-img" style="width:80.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-reflex-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;4: Un chemin de <span class="math inline">(0,2)</span> à <span class="math inline">(11,1)</span> passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
+Figure&nbsp;4: Réflexion: un chemin de <span class="math inline">(0,2)</span> à <span class="math inline">(11,1)</span> passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
 </figcaption>
 </figure>
 </div>
@@ -1006,11 +996,11 @@ p=1-\frac{b}{a+1}.
 <li>au nombre total de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> moins le nombre de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> touchant <span class="math inline">0</span>;</li>
 <li>au nombre total de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,a-b+1)</span> moins le nombre de chemins de <span class="math inline">(0,1)</span> à <span class="math inline">(a+b,-(a-b+1))</span> par le principe de réflexion.</li>
 </ul>
-<p>Il vaut donc <span class="math inline">\binom{a+b}{a}-\binom{a+b}{b-1}</span>. Ainsi <span class="math display">
-\begin{align*}
+<p>Il vaut donc <span class="math inline">\binom{a+b}{a}-\binom{a+b}{b-1}</span>. Ainsi</p>
+<p><span class="math display">\begin{align*}
 p &amp;=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}} \\ &amp;=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
-\end{align*}
-</span> d’où le résultat.</p>
+\end{align*}</span></p>
+<p>d’où le résultat.</p>
 </div>
 </section>
 </section>
@@ -1024,35 +1014,34 @@ p &amp;=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+
 <h3 class="anchored" data-anchor-id="sec-chap03-markov">Propriété de Markov et stationnarité</h3>
 <p>Les deux propriétés suivantes sont des propriétés du processus et non plus seulement des trajectoires. Elles énoncent une certaine forme d’invariance de la marche au cours du temps. La première est une propriété d’absence de mémoire : la position future de la marche ne dépend que de sa position actuelle et pas de la trajectoire qui l’a amenée à cette position.</p>
 <div id="prp-markov" class="theorem proposition">
-<p><span class="theorem-title"><strong>Proposition 6 (Markov)</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span> et pour tous <span class="math inline">(a_0,a_1,\ldots,a_{n+1})\in\mathbb{Z}^{n+2}</span>, on a <span class="math display">
-\begin{align*}
+<p><span class="theorem-title"><strong>Proposition 6 (Markov)</strong></span> Pour tout <span class="math inline">n\in\mathbb{N}</span> et pour tous <span class="math inline">(a_0,a_1,\ldots,a_{n+1})\in\mathbb{Z}^{n+2}</span>, on a</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1}&amp; | S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\mathbb{P}(S_{n+1}=a_{n+1}&amp; | S_n=a_n).
-\end{align*}
-</span></p>
+\end{align*}</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Par définition des probabilités conditionnelles, on a <span class="math display">
-\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Par définition des probabilités conditionnelles, on a</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} &amp;| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(S_{n+1}=a_{n+1}, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)},
-\end{align*}
-</span> puisque <span class="math inline">S_{n+1}=S_n+X_{n+1}</span>. Remarquons maintenant que <span class="math inline">X_{n+1}</span> est indépendante de <span class="math inline">X_1,\ldots, X_n</span>, donc de <span class="math inline">S_0,\ldots,S_n</span>. On obtient alors <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>puisque <span class="math inline">S_{n+1}=S_n+X_{n+1}</span>. Remarquons maintenant que <span class="math inline">X_{n+1}</span> est indépendante de <span class="math inline">X_1,\ldots, X_n</span>, donc de <span class="math inline">S_0,\ldots,S_n</span>. On obtient alors</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} &amp;| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n)\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\mathbb{P}(X_{n+1}=a_{n+1}-a_n).
-\end{align*}
-</span> Par ailleurs, par un raisonnement analogue on a <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Par ailleurs, par un raisonnement analogue on a</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n+1}=a_{n+1} | S_n=a_n)
 &amp;=\frac{\mathbb{P}(S_{n+1}=a_{n+1},S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n,S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\frac{\mathbb{P}(X_{n+1}=a_{n+1}-a_n)\mathbb{P}(S_n=a_n)}{\mathbb{P}(S_n=a_n)}\\
 &amp;=\mathbb{P}(X_{n+1}=a_{n+1}-a_n),
-\end{align*}
-</span> d’où le résultat.</p>
+\end{align*}</span></p>
+<p>d’où le résultat.</p>
 </div>
 <div id="prp-inde" class="theorem proposition">
 <p><span class="theorem-title"><strong>Proposition 7</strong></span> Pour tout <span class="math inline">n &gt; m</span> entiers positifs <span class="math inline">S_n-S_m</span> est indépendant de <span class="math inline">(S_0,S_1,\ldots, S_m)</span>.</p>
@@ -1064,24 +1053,23 @@ S_n-S_m=\sum_{k=m+1}^nX_k,
 </div>
 <p>On a un résultat analogue à la propriété de Markov lorsqu’on regarde deux pas de temps plus éloignés.</p>
 <div id="cor-mark" class="theorem corollary">
-<p><span class="theorem-title"><strong>Corollaire 3</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et pour tous <span class="math inline">(a_0,a_1,\ldots,a_m,a_{n})\in\mathbb{Z}^{m+2}</span>, on a <span class="math display">
-\begin{align*}
+<p><span class="theorem-title"><strong>Corollaire 3</strong></span> Pour tout <span class="math inline">n&gt;m</span> entiers positifs et pour tous <span class="math inline">(a_0,a_1,\ldots,a_m,a_{n})\in\mathbb{Z}^{m+2}</span>, on a</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n}=a_{n}&amp; | S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\mathbb{P}(S_{n}=a_{n}&amp; | S_m=a_m).
-\end{align*}
-</span></p>
+\end{align*}</span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient <span class="math display">
-\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_{n}=a_{n}&amp;| S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 &amp;=\frac{\mathbb{P}(S_{n}=a_{n},S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(S_{n}-S_m=a_{n}-a_m,S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\frac{\mathbb{P}(S_{n}-S_m=a_{n}-a_m)\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\mathbb{P}(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &amp;=\mathbb{P}(S_{n}-S_m=a_{n}-a_m)\\
 &amp;=\mathbb{P}(S_n=a_n|S_m=a_m),
-\end{align*}
-</span> en utilisant la propriété des accroissement indépendants.</p>
+\end{align*}</span></p>
+<p>en utilisant la propriété des accroissement indépendants.</p>
 </div>
 <p>La seconde propriété dite de stationnarité signifie qu’on peut changer l’origine du repère sans influence sur le comportement futur de la marche.</p>
 <div id="prp-statio" class="theorem proposition">
@@ -1090,8 +1078,8 @@ S_n-S_m=\sum_{k=m+1}^nX_k,
 </span></p>
 </div>
 <div class="proof">
-<p><span class="proof-title"><em>Preuve</em>. </span>En utilisant l’indépendance des accroissements, on obtient <span class="math display">
-\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>En utilisant l’indépendance des accroissements, on obtient</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_n=b|S_m=a)
 &amp;=\frac{\mathbb{P}(S_n=b,S_m=a)}{\mathbb{P}(S_m=a)}\\
 &amp;=\frac{\mathbb{P}(S_n-S_m=b-a,S_m=a)}{\mathbb{P}(S_m=a)}\\
@@ -1100,8 +1088,8 @@ S_n-S_m=\sum_{k=m+1}^nX_k,
 &amp;=\mathbb{P}(\sum_{k=m+1}^nX_k=b-a)\\
 &amp;=\mathbb{P}(\sum_{k=1}^{n-m}X_k=b-a)\\
 &amp;=\mathbb{P}(S_{n-m}=b-a|S_0=0),
-\end{align*}
-</span> car les <span class="math inline">(X_n)</span> sont indépendantes et de même loi.</p>
+\end{align*}</span></p>
+<p>car les <span class="math inline">(X_n)</span> sont indépendantes et de même loi.</p>
 </div>
 </section>
 <section id="sec-chap03-retour" class="level3 page-columns page-full">
@@ -1126,7 +1114,7 @@ T_0=\inf\{n\geq 1; S_n=0\},
 <div>
 
 </div>
-<div id="3d3f7d4a" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="1" data-figalign="center">
+<div id="5d9e7567" class="cell quarto-layout-panel" data-figalign="center" data-execution_count="1" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <p><img src="marche_aleatoire_files/figure-html/cell-2-output-1.png" class="img-fluid" width="590"></p>
@@ -1162,44 +1150,44 @@ T_0=\inf\{n\geq 1; S_n=0\},
 </span></p>
 </div>
 <div class="proof page-columns page-full">
-<p><span class="proof-title"><em>Preuve</em>. </span>On a <span class="math inline">\mathbb{P}(T_0&lt;+\infty)=\sum_{n=1}^\infty\mathbb{P}(T_0=2n)</span>, il s’agit donc d’identifier la somme de cette série. Pour cela, on exprime différemment le probabilité de l’événement <span class="math inline">(T_0=2n)</span>, en repartant de l’expression du nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,1)</span> ne touchant pas <span class="math inline">0</span> divisée par le nombre total de chemins de longueur <span class="math inline">2n-1</span>. Ce nombre de chemins est égal à la différence entre le nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,1)</span> et le nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,-1)</span> d’après le principe de réflexion. On obtient ainsi : <span class="math display">
-\begin{align*}
+<p><span class="proof-title"><em>Preuve</em>. </span>On a <span class="math inline">\mathbb{P}(T_0&lt;+\infty)=\sum_{n=1}^\infty\mathbb{P}(T_0=2n)</span>, il s’agit donc d’identifier la somme de cette série. Pour cela, on exprime différemment le probabilité de l’événement <span class="math inline">(T_0=2n)</span>, en repartant de l’expression du nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,1)</span> ne touchant pas <span class="math inline">0</span> divisée par le nombre total de chemins de longueur <span class="math inline">2n-1</span>. Ce nombre de chemins est égal à la différence entre le nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,1)</span> et le nombre de chemins de <span class="math inline">(1,1)</span> à <span class="math inline">(2n-1,-1)</span> d’après le principe de réflexion. On obtient ainsi :</p>
+<p><span class="math display">\begin{align*}
 {\mathbb{P}(T_0=2n)}
 &amp;=\mathbb{P}(S_1=1, S_{2n-1}=1)\\ &amp; \qquad -\mathbb{P}(S_1=1, S_{2n-1}=-1)\\
 &amp;=\mathbb{P}(S_{2n-1}=1|S_1=1)\mathbb{P}(S_1=1)\\ &amp; \qquad -\mathbb{P}(S_{2n-1}=-1|S_1=1)\mathbb{P}(S_1=1)\\
 &amp;=\frac{1}{2}\mathbb{P}(S_{2n-2}=0|S_0=0)-\frac{1}{2}\mathbb{P}(S_{2n-2}=-2|S_0=0)\\
 &amp;=\frac{1}{2}\mathbb{P}(S_{2n-2}=0)-\frac{1}{2}\mathbb{P}(S_{2n-2}=-2),
-\end{align*}
-</span> par la propriété de stationnarité et puisque <span class="math inline">S_0=0</span>. Par ailleurs, on a <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>par la propriété de stationnarité et puisque <span class="math inline">S_0=0</span>. Par ailleurs, on a</p>
+<p><span class="math display">\begin{align*}
 {\mathbb{P}(S_{2n}=0)}
 &amp;=\mathbb{P}(S_{2n}=0, S_{2n-2} =-2)\\ &amp; \qquad +\mathbb{P}(S_{2n}=0, S_{2n-2}=0) +\mathbb{P}(S_{2n}=0, S_{2n-2}=2)\\
 &amp;=2\mathbb{P}(S_{2n}=0, S_{2n-2}=-2)+\mathbb{P}(S_{2n}=0, S_{2n-2}=0),
-\end{align*}
-</span> par symétrie. Il vient <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>par symétrie. Il vient</p>
+<p><span class="math display">\begin{align*}
 {\mathbb{P}(S_{2n}=0)} &amp; =2\mathbb{P}(S_{2n}=0|S_{2n-2}=-2)\mathbb{P}(S_{2n-2}=-2)\\ &amp; \qquad+\mathbb{P}(S_{2n}=0|S_{2n-2}=0)\mathbb{P}(S_{2n-2}=0)\\
 &amp;=2\mathbb{P}(S_2=2|S_0=0)\mathbb{P}(S_{2n-2}=-2)\\ &amp; \qquad+\mathbb{P}(S_2=0|S_0=0)\mathbb{P}(S_{2n-2}=0)\\
 &amp;=2\frac{1}{4}\mathbb{P}(S_{2n-2}=-2)+\frac{1}{2}\mathbb{P}(S_{2n-2}=0)\\
 &amp;=\frac{1}{2}\mathbb{P}(S_{2n-2}=-2)+\frac{1}{2}\mathbb{P}(S_{2n-2}=0),
-\end{align*}
-</span> où on a utilisé le fait que <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>où on a utilisé le fait que</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(S_2=0|S_0=0)&amp; =   \mathbb{P}(X_1 + X_2 = 0) \\
 &amp;= \mathbb{P}(X_1 = -1, X_2= 1)+ \mathbb{P}(X_1 = 1, X_2= -1)\\
 &amp;=\mathbb{P}(X_1 = -1) \mathbb{P}( X_2= 1)+ \mathbb{P}(X_1 = 1)\mathbb{P}( X_2= -1) \\
 &amp;=\frac{1}{2}.
-\end{align*}
-</span> Donc on a <span class="math inline">\mathbb{P}(S_{2n-2}=-2)=2\mathbb{P}(S_{2n}=0)-\mathbb{P}(S_{2n-2}=0)</span>.</p>
-<p>Revenons maintenant à <span class="math inline">T_0</span>. On obtient <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Donc on a <span class="math inline">\mathbb{P}(S_{2n-2}=-2)=2\mathbb{P}(S_{2n}=0)-\mathbb{P}(S_{2n-2}=0)</span>.</p>
+<p>Revenons maintenant à <span class="math inline">T_0</span>. On obtient</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(T_0=2n)
 &amp;=\frac{1}{2}\mathbb{P}(S_{2n-2}=0)-\frac{1}{2}\mathbb{P}(S_{2n-2}=-2)\\
 &amp;=\frac{1}{2}\mathbb{P}(S_{2n-2}=0)-\mathbb{P}(S_{2n}=0)+\frac{1}{2}\mathbb{P}(S_{2n-2}=0)\\
 &amp;=\mathbb{P}(S_{2n-2}=0)-\mathbb{P}(S_{2n}=0).
-\end{align*}
-</span> Ainsi, la probabilité de l’événement <span class="math inline">(T_0= +\infty)</span> peut s’écrire à l’aide d’une somme télescopique : <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Ainsi, la probabilité de l’événement <span class="math inline">(T_0= +\infty)</span> peut s’écrire à l’aide d’une somme télescopique :</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(T_0=+\infty)
 &amp;=1-\sum_{n=1}^\infty\mathbb{P}(T_0=2n)\\
 &amp;=1-\lim_{N\to\infty}\sum_{n=1}^N\mathbb{P}(T_0=2n)\\
@@ -1207,15 +1195,15 @@ T_0=\inf\{n\geq 1; S_n=0\},
 &amp;=1-\lim_{N\to\infty}\left(\mathbb{P}(S_0=0)-\mathbb{P}(S_{2N}=0)\right)\\
 &amp;=\lim_{N\to\infty}\mathbb{P}(S_{2N}=0)\\
 &amp;=\lim_{N\to\infty}\frac{1}{4^N}\binom{2N}{N}.
-\end{align*}
-</span> En utilisant la formule de Stirling<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, on obtient l’équivalence <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>En utilisant la formule de Stirling<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>, on obtient l’équivalence</p>
+<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<span class="math inline">n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n</span> quand <span class="math inline">n\to +\infty</span></p></div></div><p><span class="math display">\begin{align*}
 \frac{1}{4^N}\binom{2N}{N} &amp;= \frac{1}{4^N}\frac{(2N)!}{N!N!}
 \sim  \frac{1}{4^N}\frac{(2N)^{2N}\sqrt{4\pi N}e^{-2N}}{(N^{N}\sqrt{2\pi N}e^{-N})^2}
 = \frac{1}{\sqrt{\pi N}},
-\end{align*}
-</span> donc on a bien <span class="math inline">\mathbb{P}(T_0=+\infty)=0</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn1"><p><sup>1</sup>&nbsp;<span class="math inline">n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n</span> quand <span class="math inline">n\to +\infty</span></p></div></div></div>
+\end{align*}</span></p>
+<p>donc on a bien <span class="math inline">\mathbb{P}(T_0=+\infty)=0</span>.</p>
+</div>
 </section>
 <section id="sec-chap03-passage" class="level3">
 <h3 class="anchored" data-anchor-id="sec-chap03-passage">Premier passage en <span class="math inline">a\neq 0</span></h3>
@@ -1257,14 +1245,21 @@ T_a=\inf\{n\geq 1; S_n=a\}.
 <p>On note <span class="math inline">p_x</span> la probabilité de ruine partant d’un capital initial <span class="math inline">x</span>, et <span class="math inline">R_x</span> l’événement <em>être ruinée en partant de <span class="math inline">x</span></em>, c’est-à-dire <span class="math display">
 p_x=\mathbb{P}(T_b &lt; T_a)= \mathbb{P}(R_x).
 </span> On peut remarquer directement que <span class="math inline">p_a=0</span> et <span class="math inline">p_b=1</span> puisque dans ces deux situations, le jeu ne démarre pas, la ruine est impossible dans le premier cas, et certaine dans le second.</p>
-<p>Nous allons obtenir une formule de récurrence sur les <span class="math inline">p_x</span>. Si <span class="math inline">b&lt;x&lt;a</span>, on a par la formule des probabilités totales <span class="math display">
-\begin{align*}
+<p>Nous allons obtenir une formule de récurrence sur les <span class="math inline">p_x</span>. Si <span class="math inline">b&lt;x&lt;a</span>, on a par la formule des probabilités totales</p>
+<p><span class="math display">\begin{align*}
 p_x&amp;=\mathbb{P}(R_x)\\
 &amp;=\mathbb{P}(R_x|S_1=x+1)\mathbb{P}(S_1=x+1)+\mathbb{P}(R_x|S_1=x-1)\mathbb{P}(S_1=x-1)\\
 &amp;=\mathbb{P}(R_{x+1})\frac{1}{2}+\mathbb{P}(R_{x-1})\frac{1}{2},
-\end{align*}
-</span> en utilisant la stationnarité. On obtient ainsi que <span class="math inline">(p_x)_{a&lt;x&lt; b}</span> est une suite récurrente linéaire<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> d’ordre <span class="math inline">2</span>, de polynôme caractéristique <span class="math inline">X^2-2X+1=(X-1)^2</span>. Ainsi <span class="math inline">p_x=\alpha +\beta x</span>. On identifie <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> avec les conditions extrémales <span class="math inline">p_a=0</span> et <span class="math inline">p_b=1</span> <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>en utilisant la stationnarité. On obtient ainsi que <span class="math inline">(p_x)_{a&lt;x&lt; b}</span> est une suite récurrente linéaire^[Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span></strong> s’il existe <span class="math inline">(a,b)\in\mathbb{R}\times\mathbb{R}^*</span> tel que, pour entier <span class="math inline">n</span>, on a</p>
+<p><span class="math display">
+u_{n+2} = a u_{n+1} + b u_n .
+</span> Le polynôme <span class="math inline">X^2 - a X + b</span> est appelé le <strong>polynôme caractéristique</strong> de la suite. Si le polynôme caractéristique admet deux racines simples <span class="math inline">r_1</span> et <span class="math inline">r_2</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
+u_n = \alpha r_1^n  + \beta  r_2^n.
+</span> Si le polynôme caractéristique admet une racine double <span class="math inline">r</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
+u_n = (\alpha  + \beta n) r^n.
+</span>] d’ordre <span class="math inline">2</span>, de polynôme caractéristique <span class="math inline">X^2-2X+1=(X-1)^2</span>. Ainsi <span class="math inline">p_x=\alpha +\beta x</span>. On identifie <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> avec les conditions extrémales <span class="math inline">p_a=0</span> et <span class="math inline">p_b=1</span></p>
+<p><span class="math display">\begin{align*}
 \left\{\begin{array}{rcl}
 p_a=0&amp;=&amp;\alpha+\beta a\\
 p_b=1&amp;=&amp;\alpha+\beta b
@@ -1276,32 +1271,25 @@ p_b=1&amp;=&amp;\alpha+\beta b
 \beta&amp;=&amp;-\frac{1}{a-b}.
 \end{array}
 \right.
-\end{align*}
-</span></p>
-<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span></strong> s’il existe <span class="math inline">(a,b)\in\mathbb{R}\times\mathbb{R}^*</span> tel que, pour entier <span class="math inline">n</span>, on a <span class="math display">
-u_{n+2} = a u_{n+1} + b u_n .
-</span> Le polynôme <span class="math inline">X^2 - a X + b</span> est appelé le <strong>polynôme caractéristique</strong> de la suite. Si le polynôme caractéristique admet deux racines simples <span class="math inline">r_1</span> et <span class="math inline">r_2</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
-u_n = \alpha r_1^n  + \beta  r_2^n.
-</span> Si le polynôme caractéristique admet une racine double <span class="math inline">r</span>, alors il existe deux réels <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> tels que pour tout entier <span class="math inline">n</span>, <span class="math display">
-u_n = (\alpha  + \beta n) r^n.
-</span></p></div></div><p>Ainsi la probabilité de ruine partant de <span class="math inline">x</span> vaut <span class="math display">
+\end{align*}</span></p>
+<p>Ainsi la probabilité de ruine partant de <span class="math inline">x</span> vaut <span class="math display">
 p_x=\frac{a-x}{a-b}.
 </span></p>
 <p>Un calcul analogue en cherchant la probabilité <span class="math inline">q_x</span> de faire fortune partant d’une richesse <span class="math inline">x</span> conduit à <span class="math inline">q_x=\frac{x-b}{a-b}=1-p_x</span>, autrement dit il n’y a pas d’autre issue possible : le jeu va s’arrêter avec probabilité <span class="math inline">1</span>. Si on fait tendre <span class="math inline">b</span> vers <span class="math inline">-\infty</span>, on trouve que <span class="math inline">\mathbb{P}(T_a&lt;\infty |x_0=a)=1</span>. Donc partant de n’importe quel point, la marche atteindra n’importe quel autre point avec probabilité <span class="math inline">1</span>.</p>
-<p>On peut montrer avec un raisonnement analogue que la durée du jeu <span class="math inline">d_x</span> partant de <span class="math inline">x</span> est solution de l’équation récurrente linéaire avec second membre<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> <span class="math display">
+<p>On peut montrer avec un raisonnement analogue que la durée du jeu <span class="math inline">d_x</span> partant de <span class="math inline">x</span> est solution de l’équation récurrente linéaire avec second membre<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> <span class="math display">
 d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1,
 </span> avec <span class="math inline">d_a=d_b=0</span>.</p>
-<div class="no-row-height column-margin column-container"><div id="fn3"><p><sup>3</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span> avec second membre</strong> s’il existe <span class="math inline">(a,b) \in {\mathbb R} \times {\mathbb R}^*</span> et une fonction <span class="math inline">f</span> à valeurs dans <span class="math inline">{\mathbb R}</span> tels que, pour entier <span class="math inline">n</span>, on a <span class="math display">
+<div class="no-row-height column-margin column-container"><div id="fn2"><p><sup>2</sup>&nbsp;Une suite <span class="math inline">(u_n)_{n \in {\mathbb N}}</span> est dite <strong>récurrente linéaire d’ordre <span class="math inline">2</span> avec second membre</strong> s’il existe <span class="math inline">(a,b) \in {\mathbb R} \times {\mathbb R}^*</span> et une fonction <span class="math inline">f</span> à valeurs dans <span class="math inline">{\mathbb R}</span> tels que, pour entier <span class="math inline">n</span>, on a <span class="math display">
 u_{n+2} = a u_{n+1} + b u_n  + f(n).
-</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a <span class="math display">
-\begin{align*}
+</span> L’équation <span class="math inline">\displaystyle u_{n+2} = a u_{n+1} + b u_n</span> s’appelle alors l’équation homogène associée. Les solutions de l’équation avec second membre sont la somme de la solution générique de l’équation homogène et d’une solution particulière de l’équation avec second membre.</p></div></div><p>En effet, il est clair que <span class="math inline">d_a=d_b=0</span>, et si <span class="math inline">a&lt;x&lt;b</span>, alors on a <span class="math inline">d_x=\mathbb{E}(T_a\wedge T_b)</span>. Attention, la variable aléatoire <span class="math inline">T_a\wedge T_b</span> est à valeurs dans <span class="math inline">\mathbb{N}\cup\{+\infty\}</span>. Si <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span>, alors <span class="math inline">\mathbb{E}(T_a\wedge T_b)=+\infty</span>. Par ailleurs, partant de <span class="math inline">x+1</span>, on a</p>
+<p><span class="math display">\begin{align*}
 \mathbb{P}(T_a\wedge T_b=+\infty &amp;|S_0=x+1)\\
 &amp; \geq \mathbb{P}(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
 &amp;= \mathbb{P}(T_a\wedge T_b=+\infty|S_1=x,S_0=x+1)\mathbb{P}(S_1=x|S_0=x+1)\\
-&amp;=\frac{1}{2}\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)
-\end{align*}
-</span> par les propriétés de Markov et de stationnarité. Donc <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)&gt;0</span>. Ainsi, les membres de gauche et de droite de l’équation <span class="math inline">d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1</span> valent tous les deux <span class="math inline">+\infty</span>, et l’égalité est vraie. On montrerait de même que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)&gt;0</span>, et par contraposée et décalage d’indices que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)=0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)=\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)=0</span>. Plaçons nous dans ce dernier cas. On a donc <span class="math display">
-\begin{align*}
+&amp;=\frac{1}{2}\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x) \enspace,
+\end{align*}</span></p>
+<p>par les propriétés de Markov et de stationnarité. Donc <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)&gt;0</span>. Ainsi, les membres de gauche et de droite de l’équation <span class="math inline">d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1</span> valent tous les deux <span class="math inline">+\infty</span>, et l’égalité est vraie. On montrerait de même que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)&gt;0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)&gt;0</span>, et par contraposée et décalage d’indices que <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x)=0</span> implique <span class="math inline">\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x+1)=\mathbb{P}(T_a\wedge T_b=+\infty|S_0=x-1)=0</span>. Plaçons nous dans ce dernier cas. On a donc</p>
+<p><span class="math display">\begin{align*}
 d_x&amp;=\mathbb{E}(T_a\wedge T_b)\\
 &amp;=\sum_{k=1}^\infty k \mathbb{P}(T_a\wedge T_b=k|S_0=x)\\
 &amp;=\sum_{k=1}^\infty k \big(\mathbb{P}(T_a\wedge T_b=k|S_1=x+1)\mathbb{P}(S_1=x+1) \\ &amp;\qquad\qquad +\mathbb{P}(T_a\wedge T_b=k|S_1=x-1)\mathbb{P}(S_1=x-1)\big)\\
@@ -1310,9 +1298,9 @@ d_x&amp;=\mathbb{E}(T_a\wedge T_b)\\
 &amp;=\frac{1}{2}\sum_{j=0}^\infty j \mathbb{P}(T_a\wedge T_b=j|S_0=x+1)+\frac{1}{2}\sum_{j=0}^\infty j\mathbb{P}(T_a\wedge T_b=j|S_0=x-1)+1\\
 &amp;=1+\frac{1}{2}\mathbb{E}(T_a\wedge T_b|S_0=x+1)+\frac{1}{2}\mathbb{E}(T_a\wedge T_b|S_0=x-1)\\
 &amp;=1+\frac{1}{2}(d_{x+1}+d_{x-1}).
-\end{align*}
-</span> Cherchons une solution particulière sous la forme <span class="math inline">cn^2</span> (puisque les constantes et les multiples de <span class="math inline">n</span> sont solutions de l’équation homogène) : <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Cherchons une solution particulière sous la forme <span class="math inline">cn^2</span> (puisque les constantes et les multiples de <span class="math inline">n</span> sont solutions de l’équation homogène) :</p>
+<p><span class="math display">\begin{align*}
 cn^2=\frac{1}{2}(c(n+1)^2+c(n-1)^2)+1
 &amp;\Leftrightarrow
 cn^2=\frac{1}{2}(cn^2+c+2cn+cn^2+c-2cn)+1\\
@@ -1320,9 +1308,9 @@ cn^2=\frac{1}{2}(cn^2+c+2cn+cn^2+c-2cn)+1\\
 cn^2=cn^2+c+1\\
 &amp;\Leftrightarrow
 c=-1.
-\end{align*}
-</span> Ansi, <span class="math inline">d</span> est la somme d’une solution homogène et d’une solution particulière, donc <span class="math display">d_x=\alpha +\beta x-x^2.</span> En utilisant <span class="math inline">d_a=d_b=0</span>, on trouve <span class="math inline">\alpha</span> et <span class="math inline">\beta</span> <span class="math display">
-\begin{align*}
+\end{align*}</span></p>
+<p>Ansi, <span class="math inline">d</span> est la somme d’une solution homogène et d’une solution particulière, donc <span class="math display">d_x=\alpha +\beta x-x^2.</span> En utilisant <span class="math inline">d_a=d_b=0</span>, on trouve <span class="math inline">\alpha</span> et <span class="math inline">\beta</span></p>
+<p><span class="math display">\begin{align*}
 \left\{\begin{array}{rcl}
 d_a=0&amp;=&amp;\alpha+\beta a-a^2\\
 d_b=0&amp;=&amp;\alpha+\beta b-b^2
@@ -1334,8 +1322,8 @@ d_b=0&amp;=&amp;\alpha+\beta b-b^2
 \beta&amp;=a+b.
 \end{array}
 \right.
-\end{align*}
-</span> Finalement, on obtient que <span class="math display">
+\end{align*}</span></p>
+<p>Finalement, on obtient que <span class="math display">
 d_x=-ab+x(a+b)-x^2.
 </span></p>
 <p>En particulier, si <span class="math inline">x=0</span> et <span class="math inline">b</span> tend vers <span class="math inline">-\infty</span>, on obtient que <span class="math inline">\mathbb{E}[T_a]=+\infty</span>. On sait que la marche partant de <span class="math inline">0</span> atteindra <span class="math inline">a</span> presque sûrement en temps fini, cependant ce temps est en moyenne infini.</p>
