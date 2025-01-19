@@ -238,7 +238,7 @@ Soit $n>m$ deux entiers naturels et $(a,b)\in\Z^2$ deux entiers relatifs. On app
 
 ::: {#fig-traj_rw}
 
-![Deux trajectoires](../srcimages/deux_chemins.svg){width=50%}
+![](../srcimages/deux_chemins.svg){width=50%}
 
 Voici deux chemins de $(1,1)$ à $(5,3)$.
 :::
@@ -279,11 +279,11 @@ Pour tout $n\in\N$, on a $S_0-n\leq S_n\leq S_0+n$.
 
 ::: {.proof}
 
-Pour tout $n$, $X_{n}$ prend les valeurs $-1$ ou $1$ donc en particulier 
+Pour tout $n$, $X_{n}$ prend les valeurs $-1$ ou $1$ donc en particulier
 $$
 -1\leq X_n\leq 1.
 $$
-Comme $S_{n}=S_0+\sum_{k=1}^n X_k$, en sommant les inégalités on obtient  bien 
+Comme $S_{n}=S_0+\sum_{k=1}^n X_k$, en sommant les inégalités on obtient  bien
 $$
 S_0-n\leq S_n\leq S_0+n,
 $$
@@ -479,7 +479,7 @@ y&=&\frac{n-m}{2}-\frac{b-a}{2}
 \right. \enspace.
 \end{align*}
 
-Pour dénombrer le nombre total de chemins de longueur $x+y$ avec $x$ montées et 
+Pour dénombrer le nombre total de chemins de longueur $x+y$ avec $x$ montées et
 $y$ descentes, il suffit de choisir les emplacements de $x$ montées parmi les $x+y$ pas. On obtient donc $\binom{x+y}{x}=\binom{n-m}{\frac{n-m}{2}+\frac{b-a}{2}}$ chemins.
 :::
 
@@ -498,9 +498,9 @@ Soit $a$ et $b$ deux entiers naturels non nuls et $n,m$ deux entiers naturels te
 
 ::: {#fig-reflex}
 
-![Réflextion](../srcimages/reflex.svg){width=80%}
+![](../srcimages/reflex.svg){width=80%}
 
-Un chemin de $(0,2)$ à $(11,1)$ passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
+Réflexion: un chemin de $(0,2)$ à $(11,1)$ passant par 0 (trait bleu) et son image (tirets rouges) par la symétrie de premier passage en 0.
 :::
 
 ::: {.proof}
@@ -534,7 +534,7 @@ Une première application de cette propriété est le résultat suivant connu so
 
 ## du scrutin
 
-Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est 
+Au cours d'une élection opposant deux candidates $A$ et $B$, la candidate $A$ (resp. $B$) a obtenu $a$ (resp. $b$) voix, avec $a>b$. Alors la probabilité que $A$ ait été majoritaire (au sens large) tout au long du dépouillement est
 $$
 p=1-\frac{b}{a+1}.
 $$
@@ -546,7 +546,7 @@ Tous les dépouillement étant équiprobables, $p$ s'obtient comme le rapport du
 
 Il y a en tout $a+b$ bulletins et à la fin $a-b$ voix d'avance de $A$ sur $B$, donc le nombre total de dépouillements est le nombre de chemins de $(0,0)$ à $(a+b,a-b)$ et vaut $\binom{a+b}{a}$.
 
-Le nombre de dépouillements avec $A$ en tête tout le long correspond 
+Le nombre de dépouillements avec $A$ en tête tout le long correspond
 
 - au nombre de chemins de  $(0,0)$ à $(a+b,a-b)$ ne prenant aucune valeur strictement négative, autrement dit le nombre de chemins de $(0,0)$ à $(a+b,a-b)$ ne touchant pas $-1$;
 - au nombre de chemins de $(0,1)$ à $(a+b,a-b+1)$ ne touchant pas $0$, en décalant d'un cran les ordonnées;
@@ -554,11 +554,11 @@ Le nombre de dépouillements avec $A$ en tête tout le long correspond
 - au nombre total de chemins de $(0,1)$ à $(a+b,a-b+1)$ moins le nombre de chemins de $(0,1)$ à $(a+b,-(a-b+1))$ par le principe de réflexion.
 
 Il vaut donc $\binom{a+b}{a}-\binom{a+b}{b-1}$. Ainsi
-$$
+
 \begin{align*}
 p &=\frac{\binom{a+b}{a}-\binom{a+b}{b-1}}{\binom{a+b}{a}}=1-\frac{\binom{a+b}{b-1}}{\binom{a+b}{a}} \\ &=1-\frac{(a+b)!a!b!}{(b-1)!(a+1)!(a+b)!}=1-\frac{b}{a+1},
 \end{align*}
-$$
+
 d'où le résultat.
 :::
 
@@ -566,7 +566,7 @@ d'où le résultat.
 
 On s'intéresse maintenant au comportement de la marche sans limite de temps. Parmi les questions d'intérêt, on peut se demander si elle revient à son point de départ $x$, combien de fois et en combien de temps.
 
-Comme les $(X_n)_{n\geq 1}$ sont indépendantes et de même loi intégrable, on peut appliquer la loi des grands nombres pour obtenir que 
+Comme les $(X_n)_{n\geq 1}$ sont indépendantes et de même loi intégrable, on peut appliquer la loi des grands nombres pour obtenir que
 $$
 \frac{S_n}{n}\xrightarrow[n\to\infty]{ps}\E[X_1]=0,
 $$
@@ -579,35 +579,35 @@ Les deux propriétés suivantes sont des propriétés du processus et non plus s
 ::: {#prp-markov}
 ## Markov
 
-Pour tout $n\in\N$ et pour tous $(a_0,a_1,\ldots,a_{n+1})\in\Z^{n+2}$, on a 
-$$
+Pour tout $n\in\N$ et pour tous $(a_0,a_1,\ldots,a_{n+1})\in\Z^{n+2}$, on a
+
 \begin{align*}
 \P(S_{n+1}=a_{n+1}& | S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\P(S_{n+1}=a_{n+1}& | S_n=a_n).
 \end{align*}
-$$
+
 :::
 
 ::: {.proof}
 
 Par définition des probabilités conditionnelles, on a
-$$
+
 \begin{align*}
 \P(S_{n+1}=a_{n+1} &| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(S_{n+1}=a_{n+1}, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n, S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)},
 \end{align*}
-$$
+
 puisque $S_{n+1}=S_n+X_{n+1}$. Remarquons maintenant que $X_{n+1}$ est indépendante de $X_1,\ldots, X_n$, donc de $S_0,\ldots,S_n$. On obtient alors
-$$
+
 \begin{align*}
 \P(S_{n+1}=a_{n+1} &| S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n)\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_n=a_n, S_{n-1}=a_{n-1},\ldots,S_1=a_1,S_0=a_0)}\\
 &=\P(X_{n+1}=a_{n+1}-a_n).
 \end{align*}
-$$
+
 Par ailleurs, par un raisonnement analogue on a
-$$
+
 \begin{align*}
 \P(S_{n+1}=a_{n+1} | S_n=a_n)
 &=\frac{\P(S_{n+1}=a_{n+1},S_n=a_n)}{\P(S_n=a_n)}\\
@@ -615,7 +615,7 @@ $$
 &=\frac{\P(X_{n+1}=a_{n+1}-a_n)\P(S_n=a_n)}{\P(S_n=a_n)}\\
 &=\P(X_{n+1}=a_{n+1}-a_n),
 \end{align*}
-$$
+
 d'où le résultat.
 :::
 
@@ -625,7 +625,7 @@ Pour tout $n > m$ entiers positifs $S_n-S_m$ est indépendant de $(S_0,S_1,\ldot
 
 ::: {.proof}
 
-Comme les $(X_n)$ sont indépendantes, on a directement que 
+Comme les $(X_n)$ sont indépendantes, on a directement que
 $$
 S_n-S_m=\sum_{k=m+1}^nX_k,
 $$
@@ -635,18 +635,18 @@ qui est indépendant de $(S_0=x,S_1=x+X_1,\ldots, S_m=x+\sum_{k=1}^mX_k)$.
 On a un résultat analogue à la propriété de Markov lorsqu'on regarde deux pas de temps plus éloignés.
 
 ::: {#cor-mark}
-Pour tout $n>m$ entiers positifs et pour tous $(a_0,a_1,\ldots,a_m,a_{n})\in\Z^{m+2}$, on a 
-$$
+Pour tout $n>m$ entiers positifs et pour tous $(a_0,a_1,\ldots,a_m,a_{n})\in\Z^{m+2}$, on a
+
 \begin{align*}
 \P(S_{n}=a_{n}& | S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 =\P(S_{n}=a_{n}& | S_m=a_m).
 \end{align*}
-$$
+
 :::
 
 ::: {.proof}
 Par un raisonnement analogue à la preuve de la propriété de Markov, on obtient
-$$
+
 \begin{align*}
 \P(S_{n}=a_{n}&| S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)\\
 &=\frac{\P(S_{n}=a_{n},S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}{\P(S_m=a_m, S_{m-1}=a_{m-1},\ldots,S_1=a_1,S_0=a_0)}\\
@@ -655,7 +655,7 @@ $$
 &=\P(S_{n}-S_m=a_{n}-a_m)\\
 &=\P(S_n=a_n|S_m=a_m),
 \end{align*}
-$$
+
 en utilisant la propriété des accroissement indépendants.
 :::
 
@@ -672,8 +672,8 @@ $$
 :::
 
 ::: {.proof}
-En utilisant l'indépendance des accroissements, on obtient 
-$$
+En utilisant l'indépendance des accroissements, on obtient
+
 \begin{align*}
 \P(S_n=b|S_m=a)
 &=\frac{\P(S_n=b,S_m=a)}{\P(S_m=a)}\\
@@ -684,7 +684,7 @@ $$
 &=\P(\sum_{k=1}^{n-m}X_k=b-a)\\
 &=\P(S_{n-m}=b-a|S_0=0),
 \end{align*}
-$$
+
 car les $(X_n)$ sont indépendantes et de même loi.
 :::
 
@@ -794,9 +794,9 @@ $$
 :::
 
 ::: {.proof}
-On a $\P(T_0<+\infty)=\sum_{n=1}^\infty\P(T_0=2n)$, il s'agit donc d'identifier la somme de cette série. 
+On a $\P(T_0<+\infty)=\sum_{n=1}^\infty\P(T_0=2n)$, il s'agit donc d'identifier la somme de cette série.
 Pour cela, on exprime différemment le probabilité de l'événement $(T_0=2n)$, en repartant de l'expression du nombre de chemins de $(1,1)$ à $(2n-1,1)$ ne touchant pas $0$ divisée par le nombre total de chemins de longueur $2n-1$. Ce nombre de chemins est égal à la différence entre le nombre de chemins de $(1,1)$ à $(2n-1,1)$ et le nombre de chemins de $(1,1)$ à $(2n-1,-1)$ d'après le principe de réflexion. On obtient ainsi :
-$$
+
 \begin{align*}
 {\P(T_0=2n)}
 &=\P(S_1=1, S_{2n-1}=1)\\ & \qquad -\P(S_1=1, S_{2n-1}=-1)\\
@@ -804,46 +804,46 @@ $$
 &=\frac{1}{2}\P(S_{2n-2}=0|S_0=0)-\frac{1}{2}\P(S_{2n-2}=-2|S_0=0)\\
 &=\frac{1}{2}\P(S_{2n-2}=0)-\frac{1}{2}\P(S_{2n-2}=-2),
 \end{align*}
-$$
+
 par la propriété de stationnarité et puisque $S_0=0$. Par ailleurs, on a
-$$
+
 \begin{align*}
 {\P(S_{2n}=0)}
  &=\P(S_{2n}=0, S_{2n-2} =-2)\\ & \qquad +\P(S_{2n}=0, S_{2n-2}=0) +\P(S_{2n}=0, S_{2n-2}=2)\\
 &=2\P(S_{2n}=0, S_{2n-2}=-2)+\P(S_{2n}=0, S_{2n-2}=0),
 \end{align*}
-$$
+
 par symétrie. Il vient
-$$
+
 \begin{align*}
 {\P(S_{2n}=0)} & =2\P(S_{2n}=0|S_{2n-2}=-2)\P(S_{2n-2}=-2)\\ & \qquad+\P(S_{2n}=0|S_{2n-2}=0)\P(S_{2n-2}=0)\\
 &=2\P(S_2=2|S_0=0)\P(S_{2n-2}=-2)\\ & \qquad+\P(S_2=0|S_0=0)\P(S_{2n-2}=0)\\
 &=2\frac{1}{4}\P(S_{2n-2}=-2)+\frac{1}{2}\P(S_{2n-2}=0)\\
 &=\frac{1}{2}\P(S_{2n-2}=-2)+\frac{1}{2}\P(S_{2n-2}=0),
 \end{align*}
-$$
+
 où on a utilisé le fait que
-$$
+
 \begin{align*}
  \P(S_2=0|S_0=0)& =   \P(X_1 + X_2 = 0) \\
 &= \P(X_1 = -1, X_2= 1)+ \P(X_1 = 1, X_2= -1)\\
 &=\P(X_1 = -1) \P( X_2= 1)+ \P(X_1 = 1)\P( X_2= -1) \\
 &=\frac{1}{2}.
 \end{align*}
-$$
+
 Donc on a $\P(S_{2n-2}=-2)=2\P(S_{2n}=0)-\P(S_{2n-2}=0)$.
 
 Revenons maintenant à $T_0$. On obtient
-$$
+
 \begin{align*}
 \P(T_0=2n)
 &=\frac{1}{2}\P(S_{2n-2}=0)-\frac{1}{2}\P(S_{2n-2}=-2)\\
 &=\frac{1}{2}\P(S_{2n-2}=0)-\P(S_{2n}=0)+\frac{1}{2}\P(S_{2n-2}=0)\\
 &=\P(S_{2n-2}=0)-\P(S_{2n}=0).
 \end{align*}
-$$
+
 Ainsi, la probabilité de l'événement $(T_0= +\infty)$ peut s'écrire à l'aide d'une somme télescopique :
-$$
+
 \begin{align*}
 \P(T_0=+\infty)
 &=1-\sum_{n=1}^\infty\P(T_0=2n)\\
@@ -853,15 +853,15 @@ $$
 &=\lim_{N\to\infty}\P(S_{2N}=0)\\
 &=\lim_{N\to\infty}\frac{1}{4^N}\binom{2N}{N}.
 \end{align*}
-$$
+
 En utilisant la formule de Stirling^[$n! \sim \sqrt{2\pi n} \left(\frac{n}{e}\right)^n$ quand $n\to +\infty$], on obtient l'équivalence
-$$
+
 \begin{align*}
 \frac{1}{4^N}\binom{2N}{N} &= \frac{1}{4^N}\frac{(2N)!}{N!N!}
 \sim  \frac{1}{4^N}\frac{(2N)^{2N}\sqrt{4\pi N}e^{-2N}}{(N^{N}\sqrt{2\pi N}e^{-N})^2}
 = \frac{1}{\sqrt{\pi N}},
 \end{align*}
-$$
+
 donc on a bien $\P(T_0=+\infty)=0$.
 :::
 
@@ -881,7 +881,7 @@ $$
 
 ::: {.proof}
 On suit les mêmes étapes que ce qu'on a fait pour $T_0$. Les contraintes de parité et de longueur de chemin ont déjà été vues. Si $n$ et $a$ ont la même parité et que $|a|>n$, alors
-l'événement $(T_a= n)$ correspond à $(S_1\neq a, \ldots,S_{n-1}\neq a,S_{n}=a)$ puisqu'alors $n$ est le premier temps où la marche atteint $a$. Supposons sans perte de généralité que $a>0$. Donc la probabilité $\P(T_a= n)$ est égale 
+l'événement $(T_a= n)$ correspond à $(S_1\neq a, \ldots,S_{n-1}\neq a,S_{n}=a)$ puisqu'alors $n$ est le premier temps où la marche atteint $a$. Supposons sans perte de généralité que $a>0$. Donc la probabilité $\P(T_a= n)$ est égale
  au nombre de chemins de $(0,0)$ à $(n,a)$ ne touchant pas $a$ avant $n$ divisée par le nombre total de chemins de longueur $n$. 0r, ce nombre de chemin est égal
 
 - au nombre de chemins de $(0,0)$ à $(n-1,a-1)$ ne touchant pas $a$
@@ -899,7 +899,7 @@ Ainsi, on a
 &=\frac{a}{2^n}\frac{(n-1)!}{(\frac{n+a}{2})!(\frac{n-a}{2})!}\\
 &=\frac{a}{n2^n}\binom{n}{\frac{n+a}{2}}
 \end{align*}
-d'où le résultat. 
+d'où le résultat.
 
 Nous démontrerons dans la partie suivante que $\P(T_a<+\infty)=1$.
 :::
@@ -921,14 +921,15 @@ $$
 On peut remarquer directement que $p_a=0$ et $p_b=1$ puisque dans ces deux situations, le jeu ne démarre pas, la ruine est impossible dans le premier cas, et certaine dans le second.
 
 Nous allons obtenir une formule de récurrence sur les $p_x$. Si $b<x<a$, on a par la formule des probabilités totales
-$$
+
 \begin{align*}
 p_x&=\P(R_x)\\
 &=\P(R_x|S_1=x+1)\P(S_1=x+1)+\P(R_x|S_1=x-1)\P(S_1=x-1)\\
 &=\P(R_{x+1})\frac{1}{2}+\P(R_{x-1})\frac{1}{2},
 \end{align*}
-$$
-en utilisant la stationnarité. On obtient ainsi que $(p_x)_{a<x< b}$ est une suite récurrente linéaire^[Une suite $(u_n)_{n \in {\mathbb N}}$ est dite **récurrente linéaire d'ordre $2$** s'il existe $(a,b)\in\mathbb{R}\times\mathbb{R}^*$ tel que, pour entier $n$, on a 
+
+en utilisant la stationnarité. On obtient ainsi que $(p_x)_{a<x< b}$ est une suite récurrente linéaire^[Une suite $(u_n)_{n \in {\mathbb N}}$ est dite **récurrente linéaire d'ordre $2$** s'il existe $(a,b)\in\mathbb{R}\times\mathbb{R}^*$ tel que, pour entier $n$, on a
+
 $$
 u_{n+2} = a u_{n+1} + b u_n .
 $$
@@ -940,7 +941,7 @@ Si le polynôme caractéristique admet une racine double $r$, alors il existe de
 $$
 u_n = (\alpha  + \beta n) r^n.
 $$] d'ordre $2$, de polynôme caractéristique $X^2-2X+1=(X-1)^2$.  Ainsi $p_x=\alpha +\beta x$. On identifie $\alpha$ et $\beta$ avec les conditions extrémales $p_a=0$ et $p_b=1$
-$$
+
 \begin{align*}
 \left\{\begin{array}{rcl}
 p_a=0&=&\alpha+\beta a\\
@@ -954,7 +955,7 @@ p_b=1&=&\alpha+\beta b
 \end{array}
 \right.
 \end{align*}
-$$
+
 
 Ainsi la probabilité de ruine partant de $x$ vaut
 $$
@@ -963,7 +964,7 @@ $$
 
 Un calcul analogue en cherchant la probabilité $q_x$ de faire fortune partant d'une richesse $x$ conduit à $q_x=\frac{x-b}{a-b}=1-p_x$, autrement dit il n'y a pas d'autre issue possible : le jeu va s'arrêter avec probabilité $1$. Si on fait tendre $b$ vers $-\infty$, on trouve que $\P(T_a<\infty |x_0=a)=1$. Donc partant de n'importe quel point, la marche atteindra n'importe quel autre point avec probabilité $1$.
 
-On peut montrer avec un raisonnement analogue que la durée du jeu $d_x$ partant de $x$ est solution de l'équation récurrente linéaire avec second membre^[Une suite $(u_n)_{n \in {\mathbb N}}$ est dite **récurrente linéaire d'ordre $2$ avec second membre** s'il existe $(a,b) \in {\mathbb R} \times {\mathbb R}^*$ et une fonction $f$ à valeurs dans ${\mathbb R}$ tels que, pour entier $n$, on a 
+On peut montrer avec un raisonnement analogue que la durée du jeu $d_x$ partant de $x$ est solution de l'équation récurrente linéaire avec second membre^[Une suite $(u_n)_{n \in {\mathbb N}}$ est dite **récurrente linéaire d'ordre $2$ avec second membre** s'il existe $(a,b) \in {\mathbb R} \times {\mathbb R}^*$ et une fonction $f$ à valeurs dans ${\mathbb R}$ tels que, pour entier $n$, on a
 $$
 u_{n+2} = a u_{n+1} + b u_n  + f(n).
 $$
@@ -971,19 +972,20 @@ L'équation $\displaystyle u_{n+2} = a u_{n+1} + b u_n$ s'appelle alors l'équat
 $$
 d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1,
 $$
-avec $d_a=d_b=0$. 
+avec $d_a=d_b=0$.
 
-En effet, il est clair que $d_a=d_b=0$, et si $a<x<b$, alors on a $d_x=\E(T_a\wedge T_b)$. Attention, la variable aléatoire $T_a\wedge T_b$ est à valeurs dans $\N\cup\{+\infty\}$. Si $\P(T_a\wedge T_b=+\infty|S_0=x)>0$, alors $\E(T_a\wedge T_b)=+\infty$. Par ailleurs, partant de $x+1$, on a 
-$$
+En effet, il est clair que $d_a=d_b=0$, et si $a<x<b$, alors on a $d_x=\E(T_a\wedge T_b)$. Attention, la variable aléatoire $T_a\wedge T_b$ est à valeurs dans $\N\cup\{+\infty\}$. Si $\P(T_a\wedge T_b=+\infty|S_0=x)>0$, alors $\E(T_a\wedge T_b)=+\infty$. Par ailleurs, partant de $x+1$, on a
+
 \begin{align*}
 \P(T_a\wedge T_b=+\infty &|S_0=x+1)\\
 & \geq \P(T_a\wedge T_b=+\infty, S_1=x|S_0=x+1)\\
 &= \P(T_a\wedge T_b=+\infty|S_1=x,S_0=x+1)\P(S_1=x|S_0=x+1)\\
-&=\frac{1}{2}\P(T_a\wedge T_b=+\infty|S_0=x)
+&=\frac{1}{2}\P(T_a\wedge T_b=+\infty|S_0=x) \enspace,
 \end{align*}
-$$
-par les propriétés de Markov et de stationnarité. Donc $\P(T_a\wedge T_b=+\infty|S_0=x+1)>0$. Ainsi, les membres de gauche et de droite de l'équation $d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1$ valent tous les deux $+\infty$, et l'égalité est vraie. On montrerait de même que $\P(T_a\wedge T_b=+\infty|S_0=x)>0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x-1)>0$, et par contraposée et décalage d'indices que $\P(T_a\wedge T_b=+\infty|S_0=x)=0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x+1)=\P(T_a\wedge T_b=+\infty|S_0=x-1)=0$. Plaçons nous dans ce dernier cas. On a donc
-$$
+
+par les propriétés de Markov et de stationnarité. Donc $\P(T_a\wedge T_b=+\infty|S_0=x+1)>0$. Ainsi, les membres de gauche et de droite de l'équation $d_x=\frac{1}{2}(d_{x+1}+d_{x-1})+1$ valent tous les deux $+\infty$, et l'égalité est vraie. On montrerait de même que $\P(T_a\wedge T_b=+\infty|S_0=x)>0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x-1)>0$, et par contraposée et décalage d'indices que $\P(T_a\wedge T_b=+\infty|S_0=x)=0$ implique $\P(T_a\wedge T_b=+\infty|S_0=x+1)=\P(T_a\wedge T_b=+\infty|S_0=x-1)=0$. Plaçons nous dans ce dernier cas.
+On a donc
+
 \begin{align*}
 d_x&=\E(T_a\wedge T_b)\\
 &=\sum_{k=1}^\infty k \P(T_a\wedge T_b=k|S_0=x)\\
@@ -994,9 +996,9 @@ d_x&=\E(T_a\wedge T_b)\\
 &=1+\frac{1}{2}\E(T_a\wedge T_b|S_0=x+1)+\frac{1}{2}\E(T_a\wedge T_b|S_0=x-1)\\
 &=1+\frac{1}{2}(d_{x+1}+d_{x-1}).
 \end{align*}
-$$
+
 Cherchons une solution particulière sous la forme $cn^2$ (puisque les constantes et les multiples de $n$ sont solutions de l'équation homogène) :
-$$
+
 \begin{align*}
 cn^2=\frac{1}{2}(c(n+1)^2+c(n-1)^2)+1
 &\Leftrightarrow
@@ -1006,11 +1008,11 @@ cn^2=cn^2+c+1\\
 &\Leftrightarrow
 c=-1.
 \end{align*}
-$$
+
 Ansi, $d$ est la somme d'une solution homogène et d'une solution particulière, donc
 $$d_x=\alpha +\beta x-x^2.$$
 En utilisant $d_a=d_b=0$, on trouve $\alpha$ et $\beta$
-$$
+
 \begin{align*}
 \left\{\begin{array}{rcl}
 d_a=0&=&\alpha+\beta a-a^2\\
@@ -1024,11 +1026,11 @@ d_b=0&=&\alpha+\beta b-b^2
 \end{array}
 \right.
 \end{align*}
-$$
-Finalement, on obtient que 
+
+Finalement, on obtient que
 $$
 d_x=-ab+x(a+b)-x^2.
-$$ 
+$$
 
 En particulier, si $x=0$ et $b$ tend vers $-\infty$, on obtient que $\E[T_a]=+\infty$. On sait que la marche partant de $0$ atteindra $a$ presque sûrement en temps fini, cependant ce temps est en moyenne infini.
 

@@ -21,13 +21,11 @@ Ainsi une intégration par Monte Carlo pour le cas de la grande dimension sera b
 
 ## Principe de la méthode
 
-
-
 L'idée de la Méthode de Monte Carlo est d'exprimer l'intégrale qu'on cherche à approcher comme l'espérance d'une variable aléatoire, puis d'approcher cette espérance par une moyenne empirique. Si on veut calculer une intégrale de la forme
 $$
 	I=\int g(x)f(x)dx,
 $$
-on la réécrit comme 
+on la réécrit comme
 $$
 	I=\mathbb E[g(X)],
 $$
@@ -39,7 +37,7 @@ Il y a donc deux étapes : traduction sous forme d'espérance puis calcul de la 
 
 ::: {#exm-unif}
 
-## 
+##
 On peut approcher l'intégrale
 
 $$
@@ -106,12 +104,12 @@ converge presque presque sûrement vers $I=\mathbb E[g(X)]$ lorsque $n$ tend ver
 Comme $g(X)$ est intégrable, et que les variables sont indépendantes et de même loi, il s'agit d'une application directe de la loi forte des grands nombres.
 :::
 
-En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1, \dots, X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand. 
+En particulier, si on sait simuler $X$, on peut en faire des tirages $X_1, \dots, X_n$ et ainsi calculer $I_n$ qui est une valeur approchée de $I$ pour $n$ assez grand.
 
 
 ::: {#exm-ex-p}
 
-## 
+##
 
 Par exemple, si l'on répète un très grand nombre de fois $n$ une expérience aléatoire et que l'on s'intéresse à la réalisation de l'événement $A$ alors la loi des grands nombres nous garantit que :
 $$
@@ -119,7 +117,7 @@ f_n(A)=\frac1n \times \hbox{ Nbre de fois où } A \hbox{ s'est réalisé} \xrigh
 $$
 car $f_n(A)=(1/n) \sum_{i=1}^n X_i$ où $X_i$ est une v.a. de Bernoulli de paramètre $p=\mathbb P(A)=\mathbb E[X]$. Autrement dit, la fréquence observée $f_n(A)$ de la réalisation de l'événement $A$ au cours d'un grand nombre de répétitions de l'expérience se rapproche de la probabilité $P(A)$.
 :::
-	
+
 ::: {#exm-montyHall}
 
 ## Le jeu des trois portes ou paradoxe de Monty Hall
@@ -131,7 +129,7 @@ La présentatrice (qui sait où se trouve la voiture) ouvre alors l'une des deux
 Le candidat a alors deux possibilités :
 
 1. soit il ouvre la porte qu'il avait choisie en premier ; (il conserve son premier choix)
-2. soit il ouvre une autre porte (celle qui n'a pas été ouverte par la présentatrice). 
+2. soit il ouvre une autre porte (celle qui n'a pas été ouverte par la présentatrice).
 
 Quelle est la meilleure stratégie pour le candidat ? Garder son premier choix ou changer de porte ?
 
@@ -204,7 +202,7 @@ Ce résultat a deux conséquences importantes. D'une part, la vitesse de converg
 En finance, certains contrats (dont le coût est $C>0$ et que l'on peut voir comme une assurance) permettent de vendre un actif acheté $K>0$ à une date future $N$ fixée par le contrat s'il dépasse à ce moment là une certaine valeur cible $K$ également fixée dans le contrat. Si le prix de l'actif est plus bas que $K$, on récupère tout de même sa mise $K$. Considérons un modèle simplifié pour le cours de l'actif $(S_n)_{n\geq 1}$ : pour $n\geq 1$, on pose $S_n=\sum_{i=1}^nX_i$ où les $X_i$ sont des variables aléatoires indépendantes de loi normale centrée réduite. Le gain moyen de la détentrice ou du détenteur du contrat décrit ci-dessus est donc $\mathbb E[\max(S_N-K,0)]$. Le contrat n'est pas gratuit... Ainsi, l'enjeu est de comparer le coût $C$ et l'espérance $\mathbb E[\max(S_N-K,0)]$.
 
 Estimons cette quantité par la méthode de Monte Carlo.
-	
+
 ```{python}
 #| echo: true
 
@@ -235,13 +233,13 @@ La proposition @prp-tcl2 donne deux leviers pour augmenter la précision de l'es
 
 1. augmenter le nombre $n$ de tirages,
 2. diminuer la variance $\var(g(X))$.
-   
+
 Si le premier levier est facilement praticable pour des cas simples, il n'est pas envisageable lorsque une simulation de $g(X)$ est coûteuse en temps de calcul ou lorsque la variance est très grande, ce qui arrive couramment. Nous allons examiner le deuxième levier dans cette partie, c'est ce qu'on appelle les **méthodes de réduction de variance**.
 
 Regardons d'abord un exemple pour bien comprendre l'intérêt de ces méthodes.
 
-::: {#exm-ex-p2}
 
+::: {#exm-ex-p2}
 
 Revenons sur l'exemple @exm-ex-p où on cherche à estimer $p=\mathbb P(A)$ à partir de tirages de loi de Bernoulli.  Avec $n$ tirages, on a $I_n\simeq p + \sqrt{\frac{p(1-p)}{n}}Z$ avec $Z$ de loi normale centrée réduite. La valeur de $p$ est inconnue, mais on peut majorer $p(1-p)$ par $1/4$. Si on veut faire une erreur de l'ordre $0.01$ sur $p$, il convient de choisir $n=\frac{1}{4\times 0.01^2}=0.25\cdot 10^{4}=2500$.
 
@@ -261,7 +259,7 @@ Cette méthode est intéressante si on sait calculer explicitement $\mathbb{E}[h
 
 ::: {#exm-carre}
 
-Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$ comme dans l'exemple @exm-unif à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors 
+Supposons que l'on veuille calculer $I=\int_0^1 e^{x^2} dx \simeq 1.46265\dots$ comme dans l'exemple @exm-unif à l'aide de la loi uniforme sur $[0,1]$. Comme au voisinage de $0$, on a $e^{x^2}\simeq 1+x^2$, on propose de prendre $h(x)=1+x^2$. On a alors
 $$
 	\mathbb E[h(X)]=\int_0^11+x^2dx=\big[x+\frac{x^3}{3}\big]_0^1=\frac{4}{3}.
 $$
@@ -313,8 +311,7 @@ Examinons l'effet de cette décomposition sur la variance.
 
 ::: {#lem-redvar}
 
-
-Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors 
+Supposons qu'il existe une fonction $h$ telle que $X$ et $h(X)$ ont la même loi de carré intégrable. Si $\cov(g(X),g(h(X))\leq 0$ alors
 $$
 	\var\left(\frac{g(X)+g(h(X))}{2}\right) \leq \frac{\var (g(X))}{2},
 $$
@@ -326,7 +323,7 @@ Autrement dit la méthode des variables antithétiques permet de réduire la var
 ::: {.proof}
 
 Calculons la variance $V=\var\big(g(X)+g(h(X))\big)$:
-$$
+
 \begin{align*}
 	V &= \var\big(g(X)+g(h(X))\big)\\
 		&=\mathbb E[(g(X)-\mathbb E[g(X)]+g(h(X))-\mathbb E[g(h(X))])^2]\\
@@ -334,24 +331,23 @@ $$
 		&\quad + 2\mathbb E[(g(X)-\mathbb E[g(X)])(g(h(X))-\mathbb E[g(h(X))])]\\
 		&= \var (g(X))+\var(g(h(X)) + 2 \cov(g(X),g(h(X)).
 \end{align*}
-$$
+
 En particulier, si $\cov(g(X),g(h(X))\leq 0$, on a
-$$
+
 \begin{align*}
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)
 	& \leq \frac{ \var (g(X))+\var(g(h(X))}{4}\\
 	& =\frac{\var (g(X))}{2},
 \end{align*}
-$$
 
 car $g(X)$ et $g(h(X))$ ont la même loi donc la même variance. Dans le cas général, on a toujours $2\cov(g(X),g(h(X))\leq \var (g(X))+\var(g(h(X))$ par l'inégalité de Cauchy-Schwartz, ce qui implique
-$$
+
 \begin{align*}
 	\var\left(\frac{g(X)+g(h(X))}{2}\right)
 	& \leq 2\frac{\var (g(X))+\var(g(h(X)))}{4}\\
 	& = \var (g(X)),
 \end{align*}
-$$
+
 donc même si on ne réduit pas effectivement la variance, on ne peut pas l'augmenter par cette méthode.
 On peut faire des calculs plus précis en faisant intervenir la covariance de $g(X)$ et $g(h(X))$ dans certains cas particuliers si on spécifie les lois.
 
@@ -403,14 +399,15 @@ L'idée derrière l'échantillonnage préférentiel est similaire à celle des v
 
 
 Supposons que l'on sache simuler une variable aléatoire $Y$ de densité $h$. On peut alors écrire $I$ comme
+
 \begin{align*}
-I&=\mathbb E[g(X)]=\int g(x)f(x)dx 
-\\ &= \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right].
+I  & = \mathbb{E}[g(X)]=\int g(x)f(x)dx
+\\ & = \int \frac{g(x)f(x)}{h(x)}h(x)dx=\mathbb{E}\left[ \frac{g(Y)f(Y)}{h(Y)}\right] \enspace.
 \end{align*}
 
 On a gagné quelque chose si $\var\Big(\frac{gf}{h}(Y)\Big)<\var\big(g(X)\big)$.
 
-Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Évidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb E[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
+Comme pour la méthode de la variable de contrôle, on souhaite que la nouvelle variable $\frac{g(Y)f(Y)}{h(Y)}$ soit de variance aussi petite que possible, donc proche d'une constante. Si on prend $h(x)=\frac{g(x)f(x)}{\mathbb E[g(X)]}$ (qui est bien une densité si $g$ est positive), alors la variance de $\frac{g(Y)f(Y)}{h(Y)}$ est nulle. Évidemment, ce résultat n'est pas utilisable en pratique puisqu'on cherche justement à calculer $\mathbb{E}[g(X)]$. Cependant, il guide la recherche d'une bonne fonction $h$ vers une approximation de $|gf|$ normalisée pour obtenir une densité.
 
 ::: {#exm-loiUnif}
 
