@@ -11,14 +11,14 @@ format:
 
 # Variables aléatoires et lois
 
-## Notation et rappels de probabilités
+## Notations et rappels de probabilités
 
 ::: {.fragment fragment-index=1}
 
 - Espace probabilisé: $(\Omega, {\mathcal{F}}, \mathbb{P})$
-  - composé d'un ensemble: $\Omega$
-  - d'une tribu: $\mathcal{F}$
-  - d'une mesure de probabilité: $\mathbb{P}$
+  - ensemble: $\Omega$
+  - muni d'une tribu: $\mathcal{F}$
+  - et d'une mesure de probabilité: $\mathbb{P}$
 :::
 
 ::: {.fragment fragment-index=2}
