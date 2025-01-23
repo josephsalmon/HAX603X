@@ -82,7 +82,7 @@ import plotly.graph_objects as go
 
 x = np.linspace(-3, 4, num=300)
 
-fig = go.Figure(layout=go.Layout(autosize=True, width=1000, height=550))
+fig = go.Figure(layout=go.Layout(autosize=True, width=800, height=400))
 
 fig.add_trace(
     go.Scatter(
@@ -117,16 +117,16 @@ fig.update_layout(
 
 <br>
 
-[Objectif]{.underline}: simuler sur machine une suite $U_1, \dots, U_n$  de v.a., i.i.d., de loi $\mathcal{U}([0,1])$.
+[Objectif]{.underline}: simuler sur machine une suite $U_1, \dots, U_n$  de v.a., i.i.d., de loi $\mathcal{U}([0,1])$
 
 <br>
 [Difficultés]{.underline}:
 
 :::{.incremental}
 
-- Une machine est déterministe.
-- Les nombres flottants entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres.
-- Vérifier qu'une suite est bien i.i.d. est un problème difficile.
+- Une machine est déterministe
+- Les nombres flottants entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres
+- Vérifier qu'une suite est bien i.i.d. est un problème difficile
 :::
 
 
@@ -166,7 +166,7 @@ La plupart des PRNG s'appuient sur des résultats arithmétiques.
 
 :::{.incremental}
 
-- Le plus célèbre: Générateur Congruentiel Linéaire (:gb: Linear Congruential Generator, LCG).
+- Le plus célèbre: Générateur Congruentiel Linéaire (:gb: L*inear Congruential Generator, LCG*).
 
 - Récurrence:
 $$
@@ -258,7 +258,7 @@ print(rng.random(size=(3, 2)))     #  matrice 3x2, à entrées unif. sur [0,1]
 
 ::: {.callout-note appearance="simple"}
 ## Pour aller plus loin
-Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://albertcthomas.github.io/good-practices-random-number-generators/).
+Une excellente discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://albertcthomas.github.io/good-practices-random-number-generators/).
 :::
 
 
@@ -441,7 +441,7 @@ En pratique, $Y_n$ correspond à une **proposition** et $U_n$ permettra de déci
 - Si oui, alors on conserve $Y_n$
 - Si non, on simule $Y_{n+1}$
 
-Pour simuler $X$ de densité $f$, simuler $Y_n$  (suivant $g$), $U_n$ (suivant $\mathcal{U}[0,1]$) et accepter si 
+Pour simuler $X$ de densité $f$, simuler $Y_n$  (suivant $g$), $U_n$ (suivant $\mathcal{U}[0,1]$) et accepter si
 $$
 U_n \leq r(Y_n) = \frac{f(Y_n)}{m\cdot g(Y_n)}
 $$
@@ -481,7 +481,7 @@ def accept_reject(n, f, g, g_sampler, m, rng):
     """
     n: nombre de simulations
     f: loi cible
-    g, g_sampler: loi et générateur des propositions                            
+    g, g_sampler: loi et générateur des propositions
     m: constante pour la majoration
     rng: générateur pseudo-aléatoire
     """
@@ -501,16 +501,16 @@ def accept_reject(n, f, g, g_sampler, m, rng):
 :::
 
 ## Visualisation de l'exemple
-
 ```{python}
 #| echo: false
-#| layout-ncol: 1
 
 def plot_accept_reject(n, f, g, g_sampler, m, rng):
     x_samples, u_samples, accepted = accept_reject(n, f, g, g_sampler, m, rng)
     x = np.linspace(0, 1, 100)
-
-    fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+    # Slide with large screen:
+    # fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+    # Slide on laptop:
+    fig = go.Figure(layout=go.Layout(autosize=True, width=600, height=600))
     fig.add_trace(
         go.Scatter(
             x=x_samples[accepted == 1],
@@ -569,7 +569,6 @@ g = lambda x: np.ones_like(x)
 m = 4
 seed = 1234
 ```
-
 
 ::: {.r-stack}
 
@@ -646,10 +645,14 @@ fig1.show()
 
 ::: {.fragment}
 ```{python}
+#| echo: false
 
 x = np.linspace(0, 1, 100)
 
+# Slide with large screen:
 fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+# Slide on laptop:
+fig = go.Figure(layout=go.Layout(autosize=True, width=600, height=600))
 fig.update_xaxes(range=[0, 1.1])
 fig.update_yaxes(range=[0, 5.5])
 
@@ -975,7 +978,12 @@ md`Le taux d'acceptation est ici de **${ratio_andrews.toPrecision(3)}**.`
 ```{python}
 #| echo: false
 #| layout-ncol: 1
-fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=550))
+
+# Slide with large screen:
+# fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=900))
+# Slide on laptop:
+fig = go.Figure(layout=go.Layout(autosize=True, width=700, height=325))
+
 fig.add_trace(
     go.Histogram(
         x=x_samples[accepted == 1],
@@ -1084,7 +1092,7 @@ $$
 
 :::
 
-## Exemple: loi uniforme sur le disque unité (2D)
+## Exemple: loi uniforme sur un disque (2D)
 
 <br>
 
@@ -1103,7 +1111,7 @@ La loi uniforme sur le carré est une loi produit: il suffit de savoir générer
 
 :::
 
-## Exemple: loi uniforme sur le disque (visualisation)
+## Exemple: loi uniforme sur un disque (visualisation)
 
 ```{python}
 #| echo: false
@@ -1200,10 +1208,13 @@ def plot_samples(fig, n_sample, plot_type="circle"):
 #| echo: false
 #| layout-ncol: 1
 
-n_sample = 3000
+n_sample = 1000
 plot_type = "circle"
 
-fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=700))
+# fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=700))
+fig = go.Figure(layout=go.Layout(autosize=True, width=800, height=400))
+
+
 fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
 fig.update_xaxes(range=[-2, 2.])
@@ -1270,10 +1281,11 @@ La loi uniforme sur un rectangle est une loi produit: il suffit de savoir géné
 #| echo: false
 #| layout-ncol: 1
 
-n_sample = 3000
+n_sample = 1000
 plot_type = "cardioide"
 
-fig = go.Figure(layout=go.Layout(autosize=True, width=800, height=700))
+# fig = go.Figure(layout=go.Layout(autosize=True, width=1200, height=700))
+fig = go.Figure(layout=go.Layout(autosize=True, width=800, height=400))
 fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
 fig.update_xaxes(range=[-3, 4.])

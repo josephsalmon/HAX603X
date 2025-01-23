@@ -142,7 +142,7 @@ Les propriétés de l'intégrale de Lebesgue assurent que cette formule définit
 
 
 - **Espérance**: $\mathbb{E}(X) = \displaystyle\int_{\mathbb{R}} x f(x) dx$
-- **Variance**: $\mathbb{V}(X) = \mathbb{E}((X-\mathbb{E}(X))^2) = \displaystyle\int_{\mathbb{R}} (x-\mathbb{E}(X))^2 f(x) dx$
+- **Variance**: $\mathbb{V}(X) = \mathbb{E}\left((X-\mathbb{E}(X)\right)^2 = \displaystyle\int_{\mathbb{R}} (x-\mathbb{E}(X))^2 f(x) dx$
 
 
 ## Lois continues usuelles
@@ -197,8 +197,8 @@ $$
 $$
 :::
 
-<!-- Remarque: c'est en fait la seule loi continue à vérifier cette propriété, parmi les lois qui ont une fonction de répartitions continues. -->
-
+Remarque: c'est en fait la seule loi continue à vérifier cette propriété
+(voir [ici](https://www.bibmath.net/dico/index.php?action=affiche&quoi=./s/sansmemoire.html) pour une formulation précise de ce résultat)
 :::
 
 
@@ -210,19 +210,19 @@ $$
 ## Loi normale/gaussienne univariée
 Pour des paramètres $\mu \in \mathbb{R}$ (espérance) et $\sigma^2 > 0$ (variance), la loi *normale* associée correspond à la fonction de densité :
 $$
-f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace.
+f(x) = \frac{1}{\sqrt{2 \pi \sigma^2}}e^{-\frac{1}{2 \sigma^2}(x-\mu)^2} \enspace
 $$
 [Notation:]{.underline} $X \sim \mathcal{N}(\mu,\sigma^2)$,
 :::
 
-On nomme loi *normale centrée réduite* le cas canonique: $\mu = 0, \sigma^2 = 1$.
+On nomme loi **normale centrée réduite** le cas canonique: $\mu = 0, \sigma^2 = 1$
 
-Si $X\sim \mathcal{N}(\mu,\sigma^2)$, alors l'espérance et la variance de $X$  valent $\mathbb{E}(X) = \mu$ et $\mathbb{V}(X) = \sigma^2$.
+Si $X\sim \mathcal{N}(\mu,\sigma^2)$, alors l'espérance et la variance de $X$  valent $\mathbb{E}(X) = \mu$ et $\mathbb{V}(X) = \sigma^2$
 
 <br>
 
 :::{.callout-note}
-Les lois normales sont omniprésente grâce au théorème central limite.
+Les lois normales sont omniprésente grâce au théorème central limite
 :::
 
 # Fonction de répartition et quantiles
@@ -357,7 +357,7 @@ $$
 $$
 :::
 
-[Vocabulaire]{.underline}: densité  (:gb:: probability density function)
+[Vocabulaire]{.underline}: densité  (:gb:: *probability density function*)
 
 
 ## Loi normale
@@ -380,11 +380,11 @@ $$
 
 
 
-## Fonction quantile, inverse généralisée à gauche
+## Fonction quantile, inverse généralisée 
 
 ::: {#def-quantile}
 
-##  Fonction quantile/ inverse généralisée :gb:: *quantile distribution function*
+##  Quantile/ inverse généralisée :gb:: *quantile distribution function*
 
 <br>
 
@@ -398,7 +398,7 @@ $$
 :::
 
 
-- $F_X$ est bijective $\implies$ $F^{-1}=F_X^\leftarrow$
+- $F_X$ est bijective $\implies$ $F_X^{-1}=F_X^\leftarrow$
 
 [Vocabulaire]{.underline}:
 
@@ -431,7 +431,7 @@ jstatPDFs = () => {
 };
 output = jstatPDFs();
 
-excludedPDFs = [];
+excludedPDFs = ["hypergeometric"];
 pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
 pdfNames=pdfNames_unsorted.toSorted();
 viewof inputs = Inputs.form([
@@ -453,7 +453,7 @@ viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Loi", wi
 ```{ojs}
 
 {
-  const x = d3.range(-5, 5, 0.01);
+  const x = d3.range(-10, 10, 0.01);
   const pdf = x.map(x => dists[distrib_name].pdf(x, mu, sigma));
   const cdf = x.map(x => dists[distrib_name].cdf(x, mu, sigma));
   const inv = x.map(x => dists[distrib_name].quantile(x, mu, sigma));
@@ -832,7 +832,7 @@ output_discr = discretePDFs();
 pmfNames_unsorted = output_discr.filter(name => !excludedPDFs.includes(name));
 pmfNames=pmfNames_unsorted.toSorted();
 viewof inputs_disc = Inputs.form([
-      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu `, width: 500}),
+      Inputs.range([-10, 20], {value: 0.1, step: 0.001, label: tex`\mu `, width: 500}),
       Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma `, width: 500}),
       Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label: tex`\alpha`, width: 500}),
     ]);
@@ -847,11 +847,14 @@ viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Lo
 ```{ojs}
 
 {
-  const z = d3.range(-5, 5, 0.01);
+  const z = d3.range(-2, 20, 0.01);
+
+
   const pmf = z.map(z => dists[distrib_name_discr].pmf(z, mu_disc, sigma_disc));
   const cdf = z.map(z => dists[distrib_name_discr].cdf(z, mu_disc, sigma_disc));
   const inv = z.map(z => dists[distrib_name_discr].quantile(z, mu_disc, sigma_disc));
   const quantile = dists[distrib_name_discr].quantile(alpha_disc, mu_disc, sigma_disc);
+  
   const filteredX = z.filter(coord => coord <= quantile);
   const filteredPmf = pmf.filter((_, i) => z[i] <= quantile);
   const filteredCdf = cdf.filter(coord => coord <= quantile);
