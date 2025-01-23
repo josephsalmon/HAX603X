@@ -62,7 +62,7 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 
 
 ::: {.fragment fragment-index=2}
-- **Julien Patras** :  Tp
+- **Julien Patras** :  TP
   - Doctorant, IRD
   - Précédemment : Ecole Polytechnique
   - Spécialités : Statistiques, écologie
@@ -122,7 +122,7 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 ::: {.callout-important}
 
 
-Le rendu est individuel pour le TP noté !!!
+Le rendu est individuel pour les TPs notés !
 :::
 <!-- ----------------------------------------------------------------------- -->
 
@@ -131,7 +131,7 @@ Le rendu est individuel pour le TP noté !!!
 <hr>
 
 
-[Rendu]{.underline} : sur Moodle, en déposant un fichier nom_prenom.py
+[Rendu]{.underline} : sur Moodle, en déposant un fichier `nom_prenom.py`
 dans le dossier adéquat.
 
 Détails de la notation des TPs :
@@ -139,7 +139,7 @@ Détails de la notation des TPs :
 - Qualité des réponses aux questions
 - Qualité de rédaction et d'orthographe
 - Qualité des graphiques (légendes, couleurs)
-- Qualité du code (noms de variables, clairs, commentaires utiles, code synthétique, etc.)
+- Qualité du code (noms de variables, clarté, commentaires utiles, code synthétique, etc.)
 - Code reproductible et absence de bug
 
 <br>
@@ -150,7 +150,7 @@ Détails de la notation des TPs :
 
 
 - Envoi par mail : zéro
-- Retard : zéro (uploader avant la fin, fermeture automatique de Moodle)
+- Retard : zéro (uploader avant la fin, faites des tests, fermeture automatique de Moodle)
 
 :::
 <!-- ----------------------------------------------------------------------- -->
@@ -170,7 +170,7 @@ Détails de la notation des TPs :
 
 <br>
 
-- Programmation élémentaire (en Python): if ... then... else ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
+- Programmation élémentaire (en Python): `if` ... `elif`... `else` ..., for, while, fonctions, etc. [HLMA310 - Logiciels scientifiques](https://josephsalmon.eu/HLMA310.html), [@Courant_deFalco_Gonnord_Filliatre_Conchon_Dowek_Wack13], [Cours de Python: Univ. Paris Diderot](https://python.sdv.univ-paris-diderot.fr/)
 
 <br>
 
@@ -196,8 +196,8 @@ Détails de la notation des TPs :
    - réduction de la variance : variables antithétiques, variables de contrôle, etc.
 3. Compléments
    - vecteurs gaussiens et lien avec les lois usuelles de la statistique inférentielle (student, chi2 ou $\chi^2$)
-   - construction d'intervalles de confiance.
-   - marche aléatoire simple, etc.
+   - quantification de l'incertitude, intervalles de confiance
+   - marches aléatoires simples, etc.
 :::
 <!-- ----------------------------------------------------------------------- -->
 
@@ -231,114 +231,67 @@ import numpy as np
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
 
+# Initialize
 rng = np.random.default_rng(44)
+n_samples, xmax, xmin = 200, 14.499999, -14.499999
 
-n_samples = 200
-xmax = 14.499999
-xmin = -xmax
+# Create needles in one step
+centers_x, angles, centers_y = [rng.uniform(a, b, n_samples) for a, b in 
+                              [(xmin, xmax), (0, 2*np.pi), (-2, 2)]]
 
+# Compute borders more efficiently
+cos_angle, sin_angle = np.cos(angles)/2, np.sin(angles)/2
+borders_right = np.column_stack((centers_x + cos_angle, centers_y + sin_angle))
+borders_left = np.column_stack((centers_x - cos_angle, centers_y - sin_angle))
 
-# Create the needles
-centers_x = rng.uniform(xmin, xmax, n_samples)
-angles = rng.uniform(0, 2 * np.pi, n_samples)
-centers_y = rng.uniform(-2, 2, n_samples)
-
-# Compute the right borders of the needles
-borders_right = np.zeros((n_samples, 2))
-borders_right[:, 0] = centers_x + np.cos(angles) / 2
-borders_right[:, 1] = centers_y + np.sin(angles) / 2
-
-# Compute the left borders of the needles
-borders_left = np.zeros((n_samples, 2))
-borders_left[:, 0] = centers_x + np.cos(angles + np.pi) / 2
-borders_left[:, 1] = centers_y + np.sin(angles + np.pi) / 2
-
+# Calculate overlap
 centers_x_round = np.round(centers_x)
-overlap = (borders_right[:, 0] - centers_x_round) * (
-    borders_left[:, 0] - centers_x_round
-) < 0
-overlap = np.where(overlap, 1, 0)
+overlap = np.where((borders_right[:,0] - centers_x_round) * 
+                  (borders_left[:,0] - centers_x_round) < 0, 1, 0)
 n_overlap = int(np.sum(overlap))
 
-
-# Check if the needles cross a line
+# Create border arrays
 borders_red = np.empty((3 * n_overlap, 2), dtype=object)
-borders_red.fill(None)
-borders_red[::3, :] = borders_right[overlap == 1]
-borders_red[1::3, :] = borders_left[overlap == 1]
-
 borders_blue = np.empty((3 * (n_samples - n_overlap), 2), dtype=object)
+borders_red.fill(None)
 borders_blue.fill(None)
-borders_blue[::3, :] = borders_right[overlap == 0]
-borders_blue[1::3, :] = borders_left[overlap == 0]
 
-overlaps = np.empty((3 * n_samples), dtype=object)
-overlaps.fill(None)
-overlaps[::3] = overlap
-overlaps[1::3] = overlap
-overlaps[2::3] = overlap
+# Assign borders
+borders_red[::3], borders_red[1::3] = borders_right[overlap == 1], borders_left[overlap == 1]
+borders_blue[::3], borders_blue[1::3] = borders_right[overlap == 0], borders_left[overlap == 0]
 
-idx_red = np.cumsum(overlaps)
-idx_blue = np.cumsum(1 - overlaps)
+# Create overlap arrays
+overlaps = np.tile(overlap, (3,)).reshape(-1)
+idx_red, idx_blue = np.cumsum(overlaps), np.cumsum(1 - overlaps)
 
 
-# Create subplots with 2 rows and 1 column with ratio x /  y  of 10
+# Create figure and add vertical lines
 fig = make_subplots(rows=1, cols=1)
+[fig.add_shape(type="line", x0=i, x1=i, y0=-3, y1=3, line=dict(color="black", width=2))
+ for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1)]
 
-# Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
-for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
-    fig.add_shape(
-        type="line",
-        y0=-3,
-        x0=i,
-        y1=3,
-        x1=i,
-        line=dict(
-            color="black",
-            width=2,
-        ),
-    )
+# Plot configuration
+i = 20
+for borders, idx, color, name in [(borders_red, idx_red, "red", "Avec intersection"),
+                                 (borders_blue, idx_blue, "darkblue", "Sans intersection")]:
+    fig.add_trace(go.Scatter(
+        x=borders[:idx[3*i]+1, 0], y=borders[:idx[3*i]+1, 1],
+        mode="lines", line=dict(width=2), marker=dict(color=color),
+        name=name, visible=True
+    ))
 
-color = np.where(overlaps, 1.0, 0.0)
-
-n_samples_array = np.arange(1, n_samples + 1)
-pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
-t = n_samples
-
+# Update layout
 fig.update_layout(
     template="simple_white",
-    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
-    yaxis_scaleanchor="x",
-    xaxis_visible=False,
-    yaxis_visible=False,
-)
-
-
-i = 20
-fig.add_trace(
-    go.Scatter(
-        x=borders_red[: idx_red[3 * i] + 1, 0],
-        y=borders_red[: idx_red[3 * i] + 1, 1],
-        mode="lines",
-        line=dict(width=2),
-        marker=dict(color="red"),
-        name="Avec intersection",
-        visible=True,
+    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False, visible=False),
+    yaxis=dict(
+        scaleanchor="x", 
+        visible=False,
+        range=[-2.5, 2.5]  # Adjusted range to move figure up
     ),
+    legend=dict(x=0.5, y=0.80, xanchor='center', yanchor='top'),  # Moved legend higher
+    margin=dict(t=20)  # Reduced top margin
 )
-fig.add_trace(
-    go.Scatter(
-        x=borders_blue[: idx_blue[3 * i] + 1, 0],
-        y=borders_blue[: idx_blue[3 * i] + 1, 1],
-        mode="lines",
-        line=dict(width=2),
-        marker=dict(color="darkblue"),
-        name="Sans intersection",
-        visible=True,
-    ),
-)
-
-fig.update_layout(legend=dict(x=0.5, y=1.05, xanchor='center', yanchor='top'))
 fig.show()
 ```
 
@@ -375,11 +328,11 @@ Huile sur toile de François-Hubert Drouais, Montbard, musée Buffon."></img>
 <br>
 
 ::: {.fragment}
-**Réponse**:
+**Réponse probabiliste**:
 $$
-P = \frac{2}{\pi} \approx 0.6366 \enspace.
+P = \frac{2}{\pi} \approx 0.6366 \enspace
 $$
-Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX603X/perspective_historique.html).
+Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX603X/perspective_historique.html)
 :::
 <!-- ----------------------------------------------------------------------- -->
 
@@ -390,7 +343,7 @@ Une preuve de ce résultat est donnée [ici](http://josephsalmon.github.io/HAX60
 
 Idée sous-jacente de Buffon :
 
-si l'on répète cette expérience un grand nombre de fois, on peut approché la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement après avoir fait $n$ répétition des lancers.
+si l'on répète cette expérience un grand nombre de fois, on peut approcher la quantité $P$ numériquement, par exemple en proposant un estimateur $\hat{P}_n$ qui compte la proportion de chevauchement, après avoir effectué $n$ répétitions des lancers
 
 <br>
 Estimation de $\pi$:
@@ -412,157 +365,65 @@ $$
 #| echo: false
 #| layout-ncol: 1
 
-# Create subplots with 2 rows and 1 column with ratio x /  y  of 10
+# Create figure and add elements
 fig1 = make_subplots(rows=2, cols=1, vertical_spacing=0.1, row_heights=[2, 1])
+[fig1.add_shape(type="line", x0=i, x1=i, y0=-3, y1=3, 
+                line=dict(color="black", width=2), row=1, col=1)
+ for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1)]
 
-# Use a loop to plot vertical lines equation "y=c" for integer values c in [-2, -1, 0, 1, 2]
-for i in range(int(np.round(xmin)), int(np.round(xmax)) + 1):
-    fig1.add_shape(
-        type="line",
-        y0=-3,
-        x0=i,
-        y1=3,
-        x1=i,
-        line=dict(
-            color="black",
-            width=2,
-        ),
-        row=1,
-        col=1,
-    )
-
-color = np.where(overlaps, 1.0, 0.0)
-
+# Calculate values
 n_samples_array = np.arange(1, n_samples + 1)
 pi_estimate = 2 / (np.cumsum(overlap) / n_samples_array)
-t = n_samples
 
-fig1.update_layout(
-    template="simple_white",
-    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False),
-    yaxis_scaleanchor="x",
-    xaxis_visible=False,
-    yaxis_visible=False,
-)
+# Add traces for each iteration
+for i in range(3, n_samples):
+    for data, color, name in [(borders_red, "red", "Avec intersection"),
+                             (borders_blue, "darkblue", "Sans intersection")]:
+        idx = idx_red if color == "red" else idx_blue
+        fig1.add_trace(go.Scatter(
+            x=data[:idx[3*i]+1, 0], y=data[:idx[3*i]+1, 1],
+            mode="lines", line=dict(width=2), marker=dict(color=color),
+            name=name, visible=False), row=1, col=1)
 
-for i in range(3, t):
-    fig1.add_trace(
-        go.Scatter(
-            x=borders_red[: idx_red[3 * i] + 1, 0],
-            y=borders_red[: idx_red[3 * i] + 1, 1],
-            mode="lines",
-            line=dict(width=2),
-            marker=dict(color="red"),
-            name="Avec intersection",
-            visible=False,
-        ),
-        row=1,
-        col=1,
-    )
-    fig1.add_trace(
-        go.Scatter(
-            x=borders_blue[: idx_blue[3 * i] + 1, 0],
-            y=borders_blue[: idx_blue[3 * i] + 1, 1],
-            mode="lines",
-            line=dict(width=2),
-            marker=dict(color="darkblue"),
-            name="Sans intersection",
-            visible=False,
-        ),
-        row=1,
-        col=1,
-    )
+    fig1.add_trace(go.Scatter(
+        x=n_samples_array[:i], y=pi_estimate[:i],
+        mode="lines", line=dict(width=1), marker=dict(color="red"),
+        showlegend=False, visible=False), row=2, col=1)
 
-    fig1.add_trace(
-        go.Scatter(
-            x=n_samples_array[:i],
-            y=pi_estimate[:i],
-            mode="lines",
-            line=dict(width=1),
-            marker=dict(color="red"),
-            showlegend=False,
-            visible=False,
-        ),
-        row=2,
-        col=1,
-    )
+# Add annotations and shapes
+for ann in [dict(x=0.04, y=0.19, text="Estimation de pi", font=dict(color="red")),
+           dict(x=0.99, y=0.19, text="pi")]:
+    fig1.add_annotation(**ann, xref="paper", yref="paper", showarrow=False)
 
-fig1.add_annotation(
-    dict(
-        x=0.04,
-        y=0.19,
-        xref="paper",
-        yref="paper",
-        text="Estimation de pi",
-        showarrow=False,
-        font=dict(color="red"),
-    )
-)
+fig1.add_shape(type="line", x0=0, x1=n_samples, y0=np.pi, y1=np.pi,
+               line=dict(color="black", width=1, dash="dashdot"), row=2, col=1)
 
-fig1.add_annotation(
-    dict(x=0.99, y=0.19, xref="paper", yref="paper", text="pi", showarrow=False)
-)
-
-fig1.update_xaxes(title_text="Nombre d'aiguilles tirées", row=2, col=1)
-
+# Update layout
 fig1.update_layout(
     template="none",
+    xaxis=dict(range=[xmin, xmax], constrain="domain", showgrid=False, visible=False),
+    yaxis_scaleanchor="x", yaxis_visible=False,
     xaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=3, range=[-0.001, n_samples]),
     yaxis2=dict(showgrid=True, zeroline=True, zerolinewidth=2, range=[0., 6]),
-)
-# plot a dash line at y=pi
-fig1.add_shape(
-    type="line",
-    y0=np.pi,
-    x0=0,
-    y1=np.pi,
-    x1=n_samples,
-    line=dict(
-        color="black",
-        width=1,
-        dash="dashdot",
-    ),
-    row=2,
-    col=1,
+    legend=dict(x=0.5, y=0.91, xanchor='center', yanchor='bottom')
 )
 
+# Set initial visible state
+[setattr(fig1.data[11*3 + i], 'visible', True) for i in range(3)]
 
-fig1.data[11 * 3].visible = True
-fig1.data[11 * 3 + 1].visible = True
-fig1.data[11 * 3 + 2].visible = True
+# Create slider
+steps = [dict(
+    label=str(ii + 4),
+    method="update",
+    args=[{"visible": [True if j in range(3*ii, 3*ii+3) else False 
+           for j in range(len(fig1.data))],},
+          {"title": f"Estimation avec {ii+4} aiguilles: pi = {pi_estimate[ii]:.4f}"}]
+) for ii in range(len(fig1.data)//3)]
 
-
-steps = []
-for ii in range(len(fig1.data) // 3 ):
-    step = dict(
-        label=str(ii + 4),
-        method="update",
-        args=[
-            {"visible": [False] * len(fig1.data)},
-            {
-                "title": "Estimation avec "
-                + str(ii + 4)
-                + f" aiguilles: pi = {pi_estimate[ii]:.4f}"
-            },
-        ],
-    )
-    step["args"][0]["visible"][3 * ii] = True
-    step["args"][0]["visible"][3 * ii + 1] = True
-    step["args"][0]["visible"][3 * ii + 2] = True
-
-    steps.append(step)
-
-slider = dict(
-    active=6,
-    currentvalue={"prefix": "Nombre d'aiguilles: "},
-    pad={"t": 50},
-    y=-0.1,
-    steps=steps,
-)
-
-fig1.update_layout(legend=dict(x=0.5, y=0.91, xanchor='center', yanchor='bottom'))
-fig1.update_layout(sliders=[slider])
-# fig1.update_layout(height=800, width=1480)
+fig1.update_layout(sliders=[dict(
+    active=6, currentvalue={"prefix": "Nombre d'aiguilles: "},
+    pad={"t": 50}, y=-0.1, steps=steps
+)])
 
 fig1.show()
 ```
@@ -574,7 +435,7 @@ fig1.show()
 ## Méthode de Monte-Carlo
 <hr>
 
-Méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes.
+Méthode de calcul numérique qui consiste à utiliser des nombres aléatoires pour résoudre des problèmes déterministes, plus particulièrement en grande dimension (et pas uniquement en dimension 1)
 
 <br>
 
@@ -598,7 +459,7 @@ Domaines d'applications:
 
 :::{.fragment fragment-index=1}
 
-- Lieu: Los Alamos
+- Lieu: Los Alamos, New Mexico, USA
 - Époque: seconde guerre mondial
 - Contexte: **Projet Manhattan**, produire une bombe atomique
 - Besoins: modéliser les réactions nucléaires en chaîne (combinatoires)
@@ -652,7 +513,10 @@ Monte-Carlo: connue pour ses jeux de hasard, où l'oncle de Stanisław Ulam aima
 Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginning]:
 
 
-*It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”.*
+En: *It was at that time that I suggested an obvious name for the statistical method—a suggestion not unrelated to the fact that Stan had an uncle who would borrow money from relatives because he “just had to go to Monte Carlo”.*
+
+Fr: *C'est à ce moment-là que j'ai suggéré un nom évident pour la méthode statistique—une suggestion qui n'était pas sans rapport avec le fait que Stan avait un oncle qui empruntait de l'argent à ses proches parce qu'il "devait absolument aller à Monte Carlo".*
+
 <!-- ----------------------------------------------------------------------- -->
 
 
@@ -671,7 +535,7 @@ Ce serait N. Metropolis qui aurait proposé ce nom, cf. [@metropolis1987beginnin
 - Popularisation croissante:
 
   - Essor de l'informatique (depuis les années 80)
-  - Essor des méthodes de calcul parallèle (GPUs, clusters, etc.)
+  - Essor du calcul parallèle (GPUs, clusters, etc.)
 
 :::
 
