@@ -161,7 +161,7 @@ On peut étendre les lois normales au cas multi-dimensionnel.
 Fixons $d\in\mathbb{N}^*$ un entier non nul.
 Pour un vecteur $\mu \in \mathbb{R}^d$ et une matrice symétrique-définie positive $\Sigma\in \mathbb{R^{d\times d}}$, la densité normale mutlivariée associée est donnée par la fonction:
 $$
-f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\mathrm det}(\Sigma)} e^{-\frac{1}{2}(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
+f(x) = \frac{1}{{(2 \pi)}^{\frac{d}{2}} {\mathrm{det}}(\Sigma)} e^{-\frac{1}{2}(x-\mu)^\top \Sigma ^{-1}(x-\mu)}
 $$
 Notons que $\mu$ est l'espérance de la loi et $\Sigma$ la matrice de variance-covariance.
 :::
@@ -234,7 +234,7 @@ Soit $X$ une variable aléatoire de fonction de répartition $F_X$.
 2. $F_X$ est continue à droite en tout point.
 3. Pour tout $x \in \mathbb{R}$, on a $\mathbb{P}(X=x) = F_X(x) - F_X(x-)$, où $F_X(x-) = \lim_{\epsilon \to 0+} F_X(x- \epsilon)$.
 4. Si $X$ a pour densité $f$, alors $F_X$ est dérivable $\lambda$-presque partout de dérivée $f$.
-::: 
+:::
 Pour les démonstrations, voir par exemple [@Barbe_Ledoux06].
 
 
@@ -344,9 +344,9 @@ excludedPDFs = [];
 pdfNames_unsorted = output.filter(name => !excludedPDFs.includes(name));
 pdfNames=pdfNames_unsorted.toSorted();
 viewof inputs = Inputs.form([
-      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu`}),
-      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma`}),
-      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`}),
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`Param 1`}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`Param 2`}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha (quantile)`}),
     ]);
 
 viewof distrib_name = Inputs.select(pdfNames, {value: "normal", label: "Distribution"});
@@ -968,9 +968,9 @@ output_discr = discretePDFs();
 pmfNames_unsorted = output_discr.filter(name => !excludedPDFs.includes(name));
 pmfNames=pmfNames_unsorted.toSorted();
 viewof inputs_disc = Inputs.form([
-      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`\mu `}),
-      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`\sigma `}),
-      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha`}),
+      Inputs.range([-10, 10], {value: 0.1, step: 0.001, label: tex`Param 1`}),
+      Inputs.range([0.01, 5], {value: 1.01, step: 0.001, label: tex`Param 2`}),
+      Inputs.range([0.001, 0.999], {value: 0.75, step: 0.001, label:tex`\alpha (quantile)`}),
     ]);
 
 viewof distrib_name_discr = Inputs.select(pmfNames, {value: "normal", label: "Distribution"});
