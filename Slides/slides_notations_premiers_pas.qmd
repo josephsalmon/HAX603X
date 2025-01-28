@@ -154,7 +154,7 @@ La loi **uniforme** sur un ensemble $B \in \mathcal{B}(\mathbb{R})$, s'obtient a
 $$
 f(x) = {1\hspace{-3.8pt} 1}_B(x) / \lambda (B) \enspace,
 $$
-où $\lambda (B)$ représente la mesure de Lebesgue de l'ensemble $B$.
+où $\lambda (B)>0$ représente la mesure de Lebesgue de l'ensemble $B$.
 :::
 
 Cas particulier: pour la loi uniforme sur $[0,1]$, on obtient la fonction suivante:
