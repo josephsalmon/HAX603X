@@ -64,39 +64,29 @@ import plotly.graph_objs as go
 
 n_init = 42
 
-
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("Loi des grands nombres"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
-            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+    ui.h2("Loi des grands nombres"),
+    ui.row(
+        ui.column(4,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
             ),
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
-        width=3),
-    ui.panel_main(output_widget("my_widget"), width = 9)
-    )
+        ui.column(4,
+            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+                ),
+            ),
+        ui.column(4,
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False)
+                ),
+            ),
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
 
 
@@ -113,7 +103,7 @@ def server(input, output, session):
     subplots = make_subplots(
         rows=2,
         cols=1,
-        vertical_spacing=0.45,
+        vertical_spacing=0.43,
         horizontal_spacing=0.04,
         row_heights=[5, 1],
         subplot_titles=(
@@ -180,7 +170,7 @@ def server(input, output, session):
         )
     )
     fig.update_layout(
-        margin=dict(l=0, r=0, b=10, t=70),
+        margin=dict(l=0, r=0, b=5, t=65),
     )
 
     register_widget("my_widget", fig)
@@ -287,10 +277,10 @@ print(f"Gaussienne centrée réduite,\nQuantile de niveau (1-α/2):\nq = {q:.2f}
 :::: {#exm-tcl}
 
 ## Loi de Bernoulli
-On considère des variables aléatoires $X_1, \ldots, X_n$ i.i.d. suivant une loi de Bernoulli de paramètre $p \in ]0,1[$, dont l'espérance et la variance sont respectivemenbt $p$ et $p(1-p)$.
+On considère des variables aléatoires $X_1, \ldots, X_n$ i.i.d. suivant une loi de Bernoulli de paramètre $p \in ]0,1[$, dont l'espérance et la variance sont respectivement $p$ et $p(1-p)$.
 Le théorème central limite donne alors
 $$
-    \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
+    \sqrt n \left(\frac{\bar X_n - p}{\sqrt{p (1-p)}} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 $$
 avec $N \sim \mathcal{N}(0,1)$.
 Cette convergence est illustrée dans le widget ci-dessous.
@@ -311,40 +301,52 @@ from shinywidgets import output_widget, render_widget
 
 
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.1rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
-            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
-            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
-            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
-        width=3
+    ui.h2("TCL"),
+    ui.row(
+        ui.column(3,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
+            ),
+        ui.column(3,
+                ui.input_slider(
+                    "p",
+                    "Espérance: p",
+                    min=0.01,
+                    max=0.99,
+                    value=0.5,
+                    step=0.01
+                ),
+                ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_samples",
+                    "Échantillons: n",
+                    min=1,
+                    max=200,
+                    value=100,
+                    step=1
+                ),
+            ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_repetitions",
+                    "Répétitions: t",
+                    min=1,
+                    max=300,
+                    value=200,
+                    step=1
+                ),
+            ),
         ),
-    ui.panel_main(output_widget("my_widget"), width = 9)
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+        )
     )
 )
-
 
 
 def server(input, output, session):
@@ -536,35 +538,16 @@ from scipy import signal
 
 
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 2px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 2px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL et convolutions"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
+    ui.h2("TCL et convolutions"),
+    ui.row(
+        ui.column(4,
             ui.input_select(
                 "loi",
                 "Loi sous-jacente",
                 {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
             ),
+            ),
+        ui.column(4,
             ui.input_slider(
                 "n_iter",
                 "Échantillons: n",
@@ -573,12 +556,14 @@ app_ui = ui.page_fluid(
                 value=1,
                 step=1,
                 ticks=False,
-            ), width = 3
+                )
+            ),
     ),
-    ui.panel_main(
-        output_widget("my_widget"), width = 9
-    )
-)
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
 
 
