@@ -496,39 +496,29 @@ import plotly.graph_objs as go
 
 n_init = 42
 
-
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("Loi des grands nombres"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
-            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+    ui.h2("Loi des grands nombres"),
+    ui.row(
+        ui.column(4,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
             ),
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
-        width=3),
-    ui.panel_main(output_widget("my_widget"), width = 9)
-    )
+        ui.column(4,
+            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+                ),
+            ),
+        ui.column(4,
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False)
+                ),
+            ),
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
 
 
@@ -545,7 +535,7 @@ def server(input, output, session):
     subplots = make_subplots(
         rows=2,
         cols=1,
-        vertical_spacing=0.45,
+        vertical_spacing=0.43,
         horizontal_spacing=0.04,
         row_heights=[5, 1],
         subplot_titles=(
@@ -612,7 +602,7 @@ def server(input, output, session):
         )
     )
     fig.update_layout(
-        margin=dict(l=0, r=0, b=10, t=70),
+        margin=dict(l=0, r=0, b=5, t=65),
     )
 
     register_widget("my_widget", fig)
@@ -683,7 +673,7 @@ Barbe, Philippe, et Michel Ledoux. 2006. <em>Probabilités</em>.
     &amp; \underset{n \to \infty}{\longrightarrow}  \int_a^b \varphi(x) \,  dx\,. \nonumber\\
 \end{align}</span> où l’on note <span class="math inline">\varphi</span> (resp. <span class="math inline">\Phi</span>) la densité (resp. la fonction de répartition) d’une loi normale centrée réduite, définie pour tout <span class="math inline">x\in\mathbb{R}</span> par <span class="math inline">\varphi(x)=\tfrac{e^{-\frac{x^2}{2}}}{\sqrt{2\pi}}</span> (resp. <span class="math inline">\Phi(x)= \int_{-\infty}^{x}\varphi(u) du</span>).</p>
 <p>Dans le cas classique d’un intervalle de confiance à 95%, c’est-à-dire quand <span class="math inline">\alpha_n=0.05</span>, et en prenant un intervalle de confiance symétrique (alors <span class="math inline">a=-t</span> et <span class="math inline">b=q</span>) on obtient <span class="math inline">1-\alpha_n= \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \implies \boxed{q=\Phi^{-1}(1-\tfrac{\alpha_n}{2})}</span> et <span class="math inline">q</span> est donc le quantile de niveau <span class="math inline">1-\tfrac{\alpha_n}{2}</span> de la loi normale centrée réduite. Numériquement on peut facilement évaluer <span class="math inline">q</span> et vérifier que <span class="math inline">q\approx 1.96</span> avec <code>scipy</code>:</p>
-<div id="1c5134ae" class="cell" data-execution_count="1">
+<div id="26566cf8" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf(<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>)</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Gaussienne centrée réduite,</span><span class="ch">\n</span><span class="ss">Quantile de niveau (1-α/2):</span><span class="ch">\n</span><span class="ss">q = </span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -694,8 +684,8 @@ q = 1.96</code></pre>
 </div>
 </div>
 <div id="exm-tcl" class="theorem example">
-<p><span class="theorem-title"><strong>Exemple 1 (Loi de Bernoulli)</strong></span> On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivemenbt <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
-    \sqrt n \left(\frac{\bar X_n - p}{p (1-p)} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
+<p><span class="theorem-title"><strong>Exemple 1 (Loi de Bernoulli)</strong></span> On considère des variables aléatoires <span class="math inline">X_1, \ldots, X_n</span> i.i.d. suivant une loi de Bernoulli de paramètre <span class="math inline">p \in ]0,1[</span>, dont l’espérance et la variance sont respectivement <span class="math inline">p</span> et <span class="math inline">p(1-p)</span>. Le théorème central limite donne alors <span class="math display">
+    \sqrt n \left(\frac{\bar X_n - p}{\sqrt{p (1-p)}} \right) \xrightarrow[n \to +\infty]{\mathcal{L}} N\,,
 </span> avec <span class="math inline">N \sim \mathcal{N}(0,1)</span>. Cette convergence est illustrée dans le widget ci-dessous. Le contexte est le suivant. On répète <span class="math inline">t</span> fois le processus, qui consiste à afficher <span class="math inline">(\bar{X}_k)_{k \in [n]}</span>, où les <span class="math inline">n</span> variables aléatoires sont i.i.d. et suivent une loi de Bernoulli de paramètre <span class="math inline">p</span>.</p>
 </div>
 <pre class="shinylive-python" data-engine="python"><code>#| '!! shinylive warning !!': |
@@ -712,40 +702,52 @@ from shinywidgets import output_widget, render_widget
 
 
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.1rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
-            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
-            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
-            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
-        width=3
+    ui.h2("TCL"),
+    ui.row(
+        ui.column(3,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
+            ),
+        ui.column(3,
+                ui.input_slider(
+                    "p",
+                    "Espérance: p",
+                    min=0.01,
+                    max=0.99,
+                    value=0.5,
+                    step=0.01
+                ),
+                ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_samples",
+                    "Échantillons: n",
+                    min=1,
+                    max=200,
+                    value=100,
+                    step=1
+                ),
+            ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_repetitions",
+                    "Répétitions: t",
+                    min=1,
+                    max=300,
+                    value=200,
+                    step=1
+                ),
+            ),
         ),
-    ui.panel_main(output_widget("my_widget"), width = 9)
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+        )
     )
 )
-
 
 
 def server(input, output, session):
@@ -921,35 +923,16 @@ from scipy import signal
 
 
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout &gt; .sidebar &gt; .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 2px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 2px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL et convolutions"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
+    ui.h2("TCL et convolutions"),
+    ui.row(
+        ui.column(4,
             ui.input_select(
                 "loi",
                 "Loi sous-jacente",
                 {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
             ),
+            ),
+        ui.column(4,
             ui.input_slider(
                 "n_iter",
                 "Échantillons: n",
@@ -958,12 +941,14 @@ app_ui = ui.page_fluid(
                 value=1,
                 step=1,
                 ticks=False,
-            ), width = 3
+                )
+            ),
     ),
-    ui.panel_main(
-        output_widget("my_widget"), width = 9
-    )
-)
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
 
 
