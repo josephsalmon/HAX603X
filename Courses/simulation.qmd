@@ -525,7 +525,7 @@ $$
     \Bigg\{ \begin{array}{ll}
         0   & \text{ si } x < 0\,,        \\
         1-p & \text{ si } 0 \leq x < 1\,, \\
-        1   & \text{ si } x \leq 1\,.
+        1   & \text{ si } x \geq 1\,.
     \end{array}
 $$
 L'inverse généralisée de $F$ peut ainsi être calculée via la formule de l'exemple \ref{ex:inversion_discrete} :
