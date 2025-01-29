@@ -923,6 +923,7 @@ print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
 Enfin, on peut visualiser la qualité l'approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:
 
 ::: {.content-visible when-format="html"}
+
 ```{python}
 #| echo: false
 #| label: fig-rejet-Andrews
@@ -949,8 +950,8 @@ fig.add_trace(
 
 fig.update_layout(template="simple_white", showlegend=True)
 fig.write_image("../srcimages/rejet_andrews.svg")
+fig.show()
 ```
-
 :::
 
 ::: {.content-visible when-format="pdf"}
