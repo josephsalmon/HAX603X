@@ -816,7 +816,6 @@ def plot_accept_reject(n, f, g, g_sampler, m):
     ratio = np.sum(accepted) / n
     return fig, ratio
 
-
 n = 1000
 f = lambda x: 4 * x**3
 
@@ -825,28 +824,50 @@ g_sampler = lambda: np.random.uniform()
 m = 4
 ```
 
+::: {.content-visible when-format="html"}
+
 ```{python}
 #| echo: false
 #| label: fig-rejet-polynome-unif
 #| fig-cap:
 #|       - Visualisation des zones d'acceptations/rejet (g uniforme)
 fig1,ratio1 = plot_accept_reject(n, f, g, g_sampler, m)
+fig1.write_image("../srcimages/rejet_polynome_unif.svg")
 fig1.show()
+
 ```
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![](../srcimages/rejet_polynome_unif.svg)
+
+:::
+
 Nous pouvons facilement améliorer la proportion de point acceptés en proposant par exemple $g$ définie par $g(x) = 2x \1_{[0, 1]}(x)$, et $m=2$.
+
+::: {.content-visible when-format="html"}
 
 ```{python}
 #| echo: false
 #| label: fig-rejet-polynome-tri
 #| fig-cap:
 #|       - Visualisation des zones d'acceptations/rejet (g triangulaire)
-g = lambda x: 2*x 
+g = lambda x: 2*x
 g_sampler = lambda: np.random.triangular(0, 1, 1)
 m = 2
 
 fig2, ratio2 = plot_accept_reject(n, f, g, g_sampler, m)
+fig2.write_image("../srcimages/rejet_polynome_tri.svg")
 fig2.show()
 ```
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![](../srcimages/rejet_polynome_tri.svg)
+
+:::
 
 ```{python}
 #| echo: false
@@ -870,7 +891,7 @@ md`Le taux d'acceptation est passé de **${ratio1}** à
 Considérons la densité d'Andrews définie par $f(x) = \frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \1_{[-1,1]}(x)$, avec $S = \int_{-1}^{1}\frac{\sin(\pi\cdot x)}{\pi \cdot x}dx$.
 Dans ce contexte, on ne connait pas la valeur exacte de $S$, et on va donc utiliser la méthode de rejet pour simuler des variables aléatoires de loi $f$ sans cette information.
 On peut l'adapter le test de la manière suivante:
-si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} \1_{[-1,1]}(x)$, on observe que tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
+si l'on prend $m=2/S$ et $g(x) = \frac{1}{2} \1_{[-1,1]}(x)$, on observe que pour $x\in [-1,1]$, tester $u\leq \frac{f(x)}{m \cdot g(x)}$ est équivalent à tester $u \leq r(x)=\frac{1}{S} \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{\frac{2}{S} g(x)} = \frac{\sin(\pi\cdot x)}{\pi \cdot x}  \cdot \frac{1}{2 \cdot g(x)}$, ce qui peut se faire sans connaissance de $S$.
 De plus on peut vérifier que $g(x) = \frac{1}{2} \1_{[-1,1]}(x)$ définit une densité et que $f(x) \leq m \cdot g(x)$ pour tout $x\in \mathbb{R}$.
 
 ```{python}
@@ -885,7 +906,7 @@ ratio = np.sum(accepted) / n
 # Note: https://stackoverflow.com/questions/70804891/how-to-vectorize-a-function-in-python-that-includes-a-limit-e-g-sinx-x
 ```
 
-```{python} 
+```{python}
 #| echo: false
 ojs_define(ratio=ratio)
 ```
@@ -901,6 +922,7 @@ print(f"En utilisant la méthode de rejet, on trouve que S = {S:.3f}")
 
 Enfin, on peut visualiser la qualité l'approximation de la densité par la méthode de rejet en comparant la densité approchée (avec un histogramme) avec la densité exacte:
 
+::: {.content-visible when-format="html"}
 ```{python}
 #| echo: false
 #| label: fig-rejet-Andrews
@@ -926,7 +948,17 @@ fig.add_trace(
 )
 
 fig.update_layout(template="simple_white", showlegend=True)
+fig.write_image("../srcimages/rejet_andrews.svg")
 ```
+
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![](../srcimages/rejet_andrews.svg)
+
+:::
+
 
 ::: {.content-visible when-format="html"}
 
@@ -1026,6 +1058,8 @@ def plot_samples(fig, n_sample, plot_type="circle"):
     return fig, test_samples
 ```
 
+::: {.content-visible when-format="html"}
+
 ```{python}
 #| echo: false
 #| label: fig-rejet-cercle
@@ -1039,9 +1073,20 @@ fig = go.Figure()
 fig, test_samples_circle = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100) 
 fig.show()
+fig.write_image("../srcimages/rejet_cercle.svg")
 ratio = np.sum(test_samples_circle) / n_sample
 print(f"Aire estimée: {ratio * 4}")
 ```
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![](../srcimages/rejet_cercle.svg)
+
+:::
+
+
+::: {.content-visible when-format="html"}
 
 ```{python}
 #| echo: false
@@ -1055,11 +1100,18 @@ fig = go.Figure()
 fig, test_samples_cardioide = plot_samples(fig, n_sample=n_sample, plot_type=plot_type)
 fig = plot_curve(fig, plot_type=plot_type, n_discr=100)
 fig.show()
+fig.write_image("../srcimages/rejet_cardioide.svg")
 ratio = np.sum(test_samples_cardioide) / n_sample
 print(f"Aire estimée: {ratio * 15}")
 
-
 ```
+:::
+
+::: {.content-visible when-format="pdf"}
+
+![](../srcimages/rejet_cardioide.svg)
+
+:::
 
 
 

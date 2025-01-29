@@ -427,7 +427,7 @@ print(
 # Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``
 t0 = time.perf_counter()
 y2 = ...
-timinig_optimized = time.perf_counter()
+timing_optimized = time.perf_counter()
 print(
     f"Temps pour résoudre un système avec la formule mathématique: {timing_optimized:.4f} s.\nC'est donc {timing_naive / timing_optimized} fois plus rapide d'utiliser la seconde formulation"
 )
@@ -441,7 +441,7 @@ print("Les deux méthodes trouvent le même résultat")
 #### [Solution]{style="color:red;"}
 ```{python}
 import time
-n = 20 
+n = 20
 Jbig = np.roll(np.eye(n), -1, axis=1)  # matrice de permutation de taille n
 b = np.arange(n)
 
