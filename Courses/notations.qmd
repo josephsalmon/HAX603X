@@ -327,9 +327,9 @@ Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9
 
 ```{ojs}
 //| echo: false
-// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
-Plotly = require('plotly.js-dist');
-dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
+Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
+// Plotly = require('plotly.js-dist');
+dists = require('https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js');
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
 // continuous case
 jstatPDFs = () => {
