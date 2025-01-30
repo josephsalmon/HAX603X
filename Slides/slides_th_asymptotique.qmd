@@ -76,42 +76,30 @@ import plotly.graph_objs as go
 
 n_init = 42
 
-
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("Loi des grands nombres"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage", class_="btn-primary"),
-            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+    ui.h2("Loi des grands nombres"),
+    ui.row(
+        ui.column(4,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
             ),
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False),
-        width=3),
-    ui.panel_main(output_widget("my_widget"), width = 9)
-    )
+        ui.column(4,
+            ui.input_slider( "p", "Espérance: p", 0.01, 0.99, value=0.35, step=0.01, ticks=False,
+                ),
+            ),
+        ui.column(4,
+            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False)
+                ),
+            ),
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
-
-
 
 
 def server(input, output, session):
@@ -230,9 +218,9 @@ app = App(app_ui, server)
 
 ```
 
-[Pour aller plus loin]{.underline}:
+<!-- [Pour aller plus loin]{.underline}:
 
-Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L'aléa est imparfait (structure sous-jacente)!
+Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce qui ne devrait pas être le cas sans structuration particulière de la génération. L'aléa est imparfait (structure sous-jacente)! -->
 
 
 # Théorème central limite
@@ -336,40 +324,52 @@ from shinywidgets import output_widget, render_widget
 
 
 app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.1rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 4px;
-            }
-            .irs.irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 4px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
-            ui.input_action_button("seed", "Nouveau tirage",class_="btn-primary"),
-            ui.input_slider("p", "Espérance: p", 0.01, 0.99, value=0.5, step=0.01, ticks=False),
-            ui.input_slider("n_samples", "Échantillons: n", 1, 200, value=100, step=1, ticks=False),
-            ui.input_slider("n_repetitions", "Répétitions: t", 1, 300, value=200, step=1, ticks=False),
-        width=3
+    ui.h2("TCL"),
+    ui.row(
+        ui.column(3,
+                ui.input_action_button(
+                    "seed",
+                    "Nouveau tirage",
+                    class_="btn-primary"
+                ),
+            ),
+        ui.column(3,
+                ui.input_slider(
+                    "p",
+                    "Espérance: p",
+                    min=0.01,
+                    max=0.99,
+                    value=0.5,
+                    step=0.01
+                ),
+                ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_samples",
+                    "Échantillons: n",
+                    min=1,
+                    max=200,
+                    value=100,
+                    step=1
+                ),
+            ),
+            ui.column(3,
+                ui.input_slider(
+                    "n_repetitions",
+                    "Répétitions: t",
+                    min=1,
+                    max=300,
+                    value=200,
+                    step=1
+                ),
+            ),
         ),
-    ui.panel_main(output_widget("my_widget"), width = 9)
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+        )
     )
 )
-
 
 
 def server(input, output, session):
@@ -561,7 +561,7 @@ Pour $X_1, \dots, X_n$, i.i.d., de densité $f$, on affiche la loi de $\bar{X}_n
 
 ```{shinylive-python}
 #| standalone: true
-#| viewerHeight: 550
+#| viewerHeight: 460
 import numpy as np
 from shiny import ui, render, App, reactive
 from shinywidgets import output_widget, register_widget
@@ -570,36 +570,17 @@ import plotly.graph_objs as go
 from scipy import signal
 
 
-app_ui = ui.page_fluid(
-    ui.tags.head(
-        ui.tags.style("""
-            .bslib-sidebar-layout > .sidebar > .sidebar-content {
-            display: flex;
-            flex-direction: column;
-            padding: 0.5rem;
-            }
-            .irs--shiny .irs-line {
-            top: 27px;
-            height: 2px;
-            }
-            .irs.irs--shiny .irs-bar {
-            top: 27px;
-            height: 2px;
-            }
-            .irs--shiny .irs-handle {
-            top: 23px;
-            width: 22px;
-            height: 10px;
-        """)
-    ),
-    ui.panel_title("TCL et convolutions"),
-    ui.layout_sidebar(
-        ui.panel_sidebar(
+app_ui = ui.page_fillable(
+    ui.h2("TCL et convolutions"),
+    ui.row(
+        ui.column(4,
             ui.input_select(
                 "loi",
                 "Loi sous-jacente",
                 {'uniforme': 'Uniforme', 'laplace' : 'Laplace'},
             ),
+            ),
+        ui.column(4,
             ui.input_slider(
                 "n_iter",
                 "Échantillons: n",
@@ -608,14 +589,15 @@ app_ui = ui.page_fluid(
                 value=1,
                 step=1,
                 ticks=False,
-            ), width = 3
+                )
+            ),
     ),
-    ui.panel_main(
-        output_widget("my_widget"), width = 9
-    )
+    ui.row(
+        ui.card(
+            output_widget("my_widget"),
+            )
+        )
 )
-)
-
 
 nnzeros = 10001
 x_min = -20
@@ -646,13 +628,14 @@ def convolve(signal_in, n_convolutions, delta):
 def server(input, output, session):
 
     fig = go.FigureWidget()
+
     fig.add_trace(
         go.Scatter(
             mode="lines",
             line=dict(color="black", width=3),
             x=[],
             y=[],
-            name="loi de de la moyenne empirique<br>(variance adéquate)",
+            name="loi de la moyenne empirique<br>(variance adéquate)",
         )
     )
 
@@ -673,19 +656,19 @@ def server(input, output, session):
         template="simple_white",
         showlegend=True,
         autosize=True,
-        title=dict(text="Densité : <br> moyenne de n variables aléatoires", yanchor="top", y=0.95),
+        title=dict(text="Densité : moyenne de n variables aléatoires", yanchor="top", y=0.95),
         title_x=0.5,
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=0.95,
+        y=1.99,
         xanchor="left",
-        x=0.8,
+        x=0.7,
         font=dict(size= 18)
     ))
     fig.update_layout(
-    height=250,
-    margin=dict(l=0, r=0, b=10, t=100),
+    height=200,
+    margin=dict(l=0, r=0, b=0, t=120),
     )
 
     register_widget("my_widget", fig)
