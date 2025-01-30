@@ -421,7 +421,7 @@ t0 = time.perf_counter()  # XXX TODO
 y1 = ... @ b
 timing_naive = time.perf_counter() - t0
 print(
-    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive - t0:.4f} s."
+    f"Temps pour résoudre un système avec la formule mathématique: {timing_naive:.4f} s."
 )
 
 # Résolution de système par une méthode adaptée: fonctions dédiée de `numpy``
