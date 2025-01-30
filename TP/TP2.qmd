@@ -57,7 +57,7 @@ from scipy import stats
 fig, ax = plt.subplots()
 vect = rng.uniform(-1, 1, 1000)
 ax.hist(vect, label="Histogramme", bins=30, density=True)
-plt.title("Histogramme: tirage uniforme sur [-1, -1]")
+plt.title("Histogramme: tirage uniforme sur [-1, 1]")
 plt.legend()
 ax.set_xlim((-1.5,1.5))
 ax.set_xlabel('Abscisse')
@@ -74,7 +74,7 @@ plt.show()
 fig, ax = plt.subplots()
 vect = rng.uniform(-1, 1, 1000)
 ax.hist(vect, label="Histogramme", bins=30, density=True)
-plt.title("Histogramme: tirage uniforme sur [-1, -1]")
+plt.title("Histogramme: tirage uniforme sur [-1, 1]")
 plt.legend()
 ax.set_xlim((-1.5,1.5))
 ax.set_xlabel('Abscisse')
@@ -117,7 +117,7 @@ ax.hist(vect10000, histtype='step', density=True, bins=30, label="Histogramme 10
 ax.hist(vect1000, histtype='step', density=True, bins=30, label="Histogramme 5000", fill=False, color=colors[1])
 ax.hist(vect100, histtype='step', density=True, bins=30, label="Histogramme 1000", fill=False, color=colors[2])
 
-plt.title('Histogramme: tirage uniforme sur [-1, -1]')
+plt.title('Histogramme: tirage uniforme sur [-1, 1]')
 plt.xlabel('Abscisse')
 plt.ylabel('Ordonnée')
 
@@ -155,7 +155,7 @@ ax.hist(vect10000, histtype='step', density=True, bins=30, label="Histogramme 10
 ax.hist(vect1000, histtype='step', density=True, bins=30, label="Histogramme 5000", fill=False, color=colors[1])
 ax.hist(vect100, histtype='step', density=True, bins=30, label="Histogramme 1000", fill=False, color=colors[2])
 
-plt.title('Histogramme: tirage uniforme sur [-1, -1]')
+plt.title('Histogramme: tirage uniforme sur [-1, 1]')
 plt.xlabel('Abscisse')
 plt.ylabel('Ordonnée')
 
