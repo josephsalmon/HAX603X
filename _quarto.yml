@@ -27,6 +27,7 @@
 #             \usepackage{stmaryrd}
 #             \usepackage{amsmath}
 #             \usepackage{fontspec}
+#             \usepackage{unicode-math}
 #             \directlua{luaotfload.add_fallback
 #             ("emojifallback",
 #                 { "DejaVu Sans:mode=harf;script=grek",
@@ -43,6 +44,7 @@
 #             \renewcommand{\P}{\mathbb{P}}
 #             \DeclareMathOperator{\var}{Var} % variance
 #             \DeclareMathOperator{\cov}{Cov} % covariance
+
 #             \newcommand{\wt}[1]{\widetilde{#1}}
 
   ###############################################################################

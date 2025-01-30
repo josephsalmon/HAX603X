@@ -619,7 +619,7 @@ On dispose cependant d'une autre densité $g$ possédant les propriétés suivan
 
 - on sait simuler $Y$ de loi $g$,
 - il existe $m > 0$ tel que $f(x) \leq m \cdot g(x)$,
-- on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{mg(x)}$.
+- on sait évaluer le **rapport d'acceptation** $r(x) = \frac{f(x)}{mg(x)}$, sur le support de $g$ (qui contient celui de $f$).
 
 
 Remarquons d'ores et déjà que la constante $m$ est nécessairement plus grande que $1$ car
@@ -1218,7 +1218,7 @@ Pour $n \in \mathbb{N}$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < 
 
 \begin{align*}
     \mathbb{P}(S_n \leq 1 < S_{n+1})
-    & = \mathbb{P}(\{S_n \leq 1\} \setminus \{S_{n+1} \leq 1\})\\
+    & = \mathbb{P}(\{S_n \leq 1\} \mathbin{\backslash} \{S_{n+1} \leq 1\})\\
     & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
 \end{align*}
 Le lemme précédent donne
