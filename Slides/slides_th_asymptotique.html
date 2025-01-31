@@ -328,7 +328,7 @@ app_ui = ui.page_fluid(
                 ),
             ),
         ui.column(4,
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False)
+            ui.input_slider( "n_samples", "Iterations: n", 2, 1000, value=15, step=1, ticks=False)
                 ),
             ),
     ui.row(
@@ -340,7 +340,7 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    seed = reactive.Value(42)
+    seed = reactive.Value(41)
 
     @reactive.Effect
     @reactive.event(input.seed)
@@ -521,7 +521,7 @@ Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce
 <ul>
 <li class="fragment"><u>Question</u>: comment choisir <span class="math inline">\(a\)</span> et <span class="math inline">\(b\)</span> pour obtenir un intervalle de confiance à 95% pour <span class="math inline">\(\mu\)</span>?</li>
 <li class="fragment"><u>Notation</u>: <span class="math inline">\(\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)\)</span>, on cherche <span class="math inline">\(a, b\)</span> tels que <span class="math inline">\(\alpha_n \approx 0.05\)</span>.</li>
-<li class="fragment"><u>Simplification</u>: choix d’un intervalle symétrique autour de <span class="math inline">\(\mu \implies q=a=-b\)</span> <span class="math display">\[
+<li class="fragment"><u>Simplification</u>: choix d’un intervalle symétrique autour de <span class="math inline">\(\mu \implies q=a=-b\)</span>, on cherche alors: <span class="math inline">\(\mathbb{P} \left( |\bar X_n - \mu| &gt; q \tfrac{\sigma}{\sqrt{n}} \right) \approx 0.05\)</span> <span class="math display">\[
 \begin{align}
 &amp; 1-\alpha_n \approx \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \\
 \implies &amp; \boxed{q\approx\Phi^{-1}(1-\tfrac{\alpha_n}{2})}
@@ -532,9 +532,9 @@ Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce
 </ul>
 </div>
 <div class="fragment">
-<div id="f9265694" class="cell" data-execution_count="1">
+<div id="6a970c7a" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
-<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Calcul du quantile (en: Percent point function) de niveau 1-0.05/2</span></span>
+<span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Quantile 1-0.05/2 (en: Percent point function)</span></span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>1.96</code></pre>
@@ -885,14 +885,14 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=1.99,
+        # y=1.2,
         xanchor="left",
-        x=0.7,
+        # x=0.1,
         font=dict(size= 18)
     ))
     fig.update_layout(
     height=200,
-    margin=dict(l=0, r=0, b=0, t=120),
+    margin=dict(l=0, r=0, b=0, t=20),
     )
 
     register_widget("my_widget", fig)
