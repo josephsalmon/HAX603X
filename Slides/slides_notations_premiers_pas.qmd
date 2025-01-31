@@ -418,8 +418,10 @@ $$
 
 ```{ojs}
 //| echo: false
-// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
-Plotly = require('plotly.js-dist');
+// sometimes the version fails..: use that one:
+Plotly = require("https://cdn.plot.ly/plotly-2.34.0.min.js")
+// Plotly = require('plotly.js-dist');
+
 dists = require('https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js');
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
 // continuous case

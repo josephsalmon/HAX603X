@@ -91,7 +91,7 @@ app_ui = ui.page_fluid(
                 ),
             ),
         ui.column(4,
-            ui.input_slider( "n_samples", "Échantillons: n", 2, 1000, value=15, step=1, ticks=False)
+            ui.input_slider( "n_samples", "Iterations: n", 2, 1000, value=15, step=1, ticks=False)
                 ),
             ),
     ui.row(
@@ -103,7 +103,7 @@ app_ui = ui.page_fluid(
 
 
 def server(input, output, session):
-    seed = reactive.Value(42)
+    seed = reactive.Value(41)
 
     @reactive.Effect
     @reactive.event(input.seed)
@@ -290,7 +290,7 @@ $$
 :::{.incremental}
 - [Question]{.underline}: comment choisir $a$ et $b$ pour obtenir un intervalle de confiance à 95\% pour $\mu$?
 - [Notation]{.underline}: $\alpha_n=\mathbb{P} \left(\bar X_n \notin [ \mu + \tfrac{a \sigma}{\sqrt{n}}, \mu + \tfrac{ b \sigma}{\sqrt{n}}] \right)$, on cherche $a, b$ tels que $\alpha_n \approx 0.05$.
-- [Simplification]{.underline}: choix d'un intervalle symétrique autour de $\mu \implies q=a=-b$
+- [Simplification]{.underline}: choix d'un intervalle symétrique autour de $\mu \implies q=a=-b$, on cherche alors:  $\mathbb{P} \left( |\bar X_n - \mu| > q \tfrac{\sigma}{\sqrt{n}} \right) \approx 0.05$
 $$
 \begin{align}
 & 1-\alpha_n \approx \int_{-q}^q \varphi(x) \,  dx=\Phi(q)-\Phi(-q)=2 \Phi(q)-1 \\
@@ -306,7 +306,7 @@ $$
 ```{python}
 #| echo: true
 from scipy.stats import norm  # import du module "norm" de scipy.stats
-q = norm.ppf((1-0.05/2))      # Calcul du quantile (en: Percent point function) de niveau 1-0.05/2
+q = norm.ppf((1-0.05/2))      # Quantile 1-0.05/2 (en: Percent point function)
 print(f"{q:.2f}")             # Affichage à 2 décimales
 ```
 
@@ -661,14 +661,14 @@ def server(input, output, session):
     )
     fig.update_layout(legend=dict(
         yanchor="top",
-        y=1.99,
+        # y=1.2,
         xanchor="left",
-        x=0.7,
+        # x=0.1,
         font=dict(size= 18)
     ))
     fig.update_layout(
     height=200,
-    margin=dict(l=0, r=0, b=0, t=120),
+    margin=dict(l=0, r=0, b=0, t=20),
     )
 
     register_widget("my_widget", fig)

@@ -310,7 +310,12 @@ Dans le cas où la fonction de répartition $F_X$ est bijective, alors l'inverse
 La **médiane** est égale à $F_X^\leftarrow(1/2)$, les premiers et troisièmes **quartiles** sont égaux à $F_X^\leftarrow(1/4)$ et $F_X^\leftarrow(3/4)$.
 Enfin, les déciles sont les quantiles $F_X^\leftarrow(k/10)$ pour $k=1,\dots, 9$.
 
+::: {.callout-note appearance="simple"}
+## Note sur le calcul des quantiles
 
+Concernant le cas gaussien, `scipy` utilise par exemple la fonction spéciale `ndtri`, voir par exemple le fichier source de [scipy](https://github.com/scipy/scipy/blob/df134eab5a500c2146ed4552c8674a78d8154ee9/scipy/stats/_continuous_distns.py#L376), pour calculer les quantiles avec  `norm.ppf`. Plus en détails, la fonction `ndtri` est une fonction de la librairie `cephes` qui est une librairie de fonctions mathématiques écrites en C, et utilise des interpolations et l'algorithme de Horner pour calculer des approximations par fractions rationnelles de la fonction; le code est dipsonible ici: [ndtri.h](https://github.com/scipy/scipy/blob/e3c6a053cdfb13932cd6405f01a98821dce41e80/scipy/special/xsf/cephes/ndtri.h).
+
+:::
 
 ## Visualisation: densité, fonction de répartition, quantiles, etc.
 
