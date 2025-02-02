@@ -586,7 +586,8 @@ En effet, si $X$ suit une loi de Cauchy standard,
 $$
 \int_{\mathbb{R}} |x| f_X(x) \, dx = \int_{\mathbb{R}} \frac{|x|}{\pi(1+x^2)} \, dx.
 $$
-Or $\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi x}$ quand $|x|\to \infty$, et $x\mapsto \frac{|x|}{\pi(1+x^2)}$ n'est donc pas intégrable sur $\mathbb{R}$ au sens de Lebesgue. C'est donc un exemple de loi pour laquelle la loi des grands nombres et le théorème central limite ne s'appliquent pas.
+Or $\frac{|x|}{\pi(1+x^2)}\sim \frac{1}{\pi |x|}$ quand $|x|\to \infty$, et $x\mapsto \frac{|x|}{\pi(1+x^2)}$ n'est donc pas intégrable sur $\mathbb{R}$ au sens de Lebesgue.
+C'est donc un exemple de loi pour laquelle la loi des grands nombres et le théorème central limite ne s'appliquent pas.
 
 
 #### Fonction caractéristique
