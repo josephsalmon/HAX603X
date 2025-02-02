@@ -571,7 +571,7 @@ window.Quarto = {
 <span id="cb1-120"><a href="#cb1-120" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> div<span class="op">;</span></span>
 <span id="cb1-121"><a href="#cb1-121" aria-hidden="true" tabindex="-1"></a>    }</span>
 <span id="cb1-122"><a href="#cb1-122" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell quarto-layout-panel" data-layout-ncol="1" data-figalign="center">
+<div class="cell quarto-layout-panel" data-figalign="center" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: flex-start;">
 <div id="ojs-cell-1-1" data-nodetype="declaration">
@@ -705,7 +705,7 @@ Une mauvaise piste pour simuler une loi normale
   =\mathbb{E}[h(\phi(X,Y))]\\
 &amp; = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
 &amp; = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
-\end{align*}</span></p>
+\end{align*}</span> La dernière égalité est due au fait que <span class="math inline">f_{(X,Y)}</span> est nulle en dehors de <span class="math inline">A</span>.</p>
 <p>On applique alors la formule du changement de variables vu en théorie de l’intégration avec <span class="math inline">(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)</span> :</p>
 <p><span class="math display">\begin{align*}
   &amp; \mathbb{E}[h(U,V)]\\
