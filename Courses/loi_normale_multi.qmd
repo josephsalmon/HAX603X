@@ -236,7 +236,9 @@ où $\theta$ est l'angle de rotation et $\sigma_1$ et $\sigma_2$ les écarts-typ
 //| layout-ncol: 1
 
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
-Plotly = require('plotly.js-dist');
+// Plotly = require('plotly.js-dist');
+// sometimes the version fails..: use that one:
+Plotly = require("https://cdn.plot.ly/plotly-2.34.0.min.js")
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
 jstat = require('jstat');
 math = require("mathjs");

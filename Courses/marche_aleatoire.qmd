@@ -59,7 +59,8 @@ Ce processus peut également servir à modéliser la richesse d'une joueuse qui 
 //| layout-ncol: 1
 //| echo: false
 // Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
-Plotly = require('plotly.js-dist');
+// sometimes the version fails..: use that one:
+Plotly = require("https://cdn.plot.ly/plotly-2.34.0.min.js")
 dists = require( 'https://cdn.jsdelivr.net/gh/stdlib-js/stats-base-dists@umd/browser.js' );
 jstat = require('jstat');
 seedrandom = require('seedrandom@3.0.5');
@@ -317,8 +318,6 @@ Il n'existe pas de chemin de $(0,0)$ à $(2,4)$.
 //| figalign: "center"
 //| echo: false
 
-
-// Plotly = require("https://cdn.plot.ly/plotly-latest.min.js")
 // see source here: https://github.com/stdlib-js/stats-base-dists/tree/umd
 // continuous case
 
@@ -743,7 +742,7 @@ expression_values = vectorized_expression(n_values)
 
 # Plotting
 plt.plot(n_values, expression_values, marker='o')
-plt.title(r'Probabilité de premier retour en 0$')
+plt.title(r'Probabilité de premier retour en 0')
 plt.xlabel(r'$n$')
 plt.ylabel(r'$\mathbb{P}(T_0=2n)$')
 plt.grid(True)
