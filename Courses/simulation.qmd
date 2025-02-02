@@ -1136,7 +1136,7 @@ $$
 	X = X_1 + \cdots + X_n \sim \mathcal{B}(n,p)\,.
 $$
 
-Pour simuler des variables aléatoires de Bernoulli, on utilise la méthode d'inversion (voir Exemple \ref{ex:bernoulli}). Ainsi, si $U_1, \ldots, U_n$ sont des variables aléatoires iid de loi uniforme sur $[0,1]$, alors
+Pour simuler des variables aléatoires de Bernoulli, on utilise la méthode d'inversion (voir @exm-inverse-bernoulli). Ainsi, si $U_1, \ldots, U_n$ sont des variables aléatoires iid de loi uniforme sur $[0,1]$, alors
 $$
 	\sum_{i=1}^n \1_{\{U_i \leq p\}} \sim \mathcal{B}(n,p)\,.
 $$

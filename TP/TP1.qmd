@@ -585,11 +585,11 @@ rng.normal()
 
 Avec `plt.subplot`, créer 3 histogrammes de $100$ tirages aléatoires de distributions suivantes:
 
-1. loi gaussienne (centrée-réduite)
-2. loi de Cauchy
-3. loi de Laplace.
+1. loi gaussienne (centrée-réduite),
+2. loi de Laplace,
+3. loi de Cauchy.
 
-On utilisera les mêmes paramètres de centrage et d'échelle pour les trois lois.
+On utilisera les mêmes paramètres de centrage et d'échelle pour les trois lois, que l'on placera dans trois sous-graphiques alignés verticalement, avec un titre pour chaque loi.
 
 ```{python}
 #| eval: false

@@ -222,6 +222,7 @@ On rappelle que la loi de $(U,V)$ est caractérisée par les quantités $\mathbb
  & = \int_{\mathbb{R}^2} h(\phi(x,y)) f_{(X,Y)}(x,y) \, dx dy \\
  & = \int_{A} h(\phi(x,y)) f_{(X,Y)}(x,y) \, d x d y\enspace.
 \end{align*}
+La dernière égalité est due au fait que $f_{(X,Y)}$ est nulle en dehors de $A$.
 
 On applique alors la formule du changement de variables vu en théorie de l'intégration avec $(u,v) = \phi(x,y) \iff \phi^{-1}(u,v) = (x,y)$ :
 

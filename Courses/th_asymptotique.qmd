@@ -484,6 +484,9 @@ app = App(app_ui, server)
 ```
 :::
 
+Pour aller plus loin sur les piles ou faces et l'aléa associer, voir l'exposé de [Persi Diaconis](https://youtu.be/xit5LDwJVck?feature=shared&t=323) (Stanford Univ.) : "The Search for Randomness".
+
+
 Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l'analyse.
 Pour cela supposons que l'on ait une suite de variables aléatoires réelles $X_1, \dots, X_n$, i.i.d. dont la fonction de densité commune est notée par $f$.
 
