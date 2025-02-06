@@ -335,7 +335,7 @@ Tenter de reproduire la figure suivante
 fig, ax = plt.subplots()
 lines = np.linspace(0, 1, 9)
 for i, vali in enumerate(lines):
-    ax.plot(x, stats.uniform.cdf(x, loc=-vali,scale=2*vali), color=cmap(0.2+0.8*i/len(lines)), label=f"[-{-vali},{-vali+2*vali}]", lw=2)
+    ax.plot(x, stats.uniform.cdf(x, loc=-vali,scale=2*vali), color=cmap(0.2+0.8*i/len(lines)), label=f"[{-vali},{-vali+2*vali}]", lw=2)
 
 ax.set_xlim([-1.5,1.5])
 plt.legend()
