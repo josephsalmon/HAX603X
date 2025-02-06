@@ -484,7 +484,7 @@ app = App(app_ui, server)
 ```
 :::
 
-Pour aller plus loin sur les piles ou faces et l'aléa associer, voir l'exposé de [Persi Diaconis](https://youtu.be/xit5LDwJVck?feature=shared&t=323) (Stanford Univ.) : "The Search for Randomness".
+Pour aller plus loin sur les piles ou faces et l'aléa associé, voir l'exposé de [Persi Diaconis](https://youtu.be/xit5LDwJVck?feature=shared&t=323) (Stanford Univ.) : "The Search for Randomness".
 
 
 Une autre illustration possible de la convergence donnée par le TCL est celle qui correspond au point de vue donnée par l'analyse.

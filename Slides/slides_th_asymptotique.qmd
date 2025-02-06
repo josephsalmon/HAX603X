@@ -61,6 +61,8 @@ $$
 - Membre de droite :  la fréquence théorique de piles
 :::
 
+Pour aller plus loin sur les piles ou faces : voir l'exposé de [Persi Diaconis](https://youtu.be/xit5LDwJVck?feature=shared&t=323) (Stanford Univ.) : "The Search for Randomness".
+
 ## Visualisation de l'exemple du pile ou face
 
 ```{shinylive-python}
