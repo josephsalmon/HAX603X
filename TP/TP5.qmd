@@ -431,7 +431,7 @@ def riemann(n, d):
 
 ```
 
-1. Implémentez la méthode de Monte-Carlo standard pour ce même calcul pour approcher $V_d$ par $\widehat{V}_d^{\mathrm{Monte-Carlo}}$. Visualizer l'erreur relative des deux méthodes en fonction de $d$ (pour un nombre d'évaluation de $f$ identique, et supérieur à 10000. Que constatez-vous ? Pourquoi ? Pour rappel l'erreur relative d'un esimtateur $\widehat{V}_d$ de $V_d$ est donnée par $|\widehat{V}_d - V_d|/V_d$.
+1. Implémentez la méthode de Monte-Carlo standard pour ce même calcul pour approcher $V_d$ par $\widehat{V}_d^{\mathrm{Monte-Carlo}}$. Visualizer l'erreur relative des deux méthodes en fonction de $d$ (pour un nombre d'évaluation de $f$ identique, et supérieur à 10000. Que constatez-vous ? Pourquoi ? Pour rappel l'erreur relative d'un estimateur $\widehat{V}_d$ de $V_d$ est donnée par $|\widehat{V}_d - V_d|/V_d$.
 ```{python}
 #| echo: false
 #| layout-ncol: 1
