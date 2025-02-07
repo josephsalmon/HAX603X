@@ -126,7 +126,7 @@ fig.update_layout(
 
 - Une machine est déterministe
 - Les nombres flottants entre $0$ et $1$ donnés par la machine sont de la forme $k/2^p$, pour $k \in \{0, \ldots, 2^{p-1}\} \implies$ impossibilité de générer certains nombres
-- Vérifier qu'une suite est bien i.i.d. est un problème difficile
+- Vérifier qu'une suite est bien i.i.d. est un problème statistique difficile
 :::
 
 
@@ -139,12 +139,14 @@ fig.update_layout(
 
 <br>
 
-Un **générateur de nombres pseudo-aléatoires** (:gb:: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ qui a un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
+Un **générateur de nombres pseudo-aléatoires** (:gb:: *Pseudo Random Number Generator*, PRNG), est un algorithme déterministe récursif qui renvoie une suite $U_1, \ldots, U_n$ dans $[0,1]$ ayant un "comportement similaire" à une suite i.i.d. de loi $\mathcal{U}([0,1])$.
 :::
 
 <br>
 
 [Remarque]{.underline}: ces nombres sont obtenus depuis des **nombres entiers** générés aléatoirement et uniformément sur grand interval, puis une transformation simple (normalisation) permet d'obtenir des nombres flottants (:gb:: *floats*) entre 0 et 1.
+
+
 
 
 ## Détails techniques
@@ -157,7 +159,7 @@ Un PRNG se construit ainsi :
 . . .
 
 - $f$ : à valeur dans un ensemble fini $\implies$ **périodicité** (contrainte: utiliser la plus grande période possible)
-- L'algorithme est **déterministe** (une fois la graine fixée). Utilité de fixer la graine: répéter des simulations dans des conditions identiques et ainsi repérer des erreurs
+- L'algorithme est **déterministe** (une fois la graine fixée). Utilité de fixer la graine: répéter des simulations dans des conditions identiques et ainsi repérer des erreurs (débugger / partagé des résultats reproductibles)
 
 
 ## Le générateur congruentiel linéaire
@@ -191,7 +193,7 @@ dispose de meilleures garanties statistiques; voir [https://www.pcg-random.org](
 
 <br>
 
-- On suppose désormais disposer d'un générateur pseudo-aléatoire sur $[0,1]$.
+- On suppose désormais disposer d'un générateur pseudo-aléatoire sur $[0,1]$
 
 
 ## Usage en `numpy`
@@ -244,7 +246,7 @@ print(rng.random(size=(3, 2)))     #  matrice 3x2, à entrées unif. sur [0,1]
 
 - Suite du cours: apprendre à générer de nombreuses lois à partir de la loi uniforme
 
-- [En pratique]{.underline}: les logiciels proposent les distributions classiques (gaussiennes, exponentielles, etc.), utiliser plutôt ces fonctions que de les implémenter soi-même.
+- [En pratique]{.underline}: les logiciels proposent les distributions classiques (gaussiennes, exponentielles, etc.), utiliser ces fonctions plutôt que de les ré-implémenter (meilleure garantie de qualité)
 
 - Liste exhaustive pour `numpy`:
 
