@@ -579,7 +579,7 @@ La méthode est illustré ci-dessous pour quelques lois intéressantes:
 
 ```{ojs}
 //| echo: false
-viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: "bimodal", label: "Loi"})
+viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal', 'geometric'], {value: "bimodal", label: "Loi"})
 viewof replay = html`<button>Relancer`
 ```
 
@@ -591,22 +591,22 @@ viewof replay = html`<button>Relancer`
 //| echo: false
 
 // Hack to make ojs load a github js file…
-// the repo is https://github.com/fradav/matter-playground
-// invcdfboard = {
-//   const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
-//   const blob = await response.blob();
-//   const url = URL.createObjectURL(blob);
-//   return require(url).catch(() => window.invcdfboard);
-// }
+// the repo is
+invcdfboard = {
+  const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/refs/heads/gh-pages/invcdfboard.umd.cjs");
+  const blob = await response.blob();
+  const url = URL.createObjectURL(blob);
+  return require(url).catch(() => window.invcdfboard);
+}
 
 // Or load from local file
-invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd.cjs").url())
+// invcdfboard = require(await FileAttachment("../matter-playground/dist/invcdfboard.umd.cjs").url())
 
 {
   replay
   const canvas = DOM.canvas(500, 500);
   const galton = invcdfboard.galton(canvas,dist);
-  
+
   return html`${galton.canvas}`
 }
 ```
