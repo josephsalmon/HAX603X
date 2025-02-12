@@ -132,6 +132,28 @@ pre.text, pre.sourceCode, .cell-output pre {
   font-size: smaller;
 }
 
+// change color in .quarto-secondary-nav-title
+.quarto-secondary-nav-title {
+  color: $orange;
+}
+
+
+// change color in  .quarto-secondary-nav .quarto-btn-toggle
+
+.quarto-secondary-nav .quarto-btn-toggle {
+  color: $orange;
+}
+
+// put transparent color in  .quarto-banner nav.quarto-secondary-nav
+.quarto-banner nav.quarto-secondary-nav {
+  background-color: black;
+  border-top: 0px;
+  border-bottom: 0px;
+
+}
+
+
+
 .menu-text {
  // change fontweight for menu-text
  font-weight: 600;

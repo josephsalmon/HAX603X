@@ -196,10 +196,10 @@ L'idée de la méthode d'inversion repose sur le résultat suivant :
 
 ## Rappel sur la fonction quantile
 
-Rappel : Pour $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante, on note
+Rappel : Pour $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante, on note $\forall q \in ]0,1[, $
 
 $$
-\forall q \in ]0,1[, \quad F^\leftarrow(q) = \inf\{ x \in \mathbb{R} : F(x)\geq q\}
+F^\leftarrow(q) = \inf\{ x \in \mathbb{R} : F(x)\geq q\}
 $${#eq-inf}
 
 
@@ -207,12 +207,11 @@ $${#eq-inf}
 :::{#thm-quantile}
 
 ## Caractérisation des quantiles
-Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante et continue à droite, alors pour tout $q \in ]0, 1[$, on a
+Soit $F$ une fonction définie sur $\mathbb{R}$ à valeurs dans $[0, 1]$, croissante et continue à droite, alors pour tout $q \in ]0, 1[$, $x \in \mathbb{R}$ on a
 
-\begin{align}
-   \{x \in \mathbb{R} :  F(x) \geq q) \} & =
-   \{x \in \mathbb{R} : x \geq F^\leftarrow(q)  \}
-\end{align}
+\begin{align*}
+  F(x) \geq q \iff  x \geq F^\leftarrow(q) \enspace.
+\end{align*}
 :::
 
 ::: {.proof}
@@ -573,7 +572,7 @@ où on a posé $p_0=0$.
 
 L'expression précédente s'étend directement au cas où $X$ prend un nombre (infini) dénombrable de valeurs, la somme devenant alors une série.
 
-La méthode est illustré ci-dessous pour quelques lois intéressantes:
+La méthode est illustrée ci-dessous pour quelques lois intéressantes:
 
 ::: {.content-visible when-format="html"}
 
@@ -662,12 +661,13 @@ Il s'agit d'étudier la loi du couple $(X,T)$. Pour $x \in \mathbb{R}$ et $n \in
 $\mathbb{P}(X \leq x, T=n)= \mathbb{P}(U_1 > r(Y_1), \dots, U_{n-1} > r(Y_{n-1}), U_n \leq r(Y_n), Y_n \leq x).$
 Les $n$ tirages étant iid, on obtient
 $$
-    \mathbb{P}(X \leq x, T=n) = \mathbb{P}(U_1 > r(Y_1))^{n-1} \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)\,.
+    \mathbb{P}(X \leq x, T=n) =  a^{n-1} b\,,
 $$
-
-Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indépendantes donc leur loi jointe correspond au produit des densités :
+avec $a=\mathbb{P}(U_1 > r(Y_1))$ et $b=\mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)$.
+Concernant le premier terme, les variables aléatoires $Y_1$ et $U_1$ sont indépendantes donc leur loi jointe correspond au produit des densités, ainsi:
+$
 \begin{align*}
-		\mathbb{P}(U_1 > r(Y_1))
+	   a & = \mathbb{P}(U_1 > r(Y_1))\\
 		 & = \mathbb{P}((U_1, Y_1) \in \{(u,y) \in \mathbb{R}^2 : u > r(y)\})                             \\
 		 & = \int_{\mathbb{R}^2} \1_{\{u > r(y)\}} (\1_{[0,1]}(u) g(y)) \, du dy  \\
 		 & = \int_{\mathbb{R}} \bigg( \int_0^1 \1_{\{u > r(y)\}} \, du\bigg) g(y)\, d y \\
@@ -682,14 +682,9 @@ ce qui se réécrit, comme $f$ et $g$ sont des densités et que $r(y) = f(y)/(m 
 Le deuxième terme se calcule de manière analogue :
 
 \begin{align*}
-    \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
+      b & = \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)\\
         & = \int_{\mathbb{R}^2} \1_{\{u \leq r(y)\}} \1_{\{y \leq x\}} (\1_{[0,1]}(u) g(y)) \, du dy       \\
-        & = \int_{\mathbb{R}} \bigg( \int_0^1  \1_{\{u \leq r(y)\}} \, du\bigg) \1_{\{y \leq x\}}  g(y)\, d y\,,
-\end{align*}
-c'est-à-dire
-
-\begin{align*}
-        \mathbb{P}(U_n \leq r(Y_n), Y_n \leq x)
+        & = \int_{\mathbb{R}} \bigg( \int_0^1  \1_{\{u \leq r(y)\}} \, du\bigg) \1_{\{y \leq x\}}  g(y)\, d y \\
 		& = \int_{\mathbb{R}} r(y) \1_{\{y \leq x\}}  g(y)\, d y \\
 		& = \int_{-\infty}^x \dfrac{f(y)}{m}\, d y \\
 		& = \dfrac{F(x)}{m}\,,
@@ -1188,14 +1183,15 @@ $$
 
 ::: {.proof}
 
-On montre le résultat pour $n=2$. La généralisation à $k$ quelconque se fait par récurrence. 
+On montre le résultat pour $n=2$, et on note $q_n =     \mathbb{P}(E_1+\dots+E_n \leq t)$.
+La généralisation à $k$ quelconque se fait par récurrence. 
 Soit $t > 0$, et $f_{\lambda}(x)=\1_{\{x \geq 0 \}} \lambda e^{-\lambda x}$ la densité d'une loi exponentielle de paramètre $\lambda$. Les variables aléatoires $E_1$ et $E_2$ étant indépendantes et suivant des lois exponentielles de paramètre $\lambda_1$ et $\lambda_2$, on a
 
 \begin{align*}
-    \mathbb{P}(E_1+E_2 \leq t)
+    q_2 & = \mathbb{P}(E_1+E_2 \leq t)\\
         & = \int_{\mathbb{R}^2} \1_{\{x_1 + x_2 \leq t\}} f_{\lambda}(x_1) f_{\lambda}(x_2)\, d x_1 d x_2 \\
-        & = \int_{\mathbb{R}^2} \1_{\{x_1 + x_2 \leq t\}} \lambda^2 e^{-\lambda (x_1+x_2)} \1_{\{x_1 \geq 0\}} \1_{\{x_2 \geq 0\}}\, d x_1 d x_2 \\
-        & = \int_{\mathbb{R}^2} \1_{\{0 \leq x_1 \leq t\}} \1_{\{0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
+        & = \int_{\mathbb{R}^2} \1_{\{x_1 + x_2 \leq t, x_1 \geq 0, x_2 \geq 0\}}\lambda^2 e^{-\lambda (x_1+x_2)} \, d x_1 d x_2 \\
+        & = \int_{\mathbb{R}^2} \1_{\{0 \leq x_1 \leq t, 0 \leq x_2 \leq t-x_1\}} \lambda^2 e^{-\lambda x_1} e^{-\lambda x_2}\, d x_1 d x_2             \\
         & = \int_0^t \lambda e^{-\lambda x_1} \bigg(\int _0^{t-x_1} \lambda e^{-\lambda x_2}\, d x_2\bigg)  d x_1\,.
 \end{align*}
 La première intégrale se calcule alors facilement :
@@ -1216,11 +1212,16 @@ Si $t<0$, alors comme les $E_i$ ne prennent que des valeurs positives on trouve 
 On peut désormais prouver le résultat de la @{prp-poisson_exponentielle}.
 
 ::: {.proof}
+Notons d'abor que pour tout $n \in \mathbb{N}$
+$$
+    \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
+$$
 
-Pour $n \in \mathbb{N}$, on décompose la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
+On décompose donc la probabilité $\mathbb{P}(S_n \leq 1 < S_{n+1})$ via
 
 \begin{align*}
-    \mathbb{P}(S_n \leq 1 < S_{n+1})
+    \mathbb{P}(T=n)
+    & = \mathbb{P}(S_n \leq 1 < S_{n+1})\\
     & = \mathbb{P}(\{S_n \leq 1\} \mathbin{\backslash} \{S_{n+1} \leq 1\})\\
     & = \mathbb{P}(S_n \leq 1) - \mathbb{P}(S_{n+1} \leq 1)\,.
 \end{align*}
@@ -1238,10 +1239,7 @@ $$
     = e^{-\lambda} \dfrac{\lambda^n}{n!}\,.
 $$
 
-On conclut la preuve de la proposition en remarquant que
-$$
-    \mathbb{P}(T=n) = \mathbb{P}(S_n \leq 1 < S_{n+1})\,.
-$$
+Le résultat en découle.
 :::
 
 La simulation d'une variable aléatoire de Poisson repose donc sur la simulation de lois exponentielles qui se fait via la méthode d'inversion, comme vu dans @exm-inverse-exponentielle. En pratique, on simule $E_1$ et on teste si $E_1 > 1$. Si oui, on pose alors $T=0$. Si non, on simule $E_2$ et on teste si $E_1 + E_2 > 1$. Si oui, on pose $T=1$. Sinon on continue la procédure.
