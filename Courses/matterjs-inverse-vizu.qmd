@@ -6,30 +6,33 @@ format:
 ---
 
 ```{ojs}
-viewof dist = Inputs.select(['normal','cauchy','laplace','bimodal'], {value: "bimodal", label: "Distribution type"})
+viewof dist = Inputs.select(['normal', 'exponential', 'uniform', 'cauchy','laplace','bimodal', 'geometric'], {value: "geometric", label: "Distribution type"})
 viewof replay = html`<button>replay`
 ```
 
 
 
 ```{ojs}
+
 // Hack to make ojs load a github js file…
 // the repo is https://github.com/fradav/matter-playground
 // invcdfboard = {
-//   const response = await fetch("https://raw.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
+//   const response = await fetch("https://
+// w.githubusercontent.com/fradav/matter-playground/main/dist/invcdfboard.umd.cjs");
 //   const blob = await response.blob();
 //   const url = URL.createObjectURL(blob);
 //   return require(url).catch(() => window.invcdfboard);
 // }
 
+
 // Or load from local file
-invcdfboard = require(await FileAttachment("../inverse-vizu/dist/invcdfboard.umd.cjs").url())
+invcdfboard = require(await FileAttachment("../matter-playground/dist/invcdfboard.umd.cjs").url())
 
 {
   replay
   const canvas = DOM.canvas(500, 500);
   const galton = invcdfboard.galton(canvas,dist);
-  
+
   return html`${galton.canvas}`
 }
 ```
