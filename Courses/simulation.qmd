@@ -578,7 +578,7 @@ La méthode est illustrée ci-dessous pour quelques lois intéressantes:
 
 ```{ojs}
 //| echo: false
-viewof dist = Inputs.select(['normal','cauchy', 'exponential','laplace','bimodal', 'geometric'], {value: "bimodal", label: "Loi"})
+viewof dist = Inputs.select(['normal','cauchy', 'exponential','laplace','bimodal', 'geometric', 'uniform'], {value: "bimodal", label: "Loi"})
 viewof replay = html`<button>Relancer`
 ```
 
