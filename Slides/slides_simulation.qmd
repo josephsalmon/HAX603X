@@ -7,9 +7,6 @@ format:
     template-partials:
         - toc-slide.html
     include-after-body: toc-add.html
-filters:
-  - shinylive
-jupyter: python3
 ---
 
 
@@ -487,7 +484,7 @@ def accept_reject(n, f, g, g_sampler, m, rng):
     m: constante pour la majoration
     rng: générateur pseudo-aléatoire
     """
-    x_samples = np.zeros(n)
+    y_samples = np.zeros(n)
     u_samples = np.zeros(n)
     accepted = np.zeros(n)
     for i in range(n):
@@ -495,10 +492,10 @@ def accept_reject(n, f, g, g_sampler, m, rng):
         u = rng.uniform()
         alpha = u * m * g(x)  # note: pour le test on peut éviter les divisions
         u_samples [i] = alpha
-        x_samples[i] = x
+        y_samples[i] = x
         if  alpha <= f(x):
             accepted[i] = 1
-    return x_samples, u_samples, accepted
+    return y_samples, u_samples, accepted
 ```
 :::
 
@@ -826,6 +823,7 @@ Soit $T = \inf \{n \geq 1 : U_n \leq r(Y_n)\}$ le premier instant où le tirage 
 - $Y_T$ a pour densité $f$ et est indépendante de $T$
 ::::
 
+Note: $1\hspace{-3.8pt} 1_{\{r(U) \leq Y\}} \sim \mathcal{B}(1/m)$ ce qui permet de donner par la loi des grands nombres la limite du taux d'acceptation: $1/m$
 
 ##  Démonstration
 
@@ -1102,7 +1100,7 @@ $$
 
 <br>
 
-[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $g(x)\triangleq \tfrac{1}{2} {1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$ et $m=2$
+[Loi majorante]{.underline}: loi uniforme sur le carré $[-1,1]^2$, $g(x)\triangleq \tfrac{1}{4} {1\hspace{-3.8pt} 1}_{[-1, 1]^2}(x)$ et $m=4$
 
 <br>
 
