@@ -251,17 +251,25 @@ Jean-Baptiste Fermanian
 </div>
 
 </section><section id="TOC">
-<nav id="toc-nav" role="doc-toc" style="padding-top: 5px; padding-bottom: 5px;">  
-<h3 id="toc-title">Table des matières</h3>
+<nav role="doc-toc"> 
+<h2 id="toc-title">Table des matières</h2>
 <ul>
 <li><a href="#/loi-des-grands-nombres" id="/toc-loi-des-grands-nombres">Loi des grands nombres</a></li>
 <li><a href="#/théorème-central-limite" id="/toc-théorème-central-limite">Théorème central limite</a></li>
 </ul>
 </nav>
 </section>
-<section id="section" class="slide level2">
-<h2></h2>
-<div id="toc"></div>
+<section class="slide level2">
+
+<!-- ##
+
+
+
+
+
+```{=html}
+<div id='toc'></div>
+``` -->
 </section>
 <section>
 <section id="loi-des-grands-nombres" class="title-slide slide level1 center">
@@ -533,7 +541,7 @@ Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce
 </ul>
 </div>
 <div class="fragment">
-<div id="ee7507a4" class="cell" data-execution_count="1">
+<div id="6588e51f" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Quantile 1-0.05/2 (en: Percent point function)</span></span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1153,16 +1161,6 @@ app = App(app_ui, server)
           RevealZoom
         ]
       });
-    </script>
-    <script>
-      let placeholder = document.querySelector("div#toc");
-      let toc = document.querySelector("#toc-nav");
-      let toc_slide = document.querySelector("section#TOC");
-      
-      let toc_clone = toc.cloneNode(true);
-      placeholder.replaceWith(toc_clone);
-      
-      toc_slide.remove();
     </script>
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
