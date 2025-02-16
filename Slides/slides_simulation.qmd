@@ -4,28 +4,11 @@ subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
     toc: true
-    template-partials:
-        - toc-slide.html
-    include-after-body: toc-add.html
+    # template-partials:
+    #     - toc-slide.html
+    # include-after-body: toc-add.html
 ---
 
-
-<!-- <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-  extensions: ["tex2jax.js"],
-  jax: ["input/TeX", "output/HTML-CSS"],
-  tex2jax: {
-    inlineMath: [ ['$','$'] ],
-    displayMath: [ ['$$','$$']],
-    processEscapes: true
-  },
-  "HTML-CSS": {
-    availableFonts: ["Source Sans Pro", "Helvetica", "sans-serif"],
-    preferredFont: "Source Sans Pro",
-    webFont: "Source Sans Pro"
-  }
-});
-</script> -->
 
 ## Enjeu
 
@@ -39,17 +22,19 @@ MathJax.Hub.Config({
 <br>
 <br>
 
-. . .
 
 [[Approche]{.underline}: Commencer par les v.a. uniformes et en déduire les autres lois]{.r-fit-text}
+
 <br>
 <br>
 
 
-##
+<!--
+the following is causing a bug...
+ ##
 ```{=html}
 <div id='toc'></div>
-```
+``` -->
 
 # Variables aléatoires uniformes
 
@@ -107,6 +92,7 @@ fig.update_layout(
         )
     )
 )
+fig.show(renderer="notebook")
 ```
 :::
 
@@ -578,7 +564,7 @@ n = 0
 rng = np.random.default_rng(seed)
 g_sampler = lambda: rng.uniform()
 fig1, ratio1,_ = plot_accept_reject(n, f, g, g_sampler, m, rng)
-fig1.show()
+fig1.show(renderer="notebook")
 ```
 :::
 

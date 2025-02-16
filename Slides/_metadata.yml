@@ -73,6 +73,8 @@ format:
       controls: false
       code-annotations: select
       css: slides.css
+      execute: 
+        enabled: true
 
 editor:
   render-on-save: true

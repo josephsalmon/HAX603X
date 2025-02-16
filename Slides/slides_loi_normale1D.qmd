@@ -4,9 +4,9 @@ subtitle: "HAX603X: Modélisation stochastique"
 format:
   revealjs:
     toc: true
-    template-partials:
-        - toc-slide.html
-    include-after-body: toc-add.html
+    # template-partials:
+    #     - toc-slide.html
+    # include-after-body: toc-add.html
 ---
 
 # Définitions et propriétés de la loi normale/gaussienne
