@@ -51,7 +51,7 @@ F_U(x)
 \end{cases}
 $$
 
-::: {.r-stack}
+
 
 ```{python}
 #| echo: false
@@ -60,6 +60,8 @@ $$
 import numpy as np
 import scipy
 import plotly.graph_objects as go
+import plotly.io as pio
+pio.renderers.default = "notebook_connected"
 
 
 x = np.linspace(-3, 4, num=300)
@@ -94,7 +96,6 @@ fig.update_layout(
 )
 fig.show(renderer="notebook")
 ```
-:::
 
 ## Challenges
 
@@ -1020,6 +1021,8 @@ fig.update_layout(
     )
 )
 
+fig.show(renderer="notebook")
+
 ```
 
 :::
@@ -1208,7 +1211,7 @@ fig.update_yaxes(range=[-1.5, 1.5])
 fig.update_layout(legend=dict(y=0.95, x=.74))
 ratio = np.sum(test_samples_circle) / n_sample
 aire = 2 * 2 * ratio
-fig.show()
+fig.show(renderer="notebook")
 ```
 
 :::
@@ -1279,7 +1282,7 @@ fig.update_yaxes(range=[-3, 3])
 fig.update_layout(legend=dict(y=0.95, x=.74))
 ratio_cardioid = np.sum(test_samples_circle) / n_sample
 aire_cardioid = 3* 5 * ratio_cardioid
-fig.show()
+fig.show(renderer="notebook")
 ```
 
 :::

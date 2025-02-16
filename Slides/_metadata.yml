@@ -73,7 +73,7 @@ format:
       controls: false
       code-annotations: select
       css: slides.css
-      execute: 
+      execute:
         enabled: true
 
 editor:
