@@ -606,7 +606,7 @@ import plotly.graph_objects as go
 from sklearn.neighbors import KernelDensity
 n_sample = 1000
 x = np.linspace(-2, 10, num=10000)
-X=dzcauchy(n_sample, 1)
+X=dzcauchy(n_sample)
 
 kde = KernelDensity(kernel="tophat", bandwidth=0.1).fit(X.reshape(-1, 1))
 log_dens = kde.score_samples(x.reshape(-1, 1))
