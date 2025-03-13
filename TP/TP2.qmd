@@ -574,7 +574,7 @@ plt.legend()
 #| output: false
 #| warning: false
 
-vect = dzcauchy(1000, 1)
+vect = dzcauchy(1000)
 fig, ax = plt.subplots()
 ax.plot(np.cumsum(vect) / np.arange(1, len(vect)+1), label="Moyenne empirique")
 ax.axhline(1, linestyle="--", color='red', lw=2, label="Médiane de la loi")
