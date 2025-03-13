@@ -387,7 +387,7 @@ plt.show()
 ```
 :::
 
-2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
+2. À l'aide de la méthode de rejet vue en TD, construire une fonction `loi_beta` qui génère $n$ variables aléatoires de loi $\text{Beta}(\alpha,\beta)$, pour $\alpha>1$ et $\beta>1$. La fonction prendre donc en paramètre, $n$, $\alpha$, $\beta$, et un générateur aléatoire (e.g., `rng`).
 
 ::: {.content-hidden unless-meta="correction"}
 #### [Solution]{style="color:red;"}
