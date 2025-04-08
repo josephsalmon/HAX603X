@@ -172,7 +172,7 @@ Une liste exhaustive est donnée [ici](https://numpy.org/doc/stable/reference/ra
 
 ::: {.callout-note appearance="simple"}
 ## Pour aller plus loin
-Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://albertcthomas.github.io/good-practices-random-number-generators/).
+Une excellent discussion sur les bonnes pratiques aléatoires en `numpy`, et l'usage de `np.random.default_rng` est donnée dans ce [blog post d'Albert Thomas](https://blog.scientific-python.org/numpy/numpy-rng/).
 :::
 
 
