@@ -178,3 +178,4 @@ format:
     # self-contained: true
     # fig-format: svg
     css: custom.scss
+    email-obfuscation: javascript

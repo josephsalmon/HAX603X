@@ -175,7 +175,7 @@ où $F^{-1}_{\cN(0,1)}$ est la fonction quantile de la loi normale centrée réd
 $$
 	S_n^2=\frac{1}{n-1}\sum_{i=1}^n\big(g(X_i)-I_n\big)^2
 $$
-est l'estimateur sans biais^[Ceci signifie que $\mathbb E[S_n^2]=\var(g(X))$] de la variance empirique.
+est l'estimateur sans biais de la variance empirique (*i.e*, $\mathbb E[S_n^2]=\var(g(X))$]).
 :::
 
 ::: {.proof}
@@ -188,7 +188,7 @@ ce qui se traduit dans notre contexte par
 $$
 	\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1).
 $$
-En général, on ne connaît pas non plus $\var(g(X))$, donc on la remplace par un estimateur de la variance $S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2$. D'après la loi des grands nombres, cet estimateur converge presque sûrement, donc en probabilité (donc en loi) vers $\var(g(X))$ qui est une constante. D'après le lemme de Slutsky^[Voir [https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky)], le couple $(\frac{I_n-I}{\sqrt{n\var(g(X))}},S^2_n)$ converge en loi vers le couple $(\mathcal N(0,1), \delta_{\var(g(X))})$. En particulier, on a encore la convergence en loi du produit
+En général, on ne connaît pas non plus $\var(g(X))$, donc on la remplace par un estimateur de la variance $S_n^2=\frac{1}{n-1}\sum_{i=1}^n(g(X_i)-I_n)^2$. D'après la loi des grands nombres, cet estimateur converge presque sûrement, donc en probabilité (donc en loi) vers $\var(g(X))$ qui est une constante. D'après le lemme de Slutsky^[Voir [https://fr.wikipedia.org/wiki/Théorème_de_Slutsky](https://fr.wikipedia.org/wiki/Th%C3%A9or%C3%A8me_de_Slutsky)], le couple $(\frac{I_n-I}{\sqrt{n\var(g(X))}},S^2_n)$ converge en loi vers le couple $(\mathcal N(0,1), \delta_{\var(g(X))})$. En particulier, on a encore la convergence en loi du produit
 $$
 	\frac{I_n-I}{\sqrt{\frac{S^2_n}{n}}}=\frac{I_n-I}{\sqrt{\frac{\var(g(X))}{n}}}\times \frac{\sqrt{\var(g(X))}}{\sqrt{S^2_n}}\xrightarrow[n\to\infty]{\mathcal L}\mathcal N(0,1) \times 1.
 $$
