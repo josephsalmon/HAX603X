@@ -452,7 +452,7 @@ I_1= 4 \cdot \int_0^1 \sqrt{1-x^2} dx=\pi=4 \cdot \mathbb{E}\left[\sqrt{1-X^2} \
 </ol>
 <section id="solution" class="level4">
 <h4 class="anchored" data-anchor-id="solution"><span style="color:red;">Solution</span></h4>
-<div id="1618ba17" class="cell" data-execution_count="1">
+<div id="fb21a49b" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -470,8 +470,8 @@ I_1= 4 \cdot \int_0^1 \sqrt{1-x^2} dx=\pi=4 \cdot \mathbb{E}\left[\sqrt{1-X^2} \
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 3.1402744383044094
-Confidence Interval (IC): (np.float64(3.1229404816863138), np.float64(3.157608394922505))</code></pre>
+<pre><code>IN: 3.1400726317392675
+Confidence Interval (IC): (np.float64(3.1224432308551924), np.float64(3.1577020326233427))</code></pre>
 </div>
 </div>
 <ol type="1">
@@ -482,7 +482,7 @@ I_2= \int_{\mathbb R^2} {1\hspace{-3.8pt} 1}_{\{ x^2+ y^2 \leq 1\}} dx dy=\pi=\m
 </section>
 <section id="solution-1" class="level4">
 <h4 class="anchored" data-anchor-id="solution-1"><span style="color:red;">Solution</span></h4>
-<div id="381355cc" class="cell" data-execution_count="2">
+<div id="9cb89c60" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of points</span></span>
@@ -506,8 +506,8 @@ I_2= \int_{\mathbb R^2} {1\hspace{-3.8pt} 1}_{\{ x^2+ y^2 \leq 1\}} dx dy=\pi=\m
 <span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 3.1436
-Confidence Interval (IC): (np.float64(3.1114411832927646), np.float64(3.1757588167072357))</code></pre>
+<pre><code>IN: 3.1144
+Confidence Interval (IC): (np.float64(3.081849767851218), np.float64(3.146950232148782))</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
@@ -530,7 +530,7 @@ Confidence Interval (IC): (np.float64(3.1114411832927646), np.float64(3.17575881
 </ol>
 <section id="solution-3" class="level4">
 <h4 class="anchored" data-anchor-id="solution-3"><span style="color:red;">Solution</span></h4>
-<div id="651f1300" class="cell" data-execution_count="3">
+<div id="6393c900" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="op">-</span>np.arctan(<span class="dv">2</span>) <span class="op">/</span> np.pi <span class="op">+</span> <span class="dv">1</span><span class="op">/</span><span class="dv">2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>0.14758361765043326</code></pre>
@@ -542,7 +542,7 @@ Confidence Interval (IC): (np.float64(3.1114411832927646), np.float64(3.17575881
 </section>
 <section id="solution-4" class="level4">
 <h4 class="anchored" data-anchor-id="solution-4"><span style="color:red;">Solution</span></h4>
-<div id="e2c5ad0e" class="cell" data-execution_count="4">
+<div id="be759b89" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
@@ -566,8 +566,8 @@ Confidence Interval (IC): (np.float64(3.1114411832927646), np.float64(3.17575881
 <span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.1459
-Confidence Interval (IC): (np.float64(0.1389812108147427), np.float64(0.1528187891852573))</code></pre>
+<pre><code>IN: 0.1523
+Confidence Interval (IC): (np.float64(0.1452576252086199), np.float64(0.15934237479138008))</code></pre>
 </div>
 </div>
 <ol start="3" type="1">
@@ -576,7 +576,7 @@ Confidence Interval (IC): (np.float64(0.1389812108147427), np.float64(0.15281878
 </section>
 <section id="solution-5" class="level4">
 <h4 class="anchored" data-anchor-id="solution-5"><span style="color:red;">Solution</span></h4>
-<div id="a640206c" class="cell" data-execution_count="5">
+<div id="c58501ae" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
@@ -598,15 +598,15 @@ Confidence Interval (IC): (np.float64(0.1389812108147427), np.float64(0.15281878
 <span id="cb9-19"><a href="#cb9-19" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb9-20"><a href="#cb9-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.14575
-Confidence Interval (IC): (np.float64(0.14129644005610226), np.float64(0.15020355994389772))</code></pre>
+<pre><code>IN: 0.1447
+Confidence Interval (IC): (np.float64(0.14025593952383372), np.float64(0.14914406047616627))</code></pre>
 </div>
 </div>
 <p>L’intervalle de confiance est un peu plus resserré. La variance a été divisée par</p>
-<div id="86bc0853" class="cell" data-execution_count="6">
+<div id="cb7b3c5a" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(Z)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="6">
-<pre><code>np.float64(2.413490487355815)</code></pre>
+<pre><code>np.float64(2.5111829146203672)</code></pre>
 </div>
 </div>
 <ol start="4" type="1">
@@ -619,7 +619,7 @@ Confidence Interval (IC): (np.float64(0.14129644005610226), np.float64(0.1502035
 </section>
 <section id="solution-6" class="level4">
 <h4 class="anchored" data-anchor-id="solution-6"><span style="color:red;">Solution</span></h4>
-<div id="277215d2" class="cell" data-execution_count="7">
+<div id="21469c83" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
@@ -642,15 +642,15 @@ Confidence Interval (IC): (np.float64(0.14129644005610226), np.float64(0.1502035
 <span id="cb13-20"><a href="#cb13-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb13-21"><a href="#cb13-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.14730277871983077
-Confidence Interval (IC): (np.float64(0.14399541565021587), np.float64(0.15061014178944568))</code></pre>
+<pre><code>IN: 0.14586627957361475
+Confidence Interval (IC): (np.float64(0.14256587565296208), np.float64(0.14916668349426743))</code></pre>
 </div>
 </div>
 <p>L’intervalle de confiance est encore plus resserré. Par rapport à la méthode initiale, la variance a été divisée par</p>
-<div id="9f59b5a2" class="cell" data-execution_count="8">
+<div id="1dca7898" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(A)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="8">
-<pre><code>np.float64(4.376192831346922)</code></pre>
+<pre><code>np.float64(4.553067405408691)</code></pre>
 </div>
 </div>
 <ol start="5" type="1">
@@ -663,7 +663,7 @@ I =
 </section>
 <section id="solution-7" class="level4">
 <h4 class="anchored" data-anchor-id="solution-7"><span style="color:red;">Solution</span></h4>
-<div id="28a795a4" class="cell" data-execution_count="9">
+<div id="f2885371" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
@@ -686,15 +686,15 @@ I =
 <span id="cb17-20"><a href="#cb17-20" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"IN:"</span>, in_)</span>
 <span id="cb17-21"><a href="#cb17-21" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC):"</span>, ic)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.14774453486027783
-Confidence Interval (IC): (np.float64(0.14755351090919774), np.float64(0.14793555881135792))</code></pre>
+<pre><code>IN: 0.14742058599701327
+Confidence Interval (IC): (np.float64(0.14722986830237386), np.float64(0.14761130369165268))</code></pre>
 </div>
 </div>
 <p>L’intervalle de confiance est encore plus resserré, on arrive presque à une précision de <span class="math inline">10^{-3}</span>. Par rapport à la méthode initiale, la variance a été divisée par</p>
-<div id="408f63ae" class="cell" data-execution_count="10">
+<div id="10506ecd" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>np.var(Y) <span class="op">/</span> np.var(B)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-display" data-execution_count="10">
-<pre><code>np.float64(1311.8511143215292)</code></pre>
+<pre><code>np.float64(1363.5036086845028)</code></pre>
 </div>
 </div>
 <ol start="6" type="1">
@@ -715,7 +715,7 @@ Confidence Interval (IC): (np.float64(0.14755351090919774), np.float64(0.1479355
 </ol>
 <section id="solution-9" class="level4">
 <h4 class="anchored" data-anchor-id="solution-9"><span style="color:red;">Solution</span></h4>
-<div id="c47101d8" class="cell" data-execution_count="11">
+<div id="79e91c00" class="cell" data-execution_count="11">
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> calculate_statistics(n):</span>
@@ -749,10 +749,10 @@ Confidence Interval (IC): (np.float64(0.14755351090919774), np.float64(0.1479355
 <span id="cb21-31"><a href="#cb21-31" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"pichap:"</span>, pichap)</span>
 <span id="cb21-32"><a href="#cb21-32" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">"Confidence Interval (IC) for pichap:"</span>, ICchap)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>IN: 0.31705
-Confidence Interval (IC) for IN: (np.float64(0.31232960679318406), np.float64(0.32177039320681594))
-pichap: 3.154076644062451
-Confidence Interval (IC) for pichap: (np.float64(3.10780612856838), np.float64(3.201745778337857))</code></pre>
+<pre><code>IN: 0.3145
+Confidence Interval (IC) for IN: (np.float64(0.3097659768987193), np.float64(0.3192340231012807))
+pichap: 3.179650238473768
+Confidence Interval (IC) for pichap: (np.float64(3.132498191405928), np.float64(3.228243495336993))</code></pre>
 </div>
 </div>
 <ol start="2" type="1">
@@ -761,7 +761,7 @@ Confidence Interval (IC) for pichap: (np.float64(3.10780612856838), np.float64(3
 </section>
 <section id="solution-10" class="level4">
 <h4 class="anchored" data-anchor-id="solution-10"><span style="color:red;">Solution</span></h4>
-<div id="3725719c" class="cell" data-execution_count="12">
+<div id="ba4340ba" class="cell" data-execution_count="12">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate n values logarithmically spaced from 1e5 to 1e8</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>n_values <span class="op">=</span> np.logspace(<span class="dv">5</span>, <span class="dv">8</span>, num<span class="op">=</span><span class="dv">10</span>, dtype<span class="op">=</span><span class="bu">int</span>)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -772,14 +772,14 @@ Confidence Interval (IC) for pichap: (np.float64(3.10780612856838), np.float64(3
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> n, (IN, IC, pichap, ICchap) <span class="kw">in</span> <span class="bu">zip</span>(n_values, results):</span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"n: </span><span class="sc">{</span>n<span class="sc">:09d}</span><span class="ss">, IN: </span><span class="sc">{</span>IN<span class="sc">:.3f}</span><span class="ss">, IC: (</span><span class="sc">{</span>IC[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>IC[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">), pichap: </span><span class="sc">{</span>pichap<span class="sc">:.3f}</span><span class="ss">, ICchap: (</span><span class="sc">{</span>ICchap[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss">, </span><span class="sc">{</span>ICchap[<span class="dv">1</span>]<span class="sc">:.3f}</span><span class="ss">)"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>n: 000100000, IN: 0.318, IC: (0.316, 0.319), pichap: 3.146, ICchap: (3.131, 3.161)
-n: 000215443, IN: 0.318, IC: (0.317, 0.319), pichap: 3.145, ICchap: (3.135, 3.155)
-n: 000464158, IN: 0.318, IC: (0.317, 0.319), pichap: 3.143, ICchap: (3.136, 3.150)
-n: 001000000, IN: 0.318, IC: (0.318, 0.319), pichap: 3.142, ICchap: (3.137, 3.147)
-n: 002154434, IN: 0.318, IC: (0.318, 0.318), pichap: 3.144, ICchap: (3.141, 3.147)
+<pre><code>n: 000100000, IN: 0.319, IC: (0.318, 0.321), pichap: 3.133, ICchap: (3.118, 3.148)
+n: 000215443, IN: 0.319, IC: (0.318, 0.320), pichap: 3.138, ICchap: (3.128, 3.148)
+n: 000464158, IN: 0.319, IC: (0.318, 0.319), pichap: 3.137, ICchap: (3.130, 3.144)
+n: 001000000, IN: 0.318, IC: (0.318, 0.319), pichap: 3.143, ICchap: (3.138, 3.148)
+n: 002154434, IN: 0.318, IC: (0.318, 0.319), pichap: 3.140, ICchap: (3.137, 3.144)
 n: 004641588, IN: 0.318, IC: (0.318, 0.319), pichap: 3.141, ICchap: (3.139, 3.143)
-n: 010000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.143, ICchap: (3.142, 3.144)
-n: 021544346, IN: 0.318, IC: (0.318, 0.318), pichap: 3.141, ICchap: (3.140, 3.142)
+n: 010000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.141, ICchap: (3.140, 3.143)
+n: 021544346, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.143)
 n: 046415888, IN: 0.318, IC: (0.318, 0.318), pichap: 3.141, ICchap: (3.141, 3.142)
 n: 100000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.142)</code></pre>
 </div>
@@ -796,7 +796,7 @@ n: 100000000, IN: 0.318, IC: (0.318, 0.318), pichap: 3.142, ICchap: (3.141, 3.14
 <section id="solution-11" class="level4">
 <h4 class="anchored" data-anchor-id="solution-11"><span style="color:red;">Solution</span></h4>
 <p>Commençons avec un petit nombre de simulations</p>
-<div id="6f0fd6b2" class="cell" data-execution_count="13">
+<div id="1fad12bb" class="cell" data-execution_count="13">
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Define the number of samples</span></span>
@@ -825,7 +825,7 @@ Confidence Interval (IC) for IN: (np.float64(0.0), np.float64(0.0))</code></pre>
 </div>
 </div>
 <p>On obtient une estimation à 0, ce qui n’est pas surprenant car on cherche la probabilité d’un événement rare</p>
-<div id="8da7bc6e" class="cell" data-execution_count="14">
+<div id="c5fe036f" class="cell" data-execution_count="14">
 <div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm</span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Compute 1 - pnorm(4.5)</span></span>
@@ -845,7 +845,7 @@ Confidence Interval (IC) for IN: (np.float64(0.0), np.float64(0.0))</code></pre>
 <ol type="1">
 <li>Implémentez la méthode de Riemann pour approcher <span class="math inline">V_d</span> pour <span class="math inline">d=2,\dots, 10</span> par <span class="math inline">\widehat{V}_d^{\mathrm{Riemann}}</span>.</li>
 </ol>
-<div id="2e8e932d" class="cell" data-execution_count="15">
+<div id="66bd6b34" class="cell" data-execution_count="15">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy <span class="im">import</span> stats</span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.special <span class="im">import</span> gamma</span>
@@ -897,7 +897,7 @@ Confidence Interval (IC) for IN: (np.float64(0.0), np.float64(0.0))</code></pre>
 <span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="ss">f"Erreur relative en fonction de la dimension</span><span class="ch">\n</span><span class="ss">pour un nombre identique d'evaluations (&gt; </span><span class="sc">{</span>n<span class="sc">}</span><span class="ss">)"</span>)</span>
 <span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="62e46b9f" class="cell quarto-layout-panel" data-layout-ncol="1" data-fig-width="2" data-execution_count="18">
+<div id="c67f6ecf" class="cell quarto-layout-panel" data-fig-width="2" data-layout-ncol="1" data-execution_count="18">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -936,7 +936,7 @@ Confidence Interval (IC) for IN: (np.float64(0.0), np.float64(0.0))</code></pre>
 <span id="cb31-23"><a href="#cb31-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb31-24"><a href="#cb31-24" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb31-25"><a href="#cb31-25" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="a7737219" class="cell quarto-layout-panel" data-layout-ncol="1" data-execution_count="19">
+<div id="cc785eb2" class="cell quarto-layout-panel" data-execution_count="19" data-layout-ncol="1">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
@@ -1025,7 +1025,7 @@ n \geq \left(\frac{L_f\mathrm{Vol}(\Omega)\|b-a\|_{\infty}}{\epsilon}\right)^d \
 <span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a>plt.legend([<span class="st">"Monte-Carlo"</span>, <span class="st">"Riemann"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{2}</span><span class="vs">}$"</span>, <span class="vs">r"$\propto n^{-\frac</span><span class="sc">{1}{d}</span><span class="vs">}$"</span>], loc<span class="op">=</span><span class="st">'lower left'</span>)</span>
 <span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="064f484a" class="cell quarto-layout-panel" data-layout-ncol="1" data-fig-width="2" data-execution_count="20">
+<div id="0438c8f5" class="cell quarto-layout-panel" data-fig-width="2" data-layout-ncol="1" data-execution_count="20">
 <div class="quarto-layout-row">
 <div class="quarto-layout-cell" style="flex-basis: 100.0%;justify-content: center;">
 <div class="quarto-figure quarto-figure-center">
