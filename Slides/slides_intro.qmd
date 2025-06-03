@@ -116,8 +116,8 @@ PS: n'oubliez pas de mettre [HAX603X] dans le titre de vos mails!
 <br>
 
 - Coefficients:
-    - Note Session 1 : (40% CC + 30% TP 1 + 30% TP 2)
-    - Note Session 2 : (30% CC + 35% TP 1 + 35% TP 2)
+    - Note Session 1 : (40% TP 1 + 30% TP 2 + 30% CC)
+    - Note Session 2 : (35% TP 1 + 35% TP 2 + 30% CC)
 
 ::: {.callout-important}
 
