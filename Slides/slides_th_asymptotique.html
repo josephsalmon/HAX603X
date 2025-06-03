@@ -8,9 +8,9 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-dece3bd051e391dd7205a6b15f93dc59.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <meta name="shinylive:serviceworker_dir" content="..">
-<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/load-shinylive-sw.js" type="module"></script>
-<script src="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/run-python-blocks.js" type="module"></script>
-<link href="../site_libs/quarto-contrib/shinylive-0.9.3/shinylive/shinylive.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/shinylive-0.5.0/shinylive/load-shinylive-sw.js" type="module"></script>
+<script src="../site_libs/quarto-contrib/shinylive-0.5.0/shinylive/run-python-blocks.js" type="module"></script>
+<link href="../site_libs/quarto-contrib/shinylive-0.5.0/shinylive/shinylive.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/shinylive-quarto-css/shinylive-quarto.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.6.40">
 
@@ -262,8 +262,6 @@ Jean-Baptiste Fermanian
 <section class="slide level2">
 
 <!-- ##
-
-
 
 
 ```{=html}
@@ -540,7 +538,7 @@ Quand $p$ varie ($n$ fixé), les signaux générés sont très très proches, ce
 </ul>
 </div>
 <div class="fragment">
-<div id="adb30f48" class="cell" data-execution_count="1">
+<div id="ea9a2aa3" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> norm  <span class="co"># import du module "norm" de scipy.stats</span></span>
 <span id="cb2-2"><a aria-hidden="true" tabindex="-1"></a>q <span class="op">=</span> norm.ppf((<span class="dv">1</span><span class="op">-</span><span class="fl">0.05</span><span class="op">/</span><span class="dv">2</span>))      <span class="co"># Quantile 1-0.05/2 (en: Percent point function)</span></span>
 <span id="cb2-3"><a aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="sc">{</span>q<span class="sc">:.2f}</span><span class="ss">"</span>)             <span class="co"># Affichage à 2 décimales</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
